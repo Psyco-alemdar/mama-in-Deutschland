@@ -1,11 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Mama in Deutschland</title>
-
   <style>
     :root {
       --page: #f8f3ec;
@@ -13,6 +12,7 @@
       --cream: #fffaf4;
       --beige-soft: #f3eadf;
       --brown: #4a3428;
+      --brown-2: #6f4f3e;
       --brown-light: #9b7357;
       --text: #2f2621;
       --muted: #7b6a60;
@@ -20,11 +20,7 @@
       --danger: #b45b48;
       --shadow: rgba(74, 52, 40, 0.12);
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -34,334 +30,56 @@
         linear-gradient(180deg, #fbf7f1, var(--page));
       color: var(--text);
     }
-
-    header {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 28px 20px 8px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--brown);
-      letter-spacing: -0.5px;
-    }
-
-    .brand::before {
-      content: "M";
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 15px;
-      background: linear-gradient(135deg, var(--brown), var(--brown-light));
-      color: white;
-      font-size: 20px;
-      box-shadow: 0 12px 26px var(--shadow);
-    }
-
-    .language-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .language-buttons button {
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.78);
-      color: var(--brown);
-      padding: 10px 15px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    .language-buttons button:hover {
-      background: var(--brown);
-      color: white;
-    }
-
-    main {
-      max-width: 1180px;
-      margin: 26px auto 50px;
-      padding: 0 20px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: 34px;
-      padding: 34px;
-      box-shadow: 0 24px 70px var(--shadow);
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 560px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      padding: 8px 13px;
-      border-radius: 999px;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      color: var(--brown-light);
-      font-weight: 900;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-    }
-
-    h1 {
-      margin: 28px 0 18px;
-      max-width: 760px;
-      font-size: clamp(42px, 6vw, 72px);
-      line-height: 0.97;
-      letter-spacing: -3px;
-      color: var(--brown);
-    }
-
-    h2 {
-      margin: 0 0 18px;
-      color: var(--brown);
-      font-size: 28px;
-      letter-spacing: -0.8px;
-    }
-
-    h3 {
-      margin: 0 0 8px;
-      color: var(--brown);
-      font-size: 17px;
-    }
-
-    p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 17px;
-    }
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 34px;
-    }
-
-    .feature {
-      background: linear-gradient(180deg, var(--cream), #ffffff);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 20px;
-    }
-
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--beige-soft);
-      margin-bottom: 14px;
-      font-size: 21px;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 7px;
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--brown);
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 14px 15px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: #fffdf9;
-      color: var(--text);
-      font-size: 15px;
-      outline: none;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--brown-light);
-      box-shadow: 0 0 0 4px rgba(155, 115, 87, 0.12);
-    }
-
-    .box {
-      margin-top: 14px;
-      padding: 16px;
-      border-radius: 22px;
-      background: var(--cream);
-      border: 1px solid var(--border);
-    }
-
-    .main-button,
-    .secondary-button,
-    .danger-button {
-      width: 100%;
-      margin-top: 14px;
-      padding: 15px;
-      border: none;
-      border-radius: 18px;
-      color: white;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .main-button {
-      background: linear-gradient(135deg, var(--brown), var(--brown-light));
-      box-shadow: 0 16px 30px var(--shadow);
-    }
-
-    .secondary-button {
-      background: #6f4f3e;
-    }
-
-    .danger-button {
-      background: var(--danger);
-    }
-
-    .account-card {
-      display: none;
-      margin-top: 14px;
-      padding: 18px;
-      border-radius: 24px;
-      background: linear-gradient(135deg, var(--cream), white);
-      border: 1px solid var(--border);
-    }
-
-    .account-top {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--brown), var(--brown-light));
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: 900;
-    }
-
-    .account-title {
-      font-weight: 950;
-      color: var(--brown);
-      font-size: 18px;
-    }
-
-    .account-email {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 14px;
-      word-break: break-word;
-    }
-
-    .note {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .footer {
-      text-align: center;
-      margin: 38px 0 18px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    @media (max-width: 930px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .card {
-        padding: 26px;
-        border-radius: 28px;
-      }
-
-      h1 {
-        letter-spacing: -2px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      header,
-      main {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      .topbar {
-        display: block;
-      }
-
-      .language-buttons {
-        margin-top: 18px;
-      }
-
-      .brand {
-        font-size: 21px;
-      }
-    }
+    header { max-width: 1180px; margin: 0 auto; padding: 28px 20px 8px; }
+    .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 950; color: var(--brown); letter-spacing: -0.5px; }
+    .brand::before { content: "M"; display: inline-flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 15px; background: linear-gradient(135deg, var(--brown), var(--brown-light)); color: white; box-shadow: 0 12px 26px var(--shadow); }
+    .language-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .language-buttons button { border: 1px solid var(--border); background: rgba(255,255,255,.78); color: var(--brown); padding: 10px 14px; border-radius: 999px; cursor: pointer; font-weight: 850; }
+    .language-buttons button:hover { background: var(--brown); color: white; }
+    main { max-width: 1180px; margin: 26px auto 50px; padding: 0 20px; }
+    .layout { display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: stretch; }
+    .card { background: rgba(255,255,255,.9); backdrop-filter: blur(18px); border: 1px solid var(--border); border-radius: 34px; padding: 34px; box-shadow: 0 24px 70px var(--shadow); }
+    .hero { position: relative; overflow: hidden; min-height: 560px; }
+    .eyebrow { display: inline-flex; padding: 8px 13px; border-radius: 999px; background: var(--cream); border: 1px solid var(--border); color: var(--brown-light); font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 1.2px; }
+    h1 { margin: 28px 0 18px; max-width: 760px; font-size: clamp(42px, 6vw, 72px); line-height: .97; letter-spacing: -3px; color: var(--brown); }
+    h2 { margin: 0 0 18px; color: var(--brown); font-size: 28px; letter-spacing: -.8px; }
+    h3 { margin: 0 0 8px; color: var(--brown); font-size: 17px; }
+    p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 17px; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 34px; }
+    .feature { background: linear-gradient(180deg, var(--cream), #fff); border: 1px solid var(--border); border-radius: 24px; padding: 20px; }
+    .feature-icon { width: 44px; height: 44px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: var(--beige-soft); margin-bottom: 14px; font-size: 21px; }
+    label { display: block; margin-top: 15px; margin-bottom: 7px; font-size: 13px; font-weight: 900; color: var(--brown); }
+    input, select { width: 100%; padding: 14px 15px; border-radius: 16px; border: 1px solid var(--border); background: #fffdf9; color: var(--text); font-size: 15px; outline: none; }
+    input:focus, select:focus { border-color: var(--brown-light); box-shadow: 0 0 0 4px rgba(155,115,87,.12); }
+    .box { margin-top: 14px; padding: 16px; border-radius: 22px; background: var(--cream); border: 1px solid var(--border); }
+    .main-button, .secondary-button, .danger-button { width: 100%; margin-top: 14px; padding: 15px; border: none; border-radius: 18px; color: white; font-size: 15px; font-weight: 900; cursor: pointer; }
+    .main-button { background: linear-gradient(135deg, var(--brown), var(--brown-light)); box-shadow: 0 16px 30px var(--shadow); }
+    .secondary-button { background: var(--brown-2); }
+    .danger-button { background: var(--danger); }
+    .account-card { display: none; margin-top: 14px; padding: 18px; border-radius: 24px; background: linear-gradient(135deg, var(--cream), white); border: 1px solid var(--border); }
+    .account-top { display: flex; gap: 14px; align-items: center; }
+    .avatar { width: 52px; height: 52px; border-radius: 18px; background: linear-gradient(135deg, var(--brown), var(--brown-light)); color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; }
+    .account-title { font-weight: 950; color: var(--brown); font-size: 18px; }
+    .account-email { margin-top: 4px; color: var(--muted); font-size: 14px; word-break: break-word; }
+    .note { margin-top: 14px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .footer { text-align: center; margin: 38px 0 18px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 930px) { .layout, .features { grid-template-columns: 1fr; } .hero { min-height: auto; } .card { padding: 26px; border-radius: 28px; } h1 { letter-spacing: -2px; } }
+    @media (max-width: 560px) { header, main { padding-left: 16px; padding-right: 16px; } .topbar { display: block; } .language-buttons { margin-top: 18px; } .brand { font-size: 21px; } }
   </style>
 </head>
-
 <body>
   <header>
     <div class="topbar">
       <div class="brand">Mama in Deutschland</div>
-
       <div class="language-buttons">
         <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
         <button onclick="setLanguage('fr')">🇫🇷 Français</button>
         <button onclick="setLanguage('ar')">🇸🇦 العربية</button>
         <button onclick="setLanguage('en')">🇬🇧 English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
     </div>
   </header>
@@ -370,632 +88,99 @@
     <section class="layout">
       <div class="card hero">
         <div class="eyebrow" id="eyebrow">Schwangerschaft · Kalender · Deutschland</div>
-
         <h1 id="mainTitle">Alles für deine Schwangerschaft in Deutschland.</h1>
-
-        <p id="mainText">
-          Eine private Plattform für Frauen, die den Schwangerschaftsverlauf, Termine,
-          Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.
-        </p>
-
+        <p id="mainText">Eine private Plattform für Frauen, die den Schwangerschaftsverlauf, Termine, Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.</p>
         <div class="features">
-          <div class="feature">
-            <div class="feature-icon">📅</div>
-            <h3 id="feature1Title">Kalender</h3>
-            <p id="feature1Text">Untersuchungen, Termine und Aufgaben automatisch nach Schwangerschaftswoche.</p>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">🩺</div>
-            <h3 id="feature2Title">Verlauf in Deutschland</h3>
-            <p id="feature2Text">Ultraschall, NIPT, Zuckertest, Organcheck und Vorsorge verständlich erklärt.</p>
-          </div>
-
-          <div class="feature">
-            <div class="feature-icon">📄</div>
-            <h3 id="feature3Title">Bürokratie</h3>
-            <p id="feature3Text">Kindergeld, Elterngeld, Mutterschaftsgeld, Geburtsurkunde und mehr.</p>
-          </div>
+          <div class="feature"><div class="feature-icon">📅</div><h3 id="feature1Title">Kalender</h3><p id="feature1Text">Untersuchungen, Termine und Aufgaben automatisch nach Schwangerschaftswoche.</p></div>
+          <div class="feature"><div class="feature-icon">🩺</div><h3 id="feature2Title">Verlauf in Deutschland</h3><p id="feature2Text">Ultraschall, NIPT, Zuckertest, Organcheck und Vorsorge verständlich erklärt.</p></div>
+          <div class="feature"><div class="feature-icon">📄</div><h3 id="feature3Title">Bürokratie</h3><p id="feature3Text">Kindergeld, Elterngeld, Mutterschaftsgeld, Geburtsurkunde und mehr.</p></div>
         </div>
       </div>
 
       <div class="card">
         <h2 id="accountTitle">Mein Konto</h2>
-
         <div id="authBox">
           <label id="emailLabel" for="email">E-Mail</label>
           <input type="email" id="email" placeholder="name@email.com" />
-
           <label id="passwordLabel" for="password">Passwort</label>
           <input type="password" id="password" placeholder="Mindestens 6 Zeichen" />
-
           <button class="main-button" onclick="signUp()" id="registerButton">Konto erstellen</button>
           <button class="secondary-button" onclick="signIn()" id="loginButton">Einloggen</button>
-
-          <div class="note" id="authNote">
-            Erstelle ein Konto oder logge dich ein. Danach kannst du dein Schwangerschaftsprofil erstellen.
-          </div>
+          <div class="note" id="authNote">Erstelle ein Konto oder logge dich ein. Danach kannst du dein Schwangerschaftsprofil erstellen.</div>
         </div>
 
         <div class="account-card" id="accountCard">
           <div class="account-top">
             <div class="avatar">🤎</div>
-            <div>
-              <div class="account-title" id="welcomeTitle">Willkommen zurück</div>
-              <div class="account-email" id="accountEmail"></div>
-            </div>
+            <div><div class="account-title" id="welcomeTitle">Willkommen zurück</div><div class="account-email" id="accountEmail"></div></div>
           </div>
-
-          <button class="secondary-button" onclick="goToApp()" id="goAppButton">
-            Zur App gehen
-          </button>
-
-          <button class="danger-button" onclick="signOut()" id="logoutButton">
-            Ausloggen
-          </button>
+          <button class="secondary-button" onclick="goToApp()" id="goAppButton">Zur App gehen</button>
+          <button class="danger-button" onclick="signOut()" id="logoutButton">Ausloggen</button>
         </div>
 
-        <div style="height: 20px;"></div>
-
+        <div style="height:20px;"></div>
         <h2 id="profileTitle">Schwangerschaftsprofil</h2>
-
         <label id="nameLabel" for="name">Vorname</label>
-        <input type="text" id="name" placeholder="Zum Beispiel: Sophia" />
-
+        <input type="text" id="name" placeholder="Zum Beispiel: Souha" />
+        <label id="babyNameLabel" for="babyName">Babyname</label>
+        <input type="text" id="babyName" placeholder="Zum Beispiel: Sophia" />
         <label id="cityLabel" for="city">Stadt in Deutschland</label>
         <input type="text" id="city" placeholder="Zum Beispiel: Mülheim an der Ruhr" />
-
         <label id="dateModeLabel" for="dateMode">Geburtstermin</label>
-        <select id="dateMode" onchange="toggleDateMode()">
-          <option value="known" id="dateModeKnown">Ich kenne den Entbindungstermin</option>
-          <option value="unknown" id="dateModeUnknown">Ich kenne ihn nicht</option>
-        </select>
-
-        <div class="box" id="knownDateBox">
-          <label id="dateLabel" for="dueDate">Voraussichtlicher Entbindungstermin</label>
-          <input type="date" id="dueDate" />
-        </div>
-
-        <div class="box" id="unknownDateBox" style="display:none;">
-          <label id="lastPeriodLabel" for="lastPeriodDate">Erster Tag der letzten Periode</label>
-          <input type="date" id="lastPeriodDate" />
-
-          <label id="cycleLabel" for="cycleLength">Zykluslänge</label>
-          <select id="cycleLength">
-            <option value="26">26 Tage</option>
-            <option value="27">27 Tage</option>
-            <option value="28" selected>28 Tage</option>
-            <option value="29">29 Tage</option>
-            <option value="30">30 Tage</option>
-            <option value="31">31 Tage</option>
-            <option value="32">32 Tage</option>
-            <option value="33">33 Tage</option>
-            <option value="34">34 Tage</option>
-            <option value="35">35 Tage</option>
-          </select>
-
-          <div class="note" id="calculationNote">
-            Der Termin wird nur ungefähr berechnet und kann später korrigiert werden.
-          </div>
-        </div>
-
+        <select id="dateMode" onchange="toggleDateMode()"><option value="known" id="dateModeKnown">Ich kenne den Entbindungstermin</option><option value="unknown" id="dateModeUnknown">Ich kenne ihn nicht</option></select>
+        <div class="box" id="knownDateBox"><label id="dateLabel" for="dueDate">Voraussichtlicher Entbindungstermin</label><input type="date" id="dueDate" /></div>
+        <div class="box" id="unknownDateBox" style="display:none;"><label id="lastPeriodLabel" for="lastPeriodDate">Erster Tag der letzten Periode</label><input type="date" id="lastPeriodDate" /><label id="cycleLabel" for="cycleLength">Zykluslänge</label><select id="cycleLength"><option value="26">26 Tage</option><option value="27">27 Tage</option><option value="28" selected>28 Tage</option><option value="29">29 Tage</option><option value="30">30 Tage</option><option value="31">31 Tage</option><option value="32">32 Tage</option><option value="33">33 Tage</option><option value="34">34 Tage</option><option value="35">35 Tage</option></select><div class="note" id="calculationNote">Der Termin wird nur ungefähr berechnet und kann später korrigiert werden.</div></div>
         <label id="statusLabel" for="workStatus">Situation</label>
-        <select id="workStatus">
-          <option value="angestellt">Angestellt</option>
-          <option value="arbeitslos">Nicht berufstätig</option>
-          <option value="studentin">Studentin</option>
-          <option value="selbstständig">Selbstständig</option>
-        </select>
-
+        <select id="workStatus"><option value="angestellt">Angestellt</option><option value="arbeitslos">Nicht berufstätig</option><option value="studentin">Studentin</option><option value="selbstständig">Selbstständig</option></select>
         <label id="insuranceLabel" for="insuranceType">Krankenversicherung</label>
-        <select id="insuranceType">
-          <option value="gesetzlich">Gesetzlich versichert</option>
-          <option value="privat">Privat versichert</option>
-          <option value="unsicher">Ich bin nicht sicher</option>
-        </select>
-
+        <select id="insuranceType"><option value="gesetzlich">Gesetzlich versichert</option><option value="privat">Privat versichert</option><option value="unsicher">Ich bin nicht sicher</option></select>
         <label id="pregnancyTypeLabel" for="pregnancyType">Schwangerschaft</label>
-        <select id="pregnancyType">
-          <option value="singleton" id="singletonOption">Ein Baby</option>
-          <option value="twins" id="twinsOption">Zwillinge</option>
-        </select>
-
+        <select id="pregnancyType"><option value="singleton" id="singletonOption">Ein Baby</option><option value="twins" id="twinsOption">Zwillinge</option></select>
         <label id="babyGenderLabel" for="babyGender">Geschlecht des Babys</label>
-        <select id="babyGender">
-          <option value="unknown" id="genderUnknown">Noch nicht bekannt</option>
-          <option value="boy" id="genderBoy">Junge</option>
-          <option value="girl" id="genderGirl">Mädchen</option>
-          <option value="twin_boys" id="genderTwinBoys">Zwillinge: Jungen</option>
-          <option value="twin_girls" id="genderTwinGirls">Zwillinge: Mädchen</option>
-          <option value="twin_mixed" id="genderTwinMixed">Zwillinge: Junge & Mädchen</option>
-        </select>
-
-        <div class="note" id="genderNote">
-          Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.
-        </div>
-
-        <button class="main-button" onclick="createProfile()" id="saveProfileButton">
-          Profil speichern und App öffnen
-        </button>
+        <select id="babyGender"><option value="unknown" id="genderUnknown">Noch nicht bekannt</option><option value="boy" id="genderBoy">Junge</option><option value="girl" id="genderGirl">Mädchen</option><option value="twin_boys" id="genderTwinBoys">Zwillinge: Jungen</option><option value="twin_girls" id="genderTwinGirls">Zwillinge: Mädchen</option><option value="twin_mixed" id="genderTwinMixed">Zwillinge: Junge & Mädchen</option></select>
+        <div class="note" id="genderNote">Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.</div>
+        <button class="main-button" onclick="createProfile()" id="saveProfileButton">Profil speichern und App öffnen</button>
       </div>
     </section>
-
     <div class="footer">Mama in Deutschland — Startseite</div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script>
     const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
-
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     let currentLang = "de";
     let currentUser = null;
 
     const translations = {
-      de: {
-        eyebrow: "Schwangerschaft · Kalender · Deutschland",
-        mainTitle: "Alles für deine Schwangerschaft in Deutschland.",
-        mainText: "Eine private Plattform für Frauen, die den Schwangerschaftsverlauf, Termine, Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.",
-        feature1Title: "Kalender",
-        feature1Text: "Untersuchungen, Termine und Aufgaben automatisch nach Schwangerschaftswoche.",
-        feature2Title: "Verlauf in Deutschland",
-        feature2Text: "Ultraschall, NIPT, Zuckertest, Organcheck und Vorsorge verständlich erklärt.",
-        feature3Title: "Bürokratie",
-        feature3Text: "Kindergeld, Elterngeld, Mutterschaftsgeld, Geburtsurkunde und mehr.",
-        accountTitle: "Mein Konto",
-        emailLabel: "E-Mail",
-        passwordLabel: "Passwort",
-        registerButton: "Konto erstellen",
-        loginButton: "Einloggen",
-        authNote: "Erstelle ein Konto oder logge dich ein. Danach kannst du dein Schwangerschaftsprofil erstellen.",
-        welcomeTitle: "Willkommen zurück",
-        goAppButton: "Zur App gehen",
-        logoutButton: "Ausloggen",
-        profileTitle: "Schwangerschaftsprofil",
-        nameLabel: "Vorname",
-        cityLabel: "Stadt in Deutschland",
-        dateModeLabel: "Geburtstermin",
-        dateModeKnown: "Ich kenne den Entbindungstermin",
-        dateModeUnknown: "Ich kenne ihn nicht",
-        dateLabel: "Voraussichtlicher Entbindungstermin",
-        lastPeriodLabel: "Erster Tag der letzten Periode",
-        cycleLabel: "Zykluslänge",
-        calculationNote: "Der Termin wird nur ungefähr berechnet und kann später korrigiert werden.",
-        statusLabel: "Situation",
-        insuranceLabel: "Krankenversicherung",
-        pregnancyTypeLabel: "Schwangerschaft",
-        singletonOption: "Ein Baby",
-        twinsOption: "Zwillinge",
-        babyGenderLabel: "Geschlecht des Babys",
-        genderUnknown: "Noch nicht bekannt",
-        genderBoy: "Junge",
-        genderGirl: "Mädchen",
-        genderTwinBoys: "Zwillinge: Jungen",
-        genderTwinGirls: "Zwillinge: Mädchen",
-        genderTwinMixed: "Zwillinge: Junge & Mädchen",
-        genderNote: "Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.",
-        saveProfileButton: "Profil speichern und App öffnen",
-        needEmailPassword: "Bitte E-Mail und Passwort eingeben.",
-        loginOk: "Du bist eingeloggt ✅",
-        signupOk: "Konto wurde erstellt ✅",
-        logoutOk: "Du bist ausgeloggt.",
-        needLogin: "Bitte erst einloggen oder ein Konto erstellen.",
-        cityAlert: "Bitte gib deine Stadt ein.",
-        dateAlert: "Bitte wähle den Entbindungstermin.",
-        periodAlert: "Bitte wähle den ersten Tag der letzten Periode.",
-        genderTooEarly: "Das Geschlecht kann später ab etwa SSW 14 ergänzt werden.",
-        profileSaved: "Profil gespeichert ✅"
-      },
-      fr: {
-        eyebrow: "Grossesse · Calendrier · Allemagne",
-        mainTitle: "Tout pour ta grossesse en Allemagne.",
-        mainText: "Une plateforme privée pour comprendre le suivi, les rendez-vous, les examens, la bureaucratie et l’organisation en Allemagne.",
-        feature1Title: "Calendrier",
-        feature1Text: "Examens, rendez-vous et tâches selon la semaine de grossesse.",
-        feature2Title: "Parcours en Allemagne",
-        feature2Text: "Échographies, NIPT, test diabète, morphologie et suivi expliqués simplement.",
-        feature3Title: "Bureaucratie",
-        feature3Text: "Kindergeld, Elterngeld, Mutterschaftsgeld, acte de naissance et plus.",
-        accountTitle: "Mon compte",
-        emailLabel: "E-mail",
-        passwordLabel: "Mot de passe",
-        registerButton: "Créer un compte",
-        loginButton: "Connexion",
-        authNote: "Crée un compte ou connecte-toi. Ensuite tu peux créer ton profil grossesse.",
-        welcomeTitle: "Bienvenue",
-        goAppButton: "Aller à l’app",
-        logoutButton: "Déconnexion",
-        profileTitle: "Profil grossesse",
-        nameLabel: "Prénom",
-        cityLabel: "Ville en Allemagne",
-        dateModeLabel: "Date d’accouchement",
-        dateModeKnown: "Je connais la date prévue",
-        dateModeUnknown: "Je ne la connais pas",
-        dateLabel: "Date prévue d’accouchement",
-        lastPeriodLabel: "Premier jour des dernières règles",
-        cycleLabel: "Durée du cycle",
-        calculationNote: "La date est seulement une estimation et pourra être corrigée plus tard.",
-        statusLabel: "Situation",
-        insuranceLabel: "Assurance maladie",
-        pregnancyTypeLabel: "Grossesse",
-        singletonOption: "Un bébé",
-        twinsOption: "Jumeaux",
-        babyGenderLabel: "Sexe du bébé",
-        genderUnknown: "Pas encore connu",
-        genderBoy: "Garçon",
-        genderGirl: "Fille",
-        genderTwinBoys: "Jumeaux : garçons",
-        genderTwinGirls: "Jumeaux : filles",
-        genderTwinMixed: "Jumeaux : garçon & fille",
-        genderNote: "Le sexe sera utilisé dans l’app surtout à partir d’environ la semaine 14.",
-        saveProfileButton: "Enregistrer le profil et ouvrir l’app",
-        needEmailPassword: "Merci d’écrire l’e-mail et le mot de passe.",
-        loginOk: "Tu es connecté ✅",
-        signupOk: "Compte créé ✅",
-        logoutOk: "Tu es déconnecté.",
-        needLogin: "Connecte-toi ou crée d’abord un compte.",
-        cityAlert: "Merci d’écrire ta ville.",
-        dateAlert: "Merci de choisir la date prévue d’accouchement.",
-        periodAlert: "Merci de choisir le premier jour des dernières règles.",
-        genderTooEarly: "Le sexe pourra être ajouté plus tard à partir d’environ la semaine 14.",
-        profileSaved: "Profil enregistré ✅"
-      },
-      ar: {
-        eyebrow: "الحمل · التقويم · ألمانيا",
-        mainTitle: "كل ما تحتاجينه لحملك في ألمانيا.",
-        mainText: "منصة خاصة تساعدك على فهم مسار الحمل والمواعيد والفحوصات والإجراءات والتنظيم في ألمانيا.",
-        feature1Title: "التقويم",
-        feature1Text: "الفحوصات والمواعيد والمهام حسب أسبوع الحمل.",
-        feature2Title: "المسار في ألمانيا",
-        feature2Text: "السونار، NIPT، فحص السكري، فحص الأعضاء والمتابعة بطريقة مبسطة.",
-        feature3Title: "الإجراءات",
-        feature3Text: "Kindergeld و Elterngeld و Mutterschaftsgeld وشهادة الميلاد وأكثر.",
-        accountTitle: "حسابي",
-        emailLabel: "البريد الإلكتروني",
-        passwordLabel: "كلمة المرور",
-        registerButton: "إنشاء حساب",
-        loginButton: "تسجيل الدخول",
-        authNote: "أنشئي حساباً أو سجلي الدخول. بعد ذلك يمكنك إنشاء ملف الحمل.",
-        welcomeTitle: "مرحباً بعودتك",
-        goAppButton: "الدخول إلى التطبيق",
-        logoutButton: "تسجيل الخروج",
-        profileTitle: "ملف الحمل",
-        nameLabel: "الاسم",
-        cityLabel: "المدينة في ألمانيا",
-        dateModeLabel: "موعد الولادة",
-        dateModeKnown: "أعرف تاريخ الولادة المتوقع",
-        dateModeUnknown: "لا أعرفه",
-        dateLabel: "تاريخ الولادة المتوقع",
-        lastPeriodLabel: "أول يوم من آخر دورة شهرية",
-        cycleLabel: "طول الدورة",
-        calculationNote: "التاريخ تقريبي فقط ويمكن تعديله لاحقاً.",
-        statusLabel: "الوضعية",
-        insuranceLabel: "التأمين الصحي",
-        pregnancyTypeLabel: "الحمل",
-        singletonOption: "طفل واحد",
-        twinsOption: "توأم",
-        babyGenderLabel: "جنس الطفل",
-        genderUnknown: "غير معروف بعد",
-        genderBoy: "ولد",
-        genderGirl: "بنت",
-        genderTwinBoys: "توأم: أولاد",
-        genderTwinGirls: "توأم: بنات",
-        genderTwinMixed: "توأم: ولد وبنت",
-        genderNote: "يتم استخدام جنس الطفل في التطبيق بشكل مناسب ابتداءً من حوالي الأسبوع 14.",
-        saveProfileButton: "حفظ الملف وفتح التطبيق",
-        needEmailPassword: "يرجى كتابة البريد الإلكتروني وكلمة المرور.",
-        loginOk: "تم تسجيل الدخول ✅",
-        signupOk: "تم إنشاء الحساب ✅",
-        logoutOk: "تم تسجيل الخروج.",
-        needLogin: "يرجى تسجيل الدخول أو إنشاء حساب أولاً.",
-        cityAlert: "يرجى كتابة المدينة.",
-        dateAlert: "يرجى اختيار تاريخ الولادة المتوقع.",
-        periodAlert: "يرجى اختيار أول يوم من آخر دورة شهرية.",
-        genderTooEarly: "يمكن إضافة جنس الطفل لاحقاً ابتداءً من حوالي الأسبوع 14.",
-        profileSaved: "تم حفظ الملف ✅"
-      },
-      en: {
-        eyebrow: "Pregnancy · Calendar · Germany",
-        mainTitle: "Everything for your pregnancy in Germany.",
-        mainText: "A private platform for women who want to understand pregnancy care, appointments, exams, bureaucracy and organization in Germany.",
-        feature1Title: "Calendar",
-        feature1Text: "Exams, appointments and tasks based on pregnancy week.",
-        feature2Title: "Pregnancy path in Germany",
-        feature2Text: "Ultrasound, NIPT, diabetes test, anatomy scan and check-ups explained simply.",
-        feature3Title: "Bureaucracy",
-        feature3Text: "Child benefit, parental allowance, maternity allowance, birth certificate and more.",
-        accountTitle: "My account",
-        emailLabel: "Email",
-        passwordLabel: "Password",
-        registerButton: "Create account",
-        loginButton: "Log in",
-        authNote: "Create an account or log in. Then you can create your pregnancy profile.",
-        welcomeTitle: "Welcome back",
-        goAppButton: "Go to app",
-        logoutButton: "Log out",
-        profileTitle: "Pregnancy profile",
-        nameLabel: "First name",
-        cityLabel: "City in Germany",
-        dateModeLabel: "Due date",
-        dateModeKnown: "I know my due date",
-        dateModeUnknown: "I don’t know it",
-        dateLabel: "Expected due date",
-        lastPeriodLabel: "First day of last period",
-        cycleLabel: "Cycle length",
-        calculationNote: "The due date is only an estimate and can be corrected later.",
-        statusLabel: "Situation",
-        insuranceLabel: "Health insurance",
-        pregnancyTypeLabel: "Pregnancy",
-        singletonOption: "One baby",
-        twinsOption: "Twins",
-        babyGenderLabel: "Baby sex",
-        genderUnknown: "Not known yet",
-        genderBoy: "Boy",
-        genderGirl: "Girl",
-        genderTwinBoys: "Twins: boys",
-        genderTwinGirls: "Twins: girls",
-        genderTwinMixed: "Twins: boy & girl",
-        genderNote: "The baby sex is used in the app mainly from around week 14.",
-        saveProfileButton: "Save profile and open app",
-        needEmailPassword: "Please enter email and password.",
-        loginOk: "You are logged in ✅",
-        signupOk: "Account created ✅",
-        logoutOk: "You are logged out.",
-        needLogin: "Please log in or create an account first.",
-        cityAlert: "Please enter your city.",
-        dateAlert: "Please choose the expected due date.",
-        periodAlert: "Please choose the first day of your last period.",
-        genderTooEarly: "The baby sex can be added later from around week 14.",
-        profileSaved: "Profile saved ✅"
-      }
+      de: { eyebrow:"Schwangerschaft · Kalender · Deutschland", mainTitle:"Alles für deine Schwangerschaft in Deutschland.", mainText:"Eine private Plattform für Frauen, die den Schwangerschaftsverlauf, Termine, Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.", feature1Title:"Kalender", feature1Text:"Untersuchungen, Termine und Aufgaben automatisch nach Schwangerschaftswoche.", feature2Title:"Verlauf in Deutschland", feature2Text:"Ultraschall, NIPT, Zuckertest, Organcheck und Vorsorge verständlich erklärt.", feature3Title:"Bürokratie", feature3Text:"Kindergeld, Elterngeld, Mutterschaftsgeld, Geburtsurkunde und mehr.", accountTitle:"Mein Konto", emailLabel:"E-Mail", passwordLabel:"Passwort", registerButton:"Konto erstellen", loginButton:"Einloggen", authNote:"Erstelle ein Konto oder logge dich ein. Danach kannst du dein Schwangerschaftsprofil erstellen.", welcomeTitle:"Willkommen zurück", goAppButton:"Zur App gehen", logoutButton:"Ausloggen", profileTitle:"Schwangerschaftsprofil", nameLabel:"Vorname", babyNameLabel:"Babyname", cityLabel:"Stadt in Deutschland", dateModeLabel:"Geburtstermin", dateModeKnown:"Ich kenne den Entbindungstermin", dateModeUnknown:"Ich kenne ihn nicht", dateLabel:"Voraussichtlicher Entbindungstermin", lastPeriodLabel:"Erster Tag der letzten Periode", cycleLabel:"Zykluslänge", calculationNote:"Der Termin wird nur ungefähr berechnet und kann später korrigiert werden.", statusLabel:"Situation", insuranceLabel:"Krankenversicherung", pregnancyTypeLabel:"Schwangerschaft", singletonOption:"Ein Baby", twinsOption:"Zwillinge", babyGenderLabel:"Geschlecht des Babys", genderUnknown:"Noch nicht bekannt", genderBoy:"Junge", genderGirl:"Mädchen", genderTwinBoys:"Zwillinge: Jungen", genderTwinGirls:"Zwillinge: Mädchen", genderTwinMixed:"Zwillinge: Junge & Mädchen", genderNote:"Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.", saveProfileButton:"Profil speichern und App öffnen", needEmailPassword:"Bitte E-Mail und Passwort eingeben.", loginOk:"Du bist eingeloggt ✅", signupOk:"Konto wurde erstellt ✅", logoutOk:"Du bist ausgeloggt.", needLogin:"Bitte erst einloggen oder ein Konto erstellen.", cityAlert:"Bitte gib deine Stadt ein.", dateAlert:"Bitte wähle den Entbindungstermin.", periodAlert:"Bitte wähle den ersten Tag der letzten Periode.", genderTooEarly:"Das Geschlecht kann später ab etwa SSW 14 ergänzt werden.", profileSaved:"Profil gespeichert ✅" },
+      fr: { eyebrow:"Grossesse · Calendrier · Allemagne", mainTitle:"Tout pour ta grossesse en Allemagne.", mainText:"Une plateforme privée pour comprendre le suivi, les rendez-vous, les examens, la bureaucratie et l’organisation en Allemagne.", feature1Title:"Calendrier", feature1Text:"Examens, rendez-vous et tâches selon la semaine de grossesse.", feature2Title:"Parcours en Allemagne", feature2Text:"Échographies, NIPT, test diabète, morphologie et suivi expliqués simplement.", feature3Title:"Bureaucratie", feature3Text:"Kindergeld, Elterngeld, Mutterschaftsgeld, acte de naissance et plus.", accountTitle:"Mon compte", emailLabel:"E-mail", passwordLabel:"Mot de passe", registerButton:"Créer un compte", loginButton:"Connexion", authNote:"Crée un compte ou connecte-toi. Ensuite tu peux créer ton profil grossesse.", welcomeTitle:"Bienvenue", goAppButton:"Aller à l’app", logoutButton:"Déconnexion", profileTitle:"Profil grossesse", nameLabel:"Prénom", babyNameLabel:"Prénom du bébé", cityLabel:"Ville en Allemagne", dateModeLabel:"Date d’accouchement", dateModeKnown:"Je connais la date prévue", dateModeUnknown:"Je ne la connais pas", dateLabel:"Date prévue d’accouchement", lastPeriodLabel:"Premier jour des dernières règles", cycleLabel:"Durée du cycle", calculationNote:"La date est seulement une estimation et pourra être corrigée plus tard.", statusLabel:"Situation", insuranceLabel:"Assurance maladie", pregnancyTypeLabel:"Grossesse", singletonOption:"Un bébé", twinsOption:"Jumeaux", babyGenderLabel:"Sexe du bébé", genderUnknown:"Pas encore connu", genderBoy:"Garçon", genderGirl:"Fille", genderTwinBoys:"Jumeaux : garçons", genderTwinGirls:"Jumeaux : filles", genderTwinMixed:"Jumeaux : garçon & fille", genderNote:"Le sexe sera utilisé dans l’app surtout à partir d’environ la semaine 14.", saveProfileButton:"Enregistrer le profil et ouvrir l’app", needEmailPassword:"Merci d’écrire l’e-mail et le mot de passe.", loginOk:"Tu es connecté ✅", signupOk:"Compte créé ✅", logoutOk:"Tu es déconnecté.", needLogin:"Connecte-toi ou crée d’abord un compte.", cityAlert:"Merci d’écrire ta ville.", dateAlert:"Merci de choisir la date prévue d’accouchement.", periodAlert:"Merci de choisir le premier jour des dernières règles.", genderTooEarly:"Le sexe pourra être ajouté plus tard à partir d’environ la semaine 14.", profileSaved:"Profil enregistré ✅" },
+      ar: { eyebrow:"الحمل · التقويم · ألمانيا", mainTitle:"كل ما تحتاجينه لحملك في ألمانيا.", mainText:"منصة خاصة تساعدك على فهم مسار الحمل والمواعيد والفحوصات والإجراءات والتنظيم في ألمانيا.", feature1Title:"التقويم", feature1Text:"الفحوصات والمواعيد والمهام حسب أسبوع الحمل.", feature2Title:"المسار في ألمانيا", feature2Text:"السونار، NIPT، فحص السكري، فحص الأعضاء والمتابعة بطريقة مبسطة.", feature3Title:"الإجراءات", feature3Text:"Kindergeld و Elterngeld و Mutterschaftsgeld وشهادة الميلاد وأكثر.", accountTitle:"حسابي", emailLabel:"البريد الإلكتروني", passwordLabel:"كلمة المرور", registerButton:"إنشاء حساب", loginButton:"تسجيل الدخول", authNote:"أنشئي حساباً أو سجلي الدخول. بعد ذلك يمكنك إنشاء ملف الحمل.", welcomeTitle:"مرحباً بعودتك", goAppButton:"الدخول إلى التطبيق", logoutButton:"تسجيل الخروج", profileTitle:"ملف الحمل", nameLabel:"الاسم", babyNameLabel:"اسم الطفل", cityLabel:"المدينة في ألمانيا", dateModeLabel:"موعد الولادة", dateModeKnown:"أعرف تاريخ الولادة المتوقع", dateModeUnknown:"لا أعرفه", dateLabel:"تاريخ الولادة المتوقع", lastPeriodLabel:"أول يوم من آخر دورة شهرية", cycleLabel:"طول الدورة", calculationNote:"التاريخ تقريبي فقط ويمكن تعديله لاحقاً.", statusLabel:"الوضعية", insuranceLabel:"التأمين الصحي", pregnancyTypeLabel:"الحمل", singletonOption:"طفل واحد", twinsOption:"توأم", babyGenderLabel:"جنس الطفل", genderUnknown:"غير معروف بعد", genderBoy:"ولد", genderGirl:"بنت", genderTwinBoys:"توأم: أولاد", genderTwinGirls:"توأم: بنات", genderTwinMixed:"توأم: ولد وبنت", genderNote:"يتم استخدام جنس الطفل في التطبيق بشكل مناسب ابتداءً من حوالي الأسبوع 14.", saveProfileButton:"حفظ الملف وفتح التطبيق", needEmailPassword:"يرجى كتابة البريد الإلكتروني وكلمة المرور.", loginOk:"تم تسجيل الدخول ✅", signupOk:"تم إنشاء الحساب ✅", logoutOk:"تم تسجيل الخروج.", needLogin:"يرجى تسجيل الدخول أو إنشاء حساب أولاً.", cityAlert:"يرجى كتابة المدينة.", dateAlert:"يرجى اختيار تاريخ الولادة المتوقع.", periodAlert:"يرجى اختيار أول يوم من آخر دورة شهرية.", genderTooEarly:"يمكن إضافة جنس الطفل لاحقاً ابتداءً من حوالي الأسبوع 14.", profileSaved:"تم حفظ الملف ✅" },
+      en: { eyebrow:"Pregnancy · Calendar · Germany", mainTitle:"Everything for your pregnancy in Germany.", mainText:"A private platform for women who want to understand pregnancy care, appointments, exams, bureaucracy and organization in Germany.", feature1Title:"Calendar", feature1Text:"Exams, appointments and tasks based on pregnancy week.", feature2Title:"Pregnancy path in Germany", feature2Text:"Ultrasound, NIPT, diabetes test, anatomy scan and check-ups explained simply.", feature3Title:"Bureaucracy", feature3Text:"Child benefit, parental allowance, maternity allowance, birth certificate and more.", accountTitle:"My account", emailLabel:"Email", passwordLabel:"Password", registerButton:"Create account", loginButton:"Log in", authNote:"Create an account or log in. Then you can create your pregnancy profile.", welcomeTitle:"Welcome back", goAppButton:"Go to app", logoutButton:"Log out", profileTitle:"Pregnancy profile", nameLabel:"First name", babyNameLabel:"Baby name", cityLabel:"City in Germany", dateModeLabel:"Due date", dateModeKnown:"I know my due date", dateModeUnknown:"I don’t know it", dateLabel:"Expected due date", lastPeriodLabel:"First day of last period", cycleLabel:"Cycle length", calculationNote:"The due date is only an estimate and can be corrected later.", statusLabel:"Situation", insuranceLabel:"Health insurance", pregnancyTypeLabel:"Pregnancy", singletonOption:"One baby", twinsOption:"Twins", babyGenderLabel:"Baby sex", genderUnknown:"Not known yet", genderBoy:"Boy", genderGirl:"Girl", genderTwinBoys:"Twins: boys", genderTwinGirls:"Twins: girls", genderTwinMixed:"Twins: boy & girl", genderNote:"The baby sex is used in the app mainly from around week 14.", saveProfileButton:"Save profile and open app", needEmailPassword:"Please enter email and password.", loginOk:"You are logged in ✅", signupOk:"Account created ✅", logoutOk:"You are logged out.", needLogin:"Please log in or create an account first.", cityAlert:"Please enter your city.", dateAlert:"Please choose the expected due date.", periodAlert:"Please choose the first day of your last period.", genderTooEarly:"The baby sex can be added later from around week 14.", profileSaved:"Profile saved ✅" },
+      tr: { eyebrow:"Hamilelik · Takvim · Almanya", mainTitle:"Almanya’daki hamileliğin için her şey.", mainText:"Almanya’da hamilelik sürecini, randevuları, muayeneleri ve bürokrasiyi anlamak için özel bir platform.", feature1Title:"Takvim", feature1Text:"Muayeneler, randevular ve görevler hamilelik haftasına göre.", feature2Title:"Almanya’da süreç", feature2Text:"Ultrason, NIPT, şeker testi ve kontroller basit şekilde açıklanır.", feature3Title:"Bürokrasi", feature3Text:"Kindergeld, Elterngeld, Mutterschaftsgeld, doğum belgesi ve daha fazlası.", accountTitle:"Hesabım", emailLabel:"E-posta", passwordLabel:"Şifre", registerButton:"Hesap oluştur", loginButton:"Giriş yap", authNote:"Hesap oluştur veya giriş yap. Sonra hamilelik profilini oluşturabilirsin.", welcomeTitle:"Tekrar hoş geldin", goAppButton:"Uygulamaya git", logoutButton:"Çıkış yap", profileTitle:"Hamilelik profili", nameLabel:"İsim", babyNameLabel:"Bebek adı", cityLabel:"Almanya’daki şehir", dateModeLabel:"Doğum tarihi", dateModeKnown:"Tahmini doğum tarihini biliyorum", dateModeUnknown:"Bilmiyorum", dateLabel:"Tahmini doğum tarihi", lastPeriodLabel:"Son adetin ilk günü", cycleLabel:"Döngü uzunluğu", calculationNote:"Tarih sadece yaklaşık hesaplanır ve sonra düzeltilebilir.", statusLabel:"Durum", insuranceLabel:"Sağlık sigortası", pregnancyTypeLabel:"Hamilelik", singletonOption:"Bir bebek", twinsOption:"İkizler", babyGenderLabel:"Bebeğin cinsiyeti", genderUnknown:"Henüz bilinmiyor", genderBoy:"Erkek", genderGirl:"Kız", genderTwinBoys:"İkizler: erkek", genderTwinGirls:"İkizler: kız", genderTwinMixed:"İkizler: erkek & kız", genderNote:"Cinsiyet uygulamada yaklaşık 14. haftadan itibaren anlamlı kullanılır.", saveProfileButton:"Profili kaydet ve uygulamayı aç", needEmailPassword:"Lütfen e-posta ve şifre gir.", loginOk:"Giriş yaptın ✅", signupOk:"Hesap oluşturuldu ✅", logoutOk:"Çıkış yaptın.", needLogin:"Lütfen önce giriş yap veya hesap oluştur.", cityAlert:"Lütfen şehir gir.", dateAlert:"Lütfen tahmini doğum tarihini seç.", periodAlert:"Lütfen son adetin ilk gününü seç.", genderTooEarly:"Cinsiyet yaklaşık 14. haftadan sonra eklenebilir.", profileSaved:"Profil kaydedildi ✅" },
+      ru: { eyebrow:"Беременность · Календарь · Германия", mainTitle:"Всё для твоей беременности в Германии.", mainText:"Приватная платформа, чтобы понять беременность, встречи, обследования и бюрократию в Германии.", feature1Title:"Календарь", feature1Text:"Обследования, встречи и задачи по неделе беременности.", feature2Title:"Путь в Германии", feature2Text:"УЗИ, NIPT, тест на диабет и осмотры объяснены просто.", feature3Title:"Бюрократия", feature3Text:"Kindergeld, Elterngeld, Mutterschaftsgeld, свидетельство о рождении и другое.", accountTitle:"Мой аккаунт", emailLabel:"Email", passwordLabel:"Пароль", registerButton:"Создать аккаунт", loginButton:"Войти", authNote:"Создай аккаунт или войди. Потом можно создать профиль беременности.", welcomeTitle:"С возвращением", goAppButton:"Перейти в приложение", logoutButton:"Выйти", profileTitle:"Профиль беременности", nameLabel:"Имя", babyNameLabel:"Имя малыша", cityLabel:"Город в Германии", dateModeLabel:"Дата родов", dateModeKnown:"Я знаю дату родов", dateModeUnknown:"Я не знаю", dateLabel:"Ожидаемая дата родов", lastPeriodLabel:"Первый день последней менструации", cycleLabel:"Длина цикла", calculationNote:"Дата приблизительная и может быть изменена позже.", statusLabel:"Статус", insuranceLabel:"Медицинская страховка", pregnancyTypeLabel:"Беременность", singletonOption:"Один малыш", twinsOption:"Близнецы", babyGenderLabel:"Пол малыша", genderUnknown:"Пока неизвестно", genderBoy:"Мальчик", genderGirl:"Девочка", genderTwinBoys:"Близнецы: мальчики", genderTwinGirls:"Близнецы: девочки", genderTwinMixed:"Близнецы: мальчик и девочка", genderNote:"Пол используется в приложении примерно с 14-й недели.", saveProfileButton:"Сохранить профиль и открыть приложение", needEmailPassword:"Введите email и пароль.", loginOk:"Вы вошли ✅", signupOk:"Аккаунт создан ✅", logoutOk:"Вы вышли.", needLogin:"Сначала войдите или создайте аккаунт.", cityAlert:"Введите город.", dateAlert:"Выберите дату родов.", periodAlert:"Выберите первый день последней менструации.", genderTooEarly:"Пол можно добавить позже примерно с 14-й недели.", profileSaved:"Профиль сохранён ✅" },
+      uk: { eyebrow:"Вагітність · Календар · Німеччина", mainTitle:"Усе для твоєї вагітності в Німеччині.", mainText:"Приватна платформа, щоб зрозуміти вагітність, зустрічі, обстеження та бюрократію в Німеччині.", feature1Title:"Календар", feature1Text:"Обстеження, зустрічі та завдання за тижнем вагітності.", feature2Title:"Шлях у Німеччині", feature2Text:"УЗД, NIPT, тест на діабет і огляди пояснені просто.", feature3Title:"Бюрократія", feature3Text:"Kindergeld, Elterngeld, Mutterschaftsgeld, свідоцтво про народження та інше.", accountTitle:"Мій акаунт", emailLabel:"Email", passwordLabel:"Пароль", registerButton:"Створити акаунт", loginButton:"Увійти", authNote:"Створи акаунт або увійди. Потім можна створити профіль вагітності.", welcomeTitle:"З поверненням", goAppButton:"Перейти до застосунку", logoutButton:"Вийти", profileTitle:"Профіль вагітності", nameLabel:"Ім’я", babyNameLabel:"Ім’я малюка", cityLabel:"Місто в Німеччині", dateModeLabel:"Дата пологів", dateModeKnown:"Я знаю дату пологів", dateModeUnknown:"Я не знаю", dateLabel:"Очікувана дата пологів", lastPeriodLabel:"Перший день останньої менструації", cycleLabel:"Довжина циклу", calculationNote:"Дата приблизна і може бути змінена пізніше.", statusLabel:"Статус", insuranceLabel:"Медична страховка", pregnancyTypeLabel:"Вагітність", singletonOption:"Один малюк", twinsOption:"Близнюки", babyGenderLabel:"Стать малюка", genderUnknown:"Поки невідомо", genderBoy:"Хлопчик", genderGirl:"Дівчинка", genderTwinBoys:"Близнюки: хлопчики", genderTwinGirls:"Близнюки: дівчатка", genderTwinMixed:"Близнюки: хлопчик і дівчинка", genderNote:"Стать використовується в застосунку приблизно з 14-го тижня.", saveProfileButton:"Зберегти профіль і відкрити застосунок", needEmailPassword:"Введіть email і пароль.", loginOk:"Ви увійшли ✅", signupOk:"Акаунт створено ✅", logoutOk:"Ви вийшли.", needLogin:"Спочатку увійдіть або створіть акаунт.", cityAlert:"Введіть місто.", dateAlert:"Оберіть дату пологів.", periodAlert:"Оберіть перший день останньої менструації.", genderTooEarly:"Стать можна додати пізніше приблизно з 14-го тижня.", profileSaved:"Профіль збережено ✅" }
     };
 
-    function t() {
-      return translations[currentLang];
-    }
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.documentElement.lang = lang;
-      document.body.dir = lang === "ar" ? "rtl" : "ltr";
-
-      const tr = t();
-
-      const ids = [
-        "eyebrow", "mainTitle", "mainText",
-        "feature1Title", "feature1Text", "feature2Title", "feature2Text", "feature3Title", "feature3Text",
-        "accountTitle", "emailLabel", "passwordLabel", "registerButton", "loginButton", "authNote",
-        "welcomeTitle", "goAppButton", "logoutButton", "profileTitle",
-        "nameLabel", "cityLabel", "dateModeLabel", "dateModeKnown", "dateModeUnknown",
-        "dateLabel", "lastPeriodLabel", "cycleLabel", "calculationNote",
-        "statusLabel", "insuranceLabel", "pregnancyTypeLabel", "singletonOption", "twinsOption",
-        "babyGenderLabel", "genderUnknown", "genderBoy", "genderGirl", "genderTwinBoys", "genderTwinGirls", "genderTwinMixed",
-        "genderNote", "saveProfileButton"
-      ];
-
-      ids.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && tr[id]) el.textContent = tr[id];
-      });
-    }
-
-    function toggleDateMode() {
-      const mode = document.getElementById("dateMode").value;
-      document.getElementById("knownDateBox").style.display = mode === "known" ? "block" : "none";
-      document.getElementById("unknownDateBox").style.display = mode === "unknown" ? "block" : "none";
-    }
-
-    function parseLocalDate(value) {
-      const parts = value.split("-").map(Number);
-      return new Date(parts[0], parts[1] - 1, parts[2]);
-    }
-
-    function addDays(date, days) {
-      const result = new Date(date);
-      result.setDate(result.getDate() + days);
-      return result;
-    }
-
-    function toInputDate(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    }
-
-    function getDueDate() {
-      const mode = document.getElementById("dateMode").value;
-
-      if (mode === "known") {
-        const dueDateValue = document.getElementById("dueDate").value;
-        if (!dueDateValue) return null;
-        return { dueDate: parseLocalDate(dueDateValue), dueDateValue };
-      }
-
-      const lastPeriodValue = document.getElementById("lastPeriodDate").value;
-      if (!lastPeriodValue) return null;
-
-      const cycleLength = Number(document.getElementById("cycleLength").value);
-      const lastPeriodDate = parseLocalDate(lastPeriodValue);
-      const extraDays = cycleLength - 28;
-      const dueDate = addDays(lastPeriodDate, 280 + extraDays);
-
-      return { dueDate, dueDateValue: toInputDate(dueDate) };
-    }
-
-    function calculatePregnancy(dueDate) {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      const pregnancyStart = addDays(dueDate, -280);
-      const diffTime = today - pregnancyStart;
-
-      let pregnancyWeek = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7)) + 1;
-      if (pregnancyWeek < 1) pregnancyWeek = 1;
-      if (pregnancyWeek > 42) pregnancyWeek = 42;
-
-      return pregnancyWeek;
-    }
-
-    function determineTheme(pregnancyType, babyGender) {
-      if (babyGender === "boy" || babyGender === "twin_boys") return "boy";
-      if (babyGender === "girl" || babyGender === "twin_girls") return "girl";
-      if (pregnancyType === "twins" || babyGender === "twin_mixed") return "twin";
-      return "neutral";
-    }
-
-    function updateAuthUI() {
-      const authBox = document.getElementById("authBox");
-      const accountCard = document.getElementById("accountCard");
-      const accountEmail = document.getElementById("accountEmail");
-
-      if (currentUser) {
-        authBox.style.display = "none";
-        accountCard.style.display = "block";
-        accountEmail.textContent = currentUser.email;
-      } else {
-        authBox.style.display = "block";
-        accountCard.style.display = "none";
-        accountEmail.textContent = "";
-      }
-    }
-
-    async function signUp() {
-      const tr = t();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      if (!email || !password) {
-        alert(tr.needEmailPassword);
-        return;
-      }
-
-      const { data, error } = await supabaseClient.auth.signUp({ email, password });
-
-      if (error) {
-        alert(error.message);
-        return;
-      }
-
-      currentUser = data.user || null;
-      alert(tr.signupOk);
-      await refreshSession();
-    }
-
-    async function signIn() {
-      const tr = t();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      if (!email || !password) {
-        alert(tr.needEmailPassword);
-        return;
-      }
-
-      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-
-      if (error) {
-        alert(error.message);
-        return;
-      }
-
-      currentUser = data.user;
-      alert(tr.loginOk);
-      updateAuthUI();
-    }
-
-    async function signOut() {
-      await supabaseClient.auth.signOut();
-      currentUser = null;
-      updateAuthUI();
-      alert(t().logoutOk);
-    }
-
-    async function refreshSession() {
-      const { data } = await supabaseClient.auth.getSession();
-      currentUser = data.session ? data.session.user : null;
-      updateAuthUI();
-    }
-
-    function goToApp() {
-      window.location.href = "app.html";
-    }
-
-    async function createProfile() {
-      const tr = t();
-
-      if (!currentUser) {
-        alert(tr.needLogin);
-        return;
-      }
-
-      const name = document.getElementById("name").value.trim();
-      const city = document.getElementById("city").value.trim();
-      const workStatus = document.getElementById("workStatus").value;
-      const insuranceType = document.getElementById("insuranceType").value;
-      const pregnancyType = document.getElementById("pregnancyType").value;
-      let babyGender = document.getElementById("babyGender").value;
-
-      if (!city) {
-        alert(tr.cityAlert);
-        return;
-      }
-
-      const dueResult = getDueDate();
-
-      if (!dueResult) {
-        const mode = document.getElementById("dateMode").value;
-        alert(mode === "known" ? tr.dateAlert : tr.periodAlert);
-        return;
-      }
-
-      const pregnancyWeek = calculatePregnancy(dueResult.dueDate);
-
-      if (pregnancyWeek < 14 && babyGender !== "unknown" && pregnancyType !== "twins") {
-        alert(tr.genderTooEarly);
-        babyGender = "unknown";
-        document.getElementById("babyGender").value = "unknown";
-      }
-
-      const themeMode = determineTheme(pregnancyType, babyGender);
-
-      const { error } = await supabaseClient
-        .from("pregnancy_profiles")
-        .insert({
-          user_id: currentUser.id,
-          full_name: name,
-          language: currentLang,
-          city: city,
-          due_date: dueResult.dueDateValue,
-          pregnancy_week: pregnancyWeek,
-          work_status: workStatus,
-          insurance_type: insuranceType,
-          pregnancy_type: pregnancyType,
-          baby_gender: babyGender,
-          theme_mode: themeMode,
-          gender_revealed_at_week: babyGender !== "unknown" ? pregnancyWeek : null
-        });
-
-      if (error) {
-        alert(error.message);
-        return;
-      }
-
-      alert(tr.profileSaved);
-      window.location.href = "app.html";
-    }
-
-    supabaseClient.auth.onAuthStateChange((_event, session) => {
-      currentUser = session ? session.user : null;
-      updateAuthUI();
-    });
-
-    setLanguage("de");
-    toggleDateMode();
-    refreshSession();
+    function t(){ return translations[currentLang] || translations.de; }
+    function setLanguage(lang){ currentLang=lang; document.documentElement.lang=lang; document.body.dir=lang==='ar'?'rtl':'ltr'; const tr=t(); const ids=["eyebrow","mainTitle","mainText","feature1Title","feature1Text","feature2Title","feature2Text","feature3Title","feature3Text","accountTitle","emailLabel","passwordLabel","registerButton","loginButton","authNote","welcomeTitle","goAppButton","logoutButton","profileTitle","nameLabel","babyNameLabel","cityLabel","dateModeLabel","dateModeKnown","dateModeUnknown","dateLabel","lastPeriodLabel","cycleLabel","calculationNote","statusLabel","insuranceLabel","pregnancyTypeLabel","singletonOption","twinsOption","babyGenderLabel","genderUnknown","genderBoy","genderGirl","genderTwinBoys","genderTwinGirls","genderTwinMixed","genderNote","saveProfileButton"]; ids.forEach(id=>{const el=document.getElementById(id); if(el&&tr[id]) el.textContent=tr[id];}); }
+    function toggleDateMode(){ const mode=document.getElementById('dateMode').value; document.getElementById('knownDateBox').style.display=mode==='known'?'block':'none'; document.getElementById('unknownDateBox').style.display=mode==='unknown'?'block':'none'; }
+    function parseLocalDate(value){ const p=value.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]); }
+    function addDays(date,days){ const r=new Date(date); r.setDate(r.getDate()+days); return r; }
+    function toInputDate(date){ const y=date.getFullYear(); const m=String(date.getMonth()+1).padStart(2,'0'); const d=String(date.getDate()).padStart(2,'0'); return `${y}-${m}-${d}`; }
+    function getDueDate(){ const mode=document.getElementById('dateMode').value; if(mode==='known'){ const dueDateValue=document.getElementById('dueDate').value; if(!dueDateValue) return null; return { dueDate:parseLocalDate(dueDateValue), dueDateValue }; } const lastPeriodValue=document.getElementById('lastPeriodDate').value; if(!lastPeriodValue) return null; const cycleLength=Number(document.getElementById('cycleLength').value); const lastPeriodDate=parseLocalDate(lastPeriodValue); const dueDate=addDays(lastPeriodDate,280+(cycleLength-28)); return { dueDate, dueDateValue:toInputDate(dueDate) }; }
+    function calculatePregnancy(dueDate){ const today=new Date(); today.setHours(0,0,0,0); const start=addDays(dueDate,-280); let week=Math.floor((today-start)/(1000*60*60*24*7))+1; if(week<1) week=1; if(week>42) week=42; return week; }
+    function determineTheme(type,gender){ if(gender==='boy'||gender==='twin_boys') return 'boy'; if(gender==='girl'||gender==='twin_girls') return 'girl'; if(type==='twins'||gender==='twin_mixed') return 'twin'; return 'neutral'; }
+    function updateAuthUI(){ const authBox=document.getElementById('authBox'); const card=document.getElementById('accountCard'); const email=document.getElementById('accountEmail'); if(currentUser){ authBox.style.display='none'; card.style.display='block'; email.textContent=currentUser.email; } else { authBox.style.display='block'; card.style.display='none'; email.textContent=''; } }
+    async function signUp(){ const tr=t(); const email=document.getElementById('email').value.trim(); const password=document.getElementById('password').value; if(!email||!password){alert(tr.needEmailPassword); return;} const {data,error}=await supabaseClient.auth.signUp({email,password}); if(error){alert(error.message); return;} currentUser=data.user||null; alert(tr.signupOk); await refreshSession(); }
+    async function signIn(){ const tr=t(); const email=document.getElementById('email').value.trim(); const password=document.getElementById('password').value; if(!email||!password){alert(tr.needEmailPassword); return;} const {data,error}=await supabaseClient.auth.signInWithPassword({email,password}); if(error){alert(error.message); return;} currentUser=data.user; alert(tr.loginOk); updateAuthUI(); }
+    async function signOut(){ await supabaseClient.auth.signOut(); currentUser=null; updateAuthUI(); alert(t().logoutOk); }
+    async function refreshSession(){ const {data}=await supabaseClient.auth.getSession(); currentUser=data.session?data.session.user:null; updateAuthUI(); }
+    function goToApp(){ window.location.href='app.html'; }
+    async function createProfile(){ const tr=t(); if(!currentUser){alert(tr.needLogin); return;} const name=document.getElementById('name').value.trim(); const babyName=document.getElementById('babyName').value.trim(); const city=document.getElementById('city').value.trim(); const workStatus=document.getElementById('workStatus').value; const insuranceType=document.getElementById('insuranceType').value; const pregnancyType=document.getElementById('pregnancyType').value; let babyGender=document.getElementById('babyGender').value; if(!city){alert(tr.cityAlert); return;} const dueResult=getDueDate(); if(!dueResult){ alert(document.getElementById('dateMode').value==='known'?tr.dateAlert:tr.periodAlert); return;} const pregnancyWeek=calculatePregnancy(dueResult.dueDate); if(pregnancyWeek<14 && babyGender!=='unknown' && pregnancyType!=='twins'){ alert(tr.genderTooEarly); babyGender='unknown'; document.getElementById('babyGender').value='unknown'; } const themeMode=determineTheme(pregnancyType,babyGender); const {error}=await supabaseClient.from('pregnancy_profiles').insert({ user_id:currentUser.id, full_name:name, baby_name:babyName, language:currentLang, city, due_date:dueResult.dueDateValue, pregnancy_week:pregnancyWeek, work_status:workStatus, insurance_type:insuranceType, pregnancy_type:pregnancyType, baby_gender:babyGender, theme_mode:themeMode, gender_revealed_at_week:babyGender!=='unknown'?pregnancyWeek:null }); if(error){alert(error.message); return;} alert(tr.profileSaved); window.location.href='app.html'; }
+    supabaseClient.auth.onAuthStateChange((_event,session)=>{ currentUser=session?session.user:null; updateAuthUI(); });
+    setLanguage('de'); toggleDateMode(); refreshSession();
   </script>
 </body>
 </html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama in Deutschland</title>
+
+  <style>
+    :root {
+      --rose: #f7c8d7;
+      --rose-dark: #d96b91;
+      --beige: #fff6ec;
+      --cream: #fffdf8;
+      --text: #3d2f35;
+      --green: #d8efe2;
+      --border: #f1d7c6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, var(--beige), var(--cream));
+      color: var(--text);
+    }
+
+    header {
+      padding: 24px;
+      text-align: center;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: var(--rose-dark);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .language-buttons {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .language-buttons button {
+      border: 1px solid var(--rose-dark);
+      background: white;
+      color: var(--rose-dark);
+      padding: 9px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .language-buttons button:hover {
+      background: var(--rose);
+      color: white;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(120, 80, 90, 0.1);
+      border: 1px solid var(--border);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: var(--rose-dark);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .feature {
+      background: var(--cream);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid var(--border);
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .main-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: var(--rose-dark);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .main-button:hover {
+      opacity: 0.9;
+    }
+
+    .dashboard {
+      display: none;
+      margin-top: 24px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .small-card {
+      background: var(--green);
+      padding: 18px;
+      border-radius: 18px;
+      text-align: center;
+      border: 1px solid #cce5d6;
+    }
+
+    .big-number {
+      font-size: 30px;
+      font-weight: bold;
+      color: var(--rose-dark);
+    }
+
+    .task-list {
+      margin-top: 18px;
+      padding-left: 18px;
+      line-height: 1.8;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #8b737a;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Mama in Deutschland</div>
+    <p class="subtitle" id="subtitle">
+      Ta grossesse en Allemagne, organisée simplement dans ta langue.
+    </p>
+
+    <div class="language-buttons">
+      <button onclick="setLanguage('fr')">Français</button>
+      <button onclick="setLanguage('de')">Deutsch</button>
+      <button onclick="setLanguage('ar')">العربية</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="card">
+        <h1 id="mainTitle">Bienvenue future maman</h1>
+        <p id="mainText">
+          Suis ta grossesse semaine après semaine, prépare tes documents, organise tes rendez-vous, découvre des idées repas simples et garde tes souvenirs.
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <h3 id="feature1Title">Suivi</h3>
+            <p id="feature1Text">Semaine actuelle, jours restants et évolution du bébé.</p>
+          </div>
+
+          <div class="feature">
+            <h3 id="feature2Title">Documents</h3>
+            <p id="feature2Text">Rappels pour les démarches importantes en Allemagne.</p>
+          </div>
+
+          <div class="feature">
+            <h3 id="feature3Title">Souvenirs</h3>
+            <p id="feature3Text">Photos, notes et moments importants de ta grossesse.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 id="formTitle">Créer mon profil grossesse</h2>
+
+        <label id="nameLabel">Prénom</label>
+        <input type="text" id="name" placeholder="Ex: Sophia" />
+
+        <label id="cityLabel">Ville en Allemagne</label>
+        <input type="text" id="city" placeholder="Ex: Mülheim an der Ruhr" />
+
+        <label id="dateLabel">Date prévue d’accouchement</label>
+        <input type="date" id="dueDate" />
+
+        <label id="statusLabel">Situation</label>
+        <select id="workStatus">
+          <option value="salariée">Salariée</option>
+          <option value="sans emploi">Sans emploi</option>
+          <option value="étudiante">Étudiante</option>
+          <option value="indépendante">Indépendante</option>
+        </select>
+
+        <button class="main-button" onclick="createProfile()" id="startButton">
+          Commencer
+        </button>
+      </div>
+    </section>
+
+    <section class="dashboard card" id="dashboard">
+      <h2 id="dashboardTitle">Mon espace grossesse</h2>
+
+      <div class="dashboard-grid">
+        <div class="small-card">
+          <div id="weekLabel">Semaine</div>
+          <div class="big-number" id="pregnancyWeek">-</div>
+        </div>
+
+        <div class="small-card">
+          <div id="daysLabel">Jours restants</div>
+          <div class="big-number" id="daysLeft">-</div>
+        </div>
+
+        <div class="small-card">
+          <div id="cityResultLabel">Ville</div>
+          <div class="big-number" id="cityResult">-</div>
+        </div>
+      </div>
+
+      <h3 id="tasksTitle">À faire bientôt</h3>
+      <ul class="task-list" id="taskList">
+        <li>Chercher une sage-femme</li>
+        <li>Préparer les documents importants</li>
+        <li>Noter le prochain rendez-vous chez le Frauenarzt</li>
+      </ul>
+    </section>
+
+    <div class="footer">
+      Mama in Deutschland — première version
+    </div>
+  </main>
+
+  <script>
+    let currentLang = "fr";
+
+    const translations = {
+      fr: {
+        subtitle: "Ta grossesse en Allemagne, organisée simplement dans ta langue.",
+        mainTitle: "Bienvenue future maman",
+        mainText: "Suis ta grossesse semaine après semaine, prépare tes documents, organise tes rendez-vous, découvre des idées repas simples et garde tes souvenirs.",
+        feature1Title: "Suivi",
+        feature1Text: "Semaine actuelle, jours restants et évolution du bébé.",
+        feature2Title: "Documents",
+        feature2Text: "Rappels pour les démarches importantes en Allemagne.",
+        feature3Title: "Souvenirs",
+        feature3Text: "Photos, notes et moments importants de ta grossesse.",
+        formTitle: "Créer mon profil grossesse",
+        nameLabel: "Prénom",
+        cityLabel: "Ville en Allemagne",
+        dateLabel: "Date prévue d’accouchement",
+        statusLabel: "Situation",
+        startButton: "Commencer",
+        dashboardTitle: "Mon espace grossesse",
+        weekLabel: "Semaine",
+        daysLabel: "Jours restants",
+        cityResultLabel: "Ville",
+        tasksTitle: "À faire bientôt",
+        tasks: [
+          "Chercher une sage-femme",
+          "Préparer les documents importants",
+          "Noter le prochain rendez-vous chez le Frauenarzt"
+        ]
+      },
+
+      de: {
+        subtitle: "Deine Schwangerschaft in Deutschland, einfach organisiert in deiner Sprache.",
+        mainTitle: "Willkommen, werdende Mama",
+        mainText: "Begleite deine Schwangerschaft Woche für Woche, organisiere Dokumente, Termine, einfache Mahlzeiten und schöne Erinnerungen.",
+        feature1Title: "Schwangerschaft",
+        feature1Text: "Aktuelle Woche, verbleibende Tage und Entwicklung des Babys.",
+        feature2Title: "Dokumente",
+        feature2Text: "Erinnerungen für wichtige Aufgaben in Deutschland.",
+        feature3Title: "Erinnerungen",
+        feature3Text: "Fotos, Notizen und besondere Momente deiner Schwangerschaft.",
+        formTitle: "Mein Schwangerschaftsprofil erstellen",
+        nameLabel: "Vorname",
+        cityLabel: "Stadt in Deutschland",
+        dateLabel: "Voraussichtlicher Geburtstermin",
+        statusLabel: "Situation",
+        startButton: "Starten",
+        dashboardTitle: "Mein Schwangerschaftsbereich",
+        weekLabel: "Woche",
+        daysLabel: "Tage übrig",
+        cityResultLabel: "Stadt",
+        tasksTitle: "Bald zu erledigen",
+        tasks: [
+          "Hebamme suchen",
+          "Wichtige Dokumente vorbereiten",
+          "Nächsten Termin beim Frauenarzt notieren"
+        ]
+      },
+
+      ar: {
+        subtitle: "حملك في ألمانيا، منظم وبسيط بلغتك.",
+        mainTitle: "مرحباً أيتها الأم المستقبلية",
+        mainText: "تابعي حملك أسبوعاً بعد أسبوع، جهزي الوثائق، نظمي المواعيد، اكتشفي وصفات بسيطة واحفظي أجمل الذكريات.",
+        feature1Title: "متابعة الحمل",
+        feature1Text: "الأسبوع الحالي، الأيام المتبقية وتطور الطفل.",
+        feature2Title: "الوثائق",
+        feature2Text: "تذكيرات للخطوات المهمة في ألمانيا.",
+        feature3Title: "الذكريات",
+        feature3Text: "صور، ملاحظات ولحظات مهمة من الحمل.",
+        formTitle: "إنشاء ملف الحمل",
+        nameLabel: "الاسم",
+        cityLabel: "المدينة في ألمانيا",
+        dateLabel: "تاريخ الولادة المتوقع",
+        statusLabel: "الوضعية",
+        startButton: "ابدئي الآن",
+        dashboardTitle: "مساحة الحمل الخاصة بي",
+        weekLabel: "الأسبوع",
+        daysLabel: "الأيام المتبقية",
+        cityResultLabel: "المدينة",
+        tasksTitle: "مهام قريبة",
+        tasks: [
+          "البحث عن قابلة",
+          "تحضير الوثائق المهمة",
+          "تسجيل الموعد القادم عند طبيب النساء"
+        ]
+      }
+    };
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+
+      document.documentElement.lang = lang;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.getElementById("subtitle").textContent = t.subtitle;
+      document.getElementById("mainTitle").textContent = t.mainTitle;
+      document.getElementById("mainText").textContent = t.mainText;
+      document.getElementById("feature1Title").textContent = t.feature1Title;
+      document.getElementById("feature1Text").textContent = t.feature1Text;
+      document.getElementById("feature2Title").textContent = t.feature2Title;
+      document.getElementById("feature2Text").textContent = t.feature2Text;
+      document.getElementById("feature3Title").textContent = t.feature3Title;
+      document.getElementById("feature3Text").textContent = t.feature3Text;
+      document.getElementById("formTitle").textContent = t.formTitle;
+      document.getElementById("nameLabel").textContent = t.nameLabel;
+      document.getElementById("cityLabel").textContent = t.cityLabel;
+      document.getElementById("dateLabel").textContent = t.dateLabel;
+      document.getElementById("statusLabel").textContent = t.statusLabel;
+      document.getElementById("startButton").textContent = t.startButton;
+      document.getElementById("dashboardTitle").textContent = t.dashboardTitle;
+      document.getElementById("weekLabel").textContent = t.weekLabel;
+      document.getElementById("daysLabel").textContent = t.daysLabel;
+      document.getElementById("cityResultLabel").textContent = t.cityResultLabel;
+      document.getElementById("tasksTitle").textContent = t.tasksTitle;
+
+      const taskList = document.getElementById("taskList");
+      taskList.innerHTML = "";
+      t.tasks.forEach(task => {
+        const li = document.createElement("li");
+        li.textContent = task;
+        taskList.appendChild(li);
+      });
+    }
+
+    function createProfile() {
+      const name = document.getElementById("name").value;
+      const city = document.getElementById("city").value;
+      const dueDateValue = document.getElementById("dueDate").value;
+
+      if (!dueDateValue) {
+        alert("Merci de choisir la date prévue d’accouchement.");
+        return;
+      }
+
+      const today = new Date();
+      const dueDate = new Date(dueDateValue);
+      const pregnancyStart = new Date(dueDate);
+      pregnancyStart.setDate(pregnancyStart.getDate() - 280);
+
+      const diffTime = today - pregnancyStart;
+      let pregnancyWeek = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 7)) + 1;
+
+      if (pregnancyWeek < 1) pregnancyWeek = 1;
+      if (pregnancyWeek > 42) pregnancyWeek = 42;
+
+      const daysLeft = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
+
+      document.getElementById("pregnancyWeek").textContent = pregnancyWeek;
+      document.getElementById("daysLeft").textContent = daysLeft > 0 ? daysLeft : 0;
+      document.getElementById("cityResult").textContent = city || "-";
+
+      document.getElementById("dashboard").style.display = "block";
+
+      localStorage.setItem("mamaProfile", JSON.stringify({
+        name,
+        city,
+        dueDate: dueDateValue,
+        pregnancyWeek,
+        language: currentLang
+      }));
+
+      document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>

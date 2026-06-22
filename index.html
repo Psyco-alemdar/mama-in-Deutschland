@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -21,6 +22,7 @@
       --muted: #7b6a60;
       --border: #eadfd2;
       --green: #e8efe3;
+      --green-dark: #6b8f71;
       --danger: #b45b48;
       --shadow: rgba(74, 52, 40, 0.11);
     }
@@ -362,12 +364,93 @@
       padding: 24px;
     }
 
-    .task-list {
-      margin: 12px 0 0;
-      padding-left: 20px;
-      line-height: 2;
-      color: var(--text);
-      font-size: 15px;
+    .task-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 12px;
+    }
+
+    .filter-button {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--brown);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .filter-button:hover {
+      background: var(--brown);
+      color: white;
+    }
+
+    .task-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .admin-task-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .admin-task-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .task-week-badge {
+      background: var(--beige-soft);
+      color: var(--brown);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .admin-task-description {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .task-status-button {
+      border: none;
+      border-radius: 14px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-weight: 900;
+      background: var(--brown);
+      color: white;
+    }
+
+    .task-status-button.done {
+      background: var(--green-dark);
+    }
+
+    .task-link-button {
+      text-decoration: none;
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-weight: 900;
+      background: var(--beige-soft);
+      color: var(--brown);
     }
 
     .todo-row {
@@ -391,7 +474,7 @@
 
     .todo-item {
       display: grid;
-      grid-template-columns: auto 1fr auto;
+      grid-template-columns: 1fr auto auto;
       align-items: center;
       gap: 10px;
       padding: 12px;
@@ -405,12 +488,26 @@
       color: var(--muted);
     }
 
+    .todo-done-button {
+      border: none;
+      border-radius: 12px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 900;
+      background: var(--brown);
+      color: white;
+    }
+
+    .todo-done-button.done {
+      background: var(--green-dark);
+    }
+
     .delete-small {
       border: none;
       background: #f4dfd8;
       color: var(--danger);
       border-radius: 12px;
-      padding: 8px 10px;
+      padding: 9px 11px;
       cursor: pointer;
       font-weight: 900;
     }
@@ -476,7 +573,8 @@
       }
 
       .features,
-      .near-grid {
+      .near-grid,
+      .task-card-grid {
         grid-template-columns: 1fr;
       }
 
@@ -510,7 +608,8 @@
       }
 
       .dashboard-grid,
-      .todo-row {
+      .todo-row,
+      .todo-item {
         grid-template-columns: 1fr;
       }
 
@@ -697,11 +796,14 @@
 
       <div class="task-box">
         <h3 id="tasksTitle">Bald zu erledigen</h3>
-        <ul class="task-list" id="taskList">
-          <li>Hebamme suchen</li>
-          <li>Wichtige Dokumente vorbereiten</li>
-          <li>Nächsten Termin beim Frauenarzt notieren</li>
-        </ul>
+
+        <div class="task-toolbar">
+          <button class="filter-button" onclick="toggleAllTasks()" id="allTasksButton">
+            Alle Aufgaben anzeigen
+          </button>
+        </div>
+
+        <div class="task-card-grid" id="taskList"></div>
       </div>
 
       <div class="todo-box">
@@ -743,6 +845,7 @@
     let currentUser = null;
     let lastPregnancyWeek = null;
     let lastCity = "";
+    let showAllTasks = false;
 
     const translations = {
       de: {
@@ -800,11 +903,10 @@
         successAlert: "Profil wurde privat gespeichert ✅",
         errorAlert: "Das Profil wurde nicht gespeichert.",
         calculatedText: "Der geschätzte Entbindungstermin wurde automatisch berechnet:",
-        noTasks: "Aktuell gibt es keine dringenden Aufgaben.",
-        taskError: "Aufgaben konnten nicht geladen werden.",
         emptyTodo: "Bitte eine Aufgabe schreiben.",
+        todoDone: "Erledigt",
+        todoOpen: "Offen",
         openSearch: "Suchen öffnen",
-        tasks: ["Hebamme suchen", "Wichtige Dokumente vorbereiten", "Nächsten Termin beim Frauenarzt notieren"],
         near: {
           hebamme: ["Hebamme", "Finde Hebammen in deiner Stadt."],
           frauenarzt: ["Frauenärztin / Frauenarzt", "Suche eine Praxis für Schwangerschaftsbegleitung."],
@@ -872,11 +974,10 @@
         successAlert: "Profil enregistré en privé ✅",
         errorAlert: "Le profil n’a pas été enregistré.",
         calculatedText: "La date prévue a été estimée automatiquement :",
-        noTasks: "Aucune tâche urgente pour le moment.",
-        taskError: "Les tâches n’ont pas pu être chargées.",
         emptyTodo: "Écris d’abord une tâche.",
+        todoDone: "Terminé",
+        todoOpen: "À faire",
         openSearch: "Ouvrir la recherche",
-        tasks: ["Chercher une sage-femme", "Préparer les documents importants", "Noter le prochain rendez-vous chez le Frauenarzt"],
         near: {
           hebamme: ["Sage-femme", "Trouver une sage-femme dans ta ville."],
           frauenarzt: ["Gynécologue", "Chercher une consultation de suivi de grossesse."],
@@ -944,11 +1045,10 @@
         successAlert: "تم حفظ الملف بشكل خاص ✅",
         errorAlert: "لم يتم حفظ الملف.",
         calculatedText: "تم حساب تاريخ الولادة المتوقع تقريبياً:",
-        noTasks: "لا توجد مهام عاجلة حالياً.",
-        taskError: "تعذر تحميل المهام.",
         emptyTodo: "يرجى كتابة مهمة أولاً.",
+        todoDone: "تم",
+        todoOpen: "قيد الانتظار",
         openSearch: "فتح البحث",
-        tasks: ["البحث عن قابلة", "تحضير الوثائق المهمة", "تسجيل الموعد القادم عند طبيب النساء"],
         near: {
           hebamme: ["قابلة", "البحث عن قابلة في مدينتك."],
           frauenarzt: ["طبيبة / طبيب نساء", "البحث عن عيادة لمتابعة الحمل."],
@@ -1016,11 +1116,10 @@
         successAlert: "Profile saved privately ✅",
         errorAlert: "The profile was not saved.",
         calculatedText: "The estimated due date was calculated automatically:",
-        noTasks: "No urgent tasks at the moment.",
-        taskError: "Tasks could not be loaded.",
         emptyTodo: "Please write a task first.",
+        todoDone: "Done",
+        todoOpen: "To do",
         openSearch: "Open search",
-        tasks: ["Find a midwife", "Prepare important documents", "Note the next gynecologist appointment"],
         near: {
           hebamme: ["Midwife", "Find midwives in your city."],
           frauenarzt: ["Gynecologist", "Search for pregnancy care practices."],
@@ -1068,18 +1167,15 @@
         "New task...";
 
       updateAuthUI();
+      updateAllTasksButton();
 
       if (lastPregnancyWeek) {
         loadTasks(lastPregnancyWeek);
         buildNearMe(lastPregnancyWeek, lastCity);
-      } else {
-        const taskList = document.getElementById("taskList");
-        taskList.innerHTML = "";
-        tr.tasks.forEach(task => {
-          const li = document.createElement("li");
-          li.textContent = task;
-          taskList.appendChild(li);
-        });
+      }
+
+      if (currentUser) {
+        loadTodos();
       }
     }
 
@@ -1257,44 +1353,216 @@
       document.getElementById("dateMode").value = "known";
       toggleDateMode();
 
-      showDashboard(profile.due_date, profile.city, false);
+      await showDashboard(profile.due_date, profile.city, false);
+    }
+
+    function getTaskLabels() {
+      if (currentLang === "de") {
+        return {
+          week: "Woche",
+          done: "Erledigt",
+          todo: "Offen",
+          noTasks: "Aktuell gibt es keine dringenden Aufgaben.",
+          error: "Aufgaben konnten nicht geladen werden.",
+          link: "Link öffnen",
+          showAll: "Alle Aufgaben anzeigen",
+          showRecommended: "Nur aktuelle Aufgaben anzeigen"
+        };
+      }
+
+      if (currentLang === "fr") {
+        return {
+          week: "Semaine",
+          done: "Terminé",
+          todo: "À faire",
+          noTasks: "Aucune tâche urgente pour le moment.",
+          error: "Les tâches n’ont pas pu être chargées.",
+          link: "Ouvrir le lien",
+          showAll: "Afficher toutes les tâches",
+          showRecommended: "Afficher seulement les tâches actuelles"
+        };
+      }
+
+      if (currentLang === "ar") {
+        return {
+          week: "الأسبوع",
+          done: "تم",
+          todo: "قيد الانتظار",
+          noTasks: "لا توجد مهام عاجلة حالياً.",
+          error: "تعذر تحميل المهام.",
+          link: "فتح الرابط",
+          showAll: "عرض كل المهام",
+          showRecommended: "عرض المهام الحالية فقط"
+        };
+      }
+
+      return {
+        week: "Week",
+        done: "Done",
+        todo: "To do",
+        noTasks: "No urgent tasks at the moment.",
+        error: "Tasks could not be loaded.",
+        link: "Open link",
+        showAll: "Show all tasks",
+        showRecommended: "Show current tasks only"
+      };
+    }
+
+    function updateAllTasksButton() {
+      const button = document.getElementById("allTasksButton");
+      if (!button) return;
+
+      const labels = getTaskLabels();
+      button.textContent = showAllTasks ? labels.showRecommended : labels.showAll;
+    }
+
+    async function toggleAllTasks() {
+      showAllTasks = !showAllTasks;
+      updateAllTasksButton();
+
+      if (lastPregnancyWeek) {
+        await loadTasks(lastPregnancyWeek);
+      }
+    }
+
+    function getTaskTitle(task) {
+      if (currentLang === "de") return task.title_de || "";
+      if (currentLang === "fr") return task.title_fr || task.title_de || "";
+      if (currentLang === "ar") return task.title_ar || task.title_de || "";
+      if (currentLang === "en") return task.title_en || task.title_de || "";
+      return task.title_de || "";
+    }
+
+    function getTaskDescription(task) {
+      if (currentLang === "de") return task.description_de || "";
+      if (currentLang === "fr") return task.description_fr || task.description_de || "";
+      if (currentLang === "ar") return task.description_ar || task.description_de || "";
+      if (currentLang === "en") return task.description_en || task.description_de || "";
+      return task.description_de || "";
     }
 
     async function loadTasks(pregnancyWeek) {
-      const tr = t();
+      const labels = getTaskLabels();
       const taskList = document.getElementById("taskList");
       taskList.innerHTML = "";
 
       const maxWeek = pregnancyWeek + 2;
 
-      const { data, error } = await supabaseClient
+      let query = supabaseClient
         .from("pregnancy_tasks")
         .select("*")
-        .lte("recommended_week", maxWeek)
         .order("recommended_week", { ascending: true });
 
-      if (error) {
-        const li = document.createElement("li");
-        li.textContent = tr.taskError;
-        taskList.appendChild(li);
+      if (!showAllTasks) {
+        query = query.lte("recommended_week", maxWeek);
+      }
+
+      const { data: tasks, error: tasksError } = await query;
+
+      updateAllTasksButton();
+
+      if (tasksError) {
+        taskList.innerHTML = `<p>${labels.error}</p>`;
+        console.error(tasksError);
         return;
       }
 
-      if (!data || data.length === 0) {
-        const li = document.createElement("li");
-        li.textContent = tr.noTasks;
-        taskList.appendChild(li);
+      if (!tasks || tasks.length === 0) {
+        taskList.innerHTML = `<p>${labels.noTasks}</p>`;
         return;
       }
 
-      data.forEach(task => {
-        const li = document.createElement("li");
-        if (currentLang === "de") li.textContent = task.title_de;
-        else if (currentLang === "fr") li.textContent = task.title_fr;
-        else if (currentLang === "ar") li.textContent = task.title_ar;
-        else li.textContent = task.title_de;
-        taskList.appendChild(li);
+      let statusMap = {};
+
+      if (currentUser) {
+        const { data: statuses, error: statusError } = await supabaseClient
+          .from("user_task_status")
+          .select("*")
+          .eq("user_id", currentUser.id);
+
+        if (!statusError && statuses) {
+          statuses.forEach(item => {
+            statusMap[item.task_id] = item.status;
+          });
+        }
+      }
+
+      tasks.forEach(task => {
+        const status = statusMap[task.id] || "todo";
+        const isDone = status === "done";
+
+        const card = document.createElement("div");
+        card.className = "admin-task-card";
+
+        const top = document.createElement("div");
+        top.className = "admin-task-top";
+
+        const title = document.createElement("h3");
+        title.textContent = getTaskTitle(task);
+
+        const week = document.createElement("div");
+        week.className = "task-week-badge";
+        week.textContent = `${labels.week} ${task.recommended_week}`;
+
+        top.appendChild(title);
+        top.appendChild(week);
+
+        const desc = document.createElement("div");
+        desc.className = "admin-task-description";
+        desc.textContent = getTaskDescription(task);
+
+        const actions = document.createElement("div");
+        actions.className = "task-actions";
+
+        const statusButton = document.createElement("button");
+        statusButton.className = isDone ? "task-status-button done" : "task-status-button";
+        statusButton.textContent = isDone ? labels.done : labels.todo;
+        statusButton.onclick = () => toggleTaskStatus(task.id, isDone ? "todo" : "done");
+
+        actions.appendChild(statusButton);
+
+        if (task.link_url && task.link_url.trim() !== "") {
+          const link = document.createElement("a");
+          link.className = "task-link-button";
+          link.href = task.link_url;
+          link.target = "_blank";
+          link.textContent = labels.link;
+          actions.appendChild(link);
+        }
+
+        card.appendChild(top);
+        card.appendChild(desc);
+        card.appendChild(actions);
+
+        taskList.appendChild(card);
       });
+    }
+
+    async function toggleTaskStatus(taskId, newStatus) {
+      if (!currentUser) {
+        alert(t().needLogin);
+        return;
+      }
+
+      const { error } = await supabaseClient
+        .from("user_task_status")
+        .upsert({
+          user_id: currentUser.id,
+          task_id: taskId,
+          status: newStatus
+        }, {
+          onConflict: "user_id,task_id"
+        });
+
+      if (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+      }
+
+      if (lastPregnancyWeek) {
+        await loadTasks(lastPregnancyWeek);
+      }
     }
 
     function buildMapsLink(query, city) {
@@ -1459,22 +1727,22 @@
         const item = document.createElement("div");
         item.className = "todo-item";
 
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = todo.done;
-        checkbox.onchange = () => toggleTodo(todo.id, checkbox.checked);
-
         const title = document.createElement("span");
         title.textContent = todo.title;
         if (todo.done) title.className = "done";
+
+        const doneButton = document.createElement("button");
+        doneButton.className = todo.done ? "todo-done-button done" : "todo-done-button";
+        doneButton.textContent = todo.done ? t().todoDone : t().todoOpen;
+        doneButton.onclick = () => toggleTodo(todo.id, !todo.done);
 
         const del = document.createElement("button");
         del.className = "delete-small";
         del.textContent = "×";
         del.onclick = () => deleteTodo(todo.id);
 
-        item.appendChild(checkbox);
         item.appendChild(title);
+        item.appendChild(doneButton);
         item.appendChild(del);
 
         todoList.appendChild(item);
@@ -1515,19 +1783,29 @@
     }
 
     async function toggleTodo(id, done) {
-      await supabaseClient
+      const { error } = await supabaseClient
         .from("private_todos")
         .update({ done })
         .eq("id", id);
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
 
       await loadTodos();
     }
 
     async function deleteTodo(id) {
-      await supabaseClient
+      const { error } = await supabaseClient
         .from("private_todos")
         .delete()
         .eq("id", id);
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
 
       await loadTodos();
     }

@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Mama in Deutschland</title>
 
   <style>
     :root {
-      --rose: #f7c8d7;
-      --rose-dark: #d96b91;
-      --beige: #fff6ec;
-      --cream: #fffdf8;
-      --text: #3d2f35;
-      --green: #d8efe2;
-      --border: #f1d7c6;
+      --bg: #f8f1e8;
+      --bg-soft: #fffaf3;
+      --card: #ffffff;
+      --brown: #7a5238;
+      --brown-light: #b98b63;
+      --brown-soft: #e7d2bd;
+      --text: #3b2a21;
+      --muted: #7f6a5c;
+      --gold: #c79a5a;
+      --border: #ead8c4;
+      --green-soft: #e8efe3;
     }
 
     * {
@@ -22,34 +27,36 @@
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, var(--beige), var(--cream));
+      font-family: "Georgia", "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top left, #fff7ec 0, transparent 35%),
+        linear-gradient(180deg, var(--bg), #fffdf8);
       color: var(--text);
     }
 
     header {
-      padding: 24px;
+      padding: 28px 18px;
       text-align: center;
-      background: var(--cream);
+      background: rgba(255, 250, 243, 0.9);
       border-bottom: 1px solid var(--border);
     }
 
-    .logo {
-      font-size: 30px;
+    .brand {
+      font-size: 36px;
       font-weight: bold;
-      color: var(--rose-dark);
-      margin-bottom: 8px;
+      color: var(--brown);
+      letter-spacing: 0.5px;
     }
 
-    .subtitle {
-      font-size: 16px;
-      max-width: 650px;
-      margin: 0 auto;
-      line-height: 1.5;
+    .tagline {
+      margin-top: 10px;
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
     .language-buttons {
-      margin-top: 18px;
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       gap: 10px;
@@ -57,135 +64,231 @@
     }
 
     .language-buttons button {
-      border: 1px solid var(--rose-dark);
+      border: 1px solid var(--brown-light);
       background: white;
-      color: var(--rose-dark);
-      padding: 9px 14px;
-      border-radius: 20px;
+      color: var(--brown);
+      padding: 10px 16px;
+      border-radius: 999px;
       cursor: pointer;
       font-weight: bold;
+      font-family: Arial, sans-serif;
+      transition: 0.2s;
     }
 
     .language-buttons button:hover {
-      background: var(--rose);
+      background: var(--brown);
       color: white;
     }
 
     main {
-      max-width: 1000px;
-      margin: 30px auto;
+      max-width: 1120px;
+      margin: 34px auto;
       padding: 0 18px;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 24px;
-      align-items: center;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 26px;
+      align-items: stretch;
     }
 
     .card {
-      background: white;
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(120, 80, 90, 0.1);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 18px 45px rgba(89, 61, 42, 0.11);
     }
 
-    h1, h2, h3 {
-      margin-top: 0;
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: rgba(231, 210, 189, 0.35);
+      right: -70px;
+      bottom: -70px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      margin-bottom: 14px;
     }
 
     h1 {
-      font-size: 36px;
-      color: var(--rose-dark);
+      font-size: 44px;
+      line-height: 1.1;
+      margin: 0 0 18px;
+      color: var(--brown);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--brown);
+      font-size: 26px;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+      color: var(--brown);
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 17px;
     }
 
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 24px;
+      gap: 14px;
+      margin-top: 26px;
+      position: relative;
+      z-index: 1;
     }
 
     .feature {
-      background: var(--cream);
-      border-radius: 18px;
-      padding: 18px;
+      background: var(--bg-soft);
       border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
     }
 
     label {
       display: block;
-      margin-top: 14px;
+      margin-top: 16px;
       font-weight: bold;
+      color: var(--brown);
+      font-family: Arial, sans-serif;
+      font-size: 14px;
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
-      padding: 12px;
-      margin-top: 6px;
-      border-radius: 12px;
+      padding: 13px 14px;
+      margin-top: 7px;
+      border-radius: 14px;
       border: 1px solid var(--border);
+      background: #fffdf9;
+      color: var(--text);
       font-size: 15px;
+      font-family: Arial, sans-serif;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--brown-light);
+      box-shadow: 0 0 0 3px rgba(185, 139, 99, 0.16);
     }
 
     .main-button {
       width: 100%;
-      margin-top: 20px;
-      padding: 14px;
+      margin-top: 24px;
+      padding: 15px;
       border: none;
-      border-radius: 14px;
-      background: var(--rose-dark);
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--brown), var(--brown-light));
       color: white;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      font-family: Arial, sans-serif;
+      box-shadow: 0 12px 24px rgba(122, 82, 56, 0.25);
     }
 
     .main-button:hover {
-      opacity: 0.9;
+      opacity: 0.94;
+    }
+
+    .note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
     }
 
     .dashboard {
       display: none;
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
     .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
+      margin-top: 16px;
     }
 
     .small-card {
-      background: var(--green);
-      padding: 18px;
-      border-radius: 18px;
+      background: linear-gradient(180deg, #fffaf3, #f8efe4);
+      padding: 20px;
+      border-radius: 22px;
       text-align: center;
-      border: 1px solid #cce5d6;
+      border: 1px solid var(--border);
+    }
+
+    .small-label {
+      font-size: 14px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
     }
 
     .big-number {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: bold;
-      color: var(--rose-dark);
+      color: var(--brown);
+      margin-top: 6px;
+    }
+
+    .task-box {
+      margin-top: 22px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
     }
 
     .task-list {
-      margin-top: 18px;
-      padding-left: 18px;
-      line-height: 1.8;
+      margin-top: 12px;
+      padding-left: 22px;
+      line-height: 2;
+      font-family: Arial, sans-serif;
+    }
+
+    body[dir="rtl"] .task-list {
+      padding-left: 0;
+      padding-right: 22px;
     }
 
     .footer {
       text-align: center;
-      margin-top: 40px;
+      margin: 42px 0 20px;
+      color: var(--muted);
       font-size: 14px;
-      color: #8b737a;
+      font-family: Arial, sans-serif;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 850px) {
       .hero {
         grid-template-columns: 1fr;
       }
@@ -195,11 +298,25 @@
       }
 
       .dashboard-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
       }
 
       h1 {
-        font-size: 28px;
+        font-size: 34px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .brand {
+        font-size: 30px;
       }
     }
   </style>
@@ -207,156 +324,170 @@
 
 <body>
   <header>
-    <div class="logo">Mama in Deutschland</div>
-    <p class="subtitle" id="subtitle">
-      Ta grossesse en Allemagne, organisée simplement dans ta langue.
-    </p>
+    <div class="brand">Mama in Deutschland</div>
+    <div class="tagline" id="subtitle">
+      Deine Schwangerschaft in Deutschland, elegant und einfach organisiert.
+    </div>
 
     <div class="language-buttons">
-      <button onclick="setLanguage('fr')">Français</button>
       <button onclick="setLanguage('de')">Deutsch</button>
+      <button onclick="setLanguage('fr')">Français</button>
       <button onclick="setLanguage('ar')">العربية</button>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="card">
-        <h1 id="mainTitle">Bienvenue future maman</h1>
+      <div class="card hero-card">
+        <div class="eyebrow" id="eyebrow">Schwangerschaft · Organisation · Erinnerungen</div>
+
+        <h1 id="mainTitle">Willkommen, werdende Mama</h1>
+
         <p id="mainText">
-          Suis ta grossesse semaine après semaine, prépare tes documents, organise tes rendez-vous, découvre des idées repas simples et garde tes souvenirs.
+          Begleite deine Schwangerschaft Woche für Woche, organisiere deine Aufgaben in Deutschland,
+          bereite wichtige Dokumente vor und bewahre deine schönsten Erinnerungen.
         </p>
 
         <div class="features">
           <div class="feature">
-            <h3 id="feature1Title">Suivi</h3>
-            <p id="feature1Text">Semaine actuelle, jours restants et évolution du bébé.</p>
+            <div class="feature-icon">🤎</div>
+            <h3 id="feature1Title">Schwangerschaft</h3>
+            <p id="feature1Text">Aktuelle Woche, verbleibende Tage und Entwicklung deines Babys.</p>
           </div>
 
           <div class="feature">
-            <h3 id="feature2Title">Documents</h3>
-            <p id="feature2Text">Rappels pour les démarches importantes en Allemagne.</p>
+            <div class="feature-icon">📄</div>
+            <h3 id="feature2Title">Dokumente</h3>
+            <p id="feature2Text">Eine klare Übersicht für wichtige Aufgaben in Deutschland.</p>
           </div>
 
           <div class="feature">
-            <h3 id="feature3Title">Souvenirs</h3>
-            <p id="feature3Text">Photos, notes et moments importants de ta grossesse.</p>
+            <div class="feature-icon">✨</div>
+            <h3 id="feature3Title">Erinnerungen</h3>
+            <p id="feature3Text">Fotos, Notizen und besondere Momente deiner Schwangerschaft.</p>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h2 id="formTitle">Créer mon profil grossesse</h2>
+        <h2 id="formTitle">Mein Schwangerschaftsprofil</h2>
 
-        <label id="nameLabel">Prénom</label>
-        <input type="text" id="name" placeholder="Ex: Sophia" />
+        <label id="nameLabel" for="name">Vorname</label>
+        <input type="text" id="name" placeholder="Zum Beispiel: Sophia" />
 
-        <label id="cityLabel">Ville en Allemagne</label>
-        <input type="text" id="city" placeholder="Ex: Mülheim an der Ruhr" />
+        <label id="cityLabel" for="city">Stadt in Deutschland</label>
+        <input type="text" id="city" placeholder="Zum Beispiel: Mülheim an der Ruhr" />
 
-        <label id="dateLabel">Date prévue d’accouchement</label>
+        <label id="dateLabel" for="dueDate">Voraussichtlicher Geburtstermin</label>
         <input type="date" id="dueDate" />
 
-        <label id="statusLabel">Situation</label>
+        <label id="statusLabel" for="workStatus">Situation</label>
         <select id="workStatus">
-          <option value="salariée">Salariée</option>
-          <option value="sans emploi">Sans emploi</option>
-          <option value="étudiante">Étudiante</option>
-          <option value="indépendante">Indépendante</option>
+          <option value="angestellt">Angestellt</option>
+          <option value="arbeitslos">Nicht berufstätig</option>
+          <option value="studentin">Studentin</option>
+          <option value="selbstständig">Selbstständig</option>
+        </select>
+
+        <label id="insuranceLabel" for="insuranceType">Krankenversicherung</label>
+        <select id="insuranceType">
+          <option value="gesetzlich">Gesetzlich versichert</option>
+          <option value="privat">Privat versichert</option>
+          <option value="unsicher">Ich bin nicht sicher</option>
         </select>
 
         <button class="main-button" onclick="createProfile()" id="startButton">
-          Commencer
+          Profil erstellen
         </button>
+
+        <div class="note" id="formNote">
+          Erste Version: Dein Profil wird gespeichert, damit wir danach deine persönliche Checkliste aufbauen können.
+        </div>
       </div>
     </section>
 
     <section class="dashboard card" id="dashboard">
-      <h2 id="dashboardTitle">Mon espace grossesse</h2>
+      <h2 id="dashboardTitle">Mein Schwangerschaftsbereich</h2>
 
       <div class="dashboard-grid">
         <div class="small-card">
-          <div id="weekLabel">Semaine</div>
+          <div class="small-label" id="weekLabel">Woche</div>
           <div class="big-number" id="pregnancyWeek">-</div>
         </div>
 
         <div class="small-card">
-          <div id="daysLabel">Jours restants</div>
+          <div class="small-label" id="daysLabel">Tage übrig</div>
           <div class="big-number" id="daysLeft">-</div>
         </div>
 
         <div class="small-card">
-          <div id="cityResultLabel">Ville</div>
+          <div class="small-label" id="cityResultLabel">Stadt</div>
           <div class="big-number" id="cityResult">-</div>
+        </div>
+
+        <div class="small-card">
+          <div class="small-label" id="languageResultLabel">Sprache</div>
+          <div class="big-number" id="languageResult">DE</div>
         </div>
       </div>
 
-      <h3 id="tasksTitle">À faire bientôt</h3>
-      <ul class="task-list" id="taskList">
-        <li>Chercher une sage-femme</li>
-        <li>Préparer les documents importants</li>
-        <li>Noter le prochain rendez-vous chez le Frauenarzt</li>
-      </ul>
+      <div class="task-box">
+        <h3 id="tasksTitle">Bald zu erledigen</h3>
+        <ul class="task-list" id="taskList">
+          <li>Hebamme suchen</li>
+          <li>Wichtige Dokumente vorbereiten</li>
+          <li>Nächsten Termin beim Frauenarzt notieren</li>
+        </ul>
+      </div>
     </section>
 
     <div class="footer">
-      Mama in Deutschland — première version
+      Mama in Deutschland — erste Version
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
-    let currentLang = "fr";
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    let currentLang = "de";
 
     const translations = {
-      fr: {
-        subtitle: "Ta grossesse en Allemagne, organisée simplement dans ta langue.",
-        mainTitle: "Bienvenue future maman",
-        mainText: "Suis ta grossesse semaine après semaine, prépare tes documents, organise tes rendez-vous, découvre des idées repas simples et garde tes souvenirs.",
-        feature1Title: "Suivi",
-        feature1Text: "Semaine actuelle, jours restants et évolution du bébé.",
-        feature2Title: "Documents",
-        feature2Text: "Rappels pour les démarches importantes en Allemagne.",
-        feature3Title: "Souvenirs",
-        feature3Text: "Photos, notes et moments importants de ta grossesse.",
-        formTitle: "Créer mon profil grossesse",
-        nameLabel: "Prénom",
-        cityLabel: "Ville en Allemagne",
-        dateLabel: "Date prévue d’accouchement",
-        statusLabel: "Situation",
-        startButton: "Commencer",
-        dashboardTitle: "Mon espace grossesse",
-        weekLabel: "Semaine",
-        daysLabel: "Jours restants",
-        cityResultLabel: "Ville",
-        tasksTitle: "À faire bientôt",
-        tasks: [
-          "Chercher une sage-femme",
-          "Préparer les documents importants",
-          "Noter le prochain rendez-vous chez le Frauenarzt"
-        ]
-      },
-
       de: {
-        subtitle: "Deine Schwangerschaft in Deutschland, einfach organisiert in deiner Sprache.",
+        subtitle: "Deine Schwangerschaft in Deutschland, elegant und einfach organisiert.",
+        eyebrow: "Schwangerschaft · Organisation · Erinnerungen",
         mainTitle: "Willkommen, werdende Mama",
-        mainText: "Begleite deine Schwangerschaft Woche für Woche, organisiere Dokumente, Termine, einfache Mahlzeiten und schöne Erinnerungen.",
+        mainText: "Begleite deine Schwangerschaft Woche für Woche, organisiere deine Aufgaben in Deutschland, bereite wichtige Dokumente vor und bewahre deine schönsten Erinnerungen.",
         feature1Title: "Schwangerschaft",
-        feature1Text: "Aktuelle Woche, verbleibende Tage und Entwicklung des Babys.",
+        feature1Text: "Aktuelle Woche, verbleibende Tage und Entwicklung deines Babys.",
         feature2Title: "Dokumente",
-        feature2Text: "Erinnerungen für wichtige Aufgaben in Deutschland.",
+        feature2Text: "Eine klare Übersicht für wichtige Aufgaben in Deutschland.",
         feature3Title: "Erinnerungen",
         feature3Text: "Fotos, Notizen und besondere Momente deiner Schwangerschaft.",
-        formTitle: "Mein Schwangerschaftsprofil erstellen",
+        formTitle: "Mein Schwangerschaftsprofil",
         nameLabel: "Vorname",
         cityLabel: "Stadt in Deutschland",
         dateLabel: "Voraussichtlicher Geburtstermin",
         statusLabel: "Situation",
-        startButton: "Starten",
+        insuranceLabel: "Krankenversicherung",
+        startButton: "Profil erstellen",
+        formNote: "Erste Version: Dein Profil wird gespeichert, damit wir danach deine persönliche Checkliste aufbauen können.",
         dashboardTitle: "Mein Schwangerschaftsbereich",
         weekLabel: "Woche",
         daysLabel: "Tage übrig",
         cityResultLabel: "Stadt",
+        languageResultLabel: "Sprache",
         tasksTitle: "Bald zu erledigen",
+        dateAlert: "Bitte wähle den voraussichtlichen Geburtstermin.",
+        successAlert: "Profil wurde erfolgreich gespeichert ✅",
+        errorAlert: "Das Profil wurde nicht gespeichert. Bitte versuche es erneut.",
         tasks: [
           "Hebamme suchen",
           "Wichtige Dokumente vorbereiten",
@@ -364,27 +495,69 @@
         ]
       },
 
+      fr: {
+        subtitle: "Ta grossesse en Allemagne, organisée simplement avec élégance.",
+        eyebrow: "Grossesse · Organisation · Souvenirs",
+        mainTitle: "Bienvenue future maman",
+        mainText: "Suis ta grossesse semaine après semaine, organise tes démarches en Allemagne, prépare les documents importants et garde tes plus beaux souvenirs.",
+        feature1Title: "Grossesse",
+        feature1Text: "Semaine actuelle, jours restants et évolution de ton bébé.",
+        feature2Title: "Documents",
+        feature2Text: "Une vue claire pour les démarches importantes en Allemagne.",
+        feature3Title: "Souvenirs",
+        feature3Text: "Photos, notes et moments importants de ta grossesse.",
+        formTitle: "Mon profil grossesse",
+        nameLabel: "Prénom",
+        cityLabel: "Ville en Allemagne",
+        dateLabel: "Date prévue d’accouchement",
+        statusLabel: "Situation",
+        insuranceLabel: "Assurance maladie",
+        startButton: "Créer mon profil",
+        formNote: "Première version : ton profil sera enregistré pour construire ensuite ta checklist personnelle.",
+        dashboardTitle: "Mon espace grossesse",
+        weekLabel: "Semaine",
+        daysLabel: "Jours restants",
+        cityResultLabel: "Ville",
+        languageResultLabel: "Langue",
+        tasksTitle: "À faire bientôt",
+        dateAlert: "Merci de choisir la date prévue d’accouchement.",
+        successAlert: "Profil enregistré avec succès ✅",
+        errorAlert: "Le profil n'a pas été enregistré. Réessaie encore une fois.",
+        tasks: [
+          "Chercher une sage-femme",
+          "Préparer les documents importants",
+          "Noter le prochain rendez-vous chez le Frauenarzt"
+        ]
+      },
+
       ar: {
-        subtitle: "حملك في ألمانيا، منظم وبسيط بلغتك.",
+        subtitle: "حملك في ألمانيا، منظم ببساطة وأناقة بلغتك.",
+        eyebrow: "الحمل · التنظيم · الذكريات",
         mainTitle: "مرحباً أيتها الأم المستقبلية",
-        mainText: "تابعي حملك أسبوعاً بعد أسبوع، جهزي الوثائق، نظمي المواعيد، اكتشفي وصفات بسيطة واحفظي أجمل الذكريات.",
+        mainText: "تابعي حملك أسبوعاً بعد أسبوع، نظمي خطواتك في ألمانيا، حضّري الوثائق المهمة واحتفظي بأجمل ذكرياتك.",
         feature1Title: "متابعة الحمل",
         feature1Text: "الأسبوع الحالي، الأيام المتبقية وتطور الطفل.",
         feature2Title: "الوثائق",
-        feature2Text: "تذكيرات للخطوات المهمة في ألمانيا.",
+        feature2Text: "نظرة واضحة على الخطوات المهمة في ألمانيا.",
         feature3Title: "الذكريات",
         feature3Text: "صور، ملاحظات ولحظات مهمة من الحمل.",
-        formTitle: "إنشاء ملف الحمل",
+        formTitle: "ملف الحمل الخاص بي",
         nameLabel: "الاسم",
         cityLabel: "المدينة في ألمانيا",
         dateLabel: "تاريخ الولادة المتوقع",
         statusLabel: "الوضعية",
-        startButton: "ابدئي الآن",
+        insuranceLabel: "التأمين الصحي",
+        startButton: "إنشاء الملف",
+        formNote: "النسخة الأولى: سيتم حفظ الملف لبناء قائمة مهام شخصية بعد ذلك.",
         dashboardTitle: "مساحة الحمل الخاصة بي",
         weekLabel: "الأسبوع",
         daysLabel: "الأيام المتبقية",
         cityResultLabel: "المدينة",
+        languageResultLabel: "اللغة",
         tasksTitle: "مهام قريبة",
+        dateAlert: "يرجى اختيار تاريخ الولادة المتوقع.",
+        successAlert: "تم حفظ الملف بنجاح ✅",
+        errorAlert: "لم يتم حفظ الملف. يرجى المحاولة مرة أخرى.",
         tasks: [
           "البحث عن قابلة",
           "تحضير الوثائق المهمة",
@@ -401,47 +574,62 @@
       document.body.dir = lang === "ar" ? "rtl" : "ltr";
 
       document.getElementById("subtitle").textContent = t.subtitle;
+      document.getElementById("eyebrow").textContent = t.eyebrow;
       document.getElementById("mainTitle").textContent = t.mainTitle;
       document.getElementById("mainText").textContent = t.mainText;
+
       document.getElementById("feature1Title").textContent = t.feature1Title;
       document.getElementById("feature1Text").textContent = t.feature1Text;
       document.getElementById("feature2Title").textContent = t.feature2Title;
       document.getElementById("feature2Text").textContent = t.feature2Text;
       document.getElementById("feature3Title").textContent = t.feature3Title;
       document.getElementById("feature3Text").textContent = t.feature3Text;
+
       document.getElementById("formTitle").textContent = t.formTitle;
       document.getElementById("nameLabel").textContent = t.nameLabel;
       document.getElementById("cityLabel").textContent = t.cityLabel;
       document.getElementById("dateLabel").textContent = t.dateLabel;
       document.getElementById("statusLabel").textContent = t.statusLabel;
+      document.getElementById("insuranceLabel").textContent = t.insuranceLabel;
       document.getElementById("startButton").textContent = t.startButton;
+      document.getElementById("formNote").textContent = t.formNote;
+
       document.getElementById("dashboardTitle").textContent = t.dashboardTitle;
       document.getElementById("weekLabel").textContent = t.weekLabel;
       document.getElementById("daysLabel").textContent = t.daysLabel;
       document.getElementById("cityResultLabel").textContent = t.cityResultLabel;
+      document.getElementById("languageResultLabel").textContent = t.languageResultLabel;
       document.getElementById("tasksTitle").textContent = t.tasksTitle;
 
       const taskList = document.getElementById("taskList");
       taskList.innerHTML = "";
+
       t.tasks.forEach(task => {
         const li = document.createElement("li");
         li.textContent = task;
         taskList.appendChild(li);
       });
+
+      document.getElementById("languageResult").textContent = lang.toUpperCase();
     }
 
-    function createProfile() {
-      const name = document.getElementById("name").value;
-      const city = document.getElementById("city").value;
+    async function createProfile() {
+      const t = translations[currentLang];
+
+      const name = document.getElementById("name").value.trim();
+      const city = document.getElementById("city").value.trim();
       const dueDateValue = document.getElementById("dueDate").value;
+      const workStatus = document.getElementById("workStatus").value;
+      const insuranceType = document.getElementById("insuranceType").value;
 
       if (!dueDateValue) {
-        alert("Merci de choisir la date prévue d’accouchement.");
+        alert(t.dateAlert);
         return;
       }
 
       const today = new Date();
       const dueDate = new Date(dueDateValue);
+
       const pregnancyStart = new Date(dueDate);
       pregnancyStart.setDate(pregnancyStart.getDate() - 280);
 
@@ -456,6 +644,7 @@
       document.getElementById("pregnancyWeek").textContent = pregnancyWeek;
       document.getElementById("daysLeft").textContent = daysLeft > 0 ? daysLeft : 0;
       document.getElementById("cityResult").textContent = city || "-";
+      document.getElementById("languageResult").textContent = currentLang.toUpperCase();
 
       document.getElementById("dashboard").style.display = "block";
 
@@ -464,11 +653,34 @@
         city,
         dueDate: dueDateValue,
         pregnancyWeek,
-        language: currentLang
+        language: currentLang,
+        workStatus,
+        insuranceType
       }));
+
+      const { error } = await supabaseClient
+        .from("pregnancy_profiles")
+        .insert({
+          full_name: name,
+          language: currentLang,
+          city: city,
+          due_date: dueDateValue,
+          pregnancy_week: pregnancyWeek,
+          work_status: workStatus,
+          insurance_type: insuranceType
+        });
+
+      if (error) {
+        console.error("Erreur Supabase:", error);
+        alert(t.errorAlert);
+      } else {
+        alert(t.successAlert);
+      }
 
       document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
     }
+
+    setLanguage("de");
   </script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -355,6 +354,78 @@
       display: none;
     }
 
+    .baby-week-card {
+      margin-top: 22px;
+      background: linear-gradient(135deg, #fffaf4, #ffffff);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 24px;
+    }
+
+    .baby-week-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .baby-week-title {
+      color: var(--brown);
+      font-size: 24px;
+      font-weight: 950;
+      margin-top: 8px;
+    }
+
+    .baby-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      min-width: 240px;
+    }
+
+    .baby-stat {
+      background: var(--beige-soft);
+      border-radius: 20px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .baby-stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .baby-stat-value {
+      margin-top: 6px;
+      color: var(--brown);
+      font-size: 24px;
+      font-weight: 950;
+    }
+
+    .baby-info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .baby-info-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .baby-info-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .baby-info-box p {
+      font-size: 14px;
+    }
+
     .task-box,
     .todo-box {
       margin-top: 22px;
@@ -362,6 +433,37 @@
       border: 1px solid var(--border);
       border-radius: 26px;
       padding: 24px;
+    }
+
+    .task-progress {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: var(--green);
+      color: var(--brown);
+      font-weight: 900;
+    }
+
+    .task-filter-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .category-button {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--brown);
+      border-radius: 999px;
+      padding: 9px 13px;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .category-button.active {
+      background: var(--brown);
+      color: white;
     }
 
     .task-toolbar {
@@ -551,11 +653,6 @@
       transform: translateY(-1px);
     }
 
-    body[dir="rtl"] .task-list {
-      padding-left: 0;
-      padding-right: 20px;
-    }
-
     .footer {
       text-align: center;
       margin: 38px 0 18px;
@@ -574,7 +671,8 @@
 
       .features,
       .near-grid,
-      .task-card-grid {
+      .task-card-grid,
+      .baby-info-grid {
         grid-template-columns: 1fr;
       }
 
@@ -609,7 +707,8 @@
 
       .dashboard-grid,
       .todo-row,
-      .todo-item {
+      .todo-item,
+      .baby-stats {
         grid-template-columns: 1fr;
       }
 
@@ -794,8 +893,58 @@
 
       <div class="calculated-date" id="calculatedDateBox"></div>
 
+      <div class="baby-week-card" id="babyWeekSection">
+        <div class="baby-week-header">
+          <div>
+            <h2 id="babySectionTitle">Mutter & Baby diese Woche</h2>
+            <p id="babyIntro">Ein kurzer Überblick über diese Schwangerschaftswoche.</p>
+            <div class="baby-week-title" id="babyTitle">-</div>
+          </div>
+
+          <div class="baby-stats">
+            <div class="baby-stat">
+              <div class="baby-stat-label" id="babyLengthLabel">Größe</div>
+              <div class="baby-stat-value" id="babyLength">-</div>
+            </div>
+
+            <div class="baby-stat">
+              <div class="baby-stat-label" id="babyWeightLabel">Gewicht</div>
+              <div class="baby-stat-value" id="babyWeight">-</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="baby-info-grid">
+          <div class="baby-info-box">
+            <h3 id="babyDevelopmentTitle">Baby</h3>
+            <p id="babyDevelopment">-</p>
+          </div>
+
+          <div class="baby-info-box">
+            <h3 id="motherTipTitle">Mama-Tipp</h3>
+            <p id="motherTip">-</p>
+          </div>
+
+          <div class="baby-info-box">
+            <h3 id="nutritionTitle">Ernährung</h3>
+            <p id="babyNutrition">-</p>
+          </div>
+        </div>
+      </div>
+
       <div class="task-box">
-        <h3 id="tasksTitle">Bald zu erledigen</h3>
+        <h3 id="tasksTitle">Bürokratie-Zentrale</h3>
+
+        <div class="task-progress" id="taskProgress">
+          0 / 0 erledigt
+        </div>
+
+        <div class="task-filter-row">
+          <button class="category-button active" onclick="setTaskCategory('all')" id="catAll">Alle</button>
+          <button class="category-button" onclick="setTaskCategory('administratif')" id="catAdmin">Bürokratie</button>
+          <button class="category-button" onclick="setTaskCategory('medical')" id="catMedical">Medizin</button>
+          <button class="category-button" onclick="setTaskCategory('organisation')" id="catOrganisation">Organisation</button>
+        </div>
 
         <div class="task-toolbar">
           <button class="filter-button" onclick="toggleAllTasks()" id="allTasksButton">
@@ -846,6 +995,7 @@
     let lastPregnancyWeek = null;
     let lastCity = "";
     let showAllTasks = false;
+    let taskCategoryFilter = "all";
 
     const translations = {
       de: {
@@ -886,7 +1036,15 @@
         daysLabel: "Tage übrig",
         dueDateResultLabel: "Entbindungstermin",
         cityResultLabel: "Stadt",
-        tasksTitle: "Bald zu erledigen",
+        babySectionTitle: "Mutter & Baby diese Woche",
+        babyIntro: "Ein kurzer Überblick über diese Schwangerschaftswoche.",
+        babyLengthLabel: "Größe",
+        babyWeightLabel: "Gewicht",
+        babyDevelopmentTitle: "Baby",
+        motherTipTitle: "Mama-Tipp",
+        nutritionTitle: "Ernährung",
+        babyNoContent: "Für diese Woche gibt es noch keinen Inhalt.",
+        tasksTitle: "Bürokratie-Zentrale",
         todoTitle: "Meine private To-do-Liste",
         todoText: "Diese Liste ist nur in deinem Konto sichtbar.",
         addTodoButton: "Hinzufügen",
@@ -957,7 +1115,15 @@
         daysLabel: "Jours restants",
         dueDateResultLabel: "Date prévue",
         cityResultLabel: "Ville",
-        tasksTitle: "À faire bientôt",
+        babySectionTitle: "Maman & bébé cette semaine",
+        babyIntro: "Un aperçu simple de cette semaine de grossesse.",
+        babyLengthLabel: "Taille",
+        babyWeightLabel: "Poids",
+        babyDevelopmentTitle: "Bébé",
+        motherTipTitle: "Conseil maman",
+        nutritionTitle: "Nutrition",
+        babyNoContent: "Il n’y a pas encore de contenu pour cette semaine.",
+        tasksTitle: "Centre bureaucratie",
         todoTitle: "Ma to-do list privée",
         todoText: "Cette liste est visible seulement dans ton compte.",
         addTodoButton: "Ajouter",
@@ -1028,7 +1194,15 @@
         daysLabel: "الأيام المتبقية",
         dueDateResultLabel: "تاريخ الولادة",
         cityResultLabel: "المدينة",
-        tasksTitle: "مهام قريبة",
+        babySectionTitle: "الأم والطفل هذا الأسبوع",
+        babyIntro: "نظرة بسيطة على أسبوع الحمل الحالي.",
+        babyLengthLabel: "الطول",
+        babyWeightLabel: "الوزن",
+        babyDevelopmentTitle: "الطفل",
+        motherTipTitle: "نصيحة للأم",
+        nutritionTitle: "التغذية",
+        babyNoContent: "لا يوجد محتوى لهذا الأسبوع بعد.",
+        tasksTitle: "مركز الإجراءات",
         todoTitle: "قائمة مهامي الخاصة",
         todoText: "هذه القائمة مرئية فقط داخل حسابك.",
         addTodoButton: "إضافة",
@@ -1099,7 +1273,15 @@
         daysLabel: "Days left",
         dueDateResultLabel: "Due date",
         cityResultLabel: "City",
-        tasksTitle: "To do soon",
+        babySectionTitle: "Mother & baby this week",
+        babyIntro: "A simple overview of this pregnancy week.",
+        babyLengthLabel: "Length",
+        babyWeightLabel: "Weight",
+        babyDevelopmentTitle: "Baby",
+        motherTipTitle: "Mother tip",
+        nutritionTitle: "Nutrition",
+        babyNoContent: "There is no content for this week yet.",
+        tasksTitle: "Bureaucracy center",
         todoTitle: "My private to-do list",
         todoText: "This list is visible only in your account.",
         addTodoButton: "Add",
@@ -1152,6 +1334,8 @@
         "dateLabel", "lastPeriodLabel", "cycleLabel", "calculationNote",
         "statusLabel", "insuranceLabel", "startButton", "formNote",
         "dashboardTitle", "weekLabel", "daysLabel", "dueDateResultLabel", "cityResultLabel",
+        "babySectionTitle", "babyIntro", "babyLengthLabel", "babyWeightLabel",
+        "babyDevelopmentTitle", "motherTipTitle", "nutritionTitle",
         "tasksTitle", "todoTitle", "todoText", "addTodoButton", "nearTitle", "nearText"
       ];
 
@@ -1168,8 +1352,10 @@
 
       updateAuthUI();
       updateAllTasksButton();
+      updateCategoryButtons();
 
       if (lastPregnancyWeek) {
+        loadWeeklyBabyContent(lastPregnancyWeek);
         loadTasks(lastPregnancyWeek);
         buildNearMe(lastPregnancyWeek, lastCity);
       }
@@ -1362,11 +1548,16 @@
           week: "Woche",
           done: "Erledigt",
           todo: "Offen",
-          noTasks: "Aktuell gibt es keine dringenden Aufgaben.",
+          noTasks: "Aktuell gibt es keine Aufgaben in dieser Kategorie.",
           error: "Aufgaben konnten nicht geladen werden.",
           link: "Link öffnen",
           showAll: "Alle Aufgaben anzeigen",
-          showRecommended: "Nur aktuelle Aufgaben anzeigen"
+          showRecommended: "Nur aktuelle Aufgaben anzeigen",
+          progress: "erledigt",
+          all: "Alle",
+          admin: "Bürokratie",
+          medical: "Medizin",
+          organisation: "Organisation"
         };
       }
 
@@ -1375,11 +1566,16 @@
           week: "Semaine",
           done: "Terminé",
           todo: "À faire",
-          noTasks: "Aucune tâche urgente pour le moment.",
+          noTasks: "Aucune tâche dans cette catégorie pour le moment.",
           error: "Les tâches n’ont pas pu être chargées.",
           link: "Ouvrir le lien",
           showAll: "Afficher toutes les tâches",
-          showRecommended: "Afficher seulement les tâches actuelles"
+          showRecommended: "Afficher seulement les tâches actuelles",
+          progress: "terminé",
+          all: "Toutes",
+          admin: "Bureaucratie",
+          medical: "Médical",
+          organisation: "Organisation"
         };
       }
 
@@ -1388,11 +1584,16 @@
           week: "الأسبوع",
           done: "تم",
           todo: "قيد الانتظار",
-          noTasks: "لا توجد مهام عاجلة حالياً.",
+          noTasks: "لا توجد مهام في هذه الفئة حالياً.",
           error: "تعذر تحميل المهام.",
           link: "فتح الرابط",
           showAll: "عرض كل المهام",
-          showRecommended: "عرض المهام الحالية فقط"
+          showRecommended: "عرض المهام الحالية فقط",
+          progress: "تم",
+          all: "الكل",
+          admin: "الإدارة",
+          medical: "طبي",
+          organisation: "تنظيم"
         };
       }
 
@@ -1400,11 +1601,16 @@
         week: "Week",
         done: "Done",
         todo: "To do",
-        noTasks: "No urgent tasks at the moment.",
+        noTasks: "No tasks in this category at the moment.",
         error: "Tasks could not be loaded.",
         link: "Open link",
         showAll: "Show all tasks",
-        showRecommended: "Show current tasks only"
+        showRecommended: "Show current tasks only",
+        progress: "done",
+        all: "All",
+        admin: "Bureaucracy",
+        medical: "Medical",
+        organisation: "Organization"
       };
     }
 
@@ -1419,6 +1625,34 @@
     async function toggleAllTasks() {
       showAllTasks = !showAllTasks;
       updateAllTasksButton();
+
+      if (lastPregnancyWeek) {
+        await loadTasks(lastPregnancyWeek);
+      }
+    }
+
+    function updateCategoryButtons() {
+      const labels = getTaskLabels();
+
+      const buttons = [
+        ["catAll", "all", labels.all],
+        ["catAdmin", "administratif", labels.admin],
+        ["catMedical", "medical", labels.medical],
+        ["catOrganisation", "organisation", labels.organisation]
+      ];
+
+      buttons.forEach(([id, value, text]) => {
+        const button = document.getElementById(id);
+        if (!button) return;
+
+        button.textContent = text;
+        button.classList.toggle("active", taskCategoryFilter === value);
+      });
+    }
+
+    async function setTaskCategory(category) {
+      taskCategoryFilter = category;
+      updateCategoryButtons();
 
       if (lastPregnancyWeek) {
         await loadTasks(lastPregnancyWeek);
@@ -1457,9 +1691,14 @@
         query = query.lte("recommended_week", maxWeek);
       }
 
+      if (taskCategoryFilter !== "all") {
+        query = query.eq("category", taskCategoryFilter);
+      }
+
       const { data: tasks, error: tasksError } = await query;
 
       updateAllTasksButton();
+      updateCategoryButtons();
 
       if (tasksError) {
         taskList.innerHTML = `<p>${labels.error}</p>`;
@@ -1468,6 +1707,7 @@
       }
 
       if (!tasks || tasks.length === 0) {
+        document.getElementById("taskProgress").textContent = `0 / 0 ${labels.progress}`;
         taskList.innerHTML = `<p>${labels.noTasks}</p>`;
         return;
       }
@@ -1486,6 +1726,10 @@
           });
         }
       }
+
+      const doneCount = tasks.filter(task => statusMap[task.id] === "done").length;
+      document.getElementById("taskProgress").textContent =
+        `${doneCount} / ${tasks.length} ${labels.progress}`;
 
       tasks.forEach(task => {
         const status = statusMap[task.id] || "todo";
@@ -1555,7 +1799,6 @@
         });
 
       if (error) {
-        console.error(error);
         alert(error.message);
         return;
       }
@@ -1563,6 +1806,70 @@
       if (lastPregnancyWeek) {
         await loadTasks(lastPregnancyWeek);
       }
+    }
+
+    function getWeeklyText(row, field) {
+      if (!row) return "";
+
+      if (currentLang === "de") return row[`${field}_de`] || "";
+      if (currentLang === "fr") return row[`${field}_fr`] || row[`${field}_de`] || "";
+      if (currentLang === "ar") return row[`${field}_ar`] || row[`${field}_de`] || "";
+      if (currentLang === "en") return row[`${field}_en`] || row[`${field}_de`] || "";
+
+      return row[`${field}_de`] || "";
+    }
+
+    async function loadWeeklyBabyContent(pregnancyWeek) {
+      const tr = t();
+
+      let { data, error } = await supabaseClient
+        .from("weekly_baby_content")
+        .select("*")
+        .lte("week_number", pregnancyWeek)
+        .order("week_number", { ascending: false })
+        .limit(1);
+
+      if ((!data || data.length === 0) && !error) {
+        const result = await supabaseClient
+          .from("weekly_baby_content")
+          .select("*")
+          .gte("week_number", pregnancyWeek)
+          .order("week_number", { ascending: true })
+          .limit(1);
+
+        data = result.data;
+        error = result.error;
+      }
+
+      if (error || !data || data.length === 0) {
+        document.getElementById("babyTitle").textContent = tr.babyNoContent;
+        document.getElementById("babyLength").textContent = "-";
+        document.getElementById("babyWeight").textContent = "-";
+        document.getElementById("babyDevelopment").textContent = "-";
+        document.getElementById("motherTip").textContent = "-";
+        document.getElementById("babyNutrition").textContent = "-";
+        return;
+      }
+
+      const row = data[0];
+
+      document.getElementById("babyTitle").textContent =
+        `${getTaskLabels().week} ${pregnancyWeek} · ${getWeeklyText(row, "title")}`;
+
+      document.getElementById("babyLength").textContent =
+        row.baby_length_cm ? `${row.baby_length_cm} cm` : "-";
+
+      document.getElementById("babyWeight").textContent =
+        row.baby_weight_g ? `${row.baby_weight_g} g` : "-";
+
+      document.getElementById("babyDevelopment").textContent =
+        getWeeklyText(row, "baby_text");
+
+      document.getElementById("motherTip").textContent =
+        getWeeklyText(row, "mother_tip");
+
+      document.getElementById("babyNutrition").textContent =
+        getWeeklyText(row, "nutrition");
     }
 
     function buildMapsLink(query, city) {
@@ -1649,6 +1956,7 @@
       document.getElementById("dashboard").style.display = "block";
       document.getElementById("nearSection").style.display = "block";
 
+      await loadWeeklyBabyContent(result.pregnancyWeek);
       await loadTasks(result.pregnancyWeek);
       buildNearMe(result.pregnancyWeek, city);
       await loadTodos();
@@ -1696,7 +2004,6 @@
         });
 
       if (error) {
-        console.error(error);
         alert(tr.errorAlert + " " + error.message);
         return;
       }
@@ -1718,10 +2025,7 @@
         .eq("user_id", currentUser.id)
         .order("created_at", { ascending: false });
 
-      if (error) {
-        console.error(error);
-        return;
-      }
+      if (error) return;
 
       data.forEach(todo => {
         const item = document.createElement("div");

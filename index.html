@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Mama in Deutschland</title>
 
   <style>
@@ -10,70 +11,19 @@
       --page: #f8f3ec;
       --card: #ffffff;
       --cream: #fffaf4;
-      --beige: #eadcc9;
       --beige-soft: #f3eadf;
       --brown: #4a3428;
-      --brown-2: #6f4f3e;
       --brown-light: #9b7357;
-      --accent: #c6a46a;
       --text: #2f2621;
       --muted: #7b6a60;
       --border: #eadfd2;
-      --green: #e8efe3;
-      --green-dark: #6b8f71;
       --danger: #b45b48;
-      --shadow: rgba(74, 52, 40, 0.11);
+      --shadow: rgba(74, 52, 40, 0.12);
     }
 
-    body.theme-boy {
-      --page: #eef7ff;
-      --cream: #f7fbff;
-      --beige: #d8ecff;
-      --beige-soft: #e8f4ff;
-      --brown: #244b6b;
-      --brown-2: #315f86;
-      --brown-light: #5f93bd;
-      --accent: #7bb7e6;
-      --text: #1d3347;
-      --muted: #5c7285;
-      --border: #d6e8f7;
-      --green: #e9f6ff;
-      --shadow: rgba(36, 75, 107, 0.12);
+    * {
+      box-sizing: border-box;
     }
-
-    body.theme-girl {
-      --page: #fff1f5;
-      --cream: #fff8fa;
-      --beige: #f6d7e2;
-      --beige-soft: #fde8ef;
-      --brown: #7a3d55;
-      --brown-2: #9a5570;
-      --brown-light: #c47a98;
-      --accent: #d89ab2;
-      --text: #3d2430;
-      --muted: #7b6070;
-      --border: #f0d4df;
-      --green: #fff0f5;
-      --shadow: rgba(122, 61, 85, 0.12);
-    }
-
-    body.theme-twin {
-      --page: #f1f7ef;
-      --cream: #fbfff8;
-      --beige: #d9ead2;
-      --beige-soft: #e7f3df;
-      --brown: #3e5c3a;
-      --brown-2: #54794e;
-      --brown-light: #7ca878;
-      --accent: #a4c98f;
-      --text: #263522;
-      --muted: #62745f;
-      --border: #dbe9d4;
-      --green: #e7f3df;
-      --shadow: rgba(62, 92, 58, 0.12);
-    }
-
-    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -123,14 +73,6 @@
       box-shadow: 0 12px 26px var(--shadow);
     }
 
-    .tagline {
-      margin-top: 8px;
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
     .language-buttons {
       display: flex;
       gap: 10px;
@@ -145,22 +87,20 @@
       border-radius: 999px;
       cursor: pointer;
       font-weight: 800;
-      transition: 0.2s ease;
     }
 
     .language-buttons button:hover {
       background: var(--brown);
       color: white;
-      transform: translateY(-1px);
     }
 
     main {
       max-width: 1180px;
-      margin: 24px auto 44px;
+      margin: 26px auto 50px;
       padding: 0 20px;
     }
 
-    .hero {
+    .layout {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 24px;
@@ -176,21 +116,10 @@
       box-shadow: 0 24px 70px var(--shadow);
     }
 
-    .hero-card {
+    .hero {
       position: relative;
       overflow: hidden;
-      min-height: 540px;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      right: -95px;
-      bottom: -95px;
-      width: 275px;
-      height: 275px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(198, 164, 106, 0.20), rgba(232, 216, 197, 0.42));
+      min-height: 560px;
     }
 
     .eyebrow {
@@ -240,8 +169,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-top: 34px;
-      position: relative;
-      z-index: 1;
     }
 
     .feature {
@@ -272,7 +199,8 @@
       color: var(--brown);
     }
 
-    input, select {
+    input,
+    select {
       width: 100%;
       padding: 14px 15px;
       border-radius: 16px;
@@ -281,15 +209,15 @@
       color: var(--text);
       font-size: 15px;
       outline: none;
-      transition: 0.18s ease;
     }
 
-    input:focus, select:focus {
+    input:focus,
+    select:focus {
       border-color: var(--brown-light);
       box-shadow: 0 0 0 4px rgba(155, 115, 87, 0.12);
     }
 
-    .date-box, .auth-box {
+    .box {
       margin-top: 14px;
       padding: 16px;
       border-radius: 22px;
@@ -297,17 +225,43 @@
       border: 1px solid var(--border);
     }
 
-    .account-status-card {
+    .main-button,
+    .secondary-button,
+    .danger-button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 15px;
+      border: none;
+      border-radius: 18px;
+      color: white;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .main-button {
+      background: linear-gradient(135deg, var(--brown), var(--brown-light));
+      box-shadow: 0 16px 30px var(--shadow);
+    }
+
+    .secondary-button {
+      background: #6f4f3e;
+    }
+
+    .danger-button {
+      background: var(--danger);
+    }
+
+    .account-card {
       display: none;
       margin-top: 14px;
       padding: 18px;
       border-radius: 24px;
       background: linear-gradient(135deg, var(--cream), white);
       border: 1px solid var(--border);
-      box-shadow: 0 14px 34px var(--shadow);
     }
 
-    .account-status-top {
+    .account-top {
       display: flex;
       gap: 14px;
       align-items: center;
@@ -339,403 +293,11 @@
       word-break: break-word;
     }
 
-    .theme-pill {
-      display: inline-flex;
-      margin-top: 12px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--beige-soft);
-      color: var(--brown);
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .main-button, .secondary-button, .danger-button {
-      width: 100%;
-      margin-top: 14px;
-      padding: 15px;
-      border: none;
-      border-radius: 18px;
-      color: white;
-      font-size: 15px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .main-button {
-      background: linear-gradient(135deg, var(--brown), var(--brown-light));
-      box-shadow: 0 16px 30px var(--shadow);
-    }
-
-    .secondary-button { background: var(--brown-2); }
-    .danger-button { background: var(--danger); }
-
-    .main-button:hover, .secondary-button:hover, .danger-button:hover {
-      transform: translateY(-1px);
-      opacity: 0.94;
-    }
-
     .note {
       margin-top: 14px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
-    }
-
-    .dashboard {
-      display: none;
-      margin-top: 26px;
-    }
-
-    .app-tabs {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 22px;
-      padding: 8px;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 26px;
-    }
-
-    .app-tab {
-      border: none;
-      background: transparent;
-      color: var(--brown);
-      padding: 11px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 900;
-    }
-
-    .app-tab.active {
-      background: var(--brown);
-      color: white;
-    }
-
-    .tab-panel { display: none; }
-    .tab-panel.active { display: block; }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .small-card {
-      background: linear-gradient(180deg, var(--cream), #ffffff);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 22px;
-    }
-
-    .small-label {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .big-number {
-      margin-top: 8px;
-      font-size: 30px;
-      font-weight: 950;
-      color: var(--brown);
-      letter-spacing: -1px;
-      word-break: break-word;
-    }
-
-    .calculated-date, .soft-box {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 22px;
-      background: var(--green);
-      border: 1px solid var(--border);
-      color: var(--brown);
-      font-weight: 800;
-    }
-
-    .calculated-date { display: none; }
-
-    .baby-week-card, .section-box {
-      margin-top: 22px;
-      background: linear-gradient(135deg, var(--cream), #ffffff);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 24px;
-    }
-
-    .baby-week-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    .baby-week-title {
-      color: var(--brown);
-      font-size: 24px;
-      font-weight: 950;
-      margin-top: 8px;
-    }
-
-    .baby-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      min-width: 240px;
-    }
-
-    .baby-stat {
-      background: var(--beige-soft);
-      border-radius: 20px;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .baby-stat-label {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .baby-stat-value {
-      margin-top: 6px;
-      color: var(--brown);
-      font-size: 24px;
-      font-weight: 950;
-    }
-
-    .baby-info-grid, .near-grid, .event-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .baby-info-box, .near-card, .event-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-    }
-
-    .baby-info-box p, .near-card p, .event-card p {
-      font-size: 14px;
-    }
-
-    .event-card {
-      display: grid;
-      gap: 10px;
-    }
-
-    .event-date {
-      display: inline-flex;
-      width: fit-content;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--beige-soft);
-      color: var(--brown);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .event-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .mini-button, .mini-link {
-      border: none;
-      border-radius: 14px;
-      padding: 10px 12px;
-      cursor: pointer;
-      font-weight: 900;
-      background: var(--brown);
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .mini-button.done { background: var(--green-dark); }
-    .mini-link { background: var(--beige-soft); color: var(--brown); }
-
-    .task-progress {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 18px;
-      background: var(--green);
-      color: var(--brown);
-      font-weight: 900;
-    }
-
-    .task-filter-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .category-button, .filter-button {
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--brown);
-      border-radius: 999px;
-      padding: 9px 13px;
-      cursor: pointer;
-      font-weight: 900;
-    }
-
-    .category-button.active, .filter-button:hover {
-      background: var(--brown);
-      color: white;
-    }
-
-    .task-toolbar {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 12px;
-    }
-
-    .task-card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .admin-task-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .admin-task-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .task-week-badge {
-      background: var(--beige-soft);
-      color: var(--brown);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .admin-task-description {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .task-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .task-status-button {
-      border: none;
-      border-radius: 14px;
-      padding: 10px 12px;
-      cursor: pointer;
-      font-weight: 900;
-      background: var(--brown);
-      color: white;
-    }
-
-    .task-status-button.done { background: var(--green-dark); }
-
-    .task-link-button {
-      text-decoration: none;
-      border-radius: 14px;
-      padding: 10px 12px;
-      font-weight: 900;
-      background: var(--beige-soft);
-      color: var(--brown);
-    }
-
-    .todo-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .todo-add {
-      width: auto;
-      margin: 0;
-      padding: 0 18px;
-    }
-
-    .todo-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .todo-item {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      align-items: center;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 16px;
-      background: white;
-      border: 1px solid var(--border);
-    }
-
-    .todo-item span.done {
-      text-decoration: line-through;
-      color: var(--muted);
-    }
-
-    .todo-done-button {
-      border: none;
-      border-radius: 12px;
-      padding: 9px 12px;
-      cursor: pointer;
-      font-weight: 900;
-      background: var(--brown);
-      color: white;
-    }
-
-    .todo-done-button.done { background: var(--green-dark); }
-
-    .delete-small {
-      border: none;
-      background: #f4dfd8;
-      color: var(--danger);
-      border-radius: 12px;
-      padding: 9px 11px;
-      cursor: pointer;
-      font-weight: 900;
-    }
-
-    .near-button {
-      display: inline-flex;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      border-radius: 16px;
-      padding: 12px 14px;
-      background: var(--brown);
-      color: white;
-      font-size: 14px;
-      font-weight: 900;
-      margin-top: 12px;
     }
 
     .footer {
@@ -746,32 +308,54 @@
     }
 
     @media (max-width: 930px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-card { min-height: auto; }
-      .features, .near-grid, .task-card-grid, .baby-info-grid, .event-grid { grid-template-columns: 1fr; }
-      .dashboard-grid { grid-template-columns: 1fr 1fr; }
-      .card { padding: 26px; border-radius: 28px; }
-      h1 { letter-spacing: -2px; }
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .card {
+        padding: 26px;
+        border-radius: 28px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
     }
 
     @media (max-width: 560px) {
-      header, main { padding-left: 16px; padding-right: 16px; }
-      .topbar { display: block; }
-      .language-buttons { margin-top: 18px; }
-      .dashboard-grid, .todo-row, .todo-item, .baby-stats { grid-template-columns: 1fr; }
-      .todo-add { width: 100%; padding: 15px; }
-      .brand { font-size: 21px; }
+      header,
+      main {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .topbar {
+        display: block;
+      }
+
+      .language-buttons {
+        margin-top: 18px;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
     }
   </style>
 </head>
 
-<body class="theme-neutral">
+<body>
   <header>
     <div class="topbar">
-      <div>
-        <div class="brand">Mama in Deutschland</div>
-        <div class="tagline" id="subtitle">Deine Schwangerschaft in Deutschland, elegant und privat organisiert.</div>
-      </div>
+      <div class="brand">Mama in Deutschland</div>
 
       <div class="language-buttons">
         <button onclick="setLanguage('de')">🇩🇪 Deutsch</button>
@@ -783,11 +367,16 @@
   </header>
 
   <main>
-    <section class="hero">
-      <div class="card hero-card">
+    <section class="layout">
+      <div class="card hero">
         <div class="eyebrow" id="eyebrow">Schwangerschaft · Kalender · Deutschland</div>
+
         <h1 id="mainTitle">Alles für deine Schwangerschaft in Deutschland.</h1>
-        <p id="mainText">Ein privater Begleiter für Frauen, die den Schwangerschaftsverlauf, Termine, Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.</p>
+
+        <p id="mainText">
+          Eine private Plattform für Frauen, die den Schwangerschaftsverlauf, Termine,
+          Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.
+        </p>
 
         <div class="features">
           <div class="feature">
@@ -795,15 +384,17 @@
             <h3 id="feature1Title">Kalender</h3>
             <p id="feature1Text">Untersuchungen, Termine und Aufgaben automatisch nach Schwangerschaftswoche.</p>
           </div>
+
           <div class="feature">
             <div class="feature-icon">🩺</div>
             <h3 id="feature2Title">Verlauf in Deutschland</h3>
             <p id="feature2Text">Ultraschall, NIPT, Zuckertest, Organcheck und Vorsorge verständlich erklärt.</p>
           </div>
+
           <div class="feature">
-            <div class="feature-icon">🎨</div>
-            <h3 id="feature3Title">Persönliches Design</h3>
-            <p id="feature3Text">Neutral, blau, rosa oder grün für Zwillinge.</p>
+            <div class="feature-icon">📄</div>
+            <h3 id="feature3Title">Bürokratie</h3>
+            <p id="feature3Text">Kindergeld, Elterngeld, Mutterschaftsgeld, Geburtsurkunde und mehr.</p>
           </div>
         </div>
       </div>
@@ -811,7 +402,7 @@
       <div class="card">
         <h2 id="accountTitle">Mein Konto</h2>
 
-        <div class="auth-box" id="authBox">
+        <div id="authBox">
           <label id="emailLabel" for="email">E-Mail</label>
           <input type="email" id="email" placeholder="name@email.com" />
 
@@ -821,24 +412,32 @@
           <button class="main-button" onclick="signUp()" id="registerButton">Konto erstellen</button>
           <button class="secondary-button" onclick="signIn()" id="loginButton">Einloggen</button>
 
-          <div class="note" id="authNote">Erstelle zuerst ein Konto oder logge dich ein. Danach wird dein Profil privat gespeichert.</div>
+          <div class="note" id="authNote">
+            Erstelle ein Konto oder logge dich ein. Danach kannst du dein Schwangerschaftsprofil erstellen.
+          </div>
         </div>
 
-        <div class="account-status-card" id="accountStatusCard">
-          <div class="account-status-top">
+        <div class="account-card" id="accountCard">
+          <div class="account-top">
             <div class="avatar">🤎</div>
             <div>
               <div class="account-title" id="welcomeTitle">Willkommen zurück</div>
-              <div class="account-email" id="authStatus"></div>
+              <div class="account-email" id="accountEmail"></div>
             </div>
           </div>
-          <div class="theme-pill" id="themePill">Design: neutral</div>
-          <button class="danger-button" onclick="signOut()" id="logoutButton">Ausloggen</button>
+
+          <button class="secondary-button" onclick="goToApp()" id="goAppButton">
+            Zur App gehen
+          </button>
+
+          <button class="danger-button" onclick="signOut()" id="logoutButton">
+            Ausloggen
+          </button>
         </div>
 
-        <div style="height: 18px;"></div>
+        <div style="height: 20px;"></div>
 
-        <h2 id="formTitle">Mein Schwangerschaftsprofil</h2>
+        <h2 id="profileTitle">Schwangerschaftsprofil</h2>
 
         <label id="nameLabel" for="name">Vorname</label>
         <input type="text" id="name" placeholder="Zum Beispiel: Sophia" />
@@ -852,12 +451,12 @@
           <option value="unknown" id="dateModeUnknown">Ich kenne ihn nicht</option>
         </select>
 
-        <div class="date-box" id="knownDateBox">
+        <div class="box" id="knownDateBox">
           <label id="dateLabel" for="dueDate">Voraussichtlicher Entbindungstermin</label>
           <input type="date" id="dueDate" />
         </div>
 
-        <div class="date-box" id="unknownDateBox" style="display:none;">
+        <div class="box" id="unknownDateBox" style="display:none;">
           <label id="lastPeriodLabel" for="lastPeriodDate">Erster Tag der letzten Periode</label>
           <input type="date" id="lastPeriodDate" />
 
@@ -875,7 +474,9 @@
             <option value="35">35 Tage</option>
           </select>
 
-          <div class="note" id="calculationNote">Der Termin wird nur ungefähr berechnet und kann später korrigiert werden.</div>
+          <div class="note" id="calculationNote">
+            Der Termin wird nur ungefähr berechnet und kann später korrigiert werden.
+          </div>
         </div>
 
         <label id="statusLabel" for="workStatus">Situation</label>
@@ -894,13 +495,13 @@
         </select>
 
         <label id="pregnancyTypeLabel" for="pregnancyType">Schwangerschaft</label>
-        <select id="pregnancyType" onchange="previewTheme()">
+        <select id="pregnancyType">
           <option value="singleton" id="singletonOption">Ein Baby</option>
           <option value="twins" id="twinsOption">Zwillinge</option>
         </select>
 
         <label id="babyGenderLabel" for="babyGender">Geschlecht des Babys</label>
-        <select id="babyGender" onchange="previewTheme()">
+        <select id="babyGender">
           <option value="unknown" id="genderUnknown">Noch nicht bekannt</option>
           <option value="boy" id="genderBoy">Junge</option>
           <option value="girl" id="genderGirl">Mädchen</option>
@@ -909,148 +510,17 @@
           <option value="twin_mixed" id="genderTwinMixed">Zwillinge: Junge & Mädchen</option>
         </select>
 
-        <div class="note" id="genderNote">Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.</div>
+        <div class="note" id="genderNote">
+          Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.
+        </div>
 
-        <button class="main-button" onclick="createProfile()" id="startButton">Profil speichern</button>
-        <div class="note" id="formNote">Dein Profil wird nur gespeichert, wenn du eingeloggt bist.</div>
+        <button class="main-button" onclick="createProfile()" id="saveProfileButton">
+          Profil speichern und App öffnen
+        </button>
       </div>
     </section>
 
-    <section class="dashboard card" id="dashboard">
-      <div class="app-tabs">
-        <button class="app-tab active" onclick="setActiveTab('today')" id="tabToday">Heute</button>
-        <button class="app-tab" onclick="setActiveTab('calendar')" id="tabCalendar">Kalender</button>
-        <button class="app-tab" onclick="setActiveTab('baby')" id="tabBaby">Mutter & Baby</button>
-        <button class="app-tab" onclick="setActiveTab('medical')" id="tabMedical">Medizin</button>
-        <button class="app-tab" onclick="setActiveTab('bureaucracy')" id="tabBureaucracy">Bürokratie</button>
-        <button class="app-tab" onclick="setActiveTab('todo')" id="tabTodo">To-do</button>
-        <button class="app-tab" onclick="setActiveTab('near')" id="tabNear">In der Nähe</button>
-      </div>
-
-      <div class="tab-panel active" id="panelToday">
-        <h2 id="dashboardTitle">Mein Schwangerschaftsbereich</h2>
-
-        <div class="dashboard-grid">
-          <div class="small-card">
-            <div class="small-label" id="weekLabel">Woche</div>
-            <div class="big-number" id="pregnancyWeek">-</div>
-          </div>
-          <div class="small-card">
-            <div class="small-label" id="daysLabel">Tage übrig</div>
-            <div class="big-number" id="daysLeft">-</div>
-          </div>
-          <div class="small-card">
-            <div class="small-label" id="dueDateResultLabel">Entbindungstermin</div>
-            <div class="big-number" id="dueDateResult">-</div>
-          </div>
-          <div class="small-card">
-            <div class="small-label" id="cityResultLabel">Stadt</div>
-            <div class="big-number" id="cityResult">-</div>
-          </div>
-        </div>
-
-        <div class="calculated-date" id="calculatedDateBox"></div>
-
-        <div class="section-box">
-          <h2 id="nextEventsTitle">Nächste Termine</h2>
-          <p id="nextEventsText">Die wichtigsten kommenden Punkte aus deinem Kalender.</p>
-          <div class="event-grid" id="nextEventsList"></div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="panelCalendar">
-        <h2 id="calendarTitle">Kalender</h2>
-        <p id="calendarText">Hier erscheinen Untersuchungen, Termine, Kurse und später auch Einkaufslisten.</p>
-        <div class="event-grid" id="calendarList"></div>
-      </div>
-
-      <div class="tab-panel" id="panelBaby">
-        <div class="baby-week-card" id="babyWeekSection">
-          <div class="baby-week-header">
-            <div>
-              <h2 id="babySectionTitle">Mutter & Baby diese Woche</h2>
-              <p id="babyIntro">Ein kurzer Überblick über diese Schwangerschaftswoche.</p>
-              <div class="baby-week-title" id="babyTitle">-</div>
-            </div>
-
-            <div class="baby-stats">
-              <div class="baby-stat">
-                <div class="baby-stat-label" id="babyLengthLabel">Größe</div>
-                <div class="baby-stat-value" id="babyLength">-</div>
-              </div>
-              <div class="baby-stat">
-                <div class="baby-stat-label" id="babyWeightLabel">Gewicht</div>
-                <div class="baby-stat-value" id="babyWeight">-</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="baby-info-grid">
-            <div class="baby-info-box">
-              <h3 id="babyDevelopmentTitle">Baby</h3>
-              <p id="babyDevelopment">-</p>
-            </div>
-            <div class="baby-info-box">
-              <h3 id="motherTipTitle">Mama-Tipp</h3>
-              <p id="motherTip">-</p>
-            </div>
-            <div class="baby-info-box">
-              <h3 id="nutritionTitle">Ernährung</h3>
-              <p id="babyNutrition">-</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="panelMedical">
-        <h2 id="medicalTitle">Medizinische Termine</h2>
-        <p id="medicalText">Untersuchungen und wichtige medizinische Zeitfenster in Deutschland.</p>
-        <div class="event-grid" id="medicalList"></div>
-      </div>
-
-      <div class="tab-panel" id="panelBureaucracy">
-        <div class="section-box">
-          <h2 id="tasksTitle">Bürokratie-Zentrale</h2>
-
-          <div class="task-progress" id="taskProgress">0 / 0 erledigt</div>
-
-          <div class="task-filter-row">
-            <button class="category-button active" onclick="setTaskCategory('all')" id="catAll">Alle</button>
-            <button class="category-button" onclick="setTaskCategory('administratif')" id="catAdmin">Bürokratie</button>
-            <button class="category-button" onclick="setTaskCategory('medical')" id="catMedical">Medizin</button>
-            <button class="category-button" onclick="setTaskCategory('organisation')" id="catOrganisation">Organisation</button>
-          </div>
-
-          <div class="task-toolbar">
-            <button class="filter-button" onclick="toggleAllTasks()" id="allTasksButton">Alle Aufgaben anzeigen</button>
-          </div>
-
-          <div class="task-card-grid" id="taskList"></div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="panelTodo">
-        <div class="section-box">
-          <h2 id="todoTitle">Meine private To-do-Liste</h2>
-          <p id="todoText">Diese Liste ist nur in deinem Konto sichtbar.</p>
-
-          <div class="todo-row">
-            <input type="text" id="todoInput" placeholder="Neue Aufgabe..." />
-            <button class="main-button todo-add" onclick="addTodo()" id="addTodoButton">Hinzufügen</button>
-          </div>
-
-          <div class="todo-list" id="todoList"></div>
-        </div>
-      </div>
-
-      <div class="tab-panel" id="panelNear">
-        <h2 id="nearTitle">In deiner Nähe</h2>
-        <p id="nearText">Basierend auf deiner Stadt zeigen wir dir schnelle Suchen für wichtige Anlaufstellen.</p>
-        <div class="near-grid" id="nearGrid"></div>
-      </div>
-    </section>
-
-    <div class="footer">Mama in Deutschland — private erste Version</div>
+    <div class="footer">Mama in Deutschland — Startseite</div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1063,36 +533,28 @@
 
     let currentLang = "de";
     let currentUser = null;
-    let currentProfileId = null;
-    let lastPregnancyWeek = null;
-    let lastCity = "";
-    let showAllTasks = false;
-    let taskCategoryFilter = "all";
-    let calendarEvents = [];
-    let currentTheme = "neutral";
 
     const translations = {
       de: {
-        subtitle: "Deine Schwangerschaft in Deutschland, elegant und privat organisiert.",
         eyebrow: "Schwangerschaft · Kalender · Deutschland",
         mainTitle: "Alles für deine Schwangerschaft in Deutschland.",
-        mainText: "Ein privater Begleiter für Frauen, die den Schwangerschaftsverlauf, Termine, Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.",
+        mainText: "Eine private Plattform für Frauen, die den Schwangerschaftsverlauf, Termine, Untersuchungen, Bürokratie und Organisation in Deutschland verstehen möchten.",
         feature1Title: "Kalender",
         feature1Text: "Untersuchungen, Termine und Aufgaben automatisch nach Schwangerschaftswoche.",
         feature2Title: "Verlauf in Deutschland",
         feature2Text: "Ultraschall, NIPT, Zuckertest, Organcheck und Vorsorge verständlich erklärt.",
-        feature3Title: "Persönliches Design",
-        feature3Text: "Neutral, blau, rosa oder grün für Zwillinge.",
+        feature3Title: "Bürokratie",
+        feature3Text: "Kindergeld, Elterngeld, Mutterschaftsgeld, Geburtsurkunde und mehr.",
         accountTitle: "Mein Konto",
         emailLabel: "E-Mail",
         passwordLabel: "Passwort",
         registerButton: "Konto erstellen",
         loginButton: "Einloggen",
-        logoutButton: "Ausloggen",
-        authNote: "Erstelle zuerst ein Konto oder logge dich ein. Danach wird dein Profil privat gespeichert.",
+        authNote: "Erstelle ein Konto oder logge dich ein. Danach kannst du dein Schwangerschaftsprofil erstellen.",
         welcomeTitle: "Willkommen zurück",
-        loggedIn: "Eingeloggt als",
-        formTitle: "Mein Schwangerschaftsprofil",
+        goAppButton: "Zur App gehen",
+        logoutButton: "Ausloggen",
+        profileTitle: "Schwangerschaftsprofil",
         nameLabel: "Vorname",
         cityLabel: "Stadt in Deutschland",
         dateModeLabel: "Geburtstermin",
@@ -1115,98 +577,38 @@
         genderTwinGirls: "Zwillinge: Mädchen",
         genderTwinMixed: "Zwillinge: Junge & Mädchen",
         genderNote: "Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.",
-        startButton: "Profil speichern",
-        formNote: "Dein Profil wird nur gespeichert, wenn du eingeloggt bist.",
-        tabToday: "Heute",
-        tabCalendar: "Kalender",
-        tabBaby: "Mutter & Baby",
-        tabMedical: "Medizin",
-        tabBureaucracy: "Bürokratie",
-        tabTodo: "To-do",
-        tabNear: "In der Nähe",
-        dashboardTitle: "Mein Schwangerschaftsbereich",
-        weekLabel: "Woche",
-        daysLabel: "Tage übrig",
-        dueDateResultLabel: "Entbindungstermin",
-        cityResultLabel: "Stadt",
-        nextEventsTitle: "Nächste Termine",
-        nextEventsText: "Die wichtigsten kommenden Punkte aus deinem Kalender.",
-        calendarTitle: "Kalender",
-        calendarText: "Hier erscheinen Untersuchungen, Termine, Kurse und später auch Einkaufslisten.",
-        medicalTitle: "Medizinische Termine",
-        medicalText: "Untersuchungen und wichtige medizinische Zeitfenster in Deutschland.",
-        babySectionTitle: "Mutter & Baby diese Woche",
-        babyIntro: "Ein kurzer Überblick über diese Schwangerschaftswoche.",
-        babyLengthLabel: "Größe",
-        babyWeightLabel: "Gewicht",
-        babyDevelopmentTitle: "Baby",
-        motherTipTitle: "Mama-Tipp",
-        nutritionTitle: "Ernährung",
-        babyNoContent: "Für diese Woche gibt es noch keinen Inhalt.",
-        tasksTitle: "Bürokratie-Zentrale",
-        todoTitle: "Meine private To-do-Liste",
-        todoText: "Diese Liste ist nur in deinem Konto sichtbar.",
-        addTodoButton: "Hinzufügen",
-        nearTitle: "In deiner Nähe",
-        nearText: "Basierend auf deiner Stadt zeigen wir dir schnelle Suchen für wichtige Anlaufstellen.",
-        needLogin: "Bitte erst einloggen oder ein Konto erstellen.",
+        saveProfileButton: "Profil speichern und App öffnen",
         needEmailPassword: "Bitte E-Mail und Passwort eingeben.",
-        signupOk: "Konto wurde erstellt.",
         loginOk: "Du bist eingeloggt ✅",
+        signupOk: "Konto wurde erstellt ✅",
         logoutOk: "Du bist ausgeloggt.",
+        needLogin: "Bitte erst einloggen oder ein Konto erstellen.",
         cityAlert: "Bitte gib deine Stadt ein.",
         dateAlert: "Bitte wähle den Entbindungstermin.",
         periodAlert: "Bitte wähle den ersten Tag der letzten Periode.",
         genderTooEarly: "Das Geschlecht kann später ab etwa SSW 14 ergänzt werden.",
-        successAlert: "Profil wurde privat gespeichert ✅",
-        errorAlert: "Das Profil wurde nicht gespeichert.",
-        calculatedText: "Der geschätzte Entbindungstermin wurde automatisch berechnet:",
-        emptyTodo: "Bitte eine Aufgabe schreiben.",
-        todoDone: "Erledigt",
-        todoOpen: "Offen",
-        noEvents: "Noch keine Termine vorhanden.",
-        addToCalendar: "Zum Kalender hinzufügen",
-        eventDone: "Erledigt",
-        eventOpen: "Offen",
-        openSearch: "Suchen öffnen",
-        calendarFileName: "Mama-Termin",
-        themeNeutral: "Design: neutral",
-        themeBoy: "Design: Junge · Blau",
-        themeGirl: "Design: Mädchen · Rosa",
-        themeTwin: "Design: Zwillinge · Grün",
-        near: {
-          hebamme: ["Hebamme", "Finde Hebammen in deiner Stadt."],
-          frauenarzt: ["Frauenärztin / Frauenarzt", "Suche eine Praxis für Schwangerschaftsbegleitung."],
-          klinik: ["Geburtsklinik", "Finde Kliniken mit Geburtshilfe in deiner Nähe."],
-          kinderarzt: ["Kinderarzt", "Bereite später die Suche nach einem Kinderarzt vor."],
-          apotheke: ["Apotheke", "Apotheken in deiner Nähe."],
-          kurs: ["Geburtsvorbereitungskurs", "Kurse zur Vorbereitung auf Geburt und Wochenbett."],
-          babyshop: ["Babygeschäft", "Baby- und Schwangerschaftsbedarf in deiner Stadt."],
-          standesamt: ["Standesamt", "Informationen zur Geburtsurkunde in deiner Stadt."]
-        }
+        profileSaved: "Profil gespeichert ✅"
       },
-
       fr: {
-        subtitle: "Ta grossesse en Allemagne, organisée simplement et en privé.",
         eyebrow: "Grossesse · Calendrier · Allemagne",
         mainTitle: "Tout pour ta grossesse en Allemagne.",
-        mainText: "Un accompagnement privé pour comprendre le suivi, les examens, les rendez-vous, la bureaucratie et l’organisation en Allemagne.",
+        mainText: "Une plateforme privée pour comprendre le suivi, les rendez-vous, les examens, la bureaucratie et l’organisation en Allemagne.",
         feature1Title: "Calendrier",
         feature1Text: "Examens, rendez-vous et tâches selon la semaine de grossesse.",
         feature2Title: "Parcours en Allemagne",
         feature2Text: "Échographies, NIPT, test diabète, morphologie et suivi expliqués simplement.",
-        feature3Title: "Design personnel",
-        feature3Text: "Neutre, bleu, rose ou vert pour jumeaux.",
+        feature3Title: "Bureaucratie",
+        feature3Text: "Kindergeld, Elterngeld, Mutterschaftsgeld, acte de naissance et plus.",
         accountTitle: "Mon compte",
         emailLabel: "E-mail",
         passwordLabel: "Mot de passe",
         registerButton: "Créer un compte",
         loginButton: "Connexion",
-        logoutButton: "Déconnexion",
-        authNote: "Crée d’abord un compte ou connecte-toi. Ensuite ton profil sera enregistré en privé.",
+        authNote: "Crée un compte ou connecte-toi. Ensuite tu peux créer ton profil grossesse.",
         welcomeTitle: "Bienvenue",
-        loggedIn: "Connecté comme",
-        formTitle: "Mon profil grossesse",
+        goAppButton: "Aller à l’app",
+        logoutButton: "Déconnexion",
+        profileTitle: "Profil grossesse",
         nameLabel: "Prénom",
         cityLabel: "Ville en Allemagne",
         dateModeLabel: "Date d’accouchement",
@@ -1229,98 +631,38 @@
         genderTwinGirls: "Jumeaux : filles",
         genderTwinMixed: "Jumeaux : garçon & fille",
         genderNote: "Le sexe sera utilisé dans l’app surtout à partir d’environ la semaine 14.",
-        startButton: "Enregistrer le profil",
-        formNote: "Ton profil est enregistré seulement si tu es connectée.",
-        tabToday: "Aujourd’hui",
-        tabCalendar: "Calendrier",
-        tabBaby: "Maman & bébé",
-        tabMedical: "Médical",
-        tabBureaucracy: "Bureaucratie",
-        tabTodo: "To-do",
-        tabNear: "Près de toi",
-        dashboardTitle: "Mon espace grossesse",
-        weekLabel: "Semaine",
-        daysLabel: "Jours restants",
-        dueDateResultLabel: "Date prévue",
-        cityResultLabel: "Ville",
-        nextEventsTitle: "Prochains rendez-vous",
-        nextEventsText: "Les prochains points importants de ton calendrier.",
-        calendarTitle: "Calendrier",
-        calendarText: "Ici apparaissent les examens, rendez-vous, cours et plus tard les listes d’achat.",
-        medicalTitle: "Rendez-vous médicaux",
-        medicalText: "Examens et fenêtres médicales importantes en Allemagne.",
-        babySectionTitle: "Maman & bébé cette semaine",
-        babyIntro: "Un aperçu simple de cette semaine de grossesse.",
-        babyLengthLabel: "Taille",
-        babyWeightLabel: "Poids",
-        babyDevelopmentTitle: "Bébé",
-        motherTipTitle: "Conseil maman",
-        nutritionTitle: "Nutrition",
-        babyNoContent: "Il n’y a pas encore de contenu pour cette semaine.",
-        tasksTitle: "Centre bureaucratie",
-        todoTitle: "Ma to-do list privée",
-        todoText: "Cette liste est visible seulement dans ton compte.",
-        addTodoButton: "Ajouter",
-        nearTitle: "Près de chez toi",
-        nearText: "Selon ta ville, nous affichons des recherches rapides pour les endroits importants.",
-        needLogin: "Connecte-toi ou crée d’abord un compte.",
+        saveProfileButton: "Enregistrer le profil et ouvrir l’app",
         needEmailPassword: "Merci d’écrire l’e-mail et le mot de passe.",
-        signupOk: "Compte créé.",
         loginOk: "Tu es connecté ✅",
+        signupOk: "Compte créé ✅",
         logoutOk: "Tu es déconnecté.",
+        needLogin: "Connecte-toi ou crée d’abord un compte.",
         cityAlert: "Merci d’écrire ta ville.",
         dateAlert: "Merci de choisir la date prévue d’accouchement.",
         periodAlert: "Merci de choisir le premier jour des dernières règles.",
         genderTooEarly: "Le sexe pourra être ajouté plus tard à partir d’environ la semaine 14.",
-        successAlert: "Profil enregistré en privé ✅",
-        errorAlert: "Le profil n’a pas été enregistré.",
-        calculatedText: "La date prévue a été estimée automatiquement :",
-        emptyTodo: "Écris d’abord une tâche.",
-        todoDone: "Terminé",
-        todoOpen: "À faire",
-        noEvents: "Aucun rendez-vous pour le moment.",
-        addToCalendar: "Ajouter au calendrier",
-        eventDone: "Terminé",
-        eventOpen: "À faire",
-        openSearch: "Ouvrir la recherche",
-        calendarFileName: "Mama-rendez-vous",
-        themeNeutral: "Design : neutre",
-        themeBoy: "Design : garçon · bleu",
-        themeGirl: "Design : fille · rose",
-        themeTwin: "Design : jumeaux · vert",
-        near: {
-          hebamme: ["Sage-femme", "Trouver une sage-femme dans ta ville."],
-          frauenarzt: ["Gynécologue", "Chercher une consultation de suivi de grossesse."],
-          klinik: ["Clinique d’accouchement", "Trouver une maternité près de chez toi."],
-          kinderarzt: ["Pédiatre", "Préparer plus tard la recherche d’un pédiatre."],
-          apotheke: ["Pharmacie", "Pharmacies près de chez toi."],
-          kurs: ["Cours de préparation", "Cours pour préparer l’accouchement et le post-partum."],
-          babyshop: ["Boutique bébé", "Produits bébé et maternité dans ta ville."],
-          standesamt: ["État civil", "Informations pour l’acte de naissance dans ta ville."]
-        }
+        profileSaved: "Profil enregistré ✅"
       },
-
       ar: {
-        subtitle: "حملك في ألمانيا، منظم بشكل خاص وآمن بلغتك.",
         eyebrow: "الحمل · التقويم · ألمانيا",
         mainTitle: "كل ما تحتاجينه لحملك في ألمانيا.",
-        mainText: "مرافق خاص يساعدك على فهم مسار الحمل، الفحوصات، المواعيد، الإجراءات والتنظيم في ألمانيا.",
+        mainText: "منصة خاصة تساعدك على فهم مسار الحمل والمواعيد والفحوصات والإجراءات والتنظيم في ألمانيا.",
         feature1Title: "التقويم",
         feature1Text: "الفحوصات والمواعيد والمهام حسب أسبوع الحمل.",
         feature2Title: "المسار في ألمانيا",
         feature2Text: "السونار، NIPT، فحص السكري، فحص الأعضاء والمتابعة بطريقة مبسطة.",
-        feature3Title: "تصميم شخصي",
-        feature3Text: "محايد، أزرق، وردي أو أخضر للتوائم.",
+        feature3Title: "الإجراءات",
+        feature3Text: "Kindergeld و Elterngeld و Mutterschaftsgeld وشهادة الميلاد وأكثر.",
         accountTitle: "حسابي",
         emailLabel: "البريد الإلكتروني",
         passwordLabel: "كلمة المرور",
         registerButton: "إنشاء حساب",
         loginButton: "تسجيل الدخول",
-        logoutButton: "تسجيل الخروج",
-        authNote: "أنشئي حساباً أو سجلي الدخول أولاً، ثم يتم حفظ ملفك بشكل خاص.",
+        authNote: "أنشئي حساباً أو سجلي الدخول. بعد ذلك يمكنك إنشاء ملف الحمل.",
         welcomeTitle: "مرحباً بعودتك",
-        loggedIn: "تم تسجيل الدخول باسم",
-        formTitle: "ملف الحمل الخاص بي",
+        goAppButton: "الدخول إلى التطبيق",
+        logoutButton: "تسجيل الخروج",
+        profileTitle: "ملف الحمل",
         nameLabel: "الاسم",
         cityLabel: "المدينة في ألمانيا",
         dateModeLabel: "موعد الولادة",
@@ -1343,98 +685,38 @@
         genderTwinGirls: "توأم: بنات",
         genderTwinMixed: "توأم: ولد وبنت",
         genderNote: "يتم استخدام جنس الطفل في التطبيق بشكل مناسب ابتداءً من حوالي الأسبوع 14.",
-        startButton: "حفظ الملف",
-        formNote: "يتم حفظ الملف فقط إذا كنتِ مسجلة الدخول.",
-        tabToday: "اليوم",
-        tabCalendar: "التقويم",
-        tabBaby: "الأم والطفل",
-        tabMedical: "طبي",
-        tabBureaucracy: "الإجراءات",
-        tabTodo: "مهامي",
-        tabNear: "قريب منك",
-        dashboardTitle: "مساحة الحمل الخاصة بي",
-        weekLabel: "الأسبوع",
-        daysLabel: "الأيام المتبقية",
-        dueDateResultLabel: "تاريخ الولادة",
-        cityResultLabel: "المدينة",
-        nextEventsTitle: "المواعيد القادمة",
-        nextEventsText: "أهم النقاط القادمة من التقويم.",
-        calendarTitle: "التقويم",
-        calendarText: "هنا تظهر الفحوصات والمواعيد والدورات ولاحقاً قوائم الشراء.",
-        medicalTitle: "المواعيد الطبية",
-        medicalText: "الفحوصات والفترات الطبية المهمة في ألمانيا.",
-        babySectionTitle: "الأم والطفل هذا الأسبوع",
-        babyIntro: "نظرة بسيطة على أسبوع الحمل الحالي.",
-        babyLengthLabel: "الطول",
-        babyWeightLabel: "الوزن",
-        babyDevelopmentTitle: "الطفل",
-        motherTipTitle: "نصيحة للأم",
-        nutritionTitle: "التغذية",
-        babyNoContent: "لا يوجد محتوى لهذا الأسبوع بعد.",
-        tasksTitle: "مركز الإجراءات",
-        todoTitle: "قائمة مهامي الخاصة",
-        todoText: "هذه القائمة مرئية فقط داخل حسابك.",
-        addTodoButton: "إضافة",
-        nearTitle: "قريب منك",
-        nearText: "حسب مدينتك، نعرض روابط بحث سريعة للأماكن المهمة.",
-        needLogin: "يرجى تسجيل الدخول أو إنشاء حساب أولاً.",
+        saveProfileButton: "حفظ الملف وفتح التطبيق",
         needEmailPassword: "يرجى كتابة البريد الإلكتروني وكلمة المرور.",
-        signupOk: "تم إنشاء الحساب.",
         loginOk: "تم تسجيل الدخول ✅",
+        signupOk: "تم إنشاء الحساب ✅",
         logoutOk: "تم تسجيل الخروج.",
+        needLogin: "يرجى تسجيل الدخول أو إنشاء حساب أولاً.",
         cityAlert: "يرجى كتابة المدينة.",
         dateAlert: "يرجى اختيار تاريخ الولادة المتوقع.",
         periodAlert: "يرجى اختيار أول يوم من آخر دورة شهرية.",
         genderTooEarly: "يمكن إضافة جنس الطفل لاحقاً ابتداءً من حوالي الأسبوع 14.",
-        successAlert: "تم حفظ الملف بشكل خاص ✅",
-        errorAlert: "لم يتم حفظ الملف.",
-        calculatedText: "تم حساب تاريخ الولادة المتوقع تقريبياً:",
-        emptyTodo: "يرجى كتابة مهمة أولاً.",
-        todoDone: "تم",
-        todoOpen: "قيد الانتظار",
-        noEvents: "لا توجد مواعيد حالياً.",
-        addToCalendar: "إضافة إلى التقويم",
-        eventDone: "تم",
-        eventOpen: "قيد الانتظار",
-        openSearch: "فتح البحث",
-        calendarFileName: "موعد-Mama",
-        themeNeutral: "التصميم: محايد",
-        themeBoy: "التصميم: ولد · أزرق",
-        themeGirl: "التصميم: بنت · وردي",
-        themeTwin: "التصميم: توأم · أخضر",
-        near: {
-          hebamme: ["قابلة", "البحث عن قابلة في مدينتك."],
-          frauenarzt: ["طبيبة / طبيب نساء", "البحث عن عيادة لمتابعة الحمل."],
-          klinik: ["مستشفى ولادة", "العثور على مستشفى ولادة قريب منك."],
-          kinderarzt: ["طبيب أطفال", "التحضير لاحقاً للبحث عن طبيب أطفال."],
-          apotheke: ["صيدلية", "صيدليات قريبة منك."],
-          kurs: ["دورة تحضير للولادة", "دورات للتحضير للولادة وما بعدها."],
-          babyshop: ["متجر أطفال", "مستلزمات الطفل والحمل في مدينتك."],
-          standesamt: ["مكتب الحالة المدنية", "معلومات عن شهادة الميلاد في مدينتك."]
-        }
+        profileSaved: "تم حفظ الملف ✅"
       },
-
       en: {
-        subtitle: "Your pregnancy in Germany, beautifully and privately organized.",
         eyebrow: "Pregnancy · Calendar · Germany",
         mainTitle: "Everything for your pregnancy in Germany.",
-        mainText: "A private companion for women who want to understand pregnancy care, appointments, exams, bureaucracy and organization in Germany.",
+        mainText: "A private platform for women who want to understand pregnancy care, appointments, exams, bureaucracy and organization in Germany.",
         feature1Title: "Calendar",
         feature1Text: "Exams, appointments and tasks based on pregnancy week.",
         feature2Title: "Pregnancy path in Germany",
         feature2Text: "Ultrasound, NIPT, diabetes test, anatomy scan and check-ups explained simply.",
-        feature3Title: "Personal design",
-        feature3Text: "Neutral, blue, pink or green for twins.",
+        feature3Title: "Bureaucracy",
+        feature3Text: "Child benefit, parental allowance, maternity allowance, birth certificate and more.",
         accountTitle: "My account",
         emailLabel: "Email",
         passwordLabel: "Password",
         registerButton: "Create account",
         loginButton: "Log in",
-        logoutButton: "Log out",
-        authNote: "Create an account or log in first. Then your profile will be saved privately.",
+        authNote: "Create an account or log in. Then you can create your pregnancy profile.",
         welcomeTitle: "Welcome back",
-        loggedIn: "Logged in as",
-        formTitle: "My pregnancy profile",
+        goAppButton: "Go to app",
+        logoutButton: "Log out",
+        profileTitle: "Pregnancy profile",
         nameLabel: "First name",
         cityLabel: "City in Germany",
         dateModeLabel: "Due date",
@@ -1457,79 +739,23 @@
         genderTwinGirls: "Twins: girls",
         genderTwinMixed: "Twins: boy & girl",
         genderNote: "The baby sex is used in the app mainly from around week 14.",
-        startButton: "Save profile",
-        formNote: "Your profile is only saved when you are logged in.",
-        tabToday: "Today",
-        tabCalendar: "Calendar",
-        tabBaby: "Mother & baby",
-        tabMedical: "Medical",
-        tabBureaucracy: "Bureaucracy",
-        tabTodo: "To-do",
-        tabNear: "Near you",
-        dashboardTitle: "My pregnancy space",
-        weekLabel: "Week",
-        daysLabel: "Days left",
-        dueDateResultLabel: "Due date",
-        cityResultLabel: "City",
-        nextEventsTitle: "Upcoming events",
-        nextEventsText: "The most important upcoming points from your calendar.",
-        calendarTitle: "Calendar",
-        calendarText: "Exams, appointments, courses and later shopping lists appear here.",
-        medicalTitle: "Medical appointments",
-        medicalText: "Important medical exams and time windows in Germany.",
-        babySectionTitle: "Mother & baby this week",
-        babyIntro: "A simple overview of this pregnancy week.",
-        babyLengthLabel: "Length",
-        babyWeightLabel: "Weight",
-        babyDevelopmentTitle: "Baby",
-        motherTipTitle: "Mother tip",
-        nutritionTitle: "Nutrition",
-        babyNoContent: "There is no content for this week yet.",
-        tasksTitle: "Bureaucracy center",
-        todoTitle: "My private to-do list",
-        todoText: "This list is visible only in your account.",
-        addTodoButton: "Add",
-        nearTitle: "Near you",
-        nearText: "Based on your city, we show quick searches for important places.",
-        needLogin: "Please log in or create an account first.",
+        saveProfileButton: "Save profile and open app",
         needEmailPassword: "Please enter email and password.",
-        signupOk: "Account created.",
         loginOk: "You are logged in ✅",
+        signupOk: "Account created ✅",
         logoutOk: "You are logged out.",
+        needLogin: "Please log in or create an account first.",
         cityAlert: "Please enter your city.",
         dateAlert: "Please choose the expected due date.",
         periodAlert: "Please choose the first day of your last period.",
         genderTooEarly: "The baby sex can be added later from around week 14.",
-        successAlert: "Profile saved privately ✅",
-        errorAlert: "The profile was not saved.",
-        calculatedText: "The estimated due date was calculated automatically:",
-        emptyTodo: "Please write a task first.",
-        todoDone: "Done",
-        todoOpen: "To do",
-        noEvents: "No events yet.",
-        addToCalendar: "Add to calendar",
-        eventDone: "Done",
-        eventOpen: "To do",
-        openSearch: "Open search",
-        calendarFileName: "Mama-event",
-        themeNeutral: "Theme: neutral",
-        themeBoy: "Theme: boy · blue",
-        themeGirl: "Theme: girl · pink",
-        themeTwin: "Theme: twins · green",
-        near: {
-          hebamme: ["Midwife", "Find midwives in your city."],
-          frauenarzt: ["Gynecologist", "Search for pregnancy care practices."],
-          klinik: ["Birth clinic", "Find maternity clinics near you."],
-          kinderarzt: ["Pediatrician", "Prepare the search for a pediatrician later."],
-          apotheke: ["Pharmacy", "Pharmacies near you."],
-          kurs: ["Birth preparation course", "Courses for birth and postpartum preparation."],
-          babyshop: ["Baby shop", "Baby and maternity products in your city."],
-          standesamt: ["Registry office", "Information about the birth certificate in your city."]
-        }
+        profileSaved: "Profile saved ✅"
       }
     };
 
-    function t() { return translations[currentLang]; }
+    function t() {
+      return translations[currentLang];
+    }
 
     function setLanguage(lang) {
       currentLang = lang;
@@ -1537,59 +763,29 @@
       document.body.dir = lang === "ar" ? "rtl" : "ltr";
 
       const tr = t();
+
       const ids = [
-        "subtitle","eyebrow","mainTitle","mainText","feature1Title","feature1Text","feature2Title","feature2Text","feature3Title","feature3Text",
-        "accountTitle","emailLabel","passwordLabel","registerButton","loginButton","logoutButton","authNote","welcomeTitle",
-        "formTitle","nameLabel","cityLabel","dateModeLabel","dateModeKnown","dateModeUnknown","dateLabel","lastPeriodLabel","cycleLabel","calculationNote",
-        "statusLabel","insuranceLabel","pregnancyTypeLabel","singletonOption","twinsOption","babyGenderLabel","genderUnknown","genderBoy","genderGirl","genderTwinBoys","genderTwinGirls","genderTwinMixed","genderNote",
-        "startButton","formNote","tabToday","tabCalendar","tabBaby","tabMedical","tabBureaucracy","tabTodo","tabNear",
-        "dashboardTitle","weekLabel","daysLabel","dueDateResultLabel","cityResultLabel","nextEventsTitle","nextEventsText","calendarTitle","calendarText","medicalTitle","medicalText",
-        "babySectionTitle","babyIntro","babyLengthLabel","babyWeightLabel","babyDevelopmentTitle","motherTipTitle","nutritionTitle",
-        "tasksTitle","todoTitle","todoText","addTodoButton","nearTitle","nearText"
+        "eyebrow", "mainTitle", "mainText",
+        "feature1Title", "feature1Text", "feature2Title", "feature2Text", "feature3Title", "feature3Text",
+        "accountTitle", "emailLabel", "passwordLabel", "registerButton", "loginButton", "authNote",
+        "welcomeTitle", "goAppButton", "logoutButton", "profileTitle",
+        "nameLabel", "cityLabel", "dateModeLabel", "dateModeKnown", "dateModeUnknown",
+        "dateLabel", "lastPeriodLabel", "cycleLabel", "calculationNote",
+        "statusLabel", "insuranceLabel", "pregnancyTypeLabel", "singletonOption", "twinsOption",
+        "babyGenderLabel", "genderUnknown", "genderBoy", "genderGirl", "genderTwinBoys", "genderTwinGirls", "genderTwinMixed",
+        "genderNote", "saveProfileButton"
       ];
 
       ids.forEach(id => {
         const el = document.getElementById(id);
         if (el && tr[id]) el.textContent = tr[id];
       });
-
-      document.getElementById("todoInput").placeholder =
-        currentLang === "de" ? "Neue Aufgabe..." :
-        currentLang === "fr" ? "Nouvelle tâche..." :
-        currentLang === "ar" ? "مهمة جديدة..." :
-        "New task...";
-
-      updateAuthUI();
-      updateAllTasksButton();
-      updateCategoryButtons();
-      updateThemePill();
-
-      if (lastPregnancyWeek) {
-        loadWeeklyBabyContent(lastPregnancyWeek);
-        loadTasks(lastPregnancyWeek);
-        buildNearMe(lastPregnancyWeek, lastCity);
-        renderCalendar();
-      }
-
-      if (currentUser) loadTodos();
     }
 
-    function setActiveTab(tab) {
-      document.querySelectorAll(".app-tab").forEach(btn => btn.classList.remove("active"));
-      document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
-
-      const tabMap = {
-        today: ["tabToday", "panelToday"],
-        calendar: ["tabCalendar", "panelCalendar"],
-        baby: ["tabBaby", "panelBaby"],
-        medical: ["tabMedical", "panelMedical"],
-        bureaucracy: ["tabBureaucracy", "panelBureaucracy"],
-        todo: ["tabTodo", "panelTodo"],
-        near: ["tabNear", "panelNear"]
-      };
-
-      document.getElementById(tabMap[tab][0]).classList.add("active");
-      document.getElementById(tabMap[tab][1]).classList.add("active");
+    function toggleDateMode() {
+      const mode = document.getElementById("dateMode").value;
+      document.getElementById("knownDateBox").style.display = mode === "known" ? "block" : "none";
+      document.getElementById("unknownDateBox").style.display = mode === "unknown" ? "block" : "none";
     }
 
     function parseLocalDate(value) {
@@ -1610,24 +806,13 @@
       return `${year}-${month}-${day}`;
     }
 
-    function formatDate(date) {
-      const locale = currentLang === "de" ? "de-DE" : currentLang === "fr" ? "fr-FR" : currentLang === "ar" ? "ar-SA" : "en-GB";
-      return date.toLocaleDateString(locale, { day: "2-digit", month: "2-digit", year: "numeric" });
-    }
-
-    function toggleDateMode() {
-      const mode = document.getElementById("dateMode").value;
-      document.getElementById("knownDateBox").style.display = mode === "known" ? "block" : "none";
-      document.getElementById("unknownDateBox").style.display = mode === "unknown" ? "block" : "none";
-    }
-
     function getDueDate() {
       const mode = document.getElementById("dateMode").value;
 
       if (mode === "known") {
         const dueDateValue = document.getElementById("dueDate").value;
         if (!dueDateValue) return null;
-        return { dueDate: parseLocalDate(dueDateValue), dueDateValue, calculated: false };
+        return { dueDate: parseLocalDate(dueDateValue), dueDateValue };
       }
 
       const lastPeriodValue = document.getElementById("lastPeriodDate").value;
@@ -1638,12 +823,12 @@
       const extraDays = cycleLength - 28;
       const dueDate = addDays(lastPeriodDate, 280 + extraDays);
 
-      return { dueDate, dueDateValue: toInputDate(dueDate), calculated: true };
+      return { dueDate, dueDateValue: toInputDate(dueDate) };
     }
 
     function calculatePregnancy(dueDate) {
       const today = new Date();
-      today.setHours(0,0,0,0);
+      today.setHours(0, 0, 0, 0);
 
       const pregnancyStart = addDays(dueDate, -280);
       const diffTime = today - pregnancyStart;
@@ -1652,8 +837,7 @@
       if (pregnancyWeek < 1) pregnancyWeek = 1;
       if (pregnancyWeek > 42) pregnancyWeek = 42;
 
-      const daysLeft = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
-      return { pregnancyWeek, daysLeft: daysLeft > 0 ? daysLeft : 0 };
+      return pregnancyWeek;
     }
 
     function determineTheme(pregnancyType, babyGender) {
@@ -1663,47 +847,20 @@
       return "neutral";
     }
 
-    function applyTheme(theme) {
-      currentTheme = theme || "neutral";
-      document.body.classList.remove("theme-boy", "theme-girl", "theme-twin");
-      if (currentTheme === "boy") document.body.classList.add("theme-boy");
-      if (currentTheme === "girl") document.body.classList.add("theme-girl");
-      if (currentTheme === "twin") document.body.classList.add("theme-twin");
-      updateThemePill();
-    }
-
-    function previewTheme() {
-      const pregnancyType = document.getElementById("pregnancyType").value;
-      const babyGender = document.getElementById("babyGender").value;
-      applyTheme(determineTheme(pregnancyType, babyGender));
-    }
-
-    function updateThemePill() {
-      const tr = t();
-      const pill = document.getElementById("themePill");
-      if (!pill) return;
-
-      if (currentTheme === "boy") pill.textContent = tr.themeBoy;
-      else if (currentTheme === "girl") pill.textContent = tr.themeGirl;
-      else if (currentTheme === "twin") pill.textContent = tr.themeTwin;
-      else pill.textContent = tr.themeNeutral;
-    }
-
     function updateAuthUI() {
-      const tr = t();
       const authBox = document.getElementById("authBox");
-      const card = document.getElementById("accountStatusCard");
-      const authStatus = document.getElementById("authStatus");
+      const accountCard = document.getElementById("accountCard");
+      const accountEmail = document.getElementById("accountEmail");
 
       if (currentUser) {
         authBox.style.display = "none";
-        card.style.display = "block";
-        authStatus.textContent = `${tr.loggedIn}: ${currentUser.email}`;
+        accountCard.style.display = "block";
+        accountEmail.textContent = currentUser.email;
       } else {
         authBox.style.display = "block";
-        card.style.display = "none";
+        accountCard.style.display = "none";
+        accountEmail.textContent = "";
       }
-      updateThemePill();
     }
 
     async function signUp() {
@@ -1717,6 +874,7 @@
       }
 
       const { data, error } = await supabaseClient.auth.signUp({ email, password });
+
       if (error) {
         alert(error.message);
         return;
@@ -1738,6 +896,7 @@
       }
 
       const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
       if (error) {
         alert(error.message);
         return;
@@ -1746,17 +905,12 @@
       currentUser = data.user;
       alert(tr.loginOk);
       updateAuthUI();
-      await loadLatestProfile();
-      await loadTodos();
     }
 
     async function signOut() {
       await supabaseClient.auth.signOut();
       currentUser = null;
-      currentProfileId = null;
-      calendarEvents = [];
       updateAuthUI();
-      document.getElementById("dashboard").style.display = "none";
       alert(t().logoutOk);
     }
 
@@ -1764,544 +918,15 @@
       const { data } = await supabaseClient.auth.getSession();
       currentUser = data.session ? data.session.user : null;
       updateAuthUI();
-
-      if (currentUser) {
-        await loadLatestProfile();
-        await loadTodos();
-      }
     }
 
-    async function loadLatestProfile() {
-      if (!currentUser) return;
-
-      const { data, error } = await supabaseClient
-        .from("pregnancy_profiles")
-        .select("*")
-        .eq("user_id", currentUser.id)
-        .order("created_at", { ascending: false })
-        .limit(1);
-
-      if (error || !data || data.length === 0) return;
-
-      const profile = data[0];
-      currentProfileId = profile.id;
-
-      document.getElementById("name").value = profile.full_name || "";
-      document.getElementById("city").value = profile.city || "";
-      document.getElementById("dueDate").value = profile.due_date || "";
-      document.getElementById("dateMode").value = "known";
-      document.getElementById("pregnancyType").value = profile.pregnancy_type || "singleton";
-      document.getElementById("babyGender").value = profile.baby_gender || "unknown";
-      toggleDateMode();
-
-      applyTheme(profile.theme_mode || determineTheme(profile.pregnancy_type, profile.baby_gender));
-      await showDashboard(profile.due_date, profile.city, false, profile.id);
-    }
-
-    function getTaskLabels() {
-      if (currentLang === "de") return { week:"Woche", done:"Erledigt", todo:"Offen", noTasks:"Aktuell gibt es keine Aufgaben in dieser Kategorie.", error:"Aufgaben konnten nicht geladen werden.", link:"Link öffnen", showAll:"Alle Aufgaben anzeigen", showRecommended:"Nur aktuelle Aufgaben anzeigen", progress:"erledigt", all:"Alle", admin:"Bürokratie", medical:"Medizin", organisation:"Organisation" };
-      if (currentLang === "fr") return { week:"Semaine", done:"Terminé", todo:"À faire", noTasks:"Aucune tâche dans cette catégorie pour le moment.", error:"Les tâches n’ont pas pu être chargées.", link:"Ouvrir le lien", showAll:"Afficher toutes les tâches", showRecommended:"Afficher seulement les tâches actuelles", progress:"terminé", all:"Toutes", admin:"Bureaucratie", medical:"Médical", organisation:"Organisation" };
-      if (currentLang === "ar") return { week:"الأسبوع", done:"تم", todo:"قيد الانتظار", noTasks:"لا توجد مهام في هذه الفئة حالياً.", error:"تعذر تحميل المهام.", link:"فتح الرابط", showAll:"عرض كل المهام", showRecommended:"عرض المهام الحالية فقط", progress:"تم", all:"الكل", admin:"الإدارة", medical:"طبي", organisation:"تنظيم" };
-      return { week:"Week", done:"Done", todo:"To do", noTasks:"No tasks in this category at the moment.", error:"Tasks could not be loaded.", link:"Open link", showAll:"Show all tasks", showRecommended:"Show current tasks only", progress:"done", all:"All", admin:"Bureaucracy", medical:"Medical", organisation:"Organization" };
-    }
-
-    function updateAllTasksButton() {
-      const button = document.getElementById("allTasksButton");
-      if (!button) return;
-      const labels = getTaskLabels();
-      button.textContent = showAllTasks ? labels.showRecommended : labels.showAll;
-    }
-
-    async function toggleAllTasks() {
-      showAllTasks = !showAllTasks;
-      updateAllTasksButton();
-      if (lastPregnancyWeek) await loadTasks(lastPregnancyWeek);
-    }
-
-    function updateCategoryButtons() {
-      const labels = getTaskLabels();
-      const buttons = [
-        ["catAll","all",labels.all],
-        ["catAdmin","administratif",labels.admin],
-        ["catMedical","medical",labels.medical],
-        ["catOrganisation","organisation",labels.organisation]
-      ];
-
-      buttons.forEach(([id,value,text]) => {
-        const button = document.getElementById(id);
-        if (!button) return;
-        button.textContent = text;
-        button.classList.toggle("active", taskCategoryFilter === value);
-      });
-    }
-
-    async function setTaskCategory(category) {
-      taskCategoryFilter = category;
-      updateCategoryButtons();
-      if (lastPregnancyWeek) await loadTasks(lastPregnancyWeek);
-    }
-
-    function getTaskTitle(task) {
-      if (currentLang === "de") return task.title_de || "";
-      if (currentLang === "fr") return task.title_fr || task.title_de || "";
-      if (currentLang === "ar") return task.title_ar || task.title_de || "";
-      if (currentLang === "en") return task.title_en || task.title_de || "";
-      return task.title_de || "";
-    }
-
-    function getTaskDescription(task) {
-      if (currentLang === "de") return task.description_de || "";
-      if (currentLang === "fr") return task.description_fr || task.description_de || "";
-      if (currentLang === "ar") return task.description_ar || task.description_de || "";
-      if (currentLang === "en") return task.description_en || task.description_de || "";
-      return task.description_de || "";
-    }
-
-    async function loadTasks(pregnancyWeek) {
-      const labels = getTaskLabels();
-      const taskList = document.getElementById("taskList");
-      taskList.innerHTML = "";
-
-      const maxWeek = pregnancyWeek + 2;
-
-      let query = supabaseClient
-        .from("pregnancy_tasks")
-        .select("*")
-        .order("recommended_week", { ascending: true });
-
-      if (!showAllTasks) query = query.lte("recommended_week", maxWeek);
-      if (taskCategoryFilter !== "all") query = query.eq("category", taskCategoryFilter);
-
-      const { data: tasks, error: tasksError } = await query;
-
-      updateAllTasksButton();
-      updateCategoryButtons();
-
-      if (tasksError) {
-        taskList.innerHTML = `<p>${labels.error}</p>`;
-        return;
-      }
-
-      if (!tasks || tasks.length === 0) {
-        document.getElementById("taskProgress").textContent = `0 / 0 ${labels.progress}`;
-        taskList.innerHTML = `<p>${labels.noTasks}</p>`;
-        return;
-      }
-
-      let statusMap = {};
-
-      if (currentUser) {
-        const { data: statuses } = await supabaseClient
-          .from("user_task_status")
-          .select("*")
-          .eq("user_id", currentUser.id);
-
-        if (statuses) statuses.forEach(item => statusMap[item.task_id] = item.status);
-      }
-
-      const doneCount = tasks.filter(task => statusMap[task.id] === "done").length;
-      document.getElementById("taskProgress").textContent = `${doneCount} / ${tasks.length} ${labels.progress}`;
-
-      tasks.forEach(task => {
-        const isDone = (statusMap[task.id] || "todo") === "done";
-
-        const card = document.createElement("div");
-        card.className = "admin-task-card";
-
-        const top = document.createElement("div");
-        top.className = "admin-task-top";
-
-        const title = document.createElement("h3");
-        title.textContent = getTaskTitle(task);
-
-        const week = document.createElement("div");
-        week.className = "task-week-badge";
-        week.textContent = `${labels.week} ${task.recommended_week}`;
-
-        top.appendChild(title);
-        top.appendChild(week);
-
-        const desc = document.createElement("div");
-        desc.className = "admin-task-description";
-        desc.textContent = getTaskDescription(task);
-
-        const actions = document.createElement("div");
-        actions.className = "task-actions";
-
-        const statusButton = document.createElement("button");
-        statusButton.className = isDone ? "task-status-button done" : "task-status-button";
-        statusButton.textContent = isDone ? labels.done : labels.todo;
-        statusButton.onclick = () => toggleTaskStatus(task.id, isDone ? "todo" : "done");
-        actions.appendChild(statusButton);
-
-        if (task.link_url && task.link_url.trim() !== "") {
-          const link = document.createElement("a");
-          link.className = "task-link-button";
-          link.href = task.link_url;
-          link.target = "_blank";
-          link.textContent = labels.link;
-          actions.appendChild(link);
-        }
-
-        card.appendChild(top);
-        card.appendChild(desc);
-        card.appendChild(actions);
-        taskList.appendChild(card);
-      });
-    }
-
-    async function toggleTaskStatus(taskId, newStatus) {
-      if (!currentUser) {
-        alert(t().needLogin);
-        return;
-      }
-
-      const { error } = await supabaseClient
-        .from("user_task_status")
-        .upsert({ user_id: currentUser.id, task_id: taskId, status: newStatus }, { onConflict: "user_id,task_id" });
-
-      if (error) {
-        alert(error.message);
-        return;
-      }
-
-      if (lastPregnancyWeek) await loadTasks(lastPregnancyWeek);
-    }
-
-    function getWeeklyText(row, field) {
-      if (!row) return "";
-      if (currentLang === "de") return row[`${field}_de`] || "";
-      if (currentLang === "fr") return row[`${field}_fr`] || row[`${field}_de`] || "";
-      if (currentLang === "ar") return row[`${field}_ar`] || row[`${field}_de`] || "";
-      if (currentLang === "en") return row[`${field}_en`] || row[`${field}_de`] || "";
-      return row[`${field}_de`] || "";
-    }
-
-    async function loadWeeklyBabyContent(pregnancyWeek) {
-      const tr = t();
-
-      let { data, error } = await supabaseClient
-        .from("weekly_baby_content")
-        .select("*")
-        .lte("week_number", pregnancyWeek)
-        .order("week_number", { ascending: false })
-        .limit(1);
-
-      if ((!data || data.length === 0) && !error) {
-        const result = await supabaseClient
-          .from("weekly_baby_content")
-          .select("*")
-          .gte("week_number", pregnancyWeek)
-          .order("week_number", { ascending: true })
-          .limit(1);
-
-        data = result.data;
-        error = result.error;
-      }
-
-      if (error || !data || data.length === 0) {
-        document.getElementById("babyTitle").textContent = tr.babyNoContent;
-        document.getElementById("babyLength").textContent = "-";
-        document.getElementById("babyWeight").textContent = "-";
-        document.getElementById("babyDevelopment").textContent = "-";
-        document.getElementById("motherTip").textContent = "-";
-        document.getElementById("babyNutrition").textContent = "-";
-        return;
-      }
-
-      const row = data[0];
-
-      document.getElementById("babyTitle").textContent = `${getTaskLabels().week} ${pregnancyWeek} · ${getWeeklyText(row, "title")}`;
-      document.getElementById("babyLength").textContent = row.baby_length_cm ? `${row.baby_length_cm} cm` : "-";
-      document.getElementById("babyWeight").textContent = row.baby_weight_g ? `${row.baby_weight_g} g` : "-";
-      document.getElementById("babyDevelopment").textContent = getWeeklyText(row, "baby_text");
-      document.getElementById("motherTip").textContent = getWeeklyText(row, "mother_tip");
-      document.getElementById("babyNutrition").textContent = getWeeklyText(row, "nutrition");
-    }
-
-    function getExamText(row, field) {
-      if (!row) return "";
-      if (currentLang === "de") return row[`${field}_de`] || "";
-      if (currentLang === "fr") return row[`${field}_fr`] || row[`${field}_de`] || "";
-      if (currentLang === "ar") return row[`${field}_ar`] || row[`${field}_de`] || "";
-      if (currentLang === "en") return row[`${field}_en`] || row[`${field}_de`] || "";
-      return row[`${field}_de`] || "";
-    }
-
-    async function generateMedicalCalendarEvents(profileId, dueDateValue) {
-      if (!currentUser || !profileId) return;
-
-      const dueDate = parseLocalDate(dueDateValue);
-      const pregnancyStart = addDays(dueDate, -280);
-
-      const { data: templates, error } = await supabaseClient
-        .from("medical_exam_templates")
-        .select("*")
-        .order("recommended_week", { ascending: true });
-
-      if (error || !templates) return;
-
-      for (const template of templates) {
-        const eventDate = addDays(pregnancyStart, (template.recommended_week - 1) * 7);
-        const eventDateValue = toInputDate(eventDate);
-        const sourceKey = template.key;
-
-        const { data: existing } = await supabaseClient
-          .from("pregnancy_calendar_events")
-          .select("id")
-          .eq("user_id", currentUser.id)
-          .eq("source_type", "medical_template")
-          .eq("source_key", sourceKey)
-          .eq("event_date", eventDateValue)
-          .limit(1);
-
-        if (existing && existing.length > 0) continue;
-
-        await supabaseClient
-          .from("pregnancy_calendar_events")
-          .insert({
-            user_id: currentUser.id,
-            profile_id: profileId,
-            title: getExamText(template, "title"),
-            description: getExamText(template, "description"),
-            event_date: eventDateValue,
-            pregnancy_week: template.recommended_week,
-            category: "medical",
-            source_type: "medical_template",
-            source_key: sourceKey,
-            done: false
-          });
-      }
-    }
-
-    async function loadCalendarEvents() {
-      if (!currentUser) return;
-
-      const { data, error } = await supabaseClient
-        .from("pregnancy_calendar_events")
-        .select("*")
-        .eq("user_id", currentUser.id)
-        .order("event_date", { ascending: true });
-
-      if (error) {
-        calendarEvents = [];
-        return;
-      }
-
-      calendarEvents = data || [];
-      renderCalendar();
-    }
-
-    function renderEventCard(event) {
-      const tr = t();
-      const card = document.createElement("div");
-      card.className = "event-card";
-
-      const date = document.createElement("div");
-      date.className = "event-date";
-      date.textContent = formatDate(parseLocalDate(event.event_date));
-
-      const title = document.createElement("h3");
-      title.textContent = event.title;
-
-      const desc = document.createElement("p");
-      desc.textContent = event.description || "";
-
-      const actions = document.createElement("div");
-      actions.className = "event-actions";
-
-      const doneButton = document.createElement("button");
-      doneButton.className = event.done ? "mini-button done" : "mini-button";
-      doneButton.textContent = event.done ? tr.eventDone : tr.eventOpen;
-      doneButton.onclick = () => toggleCalendarEventDone(event.id, !event.done);
-
-      const calendarButton = document.createElement("button");
-      calendarButton.className = "mini-button";
-      calendarButton.textContent = tr.addToCalendar;
-      calendarButton.onclick = () => downloadICS(event);
-
-      actions.appendChild(doneButton);
-      actions.appendChild(calendarButton);
-
-      card.appendChild(date);
-      card.appendChild(title);
-      card.appendChild(desc);
-      card.appendChild(actions);
-
-      return card;
-    }
-
-    function renderCalendar() {
-      const tr = t();
-
-      const calendarList = document.getElementById("calendarList");
-      const medicalList = document.getElementById("medicalList");
-      const nextEventsList = document.getElementById("nextEventsList");
-
-      calendarList.innerHTML = "";
-      medicalList.innerHTML = "";
-      nextEventsList.innerHTML = "";
-
-      if (!calendarEvents || calendarEvents.length === 0) {
-        calendarList.innerHTML = `<p>${tr.noEvents}</p>`;
-        medicalList.innerHTML = `<p>${tr.noEvents}</p>`;
-        nextEventsList.innerHTML = `<p>${tr.noEvents}</p>`;
-        return;
-      }
-
-      calendarEvents.forEach(event => {
-        calendarList.appendChild(renderEventCard(event));
-      });
-
-      calendarEvents
-        .filter(event => event.category === "medical")
-        .forEach(event => medicalList.appendChild(renderEventCard(event)));
-
-      const today = new Date();
-      today.setHours(0,0,0,0);
-
-      const upcoming = calendarEvents
-        .filter(event => parseLocalDate(event.event_date) >= today)
-        .slice(0, 3);
-
-      if (upcoming.length === 0) {
-        nextEventsList.innerHTML = `<p>${tr.noEvents}</p>`;
-      } else {
-        upcoming.forEach(event => nextEventsList.appendChild(renderEventCard(event)));
-      }
-    }
-
-    async function toggleCalendarEventDone(id, done) {
-      const { error } = await supabaseClient
-        .from("pregnancy_calendar_events")
-        .update({ done })
-        .eq("id", id);
-
-      if (error) {
-        alert(error.message);
-        return;
-      }
-
-      await loadCalendarEvents();
-    }
-
-    function icsDate(dateValue) {
-      return dateValue.replaceAll("-", "");
-    }
-
-    function escapeICS(text) {
-      return String(text || "")
-        .replace(/\\/g, "\\\\")
-        .replace(/\n/g, "\\n")
-        .replace(/,/g, "\\,")
-        .replace(/;/g, "\\;");
-    }
-
-    function downloadICS(event) {
-      const start = parseLocalDate(event.event_date);
-      const end = addDays(start, 1);
-
-      const ics =
-`BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Mama in Deutschland//DE
-BEGIN:VEVENT
-UID:${event.id}@mama-in-deutschland
-DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z
-DTSTART;VALUE=DATE:${icsDate(event.event_date)}
-DTEND;VALUE=DATE:${icsDate(toInputDate(end))}
-SUMMARY:${escapeICS(event.title)}
-DESCRIPTION:${escapeICS(event.description || "")}
-END:VEVENT
-END:VCALENDAR`;
-
-      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `${t().calendarFileName}-${event.event_date}.ics`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    function buildMapsLink(query, city) {
-      return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(query + " " + city);
-    }
-
-    function buildNearMe(pregnancyWeek, city) {
-      const tr = t();
-      const nearGrid = document.getElementById("nearGrid");
-      nearGrid.innerHTML = "";
-      if (!city) return;
-
-      let items = [];
-      if (pregnancyWeek <= 13) {
-        items = [["hebamme","Hebamme"], ["frauenarzt","Frauenärztin Schwangerschaft"], ["apotheke","Apotheke"]];
-      } else if (pregnancyWeek <= 28) {
-        items = [["hebamme","Hebamme"], ["frauenarzt","Frauenärztin Schwangerschaft"], ["kurs","Geburtsvorbereitungskurs"], ["klinik","Geburtsklinik"], ["babyshop","Babygeschäft"]];
-      } else {
-        items = [["klinik","Geburtsklinik"], ["kinderarzt","Kinderarzt"], ["apotheke","Apotheke"], ["standesamt","Standesamt Geburt"], ["babyshop","Babygeschäft"]];
-      }
-
-      items.forEach(([key, searchTerm]) => {
-        const card = document.createElement("div");
-        card.className = "near-card";
-
-        const title = document.createElement("h3");
-        title.textContent = tr.near[key][0];
-
-        const desc = document.createElement("p");
-        desc.textContent = tr.near[key][1];
-
-        const link = document.createElement("a");
-        link.className = "near-button";
-        link.href = buildMapsLink(searchTerm, city);
-        link.target = "_blank";
-        link.textContent = tr.openSearch;
-
-        card.appendChild(title);
-        card.appendChild(desc);
-        card.appendChild(link);
-        nearGrid.appendChild(card);
-      });
-    }
-
-    async function showDashboard(dueDateValue, city, calculated, profileId) {
-      const tr = t();
-      const dueDate = parseLocalDate(dueDateValue);
-      const result = calculatePregnancy(dueDate);
-
-      lastPregnancyWeek = result.pregnancyWeek;
-      lastCity = city;
-      currentProfileId = profileId || currentProfileId;
-
-      document.getElementById("pregnancyWeek").textContent = result.pregnancyWeek;
-      document.getElementById("daysLeft").textContent = result.daysLeft;
-      document.getElementById("dueDateResult").textContent = formatDate(dueDate);
-      document.getElementById("cityResult").textContent = city;
-
-      const calculatedBox = document.getElementById("calculatedDateBox");
-      if (calculated) {
-        calculatedBox.style.display = "block";
-        calculatedBox.textContent = `${tr.calculatedText} ${formatDate(dueDate)}`;
-      } else {
-        calculatedBox.style.display = "none";
-      }
-
-      document.getElementById("dashboard").style.display = "block";
-
-      await generateMedicalCalendarEvents(currentProfileId, dueDateValue);
-      await loadCalendarEvents();
-      await loadWeeklyBabyContent(result.pregnancyWeek);
-      await loadTasks(result.pregnancyWeek);
-      buildNearMe(result.pregnancyWeek, city);
-      await loadTodos();
+    function goToApp() {
+      window.location.href = "app.html";
     }
 
     async function createProfile() {
       const tr = t();
+
       if (!currentUser) {
         alert(tr.needLogin);
         return;
@@ -2320,24 +945,24 @@ END:VCALENDAR`;
       }
 
       const dueResult = getDueDate();
+
       if (!dueResult) {
         const mode = document.getElementById("dateMode").value;
         alert(mode === "known" ? tr.dateAlert : tr.periodAlert);
         return;
       }
 
-      const pregnancy = calculatePregnancy(dueResult.dueDate);
+      const pregnancyWeek = calculatePregnancy(dueResult.dueDate);
 
-      if (pregnancy.pregnancyWeek < 14 && babyGender !== "unknown" && pregnancyType !== "twins") {
+      if (pregnancyWeek < 14 && babyGender !== "unknown" && pregnancyType !== "twins") {
         alert(tr.genderTooEarly);
         babyGender = "unknown";
         document.getElementById("babyGender").value = "unknown";
       }
 
       const themeMode = determineTheme(pregnancyType, babyGender);
-      applyTheme(themeMode);
 
-      const { data, error } = await supabaseClient
+      const { error } = await supabaseClient
         .from("pregnancy_profiles")
         .insert({
           user_id: currentUser.id,
@@ -2345,130 +970,27 @@ END:VCALENDAR`;
           language: currentLang,
           city: city,
           due_date: dueResult.dueDateValue,
-          pregnancy_week: pregnancy.pregnancyWeek,
+          pregnancy_week: pregnancyWeek,
           work_status: workStatus,
           insurance_type: insuranceType,
           pregnancy_type: pregnancyType,
           baby_gender: babyGender,
           theme_mode: themeMode,
-          gender_revealed_at_week: babyGender !== "unknown" ? pregnancy.pregnancyWeek : null
-        })
-        .select()
-        .single();
-
-      if (error) {
-        alert(tr.errorAlert + " " + error.message);
-        return;
-      }
-
-      currentProfileId = data.id;
-      alert(tr.successAlert);
-      await showDashboard(dueResult.dueDateValue, city, dueResult.calculated, data.id);
-      document.getElementById("dashboard").scrollIntoView({ behavior: "smooth" });
-    }
-
-    async function loadTodos() {
-      const todoList = document.getElementById("todoList");
-      todoList.innerHTML = "";
-      if (!currentUser) return;
-
-      const { data, error } = await supabaseClient
-        .from("private_todos")
-        .select("*")
-        .eq("user_id", currentUser.id)
-        .order("created_at", { ascending: false });
-
-      if (error) return;
-
-      data.forEach(todo => {
-        const item = document.createElement("div");
-        item.className = "todo-item";
-
-        const title = document.createElement("span");
-        title.textContent = todo.title;
-        if (todo.done) title.className = "done";
-
-        const doneButton = document.createElement("button");
-        doneButton.className = todo.done ? "todo-done-button done" : "todo-done-button";
-        doneButton.textContent = todo.done ? t().todoDone : t().todoOpen;
-        doneButton.onclick = () => toggleTodo(todo.id, !todo.done);
-
-        const del = document.createElement("button");
-        del.className = "delete-small";
-        del.textContent = "×";
-        del.onclick = () => deleteTodo(todo.id);
-
-        item.appendChild(title);
-        item.appendChild(doneButton);
-        item.appendChild(del);
-        todoList.appendChild(item);
-      });
-    }
-
-    async function addTodo() {
-      const tr = t();
-      if (!currentUser) {
-        alert(tr.needLogin);
-        return;
-      }
-
-      const input = document.getElementById("todoInput");
-      const title = input.value.trim();
-
-      if (!title) {
-        alert(tr.emptyTodo);
-        return;
-      }
-
-      const { error } = await supabaseClient
-        .from("private_todos")
-        .insert({ user_id: currentUser.id, title: title, done: false });
+          gender_revealed_at_week: babyGender !== "unknown" ? pregnancyWeek : null
+        });
 
       if (error) {
         alert(error.message);
         return;
       }
 
-      input.value = "";
-      await loadTodos();
-    }
-
-    async function toggleTodo(id, done) {
-      const { error } = await supabaseClient
-        .from("private_todos")
-        .update({ done })
-        .eq("id", id);
-
-      if (error) {
-        alert(error.message);
-        return;
-      }
-
-      await loadTodos();
-    }
-
-    async function deleteTodo(id) {
-      const { error } = await supabaseClient
-        .from("private_todos")
-        .delete()
-        .eq("id", id);
-
-      if (error) {
-        alert(error.message);
-        return;
-      }
-
-      await loadTodos();
+      alert(tr.profileSaved);
+      window.location.href = "app.html";
     }
 
     supabaseClient.auth.onAuthStateChange((_event, session) => {
       currentUser = session ? session.user : null;
       updateAuthUI();
-
-      if (currentUser) {
-        loadLatestProfile();
-        loadTodos();
-      }
     });
 
     setLanguage("de");

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama in Deutschland - Dokumente</title>
+
+  <style>
+    :root {
+      --page:#f8f3ec;
+      --card:#ffffff;
+      --cream:#fffaf4;
+      --soft:#f3eadf;
+      --brown:#4a3428;
+      --brown2:#6f4f3e;
+      --light:#9b7357;
+      --text:#2f2621;
+      --muted:#7b6a60;
+      --border:#eadfd2;
+      --danger:#b45b48;
+      --success:#5f8d63;
+      --shadow:rgba(74,52,40,.12);
+    }
+
+    body.theme-boy {
+      --page:#eef7ff;
+      --cream:#f7fbff;
+      --soft:#e8f4ff;
+      --brown:#244b6b;
+      --brown2:#315f86;
+      --light:#5f93bd;
+      --text:#1d3347;
+      --muted:#5c7285;
+      --border:#d6e8f7;
+      --shadow:rgba(36,75,107,.12);
+    }
+
+    body.theme-girl {
+      --page:#fff1f5;
+      --cream:#fff8fa;
+      --soft:#fde8ef;
+      --brown:#7a3d55;
+      --brown2:#9a5570;
+      --light:#c47a98;
+      --text:#3d2430;
+      --muted:#7b6070;
+      --border:#f0d4df;
+      --shadow:rgba(122,61,85,.12);
+    }
+
+    body.theme-twin {
+      --page:#f1f7ef;
+      --cream:#fbfff8;
+      --soft:#e7f3df;
+      --brown:#3e5c3a;
+      --brown2:#54794e;
+      --light:#7ca878;
+      --text:#263522;
+      --muted:#62745f;
+      --border:#dbe9d4;
+      --shadow:rgba(62,92,58,.12);
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+        linear-gradient(180deg,#fbf7f1,var(--page));
+      color:var(--text);
+    }
+
+    .wrap {
+      max-width:1180px;
+      margin:0 auto;
+      padding:24px 18px;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--brown);
+      font-size:23px;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+
+    .brand-icon {
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--brown),var(--light));
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      box-shadow:0 14px 28px var(--shadow);
+    }
+
+    .top-actions {
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .language-buttons {
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .language-buttons button,
+    .button-light,
+    .button,
+    .button-danger,
+    .filter-button {
+      border:1px solid var(--border);
+      background:white;
+      color:var(--brown);
+      padding:10px 13px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      text-decoration:none;
+      font-family:inherit;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .language-buttons button.active,
+    .filter-button.active {
+      background:var(--brown);
+      color:white;
+    }
+
+    .button {
+      background:var(--brown);
+      color:white;
+      border-color:var(--brown);
+    }
+
+    .button.done {
+      background:var(--success);
+      border-color:var(--success);
+    }
+
+    .button-danger {
+      background:#fff0ec;
+      color:var(--danger);
+      border-color:#f1c9bf;
+    }
+
+    .card {
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:24px;
+      box-shadow:0 24px 70px var(--shadow);
+      backdrop-filter:blur(16px);
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3 {
+      color:var(--brown);
+      margin:0 0 12px;
+    }
+
+    h1 {
+      font-size:34px;
+      letter-spacing:-1.5px;
+    }
+
+    h2 {
+      font-size:25px;
+      letter-spacing:-.7px;
+    }
+
+    h3 {
+      font-size:17px;
+    }
+
+    p {
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .grid-2 {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .grid-3 {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .box,
+    .document-card,
+    .check-card {
+      background:linear-gradient(180deg,var(--cream),white);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .soft {
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--soft);
+      border:1px solid var(--border);
+      color:var(--brown);
+      font-weight:900;
+      margin-top:14px;
+    }
+
+    label {
+      display:block;
+      margin:14px 0 7px;
+      color:var(--brown);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    input,
+    select,
+    textarea {
+      width:100%;
+      padding:13px 14px;
+      border-radius:15px;
+      border:1px solid var(--border);
+      background:#fffdf9;
+      color:var(--text);
+      font-size:15px;
+      font-family:inherit;
+      outline:none;
+    }
+
+    textarea {
+      min-height:105px;
+      resize:vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color:var(--light);
+      box-shadow:0 0 0 4px rgba(155,115,87,.12);
+    }
+
+    .filters,
+    .actions {
+      display:flex;
+      gap:9px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .badge {
+      display:inline-flex;
+      width:fit-content;
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--brown);
+      font-size:12px;
+      font-weight:900;
+      margin:0 5px 8px 0;
+    }
+
+    .list {
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .message {
+      display:none;
+      margin-top:14px;
+      padding:14px 15px;
+      border-radius:18px;
+      font-weight:850;
+      line-height:1.45;
+    }
+
+    .message.error {
+      display:block;
+      background:#fff0ec;
+      color:var(--danger);
+      border:1px solid #f1c9bf;
+    }
+
+    .message.success {
+      display:block;
+      background:#edf7ee;
+      color:var(--success);
+      border:1px solid #cfe8d2;
+    }
+
+    .empty {
+      padding:18px;
+      border-radius:18px;
+      background:var(--soft);
+      color:var(--muted);
+      border:1px solid var(--border);
+    }
+
+    @media(max-width:900px){
+      .grid-2,
+      .grid-3 {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:560px){
+      .wrap { padding:18px 12px; }
+      h1 { font-size:28px; }
+      .card { padding:20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <span>Mama in Deutschland</span>
+      </div>
+
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Zurück</a>
+
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Dokumente</h1>
+        <p id="pageText">Speichere wichtige Dokumente, Anträge, Ergebnisse und Erinnerungen privat.</p>
+        <div class="soft" id="profileInfo">-</div>
+      </section>
+
+      <section class="grid-2">
+        <div class="card">
+          <h2 id="uploadTitle">Dokument hochladen</h2>
+
+          <label id="documentTitleLabel" for="documentTitle">Titel</label>
+          <input type="text" id="documentTitle" placeholder="Mutterpass" />
+
+          <label id="documentCategoryLabel" for="documentCategory">Kategorie</label>
+          <select id="documentCategory">
+            <option value="mutterpass" id="categoryMutterpass">Mutterpass</option>
+            <option value="medical_result" id="categoryMedical">Ergebnis</option>
+            <option value="application" id="categoryApplication">Antrag</option>
+            <option value="insurance" id="categoryInsurance">Versicherung</option>
+            <option value="standesamt" id="categoryStandesamt">Standesamt</option>
+            <option value="memory" id="categoryMemory">Erinnerung</option>
+            <option value="other" id="categoryOther">Andere</option>
+          </select>
+
+          <label id="documentFileLabel" for="documentFile">Datei / Foto / PDF</label>
+          <input type="file" id="documentFile" accept="image/*,.pdf" />
+
+          <label id="documentNotesLabel" for="documentNotes">Notiz</label>
+          <textarea id="documentNotes"></textarea>
+
+          <button class="button" onclick="uploadDocument()" id="uploadButton">Dokument speichern</button>
+
+          <div class="message" id="messageBox"></div>
+        </div>
+
+        <div class="card">
+          <h2 id="checklistTitle">Dokumente-Checkliste</h2>
+          <p id="checklistText">Wichtige Dokumente und Anträge im Überblick.</p>
+          <div class="list" id="checklist"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="savedTitle">Gespeicherte Dokumente</h2>
+
+        <div class="filters">
+          <button class="filter-button active" onclick="setCategory('all')" id="catAll">Alle</button>
+          <button class="filter-button" onclick="setCategory('application')" id="catApplication">Anträge</button>
+          <button class="filter-button" onclick="setCategory('medical_result')" id="catMedical">Medizin</button>
+          <button class="filter-button" onclick="setCategory('memory')" id="catMemory">Erinnerungen</button>
+        </div>
+
+        <div class="grid-3" id="documentList" style="margin-top:16px;"></div>
+      </section>
+    </main>
+
+    <section class="card" id="loginMessage" style="display:none;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p>
+      <div class="actions">
+        <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let currentProfile = null;
+    let currentLang = localStorage.getItem("mama_lang") || "de";
+    let documentCategoryFilter = "all";
+
+    const translations = {
+      de:{
+        backButton:"Zurück",
+        pageTitle:"Dokumente",
+        pageText:"Speichere wichtige Dokumente, Anträge, Ergebnisse und Erinnerungen privat.",
+        uploadTitle:"Dokument hochladen",
+        documentTitleLabel:"Titel",
+        documentCategoryLabel:"Kategorie",
+        documentFileLabel:"Datei / Foto / PDF",
+        documentNotesLabel:"Notiz",
+        uploadButton:"Dokument speichern",
+        checklistTitle:"Dokumente-Checkliste",
+        checklistText:"Wichtige Dokumente und Anträge im Überblick.",
+        savedTitle:"Gespeicherte Dokumente",
+        catAll:"Alle",
+        catApplication:"Anträge",
+        catMedical:"Medizin",
+        catMemory:"Erinnerungen",
+        categoryMutterpass:"Mutterpass",
+        categoryMedical:"Ergebnis",
+        categoryApplication:"Antrag",
+        categoryInsurance:"Versicherung",
+        categoryStandesamt:"Standesamt",
+        categoryMemory:"Erinnerung",
+        categoryOther:"Andere",
+        loginTitle:"Bitte einloggen",
+        loginText:"Du musst dich zuerst anmelden.",
+        loginBackButton:"Zur Startseite",
+        missing:"Bitte Titel und Datei auswählen.",
+        saved:"Dokument gespeichert ✅",
+        deleted:"Dokument gelöscht ✅",
+        empty:"Noch keine Dokumente vorhanden.",
+        checklistEmpty:"Noch keine Checkliste vorhanden.",
+        open:"Öffnen",
+        delete:"Löschen",
+        uploadThis:"Dieses Dokument hochladen",
+        done:"Erledigt",
+        openStatus:"Offen",
+        markDone:"Erledigt markieren",
+        markOpen:"Als offen markieren",
+        week:"SSW",
+        profile:"Profil"
+      },
+      fr:{
+        backButton:"Retour",
+        pageTitle:"Documents",
+        pageText:"Sauvegarde tes documents importants, demandes, résultats et souvenirs en privé.",
+        uploadTitle:"Téléverser un document",
+        documentTitleLabel:"Titre",
+        documentCategoryLabel:"Catégorie",
+        documentFileLabel:"Fichier / photo / PDF",
+        documentNotesLabel:"Note",
+        uploadButton:"Enregistrer le document",
+        checklistTitle:"Checklist documents",
+        checklistText:"Les documents et demandes importants en un aperçu.",
+        savedTitle:"Documents enregistrés",
+        catAll:"Tous",
+        catApplication:"Demandes",
+        catMedical:"Médical",
+        catMemory:"Souvenirs",
+        categoryMutterpass:"Mutterpass",
+        categoryMedical:"Résultat",
+        categoryApplication:"Demande",
+        categoryInsurance:"Assurance",
+        categoryStandesamt:"État civil",
+        categoryMemory:"Souvenir",
+        categoryOther:"Autre",
+        loginTitle:"Connexion nécessaire",
+        loginText:"Tu dois d’abord te connecter.",
+        loginBackButton:"Retour à l’accueil",
+        missing:"Merci de choisir un titre et un fichier.",
+        saved:"Document enregistré ✅",
+        deleted:"Document supprimé ✅",
+        empty:"Aucun document pour le moment.",
+        checklistEmpty:"Aucune checklist pour le moment.",
+        open:"Ouvrir",
+        delete:"Supprimer",
+        uploadThis:"Téléverser ce document",
+        done:"Terminé",
+        openStatus:"Ouvert",
+        markDone:"Marquer comme terminé",
+        markOpen:"Marquer comme ouvert",
+        week:"SSW",
+        profile:"Profil"
+      },
+      ar:{
+        backButton:"رجوع",
+        pageTitle:"الوثائق",
+        pageText:"احفظي الوثائق المهمة والطلبات والنتائج والذكريات بشكل خاص.",
+        uploadTitle:"رفع وثيقة",
+        documentTitleLabel:"العنوان",
+        documentCategoryLabel:"الفئة",
+        documentFileLabel:"ملف / صورة / PDF",
+        documentNotesLabel:"ملاحظة",
+        uploadButton:"حفظ الوثيقة",
+        checklistTitle:"قائمة الوثائق",
+        checklistText:"نظرة عامة على الوثائق والطلبات المهمة.",
+        savedTitle:"الوثائق المحفوظة",
+        catAll:"الكل",
+        catApplication:"الطلبات",
+        catMedical:"طبي",
+        catMemory:"ذكريات",
+        categoryMutterpass:"دفتر الأمومة",
+        categoryMedical:"نتيجة",
+        categoryApplication:"طلب",
+        categoryInsurance:"تأمين",
+        categoryStandesamt:"الحالة المدنية",
+        categoryMemory:"ذكرى",
+        categoryOther:"أخرى",
+        loginTitle:"يرجى تسجيل الدخول",
+        loginText:"يجب تسجيل الدخول أولاً.",
+        loginBackButton:"العودة للرئيسية",
+        missing:"يرجى اختيار عنوان وملف.",
+        saved:"تم حفظ الوثيقة ✅",
+        deleted:"تم حذف الوثيقة ✅",
+        empty:"لا توجد وثائق حالياً.",
+        checklistEmpty:"لا توجد قائمة حالياً.",
+        open:"فتح",
+        delete:"حذف",
+        uploadThis:"رفع هذه الوثيقة",
+        done:"تم",
+        openStatus:"مفتوح",
+        markDone:"تحديد كمنجز",
+        markOpen:"تحديد كمفتوح",
+        week:"أسبوع الحمل",
+        profile:"الملف"
+      },
+      en:{
+        backButton:"Back",
+        pageTitle:"Documents",
+        pageText:"Save important documents, applications, results and memories privately.",
+        uploadTitle:"Upload document",
+        documentTitleLabel:"Title",
+        documentCategoryLabel:"Category",
+        documentFileLabel:"File / photo / PDF",
+        documentNotesLabel:"Note",
+        uploadButton:"Save document",
+        checklistTitle:"Document checklist",
+        checklistText:"Important documents and applications at a glance.",
+        savedTitle:"Saved documents",
+        catAll:"All",
+        catApplication:"Applications",
+        catMedical:"Medical",
+        catMemory:"Memories",
+        categoryMutterpass:"Maternity record",
+        categoryMedical:"Result",
+        categoryApplication:"Application",
+        categoryInsurance:"Insurance",
+        categoryStandesamt:"Registry office",
+        categoryMemory:"Memory",
+        categoryOther:"Other",
+        loginTitle:"Please log in",
+        loginText:"You need to log in first.",
+        loginBackButton:"Back to home",
+        missing:"Please choose a title and a file.",
+        saved:"Document saved ✅",
+        deleted:"Document deleted ✅",
+        empty:"No documents yet.",
+        checklistEmpty:"No checklist yet.",
+        open:"Open",
+        delete:"Delete",
+        uploadThis:"Upload this document",
+        done:"Done",
+        openStatus:"Open",
+        markDone:"Mark as done",
+        markOpen:"Mark as open",
+        week:"Week",
+        profile:"Profile"
+      },
+      tr:{
+        backButton:"Geri",
+        pageTitle:"Belgeler",
+        pageText:"Önemli belgeleri, başvuruları, sonuçları ve anıları özel olarak kaydet.",
+        uploadTitle:"Belge yükle",
+        documentTitleLabel:"Başlık",
+        documentCategoryLabel:"Kategori",
+        documentFileLabel:"Dosya / fotoğraf / PDF",
+        documentNotesLabel:"Not",
+        uploadButton:"Belgeyi kaydet",
+        checklistTitle:"Belge kontrol listesi",
+        checklistText:"Önemli belgeler ve başvurulara genel bakış.",
+        savedTitle:"Kaydedilen belgeler",
+        catAll:"Hepsi",
+        catApplication:"Başvurular",
+        catMedical:"Tıbbi",
+        catMemory:"Anılar",
+        categoryMutterpass:"Anne karnesi",
+        categoryMedical:"Sonuç",
+        categoryApplication:"Başvuru",
+        categoryInsurance:"Sigorta",
+        categoryStandesamt:"Nüfus dairesi",
+        categoryMemory:"Anı",
+        categoryOther:"Diğer",
+        loginTitle:"Lütfen giriş yap",
+        loginText:"Önce giriş yapmalısın.",
+        loginBackButton:"Ana sayfaya dön",
+        missing:"Lütfen başlık ve dosya seç.",
+        saved:"Belge kaydedildi ✅",
+        deleted:"Belge silindi ✅",
+        empty:"Henüz belge yok.",
+        checklistEmpty:"Henüz kontrol listesi yok.",
+        open:"Aç",
+        delete:"Sil",
+        uploadThis:"Bu belgeyi yükle",
+        done:"Tamamlandı",
+        openStatus:"Açık",
+        markDone:"Tamamlandı olarak işaretle",
+        markOpen:"Açık olarak işaretle",
+        week:"Hafta",
+        profile:"Profil"
+      },
+      ru:{
+        backButton:"Назад",
+        pageTitle:"Документы",
+        pageText:"Сохраняйте важные документы, заявления, результаты и воспоминания приватно.",
+        uploadTitle:"Загрузить документ",
+        documentTitleLabel:"Название",
+        documentCategoryLabel:"Категория",
+        documentFileLabel:"Файл / фото / PDF",
+        documentNotesLabel:"Заметка",
+        uploadButton:"Сохранить документ",
+        checklistTitle:"Список документов",
+        checklistText:"Важные документы и заявления в одном месте.",
+        savedTitle:"Сохранённые документы",
+        catAll:"Все",
+        catApplication:"Заявления",
+        catMedical:"Медицина",
+        catMemory:"Воспоминания",
+        categoryMutterpass:"Mutterpass",
+        categoryMedical:"Результат",
+        categoryApplication:"Заявление",
+        categoryInsurance:"Страховка",
+        categoryStandesamt:"ЗАГС",
+        categoryMemory:"Воспоминание",
+        categoryOther:"Другое",
+        loginTitle:"Войдите в аккаунт",
+        loginText:"Сначала нужно войти.",
+        loginBackButton:"На главную",
+        missing:"Выберите название и файл.",
+        saved:"Документ сохранён ✅",
+        deleted:"Документ удалён ✅",
+        empty:"Документов пока нет.",
+        checklistEmpty:"Списка пока нет.",
+        open:"Открыть",
+        delete:"Удалить",
+        uploadThis:"Загрузить этот документ",
+        done:"Готово",
+        openStatus:"Открыто",
+        markDone:"Отметить как готово",
+        markOpen:"Отметить как открыто",
+        week:"Неделя",
+        profile:"Профиль"
+      },
+      uk:{
+        backButton:"Назад",
+        pageTitle:"Документи",
+        pageText:"Зберігайте важливі документи, заяви, результати та спогади приватно.",
+        uploadTitle:"Завантажити документ",
+        documentTitleLabel:"Назва",
+        documentCategoryLabel:"Категорія",
+        documentFileLabel:"Файл / фото / PDF",
+        documentNotesLabel:"Нотатка",
+        uploadButton:"Зберегти документ",
+        checklistTitle:"Список документів",
+        checklistText:"Важливі документи та заяви в одному місці.",
+        savedTitle:"Збережені документи",
+        catAll:"Усі",
+        catApplication:"Заяви",
+        catMedical:"Медицина",
+        catMemory:"Спогади",
+        categoryMutterpass:"Mutterpass",
+        categoryMedical:"Результат",
+        categoryApplication:"Заява",
+        categoryInsurance:"Страховка",
+        categoryStandesamt:"РАЦС",
+        categoryMemory:"Спогад",
+        categoryOther:"Інше",
+        loginTitle:"Увійдіть",
+        loginText:"Спочатку потрібно увійти.",
+        loginBackButton:"На головну",
+        missing:"Виберіть назву і файл.",
+        saved:"Документ збережено ✅",
+        deleted:"Документ видалено ✅",
+        empty:"Документів поки немає.",
+        checklistEmpty:"Списку поки немає.",
+        open:"Відкрити",
+        delete:"Видалити",
+        uploadThis:"Завантажити цей документ",
+        done:"Готово",
+        openStatus:"Відкрито",
+        markDone:"Позначити як готово",
+        markOpen:"Позначити як відкрито",
+        week:"Тиждень",
+        profile:"Профіль"
+      }
+    };
+
+    function t(){
+      return translations[currentLang] || translations.de;
+    }
+
+    function setLanguage(lang){
+      currentLang = lang;
+      localStorage.setItem("mama_lang", lang);
+
+      document.documentElement.lang = lang;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+      const active = document.getElementById("lang-" + lang);
+      if (active) active.classList.add("active");
+
+      const tr = t();
+      [
+        "backButton","pageTitle","pageText","uploadTitle","documentTitleLabel","documentCategoryLabel",
+        "documentFileLabel","documentNotesLabel","uploadButton","checklistTitle","checklistText",
+        "savedTitle","catAll","catApplication","catMedical","catMemory","categoryMutterpass",
+        "categoryMedical","categoryApplication","categoryInsurance","categoryStandesamt",
+        "categoryMemory","categoryOther","loginTitle","loginText","loginBackButton"
+      ].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && tr[id]) el.textContent = tr[id];
+      });
+
+      updateButtons();
+      renderProfileInfo();
+      loadDocuments();
+      loadChecklist();
+    }
+
+    function showMessage(type, text){
+      const box = document.getElementById("messageBox");
+      box.className = "message " + type;
+      box.textContent = text;
+    }
+
+    function cleanFileName(name){
+      return String(name || "file")
+        .replace(/[^a-zA-Z0-9._-]/g,"_")
+        .slice(0,120);
+    }
+
+    function parseLocalDate(value){
+      const parts = value.split("-").map(Number);
+      return new Date(parts[0], parts[1] - 1, parts[2]);
+    }
+
+    function addDays(date, days){
+      const result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
+
+    function calculatePregnancy(dueDate){
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const start = addDays(dueDate, -280);
+      let week = Math.floor((today - start) / (1000 * 60 * 60 * 24 * 7)) + 1;
+      if (week < 1) week = 1;
+      if (week > 42) week = 42;
+      return week;
+    }
+
+    function determineTheme(type, gender){
+      if (gender === "boy" || gender === "twin_boys") return "boy";
+      if (gender === "girl" || gender === "twin_girls") return "girl";
+      if (type === "twins" || gender === "twin_mixed") return "twin";
+      return "neutral";
+    }
+
+    function applyTheme(theme){
+      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+      if (theme === "boy") document.body.classList.add("theme-boy");
+      if (theme === "girl") document.body.classList.add("theme-girl");
+      if (theme === "twin") document.body.classList.add("theme-twin");
+    }
+
+    function getLocalized(row, field){
+      if (!row) return "";
+      return row[`${field}_${currentLang}`] || row[`${field}_de`] || row[`${field}_en`] || "";
+    }
+
+    function renderProfileInfo(){
+      if (!currentProfile) return;
+
+      const week = currentProfile.due_date
+        ? calculatePregnancy(parseLocalDate(currentProfile.due_date))
+        : "-";
+
+      document.getElementById("profileInfo").textContent =
+        `${t().profile} · ${currentProfile.city || "-"} · ${t().week} ${week}`;
+    }
+
+    async function loadApp(){
+      const { data, error } = await supabaseClient.auth.getSession();
+
+      if (error || !data.session) {
+        document.getElementById("loginMessage").style.display = "block";
+        document.getElementById("appShell").style.display = "none";
+        return;
+      }
+
+      currentUser = data.session.user;
+
+      const { data: profiles, error: profileError } = await supabaseClient
+        .from("pregnancy_profiles")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .order("created_at", { ascending:false })
+        .limit(1);
+
+      if (profileError || !profiles || profiles.length === 0) {
+        window.location.href = "index.html?reason=no_profile";
+        return;
+      }
+
+      currentProfile = profiles[0];
+      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+      applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+      document.getElementById("loginMessage").style.display = "none";
+      document.getElementById("appShell").style.display = "block";
+
+      setLanguage(currentLang);
+    }
+
+    async function uploadDocument(){
+      const title = document.getElementById("documentTitle").value.trim();
+      const category = document.getElementById("documentCategory").value;
+      const notes = document.getElementById("documentNotes").value.trim();
+      const file = document.getElementById("documentFile").files?.[0];
+
+      if (!title || !file) {
+        showMessage("error", t().missing);
+        return;
+      }
+
+      const path = `${currentUser.id}/${Date.now()}-${cleanFileName(file.name)}`;
+
+      const upload = await supabaseClient
+        .storage
+        .from("pregnancy-documents")
+        .upload(path, file, { upsert:false });
+
+      if (upload.error) {
+        showMessage("error", upload.error.message);
+        return;
+      }
+
+      const week = currentProfile.due_date
+        ? calculatePregnancy(parseLocalDate(currentProfile.due_date))
+        : null;
+
+      const { error } = await supabaseClient
+        .from("pregnancy_documents")
+        .insert({
+          user_id:currentUser.id,
+          profile_id:currentProfile.id,
+          title,
+          category,
+          storage_path:path,
+          notes,
+          pregnancy_week:week,
+          status:"saved"
+        });
+
+      if (error) {
+        showMessage("error", error.message);
+        return;
+      }
+
+      document.getElementById("documentTitle").value = "";
+      document.getElementById("documentNotes").value = "";
+      document.getElementById("documentFile").value = "";
+
+      showMessage("success", t().saved);
+
+      await loadDocuments();
+      await loadChecklist();
+    }
+
+    function setCategory(category){
+      documentCategoryFilter = category;
+      updateButtons();
+      loadDocuments();
+    }
+
+    function updateButtons(){
+      [
+        ["catAll","all"],
+        ["catApplication","application"],
+        ["catMedical","medical_result"],
+        ["catMemory","memory"]
+      ].forEach(([id,value]) => {
+        const button = document.getElementById(id);
+        if (button) button.classList.toggle("active", documentCategoryFilter === value);
+      });
+    }
+
+    async function loadDocuments(){
+      if (!currentUser) return;
+
+      const list = document.getElementById("documentList");
+      list.innerHTML = "";
+
+      let query = supabaseClient
+        .from("pregnancy_documents")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .order("created_at", { ascending:false });
+
+      if (documentCategoryFilter !== "all") {
+        query = query.eq("category", documentCategoryFilter);
+      }
+
+      const { data, error } = await query;
+
+      if (error) {
+        list.innerHTML = `<div class="empty">${error.message}</div>`;
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        list.innerHTML = `<div class="empty">${t().empty}</div>`;
+        return;
+      }
+
+      data.forEach(doc => {
+        const card = document.createElement("div");
+        card.className = "document-card";
+
+        card.innerHTML = `
+          <div class="badge">${doc.category || ""}</div>
+          <div class="badge">${t().week} ${doc.pregnancy_week || "-"}</div>
+          <h3>${doc.title || ""}</h3>
+          <p>${doc.notes || ""}</p>
+        `;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const openButton = document.createElement("button");
+        openButton.className = "button-light";
+        openButton.textContent = t().open;
+        openButton.onclick = () => openDocument(doc.storage_path);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "button-danger";
+        deleteButton.textContent = t().delete;
+        deleteButton.onclick = () => deleteDocument(doc.id, doc.storage_path);
+
+        actions.appendChild(openButton);
+        actions.appendChild(deleteButton);
+        card.appendChild(actions);
+
+        list.appendChild(card);
+      });
+    }
+
+    async function openDocument(path){
+      const { data, error } = await supabaseClient
+        .storage
+        .from("pregnancy-documents")
+        .createSignedUrl(path, 60 * 10);
+
+      if (error) {
+        showMessage("error", error.message);
+        return;
+      }
+
+      window.open(data.signedUrl, "_blank");
+    }
+
+    async function deleteDocument(id, path){
+      await supabaseClient
+        .from("pregnancy_documents")
+        .delete()
+        .eq("id", id)
+        .eq("user_id", currentUser.id);
+
+      if (path) {
+        await supabaseClient
+          .storage
+          .from("pregnancy-documents")
+          .remove([path]);
+      }
+
+      showMessage("success", t().deleted);
+
+      await loadDocuments();
+      await loadChecklist();
+    }
+
+    async function loadChecklist(){
+      if (!currentUser) return;
+
+      const list = document.getElementById("checklist");
+      list.innerHTML = "";
+
+      const { data: templates, error } = await supabaseClient
+        .from("document_templates")
+        .select("*")
+        .order("recommended_week", { ascending:true });
+
+      if (error) {
+        list.innerHTML = `<div class="empty">${error.message}</div>`;
+        return;
+      }
+
+      if (!templates || templates.length === 0) {
+        list.innerHTML = `<div class="empty">${t().checklistEmpty}</div>`;
+        return;
+      }
+
+      const { data: statuses } = await supabaseClient
+        .from("user_document_status")
+        .select("*")
+        .eq("user_id", currentUser.id);
+
+      const statusMap = {};
+      (statuses || []).forEach(status => {
+        statusMap[status.template_key] = status.status;
+      });
+
+      templates.forEach(template => {
+        const done = statusMap[template.key] === "done";
+        const title = getLocalized(template, "title") || template.title_de || template.key;
+        const description = getLocalized(template, "description") || template.description_de || "";
+
+        const card = document.createElement("div");
+        card.className = "check-card";
+
+        card.innerHTML = `
+          <div class="badge">${t().week} ${template.recommended_week || "-"}</div>
+          <div class="badge">${done ? t().done : t().openStatus}</div>
+          <h3>${title}</h3>
+          <p>${description}</p>
+        `;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const uploadButton = document.createElement("button");
+        uploadButton.className = "button-light";
+        uploadButton.textContent = t().uploadThis;
+        uploadButton.onclick = () => {
+          document.getElementById("documentTitle").value = title;
+          document.getElementById("documentNotes").value = description;
+          document.getElementById("documentFile").scrollIntoView({ behavior:"smooth", block:"center" });
+        };
+
+        const statusButton = document.createElement("button");
+        statusButton.className = done ? "button done" : "button";
+        statusButton.textContent = done ? t().markOpen : t().markDone;
+        statusButton.onclick = () => toggleChecklistStatus(template.key, done ? "open" : "done");
+
+        actions.appendChild(uploadButton);
+        actions.appendChild(statusButton);
+
+        if (template.link_url) {
+          const link = document.createElement("a");
+          link.className = "button-light";
+          link.href = template.link_url;
+          link.target = "_blank";
+          link.textContent = t().open;
+          actions.appendChild(link);
+        }
+
+        card.appendChild(actions);
+        list.appendChild(card);
+      });
+    }
+
+    async function toggleChecklistStatus(key, status){
+      const { error } = await supabaseClient
+        .from("user_document_status")
+        .upsert(
+          {
+            user_id:currentUser.id,
+            profile_id:currentProfile.id,
+            template_key:key,
+            status
+          },
+          { onConflict:"user_id,template_key" }
+        );
+
+      if (error) {
+        showMessage("error", error.message);
+        return;
+      }
+
+      await loadChecklist();
+    }
+
+    loadApp();
+  </script>
+</body>
+</html>

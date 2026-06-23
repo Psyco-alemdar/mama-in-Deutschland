@@ -318,6 +318,32 @@
       border:1px solid var(--border);
     }
 
+    .auth-menu {
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .auth-choice {
+      width:100%;
+      padding:15px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:white;
+      color:var(--brown);
+      font-size:15px;
+      font-weight:950;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .auth-choice.active {
+      background:var(--brown);
+      color:white;
+      box-shadow:0 12px 24px var(--shadow);
+    }
+
     .button,
     .button-secondary,
     .button-link,
@@ -343,15 +369,15 @@
       background:var(--brown2);
     }
 
-    .button-danger {
-      background:var(--danger);
-    }
-
     .button-link {
       background:transparent;
       color:var(--brown);
       box-shadow:none;
       border:1px solid var(--border);
+    }
+
+    .button-danger {
+      background:var(--danger);
     }
 
     .button:hover,
@@ -360,28 +386,6 @@
     .button-link:hover {
       transform:translateY(-1px);
       opacity:.94;
-    }
-
-    .mode-row {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-bottom:18px;
-    }
-
-    .mode-row button {
-      border:1px solid var(--border);
-      background:white;
-      color:var(--brown);
-      padding:13px;
-      border-radius:18px;
-      cursor:pointer;
-      font-weight:950;
-    }
-
-    .mode-row button.active {
-      background:var(--brown);
-      color:white;
     }
 
     .signup-profile {
@@ -395,21 +399,16 @@
       display:block;
     }
 
+    .field-group.hidden,
+    .hidden {
+      display:none !important;
+    }
+
     .note {
       margin-top:12px;
       color:var(--muted);
       font-size:13px;
       line-height:1.5;
-    }
-
-    .gender-row {
-      display:grid;
-      grid-template-columns:1fr;
-      gap:8px;
-    }
-
-    .hidden {
-      display:none !important;
     }
 
     .footer {
@@ -438,10 +437,6 @@
       .card {
         padding:24px;
         border-radius:28px;
-      }
-
-      .mode-row {
-        grid-template-columns:1fr;
       }
 
       h1 {
@@ -500,21 +495,29 @@
       <div class="card">
         <h2 id="accountTitle">Mein Konto</h2>
 
-        <div class="mode-row">
-          <button id="loginModeButton" class="active" onclick="setAuthMode('login')">Einloggen</button>
-          <button id="signupModeButton" onclick="setAuthMode('signup')">Konto erstellen</button>
+        <div class="auth-menu">
+          <button id="signupModeButton" class="auth-choice" onclick="setAuthMode('signup')">
+            Konto erstellen
+          </button>
+
+          <button id="loginModeButton" class="auth-choice active" onclick="setAuthMode('login')">
+            Einloggen
+          </button>
+
+          <button id="forgotModeButton" class="auth-choice" onclick="setAuthMode('forgot')">
+            Passwort vergessen?
+          </button>
         </div>
 
         <label id="emailLabel" for="email">E-Mail</label>
         <input type="email" id="email" placeholder="name@email.com" />
         <div class="error-text" id="emailError"></div>
 
-        <label id="passwordLabel" for="password">Passwort</label>
-        <input type="password" id="password" placeholder="Mindestens 6 Zeichen" />
-        <div class="error-text" id="passwordError"></div>
-
-        <button class="button" onclick="login()" id="loginButton">Einloggen</button>
-        <button class="button-link" onclick="forgotPassword()" id="forgotButton">Passwort vergessen?</button>
+        <div class="field-group" id="passwordGroup">
+          <label id="passwordLabel" for="password">Passwort</label>
+          <input type="password" id="password" placeholder="Mindestens 6 Zeichen" />
+          <div class="error-text" id="passwordError"></div>
+        </div>
 
         <div class="signup-profile" id="signupProfile">
           <h2 id="profileTitle">Schwangerschaftsprofil</h2>
@@ -548,33 +551,22 @@
             <div class="error-text" id="lastPeriodError"></div>
 
             <label id="cycleLabel" for="cycleLength">Zykluslänge</label>
-            <select id="cycleLength">
-              <option value="26">26 Tage</option>
-              <option value="27">27 Tage</option>
-              <option value="28" selected>28 Tage</option>
-              <option value="29">29 Tage</option>
-              <option value="30">30 Tage</option>
-              <option value="31">31 Tage</option>
-              <option value="32">32 Tage</option>
-              <option value="33">33 Tage</option>
-              <option value="34">34 Tage</option>
-              <option value="35">35 Tage</option>
-            </select>
+            <select id="cycleLength"></select>
           </div>
 
           <label id="statusLabel" for="workStatus">Situation</label>
           <select id="workStatus">
-            <option value="angestellt">Angestellt</option>
-            <option value="arbeitslos">Nicht berufstätig</option>
-            <option value="studentin">Studentin</option>
-            <option value="selbstständig">Selbstständig</option>
+            <option value="angestellt" id="workAngestellt">Angestellt</option>
+            <option value="arbeitslos" id="workArbeitslos">Nicht berufstätig</option>
+            <option value="studentin" id="workStudentin">Studentin</option>
+            <option value="selbstständig" id="workSelbst">Selbstständig</option>
           </select>
 
           <label id="insuranceLabel" for="insuranceType">Krankenversicherung</label>
           <select id="insuranceType">
-            <option value="gesetzlich">Gesetzlich versichert</option>
-            <option value="privat">Privat versichert</option>
-            <option value="unsicher">Ich bin nicht sicher</option>
+            <option value="gesetzlich" id="insurancePublic">Gesetzlich versichert</option>
+            <option value="privat" id="insurancePrivate">Privat versichert</option>
+            <option value="unsicher" id="insuranceUnsure">Ich bin nicht sicher</option>
           </select>
 
           <label id="pregnancyTypeLabel" for="pregnancyType">Schwangerschaft</label>
@@ -598,8 +590,8 @@
           </div>
         </div>
 
-        <button class="button-secondary hidden" onclick="createAccountAndProfile()" id="createButton">
-          Konto erstellen und App öffnen
+        <button class="button" onclick="handleMainAction()" id="mainActionButton">
+          Einloggen
         </button>
 
         <div class="message" id="mainMessage"></div>
@@ -613,7 +605,7 @@
 
   <script>
     const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXJhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -635,10 +627,9 @@
         accountTitle:"Mein Konto",
         loginModeButton:"Einloggen",
         signupModeButton:"Konto erstellen",
+        forgotModeButton:"Passwort vergessen?",
         emailLabel:"E-Mail",
         passwordLabel:"Passwort",
-        loginButton:"Einloggen",
-        forgotButton:"Passwort vergessen?",
         profileTitle:"Schwangerschaftsprofil",
         motherNameLabel:"Vorname der Mama",
         babyNameLabel:"Babyname",
@@ -662,7 +653,22 @@
         genderTwinGirls:"Zwillinge: Mädchen",
         genderTwinMixed:"Zwillinge: Junge & Mädchen",
         genderNote:"Das Geschlecht wird in der App erst sinnvoll ab etwa SSW 14 verwendet.",
-        createButton:"Konto erstellen und App öffnen",
+        workAngestellt:"Angestellt",
+        workArbeitslos:"Nicht berufstätig",
+        workStudentin:"Studentin",
+        workSelbst:"Selbstständig",
+        insurancePublic:"Gesetzlich versichert",
+        insurancePrivate:"Privat versichert",
+        insuranceUnsure:"Ich bin nicht sicher",
+        loginAction:"Einloggen",
+        signupAction:"Konto erstellen und App öffnen",
+        forgotAction:"Passwort-Link senden",
+        emailPlaceholder:"name@email.com",
+        passwordPlaceholder:"Mindestens 6 Zeichen",
+        motherPlaceholder:"Zum Beispiel: Sarah",
+        babyPlaceholder:"Zum Beispiel: Sophia",
+        cityPlaceholder:"Zum Beispiel: Mülheim an der Ruhr",
+        dayWord:"Tage",
         emailRequired:"Bitte E-Mail eingeben.",
         passwordRequired:"Bitte Passwort eingeben.",
         passwordShort:"Das Passwort muss mindestens 6 Zeichen haben.",
@@ -676,6 +682,7 @@
         resetSent:"E-Mail zum Zurücksetzen des Passworts wurde gesendet.",
         resetError:"Passwort-Reset konnte nicht gesendet werden."
       },
+
       fr: {
         languageTitle:"Choisir la langue",
         eyebrow:"Grossesse · Calendrier · Allemagne",
@@ -690,10 +697,9 @@
         accountTitle:"Mon compte",
         loginModeButton:"Connexion",
         signupModeButton:"Créer un compte",
+        forgotModeButton:"Mot de passe oublié ?",
         emailLabel:"E-mail",
         passwordLabel:"Mot de passe",
-        loginButton:"Connexion",
-        forgotButton:"Mot de passe oublié ?",
         profileTitle:"Profil grossesse",
         motherNameLabel:"Prénom de la maman",
         babyNameLabel:"Prénom du bébé",
@@ -717,7 +723,22 @@
         genderTwinGirls:"Jumeaux : filles",
         genderTwinMixed:"Jumeaux : garçon & fille",
         genderNote:"Le sexe sera utilisé dans l’app surtout à partir d’environ la semaine 14.",
-        createButton:"Créer le compte et ouvrir l’app",
+        workAngestellt:"Salariée",
+        workArbeitslos:"Sans activité professionnelle",
+        workStudentin:"Étudiante",
+        workSelbst:"Indépendante",
+        insurancePublic:"Assurance publique",
+        insurancePrivate:"Assurance privée",
+        insuranceUnsure:"Je ne suis pas sûre",
+        loginAction:"Connexion",
+        signupAction:"Créer le compte et ouvrir l’app",
+        forgotAction:"Envoyer le lien",
+        emailPlaceholder:"nom@email.com",
+        passwordPlaceholder:"Au moins 6 caractères",
+        motherPlaceholder:"Par exemple : Sarah",
+        babyPlaceholder:"Par exemple : Sophia",
+        cityPlaceholder:"Par exemple : Mülheim an der Ruhr",
+        dayWord:"jours",
         emailRequired:"Merci d’écrire l’e-mail.",
         passwordRequired:"Merci d’écrire le mot de passe.",
         passwordShort:"Le mot de passe doit contenir au moins 6 caractères.",
@@ -731,6 +752,7 @@
         resetSent:"E-mail de réinitialisation envoyé.",
         resetError:"La réinitialisation n’a pas pu être envoyée."
       },
+
       ar: {
         languageTitle:"اختيار اللغة",
         eyebrow:"الحمل · التقويم · ألمانيا",
@@ -745,10 +767,9 @@
         accountTitle:"حسابي",
         loginModeButton:"تسجيل الدخول",
         signupModeButton:"إنشاء حساب",
+        forgotModeButton:"نسيت كلمة المرور؟",
         emailLabel:"البريد الإلكتروني",
         passwordLabel:"كلمة المرور",
-        loginButton:"تسجيل الدخول",
-        forgotButton:"نسيت كلمة المرور؟",
         profileTitle:"ملف الحمل",
         motherNameLabel:"اسم الأم",
         babyNameLabel:"اسم الطفل",
@@ -772,7 +793,22 @@
         genderTwinGirls:"توأم: بنات",
         genderTwinMixed:"توأم: ولد وبنت",
         genderNote:"يتم استخدام جنس الطفل في التطبيق بشكل مناسب ابتداءً من حوالي الأسبوع 14.",
-        createButton:"إنشاء الحساب وفتح التطبيق",
+        workAngestellt:"موظفة",
+        workArbeitslos:"بدون عمل",
+        workStudentin:"طالبة",
+        workSelbst:"عمل حر",
+        insurancePublic:"تأمين حكومي",
+        insurancePrivate:"تأمين خاص",
+        insuranceUnsure:"لست متأكدة",
+        loginAction:"تسجيل الدخول",
+        signupAction:"إنشاء الحساب وفتح التطبيق",
+        forgotAction:"إرسال رابط كلمة المرور",
+        emailPlaceholder:"name@email.com",
+        passwordPlaceholder:"على الأقل 6 أحرف",
+        motherPlaceholder:"مثال: سارة",
+        babyPlaceholder:"مثال: صوفيا",
+        cityPlaceholder:"مثال: Mülheim an der Ruhr",
+        dayWord:"يوم",
         emailRequired:"يرجى كتابة البريد الإلكتروني.",
         passwordRequired:"يرجى كتابة كلمة المرور.",
         passwordShort:"كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل.",
@@ -786,6 +822,7 @@
         resetSent:"تم إرسال بريد إعادة تعيين كلمة المرور.",
         resetError:"تعذر إرسال إعادة تعيين كلمة المرور."
       },
+
       en: {
         languageTitle:"Choose language",
         eyebrow:"Pregnancy · Calendar · Germany",
@@ -800,10 +837,9 @@
         accountTitle:"My account",
         loginModeButton:"Log in",
         signupModeButton:"Create account",
+        forgotModeButton:"Forgot password?",
         emailLabel:"Email",
         passwordLabel:"Password",
-        loginButton:"Log in",
-        forgotButton:"Forgot password?",
         profileTitle:"Pregnancy profile",
         motherNameLabel:"Mother’s first name",
         babyNameLabel:"Baby name",
@@ -827,7 +863,22 @@
         genderTwinGirls:"Twins: girls",
         genderTwinMixed:"Twins: boy & girl",
         genderNote:"The baby sex is used in the app mainly from around week 14.",
-        createButton:"Create account and open app",
+        workAngestellt:"Employed",
+        workArbeitslos:"Not working",
+        workStudentin:"Student",
+        workSelbst:"Self-employed",
+        insurancePublic:"Public insurance",
+        insurancePrivate:"Private insurance",
+        insuranceUnsure:"I am not sure",
+        loginAction:"Log in",
+        signupAction:"Create account and open app",
+        forgotAction:"Send reset link",
+        emailPlaceholder:"name@email.com",
+        passwordPlaceholder:"At least 6 characters",
+        motherPlaceholder:"For example: Sarah",
+        babyPlaceholder:"For example: Sophia",
+        cityPlaceholder:"For example: Mülheim an der Ruhr",
+        dayWord:"days",
         emailRequired:"Please enter email.",
         passwordRequired:"Please enter password.",
         passwordShort:"Password must be at least 6 characters.",
@@ -846,46 +897,77 @@
     translations.tr = {
       ...translations.en,
       languageTitle:"Dil seç",
+      eyebrow:"Hamilelik · Takvim · Almanya",
       mainTitle:"Almanya’daki hamileliğin için her şey.",
+      mainText:"Almanya’da hamilelik sürecini, randevuları, muayeneleri, bürokrasiyi, beslenmeyi ve organizasyonu anlamak için özel bir platform.",
+      intro1Title:"Hamilelik sürecin",
+      intro1Text:"Hafta hafta bebek gelişimi, anne ipuçları ve anılar.",
+      intro2Title:"Takvim & bürokrasi",
+      intro2Text:"Randevular, başvurular, belgeler ve kurslar için doğrudan linkler.",
+      intro3Title:"Özel & çok dilli",
+      intro3Text:"Hesabın, dilin, belgelerin ve anıların.",
       accountTitle:"Hesabım",
       loginModeButton:"Giriş yap",
       signupModeButton:"Hesap oluştur",
-      forgotButton:"Şifremi unuttum?",
+      forgotModeButton:"Şifremi unuttum?",
+      emailLabel:"E-posta",
+      passwordLabel:"Şifre",
       profileTitle:"Hamilelik profili",
       motherNameLabel:"Anne adı",
       babyNameLabel:"Bebek adı",
       cityLabel:"Almanya’daki şehir",
-      createButton:"Hesap oluştur ve uygulamayı aç"
+      loginAction:"Giriş yap",
+      signupAction:"Hesap oluştur ve uygulamayı aç",
+      forgotAction:"Sıfırlama linki gönder",
+      passwordPlaceholder:"En az 6 karakter",
+      motherPlaceholder:"Örneğin: Sarah",
+      babyPlaceholder:"Örneğin: Sophia",
+      dayWord:"gün"
     };
 
     translations.ru = {
       ...translations.en,
       languageTitle:"Выбрать язык",
+      eyebrow:"Беременность · Календарь · Германия",
       mainTitle:"Всё для твоей беременности в Германии.",
+      mainText:"Приватная платформа, чтобы понять беременность, встречи, обследования, бюрократию, питание и организацию в Германии.",
       accountTitle:"Мой аккаунт",
       loginModeButton:"Войти",
       signupModeButton:"Создать аккаунт",
-      forgotButton:"Забыли пароль?",
+      forgotModeButton:"Забыли пароль?",
+      emailLabel:"E-mail",
+      passwordLabel:"Пароль",
       profileTitle:"Профиль беременности",
       motherNameLabel:"Имя мамы",
       babyNameLabel:"Имя малыша",
       cityLabel:"Город в Германии",
-      createButton:"Создать аккаунт и открыть приложение"
+      loginAction:"Войти",
+      signupAction:"Создать аккаунт и открыть приложение",
+      forgotAction:"Отправить ссылку",
+      passwordPlaceholder:"Минимум 6 символов",
+      motherPlaceholder:"Например: Sarah",
+      babyPlaceholder:"Например: Sophia",
+      dayWord:"дней"
     };
 
     translations.uk = {
-      ...translations.en,
+      ...translations.ru,
       languageTitle:"Вибрати мову",
+      eyebrow:"Вагітність · Календар · Німеччина",
       mainTitle:"Усе для твоєї вагітності в Німеччині.",
+      mainText:"Приватна платформа, щоб зрозуміти вагітність, зустрічі, обстеження, бюрократію, харчування та організацію в Німеччині.",
       accountTitle:"Мій акаунт",
       loginModeButton:"Увійти",
       signupModeButton:"Створити акаунт",
-      forgotButton:"Забули пароль?",
+      forgotModeButton:"Забули пароль?",
       profileTitle:"Профіль вагітності",
       motherNameLabel:"Ім’я мами",
       babyNameLabel:"Ім’я малюка",
       cityLabel:"Місто в Німеччині",
-      createButton:"Створити акаунт і відкрити застосунок"
+      loginAction:"Увійти",
+      signupAction:"Створити акаунт і відкрити застосунок",
+      forgotAction:"Надіслати посилання",
+      dayWord:"днів"
     };
 
     function t() {
@@ -907,34 +989,73 @@
       const ids = [
         "languageTitle","eyebrow","mainTitle","mainText",
         "intro1Title","intro1Text","intro2Title","intro2Text","intro3Title","intro3Text",
-        "accountTitle","loginModeButton","signupModeButton","emailLabel","passwordLabel",
-        "loginButton","forgotButton","profileTitle","motherNameLabel","babyNameLabel","cityLabel",
+        "accountTitle","loginModeButton","signupModeButton","forgotModeButton",
+        "emailLabel","passwordLabel","profileTitle","motherNameLabel","babyNameLabel","cityLabel",
         "dateModeLabel","dateModeKnown","dateModeUnknown","dueDateLabel","lastPeriodLabel","cycleLabel",
         "statusLabel","insuranceLabel","pregnancyTypeLabel","singletonOption","twinsOption",
         "babyGenderLabel","genderUnknown","genderBoy","genderGirl","genderTwinBoys","genderTwinGirls","genderTwinMixed",
-        "genderNote","createButton"
+        "genderNote","workAngestellt","workArbeitslos","workStudentin","workSelbst",
+        "insurancePublic","insurancePrivate","insuranceUnsure"
       ];
 
       ids.forEach(id => {
         const el = document.getElementById(id);
         if (el && tr[id]) el.textContent = tr[id];
       });
+
+      document.getElementById("email").placeholder = tr.emailPlaceholder;
+      document.getElementById("password").placeholder = tr.passwordPlaceholder;
+      document.getElementById("motherName").placeholder = tr.motherPlaceholder;
+      document.getElementById("babyName").placeholder = tr.babyPlaceholder;
+      document.getElementById("city").placeholder = tr.cityPlaceholder;
+
+      updateCycleOptions();
+      updateMainActionText();
+    }
+
+    function updateCycleOptions() {
+      const cycle = document.getElementById("cycleLength");
+      const selected = cycle.value || "28";
+      cycle.innerHTML = "";
+
+      [26,27,28,29,30,31,32,33,34,35].forEach(day => {
+        const option = document.createElement("option");
+        option.value = String(day);
+        option.textContent = `${day} ${t().dayWord}`;
+        cycle.appendChild(option);
+      });
+
+      cycle.value = selected;
     }
 
     function setAuthMode(mode) {
       authMode = mode;
 
-      document.getElementById("loginModeButton").classList.toggle("active", mode === "login");
       document.getElementById("signupModeButton").classList.toggle("active", mode === "signup");
+      document.getElementById("loginModeButton").classList.toggle("active", mode === "login");
+      document.getElementById("forgotModeButton").classList.toggle("active", mode === "forgot");
 
-      document.getElementById("loginButton").classList.toggle("hidden", mode !== "login");
-      document.getElementById("forgotButton").classList.toggle("hidden", mode !== "login");
-      document.getElementById("createButton").classList.toggle("hidden", mode !== "signup");
+      document.getElementById("passwordGroup").classList.toggle("hidden", mode === "forgot");
       document.getElementById("signupProfile").classList.toggle("show", mode === "signup");
 
       clearErrors();
       clearMessage();
+      updateMainActionText();
       updateGenderOptions();
+    }
+
+    function updateMainActionText() {
+      const button = document.getElementById("mainActionButton");
+
+      if (authMode === "signup") button.textContent = t().signupAction;
+      if (authMode === "login") button.textContent = t().loginAction;
+      if (authMode === "forgot") button.textContent = t().forgotAction;
+    }
+
+    function handleMainAction() {
+      if (authMode === "signup") createAccountAndProfile();
+      if (authMode === "login") login();
+      if (authMode === "forgot") forgotPassword();
     }
 
     function showMessage(type, text) {
@@ -951,7 +1072,8 @@
 
     function showFieldError(id, message) {
       const input = document.getElementById(id);
-      const error = document.getElementById(`${id}Error`);
+      const errorId = id === "lastPeriodDate" ? "lastPeriodError" : `${id}Error`;
+      const error = document.getElementById(errorId);
 
       if (input) input.classList.add("error");
       if (error) {
@@ -1208,6 +1330,12 @@
         return;
       }
 
+      if (signupData.user && signupData.user.identities && signupData.user.identities.length === 0) {
+        showFieldError("email", tr.emailAlready);
+        showMessage("error", tr.emailAlready);
+        return;
+      }
+
       showMessage("success", tr.signupSuccess);
 
       let user = signupData.user;
@@ -1218,8 +1346,17 @@
       }
 
       if (!user) {
-        showMessage("error", "Account created, but session is missing. Please login.");
-        return;
+        const { data: loginData, error: loginError } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (loginError) {
+          showMessage("error", loginError.message);
+          return;
+        }
+
+        user = loginData.user;
       }
 
       const { error: profileError } = await supabaseClient
@@ -1255,6 +1392,7 @@
 
     async function redirectIfAlreadyLoggedIn() {
       const { data } = await supabaseClient.auth.getSession();
+
       if (data.session) {
         const { data: profileData } = await supabaseClient
           .from("pregnancy_profiles")

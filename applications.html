@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama in Deutschland - Anträge</title>
+  <style>
+    :root{
+      --page:#f8f3ec;--card:#ffffff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--brown2:#6f4f3e;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+    }
+    body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--brown2:#315f86;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+    body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--brown2:#9a5570;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+    body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--brown2:#54794e;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+    .brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+    .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .language-buttons{display:flex;gap:8px;flex-wrap:wrap}
+    .language-buttons button,.back,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none}
+    .language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+    .back{border-radius:16px;padding:11px 14px}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+    h1,h2,h3{color:var(--brown);margin:0 0 12px} h1{font-size:34px;letter-spacing:-1.5px} h2{font-size:25px;letter-spacing:-.7px} h3{font-size:18px}
+    p{margin:0;color:var(--muted);line-height:1.6}.pill-row,.filters,.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .pill,.badge{display:inline-flex;padding:8px 11px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 4px 6px 0}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:20px}
+    .button,.button-light{border:none;border-radius:14px;padding:11px 13px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.button{background:var(--brown);color:white}.button.done{background:var(--success)}.button-light{background:var(--soft);color:var(--brown)}
+    .soft{padding:15px;border-radius:20px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}.empty{padding:18px;border-radius:20px;background:var(--cream);border:1px solid var(--border);color:var(--muted)}
+    @media(max-width:800px){.grid{grid-template-columns:1fr}h1{font-size:28px}.wrap{padding:18px 12px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+      <div class="top-actions">
+        <a class="back" href="app.html" id="backButton">Zurück</a>
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="pageShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Anträge-Zentrale</h1>
+        <p id="pageText">Hier findest du die wichtigsten Anträge rund um Schwangerschaft, Geburt und Baby in Deutschland.</p>
+        <div class="pill-row"><span class="pill" id="emailPill">-</span><span class="pill" id="babyPill">Baby</span><span class="pill" id="cityPill">-</span></div>
+        <div class="soft" id="progressText">0 / 0 erledigt</div>
+      </section>
+
+      <section class="card">
+        <h2 id="filterTitle">Filter</h2>
+        <div class="filters">
+          <button class="filter-button active" onclick="setCategory('all')" id="catAll">Alle</button>
+          <button class="filter-button" onclick="setCategory('money')" id="catMoney">Geld</button>
+          <button class="filter-button" onclick="setCategory('work')" id="catWork">Arbeit</button>
+          <button class="filter-button" onclick="setCategory('standesamt')" id="catStandesamt">Standesamt</button>
+        </div>
+        <div class="grid" id="applicationsList"></div>
+      </section>
+    </main>
+
+    <section class="card" id="loginMessage" style="display:none;text-align:center;max-width:650px;margin:60px auto;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p>
+      <br><a class="back" href="index.html" id="loginBack">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"de",categoryFilter="all";
+
+    const translations={
+      de:{back:"Zurück",pageTitle:"Anträge-Zentrale",pageText:"Hier findest du die wichtigsten Anträge rund um Schwangerschaft, Geburt und Baby in Deutschland.",filterTitle:"Filter",catAll:"Alle",catMoney:"Geld",catWork:"Arbeit",catStandesamt:"Standesamt",doneWord:"erledigt",empty:"Noch keine Anträge vorhanden.",open:"Offen",prepared:"Vorbereitet",done:"Erledigt",markOpen:"Als offen markieren",markPrepared:"Als vorbereitet markieren",markDone:"Als erledigt markieren",openLink:"Antrag öffnen",week:"SSW",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBack:"Zur Startseite",babyDefault:"Baby"},
+      fr:{back:"Retour",pageTitle:"Centre des demandes",pageText:"Tu trouveras ici les demandes importantes autour de la grossesse, la naissance et le bébé en Allemagne.",filterTitle:"Filtre",catAll:"Tous",catMoney:"Argent",catWork:"Travail",catStandesamt:"État civil",doneWord:"terminé",empty:"Aucune demande pour le moment.",open:"Ouvert",prepared:"Préparé",done:"Terminé",markOpen:"Marquer comme ouvert",markPrepared:"Marquer comme préparé",markDone:"Marquer comme terminé",openLink:"Ouvrir la demande",week:"SSW",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBack:"Retour à l’accueil",babyDefault:"Bébé"},
+      ar:{back:"رجوع",pageTitle:"مركز الطلبات",pageText:"هنا تجدين أهم الطلبات المتعلقة بالحمل والولادة والطفل في ألمانيا.",filterTitle:"فلتر",catAll:"الكل",catMoney:"المال",catWork:"العمل",catStandesamt:"الحالة المدنية",doneWord:"تم",empty:"لا توجد طلبات حالياً.",open:"مفتوح",prepared:"محضّر",done:"تم",markOpen:"تحديد كمفتوح",markPrepared:"تحديد كمحضّر",markDone:"تحديد كمنجز",openLink:"فتح الطلب",week:"أسبوع الحمل",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBack:"العودة للصفحة الرئيسية",babyDefault:"الطفل"},
+      en:{back:"Back",pageTitle:"Application center",pageText:"Here you find the most important applications around pregnancy, birth and baby in Germany.",filterTitle:"Filter",catAll:"All",catMoney:"Money",catWork:"Work",catStandesamt:"Registry office",doneWord:"done",empty:"No applications yet.",open:"Open",prepared:"Prepared",done:"Done",markOpen:"Mark as open",markPrepared:"Mark as prepared",markDone:"Mark as done",openLink:"Open application",week:"Week",loginTitle:"Please log in",loginText:"You need to log in first.",loginBack:"Home",babyDefault:"Baby"},
+      tr:{back:"Geri",pageTitle:"Başvuru merkezi",pageText:"Almanya’da hamilelik, doğum ve bebekle ilgili önemli başvuruları burada bulabilirsin.",filterTitle:"Filtre",catAll:"Hepsi",catMoney:"Para",catWork:"İş",catStandesamt:"Standesamt",doneWord:"tamamlandı",empty:"Henüz başvuru yok.",open:"Açık",prepared:"Hazırlandı",done:"Tamamlandı",markOpen:"Açık olarak işaretle",markPrepared:"Hazırlandı olarak işaretle",markDone:"Tamamlandı olarak işaretle",openLink:"Başvuruyu aç",week:"Hafta",loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBack:"Ana sayfa",babyDefault:"Bebek"},
+      ru:{back:"Назад",pageTitle:"Центр заявлений",pageText:"Здесь собраны важные заявления, связанные с беременностью, родами и ребёнком в Германии.",filterTitle:"Фильтр",catAll:"Все",catMoney:"Деньги",catWork:"Работа",catStandesamt:"ЗАГС",doneWord:"готово",empty:"Пока нет заявлений.",open:"Открыто",prepared:"Подготовлено",done:"Готово",markOpen:"Отметить как открыто",markPrepared:"Отметить как подготовлено",markDone:"Отметить как готово",openLink:"Открыть заявление",week:"Неделя",loginTitle:"Войдите",loginText:"Сначала нужно войти.",loginBack:"На главную",babyDefault:"Ребёнок"},
+      uk:{back:"Назад",pageTitle:"Центр заяв",pageText:"Тут зібрані важливі заяви, пов’язані з вагітністю, пологами і дитиною в Німеччині.",filterTitle:"Фільтр",catAll:"Усі",catMoney:"Гроші",catWork:"Робота",catStandesamt:"РАЦС",doneWord:"готово",empty:"Поки немає заяв.",open:"Відкрито",prepared:"Підготовлено",done:"Готово",markOpen:"Позначити як відкрито",markPrepared:"Позначити як підготовлено",markDone:"Позначити як готово",openLink:"Відкрити заяву",week:"Тиждень",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBack:"На головну",babyDefault:"Дитина"}
+    };
+
+    function t(){return translations[currentLang]||translations.de;}
+    function getLocalized(row,field){return row?.[`${field}_${currentLang}`]||row?.[`${field}_de`]||row?.[`${field}_en`]||"";}
+    function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral";}
+    function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin");}
+
+    function setLanguage(lang){
+      currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+      document.querySelectorAll(".language-buttons button").forEach(b=>b.classList.remove("active"));document.getElementById("lang-"+lang)?.classList.add("active");
+      const ids=["backButton","pageTitle","pageText","filterTitle","catAll","catMoney","catWork","catStandesamt","loginTitle","loginText","loginBack"];
+      const map={backButton:"back",pageTitle:"pageTitle",pageText:"pageText",filterTitle:"filterTitle",catAll:"catAll",catMoney:"catMoney",catWork:"catWork",catStandesamt:"catStandesamt",loginTitle:"loginTitle",loginText:"loginText",loginBack:"loginBack"};
+      ids.forEach(id=>{const el=document.getElementById(id);const key=map[id];if(el&&t()[key])el.textContent=t()[key];});
+      updateFilterButtons();renderHeader();loadApplications();
+    }
+
+    function renderHeader(){
+      if(!currentProfile)return;
+      document.getElementById("babyPill").textContent=currentProfile.baby_name||t().babyDefault;
+      document.getElementById("cityPill").textContent=currentProfile.city||"-";
+    }
+
+    function categoryLabel(category){if(category==="money")return t().catMoney;if(category==="work")return t().catWork;if(category==="standesamt")return t().catStandesamt;return t().catAll;}
+    function updateFilterButtons(){[["catAll","all"],["catMoney","money"],["catWork","work"],["catStandesamt","standesamt"]].forEach(([id,val])=>document.getElementById(id)?.classList.toggle("active",categoryFilter===val));}
+    async function setCategory(cat){categoryFilter=cat;updateFilterButtons();await loadApplications();}
+
+    async function loadApp(){
+      const {data,error}=await supabaseClient.auth.getSession();
+      if(error||!data.session){document.getElementById("loginMessage").style.display="block";return;}
+      currentUser=data.session.user;document.getElementById("emailPill").textContent=currentUser.email||"-";
+      const {data:profiles,error:profileError}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+      if(profileError||!profiles||profiles.length===0){window.location.href="index.html?reason=no_profile";return;}
+      currentProfile=profiles[0];currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+      document.getElementById("pageShell").style.display="block";setLanguage(currentLang);
+    }
+
+    async function loadApplications(){
+      if(!currentUser||!currentProfile)return;
+      const list=document.getElementById("applicationsList");list.innerHTML="";updateFilterButtons();
+      let query=supabaseClient.from("application_templates").select("*").order("sort_order",{ascending:true});
+      if(categoryFilter!=="all")query=query.eq("category",categoryFilter);
+      const {data:templates,error}=await query;
+      if(error||!templates||templates.length===0){list.innerHTML=`<div class="empty">${t().empty}</div>`;document.getElementById("progressText").textContent=`0 / 0 ${t().doneWord}`;return;}
+      const {data:statuses}=await supabaseClient.from("user_application_status").select("*").eq("user_id",currentUser.id).eq("profile_id",currentProfile.id);
+      const statusMap={};(statuses||[]).forEach(s=>statusMap[s.template_key]=s.status);
+      const doneCount=templates.filter(item=>statusMap[item.key]==="done").length;
+      document.getElementById("progressText").textContent=`${doneCount} / ${templates.length} ${t().doneWord}`;
+      templates.forEach(item=>list.appendChild(renderApplication(item,statusMap[item.key]||"open")));
+    }
+
+    function renderApplication(item,status){
+      const card=document.createElement("div");card.className="box";
+      const statusText=status==="done"?t().done:status==="prepared"?t().prepared:t().open;
+      card.innerHTML=`<div><span class="badge">${categoryLabel(item.category)}</span><span class="badge">${statusText}</span><span class="badge">${t().week} ${item.recommended_week||"-"}</span></div><h3>${getLocalized(item,"title")||item.key}</h3><p>${getLocalized(item,"description")||""}</p>`;
+      const actions=document.createElement("div");actions.className="actions";
+      const b1=document.createElement("button");b1.className=status==="open"?"button done":"button-light";b1.textContent=t().markOpen;b1.onclick=()=>updateStatus(item.key,"open");
+      const b2=document.createElement("button");b2.className=status==="prepared"?"button done":"button-light";b2.textContent=t().markPrepared;b2.onclick=()=>updateStatus(item.key,"prepared");
+      const b3=document.createElement("button");b3.className=status==="done"?"button done":"button";b3.textContent=t().markDone;b3.onclick=()=>updateStatus(item.key,"done");
+      actions.append(b1,b2,b3);
+      if(item.link_url){const a=document.createElement("a");a.className="button-light";a.href=item.link_url;a.target="_blank";a.textContent=t().openLink;actions.appendChild(a);}
+      card.appendChild(actions);return card;
+    }
+
+    async function updateStatus(templateKey,status){
+      const {error}=await supabaseClient.from("user_application_status").upsert({user_id:currentUser.id,profile_id:currentProfile.id,template_key:templateKey,status},{onConflict:"user_id,template_key"});
+      if(error){alert(error.message);return;}await loadApplications();
+    }
+
+    loadApp();
+  </script>
+</body>
+</html>

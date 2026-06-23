@@ -4,328 +4,710 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mama in Deutschland App</title>
+
   <style>
-    :root{--page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--brown2:#6f4f3e;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--green:#e8efe3;--green2:#6b8f71;--danger:#b45b48;--shadow:rgba(74,52,40,.11)}
+    :root{
+      --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;
+      --brown:#4a3428;--brown2:#6f4f3e;--light:#9b7357;
+      --text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+      --green:#e8efe3;--green-dark:#6b8f71;--danger:#b45b48;
+      --shadow:rgba(74,52,40,.12)
+    }
     body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--brown2:#315f86;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--green:#e9f6ff;--shadow:rgba(36,75,107,.12)}
     body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--brown2:#9a5570;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--green:#fff0f5;--shadow:rgba(122,61,85,.12)}
     body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--brown2:#54794e;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--green:#e7f3df;--shadow:rgba(62,92,58,.12)}
-    *{box-sizing:border-box}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 92% 5%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-    header{max-width:1180px;margin:0 auto;padding:26px 20px 8px}.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}.brand{display:inline-flex;align-items:center;gap:12px;font-size:24px;font-weight:950;color:var(--brown);letter-spacing:-.5px}.brand:before{content:"M";display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:15px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;box-shadow:0 12px 26px var(--shadow)}.language-buttons{display:flex;gap:8px;flex-wrap:wrap}.language-buttons button{border:1px solid var(--border);background:rgba(255,255,255,.78);color:var(--brown);padding:9px 13px;border-radius:999px;cursor:pointer;font-weight:850}.language-buttons button:hover{background:var(--brown);color:white}
-    main{max-width:1180px;margin:22px auto 44px;padding:0 20px}.card{background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:34px;padding:28px;box-shadow:0 24px 70px var(--shadow)}.welcome-card{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;margin-bottom:22px}.welcome-left{display:flex;gap:16px;align-items:center}.avatar{width:58px;height:58px;border-radius:20px;background:linear-gradient(135deg,var(--brown),var(--light));color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:950;box-shadow:0 12px 26px var(--shadow)}.welcome-title{color:var(--brown);font-size:26px;font-weight:950;letter-spacing:-.8px;margin:0}.welcome-subtitle{color:var(--muted);margin-top:6px;font-size:15px;line-height:1.5}.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pill{display:inline-flex;padding:8px 11px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:13px;font-weight:900}.logout-button{border:0;border-radius:16px;padding:13px 16px;background:var(--danger);color:white;font-weight:900;cursor:pointer}
-    .app-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;padding:8px;background:var(--cream);border:1px solid var(--border);border-radius:26px}.app-tab{border:0;background:transparent;color:var(--brown);padding:11px 14px;border-radius:999px;cursor:pointer;font-weight:900}.app-tab.active{background:var(--brown);color:#fff}.tab-panel{display:none}.tab-panel.active{display:block}
-    h2{margin:0 0 16px;color:var(--brown);font-size:28px;letter-spacing:-.8px}h3{margin:0 0 8px;color:var(--brown);font-size:17px}p{margin:0;color:var(--muted);line-height:1.7;font-size:16px}label{display:block;margin-top:14px;margin-bottom:7px;color:var(--brown);font-size:13px;font-weight:900}input,select,textarea{width:100%;padding:14px 15px;border-radius:16px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;outline:0;font-family:inherit}textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
-    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}.small-card,.info-box,.event-card,.task-card,.emotion-card,.near-card{background:linear-gradient(180deg,var(--cream),#fff);border:1px solid var(--border);border-radius:24px;padding:20px}.small-label{color:var(--muted);font-size:13px;font-weight:800}.big-number{margin-top:8px;font-size:30px;font-weight:950;color:var(--brown);letter-spacing:-1px;word-break:break-word}.soft-box{margin-top:18px;padding:16px;border-radius:22px;background:var(--green);border:1px solid var(--border);color:var(--brown);font-weight:800}.baby-week-title{color:var(--brown);font-size:24px;font-weight:950;margin-top:8px}.baby-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}.baby-stat{background:var(--soft);border-radius:20px;padding:16px;text-align:center}.baby-stat-label{color:var(--muted);font-size:13px;font-weight:900}.baby-stat-value{margin-top:6px;color:var(--brown);font-size:24px;font-weight:950}.event-card,.task-card,.emotion-card{display:grid;gap:10px}.event-date,.week-badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900}.actions{display:flex;gap:10px;flex-wrap:wrap}.button,.button-light,.button-danger{border:0;border-radius:14px;padding:10px 12px;cursor:pointer;font-weight:900;text-decoration:none;font-size:14px}.button{background:var(--brown);color:#fff}.button.done{background:var(--green2)}.button-light{background:var(--soft);color:var(--brown)}.button-danger{background:#f4dfd8;color:var(--danger)}.task-progress{margin-top:14px;padding:12px 14px;border-radius:18px;background:var(--green);color:var(--brown);font-weight:900}.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.filter-button{border:1px solid var(--border);background:#fff;color:var(--brown);border-radius:999px;padding:9px 13px;cursor:pointer;font-weight:900}.filter-button.active{background:var(--brown);color:#fff}.todo-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px}.todo-list,.notes-list{display:grid;gap:10px;margin-top:16px}.todo-item{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:12px;border-radius:16px;background:#fff;border:1px solid var(--border)}.todo-item span.done{text-decoration:line-through;color:var(--muted)}.near-button{display:inline-flex;width:100%;justify-content:center;align-items:center;text-decoration:none;border-radius:16px;padding:12px 14px;background:var(--brown);color:#fff;font-size:14px;font-weight:900;margin-top:12px}.hidden-message{display:none;text-align:center;margin-top:60px}.hidden-message .card{max-width:560px;margin:0 auto}
-    @media(max-width:930px){.welcome-card{grid-template-columns:1fr}.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.card{padding:24px;border-radius:28px}}@media(max-width:560px){header,main{padding-left:16px;padding-right:16px}.topbar{display:block}.language-buttons{margin-top:18px}.todo-row,.todo-item{grid-template-columns:1fr}}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 92% 5%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+    header,main{max-width:1180px;margin:0 auto;padding:24px 18px}
+    .topbar{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start}
+    .brand{display:inline-flex;align-items:center;gap:12px;font-size:24px;font-weight:950;color:var(--brown)}
+    .brand:before{content:"M";display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;box-shadow:0 12px 26px var(--shadow)}
+    .language-buttons{display:flex;gap:8px;flex-wrap:wrap}
+    .language-buttons button,.tab,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:900}
+    .language-buttons button.active,.language-buttons button:hover,.tab.active,.filter-button.active{background:var(--brown);color:white}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 22px 60px var(--shadow);backdrop-filter:blur(16px)}
+    .welcome{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin-bottom:20px}
+    .welcome-left{display:flex;gap:14px;align-items:center}
+    .avatar{width:58px;height:58px;border-radius:20px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:950}
+    h1,h2,h3{color:var(--brown);margin:0 0 12px}
+    h1{font-size:28px;letter-spacing:-1px}
+    h2{font-size:26px;letter-spacing:-.7px}
+    h3{font-size:17px}
+    p{margin:0;color:var(--muted);line-height:1.65}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill,.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900}
+    .logout{border:none;border-radius:16px;padding:13px 16px;background:var(--danger);color:white;font-weight:900;cursor:pointer}
+    .tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px;padding:8px;background:var(--cream);border:1px solid var(--border);border-radius:24px}
+    .tab{background:transparent}
+    .panel{display:none}.panel.active{display:block}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .box,.small,.event,.task,.note-card,.near-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+    .soft{margin-top:16px;padding:15px;border-radius:20px;background:var(--green);border:1px solid var(--border);color:var(--brown);font-weight:850}
+    .small-label{font-size:13px;color:var(--muted);font-weight:900}.big{font-size:30px;font-weight:950;color:var(--brown);margin-top:6px}
+    label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+    input,select,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+    textarea{min-height:105px;resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+    .actions,.filters{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+    .button,.button-light,.button-danger{border:none;border-radius:13px;padding:10px 12px;font-size:14px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    .button{background:var(--brown);color:white}.button.done{background:var(--green-dark)}
+    .button-light{background:var(--soft);color:var(--brown)}.button-danger{background:#f4dfd8;color:var(--danger)}
+    .todo-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px}
+    .list{display:grid;gap:10px;margin-top:16px}.todo-item{display:grid;grid-template-columns:1fr auto auto;gap:9px;align-items:center;padding:12px;border:1px solid var(--border);border-radius:16px;background:white}
+    .todo-item span.done{text-decoration:line-through;color:var(--muted)}
+    .hidden-message{display:none;text-align:center;margin-top:50px}.hidden-message .card{max-width:560px;margin:0 auto}
+    .near-button{display:flex;justify-content:center;margin-top:12px;text-decoration:none;border-radius:15px;padding:12px;background:var(--brown);color:white;font-weight:900}
+    @media(max-width:900px){.welcome{grid-template-columns:1fr}.grid-4,.grid-3,.grid-2{grid-template-columns:1fr}.card{padding:22px}}
+    @media(max-width:560px){header,main{padding-left:14px;padding-right:14px}.topbar{display:block}.language-buttons{margin-top:16px}.todo-row,.todo-item{grid-template-columns:1fr}}
   </style>
 </head>
+
 <body>
-  <header><div class="topbar"><div class="brand">Mama in Deutschland</div><div class="language-buttons"><button onclick="setLanguage('de')">🇩🇪 Deutsch</button><button onclick="setLanguage('fr')">🇫🇷 Français</button><button onclick="setLanguage('ar')">🇸🇦 العربية</button><button onclick="setLanguage('en')">🇬🇧 English</button><button onclick="setLanguage('tr')">🇹🇷 Türkçe</button><button onclick="setLanguage('ru')">🇷🇺 Русский</button><button onclick="setLanguage('uk')">🇺🇦 Українська</button></div></div></header>
-  <main>
-    <section class="hidden-message" id="loginMessage"><div class="card"><h2 id="loginNeededTitle">Bitte einloggen</h2><p id="loginNeededText">Du musst dich zuerst anmelden, um deine Schwangerschafts-App zu öffnen.</p><button class="button" onclick="goHome()" id="goHomeButton">Zur Startseite</button></div></section>
-    <section id="appShell" style="display:none;">
-      <div class="card welcome-card"><div class="welcome-left"><div class="avatar" id="avatarIcon">🤎</div><div><h1 class="welcome-title" id="welcomeTitle">Willkommen zurück</h1><div class="welcome-subtitle" id="welcomeSubtitle">Deine Schwangerschaft in Deutschland ist organisiert.</div><div class="pill-row"><span class="pill" id="weekPill">SSW -</span><span class="pill" id="babyPill">Baby</span><span class="pill" id="themePill">Design</span><span class="pill" id="emailPill">-</span></div></div></div><button class="logout-button" onclick="signOut()" id="logoutButton">Ausloggen</button></div>
-      <div class="card"><div class="app-tabs"><button class="app-tab active" onclick="setActiveTab('today')" id="tabToday">Heute</button><button class="app-tab" onclick="setActiveTab('calendar')" id="tabCalendar">Kalender</button><button class="app-tab" onclick="setActiveTab('baby')" id="tabBaby">Mutter & Baby</button><button class="app-tab" onclick="setActiveTab('medical')" id="tabMedical">Medizin</button><button class="app-tab" onclick="setActiveTab('bureaucracy')" id="tabBureaucracy">Bürokratie</button><button class="app-tab" onclick="setActiveTab('emotions')" id="tabEmotions">Emotionen</button><button class="app-tab" onclick="setActiveTab('nutrition')" id="tabNutrition">Ernährung</button><button class="app-tab" onclick="setActiveTab('documents')" id="tabDocuments">Dokumente</button><button class="app-tab" onclick="setActiveTab('todo')" id="tabTodo">To-do</button><button class="app-tab" onclick="setActiveTab('profile')" id="tabProfile">Profil</button><button class="app-tab" onclick="setActiveTab('near')" id="tabNear">In der Nähe</button></div>
-        <div class="tab-panel active" id="panelToday"><h2 id="dashboardTitle">Heute</h2><div class="grid-4"><div class="small-card"><div class="small-label" id="weekLabel">Woche</div><div class="big-number" id="pregnancyWeek">-</div></div><div class="small-card"><div class="small-label" id="daysLabel">Tage übrig</div><div class="big-number" id="daysLeft">-</div></div><div class="small-card"><div class="small-label" id="dueDateLabel">Entbindungstermin</div><div class="big-number" id="dueDateResult">-</div></div><div class="small-card"><div class="small-label" id="cityLabel">Stadt</div><div class="big-number" id="cityResult">-</div></div></div><div class="soft-box" id="todayPersonalText">-</div><div class="info-box" style="margin-top:18px;"><h2 id="nextEventsTitle">Nächste Termine</h2><p id="nextEventsText">Die wichtigsten kommenden Punkte aus deinem Kalender.</p><div class="grid-3" id="nextEventsList"></div></div></div>
-        <div class="tab-panel" id="panelCalendar"><h2 id="calendarTitle">Kalender</h2><p id="calendarText">Hier erscheinen Untersuchungen, Termine, Kurse und später auch Einkaufslisten.</p><div class="filter-row"><button class="filter-button active" onclick="setCalendarCategory('all')" id="calAll">Alle</button><button class="filter-button" onclick="setCalendarCategory('medical')" id="calMedical">Medizin</button><button class="filter-button" onclick="setCalendarCategory('course')" id="calCourse">Kurse</button><button class="filter-button" onclick="setCalendarCategory('administratif')" id="calAdmin">Bürokratie</button><button class="filter-button" onclick="setCalendarCategory('shopping')" id="calShopping">Einkauf</button></div><div class="info-box" style="margin-top:18px;">
-  <h2 id="manualEventTitle">Neuen Termin hinzufügen</h2>
-  <p id="manualEventText">Füge eigene Termine, Kurse oder Anträge zu deinem Kalender hinzu.</p>
-  <div class="grid-2">
-    <div><label id="manualTitleLabel" for="manualTitle">Titel</label><input type="text" id="manualTitle" placeholder="Frauenarzttermin" /></div>
-    <div><label id="manualDateLabel" for="manualDate">Datum</label><input type="date" id="manualDate" /></div>
-    <div><label id="manualTimeLabel" for="manualTime">Uhrzeit</label><input type="time" id="manualTime" /></div>
-    <div><label id="manualCategoryLabel" for="manualCategory">Kategorie</label><select id="manualCategory"><option value="medical" id="manualCategoryMedical">Medizin</option><option value="course" id="manualCategoryCourse">Kurs</option><option value="administratif" id="manualCategoryAdmin">Bürokratie</option><option value="shopping" id="manualCategoryShopping">Einkauf</option><option value="personal" id="manualCategoryPersonal">Persönlich</option></select></div>
-    <div><label id="manualLocationLabel" for="manualLocation">Ort</label><input type="text" id="manualLocation" placeholder="Praxis / Klinik / Online" /></div>
-    <div><label id="manualLinkLabel" for="manualLink">Link für Anmeldung / Antrag</label><input type="url" id="manualLink" placeholder="https://..." /></div>
-    <div><label id="manualReminderLabel" for="manualReminder">Erinnerung</label><select id="manualReminder"><option value="7">7 Tage vorher</option><option value="14" selected>14 Tage vorher</option><option value="30">30 Tage vorher</option></select></div>
+<header>
+  <div class="topbar">
+    <div class="brand">Mama in Deutschland</div>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
   </div>
-  <label id="manualDescriptionLabel" for="manualDescription">Beschreibung / Notiz</label>
-  <textarea id="manualDescription" placeholder="Was muss vorbereitet werden?"></textarea>
-  <button class="button" onclick="saveManualEvent()" id="manualSaveButton" style="margin-top:12px;">Termin speichern</button>
-</div><div class="grid-3" id="calendarList"></div></div>
-        <div class="tab-panel" id="panelBaby"><h2 id="babySectionTitle">Mutter & Baby diese Woche</h2><p id="babyIntro">Ein kurzer Überblick über diese Schwangerschaftswoche.</p><div class="soft-box" id="babyPersonalText">-</div><div class="baby-week-title" id="babyTitle">-</div><div class="baby-stats"><div class="baby-stat"><div class="baby-stat-label" id="babyLengthLabel">Größe</div><div class="baby-stat-value" id="babyLength">-</div></div><div class="baby-stat"><div class="baby-stat-label" id="babyWeightLabel">Gewicht</div><div class="baby-stat-value" id="babyWeight">-</div></div></div><div class="grid-3"><div class="info-box"><h3 id="babyDevelopmentTitle">Baby</h3><p id="babyDevelopment">-</p></div><div class="info-box"><h3 id="motherBodyTitle">Dein Körper</h3><p id="motherBody">-</p></div><div class="info-box"><h3 id="motherTipTitle">Mama-Tipp</h3><p id="motherTip">-</p></div><div class="info-box"><h3 id="nutritionTitle">Ernährung</h3><p id="babyNutrition">-</p></div><div class="info-box"><h3 id="emotionWeekTitle">Emotional</h3><p id="emotionWeekText">-</p></div><div class="info-box"><h3 id="babyNameTitle">Babyname</h3><label id="babyNameLabel" for="babyNameInput">Name des Babys</label><input type="text" id="babyNameInput" placeholder="Sophia"/><button class="button" onclick="saveBabyName()" id="saveBabyNameButton" style="margin-top:12px;">Babyname speichern</button></div></div></div>
-        <div class="tab-panel" id="panelMedical"><h2 id="medicalTitle">Medizinische Termine</h2><p id="medicalText">Untersuchungen und wichtige medizinische Zeitfenster in Deutschland.</p><div class="grid-3" id="medicalList"></div></div>
-        <div class="tab-panel" id="panelBureaucracy"><h2 id="tasksTitle">Bürokratie-Zentrale</h2><p id="tasksText">Geld, Dokumente, Anträge und wichtige Schritte in Deutschland.</p><div class="task-progress" id="taskProgress">0 / 0 erledigt</div><div class="filter-row"><button class="filter-button active" onclick="setTaskCategory('all')" id="catAll">Alle</button><button class="filter-button" onclick="setTaskCategory('administratif')" id="catAdmin">Bürokratie</button><button class="filter-button" onclick="setTaskCategory('medical')" id="catMedical">Medizin</button><button class="filter-button" onclick="setTaskCategory('organisation')" id="catOrganisation">Organisation</button><button class="filter-button" onclick="toggleAllTasks()" id="allTasksButton">Alle Aufgaben anzeigen</button></div><div class="grid-2" id="taskList"></div></div>
-        <div class="tab-panel" id="panelEmotions"><h2 id="emotionTitle">Emotionen & Erinnerungen</h2><p id="emotionText">Speichere, wie du dich fühlst, und bewahre kleine Erinnerungen dieser Schwangerschaft.</p><div class="grid-2"><div class="emotion-card"><h3 id="moodTitle">Wie fühlst du dich heute?</h3><label id="moodLabel" for="moodSelect">Stimmung</label><select id="moodSelect"><option value="happy">😊 Happy</option><option value="tired">😴 Tired</option><option value="anxious">😟 Anxious</option><option value="emotional">🥹 Emotional</option><option value="strong">💪 Strong</option></select><label id="noteLabel" for="emotionNote">Notiz</label><textarea id="emotionNote" placeholder="Heute fühle ich mich..."></textarea><button class="button" onclick="saveEmotionNote()" id="saveEmotionButton">Notiz speichern</button></div><div class="emotion-card"><h3 id="emotionGuideTitle">Diese Woche emotional</h3><p id="emotionGuideText">-</p></div></div><div class="notes-list" id="emotionNotesList"></div></div>
-        <div class="tab-panel" id="panelNutrition"><h2 id="nutritionMainTitle">Ernährung & Rezepte</h2><p id="nutritionMainText">Einfache, gesunde und halal-freundliche Rezeptideen für die Schwangerschaft.</p><div class="grid-2"><div><h3 id="recipeSectionTitle">Rezepte dieser Phase</h3><div class="grid-2" id="recipeList"></div></div><div><h3 id="shoppingSectionTitle">Meine Einkaufsliste</h3><label id="shoppingDateLabel" for="shoppingDate">Datum für Einkauf</label><input type="date" id="shoppingDate"/><button class="button" onclick="addShoppingListToCalendar()" id="shoppingCalendarButton" style="margin-top:12px;">Einkaufsliste zum Kalender hinzufügen</button><div class="todo-list" id="shoppingList"></div></div></div></div>
-        <div class="tab-panel" id="panelDocuments"><h2 id="documentsTitle">Dokumente & Dateien</h2><p id="documentsText">Speichere Mutterpass, Anträge, Ergebnisse, Fotos und wichtige Dokumente privat.</p><div class="grid-2"><div class="info-box"><h3 id="documentUploadTitle">Dokument hochladen</h3><label id="documentTitleLabel" for="documentTitle">Titel</label><input type="text" id="documentTitle" placeholder="Mutterpass / Kindergeld / Ultraschall"/><label id="documentCategoryLabel" for="documentCategory">Kategorie</label><select id="documentCategory"><option value="mutterpass" id="documentCategoryMutterpass">Mutterpass</option><option value="medical_result" id="documentCategoryMedicalResult">Untersuchung / Ergebnis</option><option value="application" id="documentCategoryApplication">Antrag</option><option value="insurance" id="documentCategoryInsurance">Versicherung</option><option value="standesamt" id="documentCategoryStandesamt">Standesamt</option><option value="memory" id="documentCategoryMemory">Foto / Erinnerung</option><option value="other" id="documentCategoryOther">Sonstiges</option></select><label id="documentFileLabel" for="documentFile">Datei oder Foto</label><input type="file" id="documentFile" accept="image/*,.pdf,.doc,.docx,.png,.jpg,.jpeg,.heic"/><label id="documentNotesLabel" for="documentNotes">Notiz</label><textarea id="documentNotes" placeholder="Was ist wichtig bei diesem Dokument?"></textarea><button class="button" onclick="uploadDocument()" id="documentUploadButton" style="margin-top:12px;">Dokument speichern</button></div><div class="info-box"><h3 id="documentChecklistTitle">Wichtige Dokumente</h3><p id="documentChecklistText">Mutterpass, Krankenkasse, Mutterschaftsgeld, Elterngeld, Kindergeld, Geburtsurkunde, Elternzeit und Untersuchungsergebnisse.</p><div class="filter-row"><button class="filter-button active" onclick="setDocumentCategory('all')" id="docCatAll">Alle</button><button class="filter-button" onclick="setDocumentCategory('application')" id="docCatApplication">Anträge</button><button class="filter-button" onclick="setDocumentCategory('medical_result')" id="docCatMedical">Medizin</button><button class="filter-button" onclick="setDocumentCategory('memory')" id="docCatMemory">Erinnerungen</button></div><div class="grid-2" id="documentTemplateList" style="margin-top:16px;"></div></div></div><h3 id="savedDocumentsTitle" style="margin-top:22px;">Gespeicherte Dokumente</h3><div class="grid-3" id="documentList"></div></div><div class="tab-panel" id="panelTodo"><h2 id="todoTitle">Meine private To-do-Liste</h2><p id="todoText">Diese Liste ist nur in deinem Konto sichtbar.</p><div class="todo-row"><input type="text" id="todoInput" placeholder="Neue Aufgabe..."/><button class="button" onclick="addTodo()" id="addTodoButton">Hinzufügen</button></div><div class="todo-list" id="todoList"></div></div>
-        <div class="tab-panel" id="panelProfile"><h2 id="profileTabTitle">Profil bearbeiten</h2><p id="profileTabText">Aktualisiere Babyname, Stadt, Entbindungstermin, Sprache und Design.</p><div class="grid-2"><div class="info-box"><h3 id="profileMamaTitle">Mama & Baby</h3><label id="profileNameLabel" for="profileName">Name der Mama</label><input type="text" id="profileName" placeholder="Name"/><label id="profileBabyNameLabel" for="profileBabyName">Babyname</label><input type="text" id="profileBabyName" placeholder="Sophia"/><label id="profileCityLabel" for="profileCity">Stadt</label><input type="text" id="profileCity" placeholder="Mülheim an der Ruhr"/><label id="profileLanguageLabel" for="profileLanguage">Sprache</label><select id="profileLanguage"><option value="de">🇩🇪 Deutsch</option><option value="fr">🇫🇷 Français</option><option value="ar">🇸🇦 العربية</option><option value="en">🇬🇧 English</option><option value="tr">🇹🇷 Türkçe</option><option value="ru">🇷🇺 Русский</option><option value="uk">🇺🇦 Українська</option></select></div><div class="info-box"><h3 id="profilePregnancyTitle">Schwangerschaft</h3><label id="profileDueDateLabel" for="profileDueDate">Entbindungstermin</label><input type="date" id="profileDueDate"/><label id="profilePregnancyTypeLabel" for="profilePregnancyType">Schwangerschaft</label><select id="profilePregnancyType"><option value="singleton" id="profileSingletonOption">Ein Baby</option><option value="twins" id="profileTwinsOption">Zwillinge</option></select><label id="profileGenderLabel" for="profileBabyGender">Geschlecht des Babys</label><select id="profileBabyGender"><option value="unknown" id="profileGenderUnknown">Noch nicht bekannt</option><option value="boy" id="profileGenderBoy">Junge</option><option value="girl" id="profileGenderGirl">Mädchen</option><option value="twin_boys" id="profileGenderTwinBoys">Zwillinge: Jungen</option><option value="twin_girls" id="profileGenderTwinGirls">Zwillinge: Mädchen</option><option value="twin_mixed" id="profileGenderTwinMixed">Zwillinge: Junge & Mädchen</option></select><div class="soft-box" id="profileThemePreview">Design</div><button class="button" onclick="saveProfileSettings()" id="profileSaveButton" style="margin-top:12px;">Profil speichern</button></div></div></div><div class="tab-panel" id="panelNear"><h2 id="nearTitle">In deiner Nähe</h2><p id="nearText">Basierend auf deiner Stadt zeigen wir dir schnelle Suchen für wichtige Anlaufstellen.</p><div class="grid-3" id="nearGrid"></div></div>
+</header>
+
+<main>
+  <section class="hidden-message" id="loginMessage">
+    <div class="card">
+      <h2 id="loginNeededTitle">Bitte einloggen</h2>
+      <p id="loginNeededText">Du musst dich zuerst anmelden, um deine Schwangerschafts-App zu öffnen.</p>
+      <button class="button" onclick="goHome()" id="goHomeButton">Zur Startseite</button>
+    </div>
+  </section>
+
+  <section id="appShell" style="display:none;">
+    <div class="card welcome">
+      <div class="welcome-left">
+        <div class="avatar" id="avatarIcon">🤎</div>
+        <div>
+          <h1 id="welcomeTitle">Willkommen zurück</h1>
+          <p id="welcomeSubtitle">Deine Schwangerschaft in Deutschland ist organisiert.</p>
+          <div class="pill-row">
+            <span class="pill" id="weekPill">SSW -</span>
+            <span class="pill" id="babyPill">Baby</span>
+            <span class="pill" id="themePill">Design</span>
+            <span class="pill" id="emailPill">-</span>
+          </div>
+        </div>
       </div>
-    </section>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
-    const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
-    const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-    let currentLang="de",currentUser=null,currentProfile=null,calendarEvents=[],lastPregnancyWeek=null,lastCity="",showAllTasks=false,taskCategoryFilter="all",calendarCategoryFilter="all",documentCategoryFilter="all",currentTheme="neutral";
+      <button class="logout" onclick="signOut()" id="logoutButton">Ausloggen</button>
+    </div>
 
-    const nearDE={hebamme:["Hebamme","Finde Hebammen in deiner Stadt."],frauenarzt:["Frauenärztin / Frauenarzt","Suche eine Praxis für Schwangerschaftsbegleitung."],klinik:["Geburtsklinik","Finde Kliniken mit Geburtshilfe in deiner Nähe."],kinderarzt:["Kinderarzt","Bereite später die Suche nach einem Kinderarzt vor."],apotheke:["Apotheke","Apotheken in deiner Nähe."],kurs:["Geburtsvorbereitungskurs","Kurse zur Vorbereitung auf Geburt und Wochenbett."],babyshop:["Babygeschäft","Baby- und Schwangerschaftsbedarf in deiner Stadt."],standesamt:["Standesamt","Informationen zur Geburtsurkunde in deiner Stadt."]};
-    const nearFR={hebamme:["Sage-femme","Trouver une sage-femme dans ta ville."],frauenarzt:["Gynécologue","Chercher une consultation de suivi de grossesse."],klinik:["Clinique d’accouchement","Trouver une maternité près de chez toi."],kinderarzt:["Pédiatre","Préparer la recherche d’un pédiatre."],apotheke:["Pharmacie","Pharmacies près de chez toi."],kurs:["Cours de préparation","Cours pour préparer l’accouchement."],babyshop:["Boutique bébé","Produits bébé et maternité dans ta ville."],standesamt:["État civil","Informations pour l’acte de naissance."]};
-    const nearAR={hebamme:["قابلة","البحث عن قابلة في مدينتك."],frauenarzt:["طبيبة نساء","البحث عن عيادة لمتابعة الحمل."],klinik:["مستشفى ولادة","العثور على مستشفى ولادة قريب."],kinderarzt:["طبيب أطفال","التحضير للبحث عن طبيب أطفال."],apotheke:["صيدلية","صيدليات قريبة منك."],kurs:["دورة تحضير للولادة","دورات للتحضير للولادة."],babyshop:["متجر أطفال","مستلزمات الطفل والحمل."],standesamt:["مكتب الحالة المدنية","معلومات عن شهادة الميلاد."]};
-    const nearEN={hebamme:["Midwife","Find midwives in your city."],frauenarzt:["Gynecologist","Search for pregnancy care practices."],klinik:["Birth clinic","Find maternity clinics near you."],kinderarzt:["Pediatrician","Prepare the search for a pediatrician."],apotheke:["Pharmacy","Pharmacies near you."],kurs:["Birth preparation course","Courses for birth preparation."],babyshop:["Baby shop","Baby and maternity products in your city."],standesamt:["Registry office","Birth certificate information."]};
-    const translations={
-      de:{loginNeededTitle:"Bitte einloggen",loginNeededText:"Du musst dich zuerst anmelden, um deine Schwangerschafts-App zu öffnen.",goHomeButton:"Zur Startseite",welcomeTitle:"Willkommen zurück",welcomeSubtitle:"Deine Schwangerschaft in Deutschland ist organisiert.",logoutButton:"Ausloggen",tabToday:"Heute",tabCalendar:"Kalender",tabBaby:"Mutter & Baby",tabMedical:"Medizin",tabBureaucracy:"Bürokratie",tabEmotions:"Emotionen",tabNutrition:"Ernährung",tabTodo:"To-do",tabNear:"In der Nähe",dashboardTitle:"Heute",weekLabel:"Woche",daysLabel:"Tage übrig",dueDateLabel:"Entbindungstermin",cityLabel:"Stadt",nextEventsTitle:"Nächste Termine",nextEventsText:"Die wichtigsten kommenden Punkte aus deinem Kalender.",calendarTitle:"Kalender",calendarText:"Hier erscheinen Untersuchungen, Termine, Kurse und später auch Einkaufslisten.",medicalTitle:"Medizinische Termine",medicalText:"Untersuchungen und wichtige medizinische Zeitfenster in Deutschland.",babySectionTitle:"Mutter & Baby diese Woche",babyIntro:"Ein kurzer Überblick über diese Schwangerschaftswoche.",babyLengthLabel:"Größe",babyWeightLabel:"Gewicht",babyDevelopmentTitle:"Baby",motherBodyTitle:"Dein Körper",motherTipTitle:"Mama-Tipp",nutritionTitle:"Ernährung",emotionWeekTitle:"Emotional",babyNameTitle:"Babyname",babyNameLabel:"Name des Babys",saveBabyNameButton:"Babyname speichern",emotionTitle:"Emotionen & Erinnerungen",emotionText:"Speichere, wie du dich fühlst, und bewahre kleine Erinnerungen dieser Schwangerschaft.",moodTitle:"Wie fühlst du dich heute?",moodLabel:"Stimmung",noteLabel:"Notiz",saveEmotionButton:"Notiz speichern",emotionGuideTitle:"Diese Woche emotional",tasksTitle:"Bürokratie-Zentrale",tasksText:"Geld, Dokumente, Anträge und wichtige Schritte in Deutschland.",nutritionMainTitle:"Ernährung & Rezepte",nutritionMainText:"Einfache, gesunde und halal-freundliche Rezeptideen für die Schwangerschaft.",recipeSectionTitle:"Rezepte dieser Phase",shoppingSectionTitle:"Meine Einkaufsliste",shoppingDateLabel:"Datum für Einkauf",shoppingCalendarButton:"Einkaufsliste zum Kalender hinzufügen",todoTitle:"Meine private To-do-Liste",todoText:"Diese Liste ist nur in deinem Konto sichtbar.",addTodoButton:"Hinzufügen",nearTitle:"In deiner Nähe",nearText:"Basierend auf deiner Stadt zeigen wir dir schnelle Suchen für wichtige Anlaufstellen.",noEvents:"Noch keine Einträge vorhanden.",addToCalendar:"Zum Kalender hinzufügen",eventDone:"Erledigt",eventOpen:"Offen",emptyTodo:"Bitte eine Aufgabe schreiben.",todoDone:"Erledigt",todoOpen:"Offen",openSearch:"Suchen öffnen",noteSaved:"Notiz gespeichert ✅",babyNameSaved:"Babyname gespeichert ✅",weekWord:"Woche",done:"Erledigt",todo:"Offen",showAll:"Alle Aufgaben anzeigen",showRecommended:"Nur aktuelle Aufgaben anzeigen",progress:"erledigt",all:"Alle",admin:"Bürokratie",medical:"Medizin",organisation:"Organisation",themeNeutral:"Neutral",themeBoy:"Junge · Blau",themeGirl:"Mädchen · Rosa",themeTwin:"Zwillinge · Grün",babyDefault:"Dein Baby",todayPersonal:"{babyName} begleitet dich heute in Schwangerschaftswoche {week}. Hier findest du deine nächsten Termine, Aufgaben und Erinnerungen.",babyPersonalFallback:"{babyName} entwickelt sich diese Woche weiter. Jeder kleine Schritt gehört zu eurer gemeinsamen Geschichte.",bodyEarly:"Müdigkeit, Übelkeit und empfindliche Brüste können in dieser Phase normal sein.",bodyMid:"Vielleicht spürst du bald erste Bewegungen. Dein Bauch kann sichtbarer werden.",bodyLate:"Wassereinlagerungen, schwere Beine oder größere Füße können auftreten. Pausen und Hochlegen können helfen.",emotionEarly:"Viele Frauen fühlen sich am Anfang unsicher. Das ist normal.",emotionMid:"Diese Phase kann emotional schöner werden, weil die Schwangerschaft greifbarer wird.",emotionLate:"Vorfreude und Angst können gleichzeitig da sein. Du musst nicht alles perfekt machen.",calendarFileName:"Mama-Termin",addRecipeToShopping:"Zur Einkaufsliste hinzufügen",ingredientsTitle:"Zutaten",stepsTitle:"Zubereitung",shoppingAdded:"Zutaten wurden zur Einkaufsliste hinzugefügt ✅",shoppingEmpty:"Deine Einkaufsliste ist leer.",shoppingDone:"Gekauft",shoppingOpen:"Offen",shoppingCalendarTitle:"Einkaufsliste",shoppingCalendarDescription:"Einkaufsliste für Schwangerschaftsrezepte.",chooseShoppingDate:"Bitte wähle ein Datum für den Einkauf.",shoppingCalendarAdded:"Einkaufsliste wurde zum Kalender hinzugefügt ✅",near:nearDE},
-      fr:{},ar:{},en:{},tr:{},ru:{},uk:{}
-    };
-    translations.fr={...translations.de,loginNeededTitle:"Connexion nécessaire",loginNeededText:"Tu dois d’abord te connecter pour ouvrir ton application grossesse.",goHomeButton:"Retour à l’accueil",welcomeTitle:"Bienvenue",welcomeSubtitle:"Ta grossesse en Allemagne est organisée.",logoutButton:"Déconnexion",tabToday:"Aujourd’hui",tabCalendar:"Calendrier",tabBaby:"Maman & bébé",tabMedical:"Médical",tabBureaucracy:"Bureaucratie",tabEmotions:"Émotions",tabNutrition:"Nutrition",tabTodo:"To-do",tabNear:"Près de toi",dashboardTitle:"Aujourd’hui",weekLabel:"Semaine",daysLabel:"Jours restants",dueDateLabel:"Date prévue",cityLabel:"Ville",nextEventsTitle:"Prochains rendez-vous",nextEventsText:"Les points importants à venir dans ton calendrier.",calendarTitle:"Calendrier",calendarText:"Examens, rendez-vous, cours et listes d’achat apparaissent ici.",medicalTitle:"Rendez-vous médicaux",medicalText:"Examens et périodes médicales importantes en Allemagne.",babySectionTitle:"Maman & bébé cette semaine",babyIntro:"Un aperçu simple de cette semaine de grossesse.",babyLengthLabel:"Taille",babyWeightLabel:"Poids",babyDevelopmentTitle:"Bébé",motherBodyTitle:"Ton corps",motherTipTitle:"Conseil maman",nutritionTitle:"Nutrition",emotionWeekTitle:"Émotionnel",babyNameTitle:"Prénom du bébé",babyNameLabel:"Prénom du bébé",saveBabyNameButton:"Enregistrer le prénom",emotionTitle:"Émotions & souvenirs",emotionText:"Note comment tu te sens et garde des souvenirs de cette grossesse.",moodTitle:"Comment te sens-tu aujourd’hui ?",moodLabel:"Humeur",noteLabel:"Note",saveEmotionButton:"Enregistrer la note",emotionGuideTitle:"Cette semaine émotionnellement",tasksTitle:"Centre bureaucratie",tasksText:"Argent, documents, demandes et étapes importantes en Allemagne.",nutritionMainTitle:"Nutrition & recettes",nutritionMainText:"Des recettes simples, saines et compatibles halal pour la grossesse.",recipeSectionTitle:"Recettes de cette phase",shoppingSectionTitle:"Ma liste d’achat",shoppingDateLabel:"Date des courses",shoppingCalendarButton:"Ajouter la liste d’achat au calendrier",todoTitle:"Ma to-do list privée",todoText:"Cette liste est visible seulement dans ton compte.",addTodoButton:"Ajouter",nearTitle:"Près de toi",nearText:"Selon ta ville, nous affichons des recherches rapides.",noEvents:"Aucun élément pour le moment.",addToCalendar:"Ajouter au calendrier",eventDone:"Terminé",eventOpen:"À faire",emptyTodo:"Écris d’abord une tâche.",todoDone:"Terminé",todoOpen:"À faire",openSearch:"Ouvrir la recherche",noteSaved:"Note enregistrée ✅",babyNameSaved:"Prénom enregistré ✅",weekWord:"Semaine",done:"Terminé",todo:"À faire",showAll:"Afficher toutes les tâches",showRecommended:"Afficher seulement les tâches actuelles",progress:"terminé",all:"Toutes",admin:"Bureaucratie",medical:"Médical",organisation:"Organisation",themeNeutral:"Neutre",themeBoy:"Garçon · Bleu",themeGirl:"Fille · Rose",themeTwin:"Jumeaux · Vert",babyDefault:"Ton bébé",todayPersonal:"{babyName} t’accompagne aujourd’hui en semaine {week}. Tu trouveras ici tes prochains rendez-vous, tâches et souvenirs.",babyPersonalFallback:"{babyName} continue de se développer cette semaine. Chaque petit changement fait partie de votre histoire.",bodyEarly:"Fatigue, nausées et seins sensibles peuvent être normaux à cette période.",bodyMid:"Tu pourrais bientôt sentir les premiers mouvements. Le ventre devient parfois plus visible.",bodyLate:"Rétention d’eau, jambes lourdes ou pieds gonflés peuvent apparaître. Les pauses peuvent aider.",emotionEarly:"Au début, beaucoup de femmes se sentent incertaines. C’est normal.",emotionMid:"Cette phase peut être plus douce car la grossesse devient plus concrète.",emotionLate:"Joie et peur peuvent exister ensemble. Tu n’as pas besoin que tout soit parfait.",calendarFileName:"Mama-rendez-vous",addRecipeToShopping:"Ajouter à la liste d’achat",ingredientsTitle:"Ingrédients",stepsTitle:"Préparation",shoppingAdded:"Les ingrédients ont été ajoutés à la liste d’achat ✅",shoppingEmpty:"Ta liste d’achat est vide.",shoppingDone:"Acheté",shoppingOpen:"À acheter",shoppingCalendarTitle:"Liste d’achat",shoppingCalendarDescription:"Liste d’achat pour recettes de grossesse.",chooseShoppingDate:"Merci de choisir une date pour les courses.",shoppingCalendarAdded:"La liste d’achat a été ajoutée au calendrier ✅",near:nearFR};
-    translations.ar={...translations.fr,loginNeededTitle:"يجب تسجيل الدخول",loginNeededText:"يجب تسجيل الدخول أولاً لفتح تطبيق الحمل.",goHomeButton:"العودة إلى الصفحة الرئيسية",welcomeTitle:"مرحباً بعودتك",welcomeSubtitle:"حملك في ألمانيا منظم.",logoutButton:"تسجيل الخروج",tabToday:"اليوم",tabCalendar:"التقويم",tabBaby:"الأم والطفل",tabMedical:"طبي",tabBureaucracy:"الإجراءات",tabEmotions:"المشاعر",tabNutrition:"التغذية",tabTodo:"مهامي",tabNear:"قريب منك",dashboardTitle:"اليوم",weekLabel:"الأسبوع",daysLabel:"الأيام المتبقية",dueDateLabel:"موعد الولادة",cityLabel:"المدينة",nextEventsTitle:"المواعيد القادمة",nextEventsText:"أهم النقاط القادمة من التقويم.",calendarTitle:"التقويم",calendarText:"تظهر هنا الفحوصات والمواعيد والدورات وقوائم الشراء.",medicalTitle:"المواعيد الطبية",medicalText:"الفحوصات والفترات الطبية المهمة في ألمانيا.",babySectionTitle:"الأم والطفل هذا الأسبوع",babyIntro:"نظرة بسيطة على أسبوع الحمل الحالي.",babyLengthLabel:"الطول",babyWeightLabel:"الوزن",babyDevelopmentTitle:"الطفل",motherBodyTitle:"جسمك",motherTipTitle:"نصيحة للأم",nutritionTitle:"التغذية",emotionWeekTitle:"المشاعر",babyNameTitle:"اسم الطفل",babyNameLabel:"اسم الطفل",saveBabyNameButton:"حفظ اسم الطفل",emotionTitle:"المشاعر والذكريات",emotionText:"احفظي كيف تشعرين واحتفظي بذكريات الحمل.",moodTitle:"كيف تشعرين اليوم؟",moodLabel:"المزاج",noteLabel:"ملاحظة",saveEmotionButton:"حفظ الملاحظة",emotionGuideTitle:"هذا الأسبوع عاطفياً",tasksTitle:"مركز الإجراءات",tasksText:"المال، الوثائق، الطلبات والخطوات المهمة في ألمانيا.",nutritionMainTitle:"التغذية والوصفات",nutritionMainText:"وصفات بسيطة وصحية ومناسبة للحلال خلال الحمل.",recipeSectionTitle:"وصفات هذه المرحلة",shoppingSectionTitle:"قائمة الشراء الخاصة بي",shoppingDateLabel:"تاريخ الشراء",shoppingCalendarButton:"إضافة قائمة الشراء إلى التقويم",todoTitle:"قائمة مهامي الخاصة",todoText:"هذه القائمة مرئية فقط داخل حسابك.",addTodoButton:"إضافة",nearTitle:"قريب منك",nearText:"حسب مدينتك نعرض روابط بحث سريعة.",noEvents:"لا توجد عناصر حالياً.",addToCalendar:"إضافة إلى التقويم",eventDone:"تم",eventOpen:"قيد الانتظار",emptyTodo:"يرجى كتابة مهمة أولاً.",todoDone:"تم",todoOpen:"قيد الانتظار",openSearch:"فتح البحث",noteSaved:"تم حفظ الملاحظة ✅",babyNameSaved:"تم حفظ اسم الطفل ✅",weekWord:"الأسبوع",done:"تم",todo:"قيد الانتظار",showAll:"عرض كل المهام",showRecommended:"عرض المهام الحالية فقط",progress:"تم",all:"الكل",admin:"الإدارة",medical:"طبي",organisation:"تنظيم",themeNeutral:"محايد",themeBoy:"ولد · أزرق",themeGirl:"بنت · وردي",themeTwin:"توأم · أخضر",babyDefault:"طفلك",todayPersonal:"{babyName} يرافقك اليوم في أسبوع الحمل {week}. هنا تجدين المواعيد والمهام والذكريات.",babyPersonalFallback:"{babyName} يستمر في التطور هذا الأسبوع. كل تغيير صغير جزء من قصتكما.",bodyEarly:"التعب والغثيان وحساسية الصدر قد تكون طبيعية في هذه المرحلة.",bodyMid:"قد تشعرين قريباً بالحركات الأولى، وقد يصبح البطن أوضح.",bodyLate:"احتباس الماء وثقل الساقين أو تورم القدمين قد يحدث. الراحة ورفع القدمين قد يساعدان.",emotionEarly:"في البداية قد تشعر كثير من النساء بالقلق. هذا طبيعي.",emotionMid:"قد تصبح هذه المرحلة ألطف لأن الحمل يصبح أوضح.",emotionLate:"الفرح والخوف يمكن أن يكونا معاً. ليس عليكِ أن يكون كل شيء مثالياً.",calendarFileName:"موعد-Mama",addRecipeToShopping:"إضافة إلى قائمة الشراء",ingredientsTitle:"المكونات",stepsTitle:"طريقة التحضير",shoppingAdded:"تمت إضافة المكونات إلى قائمة الشراء ✅",shoppingEmpty:"قائمة الشراء فارغة.",shoppingDone:"تم الشراء",shoppingOpen:"لم يتم بعد",shoppingCalendarTitle:"قائمة الشراء",shoppingCalendarDescription:"قائمة شراء لوصفات الحمل.",chooseShoppingDate:"يرجى اختيار تاريخ الشراء.",shoppingCalendarAdded:"تمت إضافة قائمة الشراء إلى التقويم ✅",near:nearAR};
-    translations.en={...translations.de,loginNeededTitle:"Please log in",loginNeededText:"You need to log in first to open your pregnancy app.",goHomeButton:"Go to homepage",welcomeTitle:"Welcome back",welcomeSubtitle:"Your pregnancy in Germany is organized.",logoutButton:"Log out",tabToday:"Today",tabCalendar:"Calendar",tabBaby:"Mother & baby",tabMedical:"Medical",tabBureaucracy:"Bureaucracy",tabEmotions:"Emotions",tabNutrition:"Nutrition",tabTodo:"To-do",tabNear:"Near you",dashboardTitle:"Today",weekLabel:"Week",daysLabel:"Days left",dueDateLabel:"Due date",cityLabel:"City",nextEventsTitle:"Upcoming events",nextEventsText:"The most important upcoming points from your calendar.",calendarTitle:"Calendar",calendarText:"Exams, appointments, courses and later shopping lists appear here.",medicalTitle:"Medical appointments",medicalText:"Important medical exams and time windows in Germany.",babySectionTitle:"Mother & baby this week",babyIntro:"A simple overview of this pregnancy week.",babyLengthLabel:"Length",babyWeightLabel:"Weight",babyDevelopmentTitle:"Baby",motherBodyTitle:"Your body",motherTipTitle:"Mother tip",nutritionTitle:"Nutrition",emotionWeekTitle:"Emotional",babyNameTitle:"Baby name",babyNameLabel:"Baby name",saveBabyNameButton:"Save baby name",emotionTitle:"Emotions & memories",emotionText:"Save how you feel and keep memories from this pregnancy.",moodTitle:"How do you feel today?",moodLabel:"Mood",noteLabel:"Note",saveEmotionButton:"Save note",emotionGuideTitle:"Emotionally this week",tasksTitle:"Bureaucracy center",tasksText:"Money, documents, applications and important steps in Germany.",nutritionMainTitle:"Nutrition & recipes",nutritionMainText:"Simple, healthy and halal-friendly recipe ideas for pregnancy.",recipeSectionTitle:"Recipes for this phase",shoppingSectionTitle:"My shopping list",shoppingDateLabel:"Shopping date",shoppingCalendarButton:"Add shopping list to calendar",todoTitle:"My private to-do list",todoText:"This list is visible only in your account.",addTodoButton:"Add",nearTitle:"Near you",nearText:"Based on your city, we show quick searches.",noEvents:"No items yet.",addToCalendar:"Add to calendar",eventDone:"Done",eventOpen:"To do",emptyTodo:"Please write a task first.",todoDone:"Done",todoOpen:"To do",openSearch:"Open search",noteSaved:"Note saved ✅",babyNameSaved:"Baby name saved ✅",weekWord:"Week",done:"Done",todo:"To do",showAll:"Show all tasks",showRecommended:"Show current tasks only",progress:"done",all:"All",admin:"Bureaucracy",medical:"Medical",organisation:"Organization",themeNeutral:"Neutral",themeBoy:"Boy · Blue",themeGirl:"Girl · Pink",themeTwin:"Twins · Green",babyDefault:"Your baby",todayPersonal:"{babyName} is with you today in pregnancy week {week}. Here you will find your next appointments, tasks and memories.",babyPersonalFallback:"{babyName} continues to grow this week. Every small change is part of your shared story.",bodyEarly:"Tiredness, nausea and sensitive breasts can be normal at this stage.",bodyMid:"You may soon feel the first movements. Your belly may become more visible.",bodyLate:"Water retention, heavy legs or swollen feet may happen. Resting and raising your feet can help.",emotionEarly:"At the beginning, many women feel uncertain. That is normal.",emotionMid:"This phase may feel softer because the pregnancy becomes more real.",emotionLate:"Joy and fear can exist together. You do not need everything to be perfect.",calendarFileName:"Mama-event",addRecipeToShopping:"Add to shopping list",ingredientsTitle:"Ingredients",stepsTitle:"Preparation",shoppingAdded:"Ingredients added to shopping list ✅",shoppingEmpty:"Your shopping list is empty.",shoppingDone:"Bought",shoppingOpen:"Open",shoppingCalendarTitle:"Shopping list",shoppingCalendarDescription:"Shopping list for pregnancy recipes.",chooseShoppingDate:"Please choose a shopping date.",shoppingCalendarAdded:"Shopping list added to calendar ✅",near:nearEN};
-    translations.tr={...translations.en,loginNeededTitle:"Lütfen giriş yap",loginNeededText:"Hamilelik uygulamanı açmak için önce giriş yapmalısın.",goHomeButton:"Ana sayfaya dön",welcomeTitle:"Tekrar hoş geldin",welcomeSubtitle:"Almanya’daki hamileliğin organize.",logoutButton:"Çıkış yap",tabToday:"Bugün",tabCalendar:"Takvim",tabBaby:"Anne & bebek",tabMedical:"Tıbbi",tabBureaucracy:"Bürokrasi",tabEmotions:"Duygular",tabNutrition:"Beslenme",tabTodo:"Yapılacaklar",tabNear:"Yakında",dashboardTitle:"Bugün",weekLabel:"Hafta",daysLabel:"Kalan gün",dueDateLabel:"Tahmini doğum tarihi",cityLabel:"Şehir",babySectionTitle:"Bu hafta anne & bebek",babyLengthLabel:"Boy",babyWeightLabel:"Kilo",babyDevelopmentTitle:"Bebek",motherBodyTitle:"Vücudun",motherTipTitle:"Anne ipucu",nutritionTitle:"Beslenme",babyNameTitle:"Bebek adı",babyNameLabel:"Bebek adı",saveBabyNameButton:"Bebek adını kaydet",emotionTitle:"Duygular & anılar",moodTitle:"Bugün nasıl hissediyorsun?",moodLabel:"Ruh hali",noteLabel:"Not",saveEmotionButton:"Notu kaydet",tasksTitle:"Bürokrasi merkezi",nutritionMainTitle:"Beslenme & tarifler",recipeSectionTitle:"Bu dönem için tarifler",shoppingSectionTitle:"Alışveriş listem",shoppingDateLabel:"Alışveriş tarihi",shoppingCalendarButton:"Alışveriş listesini takvime ekle",todoTitle:"Özel yapılacaklar listem",addTodoButton:"Ekle",nearTitle:"Yakınında",addToCalendar:"Takvime ekle",eventDone:"Tamamlandı",eventOpen:"Açık",todoDone:"Tamamlandı",todoOpen:"Açık",done:"Tamamlandı",todo:"Açık",showAll:"Tüm görevleri göster",showRecommended:"Sadece güncel görevleri göster",progress:"tamamlandı",babyDefault:"Bebeğin",todayPersonal:"{babyName} bugün hamileliğin {week}. haftasında seninle. Burada randevularını, görevlerini ve anılarını bulursun.",babyPersonalFallback:"{babyName} bu hafta gelişmeye devam ediyor. Her küçük değişiklik hikâyenizin bir parçası.",bodyEarly:"Yorgunluk, mide bulantısı ve hassas göğüsler bu dönemde normal olabilir.",bodyMid:"Yakında ilk hareketleri hissedebilirsin. Karnın daha belirgin olabilir.",bodyLate:"Su tutulması, ağır bacaklar veya şiş ayaklar olabilir. Dinlenmek yardımcı olabilir.",emotionEarly:"Başlangıçta belirsizlik hissetmek normaldir.",emotionMid:"Bu dönem hamilelik daha gerçek hissettirdiği için daha yumuşak geçebilir.",emotionLate:"Sevinç ve korku aynı anda olabilir. Her şey mükemmel olmak zorunda değil.",shoppingAdded:"Malzemeler alışveriş listesine eklendi ✅",shoppingEmpty:"Alışveriş listen boş.",shoppingDone:"Alındı",shoppingOpen:"Açık",chooseShoppingDate:"Lütfen alışveriş tarihi seç.",shoppingCalendarAdded:"Alışveriş listesi takvime eklendi ✅",near:nearEN};
-    translations.ru={...translations.en,loginNeededTitle:"Пожалуйста, войдите",loginNeededText:"Сначала нужно войти, чтобы открыть приложение.",goHomeButton:"На главную",welcomeTitle:"С возвращением",welcomeSubtitle:"Твоя беременность в Германии организована.",logoutButton:"Выйти",tabToday:"Сегодня",tabCalendar:"Календарь",tabBaby:"Мама и малыш",tabMedical:"Медицина",tabBureaucracy:"Бюрократия",tabEmotions:"Эмоции",tabNutrition:"Питание",tabTodo:"Задачи",tabNear:"Рядом",dashboardTitle:"Сегодня",weekLabel:"Неделя",daysLabel:"Дней осталось",dueDateLabel:"Дата родов",cityLabel:"Город",babySectionTitle:"Мама и малыш на этой неделе",babyLengthLabel:"Рост",babyWeightLabel:"Вес",babyDevelopmentTitle:"Малыш",motherBodyTitle:"Твоё тело",motherTipTitle:"Совет маме",nutritionTitle:"Питание",babyNameTitle:"Имя малыша",babyNameLabel:"Имя малыша",saveBabyNameButton:"Сохранить имя",emotionTitle:"Эмоции и воспоминания",moodTitle:"Как ты себя чувствуешь сегодня?",moodLabel:"Настроение",noteLabel:"Заметка",saveEmotionButton:"Сохранить заметку",tasksTitle:"Центр бюрократии",nutritionMainTitle:"Питание и рецепты",recipeSectionTitle:"Рецепты для этого периода",shoppingSectionTitle:"Мой список покупок",shoppingDateLabel:"Дата покупок",shoppingCalendarButton:"Добавить список покупок в календарь",todoTitle:"Мой личный список задач",addTodoButton:"Добавить",nearTitle:"Рядом с тобой",addToCalendar:"Добавить в календарь",eventDone:"Готово",eventOpen:"Сделать",todoDone:"Готово",todoOpen:"Сделать",done:"Готово",todo:"Сделать",showAll:"Показать все задачи",showRecommended:"Показать текущие задачи",progress:"готово",babyDefault:"Твой малыш",todayPersonal:"{babyName} сегодня с тобой на {week}-й неделе беременности. Здесь твои встречи, задачи и воспоминания.",babyPersonalFallback:"{babyName} продолжает развиваться на этой неделе. Каждое маленькое изменение — часть вашей истории.",bodyEarly:"Усталость, тошнота и чувствительная грудь могут быть нормальными.",bodyMid:"Возможно, ты скоро почувствуешь первые движения. Живот может стать заметнее.",bodyLate:"Может появиться задержка воды, тяжесть в ногах или отёки стоп. Отдых помогает.",emotionEarly:"В начале многие женщины чувствуют неуверенность. Это нормально.",emotionMid:"Этот период может ощущаться спокойнее, потому что беременность становится реальнее.",emotionLate:"Радость и страх могут быть вместе. Не всё должно быть идеально.",shoppingAdded:"Ингредиенты добавлены в список покупок ✅",shoppingEmpty:"Список покупок пуст.",shoppingDone:"Куплено",shoppingOpen:"Открыто",chooseShoppingDate:"Пожалуйста, выбери дату покупок.",shoppingCalendarAdded:"Список покупок добавлен в календарь ✅",near:nearEN};
-    translations.uk={...translations.ru,loginNeededTitle:"Будь ласка, увійдіть",welcomeTitle:"З поверненням",logoutButton:"Вийти",tabToday:"Сьогодні",tabCalendar:"Календар",tabBaby:"Мама і малюк",tabMedical:"Медичне",tabBureaucracy:"Бюрократія",tabEmotions:"Емоції",tabNutrition:"Харчування",tabTodo:"Справи",tabNear:"Поруч",dashboardTitle:"Сьогодні",weekLabel:"Тиждень",daysLabel:"Днів залишилось",dueDateLabel:"Дата пологів",cityLabel:"Місто",babySectionTitle:"Мама і малюк цього тижня",babyLengthLabel:"Довжина",babyWeightLabel:"Вага",babyDevelopmentTitle:"Малюк",motherBodyTitle:"Твоє тіло",motherTipTitle:"Порада мамі",nutritionTitle:"Харчування",babyNameTitle:"Ім’я малюка",babyNameLabel:"Ім’я малюка",saveBabyNameButton:"Зберегти ім’я",emotionTitle:"Емоції та спогади",moodTitle:"Як ти почуваєшся сьогодні?",moodLabel:"Настрій",noteLabel:"Нотатка",saveEmotionButton:"Зберегти нотатку",tasksTitle:"Центр бюрократії",nutritionMainTitle:"Харчування і рецепти",recipeSectionTitle:"Рецепти для цього періоду",shoppingSectionTitle:"Мій список покупок",shoppingDateLabel:"Дата покупок",shoppingCalendarButton:"Додати список покупок у календар",todoTitle:"Мій приватний список справ",addTodoButton:"Додати",nearTitle:"Поруч із тобою",addToCalendar:"Додати в календар",eventDone:"Готово",eventOpen:"Зробити",todoDone:"Готово",todoOpen:"Зробити",done:"Готово",todo:"Зробити",babyDefault:"Твій малюк",todayPersonal:"{babyName} сьогодні з тобою на {week}-му тижні вагітності. Тут твої зустрічі, завдання і спогади.",babyPersonalFallback:"{babyName} продовжує розвиватися цього тижня. Кожна маленька зміна — частина вашої історії.",bodyEarly:"Втома, нудота і чутливі груди можуть бути нормальними.",bodyMid:"Можливо, ти скоро відчуєш перші рухи. Живіт може стати помітнішим.",bodyLate:"Може з’явитися затримка води, важкість у ногах або набряк стоп. Відпочинок може допомогти.",shoppingAdded:"Інгредієнти додано до списку покупок ✅",shoppingEmpty:"Список покупок порожній.",shoppingDone:"Куплено",shoppingOpen:"Відкрите",chooseShoppingDate:"Будь ласка, обери дату покупок.",shoppingCalendarAdded:"Список покупок додано в календар ✅"};
+    <div class="card">
+      <div class="tabs">
+        <button class="tab active" onclick="setActiveTab('today')" id="tabToday">Heute</button>
+        <button class="tab" onclick="setActiveTab('calendar')" id="tabCalendar">Kalender</button>
+        <button class="tab" onclick="setActiveTab('baby')" id="tabBaby">Mutter & Baby</button>
+        <button class="tab" onclick="setActiveTab('medical')" id="tabMedical">Medizin</button>
+        <button class="tab" onclick="setActiveTab('bureaucracy')" id="tabBureaucracy">Bürokratie</button>
+        <button class="tab" onclick="setActiveTab('emotions')" id="tabEmotions">Emotionen</button>
+        <button class="tab" onclick="setActiveTab('nutrition')" id="tabNutrition">Ernährung</button>
+        <button class="tab" onclick="setActiveTab('documents')" id="tabDocuments">Dokumente</button>
+        <button class="tab" onclick="setActiveTab('todo')" id="tabTodo">To-do</button>
+        <button class="tab" onclick="setActiveTab('profile')" id="tabProfile">Profil</button>
+        <button class="tab" onclick="setActiveTab('near')" id="tabNear">In der Nähe</button>
+      </div>
 
-    const calendarAndLinkTranslations={
-      de:{calAll:"Alle",calMedical:"Medizin",calCourse:"Kurse",calAdmin:"Bürokratie",calShopping:"Einkauf",courseLabel:"Kurs",medicalLabel:"Medizin",adminLabel:"Bürokratie",shoppingLabel:"Einkauf",openApplication:"Anmeldung / Antrag öffnen"},
-      fr:{calAll:"Tous",calMedical:"Médical",calCourse:"Cours",calAdmin:"Bureaucratie",calShopping:"Courses",courseLabel:"Cours",medicalLabel:"Médical",adminLabel:"Bureaucratie",shoppingLabel:"Courses",openApplication:"Inscription / demande"},
-      ar:{calAll:"الكل",calMedical:"طبي",calCourse:"دورات",calAdmin:"إجراءات",calShopping:"شراء",courseLabel:"دورة",medicalLabel:"طبي",adminLabel:"إجراءات",shoppingLabel:"شراء",openApplication:"فتح التسجيل / الطلب"},
-      en:{calAll:"All",calMedical:"Medical",calCourse:"Courses",calAdmin:"Bureaucracy",calShopping:"Shopping",courseLabel:"Course",medicalLabel:"Medical",adminLabel:"Bureaucracy",shoppingLabel:"Shopping",openApplication:"Open registration / application"},
-      tr:{calAll:"Hepsi",calMedical:"Tıbbi",calCourse:"Kurslar",calAdmin:"Bürokrasi",calShopping:"Alışveriş",courseLabel:"Kurs",medicalLabel:"Tıbbi",adminLabel:"Bürokrasi",shoppingLabel:"Alışveriş",openApplication:"Kayıt / başvuru aç"},
-      ru:{calAll:"Все",calMedical:"Медицина",calCourse:"Курсы",calAdmin:"Бюрократия",calShopping:"Покупки",courseLabel:"Курс",medicalLabel:"Медицина",adminLabel:"Бюрократия",shoppingLabel:"Покупки",openApplication:"Открыть запись / заявление"},
-      uk:{calAll:"Усе",calMedical:"Медичне",calCourse:"Курси",calAdmin:"Бюрократія",calShopping:"Покупки",courseLabel:"Курс",medicalLabel:"Медичне",adminLabel:"Бюрократія",shoppingLabel:"Покупки",openApplication:"Відкрити запис / заяву"}
-    };
-    Object.keys(calendarAndLinkTranslations).forEach(lang=>{translations[lang]={...translations[lang],...calendarAndLinkTranslations[lang]};});
+      <div class="panel active" id="panelToday">
+        <h2 id="dashboardTitle">Heute</h2>
+        <div class="grid-4">
+          <div class="small"><div class="small-label" id="weekLabel">Woche</div><div class="big" id="pregnancyWeek">-</div></div>
+          <div class="small"><div class="small-label" id="daysLabel">Tage übrig</div><div class="big" id="daysLeft">-</div></div>
+          <div class="small"><div class="small-label" id="dueDateLabel">Entbindungstermin</div><div class="big" id="dueDateResult">-</div></div>
+          <div class="small"><div class="small-label" id="cityLabel">Stadt</div><div class="big" id="cityResult">-</div></div>
+        </div>
+        <div class="soft" id="todayPersonalText">-</div>
+        <div class="box" style="margin-top:16px;">
+          <h2 id="nextEventsTitle">Nächste Termine</h2>
+          <p id="nextEventsText">Die wichtigsten kommenden Punkte aus deinem Kalender.</p>
+          <div class="grid-3" id="nextEventsList"></div>
+        </div>
+      </div>
 
-    const manualEventTranslations={
-      de:{manualEventTitle:"Neuen Termin hinzufügen",manualEventText:"Füge eigene Termine, Kurse oder Anträge zu deinem Kalender hinzu.",manualTitleLabel:"Titel",manualDateLabel:"Datum",manualTimeLabel:"Uhrzeit",manualCategoryLabel:"Kategorie",manualCategoryMedical:"Medizin",manualCategoryCourse:"Kurs",manualCategoryAdmin:"Bürokratie",manualCategoryShopping:"Einkauf",manualCategoryPersonal:"Persönlich",manualLocationLabel:"Ort",manualLinkLabel:"Link für Anmeldung / Antrag",manualReminderLabel:"Erinnerung",manualDescriptionLabel:"Beschreibung / Notiz",manualSaveButton:"Termin speichern",manualMissing:"Bitte mindestens Titel und Datum ausfüllen.",manualSaved:"Termin wurde gespeichert ✅"},
-      fr:{manualEventTitle:"Ajouter un rendez-vous",manualEventText:"Ajoute tes propres rendez-vous, cours ou demandes à ton calendrier.",manualTitleLabel:"Titre",manualDateLabel:"Date",manualTimeLabel:"Heure",manualCategoryLabel:"Catégorie",manualCategoryMedical:"Médical",manualCategoryCourse:"Cours",manualCategoryAdmin:"Bureaucratie",manualCategoryShopping:"Courses",manualCategoryPersonal:"Personnel",manualLocationLabel:"Lieu",manualLinkLabel:"Lien inscription / demande",manualReminderLabel:"Rappel",manualDescriptionLabel:"Description / note",manualSaveButton:"Enregistrer le rendez-vous",manualMissing:"Merci d’écrire au moins le titre et la date.",manualSaved:"Rendez-vous enregistré ✅"},
-      ar:{manualEventTitle:"إضافة موعد جديد",manualEventText:"أضيفي مواعيدك، الدورات أو الطلبات إلى التقويم.",manualTitleLabel:"العنوان",manualDateLabel:"التاريخ",manualTimeLabel:"الوقت",manualCategoryLabel:"الفئة",manualCategoryMedical:"طبي",manualCategoryCourse:"دورة",manualCategoryAdmin:"إجراءات",manualCategoryShopping:"شراء",manualCategoryPersonal:"شخصي",manualLocationLabel:"المكان",manualLinkLabel:"رابط التسجيل / الطلب",manualReminderLabel:"تذكير",manualDescriptionLabel:"وصف / ملاحظة",manualSaveButton:"حفظ الموعد",manualMissing:"يرجى كتابة العنوان والتاريخ على الأقل.",manualSaved:"تم حفظ الموعد ✅"},
-      en:{manualEventTitle:"Add new appointment",manualEventText:"Add your own appointments, courses or applications to your calendar.",manualTitleLabel:"Title",manualDateLabel:"Date",manualTimeLabel:"Time",manualCategoryLabel:"Category",manualCategoryMedical:"Medical",manualCategoryCourse:"Course",manualCategoryAdmin:"Bureaucracy",manualCategoryShopping:"Shopping",manualCategoryPersonal:"Personal",manualLocationLabel:"Location",manualLinkLabel:"Registration / application link",manualReminderLabel:"Reminder",manualDescriptionLabel:"Description / note",manualSaveButton:"Save appointment",manualMissing:"Please fill in at least title and date.",manualSaved:"Appointment saved ✅"},
-      tr:{manualEventTitle:"Yeni randevu ekle",manualEventText:"Kendi randevularını, kurslarını veya başvurularını takvime ekle.",manualTitleLabel:"Başlık",manualDateLabel:"Tarih",manualTimeLabel:"Saat",manualCategoryLabel:"Kategori",manualCategoryMedical:"Tıbbi",manualCategoryCourse:"Kurs",manualCategoryAdmin:"Bürokrasi",manualCategoryShopping:"Alışveriş",manualCategoryPersonal:"Kişisel",manualLocationLabel:"Yer",manualLinkLabel:"Kayıt / başvuru linki",manualReminderLabel:"Hatırlatma",manualDescriptionLabel:"Açıklama / not",manualSaveButton:"Randevuyu kaydet",manualMissing:"Lütfen en az başlık ve tarih gir.",manualSaved:"Randevu kaydedildi ✅"},
-      ru:{manualEventTitle:"Добавить встречу",manualEventText:"Добавь свои встречи, курсы или заявления в календарь.",manualTitleLabel:"Название",manualDateLabel:"Дата",manualTimeLabel:"Время",manualCategoryLabel:"Категория",manualCategoryMedical:"Медицина",manualCategoryCourse:"Курс",manualCategoryAdmin:"Бюрократия",manualCategoryShopping:"Покупки",manualCategoryPersonal:"Личное",manualLocationLabel:"Место",manualLinkLabel:"Ссылка записи / заявления",manualReminderLabel:"Напоминание",manualDescriptionLabel:"Описание / заметка",manualSaveButton:"Сохранить встречу",manualMissing:"Пожалуйста, укажи хотя бы название и дату.",manualSaved:"Встреча сохранена ✅"},
-      uk:{manualEventTitle:"Додати зустріч",manualEventText:"Додай свої зустрічі, курси або заяви в календар.",manualTitleLabel:"Назва",manualDateLabel:"Дата",manualTimeLabel:"Час",manualCategoryLabel:"Категорія",manualCategoryMedical:"Медичне",manualCategoryCourse:"Курс",manualCategoryAdmin:"Бюрократія",manualCategoryShopping:"Покупки",manualCategoryPersonal:"Особисте",manualLocationLabel:"Місце",manualLinkLabel:"Посилання запису / заяви",manualReminderLabel:"Нагадування",manualDescriptionLabel:"Опис / нотатка",manualSaveButton:"Зберегти зустріч",manualMissing:"Будь ласка, вкажи хоча б назву і дату.",manualSaved:"Зустріч збережено ✅"}
-    };
-    Object.keys(manualEventTranslations).forEach(lang=>{translations[lang]={...translations[lang],...manualEventTranslations[lang]};});
+      <div class="panel" id="panelCalendar">
+        <h2 id="calendarTitle">Kalender</h2>
+        <p id="calendarText">Hier erscheinen Untersuchungen, Termine, Kurse und später auch Einkaufslisten.</p>
 
+        <div class="box" style="margin-top:16px;">
+          <h2 id="manualEventTitle">Neuen Termin hinzufügen</h2>
+          <p id="manualEventText">Füge eigene Termine, Kurse oder Anträge zu deinem Kalender hinzu.</p>
+          <div class="grid-2">
+            <div><label id="manualTitleLabel" for="manualTitle">Titel</label><input type="text" id="manualTitle" placeholder="Frauenarzttermin" /></div>
+            <div><label id="manualDateLabel" for="manualDate">Datum</label><input type="date" id="manualDate" /></div>
+            <div><label id="manualTimeLabel" for="manualTime">Uhrzeit</label><input type="time" id="manualTime" /></div>
+            <div>
+              <label id="manualCategoryLabel" for="manualCategory">Kategorie</label>
+              <select id="manualCategory">
+                <option value="medical" id="manualCategoryMedical">Medizin</option>
+                <option value="course" id="manualCategoryCourse">Kurs</option>
+                <option value="administratif" id="manualCategoryAdmin">Bürokratie</option>
+                <option value="shopping" id="manualCategoryShopping">Einkauf</option>
+                <option value="personal" id="manualCategoryPersonal">Persönlich</option>
+              </select>
+            </div>
+            <div><label id="manualLocationLabel" for="manualLocation">Ort</label><input type="text" id="manualLocation" placeholder="Praxis / Klinik / Online" /></div>
+            <div><label id="manualLinkLabel" for="manualLink">Link für Anmeldung / Antrag</label><input type="url" id="manualLink" placeholder="https://..." /></div>
+            <div>
+              <label id="manualReminderLabel" for="manualReminder">Erinnerung</label>
+              <select id="manualReminder">
+                <option value="7">7 Tage vorher</option>
+                <option value="14" selected>14 Tage vorher</option>
+                <option value="30">30 Tage vorher</option>
+              </select>
+            </div>
+          </div>
+          <label id="manualDescriptionLabel" for="manualDescription">Beschreibung / Notiz</label>
+          <textarea id="manualDescription" placeholder="Was muss vorbereitet werden?"></textarea>
+          <button class="button" onclick="saveManualEvent()" id="manualSaveButton">Termin speichern</button>
+        </div>
 
-    const documentTranslations={
-      de:{tabDocuments:"Dokumente",documentsTitle:"Dokumente & Dateien",documentsText:"Speichere Mutterpass, Anträge, Ergebnisse, Fotos und wichtige Dokumente privat.",documentUploadTitle:"Dokument hochladen",documentTitleLabel:"Titel",documentCategoryLabel:"Kategorie",documentCategoryMutterpass:"Mutterpass",documentCategoryMedicalResult:"Untersuchung / Ergebnis",documentCategoryApplication:"Antrag",documentCategoryInsurance:"Versicherung",documentCategoryStandesamt:"Standesamt",documentCategoryMemory:"Foto / Erinnerung",documentCategoryOther:"Sonstiges",documentFileLabel:"Datei oder Foto",documentNotesLabel:"Notiz",documentUploadButton:"Dokument speichern",documentChecklistTitle:"Wichtige Dokumente",documentChecklistText:"Mutterpass, Krankenkasse, Mutterschaftsgeld, Elterngeld, Kindergeld, Geburtsurkunde, Elternzeit und Untersuchungsergebnisse.",docCatAll:"Alle",docCatApplication:"Anträge",docCatMedical:"Medizin",docCatMemory:"Erinnerungen",documentMissing:"Bitte Titel und Datei auswählen.",documentSaved:"Dokument wurde gespeichert ✅",documentOpen:"Öffnen",documentDelete:"Löschen",documentEmpty:"Noch keine Dokumente gespeichert.",documentDeleted:"Dokument gelöscht ✅"},
-      fr:{tabDocuments:"Documents",documentsTitle:"Documents & fichiers",documentsText:"Garde le Mutterpass, les demandes, résultats, photos et documents importants en privé.",documentUploadTitle:"Téléverser un document",documentTitleLabel:"Titre",documentCategoryLabel:"Catégorie",documentCategoryMutterpass:"Mutterpass",documentCategoryMedicalResult:"Examen / résultat",documentCategoryApplication:"Demande",documentCategoryInsurance:"Assurance",documentCategoryStandesamt:"État civil",documentCategoryMemory:"Photo / souvenir",documentCategoryOther:"Autre",documentFileLabel:"Fichier ou photo",documentNotesLabel:"Note",documentUploadButton:"Enregistrer le document",documentChecklistTitle:"Documents importants",documentChecklistText:"Mutterpass, assurance maladie, Mutterschaftsgeld, Elterngeld, Kindergeld, acte de naissance, Elternzeit et résultats médicaux.",docCatAll:"Tous",docCatApplication:"Demandes",docCatMedical:"Médical",docCatMemory:"Souvenirs",documentMissing:"Merci de choisir un titre et un fichier.",documentSaved:"Document enregistré ✅",documentOpen:"Ouvrir",documentDelete:"Supprimer",documentEmpty:"Aucun document enregistré.",documentDeleted:"Document supprimé ✅"},
-      ar:{tabDocuments:"الوثائق",documentsTitle:"الوثائق والملفات",documentsText:"احفظي دفتر الحمل والطلبات والنتائج والصور والوثائق المهمة بشكل خاص.",documentUploadTitle:"رفع وثيقة",documentTitleLabel:"العنوان",documentCategoryLabel:"الفئة",documentCategoryMutterpass:"دفتر الحمل",documentCategoryMedicalResult:"فحص / نتيجة",documentCategoryApplication:"طلب",documentCategoryInsurance:"تأمين",documentCategoryStandesamt:"الحالة المدنية",documentCategoryMemory:"صورة / ذكرى",documentCategoryOther:"أخرى",documentFileLabel:"ملف أو صورة",documentNotesLabel:"ملاحظة",documentUploadButton:"حفظ الوثيقة",documentChecklistTitle:"وثائق مهمة",documentChecklistText:"دفتر الحمل، التأمين الصحي، بدل الأمومة، Elterngeld، Kindergeld، شهادة الميلاد، Elternzeit ونتائج الفحوصات.",docCatAll:"الكل",docCatApplication:"طلبات",docCatMedical:"طبي",docCatMemory:"ذكريات",documentMissing:"يرجى كتابة العنوان واختيار ملف.",documentSaved:"تم حفظ الوثيقة ✅",documentOpen:"فتح",documentDelete:"حذف",documentEmpty:"لا توجد وثائق محفوظة بعد.",documentDeleted:"تم حذف الوثيقة ✅"},
-      en:{tabDocuments:"Documents",documentsTitle:"Documents & files",documentsText:"Save maternity records, applications, results, photos and important documents privately.",documentUploadTitle:"Upload document",documentTitleLabel:"Title",documentCategoryLabel:"Category",documentCategoryMutterpass:"Maternity record",documentCategoryMedicalResult:"Exam / result",documentCategoryApplication:"Application",documentCategoryInsurance:"Insurance",documentCategoryStandesamt:"Registry office",documentCategoryMemory:"Photo / memory",documentCategoryOther:"Other",documentFileLabel:"File or photo",documentNotesLabel:"Note",documentUploadButton:"Save document",documentChecklistTitle:"Important documents",documentChecklistText:"Maternity record, health insurance, maternity allowance, parental allowance, child benefit, birth certificate, parental leave and medical results.",docCatAll:"All",docCatApplication:"Applications",docCatMedical:"Medical",docCatMemory:"Memories",documentMissing:"Please choose a title and a file.",documentSaved:"Document saved ✅",documentOpen:"Open",documentDelete:"Delete",documentEmpty:"No documents saved yet.",documentDeleted:"Document deleted ✅"},
-      tr:{tabDocuments:"Belgeler",documentsTitle:"Belgeler & dosyalar",documentsText:"Mutterpass, başvurular, sonuçlar, fotoğraflar ve önemli belgeleri özel olarak sakla.",documentUploadTitle:"Belge yükle",documentTitleLabel:"Başlık",documentCategoryLabel:"Kategori",documentCategoryMutterpass:"Mutterpass",documentCategoryMedicalResult:"Muayene / sonuç",documentCategoryApplication:"Başvuru",documentCategoryInsurance:"Sigorta",documentCategoryStandesamt:"Nüfus dairesi",documentCategoryMemory:"Fotoğraf / anı",documentCategoryOther:"Diğer",documentFileLabel:"Dosya veya fotoğraf",documentNotesLabel:"Not",documentUploadButton:"Belgeyi kaydet",documentChecklistTitle:"Önemli belgeler",documentChecklistText:"Mutterpass, sağlık sigortası, annelik parası, ebeveyn parası, çocuk parası, doğum belgesi, Elternzeit ve muayene sonuçları.",docCatAll:"Hepsi",docCatApplication:"Başvurular",docCatMedical:"Tıbbi",docCatMemory:"Anılar",documentMissing:"Lütfen başlık ve dosya seç.",documentSaved:"Belge kaydedildi ✅",documentOpen:"Aç",documentDelete:"Sil",documentEmpty:"Henüz belge yok.",documentDeleted:"Belge silindi ✅"},
-      ru:{tabDocuments:"Документы",documentsTitle:"Документы и файлы",documentsText:"Храни Mutterpass, заявления, результаты, фотографии и важные документы приватно.",documentUploadTitle:"Загрузить документ",documentTitleLabel:"Название",documentCategoryLabel:"Категория",documentCategoryMutterpass:"Mutterpass",documentCategoryMedicalResult:"Обследование / результат",documentCategoryApplication:"Заявление",documentCategoryInsurance:"Страховка",documentCategoryStandesamt:"ЗАГС",documentCategoryMemory:"Фото / память",documentCategoryOther:"Другое",documentFileLabel:"Файл или фото",documentNotesLabel:"Заметка",documentUploadButton:"Сохранить документ",documentChecklistTitle:"Важные документы",documentChecklistText:"Mutterpass, страховка, Mutterschaftsgeld, Elterngeld, Kindergeld, свидетельство о рождении, Elternzeit и результаты обследований.",docCatAll:"Все",docCatApplication:"Заявления",docCatMedical:"Медицина",docCatMemory:"Воспоминания",documentMissing:"Пожалуйста, выбери название и файл.",documentSaved:"Документ сохранён ✅",documentOpen:"Открыть",documentDelete:"Удалить",documentEmpty:"Документов пока нет.",documentDeleted:"Документ удалён ✅"},
-      uk:{tabDocuments:"Документи",documentsTitle:"Документи та файли",documentsText:"Зберігай Mutterpass, заяви, результати, фото та важливі документи приватно.",documentUploadTitle:"Завантажити документ",documentTitleLabel:"Назва",documentCategoryLabel:"Категорія",documentCategoryMutterpass:"Mutterpass",documentCategoryMedicalResult:"Обстеження / результат",documentCategoryApplication:"Заява",documentCategoryInsurance:"Страхування",documentCategoryStandesamt:"РАЦС",documentCategoryMemory:"Фото / спогад",documentCategoryOther:"Інше",documentFileLabel:"Файл або фото",documentNotesLabel:"Нотатка",documentUploadButton:"Зберегти документ",documentChecklistTitle:"Важливі документи",documentChecklistText:"Mutterpass, страхування, Mutterschaftsgeld, Elterngeld, Kindergeld, свідоцтво про народження, Elternzeit та результати обстежень.",docCatAll:"Усе",docCatApplication:"Заяви",docCatMedical:"Медичне",docCatMemory:"Спогади",documentMissing:"Будь ласка, обери назву і файл.",documentSaved:"Документ збережено ✅",documentOpen:"Відкрити",documentDelete:"Видалити",documentEmpty:"Документів поки немає.",documentDeleted:"Документ видалено ✅"}
-    };
-    Object.keys(documentTranslations).forEach(lang=>{translations[lang]={...translations[lang],...documentTranslations[lang]};});
-    const documentChecklistExtraTranslations={
-      de:{savedDocumentsTitle:'Gespeicherte Dokumente',documentRequired:'Pflicht / wichtig',documentOptional:'Optional',documentMissingStatus:'Fehlt',documentSavedStatus:'Gespeichert',documentOpenApplication:'Antrag öffnen',documentUploadThis:'Dieses Dokument hochladen',documentTemplateEmpty:'Keine Dokumenten-Checkliste gefunden.'},
-      fr:{savedDocumentsTitle:'Documents enregistrés',documentRequired:'Important',documentOptional:'Optionnel',documentMissingStatus:'Manquant',documentSavedStatus:'Enregistré',documentOpenApplication:'Ouvrir la demande',documentUploadThis:'Téléverser ce document',documentTemplateEmpty:'Aucune checklist document trouvée.'},
-      ar:{savedDocumentsTitle:'الوثائق المحفوظة',documentRequired:'مهم',documentOptional:'اختياري',documentMissingStatus:'ناقص',documentSavedStatus:'محفوظ',documentOpenApplication:'فتح الطلب',documentUploadThis:'رفع هذه الوثيقة',documentTemplateEmpty:'لا توجد قائمة وثائق.'},
-      en:{savedDocumentsTitle:'Saved documents',documentRequired:'Important',documentOptional:'Optional',documentMissingStatus:'Missing',documentSavedStatus:'Saved',documentOpenApplication:'Open application',documentUploadThis:'Upload this document',documentTemplateEmpty:'No document checklist found.'},
-      tr:{savedDocumentsTitle:'Kaydedilen belgeler',documentRequired:'Önemli',documentOptional:'Opsiyonel',documentMissingStatus:'Eksik',documentSavedStatus:'Kaydedildi',documentOpenApplication:'Başvuruyu aç',documentUploadThis:'Bu belgeyi yükle',documentTemplateEmpty:'Belge kontrol listesi bulunamadı.'},
-      ru:{savedDocumentsTitle:'Сохранённые документы',documentRequired:'Важно',documentOptional:'Необязательно',documentMissingStatus:'Нет',documentSavedStatus:'Сохранено',documentOpenApplication:'Открыть заявление',documentUploadThis:'Загрузить этот документ',documentTemplateEmpty:'Чеклист документов не найден.'},
-      uk:{savedDocumentsTitle:'Збережені документи',documentRequired:'Важливо',documentOptional:'Необов’язково',documentMissingStatus:'Немає',documentSavedStatus:'Збережено',documentOpenApplication:'Відкрити заяву',documentUploadThis:'Завантажити цей документ',documentTemplateEmpty:'Чеклист документів не знайдено.'}
-    };
-    Object.keys(documentChecklistExtraTranslations).forEach(lang=>{translations[lang]={...translations[lang],...documentChecklistExtraTranslations[lang]};});
+        <div class="filters" style="margin-top:16px;">
+          <button class="filter-button active" onclick="setCalendarCategory('all')" id="calAll">Alle</button>
+          <button class="filter-button" onclick="setCalendarCategory('medical')" id="calMedical">Medizin</button>
+          <button class="filter-button" onclick="setCalendarCategory('course')" id="calCourse">Kurse</button>
+          <button class="filter-button" onclick="setCalendarCategory('administratif')" id="calAdmin">Bürokratie</button>
+          <button class="filter-button" onclick="setCalendarCategory('shopping')" id="calShopping">Einkauf</button>
+        </div>
+        <div class="grid-3" id="calendarList"></div>
+      </div>
 
-    const documentStatusTranslations={
-      de:{documentOpenStatus:'Nicht erledigt',documentDoneStatus:'Erledigt',documentMarkDone:'Erledigt markieren',documentMarkOpen:'Als offen markieren',documentStatusSaved:'Status gespeichert ✅'},
-      fr:{documentOpenStatus:'Non terminé',documentDoneStatus:'Terminé',documentMarkDone:'Marquer terminé',documentMarkOpen:'Remettre ouvert',documentStatusSaved:'Statut enregistré ✅'},
-      ar:{documentOpenStatus:'غير منجز',documentDoneStatus:'تم',documentMarkDone:'تحديد كمنجز',documentMarkOpen:'إعادة كغير منجز',documentStatusSaved:'تم حفظ الحالة ✅'},
-      en:{documentOpenStatus:'Not done',documentDoneStatus:'Done',documentMarkDone:'Mark done',documentMarkOpen:'Mark open',documentStatusSaved:'Status saved ✅'},
-      tr:{documentOpenStatus:'Tamamlanmadı',documentDoneStatus:'Tamamlandı',documentMarkDone:'Tamamlandı işaretle',documentMarkOpen:'Açık işaretle',documentStatusSaved:'Durum kaydedildi ✅'},
-      ru:{documentOpenStatus:'Не готово',documentDoneStatus:'Готово',documentMarkDone:'Отметить готово',documentMarkOpen:'Отметить открытым',documentStatusSaved:'Статус сохранён ✅'},
-      uk:{documentOpenStatus:'Не готово',documentDoneStatus:'Готово',documentMarkDone:'Позначити готово',documentMarkOpen:'Позначити відкритим',documentStatusSaved:'Статус збережено ✅'}
-    };
-    Object.keys(documentStatusTranslations).forEach(lang=>{translations[lang]={...translations[lang],...documentStatusTranslations[lang]};});
+      <div class="panel" id="panelBaby">
+        <h2 id="babySectionTitle">Mutter & Baby diese Woche</h2>
+        <p id="babyIntro">Ein kurzer Überblick über diese Schwangerschaftswoche.</p>
+        <div class="soft" id="babyPersonalText">-</div>
+        <h2 id="babyTitle" style="margin-top:16px;">-</h2>
+        <div class="grid-2">
+          <div class="small"><div class="small-label" id="babyLengthLabel">Größe</div><div class="big" id="babyLength">-</div></div>
+          <div class="small"><div class="small-label" id="babyWeightLabel">Gewicht</div><div class="big" id="babyWeight">-</div></div>
+        </div>
+        <div class="grid-3" style="margin-top:16px;">
+          <div class="box"><h3 id="babyDevelopmentTitle">Baby</h3><p id="babyDevelopment">-</p></div>
+          <div class="box"><h3 id="motherBodyTitle">Dein Körper</h3><p id="motherBody">-</p></div>
+          <div class="box"><h3 id="motherTipTitle">Mama-Tipp</h3><p id="motherTip">-</p></div>
+          <div class="box"><h3 id="nutritionTitle">Ernährung</h3><p id="babyNutrition">-</p></div>
+          <div class="box"><h3 id="emotionWeekTitle">Emotional</h3><p id="emotionWeekText">-</p></div>
+          <div class="box">
+            <h3 id="babyNameTitle">Babyname</h3>
+            <label id="babyNameLabel" for="babyNameInput">Name des Babys</label>
+            <input type="text" id="babyNameInput" placeholder="Sophia" />
+            <button class="button" onclick="saveBabyName()" id="saveBabyNameButton">Babyname speichern</button>
+          </div>
+        </div>
+      </div>
 
-    
-    const profileTranslations={
-      de:{tabProfile:"Profil",profileTabTitle:"Profil bearbeiten",profileTabText:"Aktualisiere Babyname, Stadt, Entbindungstermin, Sprache und Design.",profileMamaTitle:"Mama & Baby",profileNameLabel:"Name der Mama",profileBabyNameLabel:"Babyname",profileCityLabel:"Stadt",profileLanguageLabel:"Sprache",profilePregnancyTitle:"Schwangerschaft",profileDueDateLabel:"Entbindungstermin",profilePregnancyTypeLabel:"Schwangerschaft",profileSingletonOption:"Ein Baby",profileTwinsOption:"Zwillinge",profileGenderLabel:"Geschlecht des Babys",profileGenderUnknown:"Noch nicht bekannt",profileGenderBoy:"Junge",profileGenderGirl:"Mädchen",profileGenderTwinBoys:"Zwillinge: Jungen",profileGenderTwinGirls:"Zwillinge: Mädchen",profileGenderTwinMixed:"Zwillinge: Junge & Mädchen",profileSaveButton:"Profil speichern",profileSaved:"Profil wurde aktualisiert ✅",profileMissing:"Bitte Stadt und Entbindungstermin ausfüllen."},
-      fr:{tabProfile:"Profil",profileTabTitle:"Modifier le profil",profileTabText:"Mets à jour le prénom du bébé, la ville, la date prévue, la langue et le design.",profileMamaTitle:"Maman & bébé",profileNameLabel:"Nom de la maman",profileBabyNameLabel:"Prénom du bébé",profileCityLabel:"Ville",profileLanguageLabel:"Langue",profilePregnancyTitle:"Grossesse",profileDueDateLabel:"Date prévue",profilePregnancyTypeLabel:"Grossesse",profileSingletonOption:"Un bébé",profileTwinsOption:"Jumeaux",profileGenderLabel:"Sexe du bébé",profileGenderUnknown:"Pas encore connu",profileGenderBoy:"Garçon",profileGenderGirl:"Fille",profileGenderTwinBoys:"Jumeaux : garçons",profileGenderTwinGirls:"Jumeaux : filles",profileGenderTwinMixed:"Jumeaux : garçon & fille",profileSaveButton:"Enregistrer le profil",profileSaved:"Profil mis à jour ✅",profileMissing:"Merci de remplir la ville et la date prévue."},
-      ar:{tabProfile:"الملف",profileTabTitle:"تعديل الملف",profileTabText:"عدّلي اسم الطفل، المدينة، موعد الولادة، اللغة والتصميم.",profileMamaTitle:"الأم والطفل",profileNameLabel:"اسم الأم",profileBabyNameLabel:"اسم الطفل",profileCityLabel:"المدينة",profileLanguageLabel:"اللغة",profilePregnancyTitle:"الحمل",profileDueDateLabel:"موعد الولادة",profilePregnancyTypeLabel:"الحمل",profileSingletonOption:"طفل واحد",profileTwinsOption:"توأم",profileGenderLabel:"جنس الطفل",profileGenderUnknown:"غير معروف بعد",profileGenderBoy:"ولد",profileGenderGirl:"بنت",profileGenderTwinBoys:"توأم: أولاد",profileGenderTwinGirls:"توأم: بنات",profileGenderTwinMixed:"توأم: ولد وبنت",profileSaveButton:"حفظ الملف",profileSaved:"تم تحديث الملف ✅",profileMissing:"يرجى كتابة المدينة وموعد الولادة."},
-      en:{tabProfile:"Profile",profileTabTitle:"Edit profile",profileTabText:"Update baby name, city, due date, language and design.",profileMamaTitle:"Mother & baby",profileNameLabel:"Mother name",profileBabyNameLabel:"Baby name",profileCityLabel:"City",profileLanguageLabel:"Language",profilePregnancyTitle:"Pregnancy",profileDueDateLabel:"Due date",profilePregnancyTypeLabel:"Pregnancy",profileSingletonOption:"One baby",profileTwinsOption:"Twins",profileGenderLabel:"Baby sex",profileGenderUnknown:"Not known yet",profileGenderBoy:"Boy",profileGenderGirl:"Girl",profileGenderTwinBoys:"Twins: boys",profileGenderTwinGirls:"Twins: girls",profileGenderTwinMixed:"Twins: boy & girl",profileSaveButton:"Save profile",profileSaved:"Profile updated ✅",profileMissing:"Please fill in city and due date."},
-      tr:{tabProfile:"Profil",profileTabTitle:"Profili düzenle",profileTabText:"Bebek adı, şehir, doğum tarihi, dil ve tasarımı güncelle.",profileMamaTitle:"Anne & bebek",profileNameLabel:"Anne adı",profileBabyNameLabel:"Bebek adı",profileCityLabel:"Şehir",profileLanguageLabel:"Dil",profilePregnancyTitle:"Hamilelik",profileDueDateLabel:"Tahmini doğum tarihi",profilePregnancyTypeLabel:"Hamilelik",profileSingletonOption:"Bir bebek",profileTwinsOption:"İkizler",profileGenderLabel:"Bebeğin cinsiyeti",profileGenderUnknown:"Henüz bilinmiyor",profileGenderBoy:"Erkek",profileGenderGirl:"Kız",profileGenderTwinBoys:"İkizler: erkek",profileGenderTwinGirls:"İkizler: kız",profileGenderTwinMixed:"İkizler: erkek & kız",profileSaveButton:"Profili kaydet",profileSaved:"Profil güncellendi ✅",profileMissing:"Lütfen şehir ve doğum tarihini doldur."},
-      ru:{tabProfile:"Профиль",profileTabTitle:"Редактировать профиль",profileTabText:"Обнови имя малыша, город, дату родов, язык и дизайн.",profileMamaTitle:"Мама и малыш",profileNameLabel:"Имя мамы",profileBabyNameLabel:"Имя малыша",profileCityLabel:"Город",profileLanguageLabel:"Язык",profilePregnancyTitle:"Беременность",profileDueDateLabel:"Дата родов",profilePregnancyTypeLabel:"Беременность",profileSingletonOption:"Один малыш",profileTwinsOption:"Близнецы",profileGenderLabel:"Пол малыша",profileGenderUnknown:"Пока неизвестно",profileGenderBoy:"Мальчик",profileGenderGirl:"Девочка",profileGenderTwinBoys:"Близнецы: мальчики",profileGenderTwinGirls:"Близнецы: девочки",profileGenderTwinMixed:"Близнецы: мальчик и девочка",profileSaveButton:"Сохранить профиль",profileSaved:"Профиль обновлён ✅",profileMissing:"Пожалуйста, укажи город и дату родов."},
-      uk:{tabProfile:"Профіль",profileTabTitle:"Редагувати профіль",profileTabText:"Онови ім’я малюка, місто, дату пологів, мову та дизайн.",profileMamaTitle:"Мама і малюк",profileNameLabel:"Ім’я мами",profileBabyNameLabel:"Ім’я малюка",profileCityLabel:"Місто",profileLanguageLabel:"Мова",profilePregnancyTitle:"Вагітність",profileDueDateLabel:"Дата пологів",profilePregnancyTypeLabel:"Вагітність",profileSingletonOption:"Один малюк",profileTwinsOption:"Близнюки",profileGenderLabel:"Стать малюка",profileGenderUnknown:"Ще невідомо",profileGenderBoy:"Хлопчик",profileGenderGirl:"Дівчинка",profileGenderTwinBoys:"Близнюки: хлопчики",profileGenderTwinGirls:"Близнюки: дівчатка",profileGenderTwinMixed:"Близнюки: хлопчик і дівчинка",profileSaveButton:"Зберегти профіль",profileSaved:"Профіль оновлено ✅",profileMissing:"Будь ласка, вкажи місто і дату пологів."}
-    };
-    Object.keys(profileTranslations).forEach(lang=>{translations[lang]={...translations[lang],...profileTranslations[lang]};});
-function t(){return translations[currentLang]||translations.de}function setLanguage(lang){currentLang=lang;document.documentElement.lang=lang;document.body.dir=lang==='ar'?'rtl':'ltr';const tr=t();["loginNeededTitle","loginNeededText","goHomeButton","welcomeTitle","welcomeSubtitle","logoutButton","tabToday","tabCalendar","tabBaby","tabMedical","tabBureaucracy","tabEmotions","tabNutrition","tabDocuments","tabTodo","tabNear","tabProfile","dashboardTitle","weekLabel","daysLabel","dueDateLabel","cityLabel","nextEventsTitle","nextEventsText","calendarTitle","calendarText","calAll","calMedical","calCourse","calAdmin","calShopping","manualEventTitle","manualEventText","manualTitleLabel","manualDateLabel","manualTimeLabel","manualCategoryLabel","manualCategoryMedical","manualCategoryCourse","manualCategoryAdmin","manualCategoryShopping","manualCategoryPersonal","manualLocationLabel","manualLinkLabel","manualReminderLabel","manualDescriptionLabel","manualSaveButton","medicalTitle","medicalText","babySectionTitle","babyIntro","babyLengthLabel","babyWeightLabel","babyDevelopmentTitle","motherBodyTitle","motherTipTitle","nutritionTitle","emotionWeekTitle","babyNameTitle","babyNameLabel","saveBabyNameButton","emotionTitle","emotionText","moodTitle","moodLabel","noteLabel","saveEmotionButton","emotionGuideTitle","tasksTitle","tasksText","nutritionMainTitle","nutritionMainText","recipeSectionTitle","shoppingSectionTitle","shoppingDateLabel","shoppingCalendarButton","documentsTitle","documentsText","documentUploadTitle","documentTitleLabel","documentCategoryLabel","documentCategoryMutterpass","documentCategoryMedicalResult","documentCategoryApplication","documentCategoryInsurance","documentCategoryStandesamt","documentCategoryMemory","documentCategoryOther","documentFileLabel","documentNotesLabel","documentUploadButton","documentChecklistTitle","documentChecklistText","docCatAll","docCatApplication","docCatMedical","docCatMemory","savedDocumentsTitle","todoTitle","todoText","addTodoButton","nearTitle","nearText","profileTabTitle","profileTabText","profileMamaTitle","profileNameLabel","profileBabyNameLabel","profileCityLabel","profileLanguageLabel","profilePregnancyTitle","profileDueDateLabel","profilePregnancyTypeLabel","profileSingletonOption","profileTwinsOption","profileGenderLabel","profileGenderUnknown","profileGenderBoy","profileGenderGirl","profileGenderTwinBoys","profileGenderTwinGirls","profileGenderTwinMixed","profileSaveButton"].forEach(id=>{const el=document.getElementById(id);if(el&&tr[id])el.textContent=tr[id]});document.getElementById('todoInput').placeholder=lang==='de'?'Neue Aufgabe...':lang==='fr'?'Nouvelle tâche...':lang==='ar'?'مهمة جديدة...':lang==='tr'?'Yeni görev...':lang==='ru'?'Новая задача...':lang==='uk'?'Нове завдання...':'New task...';if(currentProfile){refreshAllUI();loadRecipes();loadShoppingItems();loadDocuments();loadDocumentChecklist()}}
-    function goHome(){window.location.href='index.html'}async function signOut(){await supabaseClient.auth.signOut();window.location.href='index.html'}function setActiveTab(tab){document.querySelectorAll('.app-tab').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));const m={today:['tabToday','panelToday'],calendar:['tabCalendar','panelCalendar'],baby:['tabBaby','panelBaby'],medical:['tabMedical','panelMedical'],bureaucracy:['tabBureaucracy','panelBureaucracy'],emotions:['tabEmotions','panelEmotions'],nutrition:['tabNutrition','panelNutrition'],documents:['tabDocuments','panelDocuments'],todo:['tabTodo','panelTodo'],profile:['tabProfile','panelProfile'],near:['tabNear','panelNear']};document.getElementById(m[tab][0]).classList.add('active');document.getElementById(m[tab][1]).classList.add('active')}
-    function parseLocalDate(v){const p=v.split('-').map(Number);return new Date(p[0],p[1]-1,p[2])}function addDays(d,days){const r=new Date(d);r.setDate(r.getDate()+days);return r}function toInputDate(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}function formatDate(d){const loc=currentLang==='de'?'de-DE':currentLang==='fr'?'fr-FR':currentLang==='ar'?'ar-SA':currentLang==='tr'?'tr-TR':currentLang==='ru'?'ru-RU':currentLang==='uk'?'uk-UA':'en-GB';return d.toLocaleDateString(loc,{day:'2-digit',month:'2-digit',year:'numeric'})}function calculatePregnancy(due){const today=new Date();today.setHours(0,0,0,0);const start=addDays(due,-280);let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>42)w=42;const left=Math.ceil((due-today)/(1000*60*60*24));return{pregnancyWeek:w,daysLeft:left>0?left:0}}
-    function applyTheme(theme){currentTheme=theme||'neutral';document.body.classList.remove('theme-boy','theme-girl','theme-twin');if(currentTheme==='boy')document.body.classList.add('theme-boy');if(currentTheme==='girl')document.body.classList.add('theme-girl');if(currentTheme==='twin')document.body.classList.add('theme-twin')}function getThemeText(){const tr=t();return currentTheme==='boy'?tr.themeBoy:currentTheme==='girl'?tr.themeGirl:currentTheme==='twin'?tr.themeTwin:tr.themeNeutral}function babyName(){return currentProfile?.baby_name?.trim()||t().babyDefault}function replaceVars(text){return String(text||'').replaceAll('{babyName}',babyName()).replaceAll('{week}',String(lastPregnancyWeek||'-'))}function getBodyFallback(w){return w<=13?t().bodyEarly:w<=27?t().bodyMid:t().bodyLate}function getEmotionFallback(w){return w<=13?t().emotionEarly:w<=27?t().emotionMid:t().emotionLate}function getLocalized(row,field){if(!row)return'';return row[`${field}_${currentLang}`]||row[`${field}_de`]||row[`${field}_en`]||''}
-    
-    function determineThemeFromProfile(pregnancyType,babyGender){
-      if(babyGender==='boy'||babyGender==='twin_boys')return'boy';
-      if(babyGender==='girl'||babyGender==='twin_girls')return'girl';
-      if(pregnancyType==='twins'||babyGender==='twin_mixed')return'twin';
-      return'neutral';
-    }
-    function fillProfileForm(){
-      if(!currentProfile)return;
-      const pairs={profileName:currentProfile.full_name||'',profileBabyName:currentProfile.baby_name||'',profileCity:currentProfile.city||'',profileDueDate:currentProfile.due_date||'',profileLanguage:currentProfile.language||currentLang||'de',profilePregnancyType:currentProfile.pregnancy_type||'singleton',profileBabyGender:currentProfile.baby_gender||'unknown'};
-      Object.keys(pairs).forEach(id=>{const el=document.getElementById(id);if(el)el.value=pairs[id];});
-      const preview=document.getElementById('profileThemePreview');
-      if(preview)preview.textContent=getThemeText();
-      ['profilePregnancyType','profileBabyGender'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.dataset.profileListener){el.dataset.profileListener='1';el.addEventListener('change',()=>{const theme=determineThemeFromProfile(document.getElementById('profilePregnancyType').value,document.getElementById('profileBabyGender').value);const old=currentTheme;applyTheme(theme);const p=document.getElementById('profileThemePreview');if(p)p.textContent=getThemeText();currentTheme=theme;});}});
-    }
-    async function saveProfileSettings(){
-      if(!currentUser||!currentProfile)return;
-      const fullName=document.getElementById('profileName').value.trim();
-      const babyNameValue=document.getElementById('profileBabyName').value.trim();
-      const city=document.getElementById('profileCity').value.trim();
-      const dueDateValue=document.getElementById('profileDueDate').value;
-      const language=document.getElementById('profileLanguage').value||currentLang;
-      const pregnancyType=document.getElementById('profilePregnancyType').value||'singleton';
-      const babyGender=document.getElementById('profileBabyGender').value||'unknown';
-      if(!city||!dueDateValue){alert(t().profileMissing||'Bitte Stadt und Entbindungstermin ausfüllen.');return;}
-      const due=parseLocalDate(dueDateValue);
-      const r=calculatePregnancy(due);
-      const theme=determineThemeFromProfile(pregnancyType,babyGender);
-      const oldDue=currentProfile.due_date;
-      const {error}=await supabaseClient.from('pregnancy_profiles').update({full_name:fullName,baby_name:babyNameValue,city:city,due_date:dueDateValue,language:language,pregnancy_week:r.pregnancyWeek,pregnancy_type:pregnancyType,baby_gender:babyGender,theme_mode:theme,gender_revealed_at_week:babyGender!=='unknown'?r.pregnancyWeek:null}).eq('id',currentProfile.id).eq('user_id',currentUser.id);
-      if(error){alert(error.message);return;}
-      currentProfile={...currentProfile,full_name:fullName,baby_name:babyNameValue,city,due_date:dueDateValue,language,pregnancy_week:r.pregnancyWeek,pregnancy_type:pregnancyType,baby_gender:babyGender,theme_mode:theme,gender_revealed_at_week:babyGender!=='unknown'?r.pregnancyWeek:null};
-      currentLang=language;
-      applyTheme(theme);
-      if(oldDue!==dueDateValue){await supabaseClient.from('pregnancy_calendar_events').delete().eq('user_id',currentUser.id).eq('profile_id',currentProfile.id).eq('source_type','medical_template');await generateMedicalCalendarEvents();await loadCalendarEvents();}
-      setLanguage(language);
-      await refreshAllUI();
-      await loadDocuments();
-      await loadDocumentChecklist();
-      alert(t().profileSaved||'Profil wurde aktualisiert ✅');
-    }
-async function loadSessionAndProfile(){const{data}=await supabaseClient.auth.getSession();currentUser=data.session?data.session.user:null;if(!currentUser){document.getElementById('loginMessage').style.display='block';document.getElementById('appShell').style.display='none';return}document.getElementById('loginMessage').style.display='none';document.getElementById('appShell').style.display='block';document.getElementById('emailPill').textContent=currentUser.email;await loadLatestProfile();if(!currentProfile){alert('Bitte zuerst ein Schwangerschaftsprofil auf der Startseite erstellen.');window.location.href='index.html';return}applyTheme(currentProfile.theme_mode||'neutral');await generateMedicalCalendarEvents();await loadCalendarEvents();await loadTodos();await loadEmotionNotes();await loadRecipes();await loadShoppingItems();await loadDocuments();await loadDocumentChecklist();await refreshAllUI()}
-    async function loadLatestProfile(){const{data,error}=await supabaseClient.from('pregnancy_profiles').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(1);if(error||!data||!data.length){currentProfile=null;return}currentProfile=data[0];lastCity=currentProfile.city||'';const r=calculatePregnancy(parseLocalDate(currentProfile.due_date));lastPregnancyWeek=r.pregnancyWeek}
-    async function refreshAllUI(){const tr=t();const due=parseLocalDate(currentProfile.due_date);const r=calculatePregnancy(due);lastPregnancyWeek=r.pregnancyWeek;lastCity=currentProfile.city||'';document.getElementById('weekPill').textContent=`${tr.weekWord} ${lastPregnancyWeek}`;document.getElementById('babyPill').textContent=babyName();document.getElementById('themePill').textContent=getThemeText();document.getElementById('pregnancyWeek').textContent=lastPregnancyWeek;document.getElementById('daysLeft').textContent=r.daysLeft;document.getElementById('dueDateResult').textContent=formatDate(due);document.getElementById('cityResult').textContent=lastCity;document.getElementById('todayPersonalText').textContent=replaceVars(tr.todayPersonal);document.getElementById('babyNameInput').value=currentProfile.baby_name||'';await loadWeeklyBabyContent();await loadTasks();buildNearMe();renderCalendar();renderEmotionGuide();fillProfileForm()}
-    async function saveBabyName(){const value=document.getElementById('babyNameInput').value.trim();const{error}=await supabaseClient.from('pregnancy_profiles').update({baby_name:value}).eq('id',currentProfile.id).eq('user_id',currentUser.id);if(error){alert(error.message);return}currentProfile.baby_name=value;alert(t().babyNameSaved);refreshAllUI()}
-    async function loadWeeklyBabyContent(){const tr=t();let{data,error}=await supabaseClient.from('weekly_baby_content').select('*').lte('week_number',lastPregnancyWeek).order('week_number',{ascending:false}).limit(1);if((!data||!data.length)&&!error){const res=await supabaseClient.from('weekly_baby_content').select('*').gte('week_number',lastPregnancyWeek).order('week_number',{ascending:true}).limit(1);data=res.data;error=res.error}if(error||!data||!data.length){document.getElementById('babyTitle').textContent='-';document.getElementById('babyPersonalText').textContent=replaceVars(tr.babyPersonalFallback);document.getElementById('babyLength').textContent='-';document.getElementById('babyWeight').textContent='-';document.getElementById('babyDevelopment').textContent='-';document.getElementById('motherBody').textContent=getBodyFallback(lastPregnancyWeek);document.getElementById('motherTip').textContent='-';document.getElementById('babyNutrition').textContent='-';document.getElementById('emotionWeekText').textContent=getEmotionFallback(lastPregnancyWeek);return}const row=data[0];document.getElementById('babyTitle').textContent=`${tr.weekWord} ${lastPregnancyWeek} · ${getLocalized(row,'title')||''}`;document.getElementById('babyPersonalText').textContent=replaceVars(getLocalized(row,'baby_personal')||tr.babyPersonalFallback);document.getElementById('babyLength').textContent=row.baby_length_cm?`${row.baby_length_cm} cm`:'-';document.getElementById('babyWeight').textContent=row.baby_weight_g?`${row.baby_weight_g} g`:'-';document.getElementById('babyDevelopment').textContent=getLocalized(row,'baby_text')||'-';document.getElementById('motherBody').textContent=getLocalized(row,'body_change')||getBodyFallback(lastPregnancyWeek);document.getElementById('motherTip').textContent=getLocalized(row,'mother_tip')||'-';document.getElementById('babyNutrition').textContent=getLocalized(row,'nutrition')||'-';document.getElementById('emotionWeekText').textContent=getLocalized(row,'emotional_note')||getEmotionFallback(lastPregnancyWeek)}
-    async function generateMedicalCalendarEvents(){const due=parseLocalDate(currentProfile.due_date);const start=addDays(due,-280);const{data:templates,error}=await supabaseClient.from('medical_exam_templates').select('*').order('recommended_week',{ascending:true});if(error||!templates)return;for(const tmp of templates){const date=toInputDate(addDays(start,(tmp.recommended_week-1)*7));const{data:ex}=await supabaseClient.from('pregnancy_calendar_events').select('id').eq('user_id',currentUser.id).eq('source_type','medical_template').eq('source_key',tmp.key).eq('event_date',date).limit(1);if(ex&&ex.length)continue;await supabaseClient.from('pregnancy_calendar_events').insert({user_id:currentUser.id,profile_id:currentProfile.id,title:getLocalized(tmp,'title')||tmp.title_de,description:getLocalized(tmp,'description')||tmp.description_de,event_date:date,pregnancy_week:tmp.recommended_week,category:tmp.category||'medical',source_type:'medical_template',source_key:tmp.key,link_url:tmp.link_url||'',done:false})}}
-    async function loadCalendarEvents(){const{data,error}=await supabaseClient.from('pregnancy_calendar_events').select('*').eq('user_id',currentUser.id).order('event_date',{ascending:true});calendarEvents=error?[]:(data||[])}function getEventCategoryLabel(category){const tr=t();if(category==='medical')return tr.medicalLabel;if(category==='course')return tr.courseLabel;if(category==='administratif')return tr.adminLabel;if(category==='shopping')return tr.shoppingLabel;return tr.calAll}function updateCalendarButtons(){[['calAll','all'],['calMedical','medical'],['calCourse','course'],['calAdmin','administratif'],['calShopping','shopping']].forEach(([id,value])=>{const b=document.getElementById(id);if(!b)return;b.classList.toggle('active',calendarCategoryFilter===value)})}function setCalendarCategory(category){calendarCategoryFilter=category;updateCalendarButtons();renderCalendar()}async function saveManualEvent(){if(!currentUser||!currentProfile)return;const title=document.getElementById('manualTitle').value.trim();const dateValue=document.getElementById('manualDate').value;const timeValue=document.getElementById('manualTime').value||null;const category=document.getElementById('manualCategory').value;const location=document.getElementById('manualLocation').value.trim();const linkUrl=document.getElementById('manualLink').value.trim();const reminderDays=Number(document.getElementById('manualReminder').value||14);const description=document.getElementById('manualDescription').value.trim();if(!title||!dateValue){alert(t().manualMissing);return}const eventDate=parseLocalDate(dateValue);const dueDate=parseLocalDate(currentProfile.due_date);const pregnancyStart=addDays(dueDate,-280);let pregnancyWeek=Math.floor((eventDate-pregnancyStart)/(1000*60*60*24*7))+1;if(pregnancyWeek<1)pregnancyWeek=1;if(pregnancyWeek>42)pregnancyWeek=42;const{error}=await supabaseClient.from('pregnancy_calendar_events').insert({user_id:currentUser.id,profile_id:currentProfile.id,title,description,event_date:dateValue,event_time:timeValue,pregnancy_week:pregnancyWeek,category,source_type:'manual',source_key:`manual-${Date.now()}`,location,link_url:linkUrl,reminder_days:reminderDays,done:false});if(error){alert(error.message);return}['manualTitle','manualDate','manualTime','manualLocation','manualLink','manualDescription'].forEach(id=>document.getElementById(id).value='');document.getElementById('manualReminder').value='14';alert(t().manualSaved);await loadCalendarEvents();renderCalendar()}function renderCalendar(){const tr=t(),calendarList=document.getElementById('calendarList'),medicalList=document.getElementById('medicalList'),next=document.getElementById('nextEventsList');calendarList.innerHTML='';medicalList.innerHTML='';next.innerHTML='';updateCalendarButtons();if(!calendarEvents.length){calendarList.innerHTML=medicalList.innerHTML=next.innerHTML=`<p>${tr.noEvents}</p>`;return}const visible=calendarCategoryFilter==='all'?calendarEvents:calendarEvents.filter(e=>e.category===calendarCategoryFilter);if(!visible.length)calendarList.innerHTML=`<p>${tr.noEvents}</p>`;else visible.forEach(e=>calendarList.appendChild(renderEvent(e)));const medicalEvents=calendarEvents.filter(e=>e.category==='medical');if(!medicalEvents.length)medicalList.innerHTML=`<p>${tr.noEvents}</p>`;else medicalEvents.forEach(e=>medicalList.appendChild(renderEvent(e)));const today=new Date();today.setHours(0,0,0,0);const upcoming=calendarEvents.filter(e=>{const d=parseLocalDate(e.event_date);const diff=Math.ceil((d-today)/(1000*60*60*24));const reminder=Number(e.reminder_days||14);return diff>=0&&diff<=reminder}).sort((a,b)=>parseLocalDate(a.event_date)-parseLocalDate(b.event_date)).slice(0,6);if(!upcoming.length)next.innerHTML=`<p>${tr.noEvents}</p>`;else upcoming.forEach(e=>next.appendChild(renderEvent(e)))}function getSmartEventLink(e){const city=encodeURIComponent(lastCity||'Deutschland');if(e.source_key==='pregnancy_yoga')return `https://www.google.com/search?q=Schwangerschaftsyoga+Kurs+Anmeldung+${city}`;if(e.source_key==='birth_preparation_course')return `https://www.google.com/search?q=Geburtsvorbereitungskurs+Anmeldung+${city}`;if(e.source_key==='child_emergency_course')return `https://www.google.com/search?q=Kindernotfallkurs+Erste+Hilfe+am+Kind+Anmeldung+${city}`;if(e.category==='course')return `https://www.google.com/search?q=Kurs+Anmeldung+Schwangerschaft+Baby+${city}`;return ''}
-    function renderEvent(e){const tr=t();const card=document.createElement('div');card.className='event-card';const date=document.createElement('div');date.className='event-date';date.textContent=formatDate(parseLocalDate(e.event_date));const category=document.createElement('div');category.className='week-badge';category.textContent=getEventCategoryLabel(e.category);const title=document.createElement('h3');title.textContent=e.title;const desc=document.createElement('p');let descText=e.description||'';if(e.event_time){descText+=descText?`\n${e.event_time}`:e.event_time}if(e.location){descText+=descText?`\n📍 ${e.location}`:`📍 ${e.location}`}desc.textContent=descText;const actions=document.createElement('div');actions.className='actions';const done=document.createElement('button');done.className=e.done?'button done':'button';done.textContent=e.done?tr.eventDone:tr.eventOpen;done.onclick=()=>toggleCalendarEvent(e.id,!e.done);const cal=document.createElement('button');cal.className='button-light';cal.textContent=tr.addToCalendar;cal.onclick=()=>downloadICS(e);actions.appendChild(done);actions.appendChild(cal);const smart=e.link_url||getSmartEventLink(e);if(smart){const link=document.createElement('a');link.className='button-light';link.href=smart;link.target='_blank';link.textContent=tr.openApplication||'Anmeldung / Antrag öffnen';actions.appendChild(link)}card.appendChild(date);card.appendChild(category);card.appendChild(title);card.appendChild(desc);card.appendChild(actions);return card}
-    async function toggleCalendarEvent(id,done){await supabaseClient.from('pregnancy_calendar_events').update({done}).eq('id',id).eq('user_id',currentUser.id);await loadCalendarEvents();renderCalendar()}function icsDate(v){return v.replaceAll('-','')}function escapeICS(txt){return String(txt||'').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')}function downloadICS(e){const end=addDays(parseLocalDate(e.event_date),1);const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Mama in Deutschland//DE\nBEGIN:VEVENT\nUID:${e.id}@mama-in-deutschland\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').split('.')[0]}Z\nDTSTART;VALUE=DATE:${icsDate(e.event_date)}\nDTEND;VALUE=DATE:${icsDate(toInputDate(end))}\nSUMMARY:${escapeICS(e.title)}\nDESCRIPTION:${escapeICS(e.description||'')}\nEND:VEVENT\nEND:VCALENDAR`;const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`${t().calendarFileName}-${e.event_date}.ics`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url)}
-    async function loadTasks(){const tr=t();const list=document.getElementById('taskList');list.innerHTML='';let q=supabaseClient.from('pregnancy_tasks').select('*').order('recommended_week',{ascending:true});if(!showAllTasks)q=q.lte('recommended_week',lastPregnancyWeek+2);if(taskCategoryFilter!=='all')q=q.eq('category',taskCategoryFilter);const{data:tasks,error}=await q;updateTaskButtons();if(error||!tasks||!tasks.length){document.getElementById('taskProgress').textContent=`0 / 0 ${tr.progress}`;list.innerHTML=`<p>${tr.noEvents}</p>`;return}let statusMap={};const{data:statuses}=await supabaseClient.from('user_task_status').select('*').eq('user_id',currentUser.id);if(statuses)statuses.forEach(s=>statusMap[s.task_id]=s.status);const doneCount=tasks.filter(task=>statusMap[task.id]==='done').length;document.getElementById('taskProgress').textContent=`${doneCount} / ${tasks.length} ${tr.progress}`;tasks.forEach(task=>{const isDone=(statusMap[task.id]||'todo')==='done';const card=document.createElement('div');card.className='task-card';card.innerHTML=`<div class="week-badge">${tr.weekWord} ${task.recommended_week}</div><h3>${getLocalized(task,'title')||task.title_de}</h3><p>${getLocalized(task,'description')||task.description_de||''}</p>`;const actions=document.createElement('div');actions.className='actions';const btn=document.createElement('button');btn.className=isDone?'button done':'button';btn.textContent=isDone?tr.done:tr.todo;btn.onclick=()=>toggleTaskStatus(task.id,isDone?'todo':'done');actions.appendChild(btn);if(task.link_url){const link=document.createElement('a');link.className='button-light';link.href=task.link_url;link.target='_blank';link.textContent=tr.openSearch;actions.appendChild(link)}card.appendChild(actions);list.appendChild(card)})}
-    function updateTaskButtons(){const tr=t();document.getElementById('allTasksButton').textContent=showAllTasks?tr.showRecommended:tr.showAll;[["catAll","all",tr.all],["catAdmin","administratif",tr.admin],["catMedical","medical",tr.medical],["catOrganisation","organisation",tr.organisation]].forEach(([id,val,label])=>{const b=document.getElementById(id);b.textContent=label;b.classList.toggle('active',taskCategoryFilter===val)})}async function toggleAllTasks(){showAllTasks=!showAllTasks;await loadTasks()}async function setTaskCategory(cat){taskCategoryFilter=cat;await loadTasks()}async function toggleTaskStatus(id,status){await supabaseClient.from('user_task_status').upsert({user_id:currentUser.id,task_id:id,status},{onConflict:'user_id,task_id'});await loadTasks()}
-    async function loadTodos(){const list=document.getElementById('todoList');list.innerHTML='';const{data,error}=await supabaseClient.from('private_todos').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false});if(error||!data)return;data.forEach(todo=>{const row=document.createElement('div');row.className='todo-item';const title=document.createElement('span');title.textContent=todo.title;if(todo.done)title.className='done';const done=document.createElement('button');done.className=todo.done?'button done':'button';done.textContent=todo.done?t().todoDone:t().todoOpen;done.onclick=()=>toggleTodo(todo.id,!todo.done);const del=document.createElement('button');del.className='button-danger';del.textContent='×';del.onclick=()=>deleteTodo(todo.id);row.appendChild(title);row.appendChild(done);row.appendChild(del);list.appendChild(row)})}async function addTodo(){const title=document.getElementById('todoInput').value.trim();if(!title){alert(t().emptyTodo);return}await supabaseClient.from('private_todos').insert({user_id:currentUser.id,title,done:false});document.getElementById('todoInput').value='';await loadTodos()}async function toggleTodo(id,done){await supabaseClient.from('private_todos').update({done}).eq('id',id).eq('user_id',currentUser.id);await loadTodos()}async function deleteTodo(id){await supabaseClient.from('private_todos').delete().eq('id',id).eq('user_id',currentUser.id);await loadTodos()}
-    async function saveEmotionNote(){const mood=document.getElementById('moodSelect').value,note=document.getElementById('emotionNote').value.trim();if(!note)return;const{error}=await supabaseClient.from('emotional_notes').insert({user_id:currentUser.id,profile_id:currentProfile.id,pregnancy_week:lastPregnancyWeek,mood,note});if(error){alert(error.message);return}document.getElementById('emotionNote').value='';alert(t().noteSaved);await loadEmotionNotes()}async function loadEmotionNotes(){const list=document.getElementById('emotionNotesList');list.innerHTML='';const{data,error}=await supabaseClient.from('emotional_notes').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false});if(error||!data)return;data.forEach(n=>{const card=document.createElement('div');card.className='emotion-card';card.innerHTML=`<div class="week-badge">${t().weekWord} ${n.pregnancy_week||'-'}</div><h3>${n.mood||''}</h3><p>${n.note||''}</p>`;const del=document.createElement('button');del.className='button-danger';del.textContent='×';del.onclick=()=>deleteEmotionNote(n.id);card.appendChild(del);list.appendChild(card)})}async function deleteEmotionNote(id){await supabaseClient.from('emotional_notes').delete().eq('id',id).eq('user_id',currentUser.id);await loadEmotionNotes()}function renderEmotionGuide(){document.getElementById('emotionGuideText').textContent=getEmotionFallback(lastPregnancyWeek)}
-    function buildMapsLink(q,city){return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q+' '+city)}function buildNearMe(){const grid=document.getElementById('nearGrid');grid.innerHTML='';if(!lastCity)return;let items=lastPregnancyWeek<=13?[["hebamme","Hebamme"],["frauenarzt","Frauenärztin Schwangerschaft"],["apotheke","Apotheke"]]:lastPregnancyWeek<=28?[["hebamme","Hebamme"],["frauenarzt","Frauenärztin Schwangerschaft"],["kurs","Geburtsvorbereitungskurs"],["klinik","Geburtsklinik"],["babyshop","Babygeschäft"]]:[["klinik","Geburtsklinik"],["kinderarzt","Kinderarzt"],["apotheke","Apotheke"],["standesamt","Standesamt Geburt"],["babyshop","Babygeschäft"]];items.forEach(([key,search])=>{const item=(t().near&&t().near[key])||nearEN[key];const card=document.createElement('div');card.className='near-card';card.innerHTML=`<h3>${item[0]}</h3><p>${item[1]}</p>`;const link=document.createElement('a');link.className='near-button';link.href=buildMapsLink(search,lastCity);link.target='_blank';link.textContent=t().openSearch;card.appendChild(link);grid.appendChild(card)})}
-    async function loadRecipes(){const list=document.getElementById('recipeList');list.innerHTML='';const{data:recipes,error}=await supabaseClient.from('pregnancy_recipes').select('*').lte('recommended_week',lastPregnancyWeek+4).order('recommended_week',{ascending:false}).limit(6);if(error||!recipes||!recipes.length){list.innerHTML=`<p>${t().noEvents}</p>`;return}recipes.forEach(r=>list.appendChild(renderRecipe(r)))}function renderRecipe(r){const card=document.createElement('div');card.className='task-card';card.innerHTML=`<div class="week-badge">${t().weekWord} ${r.recommended_week}</div><h3>${getLocalized(r,'title')||r.title_de}</h3><p>${getLocalized(r,'description')||r.description_de||''}</p><h3>${t().ingredientsTitle}</h3><p>${getLocalized(r,'ingredients')||r.ingredients_de||''}</p><h3>${t().stepsTitle}</h3><p>${getLocalized(r,'steps')||r.steps_de||''}</p>`;const actions=document.createElement('div');actions.className='actions';const btn=document.createElement('button');btn.className='button';btn.textContent=t().addRecipeToShopping;btn.onclick=()=>addRecipeToShoppingList(r);actions.appendChild(btn);card.appendChild(actions);return card}async function addRecipeToShoppingList(r){const items=Array.isArray(r.shopping_items)?r.shopping_items:[];if(!items.length)return;const rows=items.map(item=>({user_id:currentUser.id,profile_id:currentProfile.id,recipe_id:r.id,item_name:item.item||'',quantity:item.quantity||'',category:'food',source_title:getLocalized(r,'title')||r.title_de,checked:false}));const{error}=await supabaseClient.from('private_shopping_items').insert(rows);if(error){alert(error.message);return}alert(t().shoppingAdded);await loadShoppingItems()}
-    async function loadShoppingItems(){const list=document.getElementById('shoppingList');list.innerHTML='';const{data,error}=await supabaseClient.from('private_shopping_items').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false});if(error||!data||!data.length){list.innerHTML=`<p>${t().shoppingEmpty}</p>`;return}data.forEach(item=>{const row=document.createElement('div');row.className='todo-item';const box=document.createElement('div');const title=document.createElement('span');title.textContent=`${item.item_name}${item.quantity?' · '+item.quantity:''}`;if(item.checked)title.className='done';box.appendChild(title);if(item.source_title){box.appendChild(document.createElement('br'));const small=document.createElement('small');small.style.color='var(--muted)';small.textContent=item.source_title;box.appendChild(small)}const done=document.createElement('button');done.className=item.checked?'button done':'button';done.textContent=item.checked?t().shoppingDone:t().shoppingOpen;done.onclick=()=>toggleShoppingItem(item.id,!item.checked);const del=document.createElement('button');del.className='button-danger';del.textContent='×';del.onclick=()=>deleteShoppingItem(item.id);row.appendChild(box);row.appendChild(done);row.appendChild(del);list.appendChild(row)})}async function toggleShoppingItem(id,checked){await supabaseClient.from('private_shopping_items').update({checked}).eq('id',id).eq('user_id',currentUser.id);await loadShoppingItems()}async function deleteShoppingItem(id){await supabaseClient.from('private_shopping_items').delete().eq('id',id).eq('user_id',currentUser.id);await loadShoppingItems()}
-    async function addShoppingListToCalendar(){const date=document.getElementById('shoppingDate').value;if(!date){alert(t().chooseShoppingDate);return}const{data:items,error:err}=await supabaseClient.from('private_shopping_items').select('*').eq('user_id',currentUser.id).eq('checked',false);if(err){alert(err.message);return}if(!items||!items.length){alert(t().shoppingEmpty);return}const desc=items.map(i=>`- ${i.item_name}${i.quantity?' ('+i.quantity+')':''}`).join('\n');const{error}=await supabaseClient.from('pregnancy_calendar_events').insert({user_id:currentUser.id,profile_id:currentProfile.id,title:t().shoppingCalendarTitle,description:`${t().shoppingCalendarDescription}\n\n${desc}`,event_date:date,pregnancy_week:lastPregnancyWeek,category:'shopping',source_type:'shopping_list',source_key:`shopping-${date}-${Date.now()}`,done:false});if(error){alert(error.message);return}await supabaseClient.from('private_shopping_items').update({needed_date:date}).eq('user_id',currentUser.id).eq('checked',false);alert(t().shoppingCalendarAdded);await loadCalendarEvents();renderCalendar()}
+      <div class="panel" id="panelMedical">
+        <h2 id="medicalTitle">Medizinische Termine</h2>
+        <p id="medicalText">Untersuchungen und wichtige medizinische Zeitfenster in Deutschland.</p>
+        <div class="grid-3" id="medicalList"></div>
+      </div>
 
+      <div class="panel" id="panelBureaucracy">
+        <h2 id="tasksTitle">Bürokratie-Zentrale</h2>
+        <p id="tasksText">Geld, Dokumente, Anträge und wichtige Schritte in Deutschland.</p>
+        <div class="soft" id="taskProgress">0 / 0 erledigt</div>
+        <div class="filters">
+          <button class="filter-button active" onclick="setTaskCategory('all')" id="catAll">Alle</button>
+          <button class="filter-button" onclick="setTaskCategory('administratif')" id="catAdmin">Bürokratie</button>
+          <button class="filter-button" onclick="setTaskCategory('medical')" id="catMedical">Medizin</button>
+          <button class="filter-button" onclick="setTaskCategory('organisation')" id="catOrganisation">Organisation</button>
+          <button class="filter-button" onclick="toggleAllTasks()" id="allTasksButton">Alle Aufgaben anzeigen</button>
+        </div>
+        <div class="grid-2" id="taskList"></div>
+      </div>
 
-    async function loadDocumentChecklist(){
-      const wrap=document.getElementById('documentTemplateList');
-      if(!wrap||!currentUser)return;
-      wrap.innerHTML='';
+      <div class="panel" id="panelEmotions">
+        <h2 id="emotionTitle">Emotionen & Erinnerungen</h2>
+        <p id="emotionText">Speichere, wie du dich fühlst, und bewahre kleine Erinnerungen dieser Schwangerschaft.</p>
+        <div class="grid-2" style="margin-top:16px;">
+          <div class="box">
+            <h3 id="moodTitle">Wie fühlst du dich heute?</h3>
+            <label id="moodLabel" for="moodSelect">Stimmung</label>
+            <select id="moodSelect">
+              <option value="happy">😊 Happy</option>
+              <option value="tired">😴 Tired</option>
+              <option value="anxious">😟 Anxious</option>
+              <option value="emotional">🥹 Emotional</option>
+              <option value="strong">💪 Strong</option>
+            </select>
+            <label id="noteLabel" for="emotionNote">Notiz</label>
+            <textarea id="emotionNote" placeholder="Heute fühle ich mich..."></textarea>
+            <button class="button" onclick="saveEmotionNote()" id="saveEmotionButton">Notiz speichern</button>
+          </div>
+          <div class="box">
+            <h3 id="emotionGuideTitle">Diese Woche emotional</h3>
+            <p id="emotionGuideText">-</p>
+          </div>
+        </div>
+        <div class="list" id="emotionNotesList"></div>
+      </div>
 
-      const tmpl=await supabaseClient
-        .from('document_templates')
-        .select('*')
-        .order('recommended_week',{ascending:true});
+      <div class="panel" id="panelNutrition">
+        <h2 id="nutritionMainTitle">Ernährung & Rezepte</h2>
+        <p id="nutritionMainText">Einfache, gesunde und halal-freundliche Rezeptideen für die Schwangerschaft.</p>
+        <div class="grid-2" style="margin-top:16px;">
+          <div>
+            <h3 id="recipeSectionTitle">Rezepte dieser Phase</h3>
+            <div class="list" id="recipeList"></div>
+          </div>
+          <div>
+            <h3 id="shoppingSectionTitle">Meine Einkaufsliste</h3>
+            <label id="shoppingDateLabel" for="shoppingDate">Datum für Einkauf</label>
+            <input type="date" id="shoppingDate" />
+            <button class="button" onclick="addShoppingListToCalendar()" id="shoppingCalendarButton">Einkaufsliste zum Kalender hinzufügen</button>
+            <div class="list" id="shoppingList"></div>
+          </div>
+        </div>
+      </div>
 
-      if(tmpl.error||!tmpl.data||!tmpl.data.length){
-        wrap.innerHTML=`<p>${t().documentTemplateEmpty}</p>`;
-        return;
-      }
+      <div class="panel" id="panelDocuments">
+        <h2 id="documentsTitle">Dokumente</h2>
+        <p id="documentsText">Speichere wichtige Dokumente, Anträge, Ergebnisse und Erinnerungen privat.</p>
 
-      const docs=await supabaseClient
-        .from('pregnancy_documents')
-        .select('*')
-        .eq('user_id',currentUser.id);
+        <div class="grid-2" style="margin-top:16px;">
+          <div class="box">
+            <h2 id="documentUploadTitle">Dokument hochladen</h2>
+            <label id="documentTitleLabel" for="documentTitle">Titel</label>
+            <input type="text" id="documentTitle" placeholder="Mutterpass" />
 
-      const statuses=await supabaseClient
-        .from('user_document_status')
-        .select('*')
-        .eq('user_id',currentUser.id);
+            <label id="documentCategoryLabel" for="documentCategory">Kategorie</label>
+            <select id="documentCategory">
+              <option value="mutterpass" id="documentCategoryMutterpass">Mutterpass</option>
+              <option value="medical_result" id="documentCategoryMedicalResult">Ergebnis</option>
+              <option value="application" id="documentCategoryApplication">Antrag</option>
+              <option value="insurance" id="documentCategoryInsurance">Versicherung</option>
+              <option value="standesamt" id="documentCategoryStandesamt">Standesamt</option>
+              <option value="memory" id="documentCategoryMemory">Erinnerung</option>
+              <option value="other" id="documentCategoryOther">Andere</option>
+            </select>
 
-      const savedDocs=docs.data||[];
-      const statusMap={};
+            <label id="documentFileLabel" for="documentFile">Datei / Foto / PDF</label>
+            <input type="file" id="documentFile" accept="image/*,.pdf" />
 
-      if(statuses.data){
-        statuses.data.forEach(item=>{
-          statusMap[item.template_key]=item.status;
-        });
-      }
+            <label id="documentNotesLabel" for="documentNotes">Notiz</label>
+            <textarea id="documentNotes"></textarea>
 
-      tmpl.data.forEach(template=>{
-        wrap.appendChild(renderDocumentTemplate(template,savedDocs,statusMap));
-      });
-    }
+            <button class="button" onclick="uploadDocument()" id="documentUploadButton">Dokument speichern</button>
+          </div>
 
-    function documentTemplateIsSaved(template,savedDocs){
-      const key=String(template.key||'').toLowerCase();
-      const title=(getLocalized(template,'title')||template.title_de||key).toLowerCase();
-      return savedDocs.some(doc=>{
-        const dtitle=String(doc.title||'').toLowerCase();
-        const dnotes=String(doc.notes||'').toLowerCase();
-        return dtitle.includes(key)||dtitle.includes(title)||dnotes.includes(key);
-      });
-    }
+          <div class="box">
+            <h2 id="documentChecklistTitle">Dokumente-Checkliste</h2>
+            <p id="documentChecklistText">Wichtige Dokumente und Anträge im Überblick.</p>
+            <div class="list" id="documentChecklist"></div>
+          </div>
+        </div>
 
-    function renderDocumentTemplate(template,savedDocs,statusMap={}){
-      const saved=documentTemplateIsSaved(template,savedDocs);
-      const personalStatus=statusMap[template.key]||'open';
-      const isDone=personalStatus==='done';
+        <h2 id="savedDocumentsTitle" style="margin-top:22px;">Gespeicherte Dokumente</h2>
+        <div class="filters">
+          <button class="filter-button active" onclick="setDocumentCategory('all')" id="docCatAll">Alle</button>
+          <button class="filter-button" onclick="setDocumentCategory('application')" id="docCatApplication">Anträge</button>
+          <button class="filter-button" onclick="setDocumentCategory('medical_result')" id="docCatMedical">Medizin</button>
+          <button class="filter-button" onclick="setDocumentCategory('memory')" id="docCatMemory">Erinnerungen</button>
+        </div>
+        <div class="grid-3" id="documentList"></div>
+      </div>
 
-      const card=document.createElement('div');
-      card.className='task-card';
+      <div class="panel" id="panelTodo">
+        <h2 id="todoTitle">Meine private To-do-Liste</h2>
+        <p id="todoText">Diese Liste ist nur in deinem Konto sichtbar.</p>
+        <div class="todo-row">
+          <input type="text" id="todoInput" placeholder="Neue Aufgabe..." />
+          <button class="button" onclick="addTodo()" id="addTodoButton">Hinzufügen</button>
+        </div>
+        <div class="list" id="todoList"></div>
+      </div>
 
-      const uploadStatus=saved?t().documentSavedStatus:t().documentMissingStatus;
-      const doneStatus=isDone?t().documentDoneStatus:t().documentOpenStatus;
-      const importance=template.optional?t().documentOptional:t().documentRequired;
+      <div class="panel" id="panelProfile">
+        <h2 id="profileTabTitle">Profil bearbeiten</h2>
+        <p id="profileTabText">Aktualisiere Babyname, Stadt, Entbindungstermin, Sprache und Design.</p>
+        <div class="grid-2" style="margin-top:16px;">
+          <div class="box">
+            <h2 id="profileMamaTitle">Mama & Baby</h2>
+            <label id="profileNameLabel" for="profileName">Name der Mama</label>
+            <input type="text" id="profileName" />
+            <label id="profileBabyNameLabel" for="profileBabyName">Babyname</label>
+            <input type="text" id="profileBabyName" />
+            <label id="profileCityLabel" for="profileCity">Stadt</label>
+            <input type="text" id="profileCity" />
+            <label id="profileLanguageLabel" for="profileLanguage">Sprache</label>
+            <select id="profileLanguage">
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="fr">🇫🇷 Français</option>
+              <option value="ar">🇸🇦 العربية</option>
+              <option value="en">🇬🇧 English</option>
+              <option value="tr">🇹🇷 Türkçe</option>
+              <option value="ru">🇷🇺 Русский</option>
+              <option value="uk">🇺🇦 Українська</option>
+            </select>
+          </div>
+          <div class="box">
+            <h2 id="profilePregnancyTitle">Schwangerschaft</h2>
+            <label id="profileDueDateLabel" for="profileDueDate">Entbindungstermin</label>
+            <input type="date" id="profileDueDate" />
+            <label id="profilePregnancyTypeLabel" for="profilePregnancyType">Schwangerschaft</label>
+            <select id="profilePregnancyType" onchange="updateProfileGenderOptions()">
+              <option value="singleton" id="profileSingletonOption">Ein Baby</option>
+              <option value="twins" id="profileTwinsOption">Zwillinge</option>
+            </select>
+            <label id="profileGenderLabel" for="profileGender">Geschlecht des Babys</label>
+            <select id="profileGender" onchange="previewProfileTheme()">
+              <option value="unknown" data-kind="both" id="profileGenderUnknown">Noch nicht bekannt</option>
+              <option value="boy" data-kind="singleton" id="profileGenderBoy">Junge</option>
+              <option value="girl" data-kind="singleton" id="profileGenderGirl">Mädchen</option>
+              <option value="twin_boys" data-kind="twins" id="profileGenderTwinBoys">Zwillinge: Jungen</option>
+              <option value="twin_girls" data-kind="twins" id="profileGenderTwinGirls">Zwillinge: Mädchen</option>
+              <option value="twin_mixed" data-kind="twins" id="profileGenderTwinMixed">Zwillinge: Junge & Mädchen</option>
+            </select>
+            <button class="button" onclick="saveProfileChanges()" id="profileSaveButton">Profil speichern</button>
+          </div>
+        </div>
+      </div>
 
-      card.innerHTML=`<div class="week-badge">${t().weekWord} ${template.recommended_week||'-'} · ${importance}</div><h3>${getLocalized(template,'title')||template.title_de||template.key}</h3><p>${getLocalized(template,'description')||template.description_de||''}</p><div class="week-badge">${uploadStatus}</div><div class="week-badge">${doneStatus}</div>`;
+      <div class="panel" id="panelNear">
+        <h2 id="nearTitle">In deiner Nähe</h2>
+        <p id="nearText">Basierend auf deiner Stadt zeigen wir dir schnelle Suchen für wichtige Anlaufstellen.</p>
+        <div class="grid-3" id="nearGrid"></div>
+      </div>
+    </div>
+  </section>
+</main>
 
-      const actions=document.createElement('div');
-      actions.className='actions';
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-      const upload=document.createElement('button');
-      upload.className='button';
-      upload.textContent=t().documentUploadThis;
-      upload.onclick=()=>prefillDocumentUpload(template);
-      actions.appendChild(upload);
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-      const statusButton=document.createElement('button');
-      statusButton.className=isDone?'button done':'button';
-      statusButton.textContent=isDone?t().documentMarkOpen:t().documentMarkDone;
-      statusButton.onclick=()=>toggleDocumentStatus(template.key,isDone?'open':'done');
-      actions.appendChild(statusButton);
+let currentLang=localStorage.getItem("mama_lang")||"de";
+let currentUser=null,currentProfile=null,calendarEvents=[];
+let lastPregnancyWeek=null,lastCity="",currentTheme="neutral";
+let taskCategoryFilter="all",showAllTasks=false,calendarCategoryFilter="all",documentCategoryFilter="all";
 
-      if(template.link_url){
-        const link=document.createElement('a');
-        link.className='button-light';
-        link.href=template.link_url;
-        link.target='_blank';
-        link.textContent=t().documentOpenApplication;
-        actions.appendChild(link);
-      }
+const nearDE={hebamme:["Hebamme","Finde Hebammen in deiner Stadt."],frauenarzt:["Frauenärztin / Frauenarzt","Suche eine Praxis für Schwangerschaftsbegleitung."],klinik:["Geburtsklinik","Finde Kliniken mit Geburtshilfe in deiner Nähe."],kinderarzt:["Kinderarzt","Bereite später die Suche nach einem Kinderarzt vor."],apotheke:["Apotheke","Apotheken in deiner Nähe."],kurs:["Geburtsvorbereitungskurs","Kurse zur Vorbereitung auf Geburt und Wochenbett."],babyshop:["Babygeschäft","Baby- und Schwangerschaftsbedarf in deiner Stadt."],standesamt:["Standesamt","Informationen zur Geburtsurkunde in deiner Stadt."]};
+const nearFR={hebamme:["Sage-femme","Trouver une sage-femme dans ta ville."],frauenarzt:["Gynécologue","Chercher une consultation de suivi de grossesse."],klinik:["Clinique d’accouchement","Trouver une maternité près de chez toi."],kinderarzt:["Pédiatre","Préparer la recherche d’un pédiatre."],apotheke:["Pharmacie","Pharmacies près de chez toi."],kurs:["Cours de préparation","Cours pour préparer l’accouchement."],babyshop:["Boutique bébé","Produits bébé et maternité dans ta ville."],standesamt:["État civil","Informations pour l’acte de naissance."]};
+const nearAR={hebamme:["قابلة","البحث عن قابلة في مدينتك."],frauenarzt:["طبيبة نساء","البحث عن عيادة لمتابعة الحمل."],klinik:["مستشفى ولادة","العثور على مستشفى ولادة قريب."],kinderarzt:["طبيب أطفال","التحضير للبحث عن طبيب أطفال."],apotheke:["صيدلية","صيدليات قريبة منك."],kurs:["دورة تحضير للولادة","دورات للتحضير للولادة."],babyshop:["متجر أطفال","مستلزمات الطفل والحمل."],standesamt:["مكتب الحالة المدنية","معلومات عن شهادة الميلاد."]};
 
-      card.appendChild(actions);
-      return card;
-    }
+const translations={
+de:{
+loginNeededTitle:"Bitte einloggen",loginNeededText:"Du musst dich zuerst anmelden, um deine Schwangerschafts-App zu öffnen.",goHomeButton:"Zur Startseite",
+welcomeTitle:"Willkommen zurück",welcomeSubtitle:"Deine Schwangerschaft in Deutschland ist organisiert.",logoutButton:"Ausloggen",
+tabToday:"Heute",tabCalendar:"Kalender",tabBaby:"Mutter & Baby",tabMedical:"Medizin",tabBureaucracy:"Bürokratie",tabEmotions:"Emotionen",tabNutrition:"Ernährung",tabDocuments:"Dokumente",tabTodo:"To-do",tabProfile:"Profil",tabNear:"In der Nähe",
+dashboardTitle:"Heute",weekLabel:"Woche",daysLabel:"Tage übrig",dueDateLabel:"Entbindungstermin",cityLabel:"Stadt",
+nextEventsTitle:"Nächste Termine",nextEventsText:"Die wichtigsten kommenden Punkte aus deinem Kalender.",
+calendarTitle:"Kalender",calendarText:"Hier erscheinen Untersuchungen, Termine, Kurse und später auch Einkaufslisten.",
+medicalTitle:"Medizinische Termine",medicalText:"Untersuchungen und wichtige medizinische Zeitfenster in Deutschland.",
+babySectionTitle:"Mutter & Baby diese Woche",babyIntro:"Ein kurzer Überblick über diese Schwangerschaftswoche.",babyLengthLabel:"Größe",babyWeightLabel:"Gewicht",babyDevelopmentTitle:"Baby",motherBodyTitle:"Dein Körper",motherTipTitle:"Mama-Tipp",nutritionTitle:"Ernährung",emotionWeekTitle:"Emotional",babyNameTitle:"Babyname",babyNameLabel:"Name des Babys",saveBabyNameButton:"Babyname speichern",
+emotionTitle:"Emotionen & Erinnerungen",emotionText:"Speichere, wie du dich fühlst, und bewahre kleine Erinnerungen dieser Schwangerschaft.",moodTitle:"Wie fühlst du dich heute?",moodLabel:"Stimmung",noteLabel:"Notiz",saveEmotionButton:"Notiz speichern",emotionGuideTitle:"Diese Woche emotional",
+tasksTitle:"Bürokratie-Zentrale",tasksText:"Geld, Dokumente, Anträge und wichtige Schritte in Deutschland.",
+nutritionMainTitle:"Ernährung & Rezepte",nutritionMainText:"Einfache, gesunde und halal-freundliche Rezeptideen für die Schwangerschaft.",recipeSectionTitle:"Rezepte dieser Phase",shoppingSectionTitle:"Meine Einkaufsliste",shoppingDateLabel:"Datum für Einkauf",shoppingCalendarButton:"Einkaufsliste zum Kalender hinzufügen",
+documentsTitle:"Dokumente",documentsText:"Speichere wichtige Dokumente, Anträge, Ergebnisse und Erinnerungen privat.",documentUploadTitle:"Dokument hochladen",documentTitleLabel:"Titel",documentCategoryLabel:"Kategorie",documentCategoryMutterpass:"Mutterpass",documentCategoryMedicalResult:"Ergebnis",documentCategoryApplication:"Antrag",documentCategoryInsurance:"Versicherung",documentCategoryStandesamt:"Standesamt",documentCategoryMemory:"Erinnerung",documentCategoryOther:"Andere",documentFileLabel:"Datei / Foto / PDF",documentNotesLabel:"Notiz",documentUploadButton:"Dokument speichern",documentChecklistTitle:"Dokumente-Checkliste",documentChecklistText:"Wichtige Dokumente und Anträge im Überblick.",savedDocumentsTitle:"Gespeicherte Dokumente",
+todoTitle:"Meine private To-do-Liste",todoText:"Diese Liste ist nur in deinem Konto sichtbar.",addTodoButton:"Hinzufügen",nearTitle:"In deiner Nähe",nearText:"Basierend auf deiner Stadt zeigen wir dir schnelle Suchen für wichtige Anlaufstellen.",
+manualEventTitle:"Neuen Termin hinzufügen",manualEventText:"Füge eigene Termine, Kurse oder Anträge zu deinem Kalender hinzu.",manualTitleLabel:"Titel",manualDateLabel:"Datum",manualTimeLabel:"Uhrzeit",manualCategoryLabel:"Kategorie",manualCategoryMedical:"Medizin",manualCategoryCourse:"Kurs",manualCategoryAdmin:"Bürokratie",manualCategoryShopping:"Einkauf",manualCategoryPersonal:"Persönlich",manualLocationLabel:"Ort",manualLinkLabel:"Link für Anmeldung / Antrag",manualReminderLabel:"Erinnerung",manualDescriptionLabel:"Beschreibung / Notiz",manualSaveButton:"Termin speichern",manualMissing:"Bitte mindestens Titel und Datum ausfüllen.",manualSaved:"Termin wurde gespeichert ✅",
+calAll:"Alle",calMedical:"Medizin",calCourse:"Kurse",calAdmin:"Bürokratie",calShopping:"Einkauf",courseLabel:"Kurs",medicalLabel:"Medizin",adminLabel:"Bürokratie",shoppingLabel:"Einkauf",personalLabel:"Persönlich",
+docCatAll:"Alle",docCatApplication:"Anträge",docCatMedical:"Medizin",docCatMemory:"Erinnerungen",documentMissing:"Bitte Titel und Datei auswählen.",documentSaved:"Dokument gespeichert ✅",documentOpen:"Öffnen",documentDelete:"Löschen",documentEmpty:"Noch keine Dokumente vorhanden.",documentDeleted:"Dokument gelöscht ✅",documentUploadThis:"Dieses Dokument hochladen",documentChecklistOpen:"Nicht erledigt",documentChecklistDone:"Erledigt",documentMarkDone:"Erledigt markieren",documentMarkOpen:"Als offen markieren",documentSavedStatus:"Gespeichert",documentMissingStatus:"Fehlt",
+noEvents:"Noch keine Einträge vorhanden.",addToCalendar:"Zum Kalender hinzufügen",eventDone:"Erledigt",eventOpen:"Offen",openApplication:"Anmeldung / Antrag öffnen",
+emptyTodo:"Bitte eine Aufgabe schreiben.",todoDone:"Erledigt",todoOpen:"Offen",noteSaved:"Notiz gespeichert ✅",babyNameSaved:"Babyname gespeichert ✅",
+weekWord:"Woche",done:"Erledigt",todo:"Offen",showAll:"Alle Aufgaben anzeigen",showRecommended:"Nur aktuelle Aufgaben anzeigen",progress:"erledigt",all:"Alle",admin:"Bürokratie",medical:"Medizin",organisation:"Organisation",
+themeNeutral:"Neutral",themeBoy:"Junge · Blau",themeGirl:"Mädchen · Rosa",themeTwin:"Zwillinge · Grün",babyDefault:"Dein Baby",
+todayPersonal:"{babyName} begleitet dich heute in Schwangerschaftswoche {week}. Hier findest du deine nächsten Termine, Aufgaben und Erinnerungen.",
+babyPersonalFallback:"{babyName} entwickelt sich diese Woche weiter. Jeder kleine Schritt gehört zu eurer gemeinsamen Geschichte.",
+bodyEarly:"Müdigkeit, Übelkeit und empfindliche Brüste können in dieser Phase normal sein.",bodyMid:"Vielleicht spürst du bald erste Bewegungen. Dein Bauch kann sichtbarer werden.",bodyLate:"Wassereinlagerungen, schwere Beine oder größere Füße können auftreten. Pausen und Hochlegen können helfen.",
+emotionEarly:"Viele Frauen fühlen sich am Anfang unsicher. Das ist normal.",emotionMid:"Diese Phase kann emotional schöner werden, weil die Schwangerschaft greifbarer wird.",emotionLate:"Vorfreude und Angst können gleichzeitig da sein. Du musst nicht alles perfekt machen.",
+addRecipeToShopping:"Zur Einkaufsliste hinzufügen",ingredientsTitle:"Zutaten",stepsTitle:"Zubereitung",shoppingAdded:"Zutaten wurden zur Einkaufsliste hinzugefügt ✅",shoppingEmpty:"Deine Einkaufsliste ist leer.",shoppingDone:"Gekauft",shoppingOpen:"Offen",shoppingCalendarTitle:"Einkaufsliste",shoppingCalendarDescription:"Einkaufsliste für Schwangerschaftsrezepte.",chooseShoppingDate:"Bitte wähle ein Datum für den Einkauf.",shoppingCalendarAdded:"Einkaufsliste wurde zum Kalender hinzugefügt ✅",calendarFileName:"Mama-Termin",
+profileTabTitle:"Profil bearbeiten",profileTabText:"Aktualisiere Babyname, Stadt, Entbindungstermin, Sprache und Design.",profileMamaTitle:"Mama & Baby",profileNameLabel:"Name der Mama",profileBabyNameLabel:"Babyname",profileCityLabel:"Stadt",profileLanguageLabel:"Sprache",profilePregnancyTitle:"Schwangerschaft",profileDueDateLabel:"Entbindungstermin",profilePregnancyTypeLabel:"Schwangerschaft",profileSingletonOption:"Ein Baby",profileTwinsOption:"Zwillinge",profileGenderLabel:"Geschlecht des Babys",profileGenderUnknown:"Noch nicht bekannt",profileGenderBoy:"Junge",profileGenderGirl:"Mädchen",profileGenderTwinBoys:"Zwillinge: Jungen",profileGenderTwinGirls:"Zwillinge: Mädchen",profileGenderTwinMixed:"Zwillinge: Junge & Mädchen",profileSaveButton:"Profil speichern",profileSaved:"Profil wurde aktualisiert ✅",profileMissing:"Bitte Stadt und Entbindungstermin ausfüllen.",
+near:nearDE
+}
+};
 
-    async function toggleDocumentStatus(templateKey,newStatus){
-      if(!currentUser||!currentProfile)return;
+translations.fr={...translations.de,welcomeTitle:"Bienvenue",welcomeSubtitle:"Ta grossesse en Allemagne est organisée.",logoutButton:"Déconnexion",tabToday:"Aujourd’hui",tabCalendar:"Calendrier",tabBaby:"Maman & bébé",tabMedical:"Médical",tabBureaucracy:"Bureaucratie",tabEmotions:"Émotions",tabNutrition:"Nutrition",tabDocuments:"Documents",tabTodo:"To-do",tabProfile:"Profil",tabNear:"Près de toi",dashboardTitle:"Aujourd’hui",weekLabel:"Semaine",daysLabel:"Jours restants",dueDateLabel:"Date prévue",cityLabel:"Ville",calendarTitle:"Calendrier",medicalTitle:"Rendez-vous médicaux",babySectionTitle:"Maman & bébé cette semaine",babyLengthLabel:"Taille",babyWeightLabel:"Poids",motherBodyTitle:"Ton corps",motherTipTitle:"Conseil maman",nutritionTitle:"Nutrition",emotionTitle:"Émotions & souvenirs",tasksTitle:"Centre bureaucratie",nutritionMainTitle:"Nutrition & recettes",documentsTitle:"Documents",todoTitle:"Ma to-do list privée",nearTitle:"Près de toi",addToCalendar:"Ajouter au calendrier",eventDone:"Terminé",eventOpen:"À faire",openApplication:"Inscription / demande",babyDefault:"Ton bébé",weekWord:"Semaine",done:"Terminé",todo:"À faire",profileTabTitle:"Modifier le profil",profileSaveButton:"Enregistrer le profil",profileSaved:"Profil mis à jour ✅",near:nearFR};
+translations.ar={...translations.de,welcomeTitle:"مرحباً بعودتك",welcomeSubtitle:"حملك في ألمانيا منظم.",logoutButton:"تسجيل الخروج",tabToday:"اليوم",tabCalendar:"التقويم",tabBaby:"الأم والطفل",tabMedical:"طبي",tabBureaucracy:"الإجراءات",tabEmotions:"المشاعر",tabNutrition:"التغذية",tabDocuments:"الوثائق",tabTodo:"مهامي",tabProfile:"الملف",tabNear:"قريب منك",dashboardTitle:"اليوم",weekLabel:"الأسبوع",daysLabel:"الأيام المتبقية",dueDateLabel:"موعد الولادة",cityLabel:"المدينة",calendarTitle:"التقويم",medicalTitle:"المواعيد الطبية",babySectionTitle:"الأم والطفل هذا الأسبوع",babyLengthLabel:"الطول",babyWeightLabel:"الوزن",motherBodyTitle:"جسمك",motherTipTitle:"نصيحة للأم",nutritionTitle:"التغذية",emotionTitle:"المشاعر والذكريات",tasksTitle:"مركز الإجراءات",nutritionMainTitle:"التغذية والوصفات",documentsTitle:"الوثائق",todoTitle:"قائمة مهامي الخاصة",nearTitle:"قريب منك",addToCalendar:"إضافة إلى التقويم",eventDone:"تم",eventOpen:"قيد الانتظار",openApplication:"فتح التسجيل / الطلب",babyDefault:"طفلك",weekWord:"الأسبوع",done:"تم",todo:"قيد الانتظار",profileTabTitle:"تعديل الملف",profileSaveButton:"حفظ الملف",profileSaved:"تم تحديث الملف ✅",near:nearAR};
+translations.en={...translations.de,welcomeTitle:"Welcome back",welcomeSubtitle:"Your pregnancy in Germany is organized.",logoutButton:"Log out",tabToday:"Today",tabCalendar:"Calendar",tabBaby:"Mother & baby",tabMedical:"Medical",tabBureaucracy:"Bureaucracy",tabEmotions:"Emotions",tabNutrition:"Nutrition",tabDocuments:"Documents",tabTodo:"To-do",tabProfile:"Profile",tabNear:"Near you",dashboardTitle:"Today",weekLabel:"Week",daysLabel:"Days left",dueDateLabel:"Due date",cityLabel:"City",calendarTitle:"Calendar",medicalTitle:"Medical appointments",babySectionTitle:"Mother & baby this week",babyLengthLabel:"Length",babyWeightLabel:"Weight",motherBodyTitle:"Your body",motherTipTitle:"Mother tip",nutritionTitle:"Nutrition",emotionTitle:"Emotions & memories",tasksTitle:"Bureaucracy center",nutritionMainTitle:"Nutrition & recipes",documentsTitle:"Documents",todoTitle:"My private to-do list",nearTitle:"Near you",addToCalendar:"Add to calendar",eventDone:"Done",eventOpen:"To do",openApplication:"Open registration / application",babyDefault:"Your baby",weekWord:"Week",done:"Done",todo:"To do",profileTabTitle:"Edit profile",profileSaveButton:"Save profile",profileSaved:"Profile updated ✅"};
+translations.tr={...translations.en,welcomeTitle:"Tekrar hoş geldin",logoutButton:"Çıkış yap",tabToday:"Bugün",tabCalendar:"Takvim",tabBaby:"Anne & bebek",tabMedical:"Tıbbi",tabBureaucracy:"Bürokrasi",tabEmotions:"Duygular",tabNutrition:"Beslenme",tabDocuments:"Belgeler",tabNear:"Yakında",dashboardTitle:"Bugün",weekLabel:"Hafta",babyDefault:"Bebeğin",weekWord:"Hafta"};
+translations.ru={...translations.en,welcomeTitle:"С возвращением",logoutButton:"Выйти",tabToday:"Сегодня",tabCalendar:"Календарь",tabBaby:"Мама и малыш",tabMedical:"Медицина",tabBureaucracy:"Бюрократия",tabEmotions:"Эмоции",tabNutrition:"Питание",tabDocuments:"Документы",tabNear:"Рядом",dashboardTitle:"Сегодня",weekLabel:"Неделя",babyDefault:"Твой малыш",weekWord:"Неделя"};
+translations.uk={...translations.ru,welcomeTitle:"З поверненням",tabToday:"Сьогодні",tabCalendar:"Календар",tabBaby:"Мама і малюк",tabMedical:"Медичне",tabBureaucracy:"Бюрократія",tabEmotions:"Емоції",tabNutrition:"Харчування",tabDocuments:"Документи",tabNear:"Поруч",babyDefault:"Твій малюк"};
 
-      const {error}=await supabaseClient
-        .from('user_document_status')
-        .upsert({
-          user_id:currentUser.id,
-          profile_id:currentProfile.id,
-          template_key:templateKey,
-          status:newStatus
-        },{onConflict:'user_id,template_key'});
+function t(){return translations[currentLang]||translations.de}
+function setLanguage(lang){
+  currentLang=lang;localStorage.setItem("mama_lang",lang);
+  document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+  document.querySelectorAll(".language-buttons button").forEach(b=>b.classList.remove("active"));
+  const active=document.getElementById("lang-"+lang);if(active)active.classList.add("active");
+  const tr=t();
+  ["loginNeededTitle","loginNeededText","goHomeButton","welcomeTitle","welcomeSubtitle","logoutButton","tabToday","tabCalendar","tabBaby","tabMedical","tabBureaucracy","tabEmotions","tabNutrition","tabDocuments","tabTodo","tabProfile","tabNear","dashboardTitle","weekLabel","daysLabel","dueDateLabel","cityLabel","nextEventsTitle","nextEventsText","calendarTitle","calendarText","calAll","calMedical","calCourse","calAdmin","calShopping","manualEventTitle","manualEventText","manualTitleLabel","manualDateLabel","manualTimeLabel","manualCategoryLabel","manualCategoryMedical","manualCategoryCourse","manualCategoryAdmin","manualCategoryShopping","manualCategoryPersonal","manualLocationLabel","manualLinkLabel","manualReminderLabel","manualDescriptionLabel","manualSaveButton","medicalTitle","medicalText","babySectionTitle","babyIntro","babyLengthLabel","babyWeightLabel","babyDevelopmentTitle","motherBodyTitle","motherTipTitle","nutritionTitle","emotionWeekTitle","babyNameTitle","babyNameLabel","saveBabyNameButton","emotionTitle","emotionText","moodTitle","moodLabel","noteLabel","saveEmotionButton","emotionGuideTitle","tasksTitle","tasksText","nutritionMainTitle","nutritionMainText","recipeSectionTitle","shoppingSectionTitle","shoppingDateLabel","shoppingCalendarButton","documentsTitle","documentsText","documentUploadTitle","documentTitleLabel","documentCategoryLabel","documentCategoryMutterpass","documentCategoryMedicalResult","documentCategoryApplication","documentCategoryInsurance","documentCategoryStandesamt","documentCategoryMemory","documentCategoryOther","documentFileLabel","documentNotesLabel","documentUploadButton","documentChecklistTitle","documentChecklistText","savedDocumentsTitle","docCatAll","docCatApplication","docCatMedical","docCatMemory","todoTitle","todoText","addTodoButton","nearTitle","nearText","profileTabTitle","profileTabText","profileMamaTitle","profileNameLabel","profileBabyNameLabel","profileCityLabel","profileLanguageLabel","profilePregnancyTitle","profileDueDateLabel","profilePregnancyTypeLabel","profileSingletonOption","profileTwinsOption","profileGenderLabel","profileGenderUnknown","profileGenderBoy","profileGenderGirl","profileGenderTwinBoys","profileGenderTwinGirls","profileGenderTwinMixed","profileSaveButton"].forEach(id=>{const el=document.getElementById(id);if(el&&tr[id])el.textContent=tr[id]});
+  if(currentProfile){refreshAllUI();loadRecipes();loadShoppingItems();loadDocuments();loadDocumentChecklist()}
+}
+function goHome(){window.location.href="index.html"}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+function setActiveTab(tab){
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  const map={today:["tabToday","panelToday"],calendar:["tabCalendar","panelCalendar"],baby:["tabBaby","panelBaby"],medical:["tabMedical","panelMedical"],bureaucracy:["tabBureaucracy","panelBureaucracy"],emotions:["tabEmotions","panelEmotions"],nutrition:["tabNutrition","panelNutrition"],documents:["tabDocuments","panelDocuments"],todo:["tabTodo","panelTodo"],profile:["tabProfile","panelProfile"],near:["tabNear","panelNear"]};
+  document.getElementById(map[tab][0]).classList.add("active");
+  document.getElementById(map[tab][1]).classList.add("active")
+}
+function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
+function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r}
+function toInputDate(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function formatDate(d){const loc=currentLang==="de"?"de-DE":currentLang==="fr"?"fr-FR":currentLang==="ar"?"ar-SA":currentLang==="tr"?"tr-TR":currentLang==="ru"?"ru-RU":currentLang==="uk"?"uk-UA":"en-GB";return d.toLocaleDateString(loc,{day:"2-digit",month:"2-digit",year:"numeric"})}
+function calculatePregnancy(dueDate){const today=new Date();today.setHours(0,0,0,0);const start=addDays(dueDate,-280);let week=Math.floor((today-start)/(1000*60*60*24*7))+1;if(week<1)week=1;if(week>42)week=42;const daysLeft=Math.ceil((dueDate-today)/(1000*60*60*24));return{pregnancyWeek:week,daysLeft:daysLeft>0?daysLeft:0}}
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){currentTheme=theme||"neutral";document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(currentTheme==="boy")document.body.classList.add("theme-boy");if(currentTheme==="girl")document.body.classList.add("theme-girl");if(currentTheme==="twin")document.body.classList.add("theme-twin")}
+function getThemeText(){const tr=t();if(currentTheme==="boy")return tr.themeBoy;if(currentTheme==="girl")return tr.themeGirl;if(currentTheme==="twin")return tr.themeTwin;return tr.themeNeutral}
+function babyName(){return currentProfile?.baby_name?.trim()||t().babyDefault}
+function replaceVars(txt){return String(txt||"").replaceAll("{babyName}",babyName()).replaceAll("{week}",String(lastPregnancyWeek||"-"))}
+function getLocalized(row,field){if(!row)return"";return row[`${field}_${currentLang}`]||row[`${field}_de`]||row[`${field}_en`]||""}
+function getBodyFallback(w){if(w<=13)return t().bodyEarly;if(w<=27)return t().bodyMid;return t().bodyLate}
+function getEmotionFallback(w){if(w<=13)return t().emotionEarly;if(w<=27)return t().emotionMid;return t().emotionLate}
 
-      if(error){
-        alert(error.message);
-        return;
-      }
+async function loadSessionAndProfile(){
+  const {data}=await supabaseClient.auth.getSession();currentUser=data.session?data.session.user:null;
+  if(!currentUser){document.getElementById("loginMessage").style.display="block";document.getElementById("appShell").style.display="none";return}
+  document.getElementById("loginMessage").style.display="none";document.getElementById("appShell").style.display="block";document.getElementById("emailPill").textContent=currentUser.email;
+  await loadLatestProfile();
+  if(!currentProfile){alert("Bitte zuerst ein Schwangerschaftsprofil auf der Startseite erstellen.");window.location.href="index.html";return}
+  if(currentProfile.language){currentLang=localStorage.getItem("mama_lang")||currentProfile.language}
+  setLanguage(currentLang);
+  applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+  await generateMedicalCalendarEvents();
+  await loadCalendarEvents();
+  await loadTodos();
+  await loadEmotionNotes();
+  await loadRecipes();
+  await loadShoppingItems();
+  await loadDocuments();
+  await loadDocumentChecklist();
+  await refreshAllUI()
+}
+async function loadLatestProfile(){
+  const {data,error}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+  currentProfile=error||!data?.length?null:data[0];
+  if(currentProfile){lastCity=currentProfile.city||"";lastPregnancyWeek=calculatePregnancy(parseLocalDate(currentProfile.due_date)).pregnancyWeek}
+}
+async function refreshAllUI(){
+  if(!currentProfile)return;
+  const due=parseLocalDate(currentProfile.due_date);const r=calculatePregnancy(due);lastPregnancyWeek=r.pregnancyWeek;lastCity=currentProfile.city||"";
+  document.getElementById("weekPill").textContent=`${t().weekWord} ${lastPregnancyWeek}`;
+  document.getElementById("babyPill").textContent=babyName();document.getElementById("themePill").textContent=getThemeText();
+  document.getElementById("pregnancyWeek").textContent=lastPregnancyWeek;document.getElementById("daysLeft").textContent=r.daysLeft;document.getElementById("dueDateResult").textContent=formatDate(due);document.getElementById("cityResult").textContent=lastCity;
+  document.getElementById("todayPersonalText").textContent=replaceVars(t().todayPersonal);
+  document.getElementById("babyNameInput").value=currentProfile.baby_name||"";
+  fillProfileForm();
+  await loadWeeklyBabyContent();
+  await loadTasks();
+  buildNearMe();
+  renderCalendar();
+  renderEmotionGuide()
+}
+function fillProfileForm(){
+  document.getElementById("profileName").value=currentProfile.full_name||"";
+  document.getElementById("profileBabyName").value=currentProfile.baby_name||"";
+  document.getElementById("profileCity").value=currentProfile.city||"";
+  document.getElementById("profileLanguage").value=currentProfile.language||currentLang;
+  document.getElementById("profileDueDate").value=currentProfile.due_date||"";
+  document.getElementById("profilePregnancyType").value=currentProfile.pregnancy_type||"singleton";
+  document.getElementById("profileGender").value=currentProfile.baby_gender||"unknown";
+  updateProfileGenderOptions()
+}
+function updateProfileGenderOptions(){
+  const type=document.getElementById("profilePregnancyType").value;
+  const select=document.getElementById("profileGender");
+  Array.from(select.options).forEach(o=>{const k=o.dataset.kind;o.hidden=!(k==="both"||k===type)});
+  if(select.selectedOptions[0]?.hidden)select.value="unknown";
+  previewProfileTheme()
+}
+function previewProfileTheme(){applyTheme(determineTheme(document.getElementById("profilePregnancyType").value,document.getElementById("profileGender").value))}
+async function saveProfileChanges(){
+  const city=document.getElementById("profileCity").value.trim();const due=document.getElementById("profileDueDate").value;if(!city||!due){alert(t().profileMissing);return}
+  const type=document.getElementById("profilePregnancyType").value;const gender=document.getElementById("profileGender").value;const theme=determineTheme(type,gender);const lang=document.getElementById("profileLanguage").value;const preg=calculatePregnancy(parseLocalDate(due)).pregnancyWeek;
+  const row={full_name:document.getElementById("profileName").value.trim(),baby_name:document.getElementById("profileBabyName").value.trim(),city,language:lang,due_date:due,pregnancy_week:preg,pregnancy_type:type,baby_gender:gender,theme_mode:theme,gender_revealed_at_week:gender!=="unknown"?preg:null};
+  const {error}=await supabaseClient.from("pregnancy_profiles").update(row).eq("id",currentProfile.id).eq("user_id",currentUser.id);
+  if(error){alert(error.message);return}
+  Object.assign(currentProfile,row);localStorage.setItem("mama_lang",lang);currentLang=lang;applyTheme(theme);
+  await supabaseClient.from("pregnancy_calendar_events").delete().eq("user_id",currentUser.id).eq("source_type","medical_template");
+  await generateMedicalCalendarEvents();await loadCalendarEvents();setLanguage(lang);await refreshAllUI();alert(t().profileSaved)
+}
+async function saveBabyName(){
+  const value=document.getElementById("babyNameInput").value.trim();
+  const {error}=await supabaseClient.from("pregnancy_profiles").update({baby_name:value}).eq("id",currentProfile.id).eq("user_id",currentUser.id);
+  if(error){alert(error.message);return}
+  currentProfile.baby_name=value;alert(t().babyNameSaved);refreshAllUI()
+}
 
-      alert(t().documentStatusSaved);
-      await loadDocumentChecklist();
-    }
+async function loadWeeklyBabyContent(){
+  let {data,error}=await supabaseClient.from("weekly_baby_content").select("*").lte("week_number",lastPregnancyWeek).order("week_number",{ascending:false}).limit(1);
+  if((!data||!data.length)&&!error){const r=await supabaseClient.from("weekly_baby_content").select("*").gte("week_number",lastPregnancyWeek).order("week_number",{ascending:true}).limit(1);data=r.data;error=r.error}
+  if(error||!data?.length){document.getElementById("babyTitle").textContent="-";document.getElementById("babyPersonalText").textContent=replaceVars(t().babyPersonalFallback);document.getElementById("babyLength").textContent="-";document.getElementById("babyWeight").textContent="-";document.getElementById("babyDevelopment").textContent="-";document.getElementById("motherBody").textContent=getBodyFallback(lastPregnancyWeek);document.getElementById("motherTip").textContent="-";document.getElementById("babyNutrition").textContent="-";document.getElementById("emotionWeekText").textContent=getEmotionFallback(lastPregnancyWeek);return}
+  const row=data[0];
+  document.getElementById("babyTitle").textContent=`${t().weekWord} ${lastPregnancyWeek} · ${getLocalized(row,"title")||""}`;
+  document.getElementById("babyPersonalText").textContent=replaceVars(getLocalized(row,"baby_personal")||t().babyPersonalFallback);
+  document.getElementById("babyLength").textContent=row.baby_length_cm?`${row.baby_length_cm} cm`:"-";
+  document.getElementById("babyWeight").textContent=row.baby_weight_g?`${row.baby_weight_g} g`:"-";
+  document.getElementById("babyDevelopment").textContent=getLocalized(row,"baby_text")||"-";
+  document.getElementById("motherBody").textContent=getLocalized(row,"body_change")||getBodyFallback(lastPregnancyWeek);
+  document.getElementById("motherTip").textContent=getLocalized(row,"mother_tip")||"-";
+  document.getElementById("babyNutrition").textContent=getLocalized(row,"nutrition")||"-";
+  document.getElementById("emotionWeekText").textContent=getLocalized(row,"emotional_note")||getEmotionFallback(lastPregnancyWeek)
+}
 
-    function prefillDocumentUpload(template){const title=getLocalized(template,'title')||template.title_de||template.key;document.getElementById('documentTitle').value=title;let cat='application';if(template.category==='medical')cat='mutterpass';if(template.category==='standesamt')cat='standesamt';if(template.category==='money'||template.category==='work')cat='application';const select=document.getElementById('documentCategory');if(select)select.value=cat;document.getElementById('documentNotes').value=getLocalized(template,'description')||template.description_de||'';document.getElementById('documentFile').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('documentFile').focus()}
-    function updateDocumentButtons(){[["docCatAll","all"],["docCatApplication","application"],["docCatMedical","medical_result"],["docCatMemory","memory"]].forEach(([id,val])=>{const b=document.getElementById(id);if(b)b.classList.toggle('active',documentCategoryFilter===val)})}
-    async function setDocumentCategory(cat){documentCategoryFilter=cat;await loadDocuments()}
-    function cleanFileName(name){return String(name||'file').replace(/[^a-zA-Z0-9._-]/g,'_').slice(0,120)}
-    async function uploadDocument(){if(!currentUser||!currentProfile)return;const title=document.getElementById('documentTitle').value.trim();const category=document.getElementById('documentCategory').value;const notes=document.getElementById('documentNotes').value.trim();const fileInput=document.getElementById('documentFile');const file=fileInput.files&&fileInput.files[0];if(!title||!file){alert(t().documentMissing);return}const path=`${currentUser.id}/${Date.now()}-${cleanFileName(file.name)}`;const up=await supabaseClient.storage.from('pregnancy-documents').upload(path,file,{upsert:false});if(up.error){alert(up.error.message);return}const{error}=await supabaseClient.from('pregnancy_documents').insert({user_id:currentUser.id,profile_id:currentProfile.id,title,category,storage_path:path,notes,pregnancy_week:lastPregnancyWeek,status:'saved'});if(error){alert(error.message);return}document.getElementById('documentTitle').value='';document.getElementById('documentNotes').value='';document.getElementById('documentFile').value='';alert(t().documentSaved);await loadDocuments();await loadDocumentChecklist()}
-    async function loadDocuments(){const list=document.getElementById('documentList');if(!list)return;list.innerHTML='';updateDocumentButtons();let query=supabaseClient.from('pregnancy_documents').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false});if(documentCategoryFilter!=='all')query=query.eq('category',documentCategoryFilter);const{data,error}=await query;if(error||!data||!data.length){list.innerHTML=`<p>${t().documentEmpty}</p>`;return}data.forEach(doc=>list.appendChild(renderDocument(doc)))}
-    function renderDocument(doc){const card=document.createElement('div');card.className='task-card';const date=doc.created_at?formatDate(new Date(doc.created_at)):'-';card.innerHTML=`<div class="week-badge">${t().weekWord} ${doc.pregnancy_week||'-'} · ${date}</div><h3>${doc.title}</h3><p>${doc.notes||''}</p>`;const actions=document.createElement('div');actions.className='actions';const open=document.createElement('button');open.className='button-light';open.textContent=t().documentOpen;open.onclick=()=>openDocument(doc.storage_path);const del=document.createElement('button');del.className='button-danger';del.textContent=t().documentDelete;del.onclick=()=>deleteDocument(doc.id,doc.storage_path);actions.appendChild(open);actions.appendChild(del);card.appendChild(actions);return card}
-    async function openDocument(path){if(!path)return;const{data,error}=await supabaseClient.storage.from('pregnancy-documents').createSignedUrl(path,60*10);if(error){alert(error.message);return}window.open(data.signedUrl,'_blank')}
-    async function deleteDocument(id,path){const{error}=await supabaseClient.from('pregnancy_documents').delete().eq('id',id).eq('user_id',currentUser.id);if(error){alert(error.message);return}if(path)await supabaseClient.storage.from('pregnancy-documents').remove([path]);alert(t().documentDeleted);await loadDocuments();await loadDocumentChecklist()}
-    setLanguage('de');loadSessionAndProfile();
-  </script>
+async function generateMedicalCalendarEvents(){
+  const due=parseLocalDate(currentProfile.due_date);const start=addDays(due,-280);
+  const {data:templates,error}=await supabaseClient.from("medical_exam_templates").select("*").order("recommended_week",{ascending:true});
+  if(error||!templates)return;
+  for(const template of templates){
+    const date=toInputDate(addDays(start,(template.recommended_week-1)*7));
+    const {data:existing}=await supabaseClient.from("pregnancy_calendar_events").select("id").eq("user_id",currentUser.id).eq("source_type","medical_template").eq("source_key",template.key).eq("event_date",date).limit(1);
+    if(existing?.length)continue;
+    await supabaseClient.from("pregnancy_calendar_events").insert({user_id:currentUser.id,profile_id:currentProfile.id,title:getLocalized(template,"title")||template.title_de,description:getLocalized(template,"description")||template.description_de,event_date:date,pregnancy_week:template.recommended_week,category:template.category||"medical",source_type:"medical_template",source_key:template.key,link_url:template.link_url||"",reminder_days:14,done:false})
+  }
+}
+async function loadCalendarEvents(){const {data,error}=await supabaseClient.from("pregnancy_calendar_events").select("*").eq("user_id",currentUser.id).order("event_date",{ascending:true});calendarEvents=error?[]:data||[]}
+function getEventCategoryLabel(c){const tr=t();if(c==="medical")return tr.medicalLabel;if(c==="course")return tr.courseLabel;if(c==="administratif")return tr.adminLabel;if(c==="shopping")return tr.shoppingLabel;if(c==="personal")return tr.personalLabel;return tr.calAll}
+function setCalendarCategory(cat){calendarCategoryFilter=cat;renderCalendar()}
+function updateCalendarButtons(){[["calAll","all"],["calMedical","medical"],["calCourse","course"],["calAdmin","administratif"],["calShopping","shopping"]].forEach(([id,val])=>{const b=document.getElementById(id);if(b)b.classList.toggle("active",calendarCategoryFilter===val)})}
+function renderCalendar(){
+  updateCalendarButtons();
+  const cal=document.getElementById("calendarList"),med=document.getElementById("medicalList"),next=document.getElementById("nextEventsList");cal.innerHTML="";med.innerHTML="";next.innerHTML="";
+  if(!calendarEvents.length){cal.innerHTML=med.innerHTML=next.innerHTML=`<p>${t().noEvents}</p>`;return}
+  const visible=calendarCategoryFilter==="all"?calendarEvents:calendarEvents.filter(e=>e.category===calendarCategoryFilter);
+  if(!visible.length)cal.innerHTML=`<p>${t().noEvents}</p>`;else visible.forEach(e=>cal.appendChild(renderEvent(e)));
+  const medical=calendarEvents.filter(e=>e.category==="medical");if(!medical.length)med.innerHTML=`<p>${t().noEvents}</p>`;else medical.forEach(e=>med.appendChild(renderEvent(e)));
+  const today=new Date();today.setHours(0,0,0,0);
+  const upcoming=calendarEvents.filter(e=>{const d=parseLocalDate(e.event_date);const diff=Math.ceil((d-today)/(1000*60*60*24));return diff>=0&&diff<=Number(e.reminder_days||14)}).slice(0,6);
+  if(!upcoming.length)next.innerHTML=`<p>${t().noEvents}</p>`;else upcoming.forEach(e=>next.appendChild(renderEvent(e)))
+}
+function getSmartEventLink(e){const city=encodeURIComponent(lastCity||"Deutschland");if(e.source_key==="pregnancy_yoga")return`https://www.google.com/search?q=Schwangerschaftsyoga+Kurs+Anmeldung+${city}`;if(e.source_key==="birth_preparation_course")return`https://www.google.com/search?q=Geburtsvorbereitungskurs+Anmeldung+${city}`;if(e.source_key==="child_emergency_course")return`https://www.google.com/search?q=Kindernotfallkurs+Erste+Hilfe+am+Kind+Anmeldung+${city}`;if(e.category==="course")return`https://www.google.com/search?q=Kurs+Anmeldung+Schwangerschaft+Baby+${city}`;return""}
+function renderEvent(e){
+  const card=document.createElement("div");card.className="event";
+  let desc=e.description||"";if(e.event_time)desc+=(desc?"\n":"")+e.event_time;if(e.location)desc+=(desc?"\n":"")+`📍 ${e.location}`;
+  card.innerHTML=`<div class="badge">${formatDate(parseLocalDate(e.event_date))}</div><div class="badge">${getEventCategoryLabel(e.category)}</div><h3>${e.title}</h3><p style="white-space:pre-line">${desc}</p>`;
+  const actions=document.createElement("div");actions.className="actions";
+  const done=document.createElement("button");done.className=e.done?"button done":"button";done.textContent=e.done?t().eventDone:t().eventOpen;done.onclick=()=>toggleCalendarEvent(e.id,!e.done);
+  const ics=document.createElement("button");ics.className="button-light";ics.textContent=t().addToCalendar;ics.onclick=()=>downloadICS(e);
+  actions.appendChild(done);actions.appendChild(ics);
+  const link=e.link_url||getSmartEventLink(e);if(link){const a=document.createElement("a");a.className="button-light";a.href=link;a.target="_blank";a.textContent=t().openApplication;actions.appendChild(a)}
+  card.appendChild(actions);return card
+}
+async function toggleCalendarEvent(id,done){await supabaseClient.from("pregnancy_calendar_events").update({done}).eq("id",id).eq("user_id",currentUser.id);await loadCalendarEvents();renderCalendar()}
+async function saveManualEvent(){
+  const title=document.getElementById("manualTitle").value.trim(),date=document.getElementById("manualDate").value;
+  if(!title||!date){alert(t().manualMissing);return}
+  const due=parseLocalDate(currentProfile.due_date);const start=addDays(due,-280);let week=Math.floor((parseLocalDate(date)-start)/(1000*60*60*24*7))+1;if(week<1)week=1;if(week>42)week=42;
+  const row={user_id:currentUser.id,profile_id:currentProfile.id,title,description:document.getElementById("manualDescription").value.trim(),event_date:date,event_time:document.getElementById("manualTime").value||null,pregnancy_week:week,category:document.getElementById("manualCategory").value,source_type:"manual",source_key:`manual-${Date.now()}`,location:document.getElementById("manualLocation").value.trim(),link_url:document.getElementById("manualLink").value.trim(),reminder_days:Number(document.getElementById("manualReminder").value||14),done:false};
+  const {error}=await supabaseClient.from("pregnancy_calendar_events").insert(row);if(error){alert(error.message);return}
+  ["manualTitle","manualDate","manualTime","manualLocation","manualLink","manualDescription"].forEach(id=>document.getElementById(id).value="");document.getElementById("manualReminder").value="14";
+  alert(t().manualSaved);await loadCalendarEvents();renderCalendar()
+}
+function icsDate(v){return v.replaceAll("-","")}
+function escapeICS(s){return String(s||"").replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;")}
+function downloadICS(e){const end=toInputDate(addDays(parseLocalDate(e.event_date),1));const ics=`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mama in Deutschland//DE
+BEGIN:VEVENT
+UID:${e.id}@mama-in-deutschland
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").split(".")[0]}Z
+DTSTART;VALUE=DATE:${icsDate(e.event_date)}
+DTEND;VALUE=DATE:${icsDate(end)}
+SUMMARY:${escapeICS(e.title)}
+DESCRIPTION:${escapeICS(e.description||"")}
+END:VEVENT
+END:VCALENDAR`;const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=`${t().calendarFileName}-${e.event_date}.ics`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+
+async function loadTasks(){
+  const list=document.getElementById("taskList");list.innerHTML="";
+  let q=supabaseClient.from("pregnancy_tasks").select("*").order("recommended_week",{ascending:true});
+  if(!showAllTasks)q=q.lte("recommended_week",lastPregnancyWeek+2);if(taskCategoryFilter!=="all")q=q.eq("category",taskCategoryFilter);
+  const {data,error}=await q;updateTaskButtons();if(error||!data?.length){document.getElementById("taskProgress").textContent=`0 / 0 ${t().progress}`;list.innerHTML=`<p>${t().noEvents}</p>`;return}
+  const {data:statuses}=await supabaseClient.from("user_task_status").select("*").eq("user_id",currentUser.id);const map={};(statuses||[]).forEach(s=>map[s.task_id]=s.status);
+  const done=data.filter(task=>map[task.id]==="done").length;document.getElementById("taskProgress").textContent=`${done} / ${data.length} ${t().progress}`;
+  data.forEach(task=>{const isDone=map[task.id]==="done";const card=document.createElement("div");card.className="task";card.innerHTML=`<div class="badge">${t().weekWord} ${task.recommended_week}</div><h3>${getLocalized(task,"title")||task.title_de}</h3><p>${getLocalized(task,"description")||task.description_de||""}</p>`;const actions=document.createElement("div");actions.className="actions";const b=document.createElement("button");b.className=isDone?"button done":"button";b.textContent=isDone?t().done:t().todo;b.onclick=()=>toggleTaskStatus(task.id,isDone?"todo":"done");actions.appendChild(b);if(task.link_url){const a=document.createElement("a");a.className="button-light";a.href=task.link_url;a.target="_blank";a.textContent=t().openApplication;actions.appendChild(a)}card.appendChild(actions);list.appendChild(card)})
+}
+function updateTaskButtons(){const tr=t();document.getElementById("allTasksButton").textContent=showAllTasks?tr.showRecommended:tr.showAll;[["catAll","all",tr.all],["catAdmin","administratif",tr.admin],["catMedical","medical",tr.medical],["catOrganisation","organisation",tr.organisation]].forEach(([id,val,label])=>{const b=document.getElementById(id);b.textContent=label;b.classList.toggle("active",taskCategoryFilter===val)})}
+async function toggleAllTasks(){showAllTasks=!showAllTasks;await loadTasks()}
+async function setTaskCategory(c){taskCategoryFilter=c;await loadTasks()}
+async function toggleTaskStatus(id,status){await supabaseClient.from("user_task_status").upsert({user_id:currentUser.id,task_id:id,status},{onConflict:"user_id,task_id"});await loadTasks()}
+
+async function loadTodos(){const list=document.getElementById("todoList");list.innerHTML="";const {data}=await supabaseClient.from("private_todos").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});(data||[]).forEach(todo=>{const row=document.createElement("div");row.className="todo-item";const s=document.createElement("span");s.textContent=todo.title;if(todo.done)s.className="done";const b=document.createElement("button");b.className=todo.done?"button done":"button";b.textContent=todo.done?t().todoDone:t().todoOpen;b.onclick=()=>toggleTodo(todo.id,!todo.done);const d=document.createElement("button");d.className="button-danger";d.textContent="×";d.onclick=()=>deleteTodo(todo.id);row.appendChild(s);row.appendChild(b);row.appendChild(d);list.appendChild(row)})}
+async function addTodo(){const title=document.getElementById("todoInput").value.trim();if(!title){alert(t().emptyTodo);return}await supabaseClient.from("private_todos").insert({user_id:currentUser.id,title,done:false});document.getElementById("todoInput").value="";await loadTodos()}
+async function toggleTodo(id,done){await supabaseClient.from("private_todos").update({done}).eq("id",id).eq("user_id",currentUser.id);await loadTodos()}
+async function deleteTodo(id){await supabaseClient.from("private_todos").delete().eq("id",id).eq("user_id",currentUser.id);await loadTodos()}
+
+async function saveEmotionNote(){const note=document.getElementById("emotionNote").value.trim();if(!note)return;const mood=document.getElementById("moodSelect").value;const {error}=await supabaseClient.from("emotional_notes").insert({user_id:currentUser.id,profile_id:currentProfile.id,pregnancy_week:lastPregnancyWeek,mood,note});if(error){alert(error.message);return}document.getElementById("emotionNote").value="";alert(t().noteSaved);await loadEmotionNotes()}
+async function loadEmotionNotes(){const list=document.getElementById("emotionNotesList");list.innerHTML="";const {data}=await supabaseClient.from("emotional_notes").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});(data||[]).forEach(n=>{const card=document.createElement("div");card.className="note-card";card.innerHTML=`<div class="badge">${t().weekWord} ${n.pregnancy_week||"-"}</div><h3>${n.mood||""}</h3><p>${n.note||""}</p>`;const d=document.createElement("button");d.className="button-danger";d.textContent="×";d.onclick=()=>deleteEmotionNote(n.id);card.appendChild(d);list.appendChild(card)})}
+async function deleteEmotionNote(id){await supabaseClient.from("emotional_notes").delete().eq("id",id).eq("user_id",currentUser.id);await loadEmotionNotes()}
+function renderEmotionGuide(){document.getElementById("emotionGuideText").textContent=getEmotionFallback(lastPregnancyWeek)}
+
+async function loadRecipes(){const list=document.getElementById("recipeList");list.innerHTML="";const {data,error}=await supabaseClient.from("pregnancy_recipes").select("*").lte("recommended_week",lastPregnancyWeek+4).order("recommended_week",{ascending:false}).limit(6);if(error||!data?.length){list.innerHTML=`<p>${t().noEvents}</p>`;return}data.forEach(r=>{const card=document.createElement("div");card.className="task";card.innerHTML=`<div class="badge">${t().weekWord} ${r.recommended_week}</div><h3>${getLocalized(r,"title")||r.title_de}</h3><p>${getLocalized(r,"description")||""}</p><h3>${t().ingredientsTitle}</h3><p>${getLocalized(r,"ingredients")||""}</p><h3>${t().stepsTitle}</h3><p>${getLocalized(r,"steps")||""}</p>`;const b=document.createElement("button");b.className="button";b.textContent=t().addRecipeToShopping;b.onclick=()=>addRecipeToShoppingList(r);card.appendChild(b);list.appendChild(card)})}
+async function addRecipeToShoppingList(recipe){const items=Array.isArray(recipe.shopping_items)?recipe.shopping_items:[];if(!items.length)return;const rows=items.map(i=>({user_id:currentUser.id,profile_id:currentProfile.id,recipe_id:recipe.id,item_name:i.item||"",quantity:i.quantity||"",category:"food",source_title:getLocalized(recipe,"title")||recipe.title_de,checked:false}));const {error}=await supabaseClient.from("private_shopping_items").insert(rows);if(error){alert(error.message);return}alert(t().shoppingAdded);await loadShoppingItems()}
+async function loadShoppingItems(){const list=document.getElementById("shoppingList");list.innerHTML="";const {data}=await supabaseClient.from("private_shopping_items").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});if(!data?.length){list.innerHTML=`<p>${t().shoppingEmpty}</p>`;return}data.forEach(item=>{const row=document.createElement("div");row.className="todo-item";const text=document.createElement("span");text.textContent=`${item.item_name}${item.quantity?" · "+item.quantity:""}`;if(item.checked)text.className="done";const b=document.createElement("button");b.className=item.checked?"button done":"button";b.textContent=item.checked?t().shoppingDone:t().shoppingOpen;b.onclick=()=>toggleShoppingItem(item.id,!item.checked);const d=document.createElement("button");d.className="button-danger";d.textContent="×";d.onclick=()=>deleteShoppingItem(item.id);row.appendChild(text);row.appendChild(b);row.appendChild(d);list.appendChild(row)})}
+async function toggleShoppingItem(id,checked){await supabaseClient.from("private_shopping_items").update({checked}).eq("id",id).eq("user_id",currentUser.id);await loadShoppingItems()}
+async function deleteShoppingItem(id){await supabaseClient.from("private_shopping_items").delete().eq("id",id).eq("user_id",currentUser.id);await loadShoppingItems()}
+async function addShoppingListToCalendar(){const date=document.getElementById("shoppingDate").value;if(!date){alert(t().chooseShoppingDate);return}const {data:items}=await supabaseClient.from("private_shopping_items").select("*").eq("user_id",currentUser.id).eq("checked",false);if(!items?.length){alert(t().shoppingEmpty);return}const description=items.map(i=>`- ${i.item_name}${i.quantity?" ("+i.quantity+")":""}`).join("\n");await supabaseClient.from("pregnancy_calendar_events").insert({user_id:currentUser.id,profile_id:currentProfile.id,title:t().shoppingCalendarTitle,description:`${t().shoppingCalendarDescription}\n\n${description}`,event_date:date,pregnancy_week:lastPregnancyWeek,category:"shopping",source_type:"shopping_list",source_key:`shopping-${date}-${Date.now()}`,done:false});await supabaseClient.from("private_shopping_items").update({needed_date:date}).eq("user_id",currentUser.id).eq("checked",false);alert(t().shoppingCalendarAdded);await loadCalendarEvents();renderCalendar()}
+
+function cleanFileName(n){return String(n||"file").replace(/[^a-zA-Z0-9._-]/g,"_").slice(0,120)}
+async function uploadDocument(){
+  const title=document.getElementById("documentTitle").value.trim();const cat=document.getElementById("documentCategory").value;const notes=document.getElementById("documentNotes").value.trim();const file=document.getElementById("documentFile").files?.[0];
+  if(!title||!file){alert(t().documentMissing);return}
+  const path=`${currentUser.id}/${Date.now()}-${cleanFileName(file.name)}`;
+  const up=await supabaseClient.storage.from("pregnancy-documents").upload(path,file,{upsert:false});if(up.error){alert(up.error.message);return}
+  const {error}=await supabaseClient.from("pregnancy_documents").insert({user_id:currentUser.id,profile_id:currentProfile.id,title,category:cat,storage_path:path,notes,pregnancy_week:lastPregnancyWeek,status:"saved"});
+  if(error){alert(error.message);return}
+  document.getElementById("documentTitle").value="";document.getElementById("documentNotes").value="";document.getElementById("documentFile").value="";
+  alert(t().documentSaved);await loadDocuments();await loadDocumentChecklist()
+}
+async function loadDocuments(){const list=document.getElementById("documentList");list.innerHTML="";updateDocumentButtons();let q=supabaseClient.from("pregnancy_documents").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false});if(documentCategoryFilter!=="all")q=q.eq("category",documentCategoryFilter);const {data}=await q;if(!data?.length){list.innerHTML=`<p>${t().documentEmpty}</p>`;return}data.forEach(doc=>list.appendChild(renderDocument(doc)))}
+function renderDocument(doc){const card=document.createElement("div");card.className="task";card.innerHTML=`<div class="badge">${t().weekWord} ${doc.pregnancy_week||"-"}</div><h3>${doc.title}</h3><p>${doc.notes||""}</p>`;const actions=document.createElement("div");actions.className="actions";const open=document.createElement("button");open.className="button-light";open.textContent=t().documentOpen;open.onclick=()=>openDocument(doc.storage_path);const del=document.createElement("button");del.className="button-danger";del.textContent=t().documentDelete;del.onclick=()=>deleteDocument(doc.id,doc.storage_path);actions.appendChild(open);actions.appendChild(del);card.appendChild(actions);return card}
+async function openDocument(path){const {data,error}=await supabaseClient.storage.from("pregnancy-documents").createSignedUrl(path,60*10);if(error){alert(error.message);return}window.open(data.signedUrl,"_blank")}
+async function deleteDocument(id,path){await supabaseClient.from("pregnancy_documents").delete().eq("id",id).eq("user_id",currentUser.id);if(path)await supabaseClient.storage.from("pregnancy-documents").remove([path]);alert(t().documentDeleted);await loadDocuments();await loadDocumentChecklist()}
+function updateDocumentButtons(){[["docCatAll","all"],["docCatApplication","application"],["docCatMedical","medical_result"],["docCatMemory","memory"]].forEach(([id,val])=>{const b=document.getElementById(id);if(b)b.classList.toggle("active",documentCategoryFilter===val)})}
+async function setDocumentCategory(cat){documentCategoryFilter=cat;await loadDocuments()}
+
+async function loadDocumentChecklist(){
+  const list=document.getElementById("documentChecklist");if(!list)return;list.innerHTML="";
+  const {data:templates}=await supabaseClient.from("document_templates").select("*").order("recommended_week",{ascending:true});
+  const {data:docs}=await supabaseClient.from("pregnancy_documents").select("*").eq("user_id",currentUser.id);
+  const {data:statuses}=await supabaseClient.from("user_document_status").select("*").eq("user_id",currentUser.id);
+  const statusMap={};(statuses||[]).forEach(s=>statusMap[s.template_key]=s.status);
+  const docTitles=(docs||[]).map(d=>String(d.title||"").toLowerCase());
+  (templates||[]).forEach(tmp=>{
+    const title=getLocalized(tmp,"title")||tmp.title_de||tmp.key;
+    const saved=docTitles.some(d=>d.includes(title.toLowerCase().split(" ")[0]));
+    const done=statusMap[tmp.key]==="done";
+    const card=document.createElement("div");card.className="task";
+    card.innerHTML=`<div class="badge">${t().weekWord} ${tmp.recommended_week}</div><h3>${title}</h3><p>${getLocalized(tmp,"description")||tmp.description_de||""}</p><div class="badge">${saved?t().documentSavedStatus:t().documentMissingStatus}</div><div class="badge">${done?t().documentChecklistDone:t().documentChecklistOpen}</div>`;
+    const actions=document.createElement("div");actions.className="actions";
+    const upload=document.createElement("button");upload.className="button-light";upload.textContent=t().documentUploadThis;upload.onclick=()=>prefillDocumentUpload(tmp);
+    const status=document.createElement("button");status.className=done?"button done":"button";status.textContent=done?t().documentMarkOpen:t().documentMarkDone;status.onclick=()=>toggleDocumentStatus(tmp.key,done?"open":"done");
+    actions.appendChild(upload);actions.appendChild(status);
+    if(tmp.link_url){const a=document.createElement("a");a.href=tmp.link_url;a.target="_blank";a.className="button-light";a.textContent=t().openApplication;actions.appendChild(a)}
+    card.appendChild(actions);list.appendChild(card)
+  })
+}
+function prefillDocumentUpload(tmp){document.getElementById("documentTitle").value=getLocalized(tmp,"title")||tmp.title_de||tmp.key;document.getElementById("documentNotes").value=getLocalized(tmp,"description")||tmp.description_de||"";document.getElementById("documentCategory").value=tmp.category==="medical"?"mutterpass":tmp.category==="standesamt"?"standesamt":"application";document.getElementById("documentFile").scrollIntoView({behavior:"smooth",block:"center"})}
+async function toggleDocumentStatus(key,status){await supabaseClient.from("user_document_status").upsert({user_id:currentUser.id,profile_id:currentProfile.id,template_key:key,status},{onConflict:"user_id,template_key"});await loadDocumentChecklist()}
+
+function buildMapsLink(q,city){return"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q+" "+city)}
+function buildNearMe(){
+  const grid=document.getElementById("nearGrid");grid.innerHTML="";if(!lastCity)return;
+  let items=lastPregnancyWeek<=13?[["hebamme","Hebamme"],["frauenarzt","Frauenärztin Schwangerschaft"],["apotheke","Apotheke"]]:lastPregnancyWeek<=28?[["hebamme","Hebamme"],["frauenarzt","Frauenärztin Schwangerschaft"],["kurs","Geburtsvorbereitungskurs"],["klinik","Geburtsklinik"],["babyshop","Babygeschäft"]]:[["klinik","Geburtsklinik"],["kinderarzt","Kinderarzt"],["apotheke","Apotheke"],["standesamt","Standesamt Geburt"],["babyshop","Babygeschäft"]];
+  items.forEach(([key,search])=>{const it=t().near?.[key]||nearDE[key];const card=document.createElement("div");card.className="near-card";card.innerHTML=`<h3>${it[0]}</h3><p>${it[1]}</p>`;const a=document.createElement("a");a.className="near-button";a.href=buildMapsLink(search,lastCity);a.target="_blank";a.textContent=t().openSearch||"Search";card.appendChild(a);grid.appendChild(card)})
+}
+
+setLanguage(currentLang);
+loadSessionAndProfile();
+</script>
 </body>
 </html>

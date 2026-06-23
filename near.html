@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mama in Deutschland - In meiner Nähe</title>
+
+  <style>
+    :root {
+      --page:#f8f3ec;
+      --card:#ffffff;
+      --cream:#fffaf4;
+      --soft:#f3eadf;
+      --brown:#4a3428;
+      --light:#9b7357;
+      --text:#2f2621;
+      --muted:#7b6a60;
+      --border:#eadfd2;
+      --danger:#b45b48;
+      --success:#5f8d63;
+      --shadow:rgba(74,52,40,.12);
+    }
+
+    body.theme-boy {
+      --page:#eef7ff;
+      --cream:#f7fbff;
+      --soft:#e8f4ff;
+      --brown:#244b6b;
+      --light:#5f93bd;
+      --text:#1d3347;
+      --muted:#5c7285;
+      --border:#d6e8f7;
+      --shadow:rgba(36,75,107,.12);
+    }
+
+    body.theme-girl {
+      --page:#fff1f5;
+      --cream:#fff8fa;
+      --soft:#fde8ef;
+      --brown:#7a3d55;
+      --light:#c47a98;
+      --text:#3d2430;
+      --muted:#7b6070;
+      --border:#f0d4df;
+      --shadow:rgba(122,61,85,.12);
+    }
+
+    body.theme-twin {
+      --page:#f1f7ef;
+      --cream:#fbfff8;
+      --soft:#e7f3df;
+      --brown:#3e5c3a;
+      --light:#7ca878;
+      --text:#263522;
+      --muted:#62745f;
+      --border:#dbe9d4;
+      --shadow:rgba(62,92,58,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+        linear-gradient(180deg,#fbf7f1,var(--page));
+      color:var(--text);
+    }
+
+    .wrap {
+      max-width:1180px;
+      margin:0 auto;
+      padding:24px 18px;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--brown);
+      font-size:23px;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+
+    .brand-icon {
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--brown),var(--light));
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      box-shadow:0 14px 28px var(--shadow);
+    }
+
+    .top-actions,
+    .language-buttons,
+    .actions,
+    .filters {
+      display:flex;
+      gap:9px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .language-buttons button,
+    .button-light,
+    .button,
+    .filter-button {
+      border:1px solid var(--border);
+      background:white;
+      color:var(--brown);
+      padding:10px 13px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      text-decoration:none;
+      font-family:inherit;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .language-buttons button.active,
+    .filter-button.active {
+      background:var(--brown);
+      color:white;
+    }
+
+    .button {
+      background:var(--brown);
+      color:white;
+      border-color:var(--brown);
+    }
+
+    .card {
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:24px;
+      box-shadow:0 24px 70px var(--shadow);
+      backdrop-filter:blur(16px);
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3 {
+      color:var(--brown);
+      margin:0 0 12px;
+    }
+
+    h1 {
+      font-size:34px;
+      letter-spacing:-1.5px;
+    }
+
+    h2 {
+      font-size:25px;
+      letter-spacing:-.7px;
+    }
+
+    h3 {
+      font-size:17px;
+    }
+
+    p {
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    label {
+      display:block;
+      margin:14px 0 7px;
+      color:var(--brown);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    input {
+      width:100%;
+      padding:13px 14px;
+      border-radius:15px;
+      border:1px solid var(--border);
+      background:#fffdf9;
+      color:var(--text);
+      font-size:15px;
+      font-family:inherit;
+      outline:none;
+    }
+
+    input:focus {
+      border-color:var(--light);
+      box-shadow:0 0 0 4px rgba(155,115,87,.12);
+    }
+
+    .soft {
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--soft);
+      border:1px solid var(--border);
+      color:var(--brown);
+      font-weight:900;
+      margin-top:14px;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .result-card {
+      background:linear-gradient(180deg,var(--cream),white);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .badge {
+      display:inline-flex;
+      width:fit-content;
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--brown);
+      font-size:12px;
+      font-weight:900;
+      margin:0 5px 8px 0;
+    }
+
+    .message {
+      max-width:650px;
+      margin:60px auto;
+      text-align:center;
+    }
+
+    @media(max-width:900px) {
+      .grid {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        padding:18px 12px;
+      }
+
+      h1 {
+        font-size:28px;
+      }
+
+      .card {
+        padding:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <span>Mama in Deutschland</span>
+      </div>
+
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Zurück</a>
+
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">In meiner Nähe</h1>
+        <p id="pageText">Finde schnell wichtige Orte rund um Schwangerschaft, Geburt und Baby in deiner Stadt.</p>
+
+        <div class="soft" id="cityBox">Stadt: -</div>
+
+        <label id="cityInputLabel" for="cityInput">Stadt ändern</label>
+        <input id="cityInput" placeholder="Düsseldorf" />
+
+        <div class="actions" style="margin-top:14px;">
+          <button class="button" onclick="useProfileCity()" id="profileCityButton">Profil-Stadt verwenden</button>
+          <button class="button-light" onclick="useBrowserLocation()" id="locationButton">Meinen Standort verwenden</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="searchTitle">Schnellsuche</h2>
+        <p id="searchText">Die Ergebnisse öffnen sich in Google Maps.</p>
+
+        <div class="filters" style="margin-top:14px;">
+          <button class="filter-button active" onclick="setCategory('care')" id="catCare">Betreuung</button>
+          <button class="filter-button" onclick="setCategory('birth')" id="catBirth">Geburt</button>
+          <button class="filter-button" onclick="setCategory('baby')" id="catBaby">Baby</button>
+          <button class="filter-button" onclick="setCategory('emergency')" id="catEmergency">Notfall</button>
+          <button class="filter-button" onclick="setCategory('shopping')" id="catShopping">Einkaufen</button>
+        </div>
+
+        <div class="grid" id="resultsGrid"></div>
+      </section>
+    </main>
+
+    <section class="message card" id="loginMessage" style="display:none;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p>
+      <br />
+      <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let currentProfile = null;
+    let currentLang = localStorage.getItem("mama_lang") || "de";
+    let categoryFilter = "care";
+    let locationQuery = "";
+
+    const translations = {
+      de:{
+        backButton:"Zurück",
+        pageTitle:"In meiner Nähe",
+        pageText:"Finde schnell wichtige Orte rund um Schwangerschaft, Geburt und Baby in deiner Stadt.",
+        cityBox:"Stadt",
+        cityInputLabel:"Stadt ändern",
+        profileCityButton:"Profil-Stadt verwenden",
+        locationButton:"Meinen Standort verwenden",
+        searchTitle:"Schnellsuche",
+        searchText:"Die Ergebnisse öffnen sich in Google Maps.",
+        catCare:"Betreuung",
+        catBirth:"Geburt",
+        catBaby:"Baby",
+        catEmergency:"Notfall",
+        catShopping:"Einkaufen",
+        openMaps:"In Maps öffnen",
+        loginTitle:"Bitte einloggen",
+        loginText:"Du musst dich zuerst anmelden.",
+        loginBackButton:"Zur Startseite",
+        locationDenied:"Standort konnte nicht gelesen werden. Du kannst die Stadt manuell eingeben.",
+        midwife:"Hebamme",
+        gynecologist:"Frauenarzt / Frauenärztin",
+        birthCourse:"Geburtsvorbereitungskurs",
+        birthClinic:"Geburtsklinik",
+        deliveryRoom:"Kreißsaal",
+        prenatalDiagnostics:"Pränataldiagnostik",
+        pediatrician:"Kinderarzt / Kinderärztin",
+        pharmacy:"Apotheke",
+        familyCenter:"Familienzentrum",
+        hospitalEmergency:"Kinder-Notaufnahme",
+        emergencyPharmacy:"Notdienst Apotheke",
+        poisonInfo:"Giftnotruf",
+        babyStore:"Babygeschäft",
+        drugstore:"Drogerie",
+        supermarket:"Supermarkt"
+      },
+      fr:{
+        backButton:"Retour",
+        pageTitle:"Près de moi",
+        pageText:"Trouve rapidement les lieux importants pour la grossesse, l’accouchement et bébé dans ta ville.",
+        cityBox:"Ville",
+        cityInputLabel:"Changer la ville",
+        profileCityButton:"Utiliser la ville du profil",
+        locationButton:"Utiliser ma position",
+        searchTitle:"Recherche rapide",
+        searchText:"Les résultats s’ouvrent dans Google Maps.",
+        catCare:"Suivi",
+        catBirth:"Naissance",
+        catBaby:"Bébé",
+        catEmergency:"Urgence",
+        catShopping:"Achats",
+        openMaps:"Ouvrir dans Maps",
+        loginTitle:"Connexion nécessaire",
+        loginText:"Tu dois d’abord te connecter.",
+        loginBackButton:"Retour à l’accueil",
+        locationDenied:"La position n’a pas pu être lue. Tu peux entrer la ville manuellement.",
+        midwife:"Sage-femme",
+        gynecologist:"Gynécologue",
+        birthCourse:"Cours de préparation à la naissance",
+        birthClinic:"Maternité",
+        deliveryRoom:"Salle d’accouchement",
+        prenatalDiagnostics:"Diagnostic prénatal",
+        pediatrician:"Pédiatre",
+        pharmacy:"Pharmacie",
+        familyCenter:"Centre familial",
+        hospitalEmergency:"Urgences pédiatriques",
+        emergencyPharmacy:"Pharmacie de garde",
+        poisonInfo:"Centre antipoison",
+        babyStore:"Magasin bébé",
+        drugstore:"Droguerie",
+        supermarket:"Supermarché"
+      },
+      ar:{
+        backButton:"رجوع",
+        pageTitle:"بالقرب مني",
+        pageText:"ابحثي بسرعة عن الأماكن المهمة للحمل والولادة والطفل في مدينتك.",
+        cityBox:"المدينة",
+        cityInputLabel:"تغيير المدينة",
+        profileCityButton:"استخدام مدينة الملف",
+        locationButton:"استخدام موقعي",
+        searchTitle:"بحث سريع",
+        searchText:"تفتح النتائج في Google Maps.",
+        catCare:"المتابعة",
+        catBirth:"الولادة",
+        catBaby:"الطفل",
+        catEmergency:"الطوارئ",
+        catShopping:"التسوق",
+        openMaps:"فتح في Maps",
+        loginTitle:"يرجى تسجيل الدخول",
+        loginText:"يجب تسجيل الدخول أولاً.",
+        loginBackButton:"العودة للرئيسية",
+        locationDenied:"تعذر قراءة الموقع. يمكنك إدخال المدينة يدوياً.",
+        midwife:"قابلة",
+        gynecologist:"طبيبة نساء",
+        birthCourse:"دورة تحضير الولادة",
+        birthClinic:"مستشفى الولادة",
+        deliveryRoom:"قسم الولادة",
+        prenatalDiagnostics:"تشخيص ما قبل الولادة",
+        pediatrician:"طبيب أطفال",
+        pharmacy:"صيدلية",
+        familyCenter:"مركز عائلي",
+        hospitalEmergency:"طوارئ الأطفال",
+        emergencyPharmacy:"صيدلية مناوبة",
+        poisonInfo:"مركز السموم",
+        babyStore:"متجر أطفال",
+        drugstore:"دروغري",
+        supermarket:"سوبرماركت"
+      },
+      en:{
+        backButton:"Back",
+        pageTitle:"Near me",
+        pageText:"Quickly find important places for pregnancy, birth and baby in your city.",
+        cityBox:"City",
+        cityInputLabel:"Change city",
+        profileCityButton:"Use profile city",
+        locationButton:"Use my location",
+        searchTitle:"Quick search",
+        searchText:"Results open in Google Maps.",
+        catCare:"Care",
+        catBirth:"Birth",
+        catBaby:"Baby",
+        catEmergency:"Emergency",
+        catShopping:"Shopping",
+        openMaps:"Open in Maps",
+        loginTitle:"Please log in",
+        loginText:"You need to log in first.",
+        loginBackButton:"Back to home",
+        locationDenied:"Location could not be read. You can enter the city manually.",
+        midwife:"Midwife",
+        gynecologist:"Gynecologist",
+        birthCourse:"Birth preparation course",
+        birthClinic:"Birth clinic",
+        deliveryRoom:"Delivery room",
+        prenatalDiagnostics:"Prenatal diagnostics",
+        pediatrician:"Pediatrician",
+        pharmacy:"Pharmacy",
+        familyCenter:"Family center",
+        hospitalEmergency:"Pediatric emergency",
+        emergencyPharmacy:"Emergency pharmacy",
+        poisonInfo:"Poison control",
+        babyStore:"Baby store",
+        drugstore:"Drugstore",
+        supermarket:"Supermarket"
+      },
+      tr:{
+        backButton:"Geri",
+        pageTitle:"Yakınımda",
+        pageText:"Şehrinde hamilelik, doğum ve bebek için önemli yerleri hızlıca bul.",
+        cityBox:"Şehir",
+        cityInputLabel:"Şehri değiştir",
+        profileCityButton:"Profil şehrini kullan",
+        locationButton:"Konumumu kullan",
+        searchTitle:"Hızlı arama",
+        searchText:"Sonuçlar Google Maps’te açılır.",
+        catCare:"Bakım",
+        catBirth:"Doğum",
+        catBaby:"Bebek",
+        catEmergency:"Acil",
+        catShopping:"Alışveriş",
+        openMaps:"Maps’te aç",
+        loginTitle:"Lütfen giriş yap",
+        loginText:"Önce giriş yapmalısın.",
+        loginBackButton:"Ana sayfaya dön",
+        locationDenied:"Konum okunamadı. Şehri manuel girebilirsin.",
+        midwife:"Ebe",
+        gynecologist:"Kadın doğum doktoru",
+        birthCourse:"Doğuma hazırlık kursu",
+        birthClinic:"Doğum kliniği",
+        deliveryRoom:"Doğumhane",
+        prenatalDiagnostics:"Prenatal tanı",
+        pediatrician:"Çocuk doktoru",
+        pharmacy:"Eczane",
+        familyCenter:"Aile merkezi",
+        hospitalEmergency:"Çocuk acil",
+        emergencyPharmacy:"Nöbetçi eczane",
+        poisonInfo:"Zehir danışma",
+        babyStore:"Bebek mağazası",
+        drugstore:"Drogerie",
+        supermarket:"Süpermarket"
+      },
+      ru:{
+        backButton:"Назад",
+        pageTitle:"Рядом со мной",
+        pageText:"Быстро найдите важные места для беременности, родов и ребёнка в вашем городе.",
+        cityBox:"Город",
+        cityInputLabel:"Изменить город",
+        profileCityButton:"Использовать город профиля",
+        locationButton:"Использовать моё местоположение",
+        searchTitle:"Быстрый поиск",
+        searchText:"Результаты откроются в Google Maps.",
+        catCare:"Наблюдение",
+        catBirth:"Роды",
+        catBaby:"Ребёнок",
+        catEmergency:"Экстренно",
+        catShopping:"Покупки",
+        openMaps:"Открыть в Maps",
+        loginTitle:"Войдите в аккаунт",
+        loginText:"Сначала нужно войти.",
+        loginBackButton:"На главную",
+        locationDenied:"Не удалось получить местоположение. Можно ввести город вручную.",
+        midwife:"Акушерка",
+        gynecologist:"Гинеколог",
+        birthCourse:"Курс подготовки к родам",
+        birthClinic:"Родильная клиника",
+        deliveryRoom:"Родильный зал",
+        prenatalDiagnostics:"Пренатальная диагностика",
+        pediatrician:"Педиатр",
+        pharmacy:"Аптека",
+        familyCenter:"Семейный центр",
+        hospitalEmergency:"Детская неотложка",
+        emergencyPharmacy:"Дежурная аптека",
+        poisonInfo:"Токсикологический центр",
+        babyStore:"Магазин для малышей",
+        drugstore:"Drogerie",
+        supermarket:"Супермаркет"
+      },
+      uk:{
+        backButton:"Назад",
+        pageTitle:"Поруч зі мною",
+        pageText:"Швидко знайдіть важливі місця для вагітності, пологів і дитини у вашому місті.",
+        cityBox:"Місто",
+        cityInputLabel:"Змінити місто",
+        profileCityButton:"Використати місто профілю",
+        locationButton:"Використати моє місцезнаходження",
+        searchTitle:"Швидкий пошук",
+        searchText:"Результати відкриються в Google Maps.",
+        catCare:"Догляд",
+        catBirth:"Пологи",
+        catBaby:"Дитина",
+        catEmergency:"Екстрено",
+        catShopping:"Покупки",
+        openMaps:"Відкрити в Maps",
+        loginTitle:"Увійдіть",
+        loginText:"Спочатку потрібно увійти.",
+        loginBackButton:"На головну",
+        locationDenied:"Не вдалося отримати місцезнаходження. Місто можна ввести вручну.",
+        midwife:"Акушерка",
+        gynecologist:"Гінеколог",
+        birthCourse:"Курс підготовки до пологів",
+        birthClinic:"Пологова клініка",
+        deliveryRoom:"Пологова зала",
+        prenatalDiagnostics:"Пренатальна діагностика",
+        pediatrician:"Педіатр",
+        pharmacy:"Аптека",
+        familyCenter:"Сімейний центр",
+        hospitalEmergency:"Дитяча невідкладна допомога",
+        emergencyPharmacy:"Черговa аптека",
+        poisonInfo:"Токсикологічний центр",
+        babyStore:"Магазин для немовлят",
+        drugstore:"Drogerie",
+        supermarket:"Супермаркет"
+      }
+    };
+
+    const items = {
+      care:[
+        { key:"midwife", query:"Hebamme" },
+        { key:"gynecologist", query:"Frauenarzt Frauenärztin" },
+        { key:"birthCourse", query:"Geburtsvorbereitungskurs Schwangerschaft" }
+      ],
+      birth:[
+        { key:"birthClinic", query:"Geburtsklinik Entbindung" },
+        { key:"deliveryRoom", query:"Kreißsaal Krankenhaus Geburt" },
+        { key:"prenatalDiagnostics", query:"Pränataldiagnostik Feindiagnostik" }
+      ],
+      baby:[
+        { key:"pediatrician", query:"Kinderarzt" },
+        { key:"pharmacy", query:"Apotheke" },
+        { key:"familyCenter", query:"Familienzentrum Eltern Baby" }
+      ],
+      emergency:[
+        { key:"hospitalEmergency", query:"Kinder Notaufnahme Krankenhaus" },
+        { key:"emergencyPharmacy", query:"Notdienst Apotheke" },
+        { key:"poisonInfo", query:"Giftnotruf" }
+      ],
+      shopping:[
+        { key:"babyStore", query:"Babygeschäft Baby Ausstattung" },
+        { key:"drugstore", query:"dm Rossmann Drogerie" },
+        { key:"supermarket", query:"Supermarkt" }
+      ]
+    };
+
+    function t(){
+      return translations[currentLang] || translations.de;
+    }
+
+    function setLanguage(lang){
+      currentLang = lang;
+      localStorage.setItem("mama_lang", lang);
+
+      document.documentElement.lang = lang;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+      const active = document.getElementById("lang-" + lang);
+      if (active) active.classList.add("active");
+
+      const tr = t();
+
+      Object.keys(tr).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = tr[id];
+      });
+
+      updateCityBox();
+      updateButtons();
+      renderResults();
+    }
+
+    function determineTheme(type, gender){
+      if (gender === "boy" || gender === "twin_boys") return "boy";
+      if (gender === "girl" || gender === "twin_girls") return "girl";
+      if (type === "twins" || gender === "twin_mixed") return "twin";
+      return "neutral";
+    }
+
+    function applyTheme(theme){
+      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+      if (theme === "boy") document.body.classList.add("theme-boy");
+      if (theme === "girl") document.body.classList.add("theme-girl");
+      if (theme === "twin") document.body.classList.add("theme-twin");
+    }
+
+    async function loadApp(){
+      const { data, error } = await supabaseClient.auth.getSession();
+
+      if (error || !data.session) {
+        document.getElementById("loginMessage").style.display = "block";
+        document.getElementById("appShell").style.display = "none";
+        return;
+      }
+
+      currentUser = data.session.user;
+
+      const { data: profiles, error: profileError } = await supabaseClient
+        .from("pregnancy_profiles")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .order("created_at", { ascending:false })
+        .limit(1);
+
+      if (profileError || !profiles || profiles.length === 0) {
+        window.location.href = "index.html?reason=no_profile";
+        return;
+      }
+
+      currentProfile = profiles[0];
+      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+      locationQuery = currentProfile.city || "";
+      document.getElementById("cityInput").value = locationQuery;
+
+      applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+      document.getElementById("loginMessage").style.display = "none";
+      document.getElementById("appShell").style.display = "block";
+
+      setLanguage(currentLang);
+    }
+
+    function updateCityBox(){
+      const value = document.getElementById("cityInput").value.trim() || locationQuery || currentProfile?.city || "-";
+      document.getElementById("cityBox").textContent = `${t().cityBox}: ${value}`;
+    }
+
+    function useProfileCity(){
+      locationQuery = currentProfile?.city || "";
+      document.getElementById("cityInput").value = locationQuery;
+      updateCityBox();
+      renderResults();
+    }
+
+    function useBrowserLocation(){
+      if (!navigator.geolocation) {
+        alert(t().locationDenied);
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          locationQuery = `${position.coords.latitude},${position.coords.longitude}`;
+          document.getElementById("cityInput").value = locationQuery;
+          updateCityBox();
+          renderResults();
+        },
+        () => {
+          alert(t().locationDenied);
+        },
+        {
+          enableHighAccuracy:true,
+          timeout:10000,
+          maximumAge:60000
+        }
+      );
+    }
+
+    function updateButtons(){
+      [
+        ["catCare","care"],
+        ["catBirth","birth"],
+        ["catBaby","baby"],
+        ["catEmergency","emergency"],
+        ["catShopping","shopping"]
+      ].forEach(([id,value]) => {
+        const button = document.getElementById(id);
+        if (button) button.classList.toggle("active", categoryFilter === value);
+      });
+    }
+
+    function setCategory(category){
+      categoryFilter = category;
+      updateButtons();
+      renderResults();
+    }
+
+    function makeMapsUrl(query){
+      const city = document.getElementById("cityInput").value.trim() || locationQuery || currentProfile?.city || "";
+      return "https://www.google.com/maps/search/" + encodeURIComponent(query + " " + city);
+    }
+
+    function renderResults(){
+      const grid = document.getElementById("resultsGrid");
+      grid.innerHTML = "";
+
+      updateCityBox();
+
+      (items[categoryFilter] || []).forEach(item => {
+        const card = document.createElement("div");
+        card.className = "result-card";
+
+        card.innerHTML = `
+          <div class="badge">${t()["cat" + categoryFilter.charAt(0).toUpperCase() + categoryFilter.slice(1)] || ""}</div>
+          <h3>${t()[item.key]}</h3>
+          <p>${item.query}</p>
+          <div class="actions" style="margin-top:14px;">
+            <a class="button" target="_blank" href="${makeMapsUrl(item.query)}">${t().openMaps}</a>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    document.addEventListener("input", event => {
+      if (event.target && event.target.id === "cityInput") {
+        locationQuery = event.target.value.trim();
+        updateCityBox();
+        renderResults();
+      }
+    });
+
+    loadApp();
+  </script>
+</body>
+</html>

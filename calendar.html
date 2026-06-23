@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama in Deutschland - Kalender</title>
+  <style>
+    :root{
+      --page:#f8f3ec;--card:#ffffff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12)
+    }
+    body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+    body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+    body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px;text-decoration:none}
+    .brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+    .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .language-buttons{display:flex;gap:8px;flex-wrap:wrap}
+    .language-buttons button,.button-light,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none}
+    .language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+    .logout{border:none;border-radius:16px;padding:12px 16px;background:var(--danger);color:white;font-weight:950;cursor:pointer}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+    h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:17px}p{margin:0;color:var(--muted);line-height:1.6}
+    label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+    input,select,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+    textarea{min-height:105px;resize:vertical}
+    input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .box,.event{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+    .filters,.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+    .button{border:none;border-radius:13px;padding:10px 12px;font-size:14px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;background:var(--brown);color:white}.button.done{background:var(--success)}
+    .button-danger{border:none;border-radius:13px;padding:10px 12px;font-weight:900;background:#f4dfd8;color:var(--danger);cursor:pointer}
+    .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 4px 6px 0}
+    .message{max-width:650px;margin:60px auto;text-align:center}.hidden{display:none!important}
+    @media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="app.html">
+        <div class="brand-icon">M</div>
+        <span>Mama in Deutschland</span>
+      </a>
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Dashboard</a>
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+        <button class="logout" onclick="signOut()" id="logoutButton">Ausloggen</button>
+      </div>
+    </header>
+
+    <main id="pageShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Kalender</h1>
+        <p id="pageText">Termine, Untersuchungen, Kurse und Erinnerungen.</p>
+      </section>
+
+      <section class="card">
+        <h2 id="manualEventTitle">Neuen Termin hinzufügen</h2>
+        <p id="manualEventText">Füge eigene Termine, Kurse oder Anträge zu deinem Kalender hinzu.</p>
+        <div class="grid-2" style="margin-top:14px;">
+          <div>
+            <label id="manualTitleLabel" for="manualTitle">Titel</label>
+            <input type="text" id="manualTitle" placeholder="Frauenarzttermin" />
+          </div>
+          <div>
+            <label id="manualDateLabel" for="manualDate">Datum</label>
+            <input type="date" id="manualDate" />
+          </div>
+          <div>
+            <label id="manualTimeLabel" for="manualTime">Uhrzeit</label>
+            <input type="time" id="manualTime" />
+          </div>
+          <div>
+            <label id="manualCategoryLabel" for="manualCategory">Kategorie</label>
+            <select id="manualCategory">
+              <option value="medical" id="manualCategoryMedical">Medizin</option>
+              <option value="course" id="manualCategoryCourse">Kurs</option>
+              <option value="administratif" id="manualCategoryAdmin">Bürokratie</option>
+              <option value="shopping" id="manualCategoryShopping">Einkauf</option>
+              <option value="personal" id="manualCategoryPersonal">Persönlich</option>
+            </select>
+          </div>
+          <div>
+            <label id="manualLocationLabel" for="manualLocation">Ort</label>
+            <input type="text" id="manualLocation" placeholder="Praxis / Klinik / Online" />
+          </div>
+          <div>
+            <label id="manualLinkLabel" for="manualLink">Link für Anmeldung / Antrag</label>
+            <input type="url" id="manualLink" placeholder="https://..." />
+          </div>
+          <div>
+            <label id="manualReminderLabel" for="manualReminder">Erinnerung</label>
+            <select id="manualReminder">
+              <option value="7">7</option>
+              <option value="14" selected>14</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+        </div>
+        <label id="manualDescriptionLabel" for="manualDescription">Beschreibung / Notiz</label>
+        <textarea id="manualDescription"></textarea>
+        <button class="button" onclick="saveManualEvent()" id="manualSaveButton">Termin speichern</button>
+      </section>
+
+      <section class="card">
+        <h2 id="eventsTitle">Meine Termine</h2>
+        <div class="filters">
+          <button class="filter-button active" onclick="setCalendarCategory('all')" id="calAll">Alle</button>
+          <button class="filter-button" onclick="setCalendarCategory('medical')" id="calMedical">Medizin</button>
+          <button class="filter-button" onclick="setCalendarCategory('course')" id="calCourse">Kurse</button>
+          <button class="filter-button" onclick="setCalendarCategory('administratif')" id="calAdmin">Bürokratie</button>
+          <button class="filter-button" onclick="setCalendarCategory('shopping')" id="calShopping">Einkauf</button>
+          <button class="filter-button" onclick="setCalendarCategory('personal')" id="calPersonal">Persönlich</button>
+        </div>
+        <div class="grid-3" id="calendarList" style="margin-top:16px;"></div>
+      </section>
+    </main>
+
+    <section class="message card" id="loginMessage" style="display:none;">
+      <h2 id="loginNeededTitle">Bitte einloggen</h2>
+      <p id="loginNeededText">Du musst dich zuerst anmelden.</p>
+      <br />
+      <a class="button-light" href="index.html" id="goHomeButton">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let currentProfile = null;
+    let calendarEvents = [];
+    let currentLang = localStorage.getItem("mama_lang") || "de";
+    let calendarCategoryFilter = "all";
+    let lastPregnancyWeek = 1;
+
+    const translations = {
+      de:{
+        backButton:"Dashboard", logoutButton:"Ausloggen", pageTitle:"Kalender", pageText:"Termine, Untersuchungen, Kurse und Erinnerungen.",
+        manualEventTitle:"Neuen Termin hinzufügen", manualEventText:"Füge eigene Termine, Kurse oder Anträge zu deinem Kalender hinzu.",
+        manualTitleLabel:"Titel", manualDateLabel:"Datum", manualTimeLabel:"Uhrzeit", manualCategoryLabel:"Kategorie",
+        manualCategoryMedical:"Medizin", manualCategoryCourse:"Kurs", manualCategoryAdmin:"Bürokratie", manualCategoryShopping:"Einkauf", manualCategoryPersonal:"Persönlich",
+        manualLocationLabel:"Ort", manualLinkLabel:"Link für Anmeldung / Antrag", manualReminderLabel:"Erinnerung in Tagen", manualDescriptionLabel:"Beschreibung / Notiz", manualSaveButton:"Termin speichern",
+        eventsTitle:"Meine Termine", calAll:"Alle", calMedical:"Medizin", calCourse:"Kurse", calAdmin:"Bürokratie", calShopping:"Einkauf", calPersonal:"Persönlich",
+        medicalLabel:"Medizin", courseLabel:"Kurs", adminLabel:"Bürokratie", shoppingLabel:"Einkauf", personalLabel:"Persönlich",
+        eventDone:"Erledigt", eventOpen:"Offen", addToCalendar:"Zum Kalender", openApplication:"Link öffnen", noEvents:"Noch keine Termine vorhanden.",
+        manualMissing:"Bitte mindestens Titel und Datum ausfüllen.", manualSaved:"Termin gespeichert ✅", calendarFileName:"Mama-Termin", loginNeededTitle:"Bitte einloggen", loginNeededText:"Du musst dich zuerst anmelden.", goHomeButton:"Zur Startseite"
+      },
+      fr:{
+        backButton:"Dashboard", logoutButton:"Déconnexion", pageTitle:"Calendrier", pageText:"Rendez-vous, examens, cours et rappels.",
+        manualEventTitle:"Ajouter un rendez-vous", manualEventText:"Ajoute tes rendez-vous, cours ou demandes au calendrier.",
+        manualTitleLabel:"Titre", manualDateLabel:"Date", manualTimeLabel:"Heure", manualCategoryLabel:"Catégorie",
+        manualCategoryMedical:"Médical", manualCategoryCourse:"Cours", manualCategoryAdmin:"Bureaucratie", manualCategoryShopping:"Achat", manualCategoryPersonal:"Personnel",
+        manualLocationLabel:"Lieu", manualLinkLabel:"Lien inscription / demande", manualReminderLabel:"Rappel en jours", manualDescriptionLabel:"Description / note", manualSaveButton:"Enregistrer",
+        eventsTitle:"Mes rendez-vous", calAll:"Tous", calMedical:"Médical", calCourse:"Cours", calAdmin:"Bureaucratie", calShopping:"Achat", calPersonal:"Personnel",
+        medicalLabel:"Médical", courseLabel:"Cours", adminLabel:"Bureaucratie", shoppingLabel:"Achat", personalLabel:"Personnel",
+        eventDone:"Terminé", eventOpen:"Ouvert", addToCalendar:"Ajouter au calendrier", openApplication:"Ouvrir le lien", noEvents:"Aucun rendez-vous pour le moment.",
+        manualMissing:"Merci d’indiquer au moins un titre et une date.", manualSaved:"Rendez-vous enregistré ✅", calendarFileName:"Rendez-vous-Mama", loginNeededTitle:"Connexion nécessaire", loginNeededText:"Tu dois d’abord te connecter.", goHomeButton:"Retour accueil"
+      },
+      ar:{
+        backButton:"الرئيسية", logoutButton:"تسجيل الخروج", pageTitle:"التقويم", pageText:"المواعيد والفحوصات والدورات والتذكيرات.",
+        manualEventTitle:"إضافة موعد", manualEventText:"أضيفي المواعيد والدورات والطلبات إلى التقويم.",
+        manualTitleLabel:"العنوان", manualDateLabel:"التاريخ", manualTimeLabel:"الوقت", manualCategoryLabel:"الفئة",
+        manualCategoryMedical:"طبي", manualCategoryCourse:"دورة", manualCategoryAdmin:"إجراءات", manualCategoryShopping:"شراء", manualCategoryPersonal:"شخصي",
+        manualLocationLabel:"المكان", manualLinkLabel:"رابط التسجيل / الطلب", manualReminderLabel:"التذكير بالأيام", manualDescriptionLabel:"وصف / ملاحظة", manualSaveButton:"حفظ الموعد",
+        eventsTitle:"مواعيدي", calAll:"الكل", calMedical:"طبي", calCourse:"دورات", calAdmin:"إجراءات", calShopping:"شراء", calPersonal:"شخصي",
+        medicalLabel:"طبي", courseLabel:"دورة", adminLabel:"إجراءات", shoppingLabel:"شراء", personalLabel:"شخصي",
+        eventDone:"تم", eventOpen:"مفتوح", addToCalendar:"إضافة للتقويم", openApplication:"فتح الرابط", noEvents:"لا توجد مواعيد حالياً.",
+        manualMissing:"يرجى إدخال العنوان والتاريخ على الأقل.", manualSaved:"تم حفظ الموعد ✅", calendarFileName:"موعد-ماما", loginNeededTitle:"يرجى تسجيل الدخول", loginNeededText:"يجب تسجيل الدخول أولاً.", goHomeButton:"الصفحة الرئيسية"
+      },
+      en:{
+        backButton:"Dashboard", logoutButton:"Log out", pageTitle:"Calendar", pageText:"Appointments, exams, courses and reminders.",
+        manualEventTitle:"Add appointment", manualEventText:"Add your appointments, courses or applications to the calendar.",
+        manualTitleLabel:"Title", manualDateLabel:"Date", manualTimeLabel:"Time", manualCategoryLabel:"Category",
+        manualCategoryMedical:"Medical", manualCategoryCourse:"Course", manualCategoryAdmin:"Bureaucracy", manualCategoryShopping:"Shopping", manualCategoryPersonal:"Personal",
+        manualLocationLabel:"Location", manualLinkLabel:"Registration / application link", manualReminderLabel:"Reminder in days", manualDescriptionLabel:"Description / note", manualSaveButton:"Save appointment",
+        eventsTitle:"My appointments", calAll:"All", calMedical:"Medical", calCourse:"Courses", calAdmin:"Bureaucracy", calShopping:"Shopping", calPersonal:"Personal",
+        medicalLabel:"Medical", courseLabel:"Course", adminLabel:"Bureaucracy", shoppingLabel:"Shopping", personalLabel:"Personal",
+        eventDone:"Done", eventOpen:"Open", addToCalendar:"Add to calendar", openApplication:"Open link", noEvents:"No appointments yet.",
+        manualMissing:"Please enter at least title and date.", manualSaved:"Appointment saved ✅", calendarFileName:"Mama-appointment", loginNeededTitle:"Please log in", loginNeededText:"You need to log in first.", goHomeButton:"Home"
+      },
+      tr:{
+        backButton:"Panel", logoutButton:"Çıkış", pageTitle:"Takvim", pageText:"Randevular, muayeneler, kurslar ve hatırlatmalar.",
+        manualEventTitle:"Randevu ekle", manualEventText:"Randevuları, kursları veya başvuruları takvime ekle.",
+        manualTitleLabel:"Başlık", manualDateLabel:"Tarih", manualTimeLabel:"Saat", manualCategoryLabel:"Kategori",
+        manualCategoryMedical:"Tıbbi", manualCategoryCourse:"Kurs", manualCategoryAdmin:"Bürokrasi", manualCategoryShopping:"Alışveriş", manualCategoryPersonal:"Kişisel",
+        manualLocationLabel:"Yer", manualLinkLabel:"Kayıt / başvuru linki", manualReminderLabel:"Hatırlatma günü", manualDescriptionLabel:"Açıklama / not", manualSaveButton:"Kaydet",
+        eventsTitle:"Randevularım", calAll:"Hepsi", calMedical:"Tıbbi", calCourse:"Kurslar", calAdmin:"Bürokrasi", calShopping:"Alışveriş", calPersonal:"Kişisel",
+        medicalLabel:"Tıbbi", courseLabel:"Kurs", adminLabel:"Bürokrasi", shoppingLabel:"Alışveriş", personalLabel:"Kişisel",
+        eventDone:"Tamamlandı", eventOpen:"Açık", addToCalendar:"Takvime ekle", openApplication:"Linki aç", noEvents:"Henüz randevu yok.",
+        manualMissing:"Lütfen en az başlık ve tarih gir.", manualSaved:"Randevu kaydedildi ✅", calendarFileName:"Mama-randevu", loginNeededTitle:"Giriş gerekli", loginNeededText:"Önce giriş yapmalısın.", goHomeButton:"Ana sayfa"
+      },
+      ru:{
+        backButton:"Панель", logoutButton:"Выйти", pageTitle:"Календарь", pageText:"Встречи, обследования, курсы и напоминания.",
+        manualEventTitle:"Добавить встречу", manualEventText:"Добавьте встречи, курсы или заявления в календарь.",
+        manualTitleLabel:"Название", manualDateLabel:"Дата", manualTimeLabel:"Время", manualCategoryLabel:"Категория",
+        manualCategoryMedical:"Медицина", manualCategoryCourse:"Курс", manualCategoryAdmin:"Бюрократия", manualCategoryShopping:"Покупки", manualCategoryPersonal:"Личное",
+        manualLocationLabel:"Место", manualLinkLabel:"Ссылка регистрации / заявления", manualReminderLabel:"Напоминание в днях", manualDescriptionLabel:"Описание / заметка", manualSaveButton:"Сохранить",
+        eventsTitle:"Мои встречи", calAll:"Все", calMedical:"Медицина", calCourse:"Курсы", calAdmin:"Бюрократия", calShopping:"Покупки", calPersonal:"Личное",
+        medicalLabel:"Медицина", courseLabel:"Курс", adminLabel:"Бюрократия", shoppingLabel:"Покупки", personalLabel:"Личное",
+        eventDone:"Готово", eventOpen:"Открыто", addToCalendar:"В календарь", openApplication:"Открыть ссылку", noEvents:"Пока нет встреч.",
+        manualMissing:"Введите минимум название и дату.", manualSaved:"Встреча сохранена ✅", calendarFileName:"Mama-встреча", loginNeededTitle:"Нужно войти", loginNeededText:"Сначала войдите.", goHomeButton:"Главная"
+      },
+      uk:{
+        backButton:"Панель", logoutButton:"Вийти", pageTitle:"Календар", pageText:"Зустрічі, обстеження, курси і нагадування.",
+        manualEventTitle:"Додати зустріч", manualEventText:"Додайте зустрічі, курси або заяви до календаря.",
+        manualTitleLabel:"Назва", manualDateLabel:"Дата", manualTimeLabel:"Час", manualCategoryLabel:"Категорія",
+        manualCategoryMedical:"Медичне", manualCategoryCourse:"Курс", manualCategoryAdmin:"Бюрократія", manualCategoryShopping:"Покупки", manualCategoryPersonal:"Особисте",
+        manualLocationLabel:"Місце", manualLinkLabel:"Посилання реєстрації / заяви", manualReminderLabel:"Нагадування в днях", manualDescriptionLabel:"Опис / нотатка", manualSaveButton:"Зберегти",
+        eventsTitle:"Мої зустрічі", calAll:"Усі", calMedical:"Медичне", calCourse:"Курси", calAdmin:"Бюрократія", calShopping:"Покупки", calPersonal:"Особисте",
+        medicalLabel:"Медичне", courseLabel:"Курс", adminLabel:"Бюрократія", shoppingLabel:"Покупки", personalLabel:"Особисте",
+        eventDone:"Готово", eventOpen:"Відкрито", addToCalendar:"До календаря", openApplication:"Відкрити посилання", noEvents:"Поки немає зустрічей.",
+        manualMissing:"Введіть мінімум назву і дату.", manualSaved:"Зустріч збережена ✅", calendarFileName:"Mama-зустріч", loginNeededTitle:"Потрібен вхід", loginNeededText:"Спочатку увійдіть.", goHomeButton:"Головна"
+      }
+    };
+
+    function t(){return translations[currentLang] || translations.de;}
+
+    function setLanguage(lang){
+      currentLang = lang;
+      localStorage.setItem("mama_lang", lang);
+      document.documentElement.lang = lang;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+      const active = document.getElementById("lang-" + lang);
+      if (active) active.classList.add("active");
+      const tr = t();
+      Object.keys(tr).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = tr[id];
+      });
+      renderCalendar();
+    }
+
+    function parseLocalDate(value){const p=value.split("-").map(Number);return new Date(p[0],p[1]-1,p[2]);}
+    function addDays(date,days){const r=new Date(date);r.setDate(r.getDate()+days);return r;}
+    function toInputDate(date){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`;}
+    function calculatePregnancy(dueDate){
+      const today=new Date();today.setHours(0,0,0,0);
+      const start=addDays(dueDate,-280);
+      let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
+      if(week<1)week=1;if(week>42)week=42;
+      return {pregnancyWeek:week};
+    }
+    function formatDate(date){
+      const locale=currentLang==="de"?"de-DE":currentLang==="fr"?"fr-FR":currentLang==="ar"?"ar-SA":currentLang==="tr"?"tr-TR":currentLang==="ru"?"ru-RU":currentLang==="uk"?"uk-UA":"en-GB";
+      return date.toLocaleDateString(locale,{day:"2-digit",month:"2-digit",year:"numeric"});
+    }
+    function determineTheme(type,gender){
+      if(gender==="boy"||gender==="twin_boys")return "boy";
+      if(gender==="girl"||gender==="twin_girls")return "girl";
+      if(type==="twins"||gender==="twin_mixed")return "twin";
+      return "neutral";
+    }
+    function applyTheme(theme){
+      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+      if(theme==="boy")document.body.classList.add("theme-boy");
+      if(theme==="girl")document.body.classList.add("theme-girl");
+      if(theme==="twin")document.body.classList.add("theme-twin");
+    }
+
+    async function loadPage(){
+      const {data,error}=await supabaseClient.auth.getSession();
+      if(error||!data.session){document.getElementById("loginMessage").style.display="block";return;}
+      currentUser=data.session.user;
+      const {data:profiles,error:profileError}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+      if(profileError||!profiles||profiles.length===0){window.location.href="index.html?reason=no_profile";return;}
+      currentProfile=profiles[0];
+      currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+      applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+      if(currentProfile.due_date){lastPregnancyWeek=calculatePregnancy(parseLocalDate(currentProfile.due_date)).pregnancyWeek;}
+      document.getElementById("pageShell").style.display="block";
+      await loadCalendarEvents();
+      setLanguage(currentLang);
+    }
+
+    async function loadCalendarEvents(){
+      const {data,error}=await supabaseClient.from("pregnancy_calendar_events").select("*").eq("user_id",currentUser.id).order("event_date",{ascending:true});
+      calendarEvents=error?[]:(data||[]);
+    }
+
+    function getEventCategoryLabel(category){
+      if(category==="medical")return t().medicalLabel;
+      if(category==="course")return t().courseLabel;
+      if(category==="administratif")return t().adminLabel;
+      if(category==="shopping")return t().shoppingLabel;
+      if(category==="personal")return t().personalLabel;
+      return t().calAll;
+    }
+
+    function updateCalendarButtons(){
+      [["calAll","all"],["calMedical","medical"],["calCourse","course"],["calAdmin","administratif"],["calShopping","shopping"],["calPersonal","personal"]].forEach(([id,value])=>{
+        const btn=document.getElementById(id);
+        if(btn)btn.classList.toggle("active",calendarCategoryFilter===value);
+      });
+    }
+
+    function setCalendarCategory(category){
+      calendarCategoryFilter=category;
+      renderCalendar();
+    }
+
+    function renderCalendar(){
+      const list=document.getElementById("calendarList");
+      if(!list)return;
+      updateCalendarButtons();
+      list.innerHTML="";
+      const visible=calendarCategoryFilter==="all"?calendarEvents:calendarEvents.filter(e=>e.category===calendarCategoryFilter);
+      if(!visible.length){list.innerHTML=`<p>${t().noEvents}</p>`;return;}
+      visible.forEach(event=>list.appendChild(renderEvent(event)));
+    }
+
+    function renderEvent(event){
+      const card=document.createElement("div");
+      card.className="event";
+      let description=event.description||"";
+      if(event.event_time)description+=(description?"\n":"")+event.event_time;
+      if(event.location)description+=(description?"\n":"")+`📍 ${event.location}`;
+      card.innerHTML=`
+        <div class="badge">${formatDate(parseLocalDate(event.event_date))}</div>
+        <div class="badge">${getEventCategoryLabel(event.category)}</div>
+        <h3>${event.title}</h3>
+        <p style="white-space:pre-line">${description}</p>
+      `;
+      const actions=document.createElement("div");
+      actions.className="actions";
+      const doneButton=document.createElement("button");
+      doneButton.className=event.done?"button done":"button";
+      doneButton.textContent=event.done?t().eventDone:t().eventOpen;
+      doneButton.onclick=()=>toggleCalendarEvent(event.id,!event.done);
+      const icsButton=document.createElement("button");
+      icsButton.className="button-light";
+      icsButton.textContent=t().addToCalendar;
+      icsButton.onclick=()=>downloadICS(event);
+      actions.appendChild(doneButton);
+      actions.appendChild(icsButton);
+      if(event.link_url){
+        const link=document.createElement("a");
+        link.className="button-light";
+        link.href=event.link_url;
+        link.target="_blank";
+        link.textContent=t().openApplication;
+        actions.appendChild(link);
+      }
+      card.appendChild(actions);
+      return card;
+    }
+
+    async function saveManualEvent(){
+      const title=document.getElementById("manualTitle").value.trim();
+      const date=document.getElementById("manualDate").value;
+      if(!title||!date){alert(t().manualMissing);return;}
+      const row={
+        user_id:currentUser.id, profile_id:currentProfile.id, title,
+        description:document.getElementById("manualDescription").value.trim(),
+        event_date:date,
+        event_time:document.getElementById("manualTime").value||null,
+        pregnancy_week:lastPregnancyWeek,
+        category:document.getElementById("manualCategory").value,
+        source_type:"manual",
+        source_key:`manual-${Date.now()}`,
+        location:document.getElementById("manualLocation").value.trim(),
+        link_url:document.getElementById("manualLink").value.trim(),
+        reminder_days:Number(document.getElementById("manualReminder").value||14),
+        done:false
+      };
+      const {error}=await supabaseClient.from("pregnancy_calendar_events").insert(row);
+      if(error){alert(error.message);return;}
+      ["manualTitle","manualDate","manualTime","manualLocation","manualLink","manualDescription"].forEach(id=>document.getElementById(id).value="");
+      alert(t().manualSaved);
+      await loadCalendarEvents();
+      renderCalendar();
+    }
+
+    async function toggleCalendarEvent(id,done){
+      await supabaseClient.from("pregnancy_calendar_events").update({done}).eq("id",id).eq("user_id",currentUser.id);
+      await loadCalendarEvents();
+      renderCalendar();
+    }
+
+    function escapeICS(value){return String(value||"").replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;");}
+    function icsDate(value){return value.replaceAll("-","");}
+    function downloadICS(event){
+      const end=toInputDate(addDays(parseLocalDate(event.event_date),1));
+      const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Mama in Deutschland//DE\nBEGIN:VEVENT\nUID:${event.id}@mama-in-deutschland\nDTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").split(".")[0]}Z\nDTSTART;VALUE=DATE:${icsDate(event.event_date)}\nDTEND;VALUE=DATE:${icsDate(end)}\nSUMMARY:${escapeICS(event.title)}\nDESCRIPTION:${escapeICS(event.description||"")}\nEND:VEVENT\nEND:VCALENDAR`;
+      const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;
+      a.download=`${t().calendarFileName}-${event.event_date}.ics`;
+      document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+    }
+
+    async function signOut(){
+      await supabaseClient.auth.signOut();
+      window.location.href="index.html";
+    }
+
+    loadPage();
+  </script>
+</body>
+</html>

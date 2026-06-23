@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama in Deutschland - Bürokratie</title>
+  <style>
+    :root{
+      --page:#f8f3ec;--card:#ffffff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+    }
+    body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+    body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+    body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+    .brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+    .top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .language-buttons{display:flex;gap:8px;flex-wrap:wrap}
+    .language-buttons button,.button-light,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none}
+    .language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+    .button-light{border-radius:16px;padding:12px 16px;display:inline-flex;align-items:center;justify-content:center}
+    .logout{border:none;border-radius:16px;padding:12px 16px;background:var(--danger);color:white;font-weight:950;cursor:pointer}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+    h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}p{margin:0;color:var(--muted);line-height:1.6}
+    .pill-row,.filters,.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.pill,.badge{display:inline-flex;width:fit-content;padding:8px 11px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 7px 0}
+    .progress{margin-top:16px;padding:15px;border-radius:20px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+    .task{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:20px}.task.done{opacity:.72}.task p{white-space:pre-line}
+    .button{border:none;border-radius:14px;background:var(--brown);color:white;padding:11px 13px;font-weight:950;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}.button.done{background:var(--success)}
+    .empty{padding:18px;border-radius:20px;background:var(--cream);border:1px solid var(--border);color:var(--muted)}
+    .message{max-width:650px;margin:60px auto;text-align:center}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}h1{font-size:28px}}
+    @media(max-width:560px){.wrap{padding:18px 12px}.card{padding:20px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Zurück</a>
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+        <button class="logout" onclick="signOut()" id="logoutButton">Ausloggen</button>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Bürokratie</h1>
+        <p id="pageText">Wichtige Schritte, Checklisten und Aufgaben rund um Schwangerschaft und Geburt in Deutschland.</p>
+        <div class="pill-row">
+          <span class="pill" id="emailPill">-</span>
+          <span class="pill" id="weekPill">SSW -</span>
+          <span class="pill" id="babyPill">Baby</span>
+        </div>
+        <div class="progress" id="taskProgress">0 / 0 erledigt</div>
+        <div class="filters">
+          <button class="filter-button active" onclick="setCategory('all')" id="catAll">Alle</button>
+          <button class="filter-button" onclick="setCategory('administratif')" id="catAdmin">Bürokratie</button>
+          <button class="filter-button" onclick="setCategory('medical')" id="catMedical">Medizin</button>
+          <button class="filter-button" onclick="setCategory('organisation')" id="catOrganisation">Organisation</button>
+          <button class="filter-button" onclick="toggleAllTasks()" id="showAllButton">Alle Aufgaben anzeigen</button>
+        </div>
+      </section>
+      <section class="grid" id="taskList"></section>
+    </main>
+
+    <section class="message card" id="loginMessage" style="display:none;">
+      <h2 id="loginNeededTitle">Bitte einloggen</h2>
+      <p id="loginNeededText">Du musst dich zuerst anmelden.</p><br>
+      <a class="button-light" href="index.html" id="homeButton">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"de";
+    let taskCategoryFilter="all",showAll=false,lastPregnancyWeek=1;
+
+    const translations={
+      de:{backButton:"Zurück",logoutButton:"Ausloggen",pageTitle:"Bürokratie",pageText:"Wichtige Schritte, Checklisten und Aufgaben rund um Schwangerschaft und Geburt in Deutschland.",catAll:"Alle",catAdmin:"Bürokratie",catMedical:"Medizin",catOrganisation:"Organisation",showAllButton:"Alle Aufgaben anzeigen",showCurrentButton:"Nur aktuelle Aufgaben",done:"Erledigt",open:"Offen",markDone:"Erledigt markieren",markOpen:"Als offen markieren",openLink:"Link öffnen",progress:"erledigt",weekWord:"SSW",babyDefault:"Baby",empty:"Keine Aufgaben gefunden.",loginNeededTitle:"Bitte einloggen",loginNeededText:"Du musst dich zuerst anmelden.",homeButton:"Zur Startseite"},
+      fr:{backButton:"Retour",logoutButton:"Déconnexion",pageTitle:"Bureaucratie",pageText:"Étapes importantes, checklists et tâches autour de la grossesse et de la naissance en Allemagne.",catAll:"Tous",catAdmin:"Bureaucratie",catMedical:"Médical",catOrganisation:"Organisation",showAllButton:"Afficher toutes les tâches",showCurrentButton:"Tâches actuelles seulement",done:"Terminé",open:"Ouvert",markDone:"Marquer comme terminé",markOpen:"Marquer comme ouvert",openLink:"Ouvrir le lien",progress:"terminé",weekWord:"SSW",babyDefault:"Bébé",empty:"Aucune tâche trouvée.",loginNeededTitle:"Connexion nécessaire",loginNeededText:"Tu dois d’abord te connecter.",homeButton:"Accueil"},
+      ar:{backButton:"رجوع",logoutButton:"تسجيل الخروج",pageTitle:"الإجراءات",pageText:"خطوات وقوائم ومهام مهمة حول الحمل والولادة في ألمانيا.",catAll:"الكل",catAdmin:"الإجراءات",catMedical:"طبي",catOrganisation:"تنظيم",showAllButton:"عرض كل المهام",showCurrentButton:"المهام الحالية فقط",done:"تم",open:"مفتوح",markDone:"تحديد كمنجز",markOpen:"تحديد كمفتوح",openLink:"فتح الرابط",progress:"تم",weekWord:"أسبوع الحمل",babyDefault:"الطفل",empty:"لا توجد مهام.",loginNeededTitle:"يرجى تسجيل الدخول",loginNeededText:"يجب تسجيل الدخول أولاً.",homeButton:"الصفحة الرئيسية"},
+      en:{backButton:"Back",logoutButton:"Log out",pageTitle:"Bureaucracy",pageText:"Important steps, checklists and tasks around pregnancy and birth in Germany.",catAll:"All",catAdmin:"Bureaucracy",catMedical:"Medical",catOrganisation:"Organization",showAllButton:"Show all tasks",showCurrentButton:"Current tasks only",done:"Done",open:"Open",markDone:"Mark as done",markOpen:"Mark as open",openLink:"Open link",progress:"done",weekWord:"Week",babyDefault:"Baby",empty:"No tasks found.",loginNeededTitle:"Please log in",loginNeededText:"You need to sign in first.",homeButton:"Home"},
+      tr:{backButton:"Geri",logoutButton:"Çıkış",pageTitle:"Bürokrasi",pageText:"Almanya’da hamilelik ve doğumla ilgili önemli adımlar, listeler ve görevler.",catAll:"Hepsi",catAdmin:"Bürokrasi",catMedical:"Tıbbi",catOrganisation:"Organizasyon",showAllButton:"Tüm görevleri göster",showCurrentButton:"Sadece güncel görevler",done:"Tamamlandı",open:"Açık",markDone:"Tamamlandı işaretle",markOpen:"Açık işaretle",openLink:"Bağlantıyı aç",progress:"tamamlandı",weekWord:"Hafta",babyDefault:"Bebek",empty:"Görev bulunamadı.",loginNeededTitle:"Giriş gerekli",loginNeededText:"Önce giriş yapmalısın.",homeButton:"Ana sayfa"},
+      ru:{backButton:"Назад",logoutButton:"Выйти",pageTitle:"Бюрократия",pageText:"Важные шаги, списки и задачи, связанные с беременностью и родами в Германии.",catAll:"Все",catAdmin:"Бюрократия",catMedical:"Медицина",catOrganisation:"Организация",showAllButton:"Показать все задачи",showCurrentButton:"Только текущие задачи",done:"Готово",open:"Открыто",markDone:"Отметить готово",markOpen:"Отметить открыто",openLink:"Открыть ссылку",progress:"готово",weekWord:"Неделя",babyDefault:"Ребёнок",empty:"Задачи не найдены.",loginNeededTitle:"Войдите",loginNeededText:"Сначала нужно войти.",homeButton:"Главная"},
+      uk:{backButton:"Назад",logoutButton:"Вийти",pageTitle:"Бюрократія",pageText:"Важливі кроки, списки і завдання, пов’язані з вагітністю та пологами в Німеччині.",catAll:"Усі",catAdmin:"Бюрократія",catMedical:"Медичне",catOrganisation:"Організація",showAllButton:"Показати всі завдання",showCurrentButton:"Лише поточні завдання",done:"Готово",open:"Відкрито",markDone:"Позначити готово",markOpen:"Позначити відкрито",openLink:"Відкрити посилання",progress:"готово",weekWord:"Тиждень",babyDefault:"Дитина",empty:"Завдань не знайдено.",loginNeededTitle:"Увійдіть",loginNeededText:"Спочатку потрібно увійти.",homeButton:"Головна"}
+    };
+
+    function t(){return translations[currentLang]||translations.de;}
+    function setLanguage(lang){currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";document.querySelectorAll(".language-buttons button").forEach(b=>b.classList.remove("active"));const active=document.getElementById("lang-"+lang);if(active)active.classList.add("active");["backButton","logoutButton","pageTitle","pageText","catAll","catAdmin","catMedical","catOrganisation","loginNeededTitle","loginNeededText","homeButton"].forEach(id=>{const el=document.getElementById(id);if(el&&t()[id])el.textContent=t()[id];});document.getElementById("showAllButton").textContent=showAll?t().showCurrentButton:t().showAllButton;renderHeader();loadTasks();}
+    function getLocalized(row,field){return row?.[`${field}_${currentLang}`]||row?.[`${field}_de`]||row?.[`${field}_en`]||"";}
+    function parseLocalDate(value){const p=value.split("-").map(Number);return new Date(p[0],p[1]-1,p[2]);}
+    function addDays(date,days){const r=new Date(date);r.setDate(r.getDate()+days);return r;}
+    function calculatePregnancy(dueDate){const today=new Date();today.setHours(0,0,0,0);const start=addDays(dueDate,-280);let week=Math.floor((today-start)/(1000*60*60*24*7))+1;if(week<1)week=1;if(week>42)week=42;return week;}
+    function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral";}
+    function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin");}
+
+    async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return;}currentUser=data.session.user;const {data:profiles,error:profileError}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);if(profileError||!profiles||profiles.length===0){window.location.href="index.html?reason=no_profile";return;}currentProfile=profiles[0];currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById("appShell").style.display="block";document.getElementById("emailPill").textContent=currentUser.email;setLanguage(currentLang);}
+    function renderHeader(){if(!currentProfile)return;document.getElementById("emailPill").textContent=currentUser?.email||"-";document.getElementById("babyPill").textContent=currentProfile.baby_name||t().babyDefault;if(currentProfile.due_date){lastPregnancyWeek=calculatePregnancy(parseLocalDate(currentProfile.due_date));document.getElementById("weekPill").textContent=`${t().weekWord} ${lastPregnancyWeek}`;}else{document.getElementById("weekPill").textContent=`${t().weekWord} -`;}}
+    function updateButtons(){[["catAll","all"],["catAdmin","administratif"],["catMedical","medical"],["catOrganisation","organisation"]].forEach(([id,val])=>{const b=document.getElementById(id);if(b)b.classList.toggle("active",taskCategoryFilter===val);});document.getElementById("showAllButton").textContent=showAll?t().showCurrentButton:t().showAllButton;}
+    async function setCategory(cat){taskCategoryFilter=cat;await loadTasks();}
+    async function toggleAllTasks(){showAll=!showAll;await loadTasks();}
+    async function loadTasks(){if(!currentUser||!currentProfile)return;updateButtons();const list=document.getElementById("taskList");list.innerHTML="";let query=supabaseClient.from("pregnancy_tasks").select("*").order("recommended_week",{ascending:true});if(!showAll)query=query.lte("recommended_week",lastPregnancyWeek+2);if(taskCategoryFilter!=="all")query=query.eq("category",taskCategoryFilter);const {data:tasks,error}=await query;if(error||!tasks||tasks.length===0){list.innerHTML=`<div class="empty">${t().empty}</div>`;document.getElementById("taskProgress").textContent=`0 / 0 ${t().progress}`;return;}const {data:statuses}=await supabaseClient.from("user_task_status").select("*").eq("user_id",currentUser.id);const statusMap={};(statuses||[]).forEach(s=>{statusMap[s.task_id]=s.status;});const doneCount=tasks.filter(task=>statusMap[task.id]==="done").length;document.getElementById("taskProgress").textContent=`${doneCount} / ${tasks.length} ${t().progress}`;tasks.forEach(task=>list.appendChild(renderTask(task,statusMap[task.id]==="done")));}
+    function categoryLabel(cat){if(cat==="administratif")return t().catAdmin;if(cat==="medical")return t().catMedical;if(cat==="organisation")return t().catOrganisation;return t().catAll;}
+    function renderTask(task,isDone){const card=document.createElement("div");card.className="task"+(isDone?" done":"");card.innerHTML=`<span class="badge">${t().weekWord} ${task.recommended_week||"-"}</span><span class="badge">${categoryLabel(task.category)}</span><span class="badge">${isDone?t().done:t().open}</span><h3>${getLocalized(task,"title")||task.title_de||""}</h3><p>${getLocalized(task,"description")||task.description_de||""}</p>`;const actions=document.createElement("div");actions.className="actions";const btn=document.createElement("button");btn.className=isDone?"button done":"button";btn.textContent=isDone?t().markOpen:t().markDone;btn.onclick=()=>toggleTaskStatus(task.id,isDone?"todo":"done");actions.appendChild(btn);if(task.link_url){const a=document.createElement("a");a.href=task.link_url;a.target="_blank";a.className="button-light";a.textContent=t().openLink;actions.appendChild(a);}card.appendChild(actions);return card;}
+    async function toggleTaskStatus(id,status){const {error}=await supabaseClient.from("user_task_status").upsert({user_id:currentUser.id,task_id:id,status},{onConflict:"user_id,task_id"});if(error){alert(error.message);return;}await loadTasks();}
+    async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html";}
+    loadApp();
+  </script>
+</body>
+</html>

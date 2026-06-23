@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mama in Deutschland - Baby-Erstausstattung</title>
+
+  <style>
+    :root {
+      --page:#f8f3ec;
+      --card:#ffffff;
+      --cream:#fffaf4;
+      --soft:#f3eadf;
+      --brown:#4a3428;
+      --light:#9b7357;
+      --text:#2f2621;
+      --muted:#7b6a60;
+      --border:#eadfd2;
+      --danger:#b45b48;
+      --success:#5f8d63;
+      --shadow:rgba(74,52,40,.12);
+    }
+
+    body.theme-boy {
+      --page:#eef7ff;
+      --cream:#f7fbff;
+      --soft:#e8f4ff;
+      --brown:#244b6b;
+      --light:#5f93bd;
+      --text:#1d3347;
+      --muted:#5c7285;
+      --border:#d6e8f7;
+      --shadow:rgba(36,75,107,.12);
+    }
+
+    body.theme-girl {
+      --page:#fff1f5;
+      --cream:#fff8fa;
+      --soft:#fde8ef;
+      --brown:#7a3d55;
+      --light:#c47a98;
+      --text:#3d2430;
+      --muted:#7b6070;
+      --border:#f0d4df;
+      --shadow:rgba(122,61,85,.12);
+    }
+
+    body.theme-twin {
+      --page:#f1f7ef;
+      --cream:#fbfff8;
+      --soft:#e7f3df;
+      --brown:#3e5c3a;
+      --light:#7ca878;
+      --text:#263522;
+      --muted:#62745f;
+      --border:#dbe9d4;
+      --shadow:rgba(62,92,58,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+        linear-gradient(180deg,#fbf7f1,var(--page));
+      color:var(--text);
+    }
+
+    .wrap {
+      max-width:1180px;
+      margin:0 auto;
+      padding:24px 18px;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--brown);
+      font-size:23px;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+
+    .brand-icon {
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--brown),var(--light));
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      box-shadow:0 14px 28px var(--shadow);
+    }
+
+    .top-actions,
+    .language-buttons,
+    .actions,
+    .filters {
+      display:flex;
+      gap:9px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .language-buttons button,
+    .button-light,
+    .button,
+    .button-danger,
+    .filter-button {
+      border:1px solid var(--border);
+      background:white;
+      color:var(--brown);
+      padding:10px 13px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      text-decoration:none;
+      font-family:inherit;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .language-buttons button.active,
+    .filter-button.active {
+      background:var(--brown);
+      color:white;
+    }
+
+    .button {
+      background:var(--brown);
+      color:white;
+      border-color:var(--brown);
+    }
+
+    .button.done {
+      background:var(--success);
+      border-color:var(--success);
+    }
+
+    .button-danger {
+      background:#fff0ec;
+      color:var(--danger);
+      border-color:#f1c9bf;
+    }
+
+    .card {
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:24px;
+      box-shadow:0 24px 70px var(--shadow);
+      backdrop-filter:blur(16px);
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3 {
+      color:var(--brown);
+      margin:0 0 12px;
+    }
+
+    h1 {
+      font-size:34px;
+      letter-spacing:-1.5px;
+    }
+
+    h2 {
+      font-size:25px;
+      letter-spacing:-.7px;
+    }
+
+    h3 {
+      font-size:17px;
+    }
+
+    p {
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    label {
+      display:block;
+      margin:14px 0 7px;
+      color:var(--brown);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    input {
+      width:100%;
+      padding:13px 14px;
+      border-radius:15px;
+      border:1px solid var(--border);
+      background:#fffdf9;
+      color:var(--text);
+      font-size:15px;
+      font-family:inherit;
+      outline:none;
+    }
+
+    input:focus {
+      border-color:var(--light);
+      box-shadow:0 0 0 4px rgba(155,115,87,.12);
+    }
+
+    .soft {
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--soft);
+      border:1px solid var(--border);
+      color:var(--brown);
+      font-weight:900;
+      margin-top:14px;
+    }
+
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .item-card {
+      background:linear-gradient(180deg,var(--cream),white);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    .badge {
+      display:inline-flex;
+      width:fit-content;
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--brown);
+      font-size:12px;
+      font-weight:900;
+      margin:0 5px 8px 0;
+    }
+
+    .message {
+      max-width:650px;
+      margin:60px auto;
+      text-align:center;
+    }
+
+    @media(max-width:900px) {
+      .grid {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        padding:18px 12px;
+      }
+
+      h1 {
+        font-size:28px;
+      }
+
+      .card {
+        padding:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <span>Mama in Deutschland</span>
+      </div>
+
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Zurück</a>
+
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Baby-Erstausstattung</h1>
+        <p id="pageText">Plane die wichtigsten Anschaffungen für Baby, Zuhause, Pflege, Kleidung und unterwegs.</p>
+
+        <div class="soft" id="progressBox">0 / 0 gekauft</div>
+
+        <label id="customLabel" for="customInput">Eigenen Punkt hinzufügen</label>
+        <input id="customInput" placeholder="z. B. Babyphone" />
+
+        <div class="actions" style="margin-top:14px;">
+          <button class="button" onclick="addCustomItem()" id="addButton">Hinzufügen</button>
+          <button class="button-light" onclick="clearBought()" id="clearBoughtButton">Gekaufte ausblenden</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="listTitle">Checkliste</h2>
+
+        <div class="filters" style="margin-top:14px;">
+          <button class="filter-button active" onclick="setCategory('all')" id="catAll">Alle</button>
+          <button class="filter-button" onclick="setCategory('sleep')" id="catSleep">Schlafen</button>
+          <button class="filter-button" onclick="setCategory('diaper')" id="catDiaper">Wickeln</button>
+          <button class="filter-button" onclick="setCategory('clothes')" id="catClothes">Kleidung</button>
+          <button class="filter-button" onclick="setCategory('transport')" id="catTransport">Unterwegs</button>
+          <button class="filter-button" onclick="setCategory('feeding')" id="catFeeding">Stillen & Flasche</button>
+          <button class="filter-button" onclick="setCategory('bath')" id="catBath">Pflege</button>
+        </div>
+
+        <div class="grid" id="itemsGrid"></div>
+      </section>
+    </main>
+
+    <section class="message card" id="loginMessage" style="display:none;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p>
+      <br />
+      <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let currentProfile = null;
+    let currentLang = localStorage.getItem("mama_lang") || "de";
+    let categoryFilter = "all";
+
+    const translations = {
+      de:{
+        backButton:"Zurück",
+        pageTitle:"Baby-Erstausstattung",
+        pageText:"Plane die wichtigsten Anschaffungen für Baby, Zuhause, Pflege, Kleidung und unterwegs.",
+        bought:"gekauft",
+        customLabel:"Eigenen Punkt hinzufügen",
+        addButton:"Hinzufügen",
+        clearBoughtButton:"Gekaufte ausblenden",
+        listTitle:"Checkliste",
+        catAll:"Alle",
+        catSleep:"Schlafen",
+        catDiaper:"Wickeln",
+        catClothes:"Kleidung",
+        catTransport:"Unterwegs",
+        catFeeding:"Stillen & Flasche",
+        catBath:"Pflege",
+        openStatus:"Offen",
+        boughtStatus:"Gekauft",
+        markBought:"Als gekauft markieren",
+        markOpen:"Als offen markieren",
+        delete:"Löschen",
+        loginTitle:"Bitte einloggen",
+        loginText:"Du musst dich zuerst anmelden.",
+        loginBackButton:"Zur Startseite",
+        babyBed:"Babybett / Beistellbett",
+        mattress:"Babymatratze",
+        sleepingBag:"Babyschlafsack",
+        fittedSheets:"Spannbettlaken",
+        changingTable:"Wickeltisch oder Wickelauflage",
+        diapers:"Windeln Größe 1",
+        wipes:"Feuchttücher oder Waschlappen",
+        diaperCream:"Wundschutzcreme",
+        bodys:"Bodys Größe 50/56",
+        pajamas:"Schlafanzüge",
+        socks:"Socken",
+        hat:"Mütze",
+        stroller:"Kinderwagen",
+        carSeat:"Babyschale / Autositz",
+        babyCarrier:"Trage / Tragetuch",
+        bottles:"Fläschchen",
+        breastPump:"Milchpumpe",
+        burpCloths:"Spucktücher",
+        babyBath:"Babybadewanne",
+        thermometer:"Fieberthermometer",
+        nailScissors:"Babynagelschere"
+      },
+      fr:{
+        backButton:"Retour",
+        pageTitle:"Équipement bébé",
+        pageText:"Planifie les achats importants pour bébé, la maison, les soins, les vêtements et les sorties.",
+        bought:"acheté",
+        customLabel:"Ajouter un élément",
+        addButton:"Ajouter",
+        clearBoughtButton:"Masquer les achetés",
+        listTitle:"Checklist",
+        catAll:"Tous",
+        catSleep:"Sommeil",
+        catDiaper:"Change",
+        catClothes:"Vêtements",
+        catTransport:"Sorties",
+        catFeeding:"Allaitement & biberon",
+        catBath:"Soins",
+        openStatus:"Ouvert",
+        boughtStatus:"Acheté",
+        markBought:"Marquer comme acheté",
+        markOpen:"Marquer comme ouvert",
+        delete:"Supprimer",
+        loginTitle:"Connexion nécessaire",
+        loginText:"Tu dois d’abord te connecter.",
+        loginBackButton:"Retour à l’accueil",
+        babyBed:"Lit bébé / cododo",
+        mattress:"Matelas bébé",
+        sleepingBag:"Gigoteuse",
+        fittedSheets:"Draps-housses",
+        changingTable:"Table ou matelas à langer",
+        diapers:"Couches taille 1",
+        wipes:"Lingettes ou gants",
+        diaperCream:"Crème de change",
+        bodys:"Bodys taille 50/56",
+        pajamas:"Pyjamas",
+        socks:"Chaussettes",
+        hat:"Bonnet",
+        stroller:"Poussette",
+        carSeat:"Coque bébé / siège auto",
+        babyCarrier:"Porte-bébé / écharpe",
+        bottles:"Biberons",
+        breastPump:"Tire-lait",
+        burpCloths:"Langés / bavoirs",
+        babyBath:"Baignoire bébé",
+        thermometer:"Thermomètre",
+        nailScissors:"Ciseaux à ongles bébé"
+      },
+      ar:{
+        backButton:"رجوع",
+        pageTitle:"تجهيزات الطفل الأولى",
+        pageText:"خططي لأهم مشتريات الطفل والبيت والعناية والملابس والخروج.",
+        bought:"تم شراؤه",
+        customLabel:"إضافة عنصر خاص",
+        addButton:"إضافة",
+        clearBoughtButton:"إخفاء المشترى",
+        listTitle:"القائمة",
+        catAll:"الكل",
+        catSleep:"النوم",
+        catDiaper:"التغيير",
+        catClothes:"الملابس",
+        catTransport:"الخروج",
+        catFeeding:"رضاعة وقنينة",
+        catBath:"العناية",
+        openStatus:"مفتوح",
+        boughtStatus:"تم الشراء",
+        markBought:"تحديد كمشترى",
+        markOpen:"تحديد كمفتوح",
+        delete:"حذف",
+        loginTitle:"يرجى تسجيل الدخول",
+        loginText:"يجب تسجيل الدخول أولاً.",
+        loginBackButton:"العودة للرئيسية",
+        babyBed:"سرير الطفل / سرير جانبي",
+        mattress:"مرتبة الطفل",
+        sleepingBag:"كيس نوم للطفل",
+        fittedSheets:"أغطية سرير",
+        changingTable:"طاولة أو فرشة تغيير",
+        diapers:"حفاضات مقاس 1",
+        wipes:"مناديل أو فوط غسل",
+        diaperCream:"كريم الحفاض",
+        bodys:"ملابس داخلية مقاس 50/56",
+        pajamas:"بيجامات",
+        socks:"جوارب",
+        hat:"قبعة",
+        stroller:"عربة أطفال",
+        carSeat:"كرسي سيارة للرضيع",
+        babyCarrier:"حمالة طفل",
+        bottles:"قنينات رضاعة",
+        breastPump:"مضخة حليب",
+        burpCloths:"فوط تجشؤ",
+        babyBath:"حوض استحمام الطفل",
+        thermometer:"ميزان حرارة",
+        nailScissors:"مقص أظافر الطفل"
+      },
+      en:{
+        backButton:"Back",
+        pageTitle:"Baby essentials",
+        pageText:"Plan the most important purchases for baby, home, care, clothes and going out.",
+        bought:"bought",
+        customLabel:"Add custom item",
+        addButton:"Add",
+        clearBoughtButton:"Hide bought",
+        listTitle:"Checklist",
+        catAll:"All",
+        catSleep:"Sleep",
+        catDiaper:"Diapering",
+        catClothes:"Clothes",
+        catTransport:"Out and about",
+        catFeeding:"Breast & bottle",
+        catBath:"Care",
+        openStatus:"Open",
+        boughtStatus:"Bought",
+        markBought:"Mark as bought",
+        markOpen:"Mark as open",
+        delete:"Delete",
+        loginTitle:"Please log in",
+        loginText:"You need to log in first.",
+        loginBackButton:"Back to home",
+        babyBed:"Baby bed / bedside crib",
+        mattress:"Baby mattress",
+        sleepingBag:"Baby sleeping bag",
+        fittedSheets:"Fitted sheets",
+        changingTable:"Changing table or mat",
+        diapers:"Diapers size 1",
+        wipes:"Wipes or washcloths",
+        diaperCream:"Diaper cream",
+        bodys:"Bodysuits size 50/56",
+        pajamas:"Pajamas",
+        socks:"Socks",
+        hat:"Hat",
+        stroller:"Stroller",
+        carSeat:"Infant car seat",
+        babyCarrier:"Baby carrier / wrap",
+        bottles:"Bottles",
+        breastPump:"Breast pump",
+        burpCloths:"Burp cloths",
+        babyBath:"Baby bathtub",
+        thermometer:"Thermometer",
+        nailScissors:"Baby nail scissors"
+      },
+      tr:{
+        backButton:"Geri",
+        pageTitle:"Bebek temel ihtiyaçları",
+        pageText:"Bebek, ev, bakım, kıyafet ve dışarı çıkmak için önemli alışverişleri planla.",
+        bought:"satın alındı",
+        customLabel:"Özel öğe ekle",
+        addButton:"Ekle",
+        clearBoughtButton:"Satın alınanları gizle",
+        listTitle:"Kontrol listesi",
+        catAll:"Hepsi",
+        catSleep:"Uyku",
+        catDiaper:"Bez değiştirme",
+        catClothes:"Kıyafet",
+        catTransport:"Dışarıda",
+        catFeeding:"Emzirme & biberon",
+        catBath:"Bakım",
+        openStatus:"Açık",
+        boughtStatus:"Satın alındı",
+        markBought:"Satın alındı olarak işaretle",
+        markOpen:"Açık olarak işaretle",
+        delete:"Sil",
+        loginTitle:"Lütfen giriş yap",
+        loginText:"Önce giriş yapmalısın.",
+        loginBackButton:"Ana sayfaya dön",
+        babyBed:"Bebek yatağı / yan yatak",
+        mattress:"Bebek yatağı süngeri",
+        sleepingBag:"Bebek uyku tulumu",
+        fittedSheets:"Lastikli çarşaf",
+        changingTable:"Alt değiştirme masası veya minderi",
+        diapers:"Bez numara 1",
+        wipes:"Islak mendil veya bez",
+        diaperCream:"Pişik kremi",
+        bodys:"Body beden 50/56",
+        pajamas:"Pijama",
+        socks:"Çorap",
+        hat:"Bere",
+        stroller:"Bebek arabası",
+        carSeat:"Bebek oto koltuğu",
+        babyCarrier:"Kanguru / sling",
+        bottles:"Biberonlar",
+        breastPump:"Süt pompası",
+        burpCloths:"Ağız bezleri",
+        babyBath:"Bebek küveti",
+        thermometer:"Ateş ölçer",
+        nailScissors:"Bebek tırnak makası"
+      },
+      ru:{
+        backButton:"Назад",
+        pageTitle:"Первые вещи для малыша",
+        pageText:"Планируйте важные покупки для ребёнка, дома, ухода, одежды и прогулок.",
+        bought:"куплено",
+        customLabel:"Добавить свой пункт",
+        addButton:"Добавить",
+        clearBoughtButton:"Скрыть купленное",
+        listTitle:"Список",
+        catAll:"Все",
+        catSleep:"Сон",
+        catDiaper:"Подгузники",
+        catClothes:"Одежда",
+        catTransport:"Прогулки",
+        catFeeding:"Грудь и бутылочка",
+        catBath:"Уход",
+        openStatus:"Открыто",
+        boughtStatus:"Куплено",
+        markBought:"Отметить как куплено",
+        markOpen:"Отметить как открыто",
+        delete:"Удалить",
+        loginTitle:"Войдите в аккаунт",
+        loginText:"Сначала нужно войти.",
+        loginBackButton:"На главную",
+        babyBed:"Кроватка / приставная кроватка",
+        mattress:"Детский матрас",
+        sleepingBag:"Спальный мешок",
+        fittedSheets:"Простыни на резинке",
+        changingTable:"Пеленальный столик или мат",
+        diapers:"Подгузники размер 1",
+        wipes:"Салфетки или мочалки",
+        diaperCream:"Крем под подгузник",
+        bodys:"Боди размер 50/56",
+        pajamas:"Пижамы",
+        socks:"Носки",
+        hat:"Шапочка",
+        stroller:"Коляска",
+        carSeat:"Автокресло для младенца",
+        babyCarrier:"Переноска / слинг",
+        bottles:"Бутылочки",
+        breastPump:"Молокоотсос",
+        burpCloths:"Салфетки для срыгивания",
+        babyBath:"Детская ванночка",
+        thermometer:"Термометр",
+        nailScissors:"Детские ножницы для ногтей"
+      },
+      uk:{
+        backButton:"Назад",
+        pageTitle:"Перші речі для малюка",
+        pageText:"Плануйте важливі покупки для дитини, дому, догляду, одягу та прогулянок.",
+        bought:"куплено",
+        customLabel:"Додати свій пункт",
+        addButton:"Додати",
+        clearBoughtButton:"Сховати куплене",
+        listTitle:"Список",
+        catAll:"Усі",
+        catSleep:"Сон",
+        catDiaper:"Підгузки",
+        catClothes:"Одяг",
+        catTransport:"Прогулянки",
+        catFeeding:"Грудне і пляшечка",
+        catBath:"Догляд",
+        openStatus:"Відкрито",
+        boughtStatus:"Куплено",
+        markBought:"Позначити як куплено",
+        markOpen:"Позначити як відкрито",
+        delete:"Видалити",
+        loginTitle:"Увійдіть",
+        loginText:"Спочатку потрібно увійти.",
+        loginBackButton:"На головну",
+        babyBed:"Ліжечко / приставне ліжечко",
+        mattress:"Дитячий матрац",
+        sleepingBag:"Спальний мішок",
+        fittedSheets:"Простирадла на резинці",
+        changingTable:"Пеленальний столик або мат",
+        diapers:"Підгузки розмір 1",
+        wipes:"Серветки або мочалки",
+        diaperCream:"Крем під підгузок",
+        bodys:"Боді розмір 50/56",
+        pajamas:"Піжами",
+        socks:"Шкарпетки",
+        hat:"Шапочка",
+        stroller:"Візочок",
+        carSeat:"Автокрісло для немовляти",
+        babyCarrier:"Переноска / слінг",
+        bottles:"Пляшечки",
+        breastPump:"Молоковідсмоктувач",
+        burpCloths:"Серветки для зригування",
+        babyBath:"Дитяча ванночка",
+        thermometer:"Термометр",
+        nailScissors:"Дитячі ножиці для нігтів"
+      }
+    };
+
+    const baseItems = [
+      { key:"babyBed", category:"sleep" },
+      { key:"mattress", category:"sleep" },
+      { key:"sleepingBag", category:"sleep" },
+      { key:"fittedSheets", category:"sleep" },
+      { key:"changingTable", category:"diaper" },
+      { key:"diapers", category:"diaper" },
+      { key:"wipes", category:"diaper" },
+      { key:"diaperCream", category:"diaper" },
+      { key:"bodys", category:"clothes" },
+      { key:"pajamas", category:"clothes" },
+      { key:"socks", category:"clothes" },
+      { key:"hat", category:"clothes" },
+      { key:"stroller", category:"transport" },
+      { key:"carSeat", category:"transport" },
+      { key:"babyCarrier", category:"transport" },
+      { key:"bottles", category:"feeding" },
+      { key:"breastPump", category:"feeding" },
+      { key:"burpCloths", category:"feeding" },
+      { key:"babyBath", category:"bath" },
+      { key:"thermometer", category:"bath" },
+      { key:"nailScissors", category:"bath" }
+    ];
+
+    function t(){
+      return translations[currentLang] || translations.de;
+    }
+
+    function setLanguage(lang){
+      currentLang = lang;
+      localStorage.setItem("mama_lang", lang);
+
+      document.documentElement.lang = lang;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+      const active = document.getElementById("lang-" + lang);
+      if (active) active.classList.add("active");
+
+      const tr = t();
+
+      Object.keys(tr).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = tr[id];
+      });
+
+      updateButtons();
+      renderItems();
+    }
+
+    function determineTheme(type, gender){
+      if (gender === "boy" || gender === "twin_boys") return "boy";
+      if (gender === "girl" || gender === "twin_girls") return "girl";
+      if (type === "twins" || gender === "twin_mixed") return "twin";
+      return "neutral";
+    }
+
+    function applyTheme(theme){
+      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+      if (theme === "boy") document.body.classList.add("theme-boy");
+      if (theme === "girl") document.body.classList.add("theme-girl");
+      if (theme === "twin") document.body.classList.add("theme-twin");
+    }
+
+    async function loadApp(){
+      const { data, error } = await supabaseClient.auth.getSession();
+
+      if (error || !data.session) {
+        document.getElementById("loginMessage").style.display = "block";
+        document.getElementById("appShell").style.display = "none";
+        return;
+      }
+
+      currentUser = data.session.user;
+
+      const { data: profiles, error: profileError } = await supabaseClient
+        .from("pregnancy_profiles")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .order("created_at", { ascending:false })
+        .limit(1);
+
+      if (profileError || !profiles || profiles.length === 0) {
+        window.location.href = "index.html?reason=no_profile";
+        return;
+      }
+
+      currentProfile = profiles[0];
+      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+      applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+      document.getElementById("loginMessage").style.display = "none";
+      document.getElementById("appShell").style.display = "block";
+
+      setLanguage(currentLang);
+    }
+
+    function statusKey(){
+      return "mama-equipment-status-" + (currentUser?.id || "guest");
+    }
+
+    function customKey(){
+      return "mama-equipment-custom-" + (currentUser?.id || "guest");
+    }
+
+    function getStatuses(){
+      try {
+        return JSON.parse(localStorage.getItem(statusKey())) || {};
+      } catch(e) {
+        return {};
+      }
+    }
+
+    function saveStatuses(statuses){
+      localStorage.setItem(statusKey(), JSON.stringify(statuses));
+    }
+
+    function getCustomItems(){
+      try {
+        return JSON.parse(localStorage.getItem(customKey())) || [];
+      } catch(e) {
+        return [];
+      }
+    }
+
+    function saveCustomItems(items){
+      localStorage.setItem(customKey(), JSON.stringify(items));
+    }
+
+    function setCategory(category){
+      categoryFilter = category;
+      updateButtons();
+      renderItems();
+    }
+
+    function updateButtons(){
+      [
+        ["catAll","all"],
+        ["catSleep","sleep"],
+        ["catDiaper","diaper"],
+        ["catClothes","clothes"],
+        ["catTransport","transport"],
+        ["catFeeding","feeding"],
+        ["catBath","bath"]
+      ].forEach(([id,value]) => {
+        const button = document.getElementById(id);
+        if (button) button.classList.toggle("active", categoryFilter === value);
+      });
+    }
+
+    function getCategoryLabel(category){
+      if (category === "sleep") return t().catSleep;
+      if (category === "diaper") return t().catDiaper;
+      if (category === "clothes") return t().catClothes;
+      if (category === "transport") return t().catTransport;
+      if (category === "feeding") return t().catFeeding;
+      if (category === "bath") return t().catBath;
+      return t().catAll;
+    }
+
+    function getAllItems(){
+      const custom = getCustomItems().map(item => ({
+        key:item.id,
+        category:item.category || "all",
+        customTitle:item.title,
+        isCustom:true
+      }));
+
+      return baseItems.concat(custom);
+    }
+
+    function addCustomItem(){
+      const input = document.getElementById("customInput");
+      const title = input.value.trim();
+
+      if (!title) return;
+
+      const items = getCustomItems();
+
+      items.unshift({
+        id:"custom_" + Date.now(),
+        title,
+        category:categoryFilter === "all" ? "all" : categoryFilter
+      });
+
+      saveCustomItems(items);
+      input.value = "";
+      renderItems();
+    }
+
+    function toggleStatus(key){
+      const statuses = getStatuses();
+      statuses[key] = statuses[key] === "bought" ? "open" : "bought";
+      saveStatuses(statuses);
+      renderItems();
+    }
+
+    function deleteCustom(key){
+      const items = getCustomItems().filter(item => item.id !== key);
+      saveCustomItems(items);
+
+      const statuses = getStatuses();
+      delete statuses[key];
+      saveStatuses(statuses);
+
+      renderItems();
+    }
+
+    function clearBought(){
+      const statuses = getStatuses();
+      const customItems = getCustomItems();
+
+      const newCustom = customItems.filter(item => statuses[item.id] !== "bought");
+      saveCustomItems(newCustom);
+
+      renderItems();
+    }
+
+    function renderItems(){
+      const grid = document.getElementById("itemsGrid");
+      const progress = document.getElementById("progressBox");
+
+      grid.innerHTML = "";
+
+      const statuses = getStatuses();
+      let items = getAllItems();
+
+      if (categoryFilter !== "all") {
+        items = items.filter(item => item.category === categoryFilter);
+      }
+
+      const boughtCount = items.filter(item => statuses[item.key] === "bought").length;
+      progress.textContent = `${boughtCount} / ${items.length} ${t().bought}`;
+
+      items.forEach(item => {
+        const bought = statuses[item.key] === "bought";
+        const title = item.isCustom ? item.customTitle : t()[item.key];
+
+        const card = document.createElement("div");
+        card.className = "item-card";
+
+        card.innerHTML = `
+          <div class="badge">${getCategoryLabel(item.category)}</div>
+          <div class="badge">${bought ? t().boughtStatus : t().openStatus}</div>
+          <h3>${title}</h3>
+        `;
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+        actions.style.marginTop = "14px";
+
+        const statusButton = document.createElement("button");
+        statusButton.className = bought ? "button done" : "button";
+        statusButton.textContent = bought ? t().markOpen : t().markBought;
+        statusButton.onclick = () => toggleStatus(item.key);
+
+        actions.appendChild(statusButton);
+
+        if (item.isCustom) {
+          const deleteButton = document.createElement("button");
+          deleteButton.className = "button-danger";
+          deleteButton.textContent = t().delete;
+          deleteButton.onclick = () => deleteCustom(item.key);
+          actions.appendChild(deleteButton);
+        }
+
+        card.appendChild(actions);
+        grid.appendChild(card);
+      });
+    }
+
+    loadApp();
+  </script>
+</body>
+</html>

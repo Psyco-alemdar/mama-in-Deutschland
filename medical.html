@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama in Deutschland - Medizin</title>
+  <style>
+    :root{
+      --page:#f8f3ec;--card:#ffffff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12)
+    }
+    body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+    body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+    body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+    .top-actions,.language-buttons,.actions,.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.language-buttons button,.button-light,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none}.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}.logout{border:none;border-radius:16px;padding:12px 16px;background:var(--danger);color:white;font-weight:950;cursor:pointer}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}.soft{padding:15px;border-radius:20px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:850;margin-top:12px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.item{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}.badge{display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 4px 6px 0}.button{border:none;border-radius:13px;padding:10px 12px;background:var(--brown);color:white;font-weight:900;cursor:pointer}.button.done{background:var(--success)}.button-danger{border:none;border-radius:13px;padding:10px 12px;background:#f4dfd8;color:var(--danger);font-weight:900;cursor:pointer}
+    h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}p{margin:0;color:var(--muted);line-height:1.6}.small{font-size:13px;color:var(--muted)}label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}input,select,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}textarea{min-height:90px;resize:vertical}.hidden{display:none!important}.message{max-width:650px;margin:60px auto;text-align:center}.empty{padding:16px;border-radius:18px;background:var(--cream);border:1px solid var(--border)}
+    @media(max-width:900px){.grid,.grid-2{grid-template-columns:1fr}h1{font-size:28px}}
+    @media(max-width:560px){.wrap{padding:18px 12px}.card{padding:20px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+      <div class="top-actions">
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+        <a class="button-light" href="app.html" id="backButton">Dashboard</a>
+        <button class="logout" onclick="signOut()" id="logoutButton">Ausloggen</button>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Medizin</h1>
+        <p id="pageText">Hier findest du wichtige medizinische Untersuchungen und Termine während der Schwangerschaft.</p>
+        <div class="soft" id="profileSummary">-</div>
+      </section>
+
+      <section class="card">
+        <h2 id="quickTitle">Wichtige medizinische Punkte</h2>
+        <div class="grid" id="quickList"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="appointmentsTitle">Meine medizinischen Termine</h2>
+        <p id="appointmentsText">Termine aus deinem Kalender mit Kategorie Medizin.</p>
+        <div class="actions">
+          <button class="button" onclick="generateMedicalEvents()" id="generateButton">Standardtermine erzeugen</button>
+          <button class="button-light" onclick="loadMedicalEvents()" id="refreshButton">Aktualisieren</button>
+        </div>
+        <div class="grid" id="medicalEventsList" style="margin-top:16px;"></div>
+      </section>
+
+      <section class="card">
+        <h2 id="manualTitle">Eigenen medizinischen Termin hinzufügen</h2>
+        <div class="grid-2">
+          <div><label id="titleLabel" for="manualEventTitle">Titel</label><input id="manualEventTitle" type="text" placeholder="Frauenarzttermin" /></div>
+          <div><label id="dateLabel" for="manualEventDate">Datum</label><input id="manualEventDate" type="date" /></div>
+          <div><label id="timeLabel" for="manualEventTime">Uhrzeit</label><input id="manualEventTime" type="time" /></div>
+          <div><label id="locationLabel" for="manualEventLocation">Ort</label><input id="manualEventLocation" type="text" placeholder="Praxis / Klinik" /></div>
+        </div>
+        <label id="descriptionLabel" for="manualEventDescription">Notiz</label>
+        <textarea id="manualEventDescription"></textarea>
+        <button class="button" onclick="saveManualMedicalEvent()" id="saveButton">Termin speichern</button>
+      </section>
+    </main>
+
+    <section class="message card" id="loginMessage" style="display:none;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p><br>
+      <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"de",lastPregnancyWeek=1,medicalEvents=[];
+
+    const translations={
+      de:{backButton:"Dashboard",logoutButton:"Ausloggen",pageTitle:"Medizin",pageText:"Hier findest du wichtige medizinische Untersuchungen und Termine während der Schwangerschaft.",quickTitle:"Wichtige medizinische Punkte",appointmentsTitle:"Meine medizinischen Termine",appointmentsText:"Termine aus deinem Kalender mit Kategorie Medizin.",generateButton:"Standardtermine erzeugen",refreshButton:"Aktualisieren",manualTitle:"Eigenen medizinischen Termin hinzufügen",titleLabel:"Titel",dateLabel:"Datum",timeLabel:"Uhrzeit",locationLabel:"Ort",descriptionLabel:"Notiz",saveButton:"Termin speichern",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",week:"SSW",city:"Stadt",due:"Termin",empty:"Noch keine medizinischen Termine vorhanden.",done:"Erledigt",open:"Offen",saved:"Termin gespeichert ✅",missing:"Bitte Titel und Datum ausfüllen.",created:"Standardtermine wurden erzeugt ✅",openLink:"Information öffnen",quick:[['Mutterpass','Bei jedem Termin mitnehmen.'],['Ultraschall','Wichtige Ultraschalluntersuchungen im Verlauf.'],['NIPT / Bluttests','Optionale und empfohlene Blutuntersuchungen beachten.'],['Diabetes-Test','Meist etwa SSW 24–28.'],['Feindiagnostik','Je nach Situation und Empfehlung.'],['Notfälle','Bei Blutung, starken Schmerzen oder weniger Kindsbewegungen ärztlich abklären.']]},
+      fr:{backButton:"Dashboard",logoutButton:"Déconnexion",pageTitle:"Médical",pageText:"Ici tu trouves les examens et rendez-vous médicaux importants pendant la grossesse.",quickTitle:"Points médicaux importants",appointmentsTitle:"Mes rendez-vous médicaux",appointmentsText:"Rendez-vous de ton calendrier avec la catégorie médical.",generateButton:"Créer les rendez-vous standards",refreshButton:"Actualiser",manualTitle:"Ajouter un rendez-vous médical",titleLabel:"Titre",dateLabel:"Date",timeLabel:"Heure",locationLabel:"Lieu",descriptionLabel:"Note",saveButton:"Enregistrer",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Accueil",week:"SSW",city:"Ville",due:"Terme",empty:"Aucun rendez-vous médical pour le moment.",done:"Terminé",open:"Ouvert",saved:"Rendez-vous enregistré ✅",missing:"Merci d’indiquer titre et date.",created:"Rendez-vous standards créés ✅",openLink:"Ouvrir l’information",quick:[['Mutterpass','À prendre à chaque rendez-vous.'],['Échographie','Examens échographiques importants pendant la grossesse.'],['NIPT / prises de sang','Penser aux examens optionnels et recommandés.'],['Test diabète','Souvent vers SSW 24–28.'],['Diagnostic détaillé','Selon la situation et la recommandation.'],['Urgences','Saignement, fortes douleurs ou moins de mouvements : avis médical.']]},
+      ar:{backButton:"الرئيسية",logoutButton:"تسجيل الخروج",pageTitle:"الطب",pageText:"هنا تجدين الفحوصات والمواعيد الطبية المهمة أثناء الحمل.",quickTitle:"نقاط طبية مهمة",appointmentsTitle:"مواعيدي الطبية",appointmentsText:"مواعيد من التقويم مع فئة الطب.",generateButton:"إنشاء المواعيد القياسية",refreshButton:"تحديث",manualTitle:"إضافة موعد طبي",titleLabel:"العنوان",dateLabel:"التاريخ",timeLabel:"الوقت",locationLabel:"المكان",descriptionLabel:"ملاحظة",saveButton:"حفظ الموعد",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"الصفحة الرئيسية",week:"أسبوع الحمل",city:"المدينة",due:"موعد الولادة",empty:"لا توجد مواعيد طبية حالياً.",done:"تم",open:"مفتوح",saved:"تم حفظ الموعد ✅",missing:"يرجى إدخال العنوان والتاريخ.",created:"تم إنشاء المواعيد القياسية ✅",openLink:"فتح المعلومات",quick:[['Mutterpass','خذيها معك في كل موعد.'],['السونار','فحوصات سونار مهمة خلال الحمل.'],['NIPT / تحاليل الدم','انتبهي للتحاليل الاختيارية والموصى بها.'],['اختبار السكري','غالباً في SSW 24–28.'],['الفحص التفصيلي','حسب الحالة وتوصية الطبيب.'],['الحالات الطارئة','نزيف، ألم شديد أو قلة حركة الجنين: مراجعة طبية.']]},
+      en:{backButton:"Dashboard",logoutButton:"Log out",pageTitle:"Medical",pageText:"Important medical check-ups and appointments during pregnancy.",quickTitle:"Important medical points",appointmentsTitle:"My medical appointments",appointmentsText:"Appointments from your calendar with the medical category.",generateButton:"Create standard appointments",refreshButton:"Refresh",manualTitle:"Add medical appointment",titleLabel:"Title",dateLabel:"Date",timeLabel:"Time",locationLabel:"Location",descriptionLabel:"Note",saveButton:"Save appointment",loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Home",week:"Week",city:"City",due:"Due date",empty:"No medical appointments yet.",done:"Done",open:"Open",saved:"Appointment saved ✅",missing:"Please enter title and date.",created:"Standard appointments created ✅",openLink:"Open information",quick:[['Maternity record','Bring it to every appointment.'],['Ultrasound','Important ultrasound checks during pregnancy.'],['NIPT / blood tests','Consider optional and recommended blood tests.'],['Diabetes test','Often around week 24–28.'],['Detailed diagnostics','Depending on situation and recommendation.'],['Emergencies','Bleeding, strong pain or less baby movement: seek medical advice.']]},
+      tr:{backButton:"Dashboard",logoutButton:"Çıkış",pageTitle:"Tıbbi",pageText:"Hamilelikte önemli tıbbi kontroller ve randevular.",quickTitle:"Önemli tıbbi noktalar",appointmentsTitle:"Tıbbi randevularım",appointmentsText:"Takvimindeki tıbbi kategori randevuları.",generateButton:"Standart randevuları oluştur",refreshButton:"Yenile",manualTitle:"Tıbbi randevu ekle",titleLabel:"Başlık",dateLabel:"Tarih",timeLabel:"Saat",locationLabel:"Yer",descriptionLabel:"Not",saveButton:"Kaydet",loginTitle:"Giriş gerekli",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfa",week:"Hafta",city:"Şehir",due:"Doğum tarihi",empty:"Henüz tıbbi randevu yok.",done:"Tamamlandı",open:"Açık",saved:"Randevu kaydedildi ✅",missing:"Başlık ve tarih gir.",created:"Standart randevular oluşturuldu ✅",openLink:"Bilgiyi aç",quick:[['Mutterpass','Her randevuya götür.'],['Ultrason','Hamilelikte önemli ultrason kontrolleri.'],['NIPT / kan testleri','Opsiyonel ve önerilen testleri düşün.'],['Diyabet testi','Genelde 24–28. hafta civarı.'],['Detaylı tanı','Duruma ve öneriye göre.'],['Acil durumlar','Kanama, güçlü ağrı veya az hareket: doktora başvur.']]},
+      ru:{backButton:"Панель",logoutButton:"Выйти",pageTitle:"Медицина",pageText:"Важные медицинские обследования и приёмы во время беременности.",quickTitle:"Важные медицинские пункты",appointmentsTitle:"Мои медицинские приёмы",appointmentsText:"Приёмы из календаря с категорией медицина.",generateButton:"Создать стандартные приёмы",refreshButton:"Обновить",manualTitle:"Добавить медицинский приём",titleLabel:"Название",dateLabel:"Дата",timeLabel:"Время",locationLabel:"Место",descriptionLabel:"Заметка",saveButton:"Сохранить",loginTitle:"Войдите",loginText:"Сначала нужно войти.",loginBackButton:"На главную",week:"Неделя",city:"Город",due:"Дата родов",empty:"Пока нет медицинских приёмов.",done:"Готово",open:"Открыто",saved:"Приём сохранён ✅",missing:"Введите название и дату.",created:"Стандартные приёмы созданы ✅",openLink:"Открыть информацию",quick:[['Mutterpass','Брать на каждый приём.'],['УЗИ','Важные УЗИ во время беременности.'],['NIPT / анализы крови','Учесть дополнительные и рекомендуемые анализы.'],['Тест на диабет','Обычно около 24–28 недели.'],['Подробная диагностика','По ситуации и рекомендации.'],['Срочно','Кровотечение, сильная боль или меньше движений: обратиться к врачу.']]},
+      uk:{backButton:"Панель",logoutButton:"Вийти",pageTitle:"Медичне",pageText:"Важливі медичні огляди та прийоми під час вагітності.",quickTitle:"Важливі медичні пункти",appointmentsTitle:"Мої медичні прийоми",appointmentsText:"Прийоми з календаря з медичною категорією.",generateButton:"Створити стандартні прийоми",refreshButton:"Оновити",manualTitle:"Додати медичний прийом",titleLabel:"Назва",dateLabel:"Дата",timeLabel:"Час",locationLabel:"Місце",descriptionLabel:"Нотатка",saveButton:"Зберегти",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",week:"Тиждень",city:"Місто",due:"Дата пологів",empty:"Поки немає медичних прийомів.",done:"Готово",open:"Відкрито",saved:"Прийом збережено ✅",missing:"Введіть назву і дату.",created:"Стандартні прийоми створено ✅",openLink:"Відкрити інформацію",quick:[['Mutterpass','Брати на кожен прийом.'],['УЗД','Важливі УЗД під час вагітності.'],['NIPT / аналізи крові','Врахувати додаткові та рекомендовані аналізи.'],['Тест на діабет','Зазвичай близько 24–28 тижня.'],['Детальна діагностика','За ситуацією та рекомендацією.'],['Терміново','Кровотеча, сильний біль або менше рухів: звернутися до лікаря.']]}
+    };
+
+    function t(){return translations[currentLang]||translations.de;}
+    function setLanguage(lang){currentLang=lang;localStorage.setItem('mama_lang',lang);document.documentElement.lang=lang;document.body.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('.language-buttons button').forEach(b=>b.classList.remove('active'));const active=document.getElementById('lang-'+lang);if(active)active.classList.add('active');const tr=t();['backButton','logoutButton','pageTitle','pageText','quickTitle','appointmentsTitle','appointmentsText','generateButton','refreshButton','manualTitle','titleLabel','dateLabel','timeLabel','locationLabel','descriptionLabel','saveButton','loginTitle','loginText','loginBackButton'].forEach(id=>{const el=document.getElementById(id);if(el&&tr[id])el.textContent=tr[id];});renderQuickList();renderSummary();renderEvents();}
+    function parseLocalDate(value){const p=value.split('-').map(Number);return new Date(p[0],p[1]-1,p[2]);}
+    function addDays(date,days){const r=new Date(date);r.setDate(r.getDate()+days);return r;}
+    function toInputDate(date){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;}
+    function formatDate(date){const locale=currentLang==='de'?'de-DE':currentLang==='fr'?'fr-FR':currentLang==='ar'?'ar-SA':currentLang==='tr'?'tr-TR':currentLang==='ru'?'ru-RU':currentLang==='uk'?'uk-UA':'en-GB';return date.toLocaleDateString(locale,{day:'2-digit',month:'2-digit',year:'numeric'});}
+    function calculatePregnancy(dueDate){const today=new Date();today.setHours(0,0,0,0);const start=addDays(dueDate,-280);let week=Math.floor((today-start)/(1000*60*60*24*7))+1;if(week<1)week=1;if(week>42)week=42;return week;}
+    function determineTheme(type,gender){if(gender==='boy'||gender==='twin_boys')return'boy';if(gender==='girl'||gender==='twin_girls')return'girl';if(type==='twins'||gender==='twin_mixed')return'twin';return'neutral';}
+    function applyTheme(theme){document.body.classList.remove('theme-boy','theme-girl','theme-twin');if(theme==='boy')document.body.classList.add('theme-boy');if(theme==='girl')document.body.classList.add('theme-girl');if(theme==='twin')document.body.classList.add('theme-twin');}
+    function getLocalized(row,field){return row?.[`${field}_${currentLang}`]||row?.[`${field}_de`]||row?.[`${field}_en`]||'';}
+
+    async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById('loginMessage').style.display='block';document.getElementById('appShell').style.display='none';return;}currentUser=data.session.user;const {data:profiles,error:profileError}=await supabaseClient.from('pregnancy_profiles').select('*').eq('user_id',currentUser.id).order('created_at',{ascending:false}).limit(1);if(profileError||!profiles||profiles.length===0){window.location.href='index.html?reason=no_profile';return;}currentProfile=profiles[0];currentLang=localStorage.getItem('mama_lang')||currentProfile.language||'de';if(currentProfile.due_date)lastPregnancyWeek=calculatePregnancy(parseLocalDate(currentProfile.due_date));applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById('loginMessage').style.display='none';document.getElementById('appShell').style.display='block';setLanguage(currentLang);await loadMedicalEvents();}
+    function renderSummary(){if(!currentProfile)return;const due=currentProfile.due_date?formatDate(parseLocalDate(currentProfile.due_date)):'-';document.getElementById('profileSummary').textContent=`${t().week}: ${lastPregnancyWeek} · ${t().city}: ${currentProfile.city||'-'} · ${t().due}: ${due}`;}
+    function renderQuickList(){const list=document.getElementById('quickList');if(!list)return;list.innerHTML='';(t().quick||[]).forEach(([title,text])=>{const card=document.createElement('div');card.className='item';card.innerHTML=`<h3>${title}</h3><p>${text}</p>`;list.appendChild(card);});}
+    async function loadMedicalEvents(){if(!currentUser)return;const {data,error}=await supabaseClient.from('pregnancy_calendar_events').select('*').eq('user_id',currentUser.id).eq('category','medical').order('event_date',{ascending:true});medicalEvents=error?[]:(data||[]);renderEvents();}
+    function renderEvents(){const list=document.getElementById('medicalEventsList');if(!list)return;list.innerHTML='';if(!medicalEvents.length){list.innerHTML=`<div class="empty">${t().empty}</div>`;return;}medicalEvents.forEach(event=>{const card=document.createElement('div');card.className='item';const date=event.event_date?formatDate(parseLocalDate(event.event_date)):'-';card.innerHTML=`<div class="badge">${date}</div><div class="badge">${event.done?t().done:t().open}</div><h3>${event.title||'-'}</h3><p>${event.description||''}</p>${event.location?`<p>📍 ${event.location}</p>`:''}`;const actions=document.createElement('div');actions.className='actions';const doneBtn=document.createElement('button');doneBtn.className=event.done?'button done':'button';doneBtn.textContent=event.done?t().done:t().open;doneBtn.onclick=()=>toggleEvent(event.id,!event.done);actions.appendChild(doneBtn);if(event.link_url){const link=document.createElement('a');link.className='button-light';link.href=event.link_url;link.target='_blank';link.textContent=t().openLink;actions.appendChild(link);}card.appendChild(actions);list.appendChild(card);});}
+    async function toggleEvent(id,done){await supabaseClient.from('pregnancy_calendar_events').update({done}).eq('id',id).eq('user_id',currentUser.id);await loadMedicalEvents();}
+    async function generateMedicalEvents(){if(!currentUser||!currentProfile?.due_date)return;const due=parseLocalDate(currentProfile.due_date);const start=addDays(due,-280);const {data:templates,error}=await supabaseClient.from('medical_exam_templates').select('*').order('recommended_week',{ascending:true});if(error||!templates){alert(error?.message||'Error');return;}for(const template of templates){const eventDate=toInputDate(addDays(start,(template.recommended_week-1)*7));const payload={user_id:currentUser.id,profile_id:currentProfile.id,title:getLocalized(template,'title')||template.title_de||template.key,description:getLocalized(template,'description')||template.description_de||'',event_date:eventDate,pregnancy_week:template.recommended_week,category:'medical',source_type:'medical_template',source_key:template.key,link_url:template.link_url||'',reminder_days:14,done:false};const {data:existing}=await supabaseClient.from('pregnancy_calendar_events').select('id').eq('user_id',currentUser.id).eq('profile_id',currentProfile.id).eq('source_type','medical_template').eq('source_key',template.key).limit(1);if(existing&&existing.length){await supabaseClient.from('pregnancy_calendar_events').update(payload).eq('id',existing[0].id).eq('user_id',currentUser.id);}else{await supabaseClient.from('pregnancy_calendar_events').insert(payload);}}alert(t().created);await loadMedicalEvents();}
+    async function saveManualMedicalEvent(){const title=document.getElementById('manualEventTitle').value.trim();const date=document.getElementById('manualEventDate').value;if(!title||!date){alert(t().missing);return;}let week=lastPregnancyWeek;if(currentProfile?.due_date){const due=parseLocalDate(currentProfile.due_date);const start=addDays(due,-280);week=Math.floor((parseLocalDate(date)-start)/(1000*60*60*24*7))+1;if(week<1)week=1;if(week>42)week=42;}const row={user_id:currentUser.id,profile_id:currentProfile.id,title,description:document.getElementById('manualEventDescription').value.trim(),event_date:date,event_time:document.getElementById('manualEventTime').value||null,pregnancy_week:week,category:'medical',source_type:'manual',source_key:`manual-medical-${Date.now()}`,location:document.getElementById('manualEventLocation').value.trim(),done:false,reminder_days:14};const {error}=await supabaseClient.from('pregnancy_calendar_events').insert(row);if(error){alert(error.message);return;}['manualEventTitle','manualEventDate','manualEventTime','manualEventLocation','manualEventDescription'].forEach(id=>document.getElementById(id).value='');alert(t().saved);await loadMedicalEvents();}
+    async function signOut(){await supabaseClient.auth.signOut();window.location.href='index.html';}
+    loadApp();
+  </script>
+</body>
+</html>

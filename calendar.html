@@ -145,13 +145,14 @@
     let currentUser = null;
     let currentProfile = null;
     let calendarEvents = [];
+    let medicalTemplates = {};
     let currentLang = localStorage.getItem("mama_lang") || "de";
     let calendarCategoryFilter = "all";
     let lastPregnancyWeek = 1;
 
     const translations = {
       de:{
-        backButton:"Dashboard", logoutButton:"Ausloggen", pageTitle:"Kalender", pageText:"Termine, Untersuchungen, Kurse und Erinnerungen.",
+        backButton:"← Zurück", logoutButton:"Ausloggen", pageTitle:"Kalender", pageText:"Termine, Untersuchungen, Kurse und Erinnerungen.",
         manualEventTitle:"Neuen Termin hinzufügen", manualEventText:"Füge eigene Termine, Kurse oder Anträge zu deinem Kalender hinzu.",
         manualTitleLabel:"Titel", manualDateLabel:"Datum", manualTimeLabel:"Uhrzeit", manualCategoryLabel:"Kategorie",
         manualCategoryMedical:"Medizin", manualCategoryCourse:"Kurs", manualCategoryAdmin:"Bürokratie", manualCategoryShopping:"Einkauf", manualCategoryPersonal:"Persönlich",
@@ -162,7 +163,7 @@
         manualMissing:"Bitte mindestens Titel und Datum ausfüllen.", manualSaved:"Termin gespeichert ✅", calendarFileName:"Mama-Termin", loginNeededTitle:"Bitte einloggen", loginNeededText:"Du musst dich zuerst anmelden.", goHomeButton:"Zur Startseite"
       },
       fr:{
-        backButton:"Dashboard", logoutButton:"Déconnexion", pageTitle:"Calendrier", pageText:"Rendez-vous, examens, cours et rappels.",
+        backButton:"← Retour", logoutButton:"Déconnexion", pageTitle:"Calendrier", pageText:"Rendez-vous, examens, cours et rappels.",
         manualEventTitle:"Ajouter un rendez-vous", manualEventText:"Ajoute tes rendez-vous, cours ou demandes au calendrier.",
         manualTitleLabel:"Titre", manualDateLabel:"Date", manualTimeLabel:"Heure", manualCategoryLabel:"Catégorie",
         manualCategoryMedical:"Médical", manualCategoryCourse:"Cours", manualCategoryAdmin:"Bureaucratie", manualCategoryShopping:"Achat", manualCategoryPersonal:"Personnel",
@@ -173,7 +174,7 @@
         manualMissing:"Merci d’indiquer au moins un titre et une date.", manualSaved:"Rendez-vous enregistré ✅", calendarFileName:"Rendez-vous-Mama", loginNeededTitle:"Connexion nécessaire", loginNeededText:"Tu dois d’abord te connecter.", goHomeButton:"Retour accueil"
       },
       ar:{
-        backButton:"الرئيسية", logoutButton:"تسجيل الخروج", pageTitle:"التقويم", pageText:"المواعيد والفحوصات والدورات والتذكيرات.",
+        backButton:"← رجوع", logoutButton:"تسجيل الخروج", pageTitle:"التقويم", pageText:"المواعيد والفحوصات والدورات والتذكيرات.",
         manualEventTitle:"إضافة موعد", manualEventText:"أضيفي المواعيد والدورات والطلبات إلى التقويم.",
         manualTitleLabel:"العنوان", manualDateLabel:"التاريخ", manualTimeLabel:"الوقت", manualCategoryLabel:"الفئة",
         manualCategoryMedical:"طبي", manualCategoryCourse:"دورة", manualCategoryAdmin:"إجراءات", manualCategoryShopping:"شراء", manualCategoryPersonal:"شخصي",
@@ -184,7 +185,7 @@
         manualMissing:"يرجى إدخال العنوان والتاريخ على الأقل.", manualSaved:"تم حفظ الموعد ✅", calendarFileName:"موعد-ماما", loginNeededTitle:"يرجى تسجيل الدخول", loginNeededText:"يجب تسجيل الدخول أولاً.", goHomeButton:"الصفحة الرئيسية"
       },
       en:{
-        backButton:"Dashboard", logoutButton:"Log out", pageTitle:"Calendar", pageText:"Appointments, exams, courses and reminders.",
+        backButton:"← Back", logoutButton:"Log out", pageTitle:"Calendar", pageText:"Appointments, exams, courses and reminders.",
         manualEventTitle:"Add appointment", manualEventText:"Add your appointments, courses or applications to the calendar.",
         manualTitleLabel:"Title", manualDateLabel:"Date", manualTimeLabel:"Time", manualCategoryLabel:"Category",
         manualCategoryMedical:"Medical", manualCategoryCourse:"Course", manualCategoryAdmin:"Bureaucracy", manualCategoryShopping:"Shopping", manualCategoryPersonal:"Personal",
@@ -195,7 +196,7 @@
         manualMissing:"Please enter at least title and date.", manualSaved:"Appointment saved ✅", calendarFileName:"Mama-appointment", loginNeededTitle:"Please log in", loginNeededText:"You need to log in first.", goHomeButton:"Home"
       },
       tr:{
-        backButton:"Panel", logoutButton:"Çıkış", pageTitle:"Takvim", pageText:"Randevular, muayeneler, kurslar ve hatırlatmalar.",
+        backButton:"← Geri", logoutButton:"Çıkış", pageTitle:"Takvim", pageText:"Randevular, muayeneler, kurslar ve hatırlatmalar.",
         manualEventTitle:"Randevu ekle", manualEventText:"Randevuları, kursları veya başvuruları takvime ekle.",
         manualTitleLabel:"Başlık", manualDateLabel:"Tarih", manualTimeLabel:"Saat", manualCategoryLabel:"Kategori",
         manualCategoryMedical:"Tıbbi", manualCategoryCourse:"Kurs", manualCategoryAdmin:"Bürokrasi", manualCategoryShopping:"Alışveriş", manualCategoryPersonal:"Kişisel",
@@ -206,7 +207,7 @@
         manualMissing:"Lütfen en az başlık ve tarih gir.", manualSaved:"Randevu kaydedildi ✅", calendarFileName:"Mama-randevu", loginNeededTitle:"Giriş gerekli", loginNeededText:"Önce giriş yapmalısın.", goHomeButton:"Ana sayfa"
       },
       ru:{
-        backButton:"Панель", logoutButton:"Выйти", pageTitle:"Календарь", pageText:"Встречи, обследования, курсы и напоминания.",
+        backButton:"← Назад", logoutButton:"Выйти", pageTitle:"Календарь", pageText:"Встречи, обследования, курсы и напоминания.",
         manualEventTitle:"Добавить встречу", manualEventText:"Добавьте встречи, курсы или заявления в календарь.",
         manualTitleLabel:"Название", manualDateLabel:"Дата", manualTimeLabel:"Время", manualCategoryLabel:"Категория",
         manualCategoryMedical:"Медицина", manualCategoryCourse:"Курс", manualCategoryAdmin:"Бюрократия", manualCategoryShopping:"Покупки", manualCategoryPersonal:"Личное",
@@ -217,7 +218,7 @@
         manualMissing:"Введите минимум название и дату.", manualSaved:"Встреча сохранена ✅", calendarFileName:"Mama-встреча", loginNeededTitle:"Нужно войти", loginNeededText:"Сначала войдите.", goHomeButton:"Главная"
       },
       uk:{
-        backButton:"Панель", logoutButton:"Вийти", pageTitle:"Календар", pageText:"Зустрічі, обстеження, курси і нагадування.",
+        backButton:"← Назад", logoutButton:"Вийти", pageTitle:"Календар", pageText:"Зустрічі, обстеження, курси і нагадування.",
         manualEventTitle:"Додати зустріч", manualEventText:"Додайте зустрічі, курси або заяви до календаря.",
         manualTitleLabel:"Назва", manualDateLabel:"Дата", manualTimeLabel:"Час", manualCategoryLabel:"Категорія",
         manualCategoryMedical:"Медичне", manualCategoryCourse:"Курс", manualCategoryAdmin:"Бюрократія", manualCategoryShopping:"Покупки", manualCategoryPersonal:"Особисте",
@@ -230,6 +231,7 @@
     };
 
     function t(){return translations[currentLang] || translations.de;}
+    function getLocalized(row,field){return row?.[`${field}_${currentLang}`]||row?.[`${field}_de`]||row?.[`${field}_en`]||'';}
 
     function setLanguage(lang){
       currentLang = lang;
@@ -292,6 +294,12 @@
     async function loadCalendarEvents(){
       const {data,error}=await supabaseClient.from("pregnancy_calendar_events").select("*").eq("user_id",currentUser.id).order("event_date",{ascending:true});
       calendarEvents=error?[]:(data||[]);
+
+      const {data:templates,error:templateError}=await supabaseClient.from("medical_exam_templates").select("*");
+      medicalTemplates={};
+      if(!templateError && templates){
+        templates.forEach(template=>{medicalTemplates[template.key]=template;});
+      }
     }
 
     function getEventCategoryLabel(category){
@@ -328,13 +336,15 @@
     function renderEvent(event){
       const card=document.createElement("div");
       card.className="event";
-      let description=event.description||"";
+      const template=event.source_key?medicalTemplates[event.source_key]:null;
+      const displayTitle=template?(getLocalized(template,"title")||event.title):event.title;
+      let description=template?(getLocalized(template,"description")||event.description||""):(event.description||"");
       if(event.event_time)description+=(description?"\n":"")+event.event_time;
       if(event.location)description+=(description?"\n":"")+`📍 ${event.location}`;
       card.innerHTML=`
         <div class="badge">${formatDate(parseLocalDate(event.event_date))}</div>
         <div class="badge">${getEventCategoryLabel(event.category)}</div>
-        <h3>${event.title}</h3>
+        <h3>${displayTitle}</h3>
         <p style="white-space:pre-line">${description}</p>
       `;
       const actions=document.createElement("div");

@@ -1,1 +1,196 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mama in Deutschland - Mutter & Baby</title>
+  <style>
+    :root{
+      --page:#f8f3ec;--card:#ffffff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--shadow:rgba(74,52,40,.12);
+    }
+    body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+    body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+    body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+    header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+    .language-buttons,.top-actions,.actions{display:flex;gap:8px;flex-wrap:wrap}.language-buttons button,.button-light,.logout{border:1px solid var(--border);background:white;color:var(--brown);padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none}.language-buttons button.active{background:var(--brown);color:white}.logout{background:var(--danger);color:white;border:none}
+    .card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}p{margin:0;color:var(--muted);line-height:1.65}.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.pill,.badge{display:inline-flex;width:fit-content;padding:8px 11px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 4px 6px 0}.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:20px}.stat-value{font-size:32px;font-weight:950;color:var(--brown);margin-top:6px}.soft{padding:16px;border-radius:20px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:850;margin-top:14px}.message{max-width:650px;margin:60px auto;text-align:center}.hidden{display:none!important}
+    @media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Dashboard</a>
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+        <button class="logout" onclick="signOut()" id="logoutButton">Ausloggen</button>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Mutter & Baby</h1>
+        <p id="pageText">Deine aktuelle Schwangerschaftswoche mit Entwicklung, Körper, Ernährung und Emotionen.</p>
+        <div class="pill-row">
+          <span class="pill" id="weekPill">SSW -</span>
+          <span class="pill" id="babyPill">Baby</span>
+          <span class="pill" id="cityPill">-</span>
+        </div>
+        <div class="soft" id="personalText">-</div>
+      </section>
+
+      <section class="grid-3">
+        <div class="box">
+          <span class="badge" id="lengthLabel">Größe</span>
+          <div class="stat-value" id="babyLength">-</div>
+        </div>
+        <div class="box">
+          <span class="badge" id="weightLabel">Gewicht</span>
+          <div class="stat-value" id="babyWeight">-</div>
+        </div>
+        <div class="box">
+          <span class="badge" id="dueLabel">Termin</span>
+          <div class="stat-value" id="dueDate">-</div>
+        </div>
+      </section>
+
+      <section class="grid-2" style="margin-top:18px;">
+        <div class="box">
+          <h2 id="babyTitle">Baby</h2>
+          <p id="babyText">-</p>
+        </div>
+        <div class="box">
+          <h2 id="motherTitle">Dein Körper</h2>
+          <p id="motherText">-</p>
+        </div>
+        <div class="box">
+          <h2 id="tipTitle">Mama-Tipp</h2>
+          <p id="tipText">-</p>
+        </div>
+        <div class="box">
+          <h2 id="nutritionTitle">Ernährung</h2>
+          <p id="nutritionText">-</p>
+        </div>
+        <div class="box">
+          <h2 id="emotionTitle">Emotional</h2>
+          <p id="emotionText">-</p>
+        </div>
+        <div class="box">
+          <h2 id="nextTitle">Nächste Schritte</h2>
+          <p id="nextText">Öffne Kalender, Medizin oder Bürokratie für weitere Details.</p>
+          <div class="actions" style="margin-top:12px;">
+            <a class="button-light" href="calendar.html" id="calendarLink">Kalender</a>
+            <a class="button-light" href="medical.html" id="medicalLink">Medizin</a>
+            <a class="button-light" href="bureaucracy.html" id="bureaucracyLink">Bürokratie</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="message card" id="loginMessage" style="display:none;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p><br />
+      <a class="button-light" href="index.html" id="homeLink">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"de",currentWeek=1;
+
+    const translations={
+      de:{backButton:"Dashboard",logoutButton:"Ausloggen",pageTitle:"Mutter & Baby",pageText:"Deine aktuelle Schwangerschaftswoche mit Entwicklung, Körper, Ernährung und Emotionen.",weekWord:"SSW",babyDefault:"Baby",lengthLabel:"Größe",weightLabel:"Gewicht",dueLabel:"Termin",babyTitle:"Baby",motherTitle:"Dein Körper",tipTitle:"Mama-Tipp",nutritionTitle:"Ernährung",emotionTitle:"Emotional",nextTitle:"Nächste Schritte",nextText:"Öffne Kalender, Medizin oder Bürokratie für weitere Details.",calendarLink:"Kalender",medicalLink:"Medizin",bureaucracyLink:"Bürokratie",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",homeLink:"Zur Startseite",fallbackPersonal:"{babyName} begleitet dich diese Woche. Jeder kleine Schritt zählt.",fallbackBaby:"Dein Baby entwickelt sich weiter. Die genauen Inhalte werden aus deiner Wochen-Datenbank geladen.",fallbackMother:"Achte auf deinen Körper und nimm Beschwerden ernst.",fallbackTip:"Notiere Fragen für deine Hebamme oder Frauenärztin.",fallbackNutrition:"Trinke genug und achte auf ausgewogene, sichere Lebensmittel.",fallbackEmotion:"Es ist normal, wenn Gefühle schwanken."},
+      fr:{backButton:"Dashboard",logoutButton:"Déconnexion",pageTitle:"Maman & bébé",pageText:"Ta semaine actuelle avec développement, corps, nutrition et émotions.",weekWord:"SSW",babyDefault:"Bébé",lengthLabel:"Taille",weightLabel:"Poids",dueLabel:"Terme",babyTitle:"Bébé",motherTitle:"Ton corps",tipTitle:"Conseil maman",nutritionTitle:"Nutrition",emotionTitle:"Émotionnel",nextTitle:"Prochaines étapes",nextText:"Ouvre le calendrier, le médical ou la bureaucratie pour plus de détails.",calendarLink:"Calendrier",medicalLink:"Médical",bureaucracyLink:"Bureaucratie",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",homeLink:"Accueil",fallbackPersonal:"{babyName} t’accompagne cette semaine. Chaque petit pas compte.",fallbackBaby:"Ton bébé continue son développement. Le contenu précis vient de ta base hebdomadaire.",fallbackMother:"Écoute ton corps et prends les symptômes au sérieux.",fallbackTip:"Note tes questions pour la sage-femme ou la gynécologue.",fallbackNutrition:"Bois suffisamment et privilégie une alimentation équilibrée et sûre.",fallbackEmotion:"Les variations émotionnelles sont normales."},
+      ar:{backButton:"لوحة التحكم",logoutButton:"تسجيل الخروج",pageTitle:"الأم والطفل",pageText:"أسبوع الحمل الحالي مع تطور الطفل والجسم والتغذية والمشاعر.",weekWord:"أسبوع الحمل",babyDefault:"الطفل",lengthLabel:"الطول",weightLabel:"الوزن",dueLabel:"موعد الولادة",babyTitle:"الطفل",motherTitle:"جسمك",tipTitle:"نصيحة للأم",nutritionTitle:"التغذية",emotionTitle:"المشاعر",nextTitle:"الخطوات القادمة",nextText:"افتحي التقويم أو الطب أو الإجراءات لمزيد من التفاصيل.",calendarLink:"التقويم",medicalLink:"طبي",bureaucracyLink:"الإجراءات",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",homeLink:"الصفحة الرئيسية",fallbackPersonal:"{babyName} يرافقك هذا الأسبوع. كل خطوة صغيرة مهمة.",fallbackBaby:"طفلك يواصل النمو. سيتم تحميل التفاصيل من قاعدة بيانات الأسابيع.",fallbackMother:"استمعي لجسمك وخذي الأعراض بجدية.",fallbackTip:"اكتبي أسئلتك للقابلة أو طبيبة النساء.",fallbackNutrition:"اشربي جيداً واهتمي بغذاء متوازن وآمن.",fallbackEmotion:"تغير المشاعر أمر طبيعي."},
+      en:{backButton:"Dashboard",logoutButton:"Log out",pageTitle:"Mother & baby",pageText:"Your current week with development, body, nutrition and emotions.",weekWord:"Week",babyDefault:"Baby",lengthLabel:"Length",weightLabel:"Weight",dueLabel:"Due date",babyTitle:"Baby",motherTitle:"Your body",tipTitle:"Mother tip",nutritionTitle:"Nutrition",emotionTitle:"Emotional",nextTitle:"Next steps",nextText:"Open calendar, medical or bureaucracy for more details.",calendarLink:"Calendar",medicalLink:"Medical",bureaucracyLink:"Bureaucracy",loginTitle:"Please log in",loginText:"You need to sign in first.",homeLink:"Home",fallbackPersonal:"{babyName} is with you this week. Every small step matters.",fallbackBaby:"Your baby continues to develop. Detailed content is loaded from your weekly database.",fallbackMother:"Listen to your body and take symptoms seriously.",fallbackTip:"Write down questions for your midwife or gynecologist.",fallbackNutrition:"Drink enough and choose balanced, safe foods.",fallbackEmotion:"Emotional ups and downs are normal."},
+      tr:{backButton:"Panel",logoutButton:"Çıkış",pageTitle:"Anne & bebek",pageText:"Gelişim, beden, beslenme ve duygularla mevcut haftan.",weekWord:"Hafta",babyDefault:"Bebek",lengthLabel:"Boy",weightLabel:"Kilo",dueLabel:"Doğum tarihi",babyTitle:"Bebek",motherTitle:"Vücudun",tipTitle:"Anne ipucu",nutritionTitle:"Beslenme",emotionTitle:"Duygusal",nextTitle:"Sonraki adımlar",nextText:"Daha fazla detay için takvim, tıbbi veya bürokrasi bölümünü aç.",calendarLink:"Takvim",medicalLink:"Tıbbi",bureaucracyLink:"Bürokrasi",loginTitle:"Giriş yap",loginText:"Önce giriş yapmalısın.",homeLink:"Ana sayfa",fallbackPersonal:"{babyName} bu hafta seninle. Her küçük adım önemlidir.",fallbackBaby:"Bebeğin gelişmeye devam ediyor.",fallbackMother:"Vücudunu dinle.",fallbackTip:"Sorularını not et.",fallbackNutrition:"Yeterince su iç ve güvenli beslen.",fallbackEmotion:"Duygu değişimleri normaldir."},
+      ru:{backButton:"Панель",logoutButton:"Выйти",pageTitle:"Мама и малыш",pageText:"Текущая неделя: развитие, тело, питание и эмоции.",weekWord:"Неделя",babyDefault:"Малыш",lengthLabel:"Рост",weightLabel:"Вес",dueLabel:"Дата",babyTitle:"Малыш",motherTitle:"Ваше тело",tipTitle:"Совет",nutritionTitle:"Питание",emotionTitle:"Эмоции",nextTitle:"Следующие шаги",nextText:"Откройте календарь, медицину или бюрократию для деталей.",calendarLink:"Календарь",medicalLink:"Медицина",bureaucracyLink:"Бюрократия",loginTitle:"Войдите",loginText:"Сначала нужно войти.",homeLink:"Главная",fallbackPersonal:"{babyName} с вами на этой неделе. Каждый маленький шаг важен.",fallbackBaby:"Ваш малыш продолжает развиваться.",fallbackMother:"Прислушивайтесь к телу.",fallbackTip:"Запишите вопросы врачу или акушерке.",fallbackNutrition:"Пейте достаточно и выбирайте безопасную еду.",fallbackEmotion:"Эмоциональные колебания нормальны."},
+      uk:{backButton:"Панель",logoutButton:"Вийти",pageTitle:"Мама і малюк",pageText:"Поточний тиждень: розвиток, тіло, харчування та емоції.",weekWord:"Тиждень",babyDefault:"Малюк",lengthLabel:"Зріст",weightLabel:"Вага",dueLabel:"Дата",babyTitle:"Малюк",motherTitle:"Ваше тіло",tipTitle:"Порада",nutritionTitle:"Харчування",emotionTitle:"Емоції",nextTitle:"Наступні кроки",nextText:"Відкрийте календар, медицину або бюрократію для деталей.",calendarLink:"Календар",medicalLink:"Медицина",bureaucracyLink:"Бюрократія",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",homeLink:"Головна",fallbackPersonal:"{babyName} з вами цього тижня. Кожен маленький крок важливий.",fallbackBaby:"Ваш малюк продовжує розвиватися.",fallbackMother:"Прислухайтеся до тіла.",fallbackTip:"Запишіть питання лікарю або акушерці.",fallbackNutrition:"Пийте достатньо і обирайте безпечну їжу.",fallbackEmotion:"Емоційні зміни нормальні."}
+    };
+
+    function t(){return translations[currentLang]||translations.de}
+    function getLocalized(row,field){return row?.[`${field}_${currentLang}`]||row?.[`${field}_de`]||row?.[`${field}_en`]||""}
+    function parseLocalDate(value){const p=value.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
+    function addDays(date,days){const r=new Date(date);r.setDate(r.getDate()+days);return r}
+    function calculatePregnancy(dueDate){const today=new Date();today.setHours(0,0,0,0);const start=addDays(dueDate,-280);let week=Math.floor((today-start)/(1000*60*60*24*7))+1;if(week<1)week=1;if(week>42)week=42;return week}
+    function formatDate(date){const locale=currentLang==="de"?"de-DE":currentLang==="fr"?"fr-FR":currentLang==="ar"?"ar-SA":currentLang==="tr"?"tr-TR":currentLang==="ru"?"ru-RU":currentLang==="uk"?"uk-UA":"en-GB";return date.toLocaleDateString(locale,{day:"2-digit",month:"2-digit",year:"numeric"})}
+    function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+    function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+
+    function setLanguage(lang){
+      currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+      document.querySelectorAll(".language-buttons button").forEach(b=>b.classList.remove("active"));document.getElementById("lang-"+lang)?.classList.add("active");
+      ["backButton","logoutButton","pageTitle","pageText","lengthLabel","weightLabel","dueLabel","babyTitle","motherTitle","tipTitle","nutritionTitle","emotionTitle","nextTitle","nextText","calendarLink","medicalLink","bureaucracyLink","loginTitle","loginText","homeLink"].forEach(id=>{const el=document.getElementById(id);if(el&&t()[id])el.textContent=t()[id]});
+      renderPage();
+    }
+
+    async function loadPage(){
+      const {data,error}=await supabaseClient.auth.getSession();
+      if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+      currentUser=data.session.user;
+      const {data:profiles,error:profileError}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+      if(profileError||!profiles?.length){window.location.href="index.html?reason=no_profile";return}
+      currentProfile=profiles[0];currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+      applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+      document.getElementById("appShell").style.display="block";
+      setLanguage(currentLang);
+      await loadWeeklyContent();
+    }
+
+    function renderPage(){
+      if(!currentProfile)return;
+      const babyName=currentProfile.baby_name||t().babyDefault;
+      document.getElementById("babyPill").textContent=babyName;
+      document.getElementById("cityPill").textContent=currentProfile.city||"-";
+      if(currentProfile.due_date){
+        const due=parseLocalDate(currentProfile.due_date);currentWeek=calculatePregnancy(due);
+        document.getElementById("weekPill").textContent=`${t().weekWord} ${currentWeek}`;
+        document.getElementById("dueDate").textContent=formatDate(due);
+      }
+      document.getElementById("personalText").textContent=t().fallbackPersonal.replace("{babyName}",babyName);
+      document.getElementById("babyText").textContent=t().fallbackBaby;
+      document.getElementById("motherText").textContent=t().fallbackMother;
+      document.getElementById("tipText").textContent=t().fallbackTip;
+      document.getElementById("nutritionText").textContent=t().fallbackNutrition;
+      document.getElementById("emotionText").textContent=t().fallbackEmotion;
+    }
+
+    async function loadWeeklyContent(){
+      if(!currentProfile)return;
+      const {data,error}=await supabaseClient.from("weekly_baby_content").select("*").lte("week_number",currentWeek).order("week_number",{ascending:false}).limit(1);
+      if(error||!data?.length){renderPage();return}
+      const row=data[0];const babyName=currentProfile.baby_name||t().babyDefault;
+      document.getElementById("personalText").textContent=(getLocalized(row,"baby_personal")||t().fallbackPersonal).replaceAll("{babyName}",babyName).replaceAll("{week}",String(currentWeek));
+      document.getElementById("babyLength").textContent=row.baby_length_cm?`${row.baby_length_cm} cm`:"-";
+      document.getElementById("babyWeight").textContent=row.baby_weight_g?`${row.baby_weight_g} g`:"-";
+      document.getElementById("babyText").textContent=getLocalized(row,"baby_text")||t().fallbackBaby;
+      document.getElementById("motherText").textContent=getLocalized(row,"body_change")||t().fallbackMother;
+      document.getElementById("tipText").textContent=getLocalized(row,"mother_tip")||t().fallbackTip;
+      document.getElementById("nutritionText").textContent=getLocalized(row,"nutrition")||t().fallbackNutrition;
+      document.getElementById("emotionText").textContent=getLocalized(row,"emotional_note")||t().fallbackEmotion;
+    }
+
+    async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+    loadPage();
+  </script>
+</body>
+</html>

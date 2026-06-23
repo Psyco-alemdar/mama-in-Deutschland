@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mama in Deutschland - Emotionen</title>
+
+  <style>
+    :root {
+      --page:#f8f3ec;
+      --card:#ffffff;
+      --cream:#fffaf4;
+      --soft:#f3eadf;
+      --brown:#4a3428;
+      --light:#9b7357;
+      --text:#2f2621;
+      --muted:#7b6a60;
+      --border:#eadfd2;
+      --danger:#b45b48;
+      --success:#5f8d63;
+      --shadow:rgba(74,52,40,.12);
+    }
+
+    body.theme-boy {
+      --page:#eef7ff;
+      --cream:#f7fbff;
+      --soft:#e8f4ff;
+      --brown:#244b6b;
+      --light:#5f93bd;
+      --text:#1d3347;
+      --muted:#5c7285;
+      --border:#d6e8f7;
+      --shadow:rgba(36,75,107,.12);
+    }
+
+    body.theme-girl {
+      --page:#fff1f5;
+      --cream:#fff8fa;
+      --soft:#fde8ef;
+      --brown:#7a3d55;
+      --light:#c47a98;
+      --text:#3d2430;
+      --muted:#7b6070;
+      --border:#f0d4df;
+      --shadow:rgba(122,61,85,.12);
+    }
+
+    body.theme-twin {
+      --page:#f1f7ef;
+      --cream:#fbfff8;
+      --soft:#e7f3df;
+      --brown:#3e5c3a;
+      --light:#7ca878;
+      --text:#263522;
+      --muted:#62745f;
+      --border:#dbe9d4;
+      --shadow:rgba(62,92,58,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+        linear-gradient(180deg,#fbf7f1,var(--page));
+      color:var(--text);
+    }
+
+    .wrap {
+      max-width:1180px;
+      margin:0 auto;
+      padding:24px 18px;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--brown);
+      font-size:23px;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+
+    .brand-icon {
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--brown),var(--light));
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      box-shadow:0 14px 28px var(--shadow);
+    }
+
+    .top-actions,
+    .language-buttons,
+    .actions,
+    .mood-row {
+      display:flex;
+      gap:9px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .language-buttons button,
+    .button-light,
+    .button,
+    .mood-button {
+      border:1px solid var(--border);
+      background:white;
+      color:var(--brown);
+      padding:10px 13px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      text-decoration:none;
+      font-family:inherit;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .language-buttons button.active,
+    .mood-button.active {
+      background:var(--brown);
+      color:white;
+    }
+
+    .button {
+      background:var(--brown);
+      color:white;
+      border-color:var(--brown);
+    }
+
+    .button-danger {
+      border:1px solid #f1c9bf;
+      background:#fff0ec;
+      color:var(--danger);
+      padding:10px 13px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      font-family:inherit;
+    }
+
+    .card {
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:24px;
+      box-shadow:0 24px 70px var(--shadow);
+      backdrop-filter:blur(16px);
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3 {
+      color:var(--brown);
+      margin:0 0 12px;
+    }
+
+    h1 {
+      font-size:34px;
+      letter-spacing:-1.5px;
+    }
+
+    h2 {
+      font-size:25px;
+      letter-spacing:-.7px;
+    }
+
+    h3 {
+      font-size:17px;
+    }
+
+    p {
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .soft {
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--soft);
+      border:1px solid var(--border);
+      color:var(--brown);
+      font-weight:900;
+      margin-top:14px;
+    }
+
+    .grid-2 {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .box,
+    .entry-card {
+      background:linear-gradient(180deg,var(--cream),white);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    label {
+      display:block;
+      margin:14px 0 7px;
+      color:var(--brown);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    input,
+    textarea {
+      width:100%;
+      padding:13px 14px;
+      border-radius:15px;
+      border:1px solid var(--border);
+      background:#fffdf9;
+      color:var(--text);
+      font-size:15px;
+      font-family:inherit;
+      outline:none;
+    }
+
+    textarea {
+      min-height:120px;
+      resize:vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color:var(--light);
+      box-shadow:0 0 0 4px rgba(155,115,87,.12);
+    }
+
+    .entries {
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .badge {
+      display:inline-flex;
+      width:fit-content;
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--brown);
+      font-size:12px;
+      font-weight:900;
+      margin:0 5px 8px 0;
+    }
+
+    .empty {
+      padding:18px;
+      border-radius:18px;
+      background:var(--soft);
+      color:var(--muted);
+      border:1px solid var(--border);
+    }
+
+    .message {
+      display:none;
+      margin-top:14px;
+      padding:14px 15px;
+      border-radius:18px;
+      font-weight:850;
+      line-height:1.45;
+    }
+
+    .message.success {
+      display:block;
+      background:#edf7ee;
+      color:var(--success);
+      border:1px solid #cfe8d2;
+    }
+
+    .login-message {
+      max-width:650px;
+      margin:60px auto;
+      text-align:center;
+    }
+
+    @media(max-width:900px) {
+      .grid-2 {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        padding:18px 12px;
+      }
+
+      h1 {
+        font-size:28px;
+      }
+
+      .card {
+        padding:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <span>Mama in Deutschland</span>
+      </div>
+
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Zurück</a>
+
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Emotionen</h1>
+        <p id="pageText">Ein privater Ort für Gefühle, Gedanken, Erinnerungen und kleine Notizen während der Schwangerschaft.</p>
+        <div class="soft" id="privacyBox">Privat im Browser gespeichert.</div>
+      </section>
+
+      <section class="grid-2">
+        <div class="card">
+          <h2 id="newEntryTitle">Neuer Eintrag</h2>
+
+          <label id="moodLabel">Wie fühlst du dich heute?</label>
+          <div class="mood-row">
+            <button class="mood-button" onclick="setMood('happy')" id="moodHappy">😊</button>
+            <button class="mood-button" onclick="setMood('calm')" id="moodCalm">😌</button>
+            <button class="mood-button" onclick="setMood('tired')" id="moodTired">😴</button>
+            <button class="mood-button" onclick="setMood('worried')" id="moodWorried">😟</button>
+            <button class="mood-button" onclick="setMood('love')" id="moodLove">💗</button>
+          </div>
+
+          <label id="titleLabel" for="entryTitle">Titel</label>
+          <input id="entryTitle" />
+
+          <label id="noteLabel" for="entryNote">Notiz</label>
+          <textarea id="entryNote"></textarea>
+
+          <div class="actions" style="margin-top:14px;">
+            <button class="button" onclick="saveEntry()" id="saveButton">Speichern</button>
+            <button class="button-light" onclick="clearForm()" id="clearButton">Leeren</button>
+          </div>
+
+          <div class="message" id="messageBox"></div>
+        </div>
+
+        <div class="card">
+          <h2 id="tipsTitle">Kleine Erinnerung</h2>
+          <div class="box">
+            <h3 id="tip1Title">Du musst nicht perfekt sein</h3>
+            <p id="tip1Text">Schwangerschaft kann schön und gleichzeitig anstrengend sein. Beide Gefühle dürfen da sein.</p>
+          </div>
+          <br />
+          <div class="box">
+            <h3 id="tip2Title">Wann Hilfe holen?</h3>
+            <p id="tip2Text">Wenn Angst, Traurigkeit oder Überforderung stark werden oder länger bleiben, sprich mit Hebamme, Frauenarzt oder Hausarzt.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 id="entriesTitle">Meine Einträge</h2>
+        <div class="entries" id="entriesList"></div>
+      </section>
+    </main>
+
+    <section class="login-message card" id="loginMessage" style="display:none;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p>
+      <br />
+      <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let currentProfile = null;
+    let currentLang = localStorage.getItem("mama_lang") || "de";
+    let selectedMood = "happy";
+
+    const translations = {
+      de:{
+        backButton:"Zurück",
+        pageTitle:"Emotionen",
+        pageText:"Ein privater Ort für Gefühle, Gedanken, Erinnerungen und kleine Notizen während der Schwangerschaft.",
+        privacyBox:"Privat im Browser gespeichert.",
+        newEntryTitle:"Neuer Eintrag",
+        moodLabel:"Wie fühlst du dich heute?",
+        titleLabel:"Titel",
+        noteLabel:"Notiz",
+        saveButton:"Speichern",
+        clearButton:"Leeren",
+        tipsTitle:"Kleine Erinnerung",
+        tip1Title:"Du musst nicht perfekt sein",
+        tip1Text:"Schwangerschaft kann schön und gleichzeitig anstrengend sein. Beide Gefühle dürfen da sein.",
+        tip2Title:"Wann Hilfe holen?",
+        tip2Text:"Wenn Angst, Traurigkeit oder Überforderung stark werden oder länger bleiben, sprich mit Hebamme, Frauenarzt oder Hausarzt.",
+        entriesTitle:"Meine Einträge",
+        loginTitle:"Bitte einloggen",
+        loginText:"Du musst dich zuerst anmelden.",
+        loginBackButton:"Zur Startseite",
+        saved:"Gespeichert ✅",
+        empty:"Noch keine Einträge vorhanden.",
+        delete:"Löschen",
+        today:"Heute",
+        mood_happy:"Glücklich",
+        mood_calm:"Ruhig",
+        mood_tired:"Müde",
+        mood_worried:"Besorgt",
+        mood_love:"Liebe"
+      },
+      fr:{
+        backButton:"Retour",
+        pageTitle:"Émotions",
+        pageText:"Un espace privé pour les sentiments, pensées, souvenirs et petites notes pendant la grossesse.",
+        privacyBox:"Enregistré en privé dans le navigateur.",
+        newEntryTitle:"Nouvelle note",
+        moodLabel:"Comment te sens-tu aujourd’hui ?",
+        titleLabel:"Titre",
+        noteLabel:"Note",
+        saveButton:"Enregistrer",
+        clearButton:"Vider",
+        tipsTitle:"Petit rappel",
+        tip1Title:"Tu n’as pas besoin d’être parfaite",
+        tip1Text:"La grossesse peut être belle et difficile en même temps. Les deux sentiments sont permis.",
+        tip2Title:"Quand demander de l’aide ?",
+        tip2Text:"Si l’anxiété, la tristesse ou le débordement deviennent forts ou durent, parle à la sage-femme, au gynécologue ou au médecin traitant.",
+        entriesTitle:"Mes notes",
+        loginTitle:"Connexion nécessaire",
+        loginText:"Tu dois d’abord te connecter.",
+        loginBackButton:"Retour à l’accueil",
+        saved:"Enregistré ✅",
+        empty:"Aucune note pour le moment.",
+        delete:"Supprimer",
+        today:"Aujourd’hui",
+        mood_happy:"Heureuse",
+        mood_calm:"Calme",
+        mood_tired:"Fatiguée",
+        mood_worried:"Inquiète",
+        mood_love:"Amour"
+      },
+      ar:{
+        backButton:"رجوع",
+        pageTitle:"المشاعر",
+        pageText:"مكان خاص للمشاعر والأفكار والذكريات والملاحظات الصغيرة أثناء الحمل.",
+        privacyBox:"محفوظ بشكل خاص في المتصفح.",
+        newEntryTitle:"إدخال جديد",
+        moodLabel:"كيف تشعرين اليوم؟",
+        titleLabel:"العنوان",
+        noteLabel:"الملاحظة",
+        saveButton:"حفظ",
+        clearButton:"مسح",
+        tipsTitle:"تذكير صغير",
+        tip1Title:"ليس عليك أن تكوني مثالية",
+        tip1Text:"الحمل يمكن أن يكون جميلاً ومتعباً في نفس الوقت. كلا الشعورين طبيعيان.",
+        tip2Title:"متى أطلب المساعدة؟",
+        tip2Text:"إذا أصبح الخوف أو الحزن أو الضغط قوياً أو مستمراً، تحدثي مع القابلة أو طبيبة النساء أو طبيب العائلة.",
+        entriesTitle:"ملاحظاتي",
+        loginTitle:"يرجى تسجيل الدخول",
+        loginText:"يجب تسجيل الدخول أولاً.",
+        loginBackButton:"العودة للرئيسية",
+        saved:"تم الحفظ ✅",
+        empty:"لا توجد ملاحظات حالياً.",
+        delete:"حذف",
+        today:"اليوم",
+        mood_happy:"سعيدة",
+        mood_calm:"هادئة",
+        mood_tired:"متعبة",
+        mood_worried:"قلقة",
+        mood_love:"حب"
+      },
+      en:{
+        backButton:"Back",
+        pageTitle:"Emotions",
+        pageText:"A private place for feelings, thoughts, memories and small notes during pregnancy.",
+        privacyBox:"Stored privately in your browser.",
+        newEntryTitle:"New entry",
+        moodLabel:"How do you feel today?",
+        titleLabel:"Title",
+        noteLabel:"Note",
+        saveButton:"Save",
+        clearButton:"Clear",
+        tipsTitle:"Small reminder",
+        tip1Title:"You do not need to be perfect",
+        tip1Text:"Pregnancy can be beautiful and difficult at the same time. Both feelings are allowed.",
+        tip2Title:"When to get help?",
+        tip2Text:"If anxiety, sadness or overwhelm become strong or last longer, talk to your midwife, gynecologist or family doctor.",
+        entriesTitle:"My entries",
+        loginTitle:"Please log in",
+        loginText:"You need to log in first.",
+        loginBackButton:"Back to home",
+        saved:"Saved ✅",
+        empty:"No entries yet.",
+        delete:"Delete",
+        today:"Today",
+        mood_happy:"Happy",
+        mood_calm:"Calm",
+        mood_tired:"Tired",
+        mood_worried:"Worried",
+        mood_love:"Love"
+      },
+      tr:{
+        backButton:"Geri",
+        pageTitle:"Duygular",
+        pageText:"Hamilelik boyunca duygular, düşünceler, anılar ve küçük notlar için özel bir alan.",
+        privacyBox:"Tarayıcıda özel olarak saklanır.",
+        newEntryTitle:"Yeni kayıt",
+        moodLabel:"Bugün nasıl hissediyorsun?",
+        titleLabel:"Başlık",
+        noteLabel:"Not",
+        saveButton:"Kaydet",
+        clearButton:"Temizle",
+        tipsTitle:"Küçük hatırlatma",
+        tip1Title:"Mükemmel olmak zorunda değilsin",
+        tip1Text:"Hamilelik güzel ve aynı zamanda zor olabilir. İki duygu da normaldir.",
+        tip2Title:"Ne zaman yardım alınmalı?",
+        tip2Text:"Kaygı, üzüntü veya bunalmışlık güçlü olursa ya da uzun sürerse ebe, kadın doğum doktoru veya aile hekimiyle konuş.",
+        entriesTitle:"Kayıtlarım",
+        loginTitle:"Lütfen giriş yap",
+        loginText:"Önce giriş yapmalısın.",
+        loginBackButton:"Ana sayfaya dön",
+        saved:"Kaydedildi ✅",
+        empty:"Henüz kayıt yok.",
+        delete:"Sil",
+        today:"Bugün",
+        mood_happy:"Mutlu",
+        mood_calm:"Sakin",
+        mood_tired:"Yorgun",
+        mood_worried:"Endişeli",
+        mood_love:"Sevgi"
+      },
+      ru:{
+        backButton:"Назад",
+        pageTitle:"Эмоции",
+        pageText:"Приватное место для чувств, мыслей, воспоминаний и небольших заметок во время беременности.",
+        privacyBox:"Приватно хранится в браузере.",
+        newEntryTitle:"Новая запись",
+        moodLabel:"Как вы себя чувствуете сегодня?",
+        titleLabel:"Название",
+        noteLabel:"Заметка",
+        saveButton:"Сохранить",
+        clearButton:"Очистить",
+        tipsTitle:"Небольшое напоминание",
+        tip1Title:"Не нужно быть идеальной",
+        tip1Text:"Беременность может быть красивой и одновременно трудной. Оба чувства допустимы.",
+        tip2Title:"Когда обращаться за помощью?",
+        tip2Text:"Если тревога, грусть или перегрузка становятся сильными или длятся долго, поговорите с акушеркой, гинекологом или семейным врачом.",
+        entriesTitle:"Мои записи",
+        loginTitle:"Войдите в аккаунт",
+        loginText:"Сначала нужно войти.",
+        loginBackButton:"На главную",
+        saved:"Сохранено ✅",
+        empty:"Пока нет записей.",
+        delete:"Удалить",
+        today:"Сегодня",
+        mood_happy:"Счастлива",
+        mood_calm:"Спокойна",
+        mood_tired:"Устала",
+        mood_worried:"Тревожно",
+        mood_love:"Любовь"
+      },
+      uk:{
+        backButton:"Назад",
+        pageTitle:"Емоції",
+        pageText:"Приватне місце для почуттів, думок, спогадів і невеликих нотаток під час вагітності.",
+        privacyBox:"Приватно зберігається у браузері.",
+        newEntryTitle:"Новий запис",
+        moodLabel:"Як ви почуваєтеся сьогодні?",
+        titleLabel:"Назва",
+        noteLabel:"Нотатка",
+        saveButton:"Зберегти",
+        clearButton:"Очистити",
+        tipsTitle:"Невелике нагадування",
+        tip1Title:"Не потрібно бути ідеальною",
+        tip1Text:"Вагітність може бути красивою і водночас важкою. Обидва почуття допустимі.",
+        tip2Title:"Коли звернутися по допомогу?",
+        tip2Text:"Якщо тривога, сум або перевантаження сильні або тривають довго, поговоріть з акушеркою, гінекологом або сімейним лікарем.",
+        entriesTitle:"Мої записи",
+        loginTitle:"Увійдіть",
+        loginText:"Спочатку потрібно увійти.",
+        loginBackButton:"На головну",
+        saved:"Збережено ✅",
+        empty:"Поки немає записів.",
+        delete:"Видалити",
+        today:"Сьогодні",
+        mood_happy:"Щаслива",
+        mood_calm:"Спокійна",
+        mood_tired:"Втомлена",
+        mood_worried:"Тривожно",
+        mood_love:"Любов"
+      }
+    };
+
+    function t(){
+      return translations[currentLang] || translations.de;
+    }
+
+    function setLanguage(lang){
+      currentLang = lang;
+      localStorage.setItem("mama_lang", lang);
+
+      document.documentElement.lang = lang;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+      const active = document.getElementById("lang-" + lang);
+      if (active) active.classList.add("active");
+
+      const tr = t();
+
+      Object.keys(tr).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = tr[id];
+      });
+
+      renderEntries();
+    }
+
+    function determineTheme(type, gender){
+      if (gender === "boy" || gender === "twin_boys") return "boy";
+      if (gender === "girl" || gender === "twin_girls") return "girl";
+      if (type === "twins" || gender === "twin_mixed") return "twin";
+      return "neutral";
+    }
+
+    function applyTheme(theme){
+      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+      if (theme === "boy") document.body.classList.add("theme-boy");
+      if (theme === "girl") document.body.classList.add("theme-girl");
+      if (theme === "twin") document.body.classList.add("theme-twin");
+    }
+
+    async function loadApp(){
+      const { data, error } = await supabaseClient.auth.getSession();
+
+      if (error || !data.session) {
+        document.getElementById("loginMessage").style.display = "block";
+        document.getElementById("appShell").style.display = "none";
+        return;
+      }
+
+      currentUser = data.session.user;
+
+      const { data: profiles, error: profileError } = await supabaseClient
+        .from("pregnancy_profiles")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .order("created_at", { ascending:false })
+        .limit(1);
+
+      if (profileError || !profiles || profiles.length === 0) {
+        window.location.href = "index.html?reason=no_profile";
+        return;
+      }
+
+      currentProfile = profiles[0];
+      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+      applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+      document.getElementById("loginMessage").style.display = "none";
+      document.getElementById("appShell").style.display = "block";
+
+      setLanguage(currentLang);
+      setMood(selectedMood);
+      renderEntries();
+    }
+
+    function moodEmoji(mood){
+      if (mood === "happy") return "😊";
+      if (mood === "calm") return "😌";
+      if (mood === "tired") return "😴";
+      if (mood === "worried") return "😟";
+      if (mood === "love") return "💗";
+      return "📝";
+    }
+
+    function moodLabel(mood){
+      return t()["mood_" + mood] || mood;
+    }
+
+    function setMood(mood){
+      selectedMood = mood;
+
+      ["happy","calm","tired","worried","love"].forEach(item => {
+        const button = document.getElementById("mood" + item.charAt(0).toUpperCase() + item.slice(1));
+        if (button) button.classList.toggle("active", item === mood);
+      });
+    }
+
+    function storageKey(){
+      return "mama-emotions-" + (currentUser?.id || "guest");
+    }
+
+    function getEntries(){
+      try {
+        return JSON.parse(localStorage.getItem(storageKey())) || [];
+      } catch(e) {
+        return [];
+      }
+    }
+
+    function saveEntries(entries){
+      localStorage.setItem(storageKey(), JSON.stringify(entries));
+    }
+
+    function showMessage(text){
+      const box = document.getElementById("messageBox");
+      box.className = "message success";
+      box.textContent = text;
+      setTimeout(() => {
+        box.className = "message";
+        box.textContent = "";
+      }, 2200);
+    }
+
+    function saveEntry(){
+      const title = document.getElementById("entryTitle").value.trim();
+      const note = document.getElementById("entryNote").value.trim();
+
+      if (!title && !note) return;
+
+      const entries = getEntries();
+
+      entries.unshift({
+        id:Date.now(),
+        mood:selectedMood,
+        title,
+        note,
+        created_at:new Date().toISOString()
+      });
+
+      saveEntries(entries);
+      clearForm();
+      renderEntries();
+      showMessage(t().saved);
+    }
+
+    function clearForm(){
+      document.getElementById("entryTitle").value = "";
+      document.getElementById("entryNote").value = "";
+      setMood("happy");
+    }
+
+    function deleteEntry(id){
+      const entries = getEntries().filter(entry => entry.id !== id);
+      saveEntries(entries);
+      renderEntries();
+    }
+
+    function getDateLocale(){
+      return currentLang === "de" ? "de-DE" :
+             currentLang === "fr" ? "fr-FR" :
+             currentLang === "ar" ? "ar-EG-u-ca-gregory-nu-latn" :
+             currentLang === "tr" ? "tr-TR" :
+             currentLang === "ru" ? "ru-RU" :
+             currentLang === "uk" ? "uk-UA" :
+             "en-GB";
+    }
+
+    function formatDate(value){
+      const date = new Date(value);
+
+      return date.toLocaleDateString(getDateLocale(), {
+        day:"2-digit",
+        month:"long",
+        year:"numeric",
+        calendar:"gregory",
+        numberingSystem:"latn"
+      });
+    }
+
+    function renderEntries(){
+      const list = document.getElementById("entriesList");
+      if (!list) return;
+
+      list.innerHTML = "";
+
+      const entries = getEntries();
+
+      if (entries.length === 0) {
+        list.innerHTML = `<div class="empty">${t().empty}</div>`;
+        return;
+      }
+
+      entries.forEach(entry => {
+        const card = document.createElement("div");
+        card.className = "entry-card";
+
+        card.innerHTML = `
+          <div class="badge">${moodEmoji(entry.mood)} ${moodLabel(entry.mood)}</div>
+          <div class="badge">${formatDate(entry.created_at)}</div>
+          <h3>${entry.title || t().today}</h3>
+          <p>${entry.note || ""}</p>
+          <div class="actions" style="margin-top:14px;">
+            <button class="button-danger" onclick="deleteEntry(${entry.id})">${t().delete}</button>
+          </div>
+        `;
+
+        list.appendChild(card);
+      });
+    }
+
+    loadApp();
+  </script>
+</body>
+</html>

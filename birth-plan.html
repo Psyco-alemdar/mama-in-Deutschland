@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mama in Deutschland - Geburtsplan</title>
+
+  <style>
+    :root {
+      --page:#f8f3ec;
+      --card:#ffffff;
+      --cream:#fffaf4;
+      --soft:#f3eadf;
+      --brown:#4a3428;
+      --light:#9b7357;
+      --text:#2f2621;
+      --muted:#7b6a60;
+      --border:#eadfd2;
+      --danger:#b45b48;
+      --success:#5f8d63;
+      --shadow:rgba(74,52,40,.12);
+    }
+
+    body.theme-boy {
+      --page:#eef7ff;
+      --cream:#f7fbff;
+      --soft:#e8f4ff;
+      --brown:#244b6b;
+      --light:#5f93bd;
+      --text:#1d3347;
+      --muted:#5c7285;
+      --border:#d6e8f7;
+      --shadow:rgba(36,75,107,.12);
+    }
+
+    body.theme-girl {
+      --page:#fff1f5;
+      --cream:#fff8fa;
+      --soft:#fde8ef;
+      --brown:#7a3d55;
+      --light:#c47a98;
+      --text:#3d2430;
+      --muted:#7b6070;
+      --border:#f0d4df;
+      --shadow:rgba(122,61,85,.12);
+    }
+
+    body.theme-twin {
+      --page:#f1f7ef;
+      --cream:#fbfff8;
+      --soft:#e7f3df;
+      --brown:#3e5c3a;
+      --light:#7ca878;
+      --text:#263522;
+      --muted:#62745f;
+      --border:#dbe9d4;
+      --shadow:rgba(62,92,58,.12);
+    }
+
+    * {
+      box-sizing:border-box;
+    }
+
+    body {
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+        linear-gradient(180deg,#fbf7f1,var(--page));
+      color:var(--text);
+    }
+
+    .wrap {
+      max-width:1180px;
+      margin:0 auto;
+      padding:24px 18px;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:22px;
+    }
+
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--brown);
+      font-size:23px;
+      font-weight:950;
+      letter-spacing:-.5px;
+    }
+
+    .brand-icon {
+      width:44px;
+      height:44px;
+      border-radius:16px;
+      background:linear-gradient(135deg,var(--brown),var(--light));
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:950;
+      box-shadow:0 14px 28px var(--shadow);
+    }
+
+    .top-actions,
+    .language-buttons,
+    .actions {
+      display:flex;
+      gap:9px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .language-buttons button,
+    .button-light,
+    .button {
+      border:1px solid var(--border);
+      background:white;
+      color:var(--brown);
+      padding:10px 13px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:900;
+      text-decoration:none;
+      font-family:inherit;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .language-buttons button.active {
+      background:var(--brown);
+      color:white;
+    }
+
+    .button {
+      background:var(--brown);
+      color:white;
+      border-color:var(--brown);
+    }
+
+    .card {
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:24px;
+      box-shadow:0 24px 70px var(--shadow);
+      backdrop-filter:blur(16px);
+      margin-bottom:18px;
+    }
+
+    h1,h2,h3 {
+      color:var(--brown);
+      margin:0 0 12px;
+    }
+
+    h1 {
+      font-size:34px;
+      letter-spacing:-1.5px;
+    }
+
+    h2 {
+      font-size:25px;
+      letter-spacing:-.7px;
+    }
+
+    p {
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .soft {
+      padding:14px 16px;
+      border-radius:18px;
+      background:var(--soft);
+      border:1px solid var(--border);
+      color:var(--brown);
+      font-weight:900;
+      margin-top:14px;
+    }
+
+    .grid-2 {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .box {
+      background:linear-gradient(180deg,var(--cream),white);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px;
+    }
+
+    label {
+      display:block;
+      margin:14px 0 7px;
+      color:var(--brown);
+      font-size:13px;
+      font-weight:900;
+    }
+
+    input,
+    select,
+    textarea {
+      width:100%;
+      padding:13px 14px;
+      border-radius:15px;
+      border:1px solid var(--border);
+      background:#fffdf9;
+      color:var(--text);
+      font-size:15px;
+      font-family:inherit;
+      outline:none;
+    }
+
+    textarea {
+      min-height:118px;
+      resize:vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color:var(--light);
+      box-shadow:0 0 0 4px rgba(155,115,87,.12);
+    }
+
+    .message {
+      display:none;
+      margin-top:14px;
+      padding:14px 15px;
+      border-radius:18px;
+      font-weight:850;
+      line-height:1.45;
+    }
+
+    .message.error {
+      display:block;
+      background:#fff0ec;
+      color:var(--danger);
+      border:1px solid #f1c9bf;
+    }
+
+    .message.success {
+      display:block;
+      background:#edf7ee;
+      color:var(--success);
+      border:1px solid #cfe8d2;
+    }
+
+    .login-message {
+      max-width:650px;
+      margin:60px auto;
+      text-align:center;
+    }
+
+    @media(max-width:900px) {
+      .grid-2 {
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        padding:18px 12px;
+      }
+
+      h1 {
+        font-size:28px;
+      }
+
+      .card {
+        padding:20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="brand-icon">M</div>
+        <span>Mama in Deutschland</span>
+      </div>
+
+      <div class="top-actions">
+        <a class="button-light" href="app.html" id="backButton">Zurück</a>
+
+        <div class="language-buttons">
+          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="appShell" style="display:none;">
+      <section class="card">
+        <h1 id="pageTitle">Geburtsplan</h1>
+        <p id="pageText">Halte deine Wünsche für Geburt, Klinik und die erste Zeit mit dem Baby privat fest.</p>
+        <div class="soft" id="statusBox">Noch nicht gespeichert</div>
+      </section>
+
+      <section class="card">
+        <div class="grid-2">
+          <div class="box">
+            <h2 id="generalTitle">Allgemein</h2>
+
+            <label id="birthClinicLabel" for="birthClinic">Gewünschte Klinik</label>
+            <input type="text" id="birthClinic" oninput="scheduleAutoSave()" />
+
+            <label id="companionNameLabel" for="companionName">Begleitperson</label>
+            <input type="text" id="companionName" oninput="scheduleAutoSave()" />
+
+            <label id="preferredLanguageLabel" for="preferredLanguage">Sprache im Krankenhaus</label>
+            <select id="preferredLanguage" onchange="scheduleAutoSave()">
+              <option value="de">Deutsch</option>
+              <option value="fr">Français</option>
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+              <option value="tr">Türkçe</option>
+              <option value="ru">Русский</option>
+              <option value="uk">Українська</option>
+            </select>
+          </div>
+
+          <div class="box">
+            <h2 id="painTitle">Geburt & Schmerzen</h2>
+
+            <label id="painReliefLabel" for="painReliefWishes">Schmerzlinderung / PDA</label>
+            <textarea id="painReliefWishes" oninput="scheduleAutoSave()"></textarea>
+
+            <label id="birthPositionLabel" for="birthPositionWishes">Geburtspositionen</label>
+            <textarea id="birthPositionWishes" oninput="scheduleAutoSave()"></textarea>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="box">
+            <h2 id="atmosphereTitle">Atmosphäre</h2>
+
+            <label id="atmosphereLabel" for="atmosphereWishes">Wünsche zur Atmosphäre</label>
+            <textarea id="atmosphereWishes" oninput="scheduleAutoSave()"></textarea>
+
+            <label id="importantNotesLabel" for="importantNotes">Wichtige Hinweise</label>
+            <textarea id="importantNotes" oninput="scheduleAutoSave()"></textarea>
+          </div>
+
+          <div class="box">
+            <h2 id="babyTitle">Baby nach der Geburt</h2>
+
+            <label id="feedingPlanLabel" for="feedingPlan">Stillen / Flasche</label>
+            <select id="feedingPlan" onchange="scheduleAutoSave()">
+              <option value="undecided" id="feedingUndecided">Noch nicht entschieden</option>
+              <option value="breastfeeding" id="feedingBreast">Stillen</option>
+              <option value="bottle" id="feedingBottle">Flasche</option>
+              <option value="both" id="feedingBoth">Beides</option>
+            </select>
+
+            <label id="babyAfterBirthLabel" for="babyAfterBirthWishes">Direkt nach der Geburt</label>
+            <textarea id="babyAfterBirthWishes" oninput="scheduleAutoSave()"></textarea>
+
+            <label id="emergencyNotesLabel" for="emergencyNotes">Falls etwas anders läuft</label>
+            <textarea id="emergencyNotes" oninput="scheduleAutoSave()"></textarea>
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top:16px;">
+          <button class="button" onclick="saveBirthPlan(true)" id="saveButton">Geburtsplan speichern</button>
+          <button class="button-light" onclick="downloadBirthPlanText()" id="downloadButton">Als Text herunterladen</button>
+        </div>
+
+        <div class="message" id="messageBox"></div>
+      </section>
+    </main>
+
+    <section class="login-message card" id="loginMessage" style="display:none;">
+      <h2 id="loginTitle">Bitte einloggen</h2>
+      <p id="loginText">Du musst dich zuerst anmelden.</p>
+      <br />
+      <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentUser = null;
+    let currentProfile = null;
+    let currentBirthPlan = null;
+    let currentLang = localStorage.getItem("mama_lang") || "de";
+    let saveTimer = null;
+
+    const translations = {
+      de:{
+        backButton:"Zurück",
+        pageTitle:"Geburtsplan",
+        pageText:"Halte deine Wünsche für Geburt, Klinik und die erste Zeit mit dem Baby privat fest.",
+        statusEmpty:"Noch nicht gespeichert",
+        statusSaving:"Wird gespeichert...",
+        statusSaved:"Gespeichert ✅",
+        generalTitle:"Allgemein",
+        birthClinicLabel:"Gewünschte Klinik",
+        companionNameLabel:"Begleitperson",
+        preferredLanguageLabel:"Sprache im Krankenhaus",
+        painTitle:"Geburt & Schmerzen",
+        painReliefLabel:"Schmerzlinderung / PDA",
+        birthPositionLabel:"Geburtspositionen",
+        atmosphereTitle:"Atmosphäre",
+        atmosphereLabel:"Wünsche zur Atmosphäre",
+        importantNotesLabel:"Wichtige Hinweise",
+        babyTitle:"Baby nach der Geburt",
+        feedingPlanLabel:"Stillen / Flasche",
+        feedingUndecided:"Noch nicht entschieden",
+        feedingBreast:"Stillen",
+        feedingBottle:"Flasche",
+        feedingBoth:"Beides",
+        babyAfterBirthLabel:"Direkt nach der Geburt",
+        emergencyNotesLabel:"Falls etwas anders läuft",
+        saveButton:"Geburtsplan speichern",
+        downloadButton:"Als Text herunterladen",
+        loginTitle:"Bitte einloggen",
+        loginText:"Du musst dich zuerst anmelden.",
+        loginBackButton:"Zur Startseite",
+        savedMessage:"Geburtsplan gespeichert ✅"
+      },
+      fr:{
+        backButton:"Retour",
+        pageTitle:"Projet de naissance",
+        pageText:"Garde tes souhaits pour l’accouchement, la maternité et les premiers moments avec bébé.",
+        statusEmpty:"Pas encore enregistré",
+        statusSaving:"Enregistrement...",
+        statusSaved:"Enregistré ✅",
+        generalTitle:"Général",
+        birthClinicLabel:"Maternité souhaitée",
+        companionNameLabel:"Accompagnant",
+        preferredLanguageLabel:"Langue à l’hôpital",
+        painTitle:"Accouchement & douleur",
+        painReliefLabel:"Soulagement / péridurale",
+        birthPositionLabel:"Positions d’accouchement",
+        atmosphereTitle:"Atmosphère",
+        atmosphereLabel:"Souhaits d’ambiance",
+        importantNotesLabel:"Notes importantes",
+        babyTitle:"Bébé après la naissance",
+        feedingPlanLabel:"Allaitement / biberon",
+        feedingUndecided:"Pas encore décidé",
+        feedingBreast:"Allaitement",
+        feedingBottle:"Biberon",
+        feedingBoth:"Les deux",
+        babyAfterBirthLabel:"Juste après la naissance",
+        emergencyNotesLabel:"Si les choses changent",
+        saveButton:"Enregistrer le projet",
+        downloadButton:"Télécharger en texte",
+        loginTitle:"Connexion nécessaire",
+        loginText:"Tu dois d’abord te connecter.",
+        loginBackButton:"Retour à l’accueil",
+        savedMessage:"Projet de naissance enregistré ✅"
+      },
+      ar:{
+        backButton:"رجوع",
+        pageTitle:"خطة الولادة",
+        pageText:"احفظي رغباتك للولادة والمستشفى واللحظات الأولى مع الطفل بشكل خاص.",
+        statusEmpty:"لم يتم الحفظ بعد",
+        statusSaving:"جاري الحفظ...",
+        statusSaved:"تم الحفظ ✅",
+        generalTitle:"عام",
+        birthClinicLabel:"المستشفى المرغوب",
+        companionNameLabel:"المرافق",
+        preferredLanguageLabel:"اللغة في المستشفى",
+        painTitle:"الولادة والألم",
+        painReliefLabel:"تخفيف الألم / إبرة الظهر",
+        birthPositionLabel:"وضعيات الولادة",
+        atmosphereTitle:"الأجواء",
+        atmosphereLabel:"رغبات الأجواء",
+        importantNotesLabel:"ملاحظات مهمة",
+        babyTitle:"الطفل بعد الولادة",
+        feedingPlanLabel:"رضاعة / قنينة",
+        feedingUndecided:"لم أقرر بعد",
+        feedingBreast:"رضاعة طبيعية",
+        feedingBottle:"قنينة",
+        feedingBoth:"الاثنان",
+        babyAfterBirthLabel:"مباشرة بعد الولادة",
+        emergencyNotesLabel:"إذا تغيرت الخطة",
+        saveButton:"حفظ خطة الولادة",
+        downloadButton:"تحميل كنص",
+        loginTitle:"يرجى تسجيل الدخول",
+        loginText:"يجب تسجيل الدخول أولاً.",
+        loginBackButton:"العودة للرئيسية",
+        savedMessage:"تم حفظ خطة الولادة ✅"
+      },
+      en:{
+        backButton:"Back",
+        pageTitle:"Birth plan",
+        pageText:"Save your wishes for birth, clinic and the first time with your baby privately.",
+        statusEmpty:"Not saved yet",
+        statusSaving:"Saving...",
+        statusSaved:"Saved ✅",
+        generalTitle:"General",
+        birthClinicLabel:"Preferred clinic",
+        companionNameLabel:"Companion",
+        preferredLanguageLabel:"Hospital language",
+        painTitle:"Birth & pain",
+        painReliefLabel:"Pain relief / epidural",
+        birthPositionLabel:"Birth positions",
+        atmosphereTitle:"Atmosphere",
+        atmosphereLabel:"Atmosphere wishes",
+        importantNotesLabel:"Important notes",
+        babyTitle:"Baby after birth",
+        feedingPlanLabel:"Breastfeeding / bottle",
+        feedingUndecided:"Not decided yet",
+        feedingBreast:"Breastfeeding",
+        feedingBottle:"Bottle",
+        feedingBoth:"Both",
+        babyAfterBirthLabel:"Directly after birth",
+        emergencyNotesLabel:"If things change",
+        saveButton:"Save birth plan",
+        downloadButton:"Download as text",
+        loginTitle:"Please log in",
+        loginText:"You need to log in first.",
+        loginBackButton:"Back to home",
+        savedMessage:"Birth plan saved ✅"
+      },
+      tr:{
+        backButton:"Geri",
+        pageTitle:"Doğum planı",
+        pageText:"Doğum, klinik ve bebekle ilk zamanlar için isteklerini özel olarak kaydet.",
+        statusEmpty:"Henüz kaydedilmedi",
+        statusSaving:"Kaydediliyor...",
+        statusSaved:"Kaydedildi ✅",
+        generalTitle:"Genel",
+        birthClinicLabel:"Tercih edilen klinik",
+        companionNameLabel:"Refakatçi",
+        preferredLanguageLabel:"Hastanede dil",
+        painTitle:"Doğum ve ağrı",
+        painReliefLabel:"Ağrı kesici / epidural",
+        birthPositionLabel:"Doğum pozisyonları",
+        atmosphereTitle:"Atmosfer",
+        atmosphereLabel:"Atmosfer istekleri",
+        importantNotesLabel:"Önemli notlar",
+        babyTitle:"Doğumdan sonra bebek",
+        feedingPlanLabel:"Emzirme / biberon",
+        feedingUndecided:"Henüz karar verilmedi",
+        feedingBreast:"Emzirme",
+        feedingBottle:"Biberon",
+        feedingBoth:"İkisi de",
+        babyAfterBirthLabel:"Doğumdan hemen sonra",
+        emergencyNotesLabel:"Plan değişirse",
+        saveButton:"Doğum planını kaydet",
+        downloadButton:"Metin olarak indir",
+        loginTitle:"Lütfen giriş yap",
+        loginText:"Önce giriş yapmalısın.",
+        loginBackButton:"Ana sayfaya dön",
+        savedMessage:"Doğum planı kaydedildi ✅"
+      },
+      ru:{
+        backButton:"Назад",
+        pageTitle:"План родов",
+        pageText:"Сохраните пожелания для родов, клиники и первых моментов с ребёнком.",
+        statusEmpty:"Пока не сохранено",
+        statusSaving:"Сохранение...",
+        statusSaved:"Сохранено ✅",
+        generalTitle:"Общее",
+        birthClinicLabel:"Желаемая клиника",
+        companionNameLabel:"Сопровождающий",
+        preferredLanguageLabel:"Язык в больнице",
+        painTitle:"Роды и боль",
+        painReliefLabel:"Обезболивание / эпидуральная анестезия",
+        birthPositionLabel:"Позиции для родов",
+        atmosphereTitle:"Атмосфера",
+        atmosphereLabel:"Пожелания к атмосфере",
+        importantNotesLabel:"Важные заметки",
+        babyTitle:"Ребёнок после рождения",
+        feedingPlanLabel:"Грудь / бутылочка",
+        feedingUndecided:"Пока не решено",
+        feedingBreast:"Грудное вскармливание",
+        feedingBottle:"Бутылочка",
+        feedingBoth:"Оба варианта",
+        babyAfterBirthLabel:"Сразу после рождения",
+        emergencyNotesLabel:"Если план изменится",
+        saveButton:"Сохранить план родов",
+        downloadButton:"Скачать как текст",
+        loginTitle:"Войдите в аккаунт",
+        loginText:"Сначала нужно войти.",
+        loginBackButton:"На главную",
+        savedMessage:"План родов сохранён ✅"
+      },
+      uk:{
+        backButton:"Назад",
+        pageTitle:"План пологів",
+        pageText:"Збережіть побажання для пологів, клініки та перших моментів з дитиною.",
+        statusEmpty:"Ще не збережено",
+        statusSaving:"Збереження...",
+        statusSaved:"Збережено ✅",
+        generalTitle:"Загальне",
+        birthClinicLabel:"Бажана клініка",
+        companionNameLabel:"Супроводжуючий",
+        preferredLanguageLabel:"Мова в лікарні",
+        painTitle:"Пологи і біль",
+        painReliefLabel:"Знеболення / епідуральна анестезія",
+        birthPositionLabel:"Позиції для пологів",
+        atmosphereTitle:"Атмосфера",
+        atmosphereLabel:"Побажання щодо атмосфери",
+        importantNotesLabel:"Важливі нотатки",
+        babyTitle:"Дитина після народження",
+        feedingPlanLabel:"Грудне / пляшечка",
+        feedingUndecided:"Ще не вирішено",
+        feedingBreast:"Грудне вигодовування",
+        feedingBottle:"Пляшечка",
+        feedingBoth:"Обидва варіанти",
+        babyAfterBirthLabel:"Одразу після народження",
+        emergencyNotesLabel:"Якщо план зміниться",
+        saveButton:"Зберегти план пологів",
+        downloadButton:"Завантажити як текст",
+        loginTitle:"Увійдіть",
+        loginText:"Спочатку потрібно увійти.",
+        loginBackButton:"На головну",
+        savedMessage:"План пологів збережено ✅"
+      }
+    };
+
+    function t(){
+      return translations[currentLang] || translations.de;
+    }
+
+    function setLanguage(lang){
+      currentLang = lang;
+      localStorage.setItem("mama_lang", lang);
+
+      document.documentElement.lang = lang;
+      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+      const active = document.getElementById("lang-" + lang);
+      if (active) active.classList.add("active");
+
+      const tr = t();
+
+      Object.keys(tr).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = tr[id];
+      });
+
+      updateStatusText();
+    }
+
+    function showMessage(type, text){
+      const box = document.getElementById("messageBox");
+      box.className = "message " + type;
+      box.textContent = text;
+    }
+
+    function determineTheme(type, gender){
+      if (gender === "boy" || gender === "twin_boys") return "boy";
+      if (gender === "girl" || gender === "twin_girls") return "girl";
+      if (type === "twins" || gender === "twin_mixed") return "twin";
+      return "neutral";
+    }
+
+    function applyTheme(theme){
+      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+      if (theme === "boy") document.body.classList.add("theme-boy");
+      if (theme === "girl") document.body.classList.add("theme-girl");
+      if (theme === "twin") document.body.classList.add("theme-twin");
+    }
+
+    async function loadApp(){
+      const { data, error } = await supabaseClient.auth.getSession();
+
+      if (error || !data.session) {
+        document.getElementById("loginMessage").style.display = "block";
+        document.getElementById("appShell").style.display = "none";
+        return;
+      }
+
+      currentUser = data.session.user;
+
+      const { data: profiles, error: profileError } = await supabaseClient
+        .from("pregnancy_profiles")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .order("created_at", { ascending:false })
+        .limit(1);
+
+      if (profileError || !profiles || profiles.length === 0) {
+        window.location.href = "index.html?reason=no_profile";
+        return;
+      }
+
+      currentProfile = profiles[0];
+      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+      applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+      document.getElementById("loginMessage").style.display = "none";
+      document.getElementById("appShell").style.display = "block";
+
+      setLanguage(currentLang);
+      await loadBirthPlan();
+    }
+
+    function updateStatusText(){
+      const box = document.getElementById("statusBox");
+      if (!box) return;
+
+      if (currentBirthPlan) {
+        box.textContent = t().statusSaved;
+      } else {
+        box.textContent = t().statusEmpty;
+      }
+    }
+
+    async function loadBirthPlan(){
+      const { data, error } = await supabaseClient
+        .from("birth_plans")
+        .select("*")
+        .eq("user_id", currentUser.id)
+        .eq("profile_id", currentProfile.id)
+        .limit(1);
+
+      if (error) {
+        showMessage("error", error.message);
+        return;
+      }
+
+      currentBirthPlan = data && data.length ? data[0] : null;
+
+      document.getElementById("birthClinic").value = currentBirthPlan?.birth_clinic || "";
+      document.getElementById("companionName").value = currentBirthPlan?.companion_name || "";
+      document.getElementById("preferredLanguage").value = currentBirthPlan?.preferred_language || currentLang;
+      document.getElementById("painReliefWishes").value = currentBirthPlan?.pain_relief_wishes || "";
+      document.getElementById("birthPositionWishes").value = currentBirthPlan?.birth_position_wishes || "";
+      document.getElementById("atmosphereWishes").value = currentBirthPlan?.atmosphere_wishes || "";
+      document.getElementById("feedingPlan").value = currentBirthPlan?.feeding_plan || "undecided";
+      document.getElementById("babyAfterBirthWishes").value = currentBirthPlan?.baby_after_birth_wishes || "";
+      document.getElementById("importantNotes").value = currentBirthPlan?.important_notes || "";
+      document.getElementById("emergencyNotes").value = currentBirthPlan?.emergency_notes || "";
+
+      updateStatusText();
+    }
+
+    function collectPayload(){
+      return {
+        user_id:currentUser.id,
+        profile_id:currentProfile.id,
+        birth_clinic:document.getElementById("birthClinic").value.trim(),
+        companion_name:document.getElementById("companionName").value.trim(),
+        preferred_language:document.getElementById("preferredLanguage").value,
+        pain_relief_wishes:document.getElementById("painReliefWishes").value.trim(),
+        birth_position_wishes:document.getElementById("birthPositionWishes").value.trim(),
+        atmosphere_wishes:document.getElementById("atmosphereWishes").value.trim(),
+        feeding_plan:document.getElementById("feedingPlan").value,
+        baby_after_birth_wishes:document.getElementById("babyAfterBirthWishes").value.trim(),
+        important_notes:document.getElementById("importantNotes").value.trim(),
+        emergency_notes:document.getElementById("emergencyNotes").value.trim(),
+        status:"draft",
+        updated_at:new Date().toISOString()
+      };
+    }
+
+    function scheduleAutoSave(){
+      const status = document.getElementById("statusBox");
+      if (status) status.textContent = t().statusSaving;
+
+      clearTimeout(saveTimer);
+
+      saveTimer = setTimeout(() => {
+        saveBirthPlan(false);
+      }, 900);
+    }
+
+    async function saveBirthPlan(showAlert){
+      const payload = collectPayload();
+
+      const { data, error } = await supabaseClient
+        .from("birth_plans")
+        .upsert(payload, { onConflict:"user_id,profile_id" })
+        .select()
+        .limit(1);
+
+      if (error) {
+        showMessage("error", error.message);
+        return;
+      }
+
+      currentBirthPlan = data && data.length ? data[0] : payload;
+
+      updateStatusText();
+
+      if (showAlert) {
+        showMessage("success", t().savedMessage);
+      }
+    }
+
+    function downloadBirthPlanText(){
+      const lines = [
+        "Mama in Deutschland - " + t().pageTitle,
+        "",
+        t().birthClinicLabel + ": " + document.getElementById("birthClinic").value,
+        t().companionNameLabel + ": " + document.getElementById("companionName").value,
+        t().preferredLanguageLabel + ": " + document.getElementById("preferredLanguage").value,
+        "",
+        t().painReliefLabel + ":",
+        document.getElementById("painReliefWishes").value,
+        "",
+        t().birthPositionLabel + ":",
+        document.getElementById("birthPositionWishes").value,
+        "",
+        t().atmosphereLabel + ":",
+        document.getElementById("atmosphereWishes").value,
+        "",
+        t().importantNotesLabel + ":",
+        document.getElementById("importantNotes").value,
+        "",
+        t().feedingPlanLabel + ": " + document.getElementById("feedingPlan").value,
+        "",
+        t().babyAfterBirthLabel + ":",
+        document.getElementById("babyAfterBirthWishes").value,
+        "",
+        t().emergencyNotesLabel + ":",
+        document.getElementById("emergencyNotes").value
+      ];
+
+      const blob = new Blob([lines.join("\n")], {
+        type:"text/plain;charset=utf-8"
+      });
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+
+      a.href = url;
+      a.download = "geburtsplan-mama-in-deutschland.txt";
+
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      URL.revokeObjectURL(url);
+    }
+
+    loadApp();
+  </script>
+</body>
+</html>

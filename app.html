@@ -2197,13 +2197,52 @@ function toggleBabyBornFields(){
 }
 
 async function loadSessionAndProfile(){
-  const { data } = await supabaseClient.auth.getSession();
+  const { data, error } = await supabaseClient.auth.getSession();
+
+  if (error) {
+    console.error("Session error:", error);
+    window.location.href = "index.html?reason=session_error";
+    return;
+  }
 
   currentUser = data.session ? data.session.user : null;
 
   if (!currentUser) {
     window.location.href = "index.html?reason=login";
     return;
+  }
+
+  document.getElementById("loginMessage").style.display = "none";
+  document.getElementById("appShell").style.display = "block";
+  document.getElementById("emailPill").textContent = currentUser.email;
+
+  await loadLatestProfile();
+
+  if (!currentProfile) {
+    console.log("No pregnancy profile found for user:", currentUser.id, currentUser.email);
+    window.location.href = "index.html?reason=no_profile";
+    return;
+  }
+
+  currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+  applyTheme(
+    currentProfile.theme_mode ||
+    determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender)
+  );
+
+  await setLanguage(currentLang);
+}
+
+  currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+  applyTheme(
+    currentProfile.theme_mode ||
+    determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender)
+  );
+
+  await setLanguage(currentLang);
+}
   }
 
   document.getElementById("loginMessage").style.display = "none";
@@ -2249,6 +2288,10 @@ async function loadSessionAndProfile(){
 }
 
 async function loadLatestProfile(){
+  currentProfile = null;
+
+  if (!currentUser) return;
+
   const { data, error } = await supabaseClient
     .from("pregnancy_profiles")
     .select("*")
@@ -2256,13 +2299,24 @@ async function loadLatestProfile(){
     .order("created_at", { ascending:false })
     .limit(1);
 
-  currentProfile = error || !data?.length ? null : data[0];
+  if (error) {
+    console.error("Profile loading error:", error);
+    return;
+  }
 
-  if (currentProfile) {
-    lastCity = currentProfile.city || "";
-    if (currentProfile.due_date) {
-      lastPregnancyWeek = calculatePregnancy(parseLocalDate(currentProfile.due_date)).pregnancyWeek;
-    }
+  if (!data || data.length === 0) {
+    console.log("No profile found for:", currentUser.id, currentUser.email);
+    return;
+  }
+
+  currentProfile = data[0];
+
+  lastCity = currentProfile.city || "";
+
+  if (currentProfile.due_date) {
+    lastPregnancyWeek = calculatePregnancy(
+      parseLocalDate(currentProfile.due_date)
+    ).pregnancyWeek;
   }
 }
 

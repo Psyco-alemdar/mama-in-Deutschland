@@ -78,6 +78,10 @@ p{margin:0;color:var(--muted);line-height:1.6}
 }
 .module-card:hover,.test-card:hover{transform:translateY(-3px);box-shadow:0 18px 45px var(--shadow)}
 .module-icon{width:44px;height:44px;border-radius:16px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.module-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.module-badge{display:inline-flex;width:fit-content;padding:6px 9px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:11px;font-weight:950}
+.module-badge.soon{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.module-badge.now{background:var(--brown);color:white}
 .module-title{color:var(--brown);font-weight:950;font-size:18px;margin-bottom:6px}
 .module-desc{color:var(--muted);font-size:14px;line-height:1.5}
 .test-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
@@ -202,6 +206,16 @@ p{margin:0;color:var(--muted);line-height:1.6}
     <div class="grid" id="modulesGrid"></div>
   </section>
 
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="laterTitle">Important plus tard</h2>
+        <p id="laterText">Les cartes qui deviendront importantes dans les prochaines semaines.</p>
+      </div>
+    </div>
+    <div class="grid" id="laterGrid"></div>
+  </section>
+
   <div class="footer-actions">
     <button class="button-light" onclick="history.back()" id="backBottomButton">Retour</button>
     <div class="actions">
@@ -278,16 +292,61 @@ stdDueDate:"Terme prévu",stdDueDateDesc:"Surveiller les signes et suivre les co
 stdAfterBirth:"Après naissance",stdAfterBirthDesc:"Pédiatre, acte de naissance, Kindergeld et Elterngeld.",
 testNt:"Clarté nucale",testNipt:"NIPT",testUltrasound:"Échographies",testGlucose:"Test sucre",testBlood:"Analyses sang",testGbs:"Streptocoque B",testVaccines:"Vaccins",testCtg:"CTG",
 testNtDesc:"SA 11–14, selon choix et indication.",testNiptDesc:"Test sanguin possible dès env. SA 10.",testUltrasoundDesc:"Screenings et croissance.",testGlucoseDesc:"Dépistage diabète gestationnel.",testBloodDesc:"Rhésus, anticorps, infections, fer.",testGbsDesc:"Souvent SA 35–37 selon pratique.",testVaccinesDesc:"Coqueluche, grippe, autres selon saison.",testCtgDesc:"Contrôle cœur bébé/contractions si indiqué.",
-mCalendar:"Calendrier",dCalendar:"Rendez-vous réels et priorités.",mDiagnostics:"Tests & diagnostics",dDiagnostics:"Clarté nucale, NIPT, glucose et plus.",mDocuments:"Documents",dDocuments:"Mutterpass et papiers.",mBureaucracy:"Bureaucratie",dBureaucracy:"Elterngeld, Elternzeit, Mutterschutz.",mMarketplace:"Marketplace",dMarketplace:"Vendre, acheter ou donner.",mExperience:"Share your experience",dExperience:"Partager les expériences.",mEmergency:"Urgence",dEmergency:"Signes d’alerte et numéros.",mHospitalBag:"Valise maternité",dHospitalBag:"Checklist clinique.",mProfile:"Profil",dProfile:"Langue, terme, bébé."
+mCalendar:"Calendrier",dCalendar:"Rendez-vous réels et priorités.",mDiagnostics:"Tests & diagnostics",dDiagnostics:"Clarté nucale, NIPT, glucose et plus.",mDocuments:"Documents",dDocuments:"Mutterpass et papiers.",mBureaucracy:"Bureaucratie",dBureaucracy:"Elterngeld, Elternzeit, Mutterschutz.",mMarketplace:"Marketplace",dMarketplace:"Vendre, acheter ou donner.",mExperience:"Share your experience",dExperience:"Partager les expériences.",mEmergency:"Urgence",dEmergency:"Signes d’alerte et numéros.",mHospitalBag:"Valise maternité",dHospitalBag:"Checklist clinique.",mProfile:"Profil",dProfile:"Langue, terme, bébé.",
+mNutrition:"Nutrition",dNutrition:"Alimentation saine pendant la grossesse.",mEmotions:"Émotions",dEmotions:"Journal privé et humeur.",mNear:"Près de moi",dNear:"Sage-femme, gynécologue, clinique, pharmacies.",mCourses:"Cours",dCourses:"Préparation naissance, yoga et cours parents.",mBabyNames:"Prénoms bébé",dBabyNames:"Liste de prénoms favoris.",mBudget:"Budget",dBudget:"Coûts et achats bébé.",mVaccinations:"Vaccins",dVaccinations:"Vaccins, rappels et carnet.",mBabyEquipment:"Équipement bébé",dBabyEquipment:"Checklist poussette, lit, siège auto et plus.",mPartner:"Partenaire",dPartner:"Tâches et notes communes.",mMovements:"Mouvements bébé",dMovements:"Suivre et noter les mouvements.",mContractions:"Timer contractions",dContractions:"Mesurer les contractions.",mAfterBirth:"Après naissance",dAfterBirth:"Premières semaines et démarches.",mFeeding:"Allaitement & biberon",dFeeding:"Allaitement, biberon, couches.",mSleep:"Sommeil",dSleep:"Suivi du sommeil bébé.",mCommunityRules:"Community rules",dCommunityRules:"Règles, sécurité et signalement.",laterTitle:"Important plus tard",laterText:"Les cartes qui deviendront importantes dans les prochaines semaines.",nowBadge:"Maintenant",laterBadge:"Plus tard",alwaysBadge:"Toujours"
 },
-de:{profileButton:"Profil",logoutButton:"Ausloggen",heroKicker:"Schwangerschafts-Dashboard",morning:"Guten Morgen",afternoon:"Guten Tag",evening:"Guten Abend",night:"Gute Nacht",heroText:"Deine persönliche Übersicht für heute.",weekLabel:"SSW",daysLabel:"Tage bis Termin",phaseLabel:"Phase",weightLabel:"Babygewicht",babyTitle:"Baby",editProfileButton:"Profil bearbeiten",emergencyQuickButton:"Notfall",communityRulesQuickButton:"Community rules",adminQuickButton:"Admin",nextSectionTitle:"Nächster wichtiger Termin",nextSectionText:"Immer der nächste echte oder Standard-Termin ab heute.",openCalendarButton:"Kalender ansehen",nextBadge:"Nächster",personalBadge:"Persönlich",standardBadge:"Standard",thisWeekBadge:"Diese Woche",priorityNormal:"Normal",priorityImportant:"Wichtig",priorityUrgent:"Dringend",importantNowTitle:"Jetzt wichtig",testsTitle:"Tests & Diagnostik",testsText:"Wichtige Untersuchungen bleiben in der Plattform sichtbar.",openDiagnosticsButton:"Alles ansehen",modulesTitle:"Wichtige Bereiche",modulesText:"Schneller Zugriff auf die nützlichen Bereiche.",backBottomButton:"Zurück",calendarBottomButton:"Kalender",marketBottomButton:"Marketplace",experienceBottomButton:"Experience",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",profileMissingTitle:"Profil fehlt",profileMissingText:"Bitte erstelle zuerst dein Schwangerschaftsprofil.",createProfileButton:"Profil erstellen",first:"1. Trimester",second:"2. Trimester",third:"3. Trimester",after:"Nach Geburt",unknown:"Unbekannt",weekShort:"SSW",dueDate:"Termin",noDue:"Termin fehlt",babyInfoPrefix:"Geschätzte Größe und Entwicklung",noNext:"Kein Termin gefunden. Bitte Termin oder Kalender-Eintrag hinzufügen.",noDescription:"Keine Beschreibung.",nowFirst:["Vorsorge planen","Mutterpass und Dokumente bereithalten","Medikamente und Vitamine ärztlich klären"],nowSecond:["Hebamme und Kurse organisieren","Bürokratie vorbereiten","Babybedarf und Diagnostik planen"],nowThird:["Klinik, Tasche und Geburtsplan vorbereiten","Dokumente sammeln","Bewegungen und Termine beobachten"],nowBirth:["Kliniktasche und Babyschale bereit halten","Wehen-Timer und Notfallkontakte prüfen","Geburtszeichen ernst nehmen"],nowAfter:["Kinderarzt, Geburtsurkunde und Anträge","Stillen/Flasche und Schlaf dokumentieren","Nachsorge nutzen"],stdFirstCheck:"Frühe Vorsorge / Mutterpass",stdFirstCheckDesc:"Erste Kontrolle, Mutterpass, Blutwerte und Fragen.",stdNipt:"NIPT möglich",stdNiptDesc:"Bluttest je nach Wunsch und Indikation ärztlich besprechen.",stdNt:"Nackenfalte / Ersttrimester-Screening",stdNtDesc:"Ultraschall etwa SSW 11–14 mit Risikobesprechung.",stdSecondUltrasound:"Zweites Ultraschall / Organe",stdSecondUltrasoundDesc:"Entwicklung, Wachstum und Organe prüfen.",stdGlucose:"Zuckerbelastungstest",stdGlucoseDesc:"Screening auf Schwangerschaftsdiabetes etwa SSW 24–28.",stdAntid:"Anti-D / Impfungen",stdAntidDesc:"Anti-D bei Rh-negativ und Impfungen besprechen.",stdThirdUltrasound:"Drittes Ultraschall",stdThirdUltrasoundDesc:"Wachstum, Lage, Plazenta und Planung.",stdGbs:"GBS / Streptokokken B",stdGbsDesc:"Häufig um SSW 35–37 besprochen.",stdHospitalBag:"Kliniktasche",stdHospitalBagDesc:"Dokumente und Sachen für Mama, Baby und Partner.",stdFinalPrep:"Klinik- und Notfallplan",stdFinalPrepDesc:"Route, Kontakte, Babyschale und Warnzeichen.",stdDueDate:"Voraussichtlicher Geburtstermin",stdDueDateDesc:"Zeichen beobachten und Klinikhinweise beachten.",stdAfterBirth:"Nach Geburt",stdAfterBirthDesc:"Kinderarzt, Geburtsurkunde, Kindergeld und Elterngeld.",testNt:"Nackenfalte",testNipt:"NIPT",testUltrasound:"Ultraschall",testGlucose:"Zucker-Test",testBlood:"Blutwerte",testGbs:"Streptokokken B",testVaccines:"Impfungen",testCtg:"CTG",testNtDesc:"SSW 11–14, je nach Wunsch/Indikation.",testNiptDesc:"Bluttest ab etwa SSW 10 möglich.",testUltrasoundDesc:"Screenings und Wachstum.",testGlucoseDesc:"Diabetes-Screening.",testBloodDesc:"Rhesus, Antikörper, Infektionen, Eisen.",testGbsDesc:"Oft SSW 35–37.",testVaccinesDesc:"Pertussis, Grippe, saisonal.",testCtgDesc:"Herztöne/Wehen falls indiziert.",mCalendar:"Kalender",dCalendar:"Echte Termine und Priorität.",mDiagnostics:"Tests & Diagnostik",dDiagnostics:"Nackenfalte, NIPT, Zucker und mehr.",mDocuments:"Dokumente",dDocuments:"Mutterpass und Unterlagen.",mBureaucracy:"Bürokratie",dBureaucracy:"Elterngeld, Elternzeit, Mutterschutz.",mMarketplace:"Marketplace",dMarketplace:"Kaufen, verkaufen, verschenken.",mExperience:"Share your experience",dExperience:"Erfahrungen teilen.",mEmergency:"Notfall",dEmergency:"Warnzeichen und Nummern.",mHospitalBag:"Kliniktasche",dHospitalBag:"Checkliste Klinik.",mProfile:"Profil",dProfile:"Sprache, Termin, Baby."}
+de:{profileButton:"Profil",logoutButton:"Ausloggen",heroKicker:"Schwangerschafts-Dashboard",morning:"Guten Morgen",afternoon:"Guten Tag",evening:"Guten Abend",night:"Gute Nacht",heroText:"Deine persönliche Übersicht für heute.",weekLabel:"SSW",daysLabel:"Tage bis Termin",phaseLabel:"Phase",weightLabel:"Babygewicht",babyTitle:"Baby",editProfileButton:"Profil bearbeiten",emergencyQuickButton:"Notfall",communityRulesQuickButton:"Community rules",adminQuickButton:"Admin",nextSectionTitle:"Nächster wichtiger Termin",nextSectionText:"Immer der nächste echte oder Standard-Termin ab heute.",openCalendarButton:"Kalender ansehen",nextBadge:"Nächster",personalBadge:"Persönlich",standardBadge:"Standard",thisWeekBadge:"Diese Woche",priorityNormal:"Normal",priorityImportant:"Wichtig",priorityUrgent:"Dringend",importantNowTitle:"Jetzt wichtig",testsTitle:"Tests & Diagnostik",testsText:"Wichtige Untersuchungen bleiben in der Plattform sichtbar.",openDiagnosticsButton:"Alles ansehen",modulesTitle:"Wichtige Bereiche",modulesText:"Schneller Zugriff auf die nützlichen Bereiche.",backBottomButton:"Zurück",calendarBottomButton:"Kalender",marketBottomButton:"Marketplace",experienceBottomButton:"Experience",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",profileMissingTitle:"Profil fehlt",profileMissingText:"Bitte erstelle zuerst dein Schwangerschaftsprofil.",createProfileButton:"Profil erstellen",first:"1. Trimester",second:"2. Trimester",third:"3. Trimester",after:"Nach Geburt",unknown:"Unbekannt",weekShort:"SSW",dueDate:"Termin",noDue:"Termin fehlt",babyInfoPrefix:"Geschätzte Größe und Entwicklung",noNext:"Kein Termin gefunden. Bitte Termin oder Kalender-Eintrag hinzufügen.",noDescription:"Keine Beschreibung.",nowFirst:["Vorsorge planen","Mutterpass und Dokumente bereithalten","Medikamente und Vitamine ärztlich klären"],nowSecond:["Hebamme und Kurse organisieren","Bürokratie vorbereiten","Babybedarf und Diagnostik planen"],nowThird:["Klinik, Tasche und Geburtsplan vorbereiten","Dokumente sammeln","Bewegungen und Termine beobachten"],nowBirth:["Kliniktasche und Babyschale bereit halten","Wehen-Timer und Notfallkontakte prüfen","Geburtszeichen ernst nehmen"],nowAfter:["Kinderarzt, Geburtsurkunde und Anträge","Stillen/Flasche und Schlaf dokumentieren","Nachsorge nutzen"],stdFirstCheck:"Frühe Vorsorge / Mutterpass",stdFirstCheckDesc:"Erste Kontrolle, Mutterpass, Blutwerte und Fragen.",stdNipt:"NIPT möglich",stdNiptDesc:"Bluttest je nach Wunsch und Indikation ärztlich besprechen.",stdNt:"Nackenfalte / Ersttrimester-Screening",stdNtDesc:"Ultraschall etwa SSW 11–14 mit Risikobesprechung.",stdSecondUltrasound:"Zweites Ultraschall / Organe",stdSecondUltrasoundDesc:"Entwicklung, Wachstum und Organe prüfen.",stdGlucose:"Zuckerbelastungstest",stdGlucoseDesc:"Screening auf Schwangerschaftsdiabetes etwa SSW 24–28.",stdAntid:"Anti-D / Impfungen",stdAntidDesc:"Anti-D bei Rh-negativ und Impfungen besprechen.",stdThirdUltrasound:"Drittes Ultraschall",stdThirdUltrasoundDesc:"Wachstum, Lage, Plazenta und Planung.",stdGbs:"GBS / Streptokokken B",stdGbsDesc:"Häufig um SSW 35–37 besprochen.",stdHospitalBag:"Kliniktasche",stdHospitalBagDesc:"Dokumente und Sachen für Mama, Baby und Partner.",stdFinalPrep:"Klinik- und Notfallplan",stdFinalPrepDesc:"Route, Kontakte, Babyschale und Warnzeichen.",stdDueDate:"Voraussichtlicher Geburtstermin",stdDueDateDesc:"Zeichen beobachten und Klinikhinweise beachten.",stdAfterBirth:"Nach Geburt",stdAfterBirthDesc:"Kinderarzt, Geburtsurkunde, Kindergeld und Elterngeld.",testNt:"Nackenfalte",testNipt:"NIPT",testUltrasound:"Ultraschall",testGlucose:"Zucker-Test",testBlood:"Blutwerte",testGbs:"Streptokokken B",testVaccines:"Impfungen",testCtg:"CTG",testNtDesc:"SSW 11–14, je nach Wunsch/Indikation.",testNiptDesc:"Bluttest ab etwa SSW 10 möglich.",testUltrasoundDesc:"Screenings und Wachstum.",testGlucoseDesc:"Diabetes-Screening.",testBloodDesc:"Rhesus, Antikörper, Infektionen, Eisen.",testGbsDesc:"Oft SSW 35–37.",testVaccinesDesc:"Pertussis, Grippe, saisonal.",testCtgDesc:"Herztöne/Wehen falls indiziert.",mCalendar:"Kalender",dCalendar:"Echte Termine und Priorität.",mDiagnostics:"Tests & Diagnostik",dDiagnostics:"Nackenfalte, NIPT, Zucker und mehr.",mDocuments:"Dokumente",dDocuments:"Mutterpass und Unterlagen.",mBureaucracy:"Bürokratie",dBureaucracy:"Elterngeld, Elternzeit, Mutterschutz.",mMarketplace:"Marketplace",dMarketplace:"Kaufen, verkaufen, verschenken.",mExperience:"Share your experience",dExperience:"Erfahrungen teilen.",mEmergency:"Notfall",dEmergency:"Warnzeichen und Nummern.",mHospitalBag:"Kliniktasche",dHospitalBag:"Checkliste Klinik.",mProfile:"Profil",dProfile:"Sprache, Termin, Baby.",
+mNutrition:"Ernährung",dNutrition:"Gesund essen in der Schwangerschaft.",mEmotions:"Emotionen",dEmotions:"Privates Tagebuch und Stimmung.",mNear:"In meiner Nähe",dNear:"Hebamme, Frauenarzt, Klinik, Apotheken.",mCourses:"Kurse",dCourses:"Geburtsvorbereitung, Yoga und Elternkurse.",mBabyNames:"Babynamen",dBabyNames:"Lieblingsnamen sammeln.",mBudget:"Budget",dBudget:"Kosten und Babyanschaffungen planen.",mVaccinations:"Impfungen",dVaccinations:"Impfpass und Erinnerungen.",mBabyEquipment:"Baby-Erstausstattung",dBabyEquipment:"Kinderwagen, Bett, Autositz und mehr.",mPartner:"Partner",dPartner:"Aufgaben und gemeinsame Notizen.",mMovements:"Kindsbewegungen",dMovements:"Bewegungen zählen und notieren.",mContractions:"Wehen-Timer",dContractions:"Wehen und Abstände messen.",mAfterBirth:"Nach Geburt",dAfterBirth:"Erste Wochen und Anträge.",mFeeding:"Stillen & Flasche",dFeeding:"Stillen, Flasche, Windeln.",mSleep:"Schlaf",dSleep:"Babys Schlaf verfolgen.",mCommunityRules:"Community rules",dCommunityRules:"Regeln, Sicherheit und Meldungen.",laterTitle:"Später wichtig",laterText:"Diese Karten werden in den nächsten Wochen wichtig.",nowBadge:"Jetzt",laterBadge:"Später",alwaysBadge:"Immer"}
 };
 
 translations.en={...translations.fr,morning:"Good morning",afternoon:"Good afternoon",evening:"Good evening",night:"Good night",profileButton:"Profile",logoutButton:"Log out",weekLabel:"Week",daysLabel:"Days to due date",phaseLabel:"Phase",weightLabel:"Baby weight",nextSectionTitle:"Next important appointment",openCalendarButton:"Open calendar",personalBadge:"Personal",standardBadge:"Standard",thisWeekBadge:"This week",priorityImportant:"Important",priorityUrgent:"Urgent",importantNowTitle:"Important now",backBottomButton:"Back",loginTitle:"Please log in",loginText:"You need to log in first."};
 translations.ar={...translations.fr,morning:"صباح الخير",afternoon:"نهارك سعيد",evening:"مساء الخير",night:"ليلة سعيدة",profileButton:"الملف",logoutButton:"خروج",weekLabel:"أسبوع",daysLabel:"أيام حتى الموعد",phaseLabel:"المرحلة",weightLabel:"وزن الطفل",nextSectionTitle:"الموعد المهم القادم",openCalendarButton:"عرض التقويم",personalBadge:"شخصي",standardBadge:"قياسي",thisWeekBadge:"هذا الأسبوع",importantNowTitle:"مهم الآن",backBottomButton:"رجوع",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً."};
 translations.tr={...translations.en,morning:"Günaydın",afternoon:"İyi günler",evening:"İyi akşamlar",night:"İyi geceler",profileButton:"Profil",logoutButton:"Çıkış",weekLabel:"Hafta",daysLabel:"Doğuma kalan gün",phaseLabel:"Dönem",weightLabel:"Bebek ağırlığı",backBottomButton:"Geri"};
 translations.ru={...translations.en,morning:"Доброе утро",afternoon:"Добрый день",evening:"Добрый вечер",night:"Доброй ночи",profileButton:"Профиль",logoutButton:"Выйти",weekLabel:"Неделя",daysLabel:"Дней до срока",phaseLabel:"Этап",weightLabel:"Вес ребёнка",backBottomButton:"Назад"};
+
 translations.uk={...translations.ru,morning:"Доброго ранку",afternoon:"Добрий день",evening:"Добрий вечір",night:"Доброї ночі",profileButton:"Профіль"};
+
+["en","ar","tr","ru","uk"].forEach(function(lang){
+  translations[lang]={
+    ...translations.fr,
+    ...translations[lang],
+    mNutrition:translations[lang].mNutrition||translations.fr.mNutrition,
+    dNutrition:translations[lang].dNutrition||translations.fr.dNutrition,
+    mEmotions:translations[lang].mEmotions||translations.fr.mEmotions,
+    dEmotions:translations[lang].dEmotions||translations.fr.dEmotions,
+    mNear:translations[lang].mNear||translations.fr.mNear,
+    dNear:translations[lang].dNear||translations.fr.dNear,
+    mCourses:translations[lang].mCourses||translations.fr.mCourses,
+    dCourses:translations[lang].dCourses||translations.fr.dCourses,
+    mBabyNames:translations[lang].mBabyNames||translations.fr.mBabyNames,
+    dBabyNames:translations[lang].dBabyNames||translations.fr.dBabyNames,
+    mBudget:translations[lang].mBudget||translations.fr.mBudget,
+    dBudget:translations[lang].dBudget||translations.fr.dBudget,
+    mVaccinations:translations[lang].mVaccinations||translations.fr.mVaccinations,
+    dVaccinations:translations[lang].dVaccinations||translations.fr.dVaccinations,
+    mBabyEquipment:translations[lang].mBabyEquipment||translations.fr.mBabyEquipment,
+    dBabyEquipment:translations[lang].dBabyEquipment||translations.fr.dBabyEquipment,
+    mPartner:translations[lang].mPartner||translations.fr.mPartner,
+    dPartner:translations[lang].dPartner||translations.fr.dPartner,
+    mMovements:translations[lang].mMovements||translations.fr.mMovements,
+    dMovements:translations[lang].dMovements||translations.fr.dMovements,
+    mContractions:translations[lang].mContractions||translations.fr.mContractions,
+    dContractions:translations[lang].dContractions||translations.fr.dContractions,
+    mAfterBirth:translations[lang].mAfterBirth||translations.fr.mAfterBirth,
+    dAfterBirth:translations[lang].dAfterBirth||translations.fr.dAfterBirth,
+    mFeeding:translations[lang].mFeeding||translations.fr.mFeeding,
+    dFeeding:translations[lang].dFeeding||translations.fr.dFeeding,
+    mSleep:translations[lang].mSleep||translations.fr.mSleep,
+    dSleep:translations[lang].dSleep||translations.fr.dSleep,
+    mCommunityRules:translations[lang].mCommunityRules||translations.fr.mCommunityRules,
+    dCommunityRules:translations[lang].dCommunityRules||translations.fr.dCommunityRules,
+    laterTitle:translations[lang].laterTitle||translations.fr.laterTitle,
+    laterText:translations[lang].laterText||translations.fr.laterText,
+    nowBadge:translations[lang].nowBadge||translations.fr.nowBadge,
+    laterBadge:translations[lang].laterBadge||translations.fr.laterBadge,
+    alwaysBadge:translations[lang].alwaysBadge||translations.fr.alwaysBadge
+  };
+});
 
 const babyByWeek={
   8:[1,"framboise","Début des bras, jambes et traits du visage."],
@@ -310,9 +369,34 @@ const babyByWeek={
 };
 
 const modules=[
-  ["calendar.html","📅","mCalendar","dCalendar"],["diagnostics.html","🧬","mDiagnostics","dDiagnostics"],["documents.html","📄","mDocuments","dDocuments"],
-  ["bureaucracy.html","🏛️","mBureaucracy","dBureaucracy"],["marketplace.html","🛒","mMarketplace","dMarketplace"],["experience.html","💬","mExperience","dExperience"],
-  ["emergency.html","🚨","mEmergency","dEmergency"],["hospital-bag.html","🧳","mHospitalBag","dHospitalBag"],["profile.html","👤","mProfile","dProfile"]
+  {href:"calendar.html",icon:"📅",title:"mCalendar",desc:"dCalendar",category:"tools",always:true},
+  {href:"diagnostics.html",icon:"🧬",title:"mDiagnostics",desc:"dDiagnostics",category:"medical",always:true},
+  {href:"documents.html",icon:"📄",title:"mDocuments",desc:"dDocuments",category:"tools",always:true},
+  {href:"emergency.html",icon:"🚨",title:"mEmergency",desc:"dEmergency",category:"medical",always:true},
+  {href:"profile.html",icon:"👤",title:"mProfile",desc:"dProfile",category:"tools",always:true},
+
+  {href:"nutrition.html",icon:"🥗",title:"mNutrition",desc:"dNutrition",category:"pregnancy",min:1,max:42},
+  {href:"emotions.html",icon:"💗",title:"mEmotions",desc:"dEmotions",category:"pregnancy",min:1,max:42},
+  {href:"near.html",icon:"📍",title:"mNear",desc:"dNear",category:"tools",min:6,max:42},
+  {href:"bureaucracy.html",icon:"🏛️",title:"mBureaucracy",desc:"dBureaucracy",category:"tools",min:8,max:34},
+  {href:"courses.html",icon:"🧘",title:"mCourses",desc:"dCourses",category:"pregnancy",min:10,max:30},
+  {href:"baby-names.html",icon:"✨",title:"mBabyNames",desc:"dBabyNames",category:"pregnancy",min:10,max:32},
+  {href:"budget.html",icon:"💶",title:"mBudget",desc:"dBudget",category:"tools",min:12,max:38},
+  {href:"vaccinations.html",icon:"💉",title:"mVaccinations",desc:"dVaccinations",category:"medical",min:12,max:42},
+
+  {href:"baby-equipment.html",icon:"🧸",title:"mBabyEquipment",desc:"dBabyEquipment",category:"baby",min:18,max:38},
+  {href:"partner.html",icon:"🤝",title:"mPartner",desc:"dPartner",category:"pregnancy",min:16,max:42},
+  {href:"movements.html",icon:"👣",title:"mMovements",desc:"dMovements",category:"pregnancy",min:22,max:42},
+  {href:"hospital-bag.html",icon:"🧳",title:"mHospitalBag",desc:"dHospitalBag",category:"birth",min:28,max:42},
+  {href:"contractions.html",icon:"⏱️",title:"mContractions",desc:"dContractions",category:"birth",min:34,max:42},
+
+  {href:"after-birth.html",icon:"🌱",title:"mAfterBirth",desc:"dAfterBirth",category:"baby",min:30,max:60},
+  {href:"feeding.html",icon:"🍼",title:"mFeeding",desc:"dFeeding",category:"baby",min:34,max:60},
+  {href:"sleep.html",icon:"🌙",title:"mSleep",desc:"dSleep",category:"baby",min:34,max:60},
+
+  {href:"experience.html",icon:"💬",title:"mExperience",desc:"dExperience",category:"community",always:true},
+  {href:"marketplace.html",icon:"🛒",title:"mMarketplace",desc:"dMarketplace",category:"community",min:12,max:60},
+  {href:"community-rules.html",icon:"🛡️",title:"mCommunityRules",desc:"dCommunityRules",category:"community",always:true}
 ];
 
 const testCards=[
@@ -458,14 +542,38 @@ function renderTests(){
     </a>
   `).join("");
 }
-function renderModules(){
-  document.getElementById("modulesGrid").innerHTML=modules.map(([href,icon,title,desc])=>`
-    <a class="module-card" href="${href}">
-      <div class="module-icon">${icon}</div>
-      <div class="module-title">${t()[title]}</div>
-      <div class="module-desc">${t()[desc]}</div>
+function moduleIsNow(m){
+  if(m.always)return true;
+  return currentWeek>=m.min && currentWeek<=m.max;
+}
+function moduleIsLater(m){
+  if(m.always)return false;
+  return currentWeek<m.min;
+}
+function badgeForModule(m){
+  if(m.always)return '<span class="module-badge now">'+(t().alwaysBadge||"Toujours")+'</span>';
+  if(moduleIsNow(m))return '<span class="module-badge now">'+(t().nowBadge||"Maintenant")+'</span>';
+  return '<span class="module-badge soon">'+(t().laterBadge||"Plus tard")+' · '+t().weekShort+' '+m.min+'</span>';
+}
+function moduleCard(m){
+  return `
+    <a class="module-card" href="${m.href}">
+      <div class="module-icon">${m.icon}</div>
+      <div class="module-title">${t()[m.title]||m.title}</div>
+      <div class="module-desc">${t()[m.desc]||m.desc}</div>
+      <div class="module-meta">${badgeForModule(m)}</div>
     </a>
-  `).join("");
+  `;
+}
+function renderModules(){
+  const now=modules.filter(moduleIsNow);
+  const later=modules.filter(moduleIsLater).sort((a,b)=>a.min-b.min).slice(0,9);
+
+  document.getElementById("modulesGrid").innerHTML=now.map(moduleCard).join("");
+  const laterGrid=document.getElementById("laterGrid");
+  if(laterGrid){
+    laterGrid.innerHTML=later.length?later.map(moduleCard).join(""):'<div class="module-card"><div class="module-title">-</div></div>';
+  }
 }
 function renderHero(){
   const mother=currentProfile?.mother_name||currentProfile?.first_name||currentProfile?.name||currentUser?.user_metadata?.full_name||"Mama";

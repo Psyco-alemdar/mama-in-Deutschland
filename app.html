@@ -126,6 +126,32 @@ p{margin:0;color:var(--muted);line-height:1.6}
       <div class="actions" style="margin-top:14px;">
         <a class="button" href="profile.html" id="editProfileButton">Profil bearbeiten</a>
         <a class="button-light" href="emergency.html" id="emergencyQuickButton">Notfall</a>
+        <a class="button-light" href="community-rules.html" id="communityRulesQuickButton">Community rules</a>
+        <a class="button-light" href="admin-moderation.html" id="adminQuickButton" style="display:none;">Admin</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="importantDashboardSection">
+    <div class="section-title">
+      <div>
+        <h2 id="dashboardTermineTitle">Nächster wichtiger Termin</h2>
+        <p id="dashboardTermineText">Damit nichts Wichtiges vergessen wird, bleibt der nächste Punkt immer sichtbar.</p>
+      </div>
+      <div class="actions">
+        <a class="button-light" href="calendar.html" id="openCalendarButton">Kalender öffnen</a>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="box">
+        <span class="badge" id="nextBadge">Next</span>
+        <h3 id="nextTermineTitle">-</h3>
+        <div class="soft" id="nextTermineDate">-</div>
+        <p id="nextTermineDesc">-</p>
+      </div>
+      <div class="box">
+        <h3 id="importantNowTitle">Jetzt wichtig</h3>
+        <div id="importantNowList"></div>
       </div>
     </div>
   </section>
@@ -233,6 +259,8 @@ const translations={
     mSleep:"Schlaf",dSleep:"Babys Schlafphasen und Nickerchen verfolgen.",
     mExperience:"Share your experience",dExperience:"Erfahrungen teilen, lesen, liken und kommentieren.",
     mMarketplace:"Marketplace",dMarketplace:"Babyartikel verkaufen, kaufen oder kostenlos weitergeben.",
+    mCommunityRules:"Community rules",dCommunityRules:"Regeln, Sicherheit, Meldungen und Hinweise vor öffentlichem Start.",
+    communityRulesQuickButton:"Community rules",adminQuickButton:"Admin",openCalendarButton:"Kalender öffnen",
     noItems:"Keine Karten in dieser Kategorie."
   },
   fr:{
@@ -267,6 +295,8 @@ const translations={
     mSleep:"Sommeil",dSleep:"Suivre les phases de sommeil et siestes du bébé.",
     mExperience:"Share your experience",dExperience:"Partager, lire, liker et commenter les expériences des mamans.",
     mMarketplace:"Marketplace",dMarketplace:"Vendre, acheter ou donner des affaires bébé.",
+    mCommunityRules:"Community rules",dCommunityRules:"Règles, sécurité, signalements et points avant lancement public.",
+    communityRulesQuickButton:"Community rules",adminQuickButton:"Admin",openCalendarButton:"Ouvrir calendrier",
     noItems:"Aucune carte dans cette catégorie."
   },
   ar:{
@@ -301,6 +331,8 @@ const translations={
     mSleep:"النوم",dSleep:"متابعة نوم الطفل والقيلولة.",
     mExperience:"شاركي تجربتك",dExperience:"مشاركة وقراءة تجارب الأمهات والتفاعل معها.",
     mMarketplace:"السوق",dMarketplace:"بيع أو شراء أو إعطاء أغراض الأطفال مجاناً.",
+    mCommunityRules:"قواعد المجتمع",dCommunityRules:"القواعد والسلامة والبلاغات ونقاط قبل الإطلاق العام.",
+    communityRulesQuickButton:"قواعد المجتمع",adminQuickButton:"المدير",openCalendarButton:"فتح التقويم",
     noItems:"لا توجد بطاقات في هذه الفئة."
   },
   en:{
@@ -335,6 +367,8 @@ const translations={
     mSleep:"Sleep",dSleep:"Track baby's sleep phases and naps.",
     mExperience:"Share your experience",dExperience:"Share, read, like and comment on mothers’ experiences.",
     mMarketplace:"Marketplace",dMarketplace:"Sell, buy or give away baby items.",
+    mCommunityRules:"Community rules",dCommunityRules:"Rules, safety, reports and notes before public launch.",
+    communityRulesQuickButton:"Community rules",adminQuickButton:"Admin",openCalendarButton:"Open calendar",
     noItems:"No cards in this category."
   },
   tr:{
@@ -369,6 +403,8 @@ const translations={
     mSleep:"Uyku",dSleep:"Bebeğin uyku dönemlerini takip et.",
     mExperience:"Deneyimini paylaş",dExperience:"Annelerin deneyimlerini paylaş, oku, beğen ve yorumla.",
     mMarketplace:"Pazar yeri",dMarketplace:"Bebek eşyası sat, al veya ücretsiz ver.",
+    mCommunityRules:"Topluluk kuralları",dCommunityRules:"Kurallar, güvenlik, bildirimler ve halka açılmadan önce notlar.",
+    communityRulesQuickButton:"Topluluk kuralları",adminQuickButton:"Admin",openCalendarButton:"Takvimi aç",
     noItems:"Bu kategoride kart yok."
   },
   ru:{
@@ -403,6 +439,8 @@ const translations={
     mSleep:"Сон",dSleep:"Отслеживать сон и дневные сны ребёнка.",
     mExperience:"Поделиться опытом",dExperience:"Делиться, читать, отмечать полезное и комментировать опыт мам.",
     mMarketplace:"Маркетплейс",dMarketplace:"Продавать, покупать или отдавать детские вещи.",
+    mCommunityRules:"Правила сообщества",dCommunityRules:"Правила, безопасность, жалобы и заметки перед публичным запуском.",
+    communityRulesQuickButton:"Правила сообщества",adminQuickButton:"Админ",openCalendarButton:"Открыть календарь",
     noItems:"Нет карточек в этой категории."
   },
   uk:{
@@ -437,6 +475,8 @@ const translations={
     mSleep:"Сон",dSleep:"Відстежувати сон і денні сни дитини.",
     mExperience:"Поділитися досвідом",dExperience:"Ділитися, читати, позначати корисне і коментувати досвід мам.",
     mMarketplace:"Маркетплейс",dMarketplace:"Продавати, купувати або віддавати дитячі речі.",
+    mCommunityRules:"Правила спільноти",dCommunityRules:"Правила, безпека, скарги і нотатки перед публічним запуском.",
+    communityRulesQuickButton:"Правила спільноти",adminQuickButton:"Адмін",openCalendarButton:"Відкрити календар",
     noItems:"Немає карток у цій категорії."
   }
 };
@@ -463,10 +503,30 @@ const modules=[
   {id:"sleep",href:"sleep.html",icon:"🌙",title:"mSleep",desc:"dSleep",category:"baby",min:34,max:60},
   {id:"contractions",href:"contractions.html",icon:"⏱️",title:"mContractions",desc:"dContractions",category:"birth",min:34,max:42},
   {id:"experience",href:"experience.html",icon:"💬",title:"mExperience",desc:"dExperience",category:"tools",always:true},
-  {id:"marketplace",href:"marketplace.html",icon:"🛒",title:"mMarketplace",desc:"dMarketplace",category:"tools",min:12,max:60}
+  {id:"marketplace",href:"marketplace.html",icon:"🛒",title:"mMarketplace",desc:"dMarketplace",category:"tools",min:12,max:60},
+  {id:"communityRules",href:"community-rules.html",icon:"🛡️",title:"mCommunityRules",desc:"dCommunityRules",category:"tools",always:true}
 ];
 
 function t(){return translations[currentLang]||translations.de}
+
+
+const dashboardTexts={
+ de:{dashboardTermineTitle:"Nächster wichtiger Termin",dashboardTermineText:"Damit nichts Wichtiges vergessen wird, bleibt der nächste Punkt immer sichtbar.",nextBadge:"Nächster Punkt",importantNowTitle:"Jetzt wichtig",noDueDate:"Bitte Geburtstermin im Profil eintragen, damit die App die Termine berechnen kann.",week:"SSW",eventFirstCheck:"Frühe Vorsorge / Frauenarzt",eventFirstCheckDesc:"Termin, Mutterpass, Blutwerte und offene Fragen besprechen.",eventScreening:"Erstes Screening / Nackenfalte optional",eventScreeningDesc:"Je nach Wunsch und ärztlicher Empfehlung besprechen.",eventSecondUltrasound:"Zweites Ultraschall-Screening",eventSecondUltrasoundDesc:"Organentwicklung und Wachstum kontrollieren lassen.",eventGlucose:"Zuckerbelastungstest / Vorsorge",eventGlucoseDesc:"Wichtige Vorsorge typischerweise im zweiten Trimester.",eventBirthPrep:"Geburtsvorbereitung / Hebamme / Klinik",eventBirthPrepDesc:"Kurs, Hebamme, Klinik und Geburtsplan organisieren.",eventBureaucracy:"Mutterschutz, Elterngeld und Elternzeit vorbereiten",eventBureaucracyDesc:"Unterlagen sammeln und Anträge vorbereiten.",eventThirdUltrasound:"Drittes Ultraschall-Screening",eventThirdUltrasoundDesc:"Wachstum, Lage und weitere Planung prüfen.",eventHospitalBag:"Kliniktasche vorbereiten",eventHospitalBagDesc:"Dokumente, Mama, Baby und Partner vorbereiten.",eventFinalPrep:"Klinikroute und Notfallplan prüfen",eventFinalPrepDesc:"Kontakte, Tasche, Babyschale und Transport bereithalten.",eventDueDate:"Voraussichtlicher Geburtstermin",eventDueDateDesc:"Ab jetzt täglich auf Zeichen und Klinikhinweise achten.",eventAfterBirth:"Nach Geburt: Anträge und Termine",eventAfterBirthDesc:"Geburtsurkunde, Kindergeld, Elterngeld und Kinderarzt planen.",nowFirst:["Vorsorgetermin planen","Mutterpass und Dokumente bereithalten","Ernährung und Medikamente mit Arzt klären"],nowSecond:["Hebamme und Kurse organisieren","Bürokratie langsam vorbereiten","Baby-Erstausstattung planen"],nowThirdEarly:["Klinik, Kurs und Geburtsplan klären","Kliniktasche vorbereiten","Wichtige Dokumente sammeln"],nowBirth:["Kliniktasche und Babyschale bereit halten","Wehen-Timer und Notfallkontakte prüfen","Geburtszeichen ernst nehmen"],nowAfter:["Kinderarzt, Geburtsurkunde und Anträge prüfen","Stillen/Flasche und Schlaf dokumentieren","Nachsorge und Hebamme nutzen"]},
+ fr:{dashboardTermineTitle:"Prochain point important",dashboardTermineText:"Pour ne rien oublier, le prochain point important reste toujours visible.",nextBadge:"Prochain point",importantNowTitle:"Important maintenant",noDueDate:"Ajoute le terme dans le profil pour calculer les dates.",week:"SA",eventFirstCheck:"Première consultation / gynécologue",eventFirstCheckDesc:"Discuter rendez-vous, Mutterpass, prises de sang et questions.",eventScreening:"Premier screening / clarté nucale optionnelle",eventScreeningDesc:"À discuter selon souhait et recommandation médicale.",eventSecondUltrasound:"Deuxième échographie",eventSecondUltrasoundDesc:"Contrôle du développement et de la croissance.",eventGlucose:"Test de glycémie / consultation",eventGlucoseDesc:"Contrôle important typique du deuxième trimestre.",eventBirthPrep:"Préparation naissance / sage-femme / clinique",eventBirthPrepDesc:"Organiser cours, sage-femme, clinique et projet de naissance.",eventBureaucracy:"Préparer Mutterschutz, Elterngeld et Elternzeit",eventBureaucracyDesc:"Rassembler documents et préparer les demandes.",eventThirdUltrasound:"Troisième échographie",eventThirdUltrasoundDesc:"Croissance, position et planification.",eventHospitalBag:"Préparer la valise maternité",eventHospitalBagDesc:"Documents, maman, bébé et partenaire.",eventFinalPrep:"Vérifier route clinique et plan d’urgence",eventFinalPrepDesc:"Contacts, sac, coque bébé et transport prêts.",eventDueDate:"Terme prévu",eventDueDateDesc:"Surveiller les signes et consignes de la clinique.",eventAfterBirth:"Après naissance : demandes et rendez-vous",eventAfterBirthDesc:"Acte de naissance, Kindergeld, Elterngeld et pédiatre.",nowFirst:["Planifier les consultations","Garder Mutterpass et documents prêts","Clarifier alimentation et médicaments avec médecin"],nowSecond:["Organiser sage-femme et cours","Préparer doucement la bureaucratie","Planifier l’équipement bébé"],nowThirdEarly:["Clarifier clinique, cours et projet de naissance","Préparer la valise maternité","Rassembler les documents importants"],nowBirth:["Garder valise et coque bébé prêtes","Vérifier timer contractions et contacts d’urgence","Prendre les signes de naissance au sérieux"],nowAfter:["Pédiatre, acte de naissance et demandes","Documenter allaitement/biberon et sommeil","Utiliser suivi postnatal et sage-femme"]},
+ ar:{dashboardTermineTitle:"الموعد المهم القادم",dashboardTermineText:"حتى لا يتم نسيان شيء مهم، يبقى الموعد القادم ظاهراً دائماً.",nextBadge:"النقطة القادمة",importantNowTitle:"مهم الآن",noDueDate:"أدخلي موعد الولادة في الملف حتى يتم حساب المواعيد.",week:"أسبوع",eventFirstCheck:"متابعة مبكرة / طبيبة النساء",eventFirstCheckDesc:"مناقشة الموعد، دفتر الحمل، التحاليل والأسئلة.",eventScreening:"الفحص الأول / قياس الشفافية اختياري",eventScreeningDesc:"حسب الرغبة وتوصية الطبيبة.",eventSecondUltrasound:"السونار الثاني",eventSecondUltrasoundDesc:"مراقبة النمو والتطور.",eventGlucose:"اختبار السكر / متابعة",eventGlucoseDesc:"فحص مهم غالباً في الثلث الثاني.",eventBirthPrep:"تحضير الولادة / القابلة / المستشفى",eventBirthPrepDesc:"تنظيم الدورة، القابلة، المستشفى وخطة الولادة.",eventBureaucracy:"تحضير Mutterschutz و Elterngeld و Elternzeit",eventBureaucracyDesc:"جمع الوثائق وتحضير الطلبات.",eventThirdUltrasound:"السونار الثالث",eventThirdUltrasoundDesc:"النمو، الوضعية والتخطيط.",eventHospitalBag:"تحضير حقيبة المستشفى",eventHospitalBagDesc:"الوثائق، الأم، الطفل والشريك.",eventFinalPrep:"التأكد من طريق المستشفى وخطة الطوارئ",eventFinalPrepDesc:"جهات الاتصال، الحقيبة، كرسي السيارة والنقل.",eventDueDate:"موعد الولادة المتوقع",eventDueDateDesc:"الانتباه يومياً للعلامات وتعليمات المستشفى.",eventAfterBirth:"بعد الولادة: الطلبات والمواعيد",eventAfterBirthDesc:"شهادة الولادة، Kindergeld، Elterngeld وطبيب الأطفال.",nowFirst:["تنظيم مواعيد المتابعة","تجهيز دفتر الحمل والوثائق","مناقشة التغذية والأدوية مع الطبيبة"],nowSecond:["تنظيم القابلة والدورات","تحضير الإجراءات تدريجياً","تخطيط تجهيزات الطفل"],nowThirdEarly:["توضيح المستشفى والدورة وخطة الولادة","تحضير حقيبة المستشفى","جمع الوثائق المهمة"],nowBirth:["إبقاء الحقيبة وكرسي السيارة جاهزين","فحص مؤقت الطلق وجهات الطوارئ","أخذ علامات الولادة بجدية"],nowAfter:["طبيب الأطفال وشهادة الولادة والطلبات","متابعة الرضاعة/القنينة والنوم","استخدام متابعة القابلة بعد الولادة"]},
+ en:{dashboardTermineTitle:"Next important point",dashboardTermineText:"So nothing important is forgotten, the next point stays visible on the dashboard.",nextBadge:"Next point",importantNowTitle:"Important now",noDueDate:"Add the due date in the profile so the app can calculate dates.",week:"Week",eventFirstCheck:"Early check-up / gynecologist",eventFirstCheckDesc:"Discuss appointment, Mutterpass, blood tests and questions.",eventScreening:"First screening / optional NT scan",eventScreeningDesc:"Discuss depending on preference and medical recommendation.",eventSecondUltrasound:"Second ultrasound screening",eventSecondUltrasoundDesc:"Check development and growth.",eventGlucose:"Glucose test / check-up",eventGlucoseDesc:"Important check-up usually in the second trimester.",eventBirthPrep:"Birth preparation / midwife / clinic",eventBirthPrepDesc:"Organize course, midwife, clinic and birth plan.",eventBureaucracy:"Prepare maternity leave, Elterngeld and Elternzeit",eventBureaucracyDesc:"Collect documents and prepare applications.",eventThirdUltrasound:"Third ultrasound screening",eventThirdUltrasoundDesc:"Check growth, position and planning.",eventHospitalBag:"Prepare hospital bag",eventHospitalBagDesc:"Documents, mother, baby and partner.",eventFinalPrep:"Check clinic route and emergency plan",eventFinalPrepDesc:"Contacts, bag, infant car seat and transport ready.",eventDueDate:"Estimated due date",eventDueDateDesc:"Watch for signs and clinic instructions.",eventAfterBirth:"After birth: applications and appointments",eventAfterBirthDesc:"Birth certificate, Kindergeld, Elterngeld and pediatrician.",nowFirst:["Plan check-ups","Keep Mutterpass and documents ready","Clarify nutrition and medication with doctor"],nowSecond:["Organize midwife and courses","Prepare bureaucracy gradually","Plan baby essentials"],nowThirdEarly:["Clarify clinic, course and birth plan","Prepare hospital bag","Collect important documents"],nowBirth:["Keep bag and infant seat ready","Check contraction timer and emergency contacts","Take birth signs seriously"],nowAfter:["Pediatrician, birth certificate and applications","Track feeding and sleep","Use postpartum care and midwife support"]},
+ tr:{dashboardTermineTitle:"Sıradaki önemli nokta",dashboardTermineText:"Önemli bir şey unutulmasın diye sonraki nokta her zaman görünür kalır.",nextBadge:"Sonraki nokta",importantNowTitle:"Şimdi önemli",noDueDate:"Tarihleri hesaplamak için profilinde doğum tarihini ekle.",week:"Hafta",eventFirstCheck:"Erken kontrol / kadın doğum",eventFirstCheckDesc:"Randevu, Mutterpass, kan testleri ve soruları konuş.",eventScreening:"İlk tarama / opsiyonel NT",eventScreeningDesc:"İstek ve tıbbi öneriye göre konuş.",eventSecondUltrasound:"İkinci ultrason",eventSecondUltrasoundDesc:"Gelişim ve büyümeyi kontrol ettir.",eventGlucose:"Şeker testi / kontrol",eventGlucoseDesc:"Genelde ikinci trimesterde önemli kontrol.",eventBirthPrep:"Doğuma hazırlık / ebe / klinik",eventBirthPrepDesc:"Kurs, ebe, klinik ve doğum planı organize et.",eventBureaucracy:"Mutterschutz, Elterngeld ve Elternzeit hazırla",eventBureaucracyDesc:"Belgeleri topla ve başvuruları hazırla.",eventThirdUltrasound:"Üçüncü ultrason",eventThirdUltrasoundDesc:"Büyüme, pozisyon ve planlama.",eventHospitalBag:"Hastane çantasını hazırla",eventHospitalBagDesc:"Belgeler, anne, bebek ve partner.",eventFinalPrep:"Klinik yolu ve acil planı kontrol et",eventFinalPrepDesc:"Kişiler, çanta, oto koltuğu ve ulaşım hazır.",eventDueDate:"Tahmini doğum tarihi",eventDueDateDesc:"Belirtilere ve klinik önerilerine dikkat et.",eventAfterBirth:"Doğum sonrası: başvurular ve randevular",eventAfterBirthDesc:"Doğum belgesi, Kindergeld, Elterngeld ve çocuk doktoru.",nowFirst:["Kontrolleri planla","Mutterpass ve belgeleri hazır tut","Beslenme ve ilaçları doktorla konuş"],nowSecond:["Ebe ve kursları organize et","Bürokrasiyi yavaşça hazırla","Bebek ihtiyaçlarını planla"],nowThirdEarly:["Klinik, kurs ve doğum planını netleştir","Hastane çantasını hazırla","Önemli belgeleri topla"],nowBirth:["Çanta ve oto koltuğu hazır olsun","Kasılma timer ve acil kişileri kontrol et","Doğum belirtilerini ciddiye al"],nowAfter:["Çocuk doktoru, doğum belgesi ve başvurular","Beslenme ve uykuyu takip et","Doğum sonrası ebe desteğini kullan"]},
+ ru:{dashboardTermineTitle:"Следующий важный пункт",dashboardTermineText:"Чтобы ничего важного не забыть, следующий пункт всегда виден на панели.",nextBadge:"Следующий пункт",importantNowTitle:"Важно сейчас",noDueDate:"Добавьте дату родов в профиль, чтобы приложение рассчитало даты.",week:"Неделя",eventFirstCheck:"Ранний осмотр / гинеколог",eventFirstCheckDesc:"Обсудить приём, Mutterpass, анализы крови и вопросы.",eventScreening:"Первый скрининг / НТ опционально",eventScreeningDesc:"Обсудить по желанию и медицинской рекомендации.",eventSecondUltrasound:"Второй УЗИ-скрининг",eventSecondUltrasoundDesc:"Проверить развитие и рост.",eventGlucose:"Тест на сахар / осмотр",eventGlucoseDesc:"Важный осмотр обычно во втором триместре.",eventBirthPrep:"Подготовка к родам / акушерка / клиника",eventBirthPrepDesc:"Организовать курс, акушерку, клинику и план родов.",eventBureaucracy:"Подготовить Mutterschutz, Elterngeld и Elternzeit",eventBureaucracyDesc:"Собрать документы и подготовить заявления.",eventThirdUltrasound:"Третий УЗИ-скрининг",eventThirdUltrasoundDesc:"Проверить рост, положение и план.",eventHospitalBag:"Подготовить сумку в роддом",eventHospitalBagDesc:"Документы, мама, ребёнок и партнёр.",eventFinalPrep:"Проверить маршрут в клинику и план экстренной ситуации",eventFinalPrepDesc:"Контакты, сумка, автокресло и транспорт готовы.",eventDueDate:"Предполагаемая дата родов",eventDueDateDesc:"Следить за признаками и инструкциями клиники.",eventAfterBirth:"После родов: заявления и приёмы",eventAfterBirthDesc:"Свидетельство о рождении, Kindergeld, Elterngeld и педиатр.",nowFirst:["Планировать осмотры","Держать Mutterpass и документы готовыми","Обсудить питание и лекарства с врачом"],nowSecond:["Организовать акушерку и курсы","Постепенно готовить бюрократию","Планировать первые вещи для ребёнка"],nowThirdEarly:["Уточнить клинику, курс и план родов","Подготовить сумку в роддом","Собрать важные документы"],nowBirth:["Держать сумку и автокресло готовыми","Проверить таймер схваток и экстренные контакты","Серьёзно относиться к признакам родов"],nowAfter:["Педиатр, свидетельство и заявления","Отслеживать кормление и сон","Использовать послеродовую помощь и акушерку"]},
+ uk:{dashboardTermineTitle:"Наступний важливий пункт",dashboardTermineText:"Щоб нічого важливого не забути, наступний пункт завжди видно на панелі.",nextBadge:"Наступний пункт",importantNowTitle:"Важливо зараз",noDueDate:"Додайте дату пологів у профіль, щоб додаток розрахував дати.",week:"Тиждень",eventFirstCheck:"Ранній огляд / гінеколог",eventFirstCheckDesc:"Обговорити прийом, Mutterpass, аналізи крові та питання.",eventScreening:"Перший скринінг / НТ опційно",eventScreeningDesc:"Обговорити за бажанням і медичною рекомендацією.",eventSecondUltrasound:"Друге УЗД",eventSecondUltrasoundDesc:"Перевірити розвиток і ріст.",eventGlucose:"Тест на цукор / огляд",eventGlucoseDesc:"Важливий огляд зазвичай у другому триместрі.",eventBirthPrep:"Підготовка до пологів / акушерка / клініка",eventBirthPrepDesc:"Організувати курс, акушерку, клініку і план пологів.",eventBureaucracy:"Підготувати Mutterschutz, Elterngeld і Elternzeit",eventBureaucracyDesc:"Зібрати документи і підготувати заяви.",eventThirdUltrasound:"Третє УЗД",eventThirdUltrasoundDesc:"Перевірити ріст, положення і план.",eventHospitalBag:"Підготувати сумку в пологовий",eventHospitalBagDesc:"Документи, мама, дитина і партнер.",eventFinalPrep:"Перевірити маршрут до клініки і план екстреної ситуації",eventFinalPrepDesc:"Контакти, сумка, автокрісло і транспорт готові.",eventDueDate:"Очікувана дата пологів",eventDueDateDesc:"Стежити за ознаками та інструкціями клініки.",eventAfterBirth:"Після пологів: заяви і прийоми",eventAfterBirthDesc:"Свідоцтво про народження, Kindergeld, Elterngeld і педіатр.",nowFirst:["Планувати огляди","Тримати Mutterpass і документи готовими","Обговорити харчування і ліки з лікарем"],nowSecond:["Організувати акушерку і курси","Поступово готувати бюрократію","Планувати перші речі для дитини"],nowThirdEarly:["Уточнити клініку, курс і план пологів","Підготувати сумку в пологовий","Зібрати важливі документи"],nowBirth:["Тримати сумку і автокрісло готовими","Перевірити таймер перейм і екстрені контакти","Серйозно ставитися до ознак пологів"],nowAfter:["Педіатр, свідоцтво і заяви","Відстежувати годування і сон","Використовувати післяпологову допомогу і акушерку"]}
+};
+function dx(key){const pack=dashboardTexts[currentLang]||dashboardTexts.de;return pack[key]||key;}
+function dashboardSetText(id,value){const el=document.getElementById(id);if(el)el.textContent=value;}
+function formatDashboardDate(date){if(!date)return "-";const locale=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":currentLang==="fr"?"fr-FR":currentLang==="tr"?"tr-TR":currentLang==="ru"?"ru-RU":currentLang==="uk"?"uk-UA":currentLang==="en"?"en-GB":"de-DE";return date.toLocaleDateString(locale,{day:"2-digit",month:"long",year:"numeric",calendar:"gregory",numberingSystem:"latn"});}
+function dateForPregnancyWeek(week){if(!currentProfile||!currentProfile.due_date)return null;const due=parseLocalDate(currentProfile.due_date);const start=addDays(due,-280);return addDays(start,(week-1)*7);}
+function appointmentDefinitions(){return[{week:8,title:"eventFirstCheck",desc:"eventFirstCheckDesc"},{week:12,title:"eventScreening",desc:"eventScreeningDesc"},{week:20,title:"eventSecondUltrasound",desc:"eventSecondUltrasoundDesc"},{week:24,title:"eventGlucose",desc:"eventGlucoseDesc"},{week:28,title:"eventBirthPrep",desc:"eventBirthPrepDesc"},{week:30,title:"eventBureaucracy",desc:"eventBureaucracyDesc"},{week:32,title:"eventThirdUltrasound",desc:"eventThirdUltrasoundDesc"},{week:34,title:"eventHospitalBag",desc:"eventHospitalBagDesc"},{week:36,title:"eventFinalPrep",desc:"eventFinalPrepDesc"},{week:40,title:"eventDueDate",desc:"eventDueDateDesc"},{week:41,title:"eventAfterBirth",desc:"eventAfterBirthDesc"}];}
+function currentNowList(){const pack=dashboardTexts[currentLang]||dashboardTexts.de;if(currentWeek>42)return pack.nowAfter;if(currentWeek>=34)return pack.nowBirth;if(currentWeek>=28)return pack.nowThirdEarly;if(currentWeek>=13)return pack.nowSecond;return pack.nowFirst;}
+function updateImportantDashboard(){dashboardSetText("dashboardTermineTitle",dx("dashboardTermineTitle"));dashboardSetText("dashboardTermineText",dx("dashboardTermineText"));dashboardSetText("nextBadge",dx("nextBadge"));dashboardSetText("importantNowTitle",dx("importantNowTitle"));const events=appointmentDefinitions();let next=events.find(e=>e.week>=currentWeek);if(!next)next=events[events.length-1];if(!currentProfile||!currentProfile.due_date){dashboardSetText("nextTermineTitle",dx("noDueDate"));dashboardSetText("nextTermineDate","-");dashboardSetText("nextTermineDesc","");}else{const date=dateForPregnancyWeek(next.week);dashboardSetText("nextTermineTitle",dx(next.title));dashboardSetText("nextTermineDate",dx("week")+" "+next.week+" · "+formatDashboardDate(date));dashboardSetText("nextTermineDesc",dx(next.desc));}const list=document.getElementById("importantNowList");if(list){const items=currentNowList()||[];list.innerHTML=items.map(x=>'<div class="soft" style="margin-top:8px;">'+x+'</div>').join("");}}
+async function checkAdminAccess(){const btn=document.getElementById("adminQuickButton");if(!btn||!currentUser)return;try{const result=await supabaseClient.from("admin_users").select("user_id").eq("user_id",currentUser.id).maybeSingle();btn.style.display=result.data?"inline-flex":"none";}catch(e){btn.style.display="none";}}
 
 function setLanguage(lang){
   currentLang=lang;
@@ -486,6 +546,7 @@ function setLanguage(lang){
   document.getElementById("showAllButton").textContent=showAll?t().hideAllButton:t().showAllButton;
 
   updateDashboardText();
+  updateImportantDashboard();
   updateTabs();
   renderModules();
 }
@@ -593,6 +654,7 @@ async function loadApp(){
   document.getElementById("appShell").style.display="block";
 
   setLanguage(currentLang);
+  checkAdminAccess();
 }
 
 function updateDashboardText(){
@@ -611,6 +673,7 @@ function updateDashboardText(){
 
   document.getElementById("babyInfo").textContent=babyLine;
   document.getElementById("profileInfo").textContent=(city?city+" · ":"")+t().weekShort+" "+currentWeek;
+  updateImportantDashboard();
 }
 
 function setTab(tab){

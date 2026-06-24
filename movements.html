@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Kindsbewegungen</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+  radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));
+  color:var(--text)
+}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger{
+  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;
+  cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center
+}
+.language-buttons button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
+.big-button{font-size:22px;padding:18px 28px;border-radius:26px}
+.card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+.counter-card{text-align:center;background:linear-gradient(180deg,var(--cream),white)}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:17px}
+p{margin:0;color:var(--muted);line-height:1.6}
+label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+input,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+textarea{min-height:80px;resize:vertical}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.stat,.session-card,.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.stat-label{color:var(--muted);font-size:13px;font-weight:900}
+.stat-value{margin-top:6px;color:var(--brown);font-size:30px;font-weight:950}
+.big-count{font-size:78px;font-weight:950;color:var(--brown);letter-spacing:-2px;margin:16px 0}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}.big-count{font-size:58px}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Kindsbewegungen</h1>
+    <p id="pageText">Zähle Bewegungen des Babys und speichere kurze Sitzungen. Bei deutlich weniger Bewegungen oder Unsicherheit bitte sofort medizinisch abklären lassen.</p>
+    <div class="soft" id="warningBox">Diese Seite ersetzt keine medizinische Beratung.</div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card counter-card">
+      <h2 id="counterTitle">Zähler</h2>
+      <div class="big-count" id="movementCount">0</div>
+      <div class="actions" style="justify-content:center;">
+        <button class="button big-button" onclick="addMovement()" id="addMovementButton">Bewegung +1</button>
+        <button class="button-light" onclick="undoMovement()" id="undoButton">Zurück</button>
+      </div>
+      <div class="soft" id="sessionStatus">Keine aktive Sitzung</div>
+      <div class="actions" style="justify-content:center;margin-top:14px;">
+        <button class="button-light" onclick="startSession()" id="startButton">Sitzung starten</button>
+        <button class="button-success button" onclick="saveSession()" id="saveButton">Sitzung speichern</button>
+        <button class="button-danger" onclick="resetSession()" id="resetButton">Zurücksetzen</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="summaryTitle">Heute</h2>
+      <div class="grid-3">
+        <div class="stat"><div class="stat-label" id="todaySessionsLabel">Sitzungen</div><div class="stat-value" id="todaySessionsValue">0</div></div>
+        <div class="stat"><div class="stat-label" id="todayMovementsLabel">Bewegungen</div><div class="stat-value" id="todayMovementsValue">0</div></div>
+        <div class="stat"><div class="stat-label" id="lastSessionLabel">Letzte</div><div class="stat-value" id="lastSessionValue">-</div></div>
+      </div>
+
+      <label id="noteLabel" for="sessionNote">Notiz zur Sitzung</label>
+      <textarea id="sessionNote"></textarea>
+
+      <div class="box" style="margin-top:14px;">
+        <h3 id="tipTitle">Wichtig</h3>
+        <p id="tipText">Wenn du das Gefühl hast, dass sich dein Baby deutlich weniger bewegt als sonst, nicht nur zählen, sondern medizinisch Kontakt aufnehmen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="historyTitle">Gespeicherte Sitzungen</h2>
+    <div class="grid-3" id="sessionsGrid"></div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br />
+  <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null;
+let currentProfile=null;
+let currentLang=localStorage.getItem("mama_lang")||"de";
+let currentCount=0;
+let sessionStart=null;
+
+const translations={
+  de:{
+    backButton:"Zurück",pageTitle:"Kindsbewegungen",pageText:"Zähle Bewegungen des Babys und speichere kurze Sitzungen. Bei deutlich weniger Bewegungen oder Unsicherheit bitte sofort medizinisch abklären lassen.",
+    warningBox:"Diese Seite ersetzt keine medizinische Beratung.",counterTitle:"Zähler",addMovementButton:"Bewegung +1",undoButton:"Zurück",
+    sessionInactive:"Keine aktive Sitzung",sessionActive:"Aktive Sitzung seit",startButton:"Sitzung starten",saveButton:"Sitzung speichern",resetButton:"Zurücksetzen",
+    summaryTitle:"Heute",todaySessionsLabel:"Sitzungen",todayMovementsLabel:"Bewegungen",lastSessionLabel:"Letzte",noteLabel:"Notiz zur Sitzung",
+    tipTitle:"Wichtig",tipText:"Wenn du das Gefühl hast, dass sich dein Baby deutlich weniger bewegt als sonst, nicht nur zählen, sondern medizinisch Kontakt aufnehmen.",
+    historyTitle:"Gespeicherte Sitzungen",empty:"Noch keine Sitzungen gespeichert.",movements:"Bewegungen",start:"Start",duration:"Dauer",note:"Notiz",delete:"Löschen",
+    loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",minutes:"Min"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Mouvements du bébé",pageText:"Compte les mouvements du bébé et enregistre de courtes sessions. Si les mouvements diminuent nettement ou en cas de doute, demande rapidement un avis médical.",
+    warningBox:"Cette page ne remplace pas un avis médical.",counterTitle:"Compteur",addMovementButton:"Mouvement +1",undoButton:"Retour",
+    sessionInactive:"Aucune session active",sessionActive:"Session active depuis",startButton:"Démarrer session",saveButton:"Enregistrer session",resetButton:"Réinitialiser",
+    summaryTitle:"Aujourd’hui",todaySessionsLabel:"Sessions",todayMovementsLabel:"Mouvements",lastSessionLabel:"Dernière",noteLabel:"Note de session",
+    tipTitle:"Important",tipText:"Si tu sens que ton bébé bouge beaucoup moins que d’habitude, ne fais pas que compter : contacte un professionnel.",
+    historyTitle:"Sessions enregistrées",empty:"Aucune session enregistrée.",movements:"Mouvements",start:"Début",duration:"Durée",note:"Note",delete:"Supprimer",
+    loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",minutes:"min"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"حركات الجنين",pageText:"احسبي حركات الطفل واحفظي جلسات قصيرة. إذا كانت الحركة أقل بوضوح أو عند الشك، اطلبي تقييماً طبياً فوراً.",
+    warningBox:"هذه الصفحة لا تعوّض الاستشارة الطبية.",counterTitle:"العداد",addMovementButton:"حركة +1",undoButton:"تراجع",
+    sessionInactive:"لا توجد جلسة نشطة",sessionActive:"جلسة نشطة منذ",startButton:"بدء الجلسة",saveButton:"حفظ الجلسة",resetButton:"إعادة ضبط",
+    summaryTitle:"اليوم",todaySessionsLabel:"الجلسات",todayMovementsLabel:"الحركات",lastSessionLabel:"آخر جلسة",noteLabel:"ملاحظة الجلسة",
+    tipTitle:"مهم",tipText:"إذا شعرتِ أن حركة الطفل أقل بكثير من المعتاد، لا تكتفي بالعد، بل تواصلي طبياً.",
+    historyTitle:"الجلسات المحفوظة",empty:"لا توجد جلسات محفوظة.",movements:"حركات",start:"البداية",duration:"المدة",note:"ملاحظة",delete:"حذف",
+    loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",minutes:"د"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Baby movements",pageText:"Count baby movements and save short sessions. If movements are clearly reduced or you are unsure, seek medical advice immediately.",
+    warningBox:"This page does not replace medical advice.",counterTitle:"Counter",addMovementButton:"Movement +1",undoButton:"Undo",
+    sessionInactive:"No active session",sessionActive:"Active session since",startButton:"Start session",saveButton:"Save session",resetButton:"Reset",
+    summaryTitle:"Today",todaySessionsLabel:"Sessions",todayMovementsLabel:"Movements",lastSessionLabel:"Last",noteLabel:"Session note",
+    tipTitle:"Important",tipText:"If you feel your baby is moving much less than usual, do not only count; contact medical help.",
+    historyTitle:"Saved sessions",empty:"No sessions saved yet.",movements:"Movements",start:"Start",duration:"Duration",note:"Note",delete:"Delete",
+    loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",minutes:"min"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Bebek hareketleri",pageText:"Bebeğin hareketlerini say ve kısa oturumlar kaydet. Hareketler belirgin azaldıysa veya emin değilsen hemen tıbbi destek al.",
+    warningBox:"Bu sayfa tıbbi danışmanın yerine geçmez.",counterTitle:"Sayaç",addMovementButton:"Hareket +1",undoButton:"Geri al",
+    sessionInactive:"Aktif oturum yok",sessionActive:"Aktif oturum başlangıcı",startButton:"Oturum başlat",saveButton:"Oturumu kaydet",resetButton:"Sıfırla",
+    summaryTitle:"Bugün",todaySessionsLabel:"Oturumlar",todayMovementsLabel:"Hareketler",lastSessionLabel:"Son",noteLabel:"Oturum notu",
+    tipTitle:"Önemli",tipText:"Bebeğin normalden çok daha az hareket ettiğini hissedersen sadece sayma, tıbbi yardım al.",
+    historyTitle:"Kaydedilen oturumlar",empty:"Henüz oturum kaydedilmedi.",movements:"Hareketler",start:"Başlangıç",duration:"Süre",note:"Not",delete:"Sil",
+    loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",minutes:"dk"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Шевеления ребёнка",pageText:"Считайте движения ребёнка и сохраняйте короткие сессии. Если движений стало заметно меньше или есть сомнения, срочно обратитесь за медицинской помощью.",
+    warningBox:"Эта страница не заменяет медицинскую консультацию.",counterTitle:"Счётчик",addMovementButton:"Движение +1",undoButton:"Назад",
+    sessionInactive:"Нет активной сессии",sessionActive:"Активная сессия с",startButton:"Начать сессию",saveButton:"Сохранить сессию",resetButton:"Сбросить",
+    summaryTitle:"Сегодня",todaySessionsLabel:"Сессии",todayMovementsLabel:"Движения",lastSessionLabel:"Последняя",noteLabel:"Заметка к сессии",
+    tipTitle:"Важно",tipText:"Если кажется, что ребёнок двигается намного меньше обычного, не только считайте, а обратитесь к врачу.",
+    historyTitle:"Сохранённые сессии",empty:"Пока нет сохранённых сессий.",movements:"Движения",start:"Начало",duration:"Длительность",note:"Заметка",delete:"Удалить",
+    loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",minutes:"мин"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Рухи дитини",pageText:"Рахуйте рухи дитини і зберігайте короткі сесії. Якщо рухів стало значно менше або є сумніви, негайно зверніться по медичну допомогу.",
+    warningBox:"Ця сторінка не замінює медичну консультацію.",counterTitle:"Лічильник",addMovementButton:"Рух +1",undoButton:"Назад",
+    sessionInactive:"Немає активної сесії",sessionActive:"Активна сесія з",startButton:"Почати сесію",saveButton:"Зберегти сесію",resetButton:"Скинути",
+    summaryTitle:"Сьогодні",todaySessionsLabel:"Сесії",todayMovementsLabel:"Рухи",lastSessionLabel:"Остання",noteLabel:"Нотатка до сесії",
+    tipTitle:"Важливо",tipText:"Якщо здається, що дитина рухається набагато менше, ніж зазвичай, не тільки рахуйте, а зверніться до лікаря.",
+    historyTitle:"Збережені сесії",empty:"Поки немає збережених сесій.",movements:"Рухи",start:"Початок",duration:"Тривалість",note:"Нотатка",delete:"Видалити",
+    loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",minutes:"хв"
+  }
+};
+
+function t(){return translations[currentLang]||translations.de}
+
+function setLanguage(lang){
+  currentLang=lang;
+  localStorage.setItem("mama_lang",lang);
+  document.documentElement.lang=lang;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  document.querySelectorAll(".language-buttons button").forEach(btn=>btn.classList.remove("active"));
+  const active=document.getElementById("lang-"+lang);
+  if(active)active.classList.add("active");
+  Object.keys(t()).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=t()[id];
+  });
+  updateCounter();
+  renderSessions();
+}
+
+function determineTheme(type,gender){
+  if(gender==="boy"||gender==="twin_boys")return"boy";
+  if(gender==="girl"||gender==="twin_girls")return"girl";
+  if(type==="twins"||gender==="twin_mixed")return"twin";
+  return"neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if(theme==="boy")document.body.classList.add("theme-boy");
+  if(theme==="girl")document.body.classList.add("theme-girl");
+  if(theme==="twin")document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+  const {data,error}=await supabaseClient.auth.getSession();
+  if(error||!data.session){
+    document.getElementById("loginMessage").style.display="block";
+    document.getElementById("appShell").style.display="none";
+    return;
+  }
+
+  currentUser=data.session.user;
+
+  const {data:profiles,error:profileError}=await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .order("created_at",{ascending:false})
+    .limit(1);
+
+  if(profileError||!profiles||profiles.length===0){
+    window.location.href="index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile=profiles[0];
+  currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+
+  applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display="none";
+  document.getElementById("appShell").style.display="block";
+
+  setLanguage(currentLang);
+}
+
+function storageKey(){return"mama-movements-"+(currentUser?.id||"guest")}
+
+function getSessions(){
+  try{return JSON.parse(localStorage.getItem(storageKey()))||[]}
+  catch(e){return[]}
+}
+
+function saveSessions(sessions){localStorage.setItem(storageKey(),JSON.stringify(sessions))}
+
+function startSession(){
+  sessionStart=Date.now();
+  currentCount=0;
+  document.getElementById("sessionNote").value="";
+  updateCounter();
+}
+
+function addMovement(){
+  if(!sessionStart)sessionStart=Date.now();
+  currentCount++;
+  updateCounter();
+}
+
+function undoMovement(){
+  if(currentCount>0)currentCount--;
+  updateCounter();
+}
+
+function resetSession(){
+  currentCount=0;
+  sessionStart=null;
+  document.getElementById("sessionNote").value="";
+  updateCounter();
+}
+
+function saveSession(){
+  if(currentCount===0)return;
+
+  const end=Date.now();
+  const sessions=getSessions();
+
+  sessions.unshift({
+    id:Date.now(),
+    start:sessionStart||end,
+    end:end,
+    count:currentCount,
+    note:document.getElementById("sessionNote").value.trim()
+  });
+
+  saveSessions(sessions);
+  resetSession();
+  renderSessions();
+}
+
+function deleteSession(id){
+  const sessions=getSessions().filter(s=>s.id!==id);
+  saveSessions(sessions);
+  renderSessions();
+}
+
+function formatTime(value){
+  const date=new Date(value);
+  const locale=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":
+               currentLang==="fr"?"fr-FR":
+               currentLang==="tr"?"tr-TR":
+               currentLang==="ru"?"ru-RU":
+               currentLang==="uk"?"uk-UA":
+               currentLang==="en"?"en-GB":"de-DE";
+  return date.toLocaleString(locale,{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit",calendar:"gregory",numberingSystem:"latn"});
+}
+
+function durationMinutes(start,end){
+  return Math.max(1,Math.round((end-start)/60000));
+}
+
+function isToday(value){
+  const d=new Date(value),n=new Date();
+  return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();
+}
+
+function updateCounter(){
+  document.getElementById("movementCount").textContent=currentCount;
+
+  const status=document.getElementById("sessionStatus");
+  if(sessionStart){
+    status.textContent=t().sessionActive+" "+formatTime(sessionStart);
+  }else{
+    status.textContent=t().sessionInactive;
+  }
+}
+
+function renderSessions(){
+  const grid=document.getElementById("sessionsGrid");
+  const sessions=getSessions();
+
+  const today=sessions.filter(s=>isToday(s.start));
+  document.getElementById("todaySessionsValue").textContent=today.length;
+  document.getElementById("todayMovementsValue").textContent=today.reduce((sum,s)=>sum+Number(s.count||0),0);
+  document.getElementById("lastSessionValue").textContent=sessions.length?formatTime(sessions[0].start):"-";
+
+  grid.innerHTML="";
+
+  if(sessions.length===0){
+    grid.innerHTML=`<div class="empty">${t().empty}</div>`;
+    return;
+  }
+
+  sessions.forEach(session=>{
+    const card=document.createElement("div");
+    card.className="session-card";
+    card.innerHTML=`
+      <div class="badge">${t().start}: ${formatTime(session.start)}</div>
+      <div class="badge">${t().duration}: ${durationMinutes(session.start,session.end)} ${t().minutes}</div>
+      <h3>${session.count} ${t().movements}</h3>
+      <p>${session.note||""}</p>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-danger" onclick="deleteSession(${session.id})">${t().delete}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+loadApp();
+</script>
+</body>
+</html>

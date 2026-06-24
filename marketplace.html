@@ -58,8 +58,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
   background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px
 }
 .item-image{
-  width:100%;height:170px;object-fit:cover;border-radius:18px;border:1px solid var(--border);
+  width:100%;height:190px;object-fit:cover;border-radius:18px;border:1px solid var(--border);
   background:var(--soft);margin-bottom:12px
+}
+.preview{
+  width:100%;max-height:220px;object-fit:cover;border-radius:18px;border:1px solid var(--border);
+  background:var(--soft);margin-top:12px;display:none
 }
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
 .price{font-size:28px;color:var(--brown);font-weight:950;margin:10px 0}
@@ -106,7 +110,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
       <h2 id="createTitle">Créer une annonce</h2>
 
       <label id="titleLabel" for="itemTitle">Titre</label>
-      <input id="itemTitle" />
+      <input id="itemTitle">
 
       <label id="categoryLabel" for="itemCategory">Catégorie</label>
       <select id="itemCategory">
@@ -129,7 +133,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
       </select>
 
       <label id="priceLabel" for="priceInput">Prix</label>
-      <input id="priceInput" type="number" step="0.01" min="0" placeholder="0" />
+      <input id="priceInput" type="number" step="0.01" min="0" placeholder="0">
 
       <label id="conditionLabel" for="conditionInput">État</label>
       <select id="conditionInput">
@@ -140,10 +144,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
       </select>
 
       <label id="cityLabel" for="cityInput">Ville</label>
-      <input id="cityInput" />
+      <input id="cityInput">
 
-      <label id="photoLabel" for="photoInput">Lien photo optionnel</label>
-      <input id="photoInput" placeholder="https://..." />
+      <label id="photoUploadLabel" for="photoFileInput">Photo réelle</label>
+      <input id="photoFileInput" type="file" accept="image/*" onchange="previewPhoto()">
+      <img id="photoPreview" class="preview" alt="">
 
       <label id="descriptionLabel" for="descriptionInput">Description</label>
       <textarea id="descriptionInput"></textarea>
@@ -152,7 +157,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
       <textarea id="contactInput"></textarea>
 
       <div class="checkbox-row">
-        <input id="safetyCheck" type="checkbox" />
+        <input id="safetyCheck" type="checkbox">
         <label for="safetyCheck" id="safetyCheckLabel" style="margin:0;">Je confirme que j’ai lu la note de sécurité.</label>
       </div>
 
@@ -170,12 +175,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
         <h3 id="rule1Title">Pas de paiement dans le site</h3>
         <p id="rule1Text">Pour l’instant, la plateforme sert seulement à mettre les mamans en contact.</p>
       </div>
-      <br />
+      <br>
       <div class="box">
         <h3 id="rule2Title">Sécurité produit</h3>
         <p id="rule2Text">Pour siège auto, lit, matelas et tire-lait : vérifie l’âge, l’état, les pièces, l’hygiène et les normes.</p>
       </div>
-      <br />
+      <br>
       <div class="box">
         <h3 id="rule3Title">Protection</h3>
         <p id="rule3Text">Ne publie pas ton adresse exacte. Utilise la ville et échange les détails seulement avec prudence.</p>
@@ -214,7 +219,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
 <section class="message card" id="loginMessage" style="display:none;">
   <h2 id="loginTitle">Connexion nécessaire</h2>
   <p id="loginText">Tu dois d’abord te connecter.</p>
-  <br />
+  <br>
   <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
@@ -238,7 +243,7 @@ const translations={
   de:{
     backButton:"Zurück",pageTitle:"Marketplace",pageText:"Verkaufen, kaufen oder kostenlos weitergeben: Kinderwagen, Babybett, Kleidung, Autositz, Spielzeug und mehr.",
     safetyTop:"Wichtig: Prüfe immer Zustand und Sicherheit von Babyprodukten, besonders Autositze, Betten, Matratzen und Milchpumpen.",
-    createTitle:"Anzeige erstellen",titleLabel:"Titel",categoryLabel:"Kategorie",typeLabel:"Typ",priceLabel:"Preis",conditionLabel:"Zustand",cityLabel:"Stadt",photoLabel:"Optionaler Fotolink",descriptionLabel:"Beschreibung",contactLabel:"Kontakt / Notiz",
+    createTitle:"Anzeige erstellen",titleLabel:"Titel",categoryLabel:"Kategorie",typeLabel:"Typ",priceLabel:"Preis",conditionLabel:"Zustand",cityLabel:"Stadt",photoUploadLabel:"Echte Foto hochladen",descriptionLabel:"Beschreibung",contactLabel:"Kontakt / Notiz",
     safetyCheckLabel:"Ich bestätige, dass ich den Sicherheitshinweis gelesen habe.",publishButton:"Veröffentlichen",clearButton:"Leeren",
     rulesTitle:"Marketplace-Regeln",rule1Title:"Keine Zahlung im Site",rule1Text:"Aktuell dient die Plattform nur dazu, Mamas miteinander in Kontakt zu bringen.",
     rule2Title:"Produktsicherheit",rule2Text:"Bei Autositz, Bett, Matratze und Milchpumpe: Alter, Zustand, Teile, Hygiene und Normen prüfen.",
@@ -248,13 +253,13 @@ const translations={
     catStrollerOption:"Kinderwagen",catBedOption:"Babybett",catCarSeatOption:"Autositz",catClothesOption:"Kleidung",catPumpOption:"Milchpumpe",catBabyphoneOption:"Babyphone",catToysOption:"Spielzeug",catFurnitureOption:"Möbel",catDiapersOption:"Windeln",catOtherOption:"Andere",
     typeSellOption:"Verkaufen",typeFreeOption:"Kostenlos geben",conditionNewOption:"Neu",conditionLikeNewOption:"Wie neu",conditionGoodOption:"Gut",conditionOkOption:"Gebraucht",
     free:"Kostenlos",favorite:"Merken",favorited:"Gemerkt ✓",report:"Melden",delete:"Löschen",reserved:"Reservieren",sold:"Verkauft",given:"Abgegeben",active:"Aktiv",myItem:"Meine Anzeige",
-    empty:"Noch keine Anzeigen vorhanden.",saved:"Anzeige veröffentlicht.",error:"Fehler. Bitte erneut versuchen.",reported:"Danke, die Meldung wurde gespeichert.",
+    empty:"Noch keine Anzeigen vorhanden.",saved:"Anzeige veröffentlicht.",uploading:"Foto wird hochgeladen...",error:"Fehler. Bitte erneut versuchen.",reported:"Danke, die Meldung wurde gespeichert.",
     loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",contact:"Kontakt",status:"Status"
   },
   fr:{
     backButton:"Retour",pageTitle:"Marketplace",pageText:"Vendre, acheter ou donner des affaires bébé entre mamans : poussette, lit bébé, vêtements, siège auto, jouets et plus.",
     safetyTop:"Important : vérifie toujours l’état et la sécurité des produits bébé, surtout sièges auto, lits, matelas et tire-laits.",
-    createTitle:"Créer une annonce",titleLabel:"Titre",categoryLabel:"Catégorie",typeLabel:"Type",priceLabel:"Prix",conditionLabel:"État",cityLabel:"Ville",photoLabel:"Lien photo optionnel",descriptionLabel:"Description",contactLabel:"Contact / note",
+    createTitle:"Créer une annonce",titleLabel:"Titre",categoryLabel:"Catégorie",typeLabel:"Type",priceLabel:"Prix",conditionLabel:"État",cityLabel:"Ville",photoUploadLabel:"Ajouter une vraie photo",descriptionLabel:"Description",contactLabel:"Contact / note",
     safetyCheckLabel:"Je confirme que j’ai lu la note de sécurité.",publishButton:"Publier",clearButton:"Effacer",
     rulesTitle:"Règles marketplace",rule1Title:"Pas de paiement dans le site",rule1Text:"Pour l’instant, la plateforme sert seulement à mettre les mamans en contact.",
     rule2Title:"Sécurité produit",rule2Text:"Pour siège auto, lit, matelas et tire-lait : vérifie l’âge, l’état, les pièces, l’hygiène et les normes.",
@@ -264,13 +269,13 @@ const translations={
     catStrollerOption:"Poussette",catBedOption:"Lit bébé",catCarSeatOption:"Siège auto",catClothesOption:"Vêtements",catPumpOption:"Tire-lait",catBabyphoneOption:"Babyphone",catToysOption:"Jouets",catFurnitureOption:"Meubles",catDiapersOption:"Couches",catOtherOption:"Autre",
     typeSellOption:"Vendre",typeFreeOption:"Donner gratuitement",conditionNewOption:"Neuf",conditionLikeNewOption:"Comme neuf",conditionGoodOption:"Bon état",conditionOkOption:"Utilisé",
     free:"Gratuit",favorite:"Favori",favorited:"Favori ✓",report:"Signaler",delete:"Supprimer",reserved:"Réserver",sold:"Vendu",given:"Donné",active:"Actif",myItem:"Mon annonce",
-    empty:"Aucune annonce pour le moment.",saved:"Annonce publiée.",error:"Erreur. Réessaie.",reported:"Merci, le signalement a été enregistré.",
+    empty:"Aucune annonce pour le moment.",saved:"Annonce publiée.",uploading:"Photo en cours d’envoi...",error:"Erreur. Réessaie.",reported:"Merci, le signalement a été enregistré.",
     loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",contact:"Contact",status:"Statut"
   },
   ar:{
     backButton:"رجوع",pageTitle:"السوق",pageText:"بيع أو شراء أو إعطاء أغراض الأطفال بين الأمهات: عربة، سرير، ملابس، كرسي سيارة، ألعاب والمزيد.",
     safetyTop:"مهم: تحققي دائماً من حالة وسلامة أغراض الأطفال، خاصة كرسي السيارة والسرير والمرتبة ومضخة الحليب.",
-    createTitle:"إنشاء إعلان",titleLabel:"العنوان",categoryLabel:"الفئة",typeLabel:"النوع",priceLabel:"السعر",conditionLabel:"الحالة",cityLabel:"المدينة",photoLabel:"رابط صورة اختياري",descriptionLabel:"الوصف",contactLabel:"التواصل / ملاحظة",
+    createTitle:"إنشاء إعلان",titleLabel:"العنوان",categoryLabel:"الفئة",typeLabel:"النوع",priceLabel:"السعر",conditionLabel:"الحالة",cityLabel:"المدينة",photoUploadLabel:"إضافة صورة حقيقية",descriptionLabel:"الوصف",contactLabel:"التواصل / ملاحظة",
     safetyCheckLabel:"أؤكد أنني قرأت ملاحظة السلامة.",publishButton:"نشر",clearButton:"مسح",
     rulesTitle:"قواعد السوق",rule1Title:"لا يوجد دفع داخل الموقع",rule1Text:"حالياً المنصة فقط للتواصل بين الأمهات.",
     rule2Title:"سلامة المنتج",rule2Text:"للكرسي والسرير والمرتبة ومضخة الحليب: تحققي من العمر والحالة والقطع والنظافة والمعايير.",
@@ -280,13 +285,13 @@ const translations={
     catStrollerOption:"عربة أطفال",catBedOption:"سرير طفل",catCarSeatOption:"كرسي سيارة",catClothesOption:"ملابس",catPumpOption:"مضخة حليب",catBabyphoneOption:"مراقبة الطفل",catToysOption:"ألعاب",catFurnitureOption:"أثاث",catDiapersOption:"حفاضات",catOtherOption:"أخرى",
     typeSellOption:"بيع",typeFreeOption:"مجاني",conditionNewOption:"جديد",conditionLikeNewOption:"كالجديد",conditionGoodOption:"حالة جيدة",conditionOkOption:"مستعمل",
     free:"مجاني",favorite:"حفظ",favorited:"محفوظ ✓",report:"إبلاغ",delete:"حذف",reserved:"حجز",sold:"مباع",given:"تم الإعطاء",active:"نشط",myItem:"إعلاني",
-    empty:"لا توجد إعلانات حالياً.",saved:"تم نشر الإعلان.",error:"حدث خطأ. حاولي مرة أخرى.",reported:"شكراً، تم حفظ البلاغ.",
+    empty:"لا توجد إعلانات حالياً.",saved:"تم نشر الإعلان.",uploading:"جاري رفع الصورة...",error:"حدث خطأ. حاولي مرة أخرى.",reported:"شكراً، تم حفظ البلاغ.",
     loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",contact:"التواصل",status:"الحالة"
   },
   en:{
     backButton:"Back",pageTitle:"Marketplace",pageText:"Sell, buy or give away baby items between mothers: stroller, baby bed, clothes, car seat, toys and more.",
     safetyTop:"Important: Always check the condition and safety of baby products, especially car seats, beds, mattresses and breast pumps.",
-    createTitle:"Create listing",titleLabel:"Title",categoryLabel:"Category",typeLabel:"Type",priceLabel:"Price",conditionLabel:"Condition",cityLabel:"City",photoLabel:"Optional photo link",descriptionLabel:"Description",contactLabel:"Contact / note",
+    createTitle:"Create listing",titleLabel:"Title",categoryLabel:"Category",typeLabel:"Type",priceLabel:"Price",conditionLabel:"Condition",cityLabel:"City",photoUploadLabel:"Upload real photo",descriptionLabel:"Description",contactLabel:"Contact / note",
     safetyCheckLabel:"I confirm that I have read the safety note.",publishButton:"Publish",clearButton:"Clear",
     rulesTitle:"Marketplace rules",rule1Title:"No payment on the site",rule1Text:"For now, the platform only connects mothers with each other.",
     rule2Title:"Product safety",rule2Text:"For car seats, beds, mattresses and breast pumps: check age, condition, parts, hygiene and standards.",
@@ -296,13 +301,13 @@ const translations={
     catStrollerOption:"Stroller",catBedOption:"Baby bed",catCarSeatOption:"Car seat",catClothesOption:"Clothes",catPumpOption:"Breast pump",catBabyphoneOption:"Baby monitor",catToysOption:"Toys",catFurnitureOption:"Furniture",catDiapersOption:"Diapers",catOtherOption:"Other",
     typeSellOption:"Sell",typeFreeOption:"Give away",conditionNewOption:"New",conditionLikeNewOption:"Like new",conditionGoodOption:"Good",conditionOkOption:"Used",
     free:"Free",favorite:"Save",favorited:"Saved ✓",report:"Report",delete:"Delete",reserved:"Reserve",sold:"Sold",given:"Given",active:"Active",myItem:"My listing",
-    empty:"No listings yet.",saved:"Listing published.",error:"Error. Please try again.",reported:"Thanks, the report was saved.",
+    empty:"No listings yet.",saved:"Listing published.",uploading:"Uploading photo...",error:"Error. Please try again.",reported:"Thanks, the report was saved.",
     loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",contact:"Contact",status:"Status"
   },
   tr:{
     backButton:"Geri",pageTitle:"Pazar yeri",pageText:"Anneler arasında bebek eşyası sat, al veya ücretsiz ver: bebek arabası, yatak, kıyafet, oto koltuğu, oyuncak ve daha fazlası.",
     safetyTop:"Önemli: Bebek ürünlerinin durumunu ve güvenliğini her zaman kontrol et, özellikle oto koltuğu, yatak, yatak süngeri ve süt pompası.",
-    createTitle:"İlan oluştur",titleLabel:"Başlık",categoryLabel:"Kategori",typeLabel:"Tip",priceLabel:"Fiyat",conditionLabel:"Durum",cityLabel:"Şehir",photoLabel:"Opsiyonel fotoğraf linki",descriptionLabel:"Açıklama",contactLabel:"İletişim / not",
+    createTitle:"İlan oluştur",titleLabel:"Başlık",categoryLabel:"Kategori",typeLabel:"Tip",priceLabel:"Fiyat",conditionLabel:"Durum",cityLabel:"Şehir",photoUploadLabel:"Gerçek fotoğraf yükle",descriptionLabel:"Açıklama",contactLabel:"İletişim / not",
     safetyCheckLabel:"Güvenlik notunu okuduğumu onaylıyorum.",publishButton:"Yayınla",clearButton:"Temizle",
     rulesTitle:"Pazar yeri kuralları",rule1Title:"Sitede ödeme yok",rule1Text:"Şimdilik platform sadece anneleri birbirine bağlar.",
     rule2Title:"Ürün güvenliği",rule2Text:"Oto koltuğu, yatak, yatak süngeri ve süt pompasında yaş, durum, parçalar, hijyen ve standartları kontrol et.",
@@ -312,13 +317,13 @@ const translations={
     catStrollerOption:"Bebek arabası",catBedOption:"Bebek yatağı",catCarSeatOption:"Oto koltuğu",catClothesOption:"Kıyafet",catPumpOption:"Süt pompası",catBabyphoneOption:"Bebek telsizi",catToysOption:"Oyuncak",catFurnitureOption:"Mobilya",catDiapersOption:"Bez",catOtherOption:"Diğer",
     typeSellOption:"Sat",typeFreeOption:"Ücretsiz ver",conditionNewOption:"Yeni",conditionLikeNewOption:"Yeni gibi",conditionGoodOption:"İyi",conditionOkOption:"Kullanılmış",
     free:"Ücretsiz",favorite:"Kaydet",favorited:"Kaydedildi ✓",report:"Bildir",delete:"Sil",reserved:"Rezerve",sold:"Satıldı",given:"Verildi",active:"Aktif",myItem:"İlanım",
-    empty:"Henüz ilan yok.",saved:"İlan yayınlandı.",error:"Hata. Tekrar dene.",reported:"Teşekkürler, bildirim kaydedildi.",
+    empty:"Henüz ilan yok.",saved:"İlan yayınlandı.",uploading:"Fotoğraf yükleniyor...",error:"Hata. Tekrar dene.",reported:"Teşekkürler, bildirim kaydedildi.",
     loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",contact:"İletişim",status:"Durum"
   },
   ru:{
     backButton:"Назад",pageTitle:"Маркетплейс",pageText:"Продавать, покупать или отдавать детские вещи между мамами: коляска, кроватка, одежда, автокресло, игрушки и другое.",
     safetyTop:"Важно: всегда проверяйте состояние и безопасность детских товаров, особенно автокресел, кроваток, матрасов и молокоотсосов.",
-    createTitle:"Создать объявление",titleLabel:"Название",categoryLabel:"Категория",typeLabel:"Тип",priceLabel:"Цена",conditionLabel:"Состояние",cityLabel:"Город",photoLabel:"Необязательная ссылка на фото",descriptionLabel:"Описание",contactLabel:"Контакт / заметка",
+    createTitle:"Создать объявление",titleLabel:"Название",categoryLabel:"Категория",typeLabel:"Тип",priceLabel:"Цена",conditionLabel:"Состояние",cityLabel:"Город",photoUploadLabel:"Загрузить настоящее фото",descriptionLabel:"Описание",contactLabel:"Контакт / заметка",
     safetyCheckLabel:"Я подтверждаю, что прочитала заметку о безопасности.",publishButton:"Опубликовать",clearButton:"Очистить",
     rulesTitle:"Правила маркетплейса",rule1Title:"Оплаты на сайте нет",rule1Text:"Пока платформа только помогает мамам связаться друг с другом.",
     rule2Title:"Безопасность товара",rule2Text:"Для автокресел, кроваток, матрасов и молокоотсосов проверяйте возраст, состояние, детали, гигиену и стандарты.",
@@ -328,13 +333,13 @@ const translations={
     catStrollerOption:"Коляска",catBedOption:"Кроватка",catCarSeatOption:"Автокресло",catClothesOption:"Одежда",catPumpOption:"Молокоотсос",catBabyphoneOption:"Радионяня",catToysOption:"Игрушки",catFurnitureOption:"Мебель",catDiapersOption:"Подгузники",catOtherOption:"Другое",
     typeSellOption:"Продать",typeFreeOption:"Отдать бесплатно",conditionNewOption:"Новое",conditionLikeNewOption:"Как новое",conditionGoodOption:"Хорошее",conditionOkOption:"Б/у",
     free:"Бесплатно",favorite:"Сохранить",favorited:"Сохранено ✓",report:"Пожаловаться",delete:"Удалить",reserved:"Зарезервировать",sold:"Продано",given:"Отдано",active:"Активно",myItem:"Моё объявление",
-    empty:"Пока нет объявлений.",saved:"Объявление опубликовано.",error:"Ошибка. Попробуйте снова.",reported:"Спасибо, жалоба сохранена.",
+    empty:"Пока нет объявлений.",saved:"Объявление опубликовано.",uploading:"Фото загружается...",error:"Ошибка. Попробуйте снова.",reported:"Спасибо, жалоба сохранена.",
     loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",contact:"Контакт",status:"Статус"
   },
   uk:{
     backButton:"Назад",pageTitle:"Маркетплейс",pageText:"Продавати, купувати або віддавати дитячі речі між мамами: візочок, ліжечко, одяг, автокрісло, іграшки та інше.",
     safetyTop:"Важливо: завжди перевіряйте стан і безпеку дитячих товарів, особливо автокрісел, ліжечок, матраців і молоковідсмоктувачів.",
-    createTitle:"Створити оголошення",titleLabel:"Назва",categoryLabel:"Категорія",typeLabel:"Тип",priceLabel:"Ціна",conditionLabel:"Стан",cityLabel:"Місто",photoLabel:"Необов’язкове посилання на фото",descriptionLabel:"Опис",contactLabel:"Контакт / нотатка",
+    createTitle:"Створити оголошення",titleLabel:"Назва",categoryLabel:"Категорія",typeLabel:"Тип",priceLabel:"Ціна",conditionLabel:"Стан",cityLabel:"Місто",photoUploadLabel:"Завантажити справжнє фото",descriptionLabel:"Опис",contactLabel:"Контакт / нотатка",
     safetyCheckLabel:"Я підтверджую, що прочитала примітку про безпеку.",publishButton:"Опублікувати",clearButton:"Очистити",
     rulesTitle:"Правила маркетплейса",rule1Title:"Оплати на сайті немає",rule1Text:"Поки платформа лише допомагає мамам зв’язатися між собою.",
     rule2Title:"Безпека товару",rule2Text:"Для автокрісел, ліжечок, матраців і молоковідсмоктувачів перевіряйте вік, стан, деталі, гігієну і стандарти.",
@@ -344,7 +349,7 @@ const translations={
     catStrollerOption:"Візочок",catBedOption:"Ліжечко",catCarSeatOption:"Автокрісло",catClothesOption:"Одяг",catPumpOption:"Молоковідсмоктувач",catBabyphoneOption:"Радіоняня",catToysOption:"Іграшки",catFurnitureOption:"Меблі",catDiapersOption:"Підгузки",catOtherOption:"Інше",
     typeSellOption:"Продати",typeFreeOption:"Віддати безкоштовно",conditionNewOption:"Нове",conditionLikeNewOption:"Як нове",conditionGoodOption:"Добре",conditionOkOption:"Вживане",
     free:"Безкоштовно",favorite:"Зберегти",favorited:"Збережено ✓",report:"Поскаржитись",delete:"Видалити",reserved:"Зарезервувати",sold:"Продано",given:"Віддано",active:"Активно",myItem:"Моє оголошення",
-    empty:"Поки немає оголошень.",saved:"Оголошення опубліковано.",error:"Помилка. Спробуйте ще раз.",reported:"Дякуємо, скаргу збережено.",
+    empty:"Поки немає оголошень.",saved:"Оголошення опубліковано.",uploading:"Фото завантажується...",error:"Помилка. Спробуйте ще раз.",reported:"Дякуємо, скаргу збережено.",
     loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",contact:"Контакт",status:"Статус"
   }
 };
@@ -414,7 +419,6 @@ async function loadApp(){
 
   document.getElementById("loginMessage").style.display="none";
   document.getElementById("appShell").style.display="block";
-
   document.getElementById("cityInput").value=currentProfile.city||"";
 
   setLanguage(currentLang);
@@ -425,7 +429,10 @@ function showStatus(message){
   const el=document.getElementById("formStatus");
   el.textContent=message;
   el.style.display="block";
-  setTimeout(()=>{el.style.display="none"},3000);
+}
+
+function hideStatusLater(){
+  setTimeout(()=>{document.getElementById("formStatus").style.display="none"},3000);
 }
 
 function updatePriceField(){
@@ -439,14 +446,61 @@ function updatePriceField(){
   }
 }
 
+function previewPhoto(){
+  const input=document.getElementById("photoFileInput");
+  const preview=document.getElementById("photoPreview");
+  const file=input.files && input.files[0];
+
+  if(!file){
+    preview.style.display="none";
+    preview.src="";
+    return;
+  }
+
+  preview.src=URL.createObjectURL(file);
+  preview.style.display="block";
+}
+
 function clearForm(){
   document.getElementById("itemTitle").value="";
   document.getElementById("priceInput").value="";
-  document.getElementById("photoInput").value="";
+  document.getElementById("photoFileInput").value="";
+  document.getElementById("photoPreview").src="";
+  document.getElementById("photoPreview").style.display="none";
   document.getElementById("descriptionInput").value="";
   document.getElementById("contactInput").value="";
   document.getElementById("safetyCheck").checked=false;
   updatePriceField();
+}
+
+async function uploadPhotoIfNeeded(){
+  const input=document.getElementById("photoFileInput");
+  const file=input.files && input.files[0];
+
+  if(!file)return [];
+
+  showStatus(t().uploading);
+
+  const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
+  const safeExt=["jpg","jpeg","png","webp"].includes(ext)?ext:"jpg";
+  const fileName=currentUser.id+"/"+Date.now()+"-"+Math.random().toString(36).slice(2)+"."+safeExt;
+
+  const {error}=await supabaseClient
+    .storage
+    .from("marketplace-photos")
+    .upload(fileName,file,{
+      cacheControl:"3600",
+      upsert:false,
+      contentType:file.type || "image/jpeg"
+    });
+
+  if(error){
+    console.error(error);
+    throw error;
+  }
+
+  const {data}=supabaseClient.storage.from("marketplace-photos").getPublicUrl(fileName);
+  return data && data.publicUrl ? [data.publicUrl] : [];
 }
 
 async function createItem(){
@@ -456,17 +510,24 @@ async function createItem(){
   const price=listing_type==="free" ? 0 : Number(document.getElementById("priceInput").value||0);
   const condition=document.getElementById("conditionInput").value;
   const city=document.getElementById("cityInput").value.trim();
-  const photo=document.getElementById("photoInput").value.trim();
   const description=document.getElementById("descriptionInput").value.trim();
   const contact=document.getElementById("contactInput").value.trim();
   const safety=document.getElementById("safetyCheck").checked;
 
   if(!title||!safety){
     showStatus(t().error);
+    hideStatusLater();
     return;
   }
 
-  const photos=photo ? [photo] : [];
+  let photos=[];
+  try{
+    photos=await uploadPhotoIfNeeded();
+  }catch(e){
+    showStatus(t().error);
+    hideStatusLater();
+    return;
+  }
 
   const {error}=await supabaseClient.from("marketplace_items").insert({
     user_id:currentUser.id,
@@ -488,11 +549,13 @@ async function createItem(){
   if(error){
     console.error(error);
     showStatus(t().error);
+    hideStatusLater();
     return;
   }
 
   clearForm();
   showStatus(t().saved);
+  hideStatusLater();
   await loadItems();
 }
 

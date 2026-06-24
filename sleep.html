@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Schlaf</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center}
+.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
+.big-button{font-size:22px;padding:18px 28px;border-radius:26px}
+.card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+.timer-card{text-align:center;background:linear-gradient(180deg,var(--cream),white)}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:17px}
+p{margin:0;color:var(--muted);line-height:1.6}
+label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+input,select,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+textarea{min-height:80px;resize:vertical}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.stat,.sleep-card,.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.stat-label{color:var(--muted);font-size:13px;font-weight:900}
+.stat-value{margin-top:6px;color:var(--brown);font-size:30px;font-weight:950}
+.big-time{font-size:62px;font-weight:950;color:var(--brown);letter-spacing:-2px;margin:18px 0}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}.big-time{font-size:46px}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Schlaf</h1>
+    <p id="pageText">Protokolliere Babys Schlafphasen, Nickerchen und Nächte. Diese Seite ist privat im Browser gespeichert.</p>
+    <div class="soft" id="privacyBox">Bei Atemproblemen, Blaufärbung, ungewöhnlicher Schläfrigkeit oder schlechtem Trinken bitte medizinisch abklären lassen.</div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card timer-card">
+      <h2 id="timerTitle">Schlaf-Timer</h2>
+      <div class="big-time" id="timerDisplay">00:00</div>
+
+      <label id="sleepTypeLabel" for="sleepType">Typ</label>
+      <select id="sleepType">
+        <option value="nap" id="typeNap">Nickerchen</option>
+        <option value="night" id="typeNight">Nachtschlaf</option>
+        <option value="other" id="typeOther">Andere</option>
+      </select>
+
+      <label id="noteLabel" for="sleepNote">Notiz</label>
+      <textarea id="sleepNote"></textarea>
+
+      <div class="actions" style="justify-content:center;margin-top:14px;">
+        <button class="button big-button" onclick="toggleTimer()" id="timerButton">Schlaf starten</button>
+        <button class="button-light" onclick="addManualSleep()" id="manualButton">Manuell 30 Min</button>
+      </div>
+      <div class="soft" id="timerStatus">Bereit</div>
+    </div>
+
+    <div class="card">
+      <h2 id="summaryTitle">Heute</h2>
+      <div class="grid-3">
+        <div class="stat"><div class="stat-label" id="sessionsLabel">Schlafphasen</div><div class="stat-value" id="sessionsValue">0</div></div>
+        <div class="stat"><div class="stat-label" id="totalLabel">Gesamt</div><div class="stat-value" id="totalValue">0h</div></div>
+        <div class="stat"><div class="stat-label" id="lastLabel">Letzte</div><div class="stat-value" id="lastValue">-</div></div>
+      </div>
+
+      <div class="box" style="margin-top:14px;">
+        <h3 id="tipTitle">Hinweis</h3>
+        <p id="tipText">Schlaf verändert sich stark von Baby zu Baby. Die Liste hilft beim Überblick, nicht beim Perfektionieren.</p>
+      </div>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-danger" onclick="clearAll()" id="clearButton">Liste löschen</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="historyTitle">Schlafverlauf</h2>
+
+    <div class="filters" style="margin-top:14px;">
+      <button class="filter-button active" onclick="setFilter('all')" id="catAll">Alle</button>
+      <button class="filter-button" onclick="setFilter('nap')" id="catNap">Nickerchen</button>
+      <button class="filter-button" onclick="setFilter('night')" id="catNight">Nachtschlaf</button>
+      <button class="filter-button" onclick="setFilter('other')" id="catOther">Andere</button>
+    </div>
+
+    <div class="grid-3" id="sleepGrid"></div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br />
+  <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null;
+let currentProfile=null;
+let currentLang=localStorage.getItem("mama_lang")||"de";
+let timerRunning=false;
+let timerStart=null;
+let timerInterval=null;
+let filterType="all";
+
+const translations={
+  de:{
+    backButton:"Zurück",pageTitle:"Schlaf",pageText:"Protokolliere Babys Schlafphasen, Nickerchen und Nächte. Diese Seite ist privat im Browser gespeichert.",
+    privacyBox:"Bei Atemproblemen, Blaufärbung, ungewöhnlicher Schläfrigkeit oder schlechtem Trinken bitte medizinisch abklären lassen.",
+    timerTitle:"Schlaf-Timer",sleepTypeLabel:"Typ",typeNap:"Nickerchen",typeNight:"Nachtschlaf",typeOther:"Andere",
+    noteLabel:"Notiz",timerStart:"Schlaf starten",timerStop:"Schlaf beenden",manualButton:"Manuell 30 Min",ready:"Bereit",running:"Läuft...",
+    summaryTitle:"Heute",sessionsLabel:"Schlafphasen",totalLabel:"Gesamt",lastLabel:"Letzte",tipTitle:"Hinweis",
+    tipText:"Schlaf verändert sich stark von Baby zu Baby. Die Liste hilft beim Überblick, nicht beim Perfektionieren.",
+    clearButton:"Liste löschen",historyTitle:"Schlafverlauf",catAll:"Alle",catNap:"Nickerchen",catNight:"Nachtschlaf",catOther:"Andere",
+    empty:"Noch keine Schlafphasen gespeichert.",start:"Start",end:"Ende",duration:"Dauer",delete:"Löschen",
+    loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",hours:"h",minutes:"Min"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Sommeil",pageText:"Note les phases de sommeil du bébé, les siestes et les nuits. Cette page est privée dans le navigateur.",
+    privacyBox:"En cas de problème respiratoire, coloration bleue, somnolence inhabituelle ou mauvaise prise alimentaire, demande un avis médical.",
+    timerTitle:"Timer sommeil",sleepTypeLabel:"Type",typeNap:"Sieste",typeNight:"Sommeil de nuit",typeOther:"Autre",
+    noteLabel:"Note",timerStart:"Démarrer sommeil",timerStop:"Terminer sommeil",manualButton:"Ajouter 30 min",ready:"Prêt",running:"En cours...",
+    summaryTitle:"Aujourd’hui",sessionsLabel:"Phases",totalLabel:"Total",lastLabel:"Dernière",tipTitle:"Conseil",
+    tipText:"Le sommeil varie beaucoup d’un bébé à l’autre. Cette liste sert à avoir une vue d’ensemble, pas à être parfaite.",
+    clearButton:"Supprimer la liste",historyTitle:"Historique sommeil",catAll:"Tous",catNap:"Sieste",catNight:"Nuit",catOther:"Autre",
+    empty:"Aucune phase de sommeil enregistrée.",start:"Début",end:"Fin",duration:"Durée",delete:"Supprimer",
+    loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",hours:"h",minutes:"min"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"النوم",pageText:"سجلي فترات نوم الطفل والقيلولة والليل. هذه الصفحة محفوظة بشكل خاص في المتصفح.",
+    privacyBox:"عند مشاكل التنفس أو ازرقاق أو نعاس غير طبيعي أو ضعف الرضاعة، اطلبي تقييماً طبياً.",
+    timerTitle:"مؤقت النوم",sleepTypeLabel:"النوع",typeNap:"قيلولة",typeNight:"نوم الليل",typeOther:"أخرى",
+    noteLabel:"ملاحظة",timerStart:"بدء النوم",timerStop:"إنهاء النوم",manualButton:"إضافة 30 دقيقة",ready:"جاهز",running:"يعمل...",
+    summaryTitle:"اليوم",sessionsLabel:"فترات النوم",totalLabel:"المجموع",lastLabel:"آخر",tipTitle:"ملاحظة",
+    tipText:"النوم يختلف كثيراً من طفل لآخر. القائمة تساعد على المتابعة وليس على الكمال.",
+    clearButton:"حذف القائمة",historyTitle:"سجل النوم",catAll:"الكل",catNap:"قيلولة",catNight:"ليل",catOther:"أخرى",
+    empty:"لا توجد فترات نوم محفوظة.",start:"البداية",end:"النهاية",duration:"المدة",delete:"حذف",
+    loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",hours:"س",minutes:"د"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Sleep",pageText:"Track baby sleep phases, naps and nights. This page is stored privately in your browser.",
+    privacyBox:"For breathing problems, blue color, unusual sleepiness or poor feeding, seek medical advice.",
+    timerTitle:"Sleep timer",sleepTypeLabel:"Type",typeNap:"Nap",typeNight:"Night sleep",typeOther:"Other",
+    noteLabel:"Note",timerStart:"Start sleep",timerStop:"End sleep",manualButton:"Add 30 min",ready:"Ready",running:"Running...",
+    summaryTitle:"Today",sessionsLabel:"Sleep phases",totalLabel:"Total",lastLabel:"Last",tipTitle:"Note",
+    tipText:"Sleep varies a lot from baby to baby. This list helps with overview, not perfection.",
+    clearButton:"Clear list",historyTitle:"Sleep history",catAll:"All",catNap:"Nap",catNight:"Night",catOther:"Other",
+    empty:"No sleep phases saved yet.",start:"Start",end:"End",duration:"Duration",delete:"Delete",
+    loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",hours:"h",minutes:"min"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Uyku",pageText:"Bebeğin uyku dönemlerini, gündüz uykularını ve geceleri takip et. Bu sayfa tarayıcıda özel olarak saklanır.",
+    privacyBox:"Nefes sorunu, morarma, olağan dışı uyku hali veya kötü beslenmede tıbbi destek al.",
+    timerTitle:"Uyku zamanlayıcı",sleepTypeLabel:"Tip",typeNap:"Gündüz uykusu",typeNight:"Gece uykusu",typeOther:"Diğer",
+    noteLabel:"Not",timerStart:"Uykuyu başlat",timerStop:"Uykuyu bitir",manualButton:"30 dk ekle",ready:"Hazır",running:"Çalışıyor...",
+    summaryTitle:"Bugün",sessionsLabel:"Uyku fazları",totalLabel:"Toplam",lastLabel:"Son",tipTitle:"Not",
+    tipText:"Uyku bebekten bebeğe çok değişir. Liste genel bakış içindir, mükemmellik için değil.",
+    clearButton:"Listeyi sil",historyTitle:"Uyku geçmişi",catAll:"Hepsi",catNap:"Gündüz",catNight:"Gece",catOther:"Diğer",
+    empty:"Henüz uyku kaydı yok.",start:"Başlangıç",end:"Bitiş",duration:"Süre",delete:"Sil",
+    loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",hours:"sa",minutes:"dk"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Сон",pageText:"Отслеживайте сон ребёнка, дневной и ночной сон. Эта страница хранится приватно в браузере.",
+    privacyBox:"При проблемах с дыханием, посинении, необычной сонливости или плохом кормлении обратитесь к врачу.",
+    timerTitle:"Таймер сна",sleepTypeLabel:"Тип",typeNap:"Дневной сон",typeNight:"Ночной сон",typeOther:"Другое",
+    noteLabel:"Заметка",timerStart:"Начать сон",timerStop:"Завершить сон",manualButton:"Добавить 30 мин",ready:"Готово",running:"Идёт...",
+    summaryTitle:"Сегодня",sessionsLabel:"Фазы сна",totalLabel:"Итого",lastLabel:"Последняя",tipTitle:"Примечание",
+    tipText:"Сон сильно отличается у разных детей. Список помогает видеть общую картину, не быть идеальным.",
+    clearButton:"Очистить список",historyTitle:"История сна",catAll:"Все",catNap:"Дневной",catNight:"Ночной",catOther:"Другое",
+    empty:"Пока нет записей сна.",start:"Начало",end:"Конец",duration:"Длительность",delete:"Удалить",
+    loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",hours:"ч",minutes:"мин"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Сон",pageText:"Відстежуйте сон дитини, денний і нічний сон. Ця сторінка приватно зберігається у браузері.",
+    privacyBox:"При проблемах з диханням, посинінні, незвичній сонливості або поганому годуванні зверніться до лікаря.",
+    timerTitle:"Таймер сну",sleepTypeLabel:"Тип",typeNap:"Денний сон",typeNight:"Нічний сон",typeOther:"Інше",
+    noteLabel:"Нотатка",timerStart:"Почати сон",timerStop:"Завершити сон",manualButton:"Додати 30 хв",ready:"Готово",running:"Триває...",
+    summaryTitle:"Сьогодні",sessionsLabel:"Фази сну",totalLabel:"Разом",lastLabel:"Остання",tipTitle:"Примітка",
+    tipText:"Сон сильно відрізняється від дитини до дитини. Список допомагає бачити огляд, а не бути ідеальним.",
+    clearButton:"Очистити список",historyTitle:"Історія сну",catAll:"Усі",catNap:"Денний",catNight:"Нічний",catOther:"Інше",
+    empty:"Поки немає записів сну.",start:"Початок",end:"Кінець",duration:"Тривалість",delete:"Видалити",
+    loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",hours:"год",minutes:"хв"
+  }
+};
+
+function t(){return translations[currentLang]||translations.de}
+
+function setLanguage(lang){
+  currentLang=lang;
+  localStorage.setItem("mama_lang",lang);
+  document.documentElement.lang=lang;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  document.querySelectorAll(".language-buttons button").forEach(btn=>btn.classList.remove("active"));
+  const active=document.getElementById("lang-"+lang);
+  if(active)active.classList.add("active");
+  Object.keys(t()).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=t()[id];
+  });
+  updateTimerText();
+  updateButtons();
+  renderSleep();
+}
+
+function determineTheme(type,gender){
+  if(gender==="boy"||gender==="twin_boys")return"boy";
+  if(gender==="girl"||gender==="twin_girls")return"girl";
+  if(type==="twins"||gender==="twin_mixed")return"twin";
+  return"neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if(theme==="boy")document.body.classList.add("theme-boy");
+  if(theme==="girl")document.body.classList.add("theme-girl");
+  if(theme==="twin")document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+  const {data,error}=await supabaseClient.auth.getSession();
+  if(error||!data.session){
+    document.getElementById("loginMessage").style.display="block";
+    document.getElementById("appShell").style.display="none";
+    return;
+  }
+
+  currentUser=data.session.user;
+
+  const {data:profiles,error:profileError}=await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .order("created_at",{ascending:false})
+    .limit(1);
+
+  if(profileError||!profiles||profiles.length===0){
+    window.location.href="index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile=profiles[0];
+  currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+
+  applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display="none";
+  document.getElementById("appShell").style.display="block";
+
+  setLanguage(currentLang);
+}
+
+function storageKey(){return"mama-sleep-"+(currentUser?.id||"guest")}
+
+function getSleeps(){
+  try{return JSON.parse(localStorage.getItem(storageKey()))||[]}
+  catch(e){return[]}
+}
+
+function saveSleeps(items){localStorage.setItem(storageKey(),JSON.stringify(items))}
+
+function formatDuration(ms){
+  const minutes=Math.max(0,Math.round(ms/60000));
+  const h=Math.floor(minutes/60);
+  const m=minutes%60;
+  if(h>0)return h+t().hours+" "+m+t().minutes;
+  return m+" "+t().minutes;
+}
+
+function formatTimer(ms){
+  const sec=Math.max(0,Math.floor(ms/1000));
+  const h=Math.floor(sec/3600);
+  const m=Math.floor((sec%3600)/60);
+  const s=sec%60;
+  if(h>0)return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+  return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+
+function formatTime(value){
+  const date=new Date(value);
+  const locale=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":currentLang==="fr"?"fr-FR":currentLang==="tr"?"tr-TR":currentLang==="ru"?"ru-RU":currentLang==="uk"?"uk-UA":currentLang==="en"?"en-GB":"de-DE";
+  return date.toLocaleString(locale,{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit",calendar:"gregory",numberingSystem:"latn"});
+}
+
+function isToday(value){
+  const d=new Date(value),n=new Date();
+  return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate();
+}
+
+function updateTimerText(){
+  const btn=document.getElementById("timerButton");
+  const status=document.getElementById("timerStatus");
+  if(!btn||!status)return;
+  btn.textContent=timerRunning?t().timerStop:t().timerStart;
+  status.textContent=timerRunning?t().running:t().ready;
+}
+
+function toggleTimer(){
+  if(!timerRunning){
+    timerRunning=true;
+    timerStart=Date.now();
+    timerInterval=setInterval(()=>{
+      document.getElementById("timerDisplay").textContent=formatTimer(Date.now()-timerStart);
+    },500);
+  }else{
+    const end=Date.now();
+    const sleeps=getSleeps();
+
+    sleeps.unshift({
+      id:Date.now(),
+      type:document.getElementById("sleepType").value,
+      start:timerStart,
+      end:end,
+      duration:end-timerStart,
+      note:document.getElementById("sleepNote").value.trim()
+    });
+
+    saveSleeps(sleeps);
+    timerRunning=false;
+    clearInterval(timerInterval);
+    timerStart=null;
+    document.getElementById("timerDisplay").textContent="00:00";
+    document.getElementById("sleepNote").value="";
+    renderSleep();
+  }
+
+  updateTimerText();
+}
+
+function addManualSleep(){
+  const end=Date.now();
+  const start=end-30*60000;
+  const sleeps=getSleeps();
+
+  sleeps.unshift({
+    id:Date.now(),
+    type:document.getElementById("sleepType").value,
+    start:start,
+    end:end,
+    duration:end-start,
+    note:document.getElementById("sleepNote").value.trim()
+  });
+
+  saveSleeps(sleeps);
+  document.getElementById("sleepNote").value="";
+  renderSleep();
+}
+
+function deleteSleep(id){
+  saveSleeps(getSleeps().filter(item=>item.id!==id));
+  renderSleep();
+}
+
+function clearAll(){
+  saveSleeps([]);
+  renderSleep();
+}
+
+function setFilter(filter){
+  filterType=filter;
+  updateButtons();
+  renderSleep();
+}
+
+function updateButtons(){
+  [["catAll","all"],["catNap","nap"],["catNight","night"],["catOther","other"]].forEach(([id,value])=>{
+    const btn=document.getElementById(id);
+    if(btn)btn.classList.toggle("active",filterType===value);
+  });
+}
+
+function typeLabel(type){
+  if(type==="nap")return t().typeNap;
+  if(type==="night")return t().typeNight;
+  return t().typeOther;
+}
+
+function renderSleep(){
+  const grid=document.getElementById("sleepGrid");
+  let sleeps=getSleeps();
+
+  const today=sleeps.filter(item=>isToday(item.start));
+  const total=today.reduce((sum,item)=>sum+Number(item.duration||0),0);
+
+  document.getElementById("sessionsValue").textContent=today.length;
+  document.getElementById("totalValue").textContent=formatDuration(total);
+  document.getElementById("lastValue").textContent=sleeps.length?formatTime(sleeps[0].start):"-";
+
+  if(filterType!=="all")sleeps=sleeps.filter(item=>item.type===filterType);
+
+  grid.innerHTML="";
+
+  if(sleeps.length===0){
+    grid.innerHTML=`<div class="empty">${t().empty}</div>`;
+    return;
+  }
+
+  sleeps.forEach(item=>{
+    const card=document.createElement("div");
+    card.className="sleep-card";
+    card.innerHTML=`
+      <div class="badge">${typeLabel(item.type)}</div>
+      <div class="badge">${t().start}: ${formatTime(item.start)}</div>
+      <h3>${t().duration}: ${formatDuration(item.duration)}</h3>
+      <p>${t().end}: ${formatTime(item.end)}</p>
+      <p>${item.note||""}</p>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-danger" onclick="deleteSleep(${item.id})">${t().delete}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+loadApp();
+</script>
+</body>
+</html>

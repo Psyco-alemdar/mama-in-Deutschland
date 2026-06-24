@@ -1,922 +1,665 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mama in Deutschland - Dashboard</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland</title>
 
-  <style>
-    :root{
-      --page:#f8f3ec;
-      --card:#ffffff;
-      --cream:#fffaf4;
-      --soft:#f3eadf;
-      --brown:#4a3428;
-      --brown2:#6f4f3e;
-      --light:#9b7357;
-      --text:#2f2621;
-      --muted:#7b6a60;
-      --border:#eadfd2;
-      --danger:#b45b48;
-      --shadow:rgba(74,52,40,.12);
-    }
-
-    body.theme-boy{
-      --page:#eef7ff;
-      --cream:#f7fbff;
-      --soft:#e8f4ff;
-      --brown:#244b6b;
-      --brown2:#315f86;
-      --light:#5f93bd;
-      --text:#1d3347;
-      --muted:#5c7285;
-      --border:#d6e8f7;
-      --shadow:rgba(36,75,107,.12);
-    }
-
-    body.theme-girl{
-      --page:#fff1f5;
-      --cream:#fff8fa;
-      --soft:#fde8ef;
-      --brown:#7a3d55;
-      --brown2:#9a5570;
-      --light:#c47a98;
-      --text:#3d2430;
-      --muted:#7b6070;
-      --border:#f0d4df;
-      --shadow:rgba(122,61,85,.12);
-    }
-
-    body.theme-twin{
-      --page:#f1f7ef;
-      --cream:#fbfff8;
-      --soft:#e7f3df;
-      --brown:#3e5c3a;
-      --brown2:#54794e;
-      --light:#7ca878;
-      --text:#263522;
-      --muted:#62745f;
-      --border:#dbe9d4;
-      --shadow:rgba(62,92,58,.12);
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      min-height:100vh;
-      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-      background:
-        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
-        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
-        linear-gradient(180deg,#fbf7f1,var(--page));
-      color:var(--text);
-    }
-
-    .wrap{
-      max-width:1180px;
-      margin:0 auto;
-      padding:24px 18px;
-    }
-
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-bottom:22px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      color:var(--brown);
-      font-size:23px;
-      font-weight:950;
-      letter-spacing:-.5px;
-    }
-
-    .brand-icon{
-      width:44px;
-      height:44px;
-      border-radius:16px;
-      background:linear-gradient(135deg,var(--brown),var(--light));
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:950;
-      box-shadow:0 14px 28px var(--shadow);
-    }
-
-    .top-actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .language-buttons{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .language-buttons button,
-    .button-light{
-      border:1px solid var(--border);
-      background:white;
-      color:var(--brown);
-      padding:9px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:900;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .language-buttons button.active{
-      background:var(--brown);
-      color:white;
-    }
-
-    .logout{
-      border:none;
-      border-radius:16px;
-      padding:12px 16px;
-      background:var(--danger);
-      color:white;
-      font-weight:950;
-      cursor:pointer;
-    }
-
-    .card{
-      background:rgba(255,255,255,.92);
-      border:1px solid var(--border);
-      border-radius:30px;
-      padding:24px;
-      box-shadow:0 24px 70px var(--shadow);
-      backdrop-filter:blur(16px);
-      margin-bottom:18px;
-    }
-
-    .hero{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:18px;
-      align-items:stretch;
-    }
-
-    h1,h2,h3{
-      color:var(--brown);
-      margin:0 0 12px;
-    }
-
-    h1{font-size:34px;letter-spacing:-1.5px}
-    h2{font-size:25px;letter-spacing:-.7px}
-    h3{font-size:17px}
-
-    p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .pill-row{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-
-    .pill{
-      display:inline-flex;
-      padding:8px 11px;
-      border-radius:999px;
-      background:var(--soft);
-      color:var(--brown);
-      font-size:12px;
-      font-weight:950;
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      margin-top:18px;
-    }
-
-    .stat{
-      background:linear-gradient(180deg,var(--cream),white);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:16px;
-    }
-
-    .stat-label{
-      font-size:13px;
-      font-weight:900;
-      color:var(--muted);
-    }
-
-    .stat-value{
-      margin-top:6px;
-      font-size:28px;
-      font-weight:950;
-      color:var(--brown);
-      word-break:break-word;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-    }
-
-    .nav-card{
-      display:block;
-      text-decoration:none;
-      background:linear-gradient(180deg,var(--cream),white);
-      border:1px solid var(--border);
-      border-radius:24px;
-      padding:20px;
-      color:var(--text);
-      transition:.15s;
-      min-height:150px;
-    }
-
-    .nav-card:hover{
-      transform:translateY(-2px);
-      box-shadow:0 18px 35px var(--shadow);
-      border-color:var(--light);
-    }
-
-    .nav-icon{
-      font-size:30px;
-      margin-bottom:12px;
-    }
-
-    .important-list{
-      display:grid;
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .important-item{
-      border:1px solid var(--border);
-      background:var(--cream);
-      border-radius:18px;
-      padding:14px;
-    }
-
-    .message{
-      max-width:650px;
-      margin:60px auto;
-      text-align:center;
-    }
-
-    @media(max-width:900px){
-      .hero,.grid{grid-template-columns:1fr}
-      .stats{grid-template-columns:repeat(2,1fr)}
-    }
-
-    @media(max-width:560px){
-      .wrap{padding:18px 12px}
-      .stats{grid-template-columns:1fr}
-      h1{font-size:28px}
-    }
-  </style>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+  radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+  linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)
+}
+.wrap{max-width:1220px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions,.tabs{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger,.tab-button{
+  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;
+  cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center
+}
+.language-buttons button.active,.tab-button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.card{
+  background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;
+  box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px
+}
+.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:18px;align-items:stretch}
+.hero-main{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:30px;padding:26px;position:relative;overflow:hidden}
+.hero-main:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--soft);right:-60px;top:-60px;opacity:.8}
+.hero-side{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:30px;padding:22px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:38px;letter-spacing:-1.5px;line-height:1.05;position:relative;z-index:1}
+h2{font-size:25px;letter-spacing:-.7px}
+h3{font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;position:relative;z-index:1}
+.stat{background:white;border:1px solid var(--border);border-radius:20px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:900}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:4px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.module-card{
+  background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px;
+  text-decoration:none;display:block;transition:.18s transform,.18s box-shadow;color:inherit;position:relative;overflow:hidden
+}
+.module-card:hover{transform:translateY(-3px);box-shadow:0 18px 45px var(--shadow)}
+.module-icon{width:44px;height:44px;border-radius:16px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.module-title{color:var(--brown);font-weight:950;font-size:18px;margin-bottom:6px}
+.module-desc{color:var(--muted);font-size:14px;line-height:1.5}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900}
+.badge-now{background:var(--brown);color:white}
+.badge-later{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+.hidden{display:none!important}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.wrap{padding:18px 12px}.grid,.stats{grid-template-columns:1fr}h1{font-size:30px}.card,.hero-main,.hero-side{padding:20px}}
+</style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="brand-icon">M</div>
-        <span>Mama in Deutschland</span>
-      </div>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
 
-      <div class="top-actions">
-        <div class="language-buttons">
-          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
-          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
-          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
-          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
-          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
-          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
-        </div>
+  <div class="top-actions">
+    <a class="button-light" href="profile.html" id="profileButton">Profil</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Ausloggen</button>
 
-        <button class="logout" onclick="signOut()" id="logoutButton">Ausloggen</button>
-      </div>
-    </header>
-
-    <main id="appShell" style="display:none;">
-      <section class="hero">
-        <div class="card">
-          <h1 id="welcomeTitle">Willkommen zurück</h1>
-          <p id="welcomeText">Hier ist dein persönlicher Überblick für Schwangerschaft, Baby und Organisation in Deutschland.</p>
-
-          <div class="pill-row">
-            <span class="pill" id="emailPill">-</span>
-            <span class="pill" id="babyPill">Baby</span>
-            <span class="pill" id="themePill">Design</span>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <div class="stat-label" id="weekLabel">SSW</div>
-              <div class="stat-value" id="weekValue">-</div>
-            </div>
-
-            <div class="stat">
-              <div class="stat-label" id="daysLabel">Tage übrig</div>
-              <div class="stat-value" id="daysValue">-</div>
-            </div>
-
-            <div class="stat">
-              <div class="stat-label" id="dueDateLabel">Termin</div>
-              <div class="stat-value" id="dueDateValue">-</div>
-            </div>
-
-            <div class="stat">
-              <div class="stat-label" id="cityLabel">Stadt</div>
-              <div class="stat-value" id="cityValue">-</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2 id="importantTitle">Heute wichtig</h2>
-          <p id="importantText">Die wichtigsten nächsten Schritte erscheinen hier.</p>
-
-          <div class="important-list" id="importantList">
-            <div class="important-item" id="importantPlaceholder">Kalender und Aufgaben werden schrittweise verbunden.</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2 id="modulesTitle">Bereiche</h2>
-        <p id="modulesText">Öffne jeden Bereich als eigene Seite. So bleibt die App schnell und übersichtlich.</p>
-
-        <div class="grid" style="margin-top:18px;">
-          <a class="nav-card" href="calendar.html"><div class="nav-icon">📅</div><h3 id="cardCalendarTitle">Kalender</h3><p id="cardCalendarText">Termine, Untersuchungen, Kurse und Erinnerungen.</p></a>
-          <a class="nav-card" href="baby.html"><div class="nav-icon">🤰</div><h3 id="cardBabyTitle">Mutter & Baby</h3><p id="cardBabyText">Wöchentliche Entwicklung und Tipps.</p></a>
-          <a class="nav-card" href="medical.html"><div class="nav-icon">🩺</div><h3 id="cardMedicalTitle">Medizin</h3><p id="cardMedicalText">NIPT, Diabetes-Test, Feindiagnostik und Vorsorge.</p></a>
-          <a class="nav-card" href="bureaucracy.html"><div class="nav-icon">📋</div><h3 id="cardBureaucracyTitle">Bürokratie</h3><p id="cardBureaucracyText">Wichtige Schritte und Checklisten.</p></a>
-          <a class="nav-card" href="applications.html"><div class="nav-icon">💶</div><h3 id="cardApplicationsTitle">Anträge</h3><p id="cardApplicationsText">Mutterschaftsgeld, Elternzeit, Elterngeld, Kindergeld.</p></a>
-          <a class="nav-card" href="documents.html"><div class="nav-icon">📁</div><h3 id="cardDocumentsTitle">Dokumente</h3><p id="cardDocumentsText">Mutterpass, Ergebnisse, Anträge und Erinnerungen.</p></a>
-          <a class="nav-card" href="hospital-bag.html"><div class="nav-icon">👜</div><h3 id="cardBagTitle">Kliniktasche</h3><p id="cardBagText">Alles für Klinik, Geburt und Heimfahrt.</p></a>
-          <a class="nav-card" href="birth-plan.html"><div class="nav-icon">📝</div><h3 id="cardBirthPlanTitle">Geburtsplan</h3><p id="cardBirthPlanText">Wünsche für Geburt, Klinik und Baby.</p></a>
-          <a class="nav-card" href="after-birth.html"><div class="nav-icon">👶</div><h3 id="cardAfterBirthTitle">Nach der Geburt</h3><p id="cardAfterBirthText">U1, U2, U3, Wochenbett und Anträge.</p></a>
-          <a class="nav-card" href="nutrition.html"><div class="nav-icon">🥗</div><h3 id="cardNutritionTitle">Ernährung</h3><p id="cardNutritionText">Rezepte und Einkaufsliste.</p></a>
-          <a class="nav-card" href="emotions.html"><div class="nav-icon">💗</div><h3 id="cardEmotionsTitle">Emotionen</h3><p id="cardEmotionsText">Gefühle, Notizen und Erinnerungen.</p></a>
-          <a class="nav-card" href="profile.html"><div class="nav-icon">⚙️</div><h3 id="cardProfileTitle">Profil</h3><p id="cardProfileText">Sprache, Stadt, Babyname und Geburtstermin ändern.</p></a>
-        </div>
-      </section>
-    </main>
-
-    <section class="message card" id="loginMessage" style="display:none;">
-      <h2 id="loginNeededTitle">Bitte einloggen</h2>
-      <p id="loginNeededText">Du musst dich zuerst anmelden.</p>
-      <br />
-      <a class="button-light" href="index.html" id="loginNeededButton">Zur Startseite</a>
-    </section>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
   </div>
+</header>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <h1 id="heroTitle">Hallo Mama</h1>
+      <p id="heroText">Dein persönlicher Schwangerschafts-Begleiter in Deutschland.</p>
 
-  <script>
-    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-label" id="weekLabel">SSW</div>
+          <div class="stat-value" id="weekValue">-</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label" id="daysLabel">Tage bis Termin</div>
+          <div class="stat-value" id="daysValue">-</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label" id="phaseLabel">Phase</div>
+          <div class="stat-value" id="phaseValue">-</div>
+        </div>
+      </div>
 
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      <div class="soft" id="smartText">Heute zeigen wir dir nur die Bereiche, die für deine aktuelle Schwangerschaftswoche sinnvoll sind.</div>
+    </div>
 
-    let currentUser = null;
-    let currentProfile = null;
-    let currentLang = localStorage.getItem("mama_lang") || "de";
+    <div class="hero-side">
+      <h2 id="babyTitle">Baby</h2>
+      <p id="babyInfo">-</p>
+      <div class="soft" id="profileInfo">-</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button" href="profile.html" id="editProfileButton">Profil bearbeiten</a>
+        <a class="button-light" href="emergency.html" id="emergencyQuickButton">Notfall</a>
+      </div>
+    </div>
+  </section>
 
-    const translations = {
-      de:{
-        welcomeTitle:"Willkommen zurück",
-        welcomeText:"Hier ist dein persönlicher Überblick für Schwangerschaft, Baby und Organisation in Deutschland.",
-        weekLabel:"SSW",
-        daysLabel:"Tage übrig",
-        dueDateLabel:"Termin",
-        cityLabel:"Stadt",
-        babyAgeLabel:"Babyalter",
-        babyBornDaysLabel:"Tage seit Geburt",
-        birthDateDisplayLabel:"Geburtsdatum",
-        importantTitle:"Heute wichtig",
-        importantText:"Die wichtigsten nächsten Schritte erscheinen hier.",
-        importantPlaceholder:"Kalender und Aufgaben werden schrittweise verbunden.",
-        modulesTitle:"Bereiche",
-        modulesText:"Öffne jeden Bereich als eigene Seite. So bleibt die App schnell und übersichtlich.",
-        logoutButton:"Ausloggen",
-        loginNeededTitle:"Bitte einloggen",
-        loginNeededText:"Du musst dich zuerst anmelden.",
-        loginNeededButton:"Zur Startseite",
-        babyDefault:"Baby",
-        themeNeutral:"Neutral",
-        themeBoy:"Junge · Blau",
-        themeGirl:"Mädchen · Rosa",
-        themeTwin:"Zwillinge · Grün",
-        cardCalendarTitle:"Kalender",
-        cardCalendarText:"Termine, Untersuchungen, Kurse und Erinnerungen.",
-        cardBabyTitle:"Mutter & Baby",
-        cardBabyText:"Wöchentliche Entwicklung und Tipps.",
-        cardMedicalTitle:"Medizin",
-        cardMedicalText:"NIPT, Diabetes-Test, Feindiagnostik und Vorsorge.",
-        cardBureaucracyTitle:"Bürokratie",
-        cardBureaucracyText:"Wichtige Schritte und Checklisten.",
-        cardApplicationsTitle:"Anträge",
-        cardApplicationsText:"Mutterschaftsgeld, Elternzeit, Elterngeld, Kindergeld.",
-        cardDocumentsTitle:"Dokumente",
-        cardDocumentsText:"Mutterpass, Ergebnisse, Anträge und Erinnerungen.",
-        cardBagTitle:"Kliniktasche",
-        cardBagText:"Alles für Klinik, Geburt und Heimfahrt.",
-        cardBirthPlanTitle:"Geburtsplan",
-        cardBirthPlanText:"Wünsche für Geburt, Klinik und Baby.",
-        cardAfterBirthTitle:"Nach der Geburt",
-        cardAfterBirthText:"U1, U2, U3, Wochenbett und Anträge.",
-        cardNutritionTitle:"Ernährung",
-        cardNutritionText:"Rezepte und Einkaufsliste.",
-        cardEmotionsTitle:"Emotionen",
-        cardEmotionsText:"Gefühle, Notizen und Erinnerungen.",
-        cardProfileTitle:"Profil",
-        cardProfileText:"Sprache, Stadt, Babyname und Geburtstermin ändern."
-      },
-      fr:{
-        welcomeTitle:"Bienvenue",
-        welcomeText:"Voici ton aperçu personnel pour la grossesse, bébé et l’organisation en Allemagne.",
-        weekLabel:"SSW",
-        daysLabel:"Jours restants",
-        dueDateLabel:"Terme",
-        cityLabel:"Ville",
-        babyAgeLabel:"Âge du bébé",
-        babyBornDaysLabel:"Jours depuis naissance",
-        birthDateDisplayLabel:"Date de naissance",
-        importantTitle:"Important aujourd’hui",
-        importantText:"Les prochaines étapes importantes apparaissent ici.",
-        importantPlaceholder:"Calendrier et tâches seront connectés progressivement.",
-        modulesTitle:"Sections",
-        modulesText:"Ouvre chaque section dans une page séparée. L’app reste plus rapide et plus claire.",
-        logoutButton:"Déconnexion",
-        loginNeededTitle:"Connexion nécessaire",
-        loginNeededText:"Tu dois d’abord te connecter.",
-        loginNeededButton:"Retour à l’accueil",
-        babyDefault:"Bébé",
-        themeNeutral:"Neutre",
-        themeBoy:"Garçon · Bleu",
-        themeGirl:"Fille · Rose",
-        themeTwin:"Jumeaux · Vert",
-        cardCalendarTitle:"Calendrier",
-        cardCalendarText:"Rendez-vous, examens, cours et rappels.",
-        cardBabyTitle:"Maman & bébé",
-        cardBabyText:"Développement hebdomadaire et conseils.",
-        cardMedicalTitle:"Médical",
-        cardMedicalText:"NIPT, test diabète, échographie détaillée et suivi.",
-        cardBureaucracyTitle:"Bureaucratie",
-        cardBureaucracyText:"Étapes importantes et checklists.",
-        cardApplicationsTitle:"Demandes",
-        cardApplicationsText:"Mutterschaftsgeld, Elternzeit, Elterngeld, Kindergeld.",
-        cardDocumentsTitle:"Documents",
-        cardDocumentsText:"Mutterpass, résultats, demandes et souvenirs.",
-        cardBagTitle:"Valise maternité",
-        cardBagText:"Tout pour la clinique, l’accouchement et le retour.",
-        cardBirthPlanTitle:"Projet de naissance",
-        cardBirthPlanText:"Souhaits pour naissance, clinique et bébé.",
-        cardAfterBirthTitle:"Après la naissance",
-        cardAfterBirthText:"U1, U2, U3, post-partum et demandes.",
-        cardNutritionTitle:"Nutrition",
-        cardNutritionText:"Recettes et liste d’achat.",
-        cardEmotionsTitle:"Émotions",
-        cardEmotionsText:"Sentiments, notes et souvenirs.",
-        cardProfileTitle:"Profil",
-        cardProfileText:"Changer langue, ville, prénom bébé et terme."
-      },
-      ar:{
-        welcomeTitle:"مرحباً بعودتك",
-        welcomeText:"هنا تجدين ملخص الحمل والطفل والتنظيم في ألمانيا.",
-        weekLabel:"أسبوع الحمل",
-        daysLabel:"الأيام المتبقية",
-        dueDateLabel:"موعد الولادة",
-        cityLabel:"المدينة",
-        babyAgeLabel:"عمر الطفل",
-        babyBornDaysLabel:"أيام منذ الولادة",
-        birthDateDisplayLabel:"تاريخ الولادة",
-        importantTitle:"مهم اليوم",
-        importantText:"ستظهر هنا أهم الخطوات القادمة.",
-        importantPlaceholder:"سيتم ربط التقويم والمهام تدريجياً.",
-        modulesTitle:"الأقسام",
-        modulesText:"افتحي كل قسم في صفحة منفصلة ليبقى التطبيق سريعاً وواضحاً.",
-        logoutButton:"تسجيل الخروج",
-        loginNeededTitle:"يرجى تسجيل الدخول",
-        loginNeededText:"يجب تسجيل الدخول أولاً.",
-        loginNeededButton:"العودة للصفحة الرئيسية",
-        babyDefault:"الطفل",
-        themeNeutral:"محايد",
-        themeBoy:"ولد · أزرق",
-        themeGirl:"بنت · وردي",
-        themeTwin:"توأم · أخضر",
-        cardCalendarTitle:"التقويم",
-        cardCalendarText:"المواعيد والفحوصات والدورات والتذكيرات.",
-        cardBabyTitle:"الأم والطفل",
-        cardBabyText:"تطور أسبوعي ونصائح.",
-        cardMedicalTitle:"طبي",
-        cardMedicalText:"NIPT، اختبار السكري، الفحوصات والمتابعة.",
-        cardBureaucracyTitle:"الإجراءات",
-        cardBureaucracyText:"خطوات مهمة وقوائم تحقق.",
-        cardApplicationsTitle:"الطلبات",
-        cardApplicationsText:"Mutterschaftsgeld، Elternzeit، Elterngeld، Kindergeld.",
-        cardDocumentsTitle:"الوثائق",
-        cardDocumentsText:"Mutterpass، النتائج، الطلبات والذكريات.",
-        cardBagTitle:"حقيبة المستشفى",
-        cardBagText:"كل شيء للمستشفى والولادة والعودة للبيت.",
-        cardBirthPlanTitle:"خطة الولادة",
-        cardBirthPlanText:"رغبات الولادة والمستشفى والطفل.",
-        cardAfterBirthTitle:"بعد الولادة",
-        cardAfterBirthText:"U1، U2، U3، النفاس والطلبات.",
-        cardNutritionTitle:"التغذية",
-        cardNutritionText:"وصفات وقائمة تسوق.",
-        cardEmotionsTitle:"المشاعر",
-        cardEmotionsText:"مشاعر، ملاحظات وذكريات.",
-        cardProfileTitle:"الملف الشخصي",
-        cardProfileText:"تغيير اللغة والمدينة واسم الطفل وموعد الولادة."
-      },
-      en:{
-        welcomeTitle:"Welcome back",
-        welcomeText:"Here is your personal overview for pregnancy, baby and organization in Germany.",
-        weekLabel:"Week",
-        daysLabel:"Days left",
-        dueDateLabel:"Due date",
-        cityLabel:"City",
-        babyAgeLabel:"Baby age",
-        babyBornDaysLabel:"Days since birth",
-        birthDateDisplayLabel:"Birth date",
-        importantTitle:"Important today",
-        importantText:"Your next important steps appear here.",
-        importantPlaceholder:"Calendar and tasks will be connected step by step.",
-        modulesTitle:"Sections",
-        modulesText:"Open each section as a separate page. The app stays faster and clearer.",
-        logoutButton:"Log out",
-        loginNeededTitle:"Please log in",
-        loginNeededText:"You need to log in first.",
-        loginNeededButton:"Back to start",
-        babyDefault:"Baby",
-        themeNeutral:"Neutral",
-        themeBoy:"Boy · Blue",
-        themeGirl:"Girl · Pink",
-        themeTwin:"Twins · Green",
-        cardCalendarTitle:"Calendar",
-        cardCalendarText:"Appointments, exams, courses and reminders.",
-        cardBabyTitle:"Mother & baby",
-        cardBabyText:"Weekly development and tips.",
-        cardMedicalTitle:"Medical",
-        cardMedicalText:"NIPT, diabetes test, detailed scan and check-ups.",
-        cardBureaucracyTitle:"Bureaucracy",
-        cardBureaucracyText:"Important steps and checklists.",
-        cardApplicationsTitle:"Applications",
-        cardApplicationsText:"Maternity allowance, parental leave, parental allowance, child benefit.",
-        cardDocumentsTitle:"Documents",
-        cardDocumentsText:"Maternity record, results, applications and memories.",
-        cardBagTitle:"Hospital bag",
-        cardBagText:"Everything for clinic, birth and going home.",
-        cardBirthPlanTitle:"Birth plan",
-        cardBirthPlanText:"Wishes for birth, clinic and baby.",
-        cardAfterBirthTitle:"After birth",
-        cardAfterBirthText:"U1, U2, U3, postpartum and applications.",
-        cardNutritionTitle:"Nutrition",
-        cardNutritionText:"Recipes and shopping list.",
-        cardEmotionsTitle:"Emotions",
-        cardEmotionsText:"Feelings, notes and memories.",
-        cardProfileTitle:"Profile",
-        cardProfileText:"Change language, city, baby name and due date."
-      },
-      tr:{
-        welcomeTitle:"Tekrar hoş geldin",
-        welcomeText:"Almanya’da hamilelik, bebek ve organizasyon için kişisel özetin burada.",
-        weekLabel:"Hafta",
-        daysLabel:"Kalan gün",
-        dueDateLabel:"Doğum tarihi",
-        cityLabel:"Şehir",
-        babyAgeLabel:"Bebek yaşı",
-        babyBornDaysLabel:"Doğumdan beri gün",
-        birthDateDisplayLabel:"Doğum tarihi",
-        importantTitle:"Bugün önemli",
-        importantText:"Sonraki önemli adımlar burada görünür.",
-        importantPlaceholder:"Takvim ve görevler adım adım bağlanacak.",
-        modulesTitle:"Bölümler",
-        modulesText:"Her bölümü ayrı sayfa olarak aç. Uygulama daha hızlı ve düzenli kalır.",
-        logoutButton:"Çıkış yap",
-        loginNeededTitle:"Lütfen giriş yap",
-        loginNeededText:"Önce giriş yapmalısın.",
-        loginNeededButton:"Başlangıca dön",
-        babyDefault:"Bebek",
-        themeNeutral:"Nötr",
-        themeBoy:"Erkek · Mavi",
-        themeGirl:"Kız · Pembe",
-        themeTwin:"İkiz · Yeşil",
-        cardCalendarTitle:"Takvim",
-        cardCalendarText:"Randevular, muayeneler, kurslar ve hatırlatmalar.",
-        cardBabyTitle:"Anne & bebek",
-        cardBabyText:"Haftalık gelişim ve ipuçları.",
-        cardMedicalTitle:"Tıbbi",
-        cardMedicalText:"NIPT, diyabet testi, ayrıntılı ultrason ve kontroller.",
-        cardBureaucracyTitle:"Bürokrasi",
-        cardBureaucracyText:"Önemli adımlar ve kontrol listeleri.",
-        cardApplicationsTitle:"Başvurular",
-        cardApplicationsText:"Mutterschaftsgeld, Elternzeit, Elterngeld, Kindergeld.",
-        cardDocumentsTitle:"Belgeler",
-        cardDocumentsText:"Mutterpass, sonuçlar, başvurular ve anılar.",
-        cardBagTitle:"Hastane çantası",
-        cardBagText:"Klinik, doğum ve eve dönüş için her şey.",
-        cardBirthPlanTitle:"Doğum planı",
-        cardBirthPlanText:"Doğum, klinik ve bebek için istekler.",
-        cardAfterBirthTitle:"Doğumdan sonra",
-        cardAfterBirthText:"U1, U2, U3, lohusalık ve başvurular.",
-        cardNutritionTitle:"Beslenme",
-        cardNutritionText:"Tarifler ve alışveriş listesi.",
-        cardEmotionsTitle:"Duygular",
-        cardEmotionsText:"Duygular, notlar ve anılar.",
-        cardProfileTitle:"Profil",
-        cardProfileText:"Dil, şehir, bebek adı ve doğum tarihini değiştir."
-      },
-      ru:{
-        welcomeTitle:"С возвращением",
-        welcomeText:"Здесь ваш личный обзор беременности, ребёнка и организации в Германии.",
-        weekLabel:"Неделя",
-        daysLabel:"Дней осталось",
-        dueDateLabel:"Дата родов",
-        cityLabel:"Город",
-        babyAgeLabel:"Возраст ребёнка",
-        babyBornDaysLabel:"Дней после рождения",
-        birthDateDisplayLabel:"Дата рождения",
-        importantTitle:"Важно сегодня",
-        importantText:"Здесь появятся следующие важные шаги.",
-        importantPlaceholder:"Календарь и задачи будут подключаться постепенно.",
-        modulesTitle:"Разделы",
-        modulesText:"Открывайте каждый раздел как отдельную страницу. Так приложение будет быстрее и понятнее.",
-        logoutButton:"Выйти",
-        loginNeededTitle:"Войдите в аккаунт",
-        loginNeededText:"Сначала нужно войти.",
-        loginNeededButton:"На главную",
-        babyDefault:"Ребёнок",
-        themeNeutral:"Нейтрально",
-        themeBoy:"Мальчик · Синий",
-        themeGirl:"Девочка · Розовый",
-        themeTwin:"Двойня · Зелёный",
-        cardCalendarTitle:"Календарь",
-        cardCalendarText:"Приёмы, обследования, курсы и напоминания.",
-        cardBabyTitle:"Мама и ребёнок",
-        cardBabyText:"Еженедельное развитие и советы.",
-        cardMedicalTitle:"Медицина",
-        cardMedicalText:"NIPT, тест на диабет, подробное УЗИ и осмотры.",
-        cardBureaucracyTitle:"Бюрократия",
-        cardBureaucracyText:"Важные шаги и списки.",
-        cardApplicationsTitle:"Заявления",
-        cardApplicationsText:"Mutterschaftsgeld, Elternzeit, Elterngeld, Kindergeld.",
-        cardDocumentsTitle:"Документы",
-        cardDocumentsText:"Mutterpass, результаты, заявления и воспоминания.",
-        cardBagTitle:"Сумка в роддом",
-        cardBagText:"Всё для клиники, родов и возвращения домой.",
-        cardBirthPlanTitle:"План родов",
-        cardBirthPlanText:"Пожелания для родов, клиники и ребёнка.",
-        cardAfterBirthTitle:"После рождения",
-        cardAfterBirthText:"U1, U2, U3, послеродовой период и заявления.",
-        cardNutritionTitle:"Питание",
-        cardNutritionText:"Рецепты и список покупок.",
-        cardEmotionsTitle:"Эмоции",
-        cardEmotionsText:"Чувства, заметки и воспоминания.",
-        cardProfileTitle:"Профиль",
-        cardProfileText:"Изменить язык, город, имя ребёнка и дату родов."
-      },
-      uk:{
-        welcomeTitle:"З поверненням",
-        welcomeText:"Тут ваш особистий огляд вагітності, дитини та організації в Німеччині.",
-        weekLabel:"Тиждень",
-        daysLabel:"Днів залишилось",
-        dueDateLabel:"Дата пологів",
-        cityLabel:"Місто",
-        babyAgeLabel:"Вік дитини",
-        babyBornDaysLabel:"Днів після народження",
-        birthDateDisplayLabel:"Дата народження",
-        importantTitle:"Важливо сьогодні",
-        importantText:"Тут з’являться наступні важливі кроки.",
-        importantPlaceholder:"Календар і завдання будуть підключатися поступово.",
-        modulesTitle:"Розділи",
-        modulesText:"Відкривайте кожен розділ як окрему сторінку. Так застосунок буде швидшим і зрозумілішим.",
-        logoutButton:"Вийти",
-        loginNeededTitle:"Увійдіть в акаунт",
-        loginNeededText:"Спочатку потрібно увійти.",
-        loginNeededButton:"На головну",
-        babyDefault:"Дитина",
-        themeNeutral:"Нейтрально",
-        themeBoy:"Хлопчик · Синій",
-        themeGirl:"Дівчинка · Рожевий",
-        themeTwin:"Двійня · Зелений",
-        cardCalendarTitle:"Календар",
-        cardCalendarText:"Прийоми, обстеження, курси та нагадування.",
-        cardBabyTitle:"Мама і дитина",
-        cardBabyText:"Щотижневий розвиток і поради.",
-        cardMedicalTitle:"Медичне",
-        cardMedicalText:"NIPT, тест на діабет, детальне УЗД і огляди.",
-        cardBureaucracyTitle:"Бюрократія",
-        cardBureaucracyText:"Важливі кроки і списки.",
-        cardApplicationsTitle:"Заяви",
-        cardApplicationsText:"Mutterschaftsgeld, Elternzeit, Elterngeld, Kindergeld.",
-        cardDocumentsTitle:"Документи",
-        cardDocumentsText:"Mutterpass, результати, заяви і спогади.",
-        cardBagTitle:"Сумка в пологовий",
-        cardBagText:"Усе для клініки, пологів і повернення додому.",
-        cardBirthPlanTitle:"План пологів",
-        cardBirthPlanText:"Побажання для пологів, клініки і дитини.",
-        cardAfterBirthTitle:"Після народження",
-        cardAfterBirthText:"U1, U2, U3, післяпологовий період і заяви.",
-        cardNutritionTitle:"Харчування",
-        cardNutritionText:"Рецепти і список покупок.",
-        cardEmotionsTitle:"Емоції",
-        cardEmotionsText:"Почуття, нотатки і спогади.",
-        cardProfileTitle:"Профіль",
-        cardProfileText:"Змінити мову, місто, ім’я дитини і дату пологів."
-      }
-    };
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="modulesTitle">Empfohlen für jetzt</h2>
+        <p id="modulesText">Die Karten ändern sich automatisch nach Schwangerschaftswoche.</p>
+      </div>
+      <div class="actions">
+        <button class="button-light" onclick="toggleAllModules()" id="showAllButton">Alle Seiten anzeigen</button>
+      </div>
+    </div>
 
-    function t(){
-      return translations[currentLang] || translations.de;
-    }
+    <div class="tabs">
+      <button class="tab-button active" onclick="setTab('recommended')" id="tabRecommended">Empfohlen</button>
+      <button class="tab-button" onclick="setTab('pregnancy')" id="tabPregnancy">Schwangerschaft</button>
+      <button class="tab-button" onclick="setTab('birth')" id="tabBirth">Geburt</button>
+      <button class="tab-button" onclick="setTab('baby')" id="tabBaby">Baby</button>
+      <button class="tab-button" onclick="setTab('tools')" id="tabTools">Tools</button>
+    </div>
 
-    function setLanguage(lang){
-      currentLang = lang;
-      localStorage.setItem("mama_lang", lang);
-      document.documentElement.lang = lang;
-      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+    <div class="grid" id="modulesGrid"></div>
+  </section>
 
-      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
-      const active = document.getElementById("lang-" + lang);
-      if (active) active.classList.add("active");
+  <section class="card" id="laterSection">
+    <div class="section-title">
+      <div>
+        <h2 id="laterTitle">Später wichtig</h2>
+        <p id="laterText">Diese Seiten werden später automatisch empfohlen.</p>
+      </div>
+    </div>
+    <div class="grid" id="laterGrid"></div>
+  </section>
 
-      const tr = t();
-      Object.keys(tr).forEach(key => {
-        const el = document.getElementById(key);
-        if (el) el.textContent = tr[key];
-      });
+  <div class="footer-actions">
+    <p id="footerText">Mama in Deutschland · private Begleitung</p>
+    <div class="actions">
+      <a class="button-light" href="documents.html" id="docsQuickButton">Dokumente</a>
+      <a class="button-light" href="calendar.html" id="calendarQuickButton">Kalender</a>
+    </div>
+  </div>
+</main>
 
-      renderDashboard();
-    }
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br />
+  <a class="button" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
 
-    function parseLocalDate(value){
-      const parts = value.split("-").map(Number);
-      return new Date(parts[0], parts[1] - 1, parts[2]);
-    }
+<section class="login-message card" id="profileMissingMessage" style="display:none;">
+  <h2 id="profileMissingTitle">Profil fehlt</h2>
+  <p id="profileMissingText">Bitte erstelle zuerst dein Schwangerschaftsprofil auf der Startseite.</p>
+  <br />
+  <a class="button" href="index.html" id="createProfileButton">Profil erstellen</a>
+</section>
+</div>
 
-    function addDays(date, days){
-      const result = new Date(date);
-      result.setDate(result.getDate() + days);
-      return result;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-    function calculatePregnancy(dueDate){
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const start = addDays(dueDate, -280);
-      let week = Math.floor((today - start) / (1000 * 60 * 60 * 24 * 7)) + 1;
-      if (week < 1) week = 1;
-      if (week > 42) week = 42;
-      const daysLeft = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
-      return { week, daysLeft: daysLeft > 0 ? daysLeft : 0 };
-    }
+let currentUser=null;
+let currentProfile=null;
+let currentLang=localStorage.getItem("mama_lang")||"de";
+let currentWeek=1;
+let currentDaysLeft=null;
+let showAll=false;
+let activeTab="recommended";
 
-    function formatDate(date){
-      const locale =
-        currentLang === "de" ? "de-DE" :
-        currentLang === "fr" ? "fr-FR" :
-        currentLang === "ar" ? "ar-SA" :
-        currentLang === "tr" ? "tr-TR" :
-        currentLang === "ru" ? "ru-RU" :
-        currentLang === "uk" ? "uk-UA" :
-        "en-GB";
-      return date.toLocaleDateString(locale, { day:"2-digit", month:"2-digit", year:"numeric" });
-    }
+const translations={
+  de:{
+    profileButton:"Profil",logoutButton:"Ausloggen",heroTitle:"Hallo Mama",heroText:"Dein persönlicher Schwangerschafts-Begleiter in Deutschland.",
+    weekLabel:"SSW",daysLabel:"Tage bis Termin",phaseLabel:"Phase",smartText:"Heute zeigen wir dir nur die Bereiche, die für deine aktuelle Schwangerschaftswoche sinnvoll sind.",
+    babyTitle:"Baby",editProfileButton:"Profil bearbeiten",emergencyQuickButton:"Notfall",modulesTitle:"Empfohlen für jetzt",
+    modulesText:"Die Karten ändern sich automatisch nach Schwangerschaftswoche.",showAllButton:"Alle Seiten anzeigen",hideAllButton:"Nur passende Seiten",
+    tabRecommended:"Empfohlen",tabPregnancy:"Schwangerschaft",tabBirth:"Geburt",tabBaby:"Baby",tabTools:"Tools",
+    laterTitle:"Später wichtig",laterText:"Diese Seiten werden später automatisch empfohlen.",footerText:"Mama in Deutschland · private Begleitung",
+    docsQuickButton:"Dokumente",calendarQuickButton:"Kalender",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",
+    profileMissingTitle:"Profil fehlt",profileMissingText:"Bitte erstelle zuerst dein Schwangerschaftsprofil auf der Startseite.",createProfileButton:"Profil erstellen",
+    first:"1. Trimester",second:"2. Trimester",third:"3. Trimester",after:"Nach Geburt",unknown:"Unbekannt",weekShort:"SSW",recommended:"Jetzt passend",later:"Später",always:"Immer",
+    mProfile:"Profil",dProfile:"Sprache, Termin, Babyname und Design ändern.",
+    mCalendar:"Kalender",dCalendar:"Wichtige Termine und Schwangerschaftswochen.",
+    mDocuments:"Dokumente",dDocuments:"Alles rund um Unterlagen und Nachweise.",
+    mBureaucracy:"Bürokratie",dBureaucracy:"Mutterschaftsgeld, Elternzeit, Elterngeld und Anträge.",
+    mNutrition:"Ernährung",dNutrition:"Ideen für gesunde Ernährung in der Schwangerschaft.",
+    mEmotions:"Emotionen",dEmotions:"Privates Tagebuch für Gefühle und Gedanken.",
+    mNear:"In meiner Nähe",dNear:"Hebamme, Frauenarzt, Klinik und Apotheken suchen.",
+    mCourses:"Kurse",dCourses:"Geburtsvorbereitung, Yoga und Elternkurse.",
+    mBabyNames:"Babynamen",dBabyNames:"Lieblingsnamen sammeln und bewerten.",
+    mBudget:"Budget",dBudget:"Kosten, Kindergeld, Elterngeld und Babyanschaffungen planen.",
+    mBabyEquipment:"Baby-Erstausstattung",dBabyEquipment:"Checkliste für Schlafen, Wickeln, Kleidung und unterwegs.",
+    mPartner:"Partner",dPartner:"Aufgaben, Gesprächsfragen und gemeinsame Notizen.",
+    mHospitalBag:"Kliniktasche",dHospitalBag:"Valise maternité vorbereiten, wenn der Termin näher kommt.",
+    mEmergency:"Notfall",dEmergency:"112, 116117, Notfallkontakte und Warnzeichen.",
+    mContractions:"Wehen-Timer",dContractions:"Wehen, Dauer und Abstände messen.",
+    mVaccinations:"Impfungen",dVaccinations:"Impfpass, Impfgespräche und Erinnerungen.",
+    mAfterBirth:"Nach Geburt",dAfterBirth:"Erste Wochen nach Geburt und wichtige Aufgaben.",
+    mFeeding:"Stillen & Flasche",dFeeding:"Stillen, Flasche, Pumpen und Windeln verfolgen.",
+    mMovements:"Kindsbewegungen",dMovements:"Bewegungen des Babys zählen und speichern.",
+    mSleep:"Schlaf",dSleep:"Babys Schlafphasen und Nickerchen verfolgen.",
+    noItems:"Keine Karten in dieser Kategorie."
+  },
+  fr:{
+    profileButton:"Profil",logoutButton:"Déconnexion",heroTitle:"Bonjour Mama",heroText:"Ton accompagnateur personnel de grossesse en Allemagne.",
+    weekLabel:"SA",daysLabel:"Jours avant terme",phaseLabel:"Phase",smartText:"Aujourd’hui, nous affichons seulement les espaces utiles pour ta semaine de grossesse.",
+    babyTitle:"Bébé",editProfileButton:"Modifier le profil",emergencyQuickButton:"Urgence",modulesTitle:"Recommandé maintenant",
+    modulesText:"Les cartes changent automatiquement selon la semaine de grossesse.",showAllButton:"Afficher toutes les pages",hideAllButton:"Seulement pages adaptées",
+    tabRecommended:"Recommandé",tabPregnancy:"Grossesse",tabBirth:"Naissance",tabBaby:"Bébé",tabTools:"Outils",
+    laterTitle:"Important plus tard",laterText:"Ces pages seront recommandées automatiquement plus tard.",footerText:"Mama in Deutschland · accompagnement privé",
+    docsQuickButton:"Documents",calendarQuickButton:"Calendrier",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+    profileMissingTitle:"Profil manquant",profileMissingText:"Crée d’abord ton profil de grossesse sur la page d’accueil.",createProfileButton:"Créer le profil",
+    first:"1er trimestre",second:"2e trimestre",third:"3e trimestre",after:"Après naissance",unknown:"Inconnu",weekShort:"SA",recommended:"Adapté maintenant",later:"Plus tard",always:"Toujours",
+    mProfile:"Profil",dProfile:"Modifier la langue, le terme, le prénom et le design.",
+    mCalendar:"Calendrier",dCalendar:"Rendez-vous importants et semaines de grossesse.",
+    mDocuments:"Documents",dDocuments:"Documents, justificatifs et papiers importants.",
+    mBureaucracy:"Bureaucratie",dBureaucracy:"Mutterschaftsgeld, Elternzeit, Elterngeld et demandes.",
+    mNutrition:"Nutrition",dNutrition:"Idées pour une alimentation saine pendant la grossesse.",
+    mEmotions:"Émotions",dEmotions:"Journal privé pour sentiments et pensées.",
+    mNear:"Près de moi",dNear:"Chercher sage-femme, gynécologue, clinique et pharmacies.",
+    mCourses:"Cours",dCourses:"Préparation à la naissance, yoga et cours parents.",
+    mBabyNames:"Prénoms bébé",dBabyNames:"Collectionner et noter les prénoms préférés.",
+    mBudget:"Budget",dBudget:"Planifier coûts, Kindergeld, Elterngeld et achats bébé.",
+    mBabyEquipment:"Équipement bébé",dBabyEquipment:"Checklist sommeil, change, vêtements et sorties.",
+    mPartner:"Partenaire",dPartner:"Tâches, questions de discussion et notes communes.",
+    mHospitalBag:"Valise maternité",dHospitalBag:"Préparer la valise quand le terme approche.",
+    mEmergency:"Urgence",dEmergency:"112, 116117, contacts d’urgence et signes d’alerte.",
+    mContractions:"Timer contractions",dContractions:"Mesurer contractions, durée et intervalles.",
+    mVaccinations:"Vaccins",dVaccinations:"Carnet vaccinal, discussions et rappels.",
+    mAfterBirth:"Après naissance",dAfterBirth:"Premières semaines après naissance et tâches importantes.",
+    mFeeding:"Allaitement & biberon",dFeeding:"Suivre allaitement, biberon, tire-lait et couches.",
+    mMovements:"Mouvements bébé",dMovements:"Compter et sauvegarder les mouvements du bébé.",
+    mSleep:"Sommeil",dSleep:"Suivre les phases de sommeil et siestes du bébé.",
+    noItems:"Aucune carte dans cette catégorie."
+  },
+  ar:{
+    profileButton:"الملف",logoutButton:"تسجيل الخروج",heroTitle:"مرحباً ماما",heroText:"مرافقك الشخصي للحمل في ألمانيا.",
+    weekLabel:"أسبوع الحمل",daysLabel:"أيام حتى الموعد",phaseLabel:"المرحلة",smartText:"اليوم نعرض لك فقط الأقسام المناسبة لأسبوع الحمل الحالي.",
+    babyTitle:"الطفل",editProfileButton:"تعديل الملف",emergencyQuickButton:"الطوارئ",modulesTitle:"مناسب الآن",
+    modulesText:"البطاقات تتغير تلقائياً حسب أسبوع الحمل.",showAllButton:"عرض كل الصفحات",hideAllButton:"الصفحات المناسبة فقط",
+    tabRecommended:"مناسب",tabPregnancy:"الحمل",tabBirth:"الولادة",tabBaby:"الطفل",tabTools:"أدوات",
+    laterTitle:"مهم لاحقاً",laterText:"هذه الصفحات ستظهر تلقائياً في وقتها المناسب.",footerText:"Mama in Deutschland · مرافقة خاصة",
+    docsQuickButton:"الوثائق",calendarQuickButton:"التقويم",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",
+    profileMissingTitle:"الملف غير موجود",profileMissingText:"يرجى إنشاء ملف الحمل أولاً من الصفحة الرئيسية.",createProfileButton:"إنشاء الملف",
+    first:"الثلث الأول",second:"الثلث الثاني",third:"الثلث الثالث",after:"بعد الولادة",unknown:"غير معروف",weekShort:"أسبوع",recommended:"مناسب الآن",later:"لاحقاً",always:"دائماً",
+    mProfile:"الملف",dProfile:"تعديل اللغة والموعد واسم الطفل والتصميم.",
+    mCalendar:"التقويم",dCalendar:"المواعيد المهمة وأسابيع الحمل.",
+    mDocuments:"الوثائق",dDocuments:"الأوراق والإثباتات والملفات المهمة.",
+    mBureaucracy:"البيروقراطية",dBureaucracy:"Mutterschaftsgeld و Elternzeit و Elterngeld والطلبات.",
+    mNutrition:"التغذية",dNutrition:"أفكار لتغذية صحية أثناء الحمل.",
+    mEmotions:"المشاعر",dEmotions:"مذكرات خاصة للمشاعر والأفكار.",
+    mNear:"بالقرب مني",dNear:"البحث عن قابلة، طبيبة نساء، مستشفى وصيدليات.",
+    mCourses:"الدورات",dCourses:"تحضير الولادة، اليوغا ودورات الوالدين.",
+    mBabyNames:"أسماء الأطفال",dBabyNames:"جمع وتقييم الأسماء المفضلة.",
+    mBudget:"الميزانية",dBudget:"تخطيط التكاليف والمساعدات ومشتريات الطفل.",
+    mBabyEquipment:"تجهيزات الطفل",dBabyEquipment:"قائمة النوم، التغيير، الملابس والخروج.",
+    mPartner:"الشريك",dPartner:"المهام، أسئلة الحوار والملاحظات المشتركة.",
+    mHospitalBag:"حقيبة المستشفى",dHospitalBag:"تحضير الحقيبة عندما يقترب الموعد.",
+    mEmergency:"الطوارئ",dEmergency:"112 و116117 وجهات الاتصال وعلامات الإنذار.",
+    mContractions:"مؤقت الطلق",dContractions:"قياس الطلق والمدة والفواصل.",
+    mVaccinations:"التطعيمات",dVaccinations:"دفتر التطعيم والنقاشات والتذكيرات.",
+    mAfterBirth:"بعد الولادة",dAfterBirth:"الأسابيع الأولى بعد الولادة والمهام المهمة.",
+    mFeeding:"الرضاعة والقنينة",dFeeding:"متابعة الرضاعة والقنينة والضخ والحفاضات.",
+    mMovements:"حركات الجنين",dMovements:"عدّ وحفظ حركات الطفل.",
+    mSleep:"النوم",dSleep:"متابعة نوم الطفل والقيلولة.",
+    noItems:"لا توجد بطاقات في هذه الفئة."
+  },
+  en:{
+    profileButton:"Profile",logoutButton:"Log out",heroTitle:"Hello Mama",heroText:"Your personal pregnancy companion in Germany.",
+    weekLabel:"Week",daysLabel:"Days to due date",phaseLabel:"Phase",smartText:"Today we show only the areas that make sense for your current pregnancy week.",
+    babyTitle:"Baby",editProfileButton:"Edit profile",emergencyQuickButton:"Emergency",modulesTitle:"Recommended now",
+    modulesText:"Cards change automatically according to pregnancy week.",showAllButton:"Show all pages",hideAllButton:"Only suitable pages",
+    tabRecommended:"Recommended",tabPregnancy:"Pregnancy",tabBirth:"Birth",tabBaby:"Baby",tabTools:"Tools",
+    laterTitle:"Important later",laterText:"These pages will be recommended automatically later.",footerText:"Mama in Deutschland · private companion",
+    docsQuickButton:"Documents",calendarQuickButton:"Calendar",loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",
+    profileMissingTitle:"Profile missing",profileMissingText:"Please create your pregnancy profile on the home page first.",createProfileButton:"Create profile",
+    first:"1st trimester",second:"2nd trimester",third:"3rd trimester",after:"After birth",unknown:"Unknown",weekShort:"Week",recommended:"Right now",later:"Later",always:"Always",
+    mProfile:"Profile",dProfile:"Change language, due date, baby name and design.",
+    mCalendar:"Calendar",dCalendar:"Important appointments and pregnancy weeks.",
+    mDocuments:"Documents",dDocuments:"Documents, certificates and important paperwork.",
+    mBureaucracy:"Bureaucracy",dBureaucracy:"Maternity benefit, parental leave, parental allowance and applications.",
+    mNutrition:"Nutrition",dNutrition:"Ideas for healthy eating during pregnancy.",
+    mEmotions:"Emotions",dEmotions:"Private journal for feelings and thoughts.",
+    mNear:"Near me",dNear:"Find midwife, gynecologist, clinic and pharmacies.",
+    mCourses:"Courses",dCourses:"Birth preparation, yoga and parent courses.",
+    mBabyNames:"Baby names",dBabyNames:"Collect and rate favorite names.",
+    mBudget:"Budget",dBudget:"Plan costs, child benefit, parental allowance and baby purchases.",
+    mBabyEquipment:"Baby essentials",dBabyEquipment:"Checklist for sleep, diapers, clothes and going out.",
+    mPartner:"Partner",dPartner:"Tasks, conversation questions and shared notes.",
+    mHospitalBag:"Hospital bag",dHospitalBag:"Prepare the bag when the due date gets closer.",
+    mEmergency:"Emergency",dEmergency:"112, 116117, emergency contacts and warning signs.",
+    mContractions:"Contraction timer",dContractions:"Measure contractions, duration and intervals.",
+    mVaccinations:"Vaccinations",dVaccinations:"Vaccination record, discussions and reminders.",
+    mAfterBirth:"After birth",dAfterBirth:"First weeks after birth and important tasks.",
+    mFeeding:"Breast & bottle",dFeeding:"Track breastfeeding, bottles, pumping and diapers.",
+    mMovements:"Baby movements",dMovements:"Count and save baby movements.",
+    mSleep:"Sleep",dSleep:"Track baby's sleep phases and naps.",
+    noItems:"No cards in this category."
+  },
+  tr:{
+    profileButton:"Profil",logoutButton:"Çıkış yap",heroTitle:"Merhaba Mama",heroText:"Almanya’da kişisel hamilelik rehberin.",
+    weekLabel:"Hafta",daysLabel:"Doğuma kalan gün",phaseLabel:"Dönem",smartText:"Bugün yalnızca mevcut hamilelik haftana uygun alanları gösteriyoruz.",
+    babyTitle:"Bebek",editProfileButton:"Profili düzenle",emergencyQuickButton:"Acil",modulesTitle:"Şimdi önerilen",
+    modulesText:"Kartlar hamilelik haftasına göre otomatik değişir.",showAllButton:"Tüm sayfaları göster",hideAllButton:"Sadece uygun sayfalar",
+    tabRecommended:"Önerilen",tabPregnancy:"Hamilelik",tabBirth:"Doğum",tabBaby:"Bebek",tabTools:"Araçlar",
+    laterTitle:"Sonra önemli",laterText:"Bu sayfalar daha sonra otomatik önerilecek.",footerText:"Mama in Deutschland · özel rehber",
+    docsQuickButton:"Belgeler",calendarQuickButton:"Takvim",loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",
+    profileMissingTitle:"Profil eksik",profileMissingText:"Önce ana sayfada hamilelik profilini oluştur.",createProfileButton:"Profil oluştur",
+    first:"1. trimester",second:"2. trimester",third:"3. trimester",after:"Doğum sonrası",unknown:"Bilinmiyor",weekShort:"Hafta",recommended:"Şimdi uygun",later:"Sonra",always:"Her zaman",
+    mProfile:"Profil",dProfile:"Dil, doğum tarihi, bebek adı ve tasarımı değiştir.",
+    mCalendar:"Takvim",dCalendar:"Önemli randevular ve hamilelik haftaları.",
+    mDocuments:"Belgeler",dDocuments:"Belgeler, kanıtlar ve önemli evraklar.",
+    mBureaucracy:"Bürokrasi",dBureaucracy:"Mutterschaftsgeld, Elternzeit, Elterngeld ve başvurular.",
+    mNutrition:"Beslenme",dNutrition:"Hamilelikte sağlıklı beslenme fikirleri.",
+    mEmotions:"Duygular",dEmotions:"Duygular ve düşünceler için özel günlük.",
+    mNear:"Yakınımda",dNear:"Ebe, kadın doğum, klinik ve eczane bul.",
+    mCourses:"Kurslar",dCourses:"Doğuma hazırlık, yoga ve ebeveyn kursları.",
+    mBabyNames:"Bebek isimleri",dBabyNames:"Favori isimleri topla ve değerlendir.",
+    mBudget:"Bütçe",dBudget:"Masraflar, yardımlar ve bebek alışverişini planla.",
+    mBabyEquipment:"Bebek ihtiyaçları",dBabyEquipment:"Uyku, bez, kıyafet ve dışarı için liste.",
+    mPartner:"Partner",dPartner:"Görevler, konuşma soruları ve ortak notlar.",
+    mHospitalBag:"Hastane çantası",dHospitalBag:"Doğum yaklaşırken çantayı hazırla.",
+    mEmergency:"Acil",dEmergency:"112, 116117, acil kişiler ve uyarı işaretleri.",
+    mContractions:"Kasılma timer",dContractions:"Kasılmaları, süreyi ve aralığı ölç.",
+    mVaccinations:"Aşılar",dVaccinations:"Aşı kartı, görüşmeler ve hatırlatmalar.",
+    mAfterBirth:"Doğum sonrası",dAfterBirth:"Doğumdan sonraki ilk haftalar ve görevler.",
+    mFeeding:"Emzirme ve biberon",dFeeding:"Emzirme, biberon, pompa ve bez takibi.",
+    mMovements:"Bebek hareketleri",dMovements:"Bebek hareketlerini say ve kaydet.",
+    mSleep:"Uyku",dSleep:"Bebeğin uyku dönemlerini takip et.",
+    noItems:"Bu kategoride kart yok."
+  },
+  ru:{
+    profileButton:"Профиль",logoutButton:"Выйти",heroTitle:"Здравствуйте, мама",heroText:"Ваш личный помощник по беременности в Германии.",
+    weekLabel:"Неделя",daysLabel:"Дней до срока",phaseLabel:"Этап",smartText:"Сегодня мы показываем только разделы, подходящие для вашей текущей недели беременности.",
+    babyTitle:"Ребёнок",editProfileButton:"Изменить профиль",emergencyQuickButton:"Экстренно",modulesTitle:"Рекомендуется сейчас",
+    modulesText:"Карточки автоматически меняются по неделе беременности.",showAllButton:"Показать все страницы",hideAllButton:"Только подходящие",
+    tabRecommended:"Рекомендуется",tabPregnancy:"Беременность",tabBirth:"Роды",tabBaby:"Ребёнок",tabTools:"Инструменты",
+    laterTitle:"Важно позже",laterText:"Эти страницы будут рекомендованы позже автоматически.",footerText:"Mama in Deutschland · личное сопровождение",
+    docsQuickButton:"Документы",calendarQuickButton:"Календарь",loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",
+    profileMissingTitle:"Профиль отсутствует",profileMissingText:"Сначала создайте профиль беременности на главной странице.",createProfileButton:"Создать профиль",
+    first:"1 триместр",second:"2 триместр",third:"3 триместр",after:"После родов",unknown:"Неизвестно",weekShort:"Неделя",recommended:"Актуально",later:"Позже",always:"Всегда",
+    mProfile:"Профиль",dProfile:"Изменить язык, дату родов, имя ребёнка и дизайн.",
+    mCalendar:"Календарь",dCalendar:"Важные приёмы и недели беременности.",
+    mDocuments:"Документы",dDocuments:"Документы, справки и важные бумаги.",
+    mBureaucracy:"Бюрократия",dBureaucracy:"Пособия, Elternzeit, Elterngeld и заявления.",
+    mNutrition:"Питание",dNutrition:"Идеи здорового питания во время беременности.",
+    mEmotions:"Эмоции",dEmotions:"Личный дневник чувств и мыслей.",
+    mNear:"Рядом со мной",dNear:"Найти акушерку, гинеколога, клинику и аптеки.",
+    mCourses:"Курсы",dCourses:"Подготовка к родам, йога и курсы для родителей.",
+    mBabyNames:"Имена",dBabyNames:"Собирать и оценивать любимые имена.",
+    mBudget:"Бюджет",dBudget:"Планировать расходы, пособия и покупки для малыша.",
+    mBabyEquipment:"Первые вещи",dBabyEquipment:"Список для сна, подгузников, одежды и прогулок.",
+    mPartner:"Партнёр",dPartner:"Задачи, вопросы для разговора и общие заметки.",
+    mHospitalBag:"Сумка в роддом",dHospitalBag:"Готовить сумку, когда срок ближе.",
+    mEmergency:"Экстренно",dEmergency:"112, 116117, контакты и тревожные признаки.",
+    mContractions:"Таймер схваток",dContractions:"Измерять схватки, длительность и интервалы.",
+    mVaccinations:"Прививки",dVaccinations:"Прививочный паспорт, вопросы и напоминания.",
+    mAfterBirth:"После родов",dAfterBirth:"Первые недели после родов и важные задачи.",
+    mFeeding:"Грудь и бутылочка",dFeeding:"Отслеживать кормления, бутылочки, сцеживание и подгузники.",
+    mMovements:"Шевеления",dMovements:"Считать и сохранять движения ребёнка.",
+    mSleep:"Сон",dSleep:"Отслеживать сон и дневные сны ребёнка.",
+    noItems:"Нет карточек в этой категории."
+  },
+  uk:{
+    profileButton:"Профіль",logoutButton:"Вийти",heroTitle:"Вітаємо, мама",heroText:"Ваш особистий помічник під час вагітності в Німеччині.",
+    weekLabel:"Тиждень",daysLabel:"Днів до терміну",phaseLabel:"Етап",smartText:"Сьогодні ми показуємо лише розділи, які підходять для вашого тижня вагітності.",
+    babyTitle:"Дитина",editProfileButton:"Змінити профіль",emergencyQuickButton:"Екстрено",modulesTitle:"Рекомендовано зараз",
+    modulesText:"Картки автоматично змінюються за тижнем вагітності.",showAllButton:"Показати всі сторінки",hideAllButton:"Лише відповідні",
+    tabRecommended:"Рекомендовано",tabPregnancy:"Вагітність",tabBirth:"Пологи",tabBaby:"Дитина",tabTools:"Інструменти",
+    laterTitle:"Важливо пізніше",laterText:"Ці сторінки будуть рекомендовані автоматично пізніше.",footerText:"Mama in Deutschland · приватний супровід",
+    docsQuickButton:"Документи",calendarQuickButton:"Календар",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",
+    profileMissingTitle:"Профіль відсутній",profileMissingText:"Спочатку створіть профіль вагітності на головній сторінці.",createProfileButton:"Створити профіль",
+    first:"1 триместр",second:"2 триместр",third:"3 триместр",after:"Після пологів",unknown:"Невідомо",weekShort:"Тиждень",recommended:"Актуально",later:"Пізніше",always:"Завжди",
+    mProfile:"Профіль",dProfile:"Змінити мову, дату пологів, ім’я дитини та дизайн.",
+    mCalendar:"Календар",dCalendar:"Важливі прийоми та тижні вагітності.",
+    mDocuments:"Документи",dDocuments:"Документи, довідки та важливі папери.",
+    mBureaucracy:"Бюрократія",dBureaucracy:"Допомоги, Elternzeit, Elterngeld і заяви.",
+    mNutrition:"Харчування",dNutrition:"Ідеї здорового харчування під час вагітності.",
+    mEmotions:"Емоції",dEmotions:"Особистий щоденник почуттів і думок.",
+    mNear:"Поруч зі мною",dNear:"Знайти акушерку, гінеколога, клініку та аптеки.",
+    mCourses:"Курси",dCourses:"Підготовка до пологів, йога та курси для батьків.",
+    mBabyNames:"Імена",dBabyNames:"Збирати та оцінювати улюблені імена.",
+    mBudget:"Бюджет",dBudget:"Планувати витрати, допомоги та покупки для дитини.",
+    mBabyEquipment:"Перші речі",dBabyEquipment:"Список для сну, підгузків, одягу та прогулянок.",
+    mPartner:"Партнер",dPartner:"Завдання, питання для розмови та спільні нотатки.",
+    mHospitalBag:"Сумка в пологовий",dHospitalBag:"Готувати сумку, коли термін наближається.",
+    mEmergency:"Екстрено",dEmergency:"112, 116117, контакти та тривожні ознаки.",
+    mContractions:"Таймер перейм",dContractions:"Вимірювати перейми, тривалість та інтервали.",
+    mVaccinations:"Щеплення",dVaccinations:"Паспорт щеплень, питання та нагадування.",
+    mAfterBirth:"Після пологів",dAfterBirth:"Перші тижні після пологів і важливі задачі.",
+    mFeeding:"Грудне і пляшечка",dFeeding:"Відстежувати годування, пляшечки, зціджування і підгузки.",
+    mMovements:"Рухи дитини",dMovements:"Рахувати і зберігати рухи дитини.",
+    mSleep:"Сон",dSleep:"Відстежувати сон і денні сни дитини.",
+    noItems:"Немає карток у цій категорії."
+  }
+};
 
-    function determineTheme(type, gender){
-      if (gender === "boy" || gender === "twin_boys") return "boy";
-      if (gender === "girl" || gender === "twin_girls") return "girl";
-      if (type === "twins" || gender === "twin_mixed") return "twin";
-      return "neutral";
-    }
+const modules=[
+  {id:"profile",href:"profile.html",icon:"👤",title:"mProfile",desc:"dProfile",category:"tools",always:true},
+  {id:"emergency",href:"emergency.html",icon:"🚨",title:"mEmergency",desc:"dEmergency",category:"tools",always:true},
+  {id:"calendar",href:"calendar.html",icon:"📅",title:"mCalendar",desc:"dCalendar",category:"pregnancy",always:true},
+  {id:"documents",href:"documents.html",icon:"📄",title:"mDocuments",desc:"dDocuments",category:"tools",always:true},
+  {id:"nutrition",href:"nutrition.html",icon:"🥗",title:"mNutrition",desc:"dNutrition",category:"pregnancy",min:1,max:42},
+  {id:"emotions",href:"emotions.html",icon:"💗",title:"mEmotions",desc:"dEmotions",category:"pregnancy",min:1,max:42},
+  {id:"bureaucracy",href:"bureaucracy.html",icon:"🏛️",title:"mBureaucracy",desc:"dBureaucracy",category:"tools",min:8,max:34},
+  {id:"near",href:"near.html",icon:"📍",title:"mNear",desc:"dNear",category:"tools",min:8,max:42},
+  {id:"courses",href:"courses.html",icon:"🧘",title:"mCourses",desc:"dCourses",category:"pregnancy",min:10,max:30},
+  {id:"babyNames",href:"baby-names.html",icon:"✨",title:"mBabyNames",desc:"dBabyNames",category:"pregnancy",min:10,max:32},
+  {id:"budget",href:"budget.html",icon:"💶",title:"mBudget",desc:"dBudget",category:"tools",min:12,max:38},
+  {id:"vaccinations",href:"vaccinations.html",icon:"💉",title:"mVaccinations",desc:"dVaccinations",category:"tools",min:12,max:42},
+  {id:"babyEquipment",href:"baby-equipment.html",icon:"🧸",title:"mBabyEquipment",desc:"dBabyEquipment",category:"baby",min:18,max:38},
+  {id:"partner",href:"partner.html",icon:"🤝",title:"mPartner",desc:"dPartner",category:"pregnancy",min:16,max:42},
+  {id:"movements",href:"movements.html",icon:"👣",title:"mMovements",desc:"dMovements",category:"pregnancy",min:24,max:42},
+  {id:"hospitalBag",href:"hospital-bag.html",icon:"🧳",title:"mHospitalBag",desc:"dHospitalBag",category:"birth",min:28,max:42},
+  {id:"afterBirth",href:"after-birth.html",icon:"🌱",title:"mAfterBirth",desc:"dAfterBirth",category:"baby",min:30,max:60},
+  {id:"feeding",href:"feeding.html",icon:"🍼",title:"mFeeding",desc:"dFeeding",category:"baby",min:34,max:60},
+  {id:"sleep",href:"sleep.html",icon:"🌙",title:"mSleep",desc:"dSleep",category:"baby",min:34,max:60},
+  {id:"contractions",href:"contractions.html",icon:"⏱️",title:"mContractions",desc:"dContractions",category:"birth",min:34,max:42}
+];
 
-    function applyTheme(theme){
-      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-      if (theme === "boy") document.body.classList.add("theme-boy");
-      if (theme === "girl") document.body.classList.add("theme-girl");
-      if (theme === "twin") document.body.classList.add("theme-twin");
-    }
+function t(){return translations[currentLang]||translations.de}
 
-    function getThemeText(){
-      const theme = determineTheme(currentProfile?.pregnancy_type, currentProfile?.baby_gender);
-      if (theme === "boy") return t().themeBoy;
-      if (theme === "girl") return t().themeGirl;
-      if (theme === "twin") return t().themeTwin;
-      return t().themeNeutral;
-    }
+function setLanguage(lang){
+  currentLang=lang;
+  localStorage.setItem("mama_lang",lang);
+  document.documentElement.lang=lang;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
 
-    function isBabyBorn(){
-      return currentProfile?.baby_is_born === true || currentProfile?.baby_is_born === "true";
-    }
+  document.querySelectorAll(".language-buttons button").forEach(btn=>btn.classList.remove("active"));
+  const active=document.getElementById("lang-"+lang);
+  if(active)active.classList.add("active");
 
-    function getBabyAgeDays(){
-      if (!currentProfile?.baby_birth_date) return null;
-      const birthDate = parseLocalDate(currentProfile.baby_birth_date);
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const diff = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
-      return diff < 0 ? 0 : diff;
-    }
+  Object.keys(t()).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=t()[id];
+  });
 
-    async function loadApp(){
-      const { data, error } = await supabaseClient.auth.getSession();
+  document.getElementById("showAllButton").textContent=showAll?t().hideAllButton:t().showAllButton;
 
-      if (error || !data.session) {
-        document.getElementById("loginMessage").style.display = "block";
-        document.getElementById("appShell").style.display = "none";
-        return;
-      }
+  updateDashboardText();
+  updateTabs();
+  renderModules();
+}
 
-      currentUser = data.session.user;
+function determineTheme(type,gender){
+  if(gender==="boy"||gender==="twin_boys")return"boy";
+  if(gender==="girl"||gender==="twin_girls")return"girl";
+  if(type==="twins"||gender==="twin_mixed")return"twin";
+  return"neutral";
+}
 
-      const { data: profiles, error: profileError } = await supabaseClient
-        .from("pregnancy_profiles")
-        .select("*")
-        .eq("user_id", currentUser.id)
-        .order("created_at", { ascending:false })
-        .limit(1);
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if(theme==="boy")document.body.classList.add("theme-boy");
+  if(theme==="girl")document.body.classList.add("theme-girl");
+  if(theme==="twin")document.body.classList.add("theme-twin");
+}
 
-      if (profileError || !profiles || profiles.length === 0) {
-        window.location.href = "index.html?reason=no_profile";
-        return;
-      }
+function parseLocalDate(value){
+  const parts=value.split("-").map(Number);
+  return new Date(parts[0],parts[1]-1,parts[2]);
+}
 
-      currentProfile = profiles[0];
-      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
-      applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+function addDays(date,days){
+  const result=new Date(date);
+  result.setDate(result.getDate()+days);
+  return result;
+}
 
-      document.getElementById("loginMessage").style.display = "none";
-      document.getElementById("appShell").style.display = "block";
-      document.getElementById("emailPill").textContent = currentUser.email;
+function calculatePregnancy(dueDateValue){
+  if(!dueDateValue)return {week:currentProfile?.pregnancy_week||1,daysLeft:null};
+  const today=new Date();
+  today.setHours(0,0,0,0);
+  const due=parseLocalDate(dueDateValue);
+  due.setHours(0,0,0,0);
+  const start=addDays(due,-280);
+  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
+  if(week<1)week=1;
+  if(week>60)week=60;
+  const daysLeft=Math.ceil((due-today)/(1000*60*60*24));
+  return {week,daysLeft};
+}
 
-      setLanguage(currentLang);
-      renderDashboard();
-    }
+function getPhase(week){
+  if(week>42)return t().after;
+  if(week<13)return t().first;
+  if(week<28)return t().second;
+  return t().third;
+}
 
-    function renderDashboard(){
-      if (!currentProfile) return;
+function moduleIsRecommended(module){
+  if(module.always)return true;
+  return currentWeek>=module.min && currentWeek<=module.max;
+}
 
-      const babyName = currentProfile.baby_name || t().babyDefault;
-      document.getElementById("babyPill").textContent = babyName;
-      document.getElementById("themePill").textContent = getThemeText();
-      document.getElementById("cityValue").textContent = currentProfile.city || currentProfile.birth_place || "-";
+function moduleIsLater(module){
+  if(module.always)return false;
+  return currentWeek<module.min;
+}
 
-      if (isBabyBorn()) {
-        const age = getBabyAgeDays();
-        const birthDate = currentProfile.baby_birth_date ? parseLocalDate(currentProfile.baby_birth_date) : null;
-        document.getElementById("weekLabel").textContent = t().babyAgeLabel;
-        document.getElementById("weekValue").textContent = age ?? "-";
-        document.getElementById("daysLabel").textContent = t().babyBornDaysLabel;
-        document.getElementById("daysValue").textContent = age ?? "-";
-        document.getElementById("dueDateLabel").textContent = t().birthDateDisplayLabel;
-        document.getElementById("dueDateValue").textContent = birthDate ? formatDate(birthDate) : "-";
-        return;
-      }
+function getModuleStatus(module){
+  if(module.always)return t().always;
+  if(moduleIsRecommended(module))return t().recommended;
+  if(moduleIsLater(module))return t().later;
+  return t().later;
+}
 
-      document.getElementById("weekLabel").textContent = t().weekLabel;
-      document.getElementById("daysLabel").textContent = t().daysLabel;
-      document.getElementById("dueDateLabel").textContent = t().dueDateLabel;
+async function loadApp(){
+  const {data,error}=await supabaseClient.auth.getSession();
 
-      if (currentProfile.due_date) {
-        const dueDate = parseLocalDate(currentProfile.due_date);
-        const result = calculatePregnancy(dueDate);
-        document.getElementById("weekValue").textContent = result.week;
-        document.getElementById("daysValue").textContent = result.daysLeft;
-        document.getElementById("dueDateValue").textContent = formatDate(dueDate);
-      } else {
-        document.getElementById("weekValue").textContent = "-";
-        document.getElementById("daysValue").textContent = "-";
-        document.getElementById("dueDateValue").textContent = "-";
-      }
-    }
+  if(error||!data.session){
+    document.getElementById("loginMessage").style.display="block";
+    document.getElementById("appShell").style.display="none";
+    document.getElementById("profileMissingMessage").style.display="none";
+    return;
+  }
 
-    async function signOut(){
-      await supabaseClient.auth.signOut();
-      window.location.href = "index.html";
-    }
+  currentUser=data.session.user;
 
-    loadApp();
-  </script>
+  const {data:profiles,error:profileError}=await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .order("created_at",{ascending:false})
+    .limit(1);
+
+  if(profileError||!profiles||profiles.length===0){
+    document.getElementById("loginMessage").style.display="none";
+    document.getElementById("appShell").style.display="none";
+    document.getElementById("profileMissingMessage").style.display="block";
+    return;
+  }
+
+  currentProfile=profiles[0];
+  currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+
+  const calc=calculatePregnancy(currentProfile.due_date);
+  currentWeek=calc.week;
+  currentDaysLeft=calc.daysLeft;
+
+  applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display="none";
+  document.getElementById("profileMissingMessage").style.display="none";
+  document.getElementById("appShell").style.display="block";
+
+  setLanguage(currentLang);
+}
+
+function updateDashboardText(){
+  const babyName=currentProfile?.baby_name || "";
+  const city=currentProfile?.city || "";
+  const type=currentProfile?.pregnancy_type || "";
+  const gender=currentProfile?.baby_gender || "";
+
+  document.getElementById("weekValue").textContent=currentWeek ? currentWeek : "-";
+  document.getElementById("daysValue").textContent=currentDaysLeft===null ? "-" : Math.max(0,currentDaysLeft);
+  document.getElementById("phaseValue").textContent=getPhase(currentWeek);
+
+  let babyLine=babyName ? babyName : t().unknown;
+  if(type==="twins")babyLine += " · Twins";
+  if(gender && gender!=="unknown")babyLine += " · " + gender;
+
+  document.getElementById("babyInfo").textContent=babyLine;
+  document.getElementById("profileInfo").textContent=(city?city+" · ":"")+t().weekShort+" "+currentWeek;
+}
+
+function setTab(tab){
+  activeTab=tab;
+  updateTabs();
+  renderModules();
+}
+
+function updateTabs(){
+  [["tabRecommended","recommended"],["tabPregnancy","pregnancy"],["tabBirth","birth"],["tabBaby","baby"],["tabTools","tools"]].forEach(([id,value])=>{
+    const btn=document.getElementById(id);
+    if(btn)btn.classList.toggle("active",activeTab===value);
+  });
+}
+
+function toggleAllModules(){
+  showAll=!showAll;
+  document.getElementById("showAllButton").textContent=showAll?t().hideAllButton:t().showAllButton;
+  renderModules();
+}
+
+function cardHtml(module,isLater){
+  const status=getModuleStatus(module);
+  const statusClass=moduleIsRecommended(module)?"badge-now":(module.always?"":"badge-later");
+
+  return `
+    <a class="module-card" href="${module.href}">
+      <div class="module-icon">${module.icon}</div>
+      <div class="module-title">${t()[module.title]}</div>
+      <div class="module-desc">${t()[module.desc]}</div>
+      <div class="badges">
+        <span class="badge ${statusClass}">${status}</span>
+        ${!module.always ? `<span class="badge">${module.min}-${module.max} ${t().weekShort}</span>` : ""}
+      </div>
+    </a>
+  `;
+}
+
+function renderModules(){
+  const grid=document.getElementById("modulesGrid");
+  const laterGrid=document.getElementById("laterGrid");
+  let visible=[];
+
+  if(showAll){
+    visible=modules.slice();
+  }else if(activeTab==="recommended"){
+    visible=modules.filter(moduleIsRecommended);
+  }else{
+    visible=modules.filter(m=>m.category===activeTab && (showAll || moduleIsRecommended(m)));
+  }
+
+  grid.innerHTML=visible.length ? visible.map(m=>cardHtml(m,false)).join("") : `<div class="empty">${t().noItems}</div>`;
+
+  const later=modules.filter(moduleIsLater).slice(0,6);
+  laterGrid.innerHTML=later.length ? later.map(m=>cardHtml(m,true)).join("") : `<div class="empty">${t().noItems}</div>`;
+
+  document.getElementById("laterSection").style.display=showAll ? "none" : "block";
+}
+
+async function signOut(){
+  await supabaseClient.auth.signOut();
+  window.location.href="index.html";
+}
+
+loadApp();
+</script>
 </body>
 </html>

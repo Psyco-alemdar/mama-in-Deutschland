@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Babynamen</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center}
+.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:17px}
+p{margin:0;color:var(--muted);line-height:1.6}
+label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+input,select,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+textarea{min-height:80px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.box,.name-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Babynamen</h1>
+    <p id="pageText">Sammle eure Lieblingsnamen, bewertet sie gemeinsam und speichert Notizen dazu.</p>
+    <div class="soft" id="summaryBox">0 Namen gespeichert</div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="addTitle">Name hinzufügen</h2>
+
+      <label id="nameLabel" for="babyNameInput">Name</label>
+      <input id="babyNameInput" placeholder="Sophia" />
+
+      <label id="genderLabel" for="genderInput">Kategorie</label>
+      <select id="genderInput">
+        <option value="girl" id="genderGirl">Mädchen</option>
+        <option value="boy" id="genderBoy">Junge</option>
+        <option value="neutral" id="genderNeutral">Neutral</option>
+      </select>
+
+      <label id="originLabel" for="originInput">Sprache / Herkunft</label>
+      <input id="originInput" placeholder="Arabisch, Französisch, Deutsch..." />
+
+      <label id="ratingLabel" for="ratingInput">Bewertung</label>
+      <select id="ratingInput">
+        <option value="5">★★★★★</option>
+        <option value="4">★★★★</option>
+        <option value="3">★★★</option>
+        <option value="2">★★</option>
+        <option value="1">★</option>
+      </select>
+
+      <label id="noteLabel" for="noteInput">Notiz</label>
+      <textarea id="noteInput"></textarea>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="addName()" id="saveButton">Speichern</button>
+        <button class="button-light" onclick="clearForm()" id="clearButton">Leeren</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="ideasTitle">Ideen</h2>
+      <p id="ideasText">Schnell hinzufügen und später bewerten.</p>
+      <div class="grid-2" id="ideasGrid"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="listTitle">Meine Namensliste</h2>
+
+    <div class="filters" style="margin-top:14px;">
+      <button class="filter-button active" onclick="setFilter('all')" id="catAll">Alle</button>
+      <button class="filter-button" onclick="setFilter('girl')" id="catGirl">Mädchen</button>
+      <button class="filter-button" onclick="setFilter('boy')" id="catBoy">Junge</button>
+      <button class="filter-button" onclick="setFilter('neutral')" id="catNeutral">Neutral</button>
+      <button class="filter-button" onclick="setFilter('top')" id="catTop">Top</button>
+    </div>
+
+    <div class="grid-3" id="namesGrid"></div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br />
+  <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentUser = null;
+let currentProfile = null;
+let currentLang = localStorage.getItem("mama_lang") || "de";
+let filterType = "all";
+
+const translations = {
+  de:{
+    backButton:"Zurück",pageTitle:"Babynamen",pageText:"Sammle eure Lieblingsnamen, bewertet sie gemeinsam und speichert Notizen dazu.",
+    namesSaved:"Namen gespeichert",addTitle:"Name hinzufügen",nameLabel:"Name",genderLabel:"Kategorie",genderGirl:"Mädchen",genderBoy:"Junge",genderNeutral:"Neutral",
+    originLabel:"Sprache / Herkunft",ratingLabel:"Bewertung",noteLabel:"Notiz",saveButton:"Speichern",clearButton:"Leeren",
+    ideasTitle:"Ideen",ideasText:"Schnell hinzufügen und später bewerten.",listTitle:"Meine Namensliste",
+    catAll:"Alle",catGirl:"Mädchen",catBoy:"Junge",catNeutral:"Neutral",catTop:"Top",
+    delete:"Löschen",empty:"Noch keine Namen vorhanden.",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",
+    addIdea:"Hinzufügen",origin:"Herkunft",rating:"Bewertung"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Prénoms bébé",pageText:"Collectionnez vos prénoms préférés, notez-les ensemble et gardez des remarques.",
+    namesSaved:"prénoms enregistrés",addTitle:"Ajouter un prénom",nameLabel:"Prénom",genderLabel:"Catégorie",genderGirl:"Fille",genderBoy:"Garçon",genderNeutral:"Neutre",
+    originLabel:"Langue / origine",ratingLabel:"Note",noteLabel:"Note",saveButton:"Enregistrer",clearButton:"Vider",
+    ideasTitle:"Idées",ideasText:"Ajouter rapidement et noter plus tard.",listTitle:"Ma liste de prénoms",
+    catAll:"Tous",catGirl:"Fille",catBoy:"Garçon",catNeutral:"Neutre",catTop:"Top",
+    delete:"Supprimer",empty:"Aucun prénom pour le moment.",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+    addIdea:"Ajouter",origin:"Origine",rating:"Note"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"أسماء الأطفال",pageText:"اجمعوا أسماءكم المفضلة، قيّموها معاً واحفظوا الملاحظات.",
+    namesSaved:"أسماء محفوظة",addTitle:"إضافة اسم",nameLabel:"الاسم",genderLabel:"الفئة",genderGirl:"بنت",genderBoy:"ولد",genderNeutral:"محايد",
+    originLabel:"اللغة / الأصل",ratingLabel:"التقييم",noteLabel:"ملاحظة",saveButton:"حفظ",clearButton:"مسح",
+    ideasTitle:"أفكار",ideasText:"إضافة سريعة والتقييم لاحقاً.",listTitle:"قائمة الأسماء",
+    catAll:"الكل",catGirl:"بنات",catBoy:"أولاد",catNeutral:"محايد",catTop:"الأفضل",
+    delete:"حذف",empty:"لا توجد أسماء حالياً.",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",
+    addIdea:"إضافة",origin:"الأصل",rating:"التقييم"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Baby names",pageText:"Collect your favorite names, rate them together and save notes.",
+    namesSaved:"names saved",addTitle:"Add name",nameLabel:"Name",genderLabel:"Category",genderGirl:"Girl",genderBoy:"Boy",genderNeutral:"Neutral",
+    originLabel:"Language / origin",ratingLabel:"Rating",noteLabel:"Note",saveButton:"Save",clearButton:"Clear",
+    ideasTitle:"Ideas",ideasText:"Quickly add and rate later.",listTitle:"My name list",
+    catAll:"All",catGirl:"Girl",catBoy:"Boy",catNeutral:"Neutral",catTop:"Top",
+    delete:"Delete",empty:"No names yet.",loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",
+    addIdea:"Add",origin:"Origin",rating:"Rating"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Bebek isimleri",pageText:"Favori isimlerinizi toplayın, birlikte puanlayın ve not kaydedin.",
+    namesSaved:"isim kaydedildi",addTitle:"İsim ekle",nameLabel:"İsim",genderLabel:"Kategori",genderGirl:"Kız",genderBoy:"Erkek",genderNeutral:"Nötr",
+    originLabel:"Dil / köken",ratingLabel:"Puan",noteLabel:"Not",saveButton:"Kaydet",clearButton:"Temizle",
+    ideasTitle:"Fikirler",ideasText:"Hızlı ekleyin, sonra puanlayın.",listTitle:"İsim listem",
+    catAll:"Hepsi",catGirl:"Kız",catBoy:"Erkek",catNeutral:"Nötr",catTop:"Top",
+    delete:"Sil",empty:"Henüz isim yok.",loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",
+    addIdea:"Ekle",origin:"Köken",rating:"Puan"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Имена для малыша",pageText:"Собирайте любимые имена, оценивайте их вместе и сохраняйте заметки.",
+    namesSaved:"имён сохранено",addTitle:"Добавить имя",nameLabel:"Имя",genderLabel:"Категория",genderGirl:"Девочка",genderBoy:"Мальчик",genderNeutral:"Нейтрально",
+    originLabel:"Язык / происхождение",ratingLabel:"Оценка",noteLabel:"Заметка",saveButton:"Сохранить",clearButton:"Очистить",
+    ideasTitle:"Идеи",ideasText:"Быстро добавить и оценить позже.",listTitle:"Мой список имён",
+    catAll:"Все",catGirl:"Девочка",catBoy:"Мальчик",catNeutral:"Нейтрально",catTop:"Лучшие",
+    delete:"Удалить",empty:"Пока нет имён.",loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",
+    addIdea:"Добавить",origin:"Происхождение",rating:"Оценка"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Імена для малюка",pageText:"Збирайте улюблені імена, оцінюйте їх разом і зберігайте нотатки.",
+    namesSaved:"імен збережено",addTitle:"Додати ім’я",nameLabel:"Ім’я",genderLabel:"Категорія",genderGirl:"Дівчинка",genderBoy:"Хлопчик",genderNeutral:"Нейтрально",
+    originLabel:"Мова / походження",ratingLabel:"Оцінка",noteLabel:"Нотатка",saveButton:"Зберегти",clearButton:"Очистити",
+    ideasTitle:"Ідеї",ideasText:"Швидко додати і оцінити пізніше.",listTitle:"Мій список імен",
+    catAll:"Усі",catGirl:"Дівчинка",catBoy:"Хлопчик",catNeutral:"Нейтрально",catTop:"Найкращі",
+    delete:"Видалити",empty:"Поки немає імен.",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",
+    addIdea:"Додати",origin:"Походження",rating:"Оцінка"
+  }
+};
+
+const ideas = [
+  {name:"Sophia", gender:"girl", origin:"Griechisch"},
+  {name:"Lina", gender:"girl", origin:"Arabisch / Deutsch"},
+  {name:"Maya", gender:"girl", origin:"International"},
+  {name:"Adam", gender:"boy", origin:"Arabisch / Deutsch"},
+  {name:"Noah", gender:"boy", origin:"International"},
+  {name:"Amir", gender:"boy", origin:"Arabisch"}
+];
+
+function t(){ return translations[currentLang] || translations.de; }
+
+function setLanguage(lang){
+  currentLang = lang;
+  localStorage.setItem("mama_lang", lang);
+  document.documentElement.lang = lang;
+  document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+  const active = document.getElementById("lang-" + lang);
+  if (active) active.classList.add("active");
+
+  const tr = t();
+  Object.keys(tr).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = tr[id];
+  });
+
+  updateButtons();
+  renderIdeas();
+  renderNames();
+}
+
+function determineTheme(type, gender){
+  if (gender === "boy" || gender === "twin_boys") return "boy";
+  if (gender === "girl" || gender === "twin_girls") return "girl";
+  if (type === "twins" || gender === "twin_mixed") return "twin";
+  return "neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if (theme === "boy") document.body.classList.add("theme-boy");
+  if (theme === "girl") document.body.classList.add("theme-girl");
+  if (theme === "twin") document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+  const { data, error } = await supabaseClient.auth.getSession();
+
+  if (error || !data.session) {
+    document.getElementById("loginMessage").style.display = "block";
+    document.getElementById("appShell").style.display = "none";
+    return;
+  }
+
+  currentUser = data.session.user;
+
+  const { data: profiles, error: profileError } = await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending:false })
+    .limit(1);
+
+  if (profileError || !profiles || profiles.length === 0) {
+    window.location.href = "index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile = profiles[0];
+  currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+  applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display = "none";
+  document.getElementById("appShell").style.display = "block";
+
+  setLanguage(currentLang);
+}
+
+function storageKey(){ return "mama-baby-names-" + (currentUser?.id || "guest"); }
+
+function getNames(){
+  try { return JSON.parse(localStorage.getItem(storageKey())) || []; }
+  catch(e) { return []; }
+}
+
+function saveNames(names){ localStorage.setItem(storageKey(), JSON.stringify(names)); }
+
+function genderLabel(gender){
+  if (gender === "girl") return t().genderGirl;
+  if (gender === "boy") return t().genderBoy;
+  return t().genderNeutral;
+}
+
+function addName(){
+  const name = document.getElementById("babyNameInput").value.trim();
+  if (!name) return;
+
+  const names = getNames();
+  names.unshift({
+    id:Date.now(),
+    name,
+    gender:document.getElementById("genderInput").value,
+    origin:document.getElementById("originInput").value.trim(),
+    rating:Number(document.getElementById("ratingInput").value || 5),
+    note:document.getElementById("noteInput").value.trim()
+  });
+
+  saveNames(names);
+  clearForm();
+  renderNames();
+}
+
+function addIdea(name, gender, origin){
+  const names = getNames();
+
+  if (!names.some(item => item.name.toLowerCase() === name.toLowerCase())) {
+    names.unshift({
+      id:Date.now(),
+      name,
+      gender,
+      origin,
+      rating:4,
+      note:""
+    });
+    saveNames(names);
+  }
+
+  renderNames();
+}
+
+function clearForm(){
+  document.getElementById("babyNameInput").value = "";
+  document.getElementById("originInput").value = "";
+  document.getElementById("noteInput").value = "";
+  document.getElementById("ratingInput").value = "5";
+}
+
+function deleteName(id){
+  const names = getNames().filter(item => item.id !== id);
+  saveNames(names);
+  renderNames();
+}
+
+function setFilter(filter){
+  filterType = filter;
+  updateButtons();
+  renderNames();
+}
+
+function updateButtons(){
+  [
+    ["catAll","all"],
+    ["catGirl","girl"],
+    ["catBoy","boy"],
+    ["catNeutral","neutral"],
+    ["catTop","top"]
+  ].forEach(([id,value]) => {
+    const button = document.getElementById(id);
+    if (button) button.classList.toggle("active", filterType === value);
+  });
+}
+
+function stars(rating){ return "★★★★★".slice(0, rating); }
+
+function renderIdeas(){
+  const grid = document.getElementById("ideasGrid");
+  grid.innerHTML = "";
+
+  ideas.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "box";
+    card.innerHTML = `
+      <div class="badge">${genderLabel(item.gender)}</div>
+      <h3>${item.name}</h3>
+      <p>${item.origin}</p>
+      <div class="actions" style="margin-top:12px;">
+        <button class="button-light" onclick="addIdea('${item.name}','${item.gender}','${item.origin}')">${t().addIdea}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderNames(){
+  const grid = document.getElementById("namesGrid");
+  let names = getNames();
+
+  document.getElementById("summaryBox").textContent = `${names.length} ${t().namesSaved}`;
+
+  if (filterType === "top") {
+    names = names.filter(item => Number(item.rating || 0) >= 4);
+  } else if (filterType !== "all") {
+    names = names.filter(item => item.gender === filterType);
+  }
+
+  names.sort((a,b) => Number(b.rating || 0) - Number(a.rating || 0));
+
+  grid.innerHTML = "";
+
+  if (names.length === 0) {
+    grid.innerHTML = `<div class="empty">${t().empty}</div>`;
+    return;
+  }
+
+  names.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "name-card";
+    card.innerHTML = `
+      <div class="badge">${genderLabel(item.gender)}</div>
+      <div class="badge">${t().rating}: ${stars(Number(item.rating || 1))}</div>
+      <h3>${item.name}</h3>
+      <p>${t().origin}: ${item.origin || "-"}</p>
+      <p>${item.note || ""}</p>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-danger" onclick="deleteName(${item.id})">${t().delete}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+loadApp();
+</script>
+</body>
+</html>

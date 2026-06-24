@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Share your experience</title>
+
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+  radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+  linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)
+}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger,.filter-button{
+  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;
+  cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center
+}
+.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
+.card{
+  background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;
+  box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px
+}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:34px;letter-spacing:-1.5px}
+h2{font-size:25px;letter-spacing:-.7px}
+h3{font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+input,select,textarea{
+  width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);
+  background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none
+}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.post-card,.comment-card,.box{
+  background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px
+}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+.comments{margin-top:14px;border-top:1px solid var(--border);padding-top:14px}
+.comment-card{padding:13px;margin-top:10px}
+.small{font-size:13px;color:var(--muted)}
+.status{display:none;margin-top:14px;padding:12px 14px;border-radius:16px;background:var(--soft);color:var(--brown);font-weight:900}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Share your experience</h1>
+    <p id="pageText">Partage ton expérience avec d’autres mamans : grossesse, accouchement, hôpital, démarches, allaitement et vie avec bébé.</p>
+    <div class="soft" id="privacyText">Reste respectueuse. Ne partage pas de données médicales ou personnelles sensibles.</div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="writeTitle">Écrire une expérience</h2>
+
+      <label id="postTitleLabel" for="postTitle">Titre</label>
+      <input id="postTitle" />
+
+      <label id="postCategoryLabel" for="postCategory">Catégorie</label>
+      <select id="postCategory">
+        <option value="general" id="catGeneralOption">Général</option>
+        <option value="pregnancy" id="catPregnancyOption">Grossesse</option>
+        <option value="birth" id="catBirthOption">Accouchement</option>
+        <option value="hospital" id="catHospitalOption">Hôpital</option>
+        <option value="bureaucracy" id="catBureaucracyOption">Bureaucratie</option>
+        <option value="elterngeld" id="catElterngeldOption">Elterngeld</option>
+        <option value="breastfeeding" id="catBreastfeedingOption">Allaitement</option>
+        <option value="baby" id="catBabyOption">Bébé</option>
+        <option value="mental_health" id="catMentalOption">Mental</option>
+        <option value="tips" id="catTipsOption">Conseils</option>
+      </select>
+
+      <label id="postBodyLabel" for="postBody">Texte</label>
+      <textarea id="postBody"></textarea>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="createPost()" id="publishButton">Publier</button>
+        <button class="button-light" onclick="clearPostForm()" id="clearButton">Effacer</button>
+      </div>
+
+      <div class="status" id="formStatus"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="rulesTitle">Règles importantes</h2>
+      <div class="box">
+        <h3 id="rule1Title">Respect</h3>
+        <p id="rule1Text">Pas d’insultes, pas de jugement, pas de pression médicale.</p>
+      </div>
+      <br />
+      <div class="box">
+        <h3 id="rule2Title">Sécurité</h3>
+        <p id="rule2Text">Ne publie pas d’adresse, numéro, documents, photos sensibles ou données médicales détaillées.</p>
+      </div>
+      <br />
+      <div class="box">
+        <h3 id="rule3Title">Langue</h3>
+        <p id="rule3Text">Tu vois d’abord les expériences dans ta langue. Tu peux afficher toutes les langues.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="actions" style="justify-content:space-between;align-items:flex-start;">
+      <div>
+        <h2 id="feedTitle">Expériences des mamans</h2>
+        <p id="feedText">Lis, like, commente ou signale si nécessaire.</p>
+      </div>
+      <button class="button-light" onclick="loadPosts()" id="refreshButton">Rafraîchir</button>
+    </div>
+
+    <div class="filters" style="margin-top:14px;">
+      <button class="filter-button active" onclick="setLanguageFilter('mine')" id="filterMine">Ma langue</button>
+      <button class="filter-button" onclick="setLanguageFilter('all')" id="filterAllLang">Toutes les langues</button>
+    </div>
+
+    <div class="filters" style="margin-top:10px;">
+      <button class="filter-button active" onclick="setCategoryFilter('all')" id="filterCatAll">Toutes</button>
+      <button class="filter-button" onclick="setCategoryFilter('pregnancy')" id="filterCatPregnancy">Grossesse</button>
+      <button class="filter-button" onclick="setCategoryFilter('birth')" id="filterCatBirth">Accouchement</button>
+      <button class="filter-button" onclick="setCategoryFilter('hospital')" id="filterCatHospital">Hôpital</button>
+      <button class="filter-button" onclick="setCategoryFilter('bureaucracy')" id="filterCatBureaucracy">Bureaucratie</button>
+      <button class="filter-button" onclick="setCategoryFilter('baby')" id="filterCatBaby">Bébé</button>
+    </div>
+
+    <div class="grid-2" id="postsGrid"></div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br />
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null;
+let currentProfile=null;
+let currentLang=localStorage.getItem("mama_lang")||"de";
+let currentWeek=1;
+let languageFilter="mine";
+let categoryFilter="all";
+let postCache=[];
+let likesByPost={};
+let myLikes=new Set();
+let commentsByPost={};
+
+const translations={
+  de:{
+    backButton:"Zurück",pageTitle:"Share your experience",pageText:"Teile deine Erfahrung mit anderen Mamas: Schwangerschaft, Geburt, Krankenhaus, Bürokratie, Stillen und Babyzeit.",
+    privacyText:"Bleib respektvoll. Teile keine sensiblen medizinischen oder persönlichen Daten.",
+    writeTitle:"Erfahrung schreiben",postTitleLabel:"Titel",postCategoryLabel:"Kategorie",postBodyLabel:"Text",publishButton:"Veröffentlichen",clearButton:"Leeren",
+    rulesTitle:"Wichtige Regeln",rule1Title:"Respekt",rule1Text:"Keine Beleidigungen, kein Druck, keine medizinische Verurteilung.",
+    rule2Title:"Sicherheit",rule2Text:"Keine Adresse, Telefonnummer, Dokumente, sensiblen Fotos oder detaillierten medizinischen Daten posten.",
+    rule3Title:"Sprache",rule3Text:"Du siehst zuerst Erfahrungen in deiner Sprache. Du kannst alle Sprachen anzeigen.",
+    feedTitle:"Erfahrungen von Mamas",feedText:"Lies, like, kommentiere oder melde bei Bedarf.",refreshButton:"Aktualisieren",
+    filterMine:"Meine Sprache",filterAllLang:"Alle Sprachen",filterCatAll:"Alle",filterCatPregnancy:"Schwangerschaft",filterCatBirth:"Geburt",filterCatHospital:"Krankenhaus",filterCatBureaucracy:"Bürokratie",filterCatBaby:"Baby",
+    catGeneralOption:"Allgemein",catPregnancyOption:"Schwangerschaft",catBirthOption:"Geburt",catHospitalOption:"Krankenhaus",catBureaucracyOption:"Bürokratie",catElterngeldOption:"Elterngeld",catBreastfeedingOption:"Stillen",catBabyOption:"Baby",catMentalOption:"Mental",catTipsOption:"Tipps",
+    empty:"Noch keine Erfahrungen vorhanden.",like:"Hilfreich",liked:"Hilfreich ✓",comment:"Kommentieren",report:"Melden",delete:"Löschen",myPost:"Mein Beitrag",
+    commentPlaceholder:"Kommentar schreiben...",send:"Senden",reported:"Danke, die Meldung wurde gespeichert.",saved:"Veröffentlicht.",error:"Fehler. Bitte erneut versuchen.",
+    loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",week:"SSW",city:"Stadt"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Share your experience",pageText:"Partage ton expérience avec d’autres mamans : grossesse, accouchement, hôpital, démarches, allaitement et vie avec bébé.",
+    privacyText:"Reste respectueuse. Ne partage pas de données médicales ou personnelles sensibles.",
+    writeTitle:"Écrire une expérience",postTitleLabel:"Titre",postCategoryLabel:"Catégorie",postBodyLabel:"Texte",publishButton:"Publier",clearButton:"Effacer",
+    rulesTitle:"Règles importantes",rule1Title:"Respect",rule1Text:"Pas d’insultes, pas de jugement, pas de pression médicale.",
+    rule2Title:"Sécurité",rule2Text:"Ne publie pas d’adresse, numéro, documents, photos sensibles ou données médicales détaillées.",
+    rule3Title:"Langue",rule3Text:"Tu vois d’abord les expériences dans ta langue. Tu peux afficher toutes les langues.",
+    feedTitle:"Expériences des mamans",feedText:"Lis, like, commente ou signale si nécessaire.",refreshButton:"Rafraîchir",
+    filterMine:"Ma langue",filterAllLang:"Toutes les langues",filterCatAll:"Toutes",filterCatPregnancy:"Grossesse",filterCatBirth:"Accouchement",filterCatHospital:"Hôpital",filterCatBureaucracy:"Bureaucratie",filterCatBaby:"Bébé",
+    catGeneralOption:"Général",catPregnancyOption:"Grossesse",catBirthOption:"Accouchement",catHospitalOption:"Hôpital",catBureaucracyOption:"Bureaucratie",catElterngeldOption:"Elterngeld",catBreastfeedingOption:"Allaitement",catBabyOption:"Bébé",catMentalOption:"Mental",catTipsOption:"Conseils",
+    empty:"Aucune expérience pour le moment.",like:"Utile",liked:"Utile ✓",comment:"Commenter",report:"Signaler",delete:"Supprimer",myPost:"Mon post",
+    commentPlaceholder:"Écrire un commentaire...",send:"Envoyer",reported:"Merci, le signalement a été enregistré.",saved:"Publié.",error:"Erreur. Réessaie.",
+    loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",week:"SA",city:"Ville"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"شاركي تجربتك",pageText:"شاركي تجربتك مع أمهات أخريات: الحمل، الولادة، المستشفى، الإجراءات، الرضاعة وحياة الطفل.",
+    privacyText:"كوني محترمة. لا تشاركي بيانات طبية أو شخصية حساسة.",
+    writeTitle:"كتابة تجربة",postTitleLabel:"العنوان",postCategoryLabel:"الفئة",postBodyLabel:"النص",publishButton:"نشر",clearButton:"مسح",
+    rulesTitle:"قواعد مهمة",rule1Title:"الاحترام",rule1Text:"لا إهانات، لا أحكام، لا ضغط طبي.",
+    rule2Title:"الأمان",rule2Text:"لا تنشري عنواناً أو رقم هاتف أو وثائق أو صوراً حساسة أو تفاصيل طبية دقيقة.",
+    rule3Title:"اللغة",rule3Text:"ترين أولاً التجارب بلغتك، ويمكنك عرض كل اللغات.",
+    feedTitle:"تجارب الأمهات",feedText:"اقرئي، أعجبي، علقي أو أبلغي عند الحاجة.",refreshButton:"تحديث",
+    filterMine:"لغتي",filterAllLang:"كل اللغات",filterCatAll:"الكل",filterCatPregnancy:"الحمل",filterCatBirth:"الولادة",filterCatHospital:"المستشفى",filterCatBureaucracy:"الإجراءات",filterCatBaby:"الطفل",
+    catGeneralOption:"عام",catPregnancyOption:"الحمل",catBirthOption:"الولادة",catHospitalOption:"المستشفى",catBureaucracyOption:"الإجراءات",catElterngeldOption:"Elterngeld",catBreastfeedingOption:"الرضاعة",catBabyOption:"الطفل",catMentalOption:"النفسية",catTipsOption:"نصائح",
+    empty:"لا توجد تجارب حالياً.",like:"مفيد",liked:"مفيد ✓",comment:"تعليق",report:"إبلاغ",delete:"حذف",myPost:"منشوري",
+    commentPlaceholder:"اكتبي تعليقاً...",send:"إرسال",reported:"شكراً، تم حفظ البلاغ.",saved:"تم النشر.",error:"حدث خطأ. حاولي مرة أخرى.",
+    loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",week:"أسبوع",city:"المدينة"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Share your experience",pageText:"Share your experience with other mothers: pregnancy, birth, hospital, paperwork, breastfeeding and baby life.",
+    privacyText:"Be respectful. Do not share sensitive medical or personal data.",
+    writeTitle:"Write an experience",postTitleLabel:"Title",postCategoryLabel:"Category",postBodyLabel:"Text",publishButton:"Publish",clearButton:"Clear",
+    rulesTitle:"Important rules",rule1Title:"Respect",rule1Text:"No insults, no judgment, no medical pressure.",
+    rule2Title:"Safety",rule2Text:"Do not post addresses, phone numbers, documents, sensitive photos or detailed medical data.",
+    rule3Title:"Language",rule3Text:"You first see experiences in your language. You can show all languages.",
+    feedTitle:"Mothers’ experiences",feedText:"Read, like, comment or report if needed.",refreshButton:"Refresh",
+    filterMine:"My language",filterAllLang:"All languages",filterCatAll:"All",filterCatPregnancy:"Pregnancy",filterCatBirth:"Birth",filterCatHospital:"Hospital",filterCatBureaucracy:"Bureaucracy",filterCatBaby:"Baby",
+    catGeneralOption:"General",catPregnancyOption:"Pregnancy",catBirthOption:"Birth",catHospitalOption:"Hospital",catBureaucracyOption:"Bureaucracy",catElterngeldOption:"Elterngeld",catBreastfeedingOption:"Breastfeeding",catBabyOption:"Baby",catMentalOption:"Mental health",catTipsOption:"Tips",
+    empty:"No experiences yet.",like:"Helpful",liked:"Helpful ✓",comment:"Comment",report:"Report",delete:"Delete",myPost:"My post",
+    commentPlaceholder:"Write a comment...",send:"Send",reported:"Thanks, the report was saved.",saved:"Published.",error:"Error. Please try again.",
+    loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",week:"Week",city:"City"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Deneyimini paylaş",pageText:"Deneyimini diğer annelerle paylaş: hamilelik, doğum, hastane, resmi işler, emzirme ve bebek dönemi.",
+    privacyText:"Saygılı ol. Hassas tıbbi veya kişisel veri paylaşma.",
+    writeTitle:"Deneyim yaz",postTitleLabel:"Başlık",postCategoryLabel:"Kategori",postBodyLabel:"Metin",publishButton:"Yayınla",clearButton:"Temizle",
+    rulesTitle:"Önemli kurallar",rule1Title:"Saygı",rule1Text:"Hakaret yok, yargılama yok, tıbbi baskı yok.",
+    rule2Title:"Güvenlik",rule2Text:"Adres, telefon, belge, hassas fotoğraf veya detaylı tıbbi veri paylaşma.",
+    rule3Title:"Dil",rule3Text:"Önce kendi dilindeki deneyimleri görürsün. Tüm dilleri gösterebilirsin.",
+    feedTitle:"Annelerin deneyimleri",feedText:"Oku, beğen, yorum yap veya gerekiyorsa bildir.",refreshButton:"Yenile",
+    filterMine:"Benim dilim",filterAllLang:"Tüm diller",filterCatAll:"Hepsi",filterCatPregnancy:"Hamilelik",filterCatBirth:"Doğum",filterCatHospital:"Hastane",filterCatBureaucracy:"Bürokrasi",filterCatBaby:"Bebek",
+    catGeneralOption:"Genel",catPregnancyOption:"Hamilelik",catBirthOption:"Doğum",catHospitalOption:"Hastane",catBureaucracyOption:"Bürokrasi",catElterngeldOption:"Elterngeld",catBreastfeedingOption:"Emzirme",catBabyOption:"Bebek",catMentalOption:"Psikoloji",catTipsOption:"İpuçları",
+    empty:"Henüz deneyim yok.",like:"Faydalı",liked:"Faydalı ✓",comment:"Yorum",report:"Bildir",delete:"Sil",myPost:"Benim gönderim",
+    commentPlaceholder:"Yorum yaz...",send:"Gönder",reported:"Teşekkürler, bildirim kaydedildi.",saved:"Yayınlandı.",error:"Hata. Tekrar dene.",
+    loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",week:"Hafta",city:"Şehir"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Поделиться опытом",pageText:"Поделитесь опытом с другими мамами: беременность, роды, больница, документы, грудное вскармливание и жизнь с малышом.",
+    privacyText:"Будьте уважительны. Не публикуйте чувствительные медицинские или личные данные.",
+    writeTitle:"Написать опыт",postTitleLabel:"Заголовок",postCategoryLabel:"Категория",postBodyLabel:"Текст",publishButton:"Опубликовать",clearButton:"Очистить",
+    rulesTitle:"Важные правила",rule1Title:"Уважение",rule1Text:"Без оскорблений, осуждения и медицинского давления.",
+    rule2Title:"Безопасность",rule2Text:"Не публикуйте адреса, телефоны, документы, чувствительные фото или подробные медицинские данные.",
+    rule3Title:"Язык",rule3Text:"Сначала вы видите опыт на своём языке. Можно показать все языки.",
+    feedTitle:"Опыт мам",feedText:"Читайте, отмечайте полезное, комментируйте или жалуйтесь.",refreshButton:"Обновить",
+    filterMine:"Мой язык",filterAllLang:"Все языки",filterCatAll:"Все",filterCatPregnancy:"Беременность",filterCatBirth:"Роды",filterCatHospital:"Больница",filterCatBureaucracy:"Бюрократия",filterCatBaby:"Ребёнок",
+    catGeneralOption:"Общее",catPregnancyOption:"Беременность",catBirthOption:"Роды",catHospitalOption:"Больница",catBureaucracyOption:"Бюрократия",catElterngeldOption:"Elterngeld",catBreastfeedingOption:"ГВ",catBabyOption:"Ребёнок",catMentalOption:"Психика",catTipsOption:"Советы",
+    empty:"Пока нет историй.",like:"Полезно",liked:"Полезно ✓",comment:"Комментировать",report:"Пожаловаться",delete:"Удалить",myPost:"Мой пост",
+    commentPlaceholder:"Написать комментарий...",send:"Отправить",reported:"Спасибо, жалоба сохранена.",saved:"Опубликовано.",error:"Ошибка. Попробуйте снова.",
+    loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",week:"Неделя",city:"Город"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Поділитися досвідом",pageText:"Поділіться досвідом з іншими мамами: вагітність, пологи, лікарня, документи, грудне вигодовування і життя з дитиною.",
+    privacyText:"Будьте поважними. Не публікуйте чутливі медичні або особисті дані.",
+    writeTitle:"Написати досвід",postTitleLabel:"Заголовок",postCategoryLabel:"Категорія",postBodyLabel:"Текст",publishButton:"Опублікувати",clearButton:"Очистити",
+    rulesTitle:"Важливі правила",rule1Title:"Повага",rule1Text:"Без образ, осуду і медичного тиску.",
+    rule2Title:"Безпека",rule2Text:"Не публікуйте адреси, телефони, документи, чутливі фото або детальні медичні дані.",
+    rule3Title:"Мова",rule3Text:"Спочатку ви бачите досвід своєю мовою. Можна показати всі мови.",
+    feedTitle:"Досвід мам",feedText:"Читайте, позначайте корисне, коментуйте або скаржтесь.",refreshButton:"Оновити",
+    filterMine:"Моя мова",filterAllLang:"Усі мови",filterCatAll:"Усі",filterCatPregnancy:"Вагітність",filterCatBirth:"Пологи",filterCatHospital:"Лікарня",filterCatBureaucracy:"Бюрократія",filterCatBaby:"Дитина",
+    catGeneralOption:"Загальне",catPregnancyOption:"Вагітність",catBirthOption:"Пологи",catHospitalOption:"Лікарня",catBureaucracyOption:"Бюрократія",catElterngeldOption:"Elterngeld",catBreastfeedingOption:"ГВ",catBabyOption:"Дитина",catMentalOption:"Психіка",catTipsOption:"Поради",
+    empty:"Поки немає історій.",like:"Корисно",liked:"Корисно ✓",comment:"Коментувати",report:"Поскаржитись",delete:"Видалити",myPost:"Мій пост",
+    commentPlaceholder:"Написати коментар...",send:"Надіслати",reported:"Дякуємо, скаргу збережено.",saved:"Опубліковано.",error:"Помилка. Спробуйте ще раз.",
+    loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",week:"Тиждень",city:"Місто"
+  }
+};
+
+function t(){return translations[currentLang]||translations.de}
+
+function setLanguage(lang){
+  currentLang=lang;
+  localStorage.setItem("mama_lang",lang);
+  document.documentElement.lang=lang;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+
+  document.querySelectorAll(".language-buttons button").forEach(btn=>btn.classList.remove("active"));
+  const active=document.getElementById("lang-"+lang);
+  if(active)active.classList.add("active");
+
+  Object.keys(t()).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=t()[id];
+  });
+
+  updateFilterButtons();
+  renderPosts();
+}
+
+function determineTheme(type,gender){
+  if(gender==="boy"||gender==="twin_boys")return"boy";
+  if(gender==="girl"||gender==="twin_girls")return"girl";
+  if(type==="twins"||gender==="twin_mixed")return"twin";
+  return"neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if(theme==="boy")document.body.classList.add("theme-boy");
+  if(theme==="girl")document.body.classList.add("theme-girl");
+  if(theme==="twin")document.body.classList.add("theme-twin");
+}
+
+function parseLocalDate(value){
+  if(!value)return null;
+  const p=value.split("-").map(Number);
+  return new Date(p[0],p[1]-1,p[2]);
+}
+
+function addDays(date,days){
+  const d=new Date(date);
+  d.setDate(d.getDate()+days);
+  return d;
+}
+
+function calculateWeek(dueDateValue){
+  if(!dueDateValue)return currentProfile?.pregnancy_week||null;
+  const today=new Date();
+  today.setHours(0,0,0,0);
+  const due=parseLocalDate(dueDateValue);
+  if(!due)return null;
+  const start=addDays(due,-280);
+  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
+  if(week<1)week=1;
+  if(week>60)week=60;
+  return week;
+}
+
+async function loadApp(){
+  const {data,error}=await supabaseClient.auth.getSession();
+
+  if(error||!data.session){
+    document.getElementById("loginMessage").style.display="block";
+    document.getElementById("appShell").style.display="none";
+    return;
+  }
+
+  currentUser=data.session.user;
+
+  const {data:profiles,error:profileError}=await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .order("created_at",{ascending:false})
+    .limit(1);
+
+  if(profileError||!profiles||profiles.length===0){
+    window.location.href="index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile=profiles[0];
+  currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+  currentWeek=calculateWeek(currentProfile.due_date);
+
+  applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display="none";
+  document.getElementById("appShell").style.display="block";
+
+  setLanguage(currentLang);
+  await loadPosts();
+}
+
+function showStatus(message){
+  const el=document.getElementById("formStatus");
+  el.textContent=message;
+  el.style.display="block";
+  setTimeout(()=>{el.style.display="none"},3000);
+}
+
+function clearPostForm(){
+  document.getElementById("postTitle").value="";
+  document.getElementById("postBody").value="";
+}
+
+async function createPost(){
+  const title=document.getElementById("postTitle").value.trim();
+  const body=document.getElementById("postBody").value.trim();
+  const category=document.getElementById("postCategory").value;
+
+  if(!title||!body){
+    showStatus(t().error);
+    return;
+  }
+
+  const {error}=await supabaseClient.from("community_posts").insert({
+    user_id:currentUser.id,
+    title,
+    body,
+    category,
+    language:currentLang,
+    city:currentProfile.city||null,
+    pregnancy_week:currentWeek||null,
+    is_public:true,
+    status:"visible"
+  });
+
+  if(error){
+    console.error(error);
+    showStatus(t().error);
+    return;
+  }
+
+  clearPostForm();
+  showStatus(t().saved);
+  await loadPosts();
+}
+
+function setLanguageFilter(value){
+  languageFilter=value;
+  updateFilterButtons();
+  loadPosts();
+}
+
+function setCategoryFilter(value){
+  categoryFilter=value;
+  updateFilterButtons();
+  loadPosts();
+}
+
+function updateFilterButtons(){
+  document.getElementById("filterMine").classList.toggle("active",languageFilter==="mine");
+  document.getElementById("filterAllLang").classList.toggle("active",languageFilter==="all");
+
+  [
+    ["filterCatAll","all"],
+    ["filterCatPregnancy","pregnancy"],
+    ["filterCatBirth","birth"],
+    ["filterCatHospital","hospital"],
+    ["filterCatBureaucracy","bureaucracy"],
+    ["filterCatBaby","baby"]
+  ].forEach(([id,value])=>{
+    const btn=document.getElementById(id);
+    if(btn)btn.classList.toggle("active",categoryFilter===value);
+  });
+}
+
+async function loadPosts(){
+  let query=supabaseClient
+    .from("community_posts")
+    .select("id,user_id,title,body,category,language,city,pregnancy_week,created_at,status")
+    .eq("status","visible")
+    .eq("is_public",true)
+    .order("created_at",{ascending:false})
+    .limit(40);
+
+  if(languageFilter==="mine")query=query.eq("language",currentLang);
+  if(categoryFilter!=="all")query=query.eq("category",categoryFilter);
+
+  const {data,error}=await query;
+
+  if(error){
+    console.error(error);
+    postCache=[];
+    renderPosts();
+    return;
+  }
+
+  postCache=data||[];
+  await loadPostExtras();
+  renderPosts();
+}
+
+async function loadPostExtras(){
+  likesByPost={};
+  myLikes=new Set();
+  commentsByPost={};
+
+  const ids=postCache.map(p=>p.id);
+  if(ids.length===0)return;
+
+  const {data:likes}=await supabaseClient
+    .from("community_post_likes")
+    .select("post_id,user_id")
+    .in("post_id",ids);
+
+  (likes||[]).forEach(like=>{
+    likesByPost[like.post_id]=(likesByPost[like.post_id]||0)+1;
+    if(like.user_id===currentUser.id)myLikes.add(like.post_id);
+  });
+
+  const {data:comments}=await supabaseClient
+    .from("community_comments")
+    .select("id,post_id,user_id,body,language,created_at,status")
+    .in("post_id",ids)
+    .eq("status","visible")
+    .order("created_at",{ascending:true});
+
+  (comments||[]).forEach(comment=>{
+    if(!commentsByPost[comment.post_id])commentsByPost[comment.post_id]=[];
+    commentsByPost[comment.post_id].push(comment);
+  });
+}
+
+function escapeHtml(value){
+  return String(value||"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function formatDate(value){
+  const date=new Date(value);
+  const locale=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":
+               currentLang==="fr"?"fr-FR":
+               currentLang==="tr"?"tr-TR":
+               currentLang==="ru"?"ru-RU":
+               currentLang==="uk"?"uk-UA":
+               currentLang==="en"?"en-GB":"de-DE";
+
+  return date.toLocaleString(locale,{
+    day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit",
+    calendar:"gregory",numberingSystem:"latn"
+  });
+}
+
+function categoryText(category){
+  const map={
+    general:"catGeneralOption",
+    pregnancy:"catPregnancyOption",
+    birth:"catBirthOption",
+    hospital:"catHospitalOption",
+    bureaucracy:"catBureaucracyOption",
+    elterngeld:"catElterngeldOption",
+    breastfeeding:"catBreastfeedingOption",
+    baby:"catBabyOption",
+    mental_health:"catMentalOption",
+    tips:"catTipsOption"
+  };
+  return t()[map[category]]||category;
+}
+
+async function toggleLike(postId){
+  if(myLikes.has(postId)){
+    await supabaseClient.from("community_post_likes").delete().eq("post_id",postId).eq("user_id",currentUser.id);
+  }else{
+    await supabaseClient.from("community_post_likes").insert({post_id:postId,user_id:currentUser.id});
+  }
+  await loadPosts();
+}
+
+async function addComment(postId){
+  const input=document.getElementById("comment-"+postId);
+  const body=input.value.trim();
+  if(!body)return;
+
+  const {error}=await supabaseClient.from("community_comments").insert({
+    post_id:postId,
+    user_id:currentUser.id,
+    body,
+    language:currentLang,
+    status:"visible"
+  });
+
+  if(error){
+    console.error(error);
+    alert(t().error);
+    return;
+  }
+
+  input.value="";
+  await loadPosts();
+}
+
+async function deletePost(postId){
+  await supabaseClient.from("community_posts").update({status:"deleted"}).eq("id",postId).eq("user_id",currentUser.id);
+  await loadPosts();
+}
+
+async function reportItem(type,id){
+  const {error}=await supabaseClient.from("reports").insert({
+    reporter_user_id:currentUser.id,
+    item_type:type,
+    item_id:id,
+    reason:"other",
+    details:"Reported from experience.html"
+  });
+
+  if(error){
+    console.error(error);
+    alert(t().error);
+    return;
+  }
+
+  alert(t().reported);
+}
+
+function renderPosts(){
+  const grid=document.getElementById("postsGrid");
+  grid.innerHTML="";
+
+  if(postCache.length===0){
+    grid.innerHTML=`<div class="empty">${t().empty}</div>`;
+    return;
+  }
+
+  postCache.forEach(post=>{
+    const likes=likesByPost[post.id]||0;
+    const liked=myLikes.has(post.id);
+    const comments=commentsByPost[post.id]||[];
+    const own=post.user_id===currentUser.id;
+
+    const meta=[
+      post.city?`${t().city}: ${escapeHtml(post.city)}`:"",
+      post.pregnancy_week?`${t().week}: ${post.pregnancy_week}`:"",
+      escapeHtml(post.language.toUpperCase())
+    ].filter(Boolean).join(" · ");
+
+    const commentsHtml=comments.map(comment=>`
+      <div class="comment-card">
+        <div class="small">${formatDate(comment.created_at)} · ${escapeHtml(comment.language.toUpperCase())}</div>
+        <p>${escapeHtml(comment.body)}</p>
+        <div class="actions" style="margin-top:8px;">
+          <button class="button-light" onclick="reportItem('community_comment','${comment.id}')">${t().report}</button>
+        </div>
+      </div>
+    `).join("");
+
+    const card=document.createElement("div");
+    card.className="post-card";
+    card.innerHTML=`
+      <div>
+        <span class="badge">${categoryText(post.category)}</span>
+        ${own?`<span class="badge">${t().myPost}</span>`:""}
+      </div>
+      <h3>${escapeHtml(post.title)}</h3>
+      <p>${escapeHtml(post.body).replaceAll("\\n","<br>")}</p>
+      <div class="soft">${meta} · ${formatDate(post.created_at)}</div>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="${liked?"button-success button":"button-light"}" onclick="toggleLike('${post.id}')">${liked?t().liked:t().like} (${likes})</button>
+        <button class="button-light" onclick="reportItem('community_post','${post.id}')">${t().report}</button>
+        ${own?`<button class="button-danger" onclick="deletePost('${post.id}')">${t().delete}</button>`:""}
+      </div>
+
+      <div class="comments">
+        <h3>${t().comment}</h3>
+        ${commentsHtml}
+        <textarea id="comment-${post.id}" placeholder="${t().commentPlaceholder}"></textarea>
+        <div class="actions" style="margin-top:10px;">
+          <button class="button" onclick="addComment('${post.id}')">${t().send}</button>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+
+loadApp();
+</script>
+</body>
+</html>

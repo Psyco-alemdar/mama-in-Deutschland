@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Impfungen</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center}
+.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button.done{background:var(--success);border-color:var(--success)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:17px}
+p{margin:0;color:var(--muted);line-height:1.6}
+label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+input,select,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+textarea{min-height:80px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.item-card,.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Impfungen</h1>
+    <p id="pageText">Eine private Erinnerungsliste für Impfgespräche, Impfpass und Termine. Bitte endgültige Empfehlungen immer mit Frauenarzt, Kinderarzt oder Hausarzt klären.</p>
+    <div class="soft" id="summaryBox">0 / 0 erledigt</div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="addTitle">Eigene Erinnerung</h2>
+
+      <label id="titleLabel" for="customTitle">Titel</label>
+      <input id="customTitle" />
+
+      <label id="dateLabel" for="customDate">Datum</label>
+      <input id="customDate" type="date" />
+
+      <label id="categoryLabel" for="customCategory">Kategorie</label>
+      <select id="customCategory">
+        <option value="mama" id="catMamaOption">Mama</option>
+        <option value="baby" id="catBabyOption">Baby</option>
+        <option value="family" id="catFamilyOption">Familie</option>
+        <option value="documents" id="catDocumentsOption">Dokumente</option>
+      </select>
+
+      <label id="noteLabel" for="customNote">Notiz</label>
+      <textarea id="customNote"></textarea>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="addCustomItem()" id="saveButton">Speichern</button>
+        <button class="button-light" onclick="clearForm()" id="clearButton">Leeren</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="infoTitle">Wichtig</h2>
+      <div class="box">
+        <h3 id="info1Title">Impfpass prüfen</h3>
+        <p id="info1Text">Nimm deinen Impfpass zum Frauenarzt, Hausarzt oder Kinderarzt mit und lass offene Fragen besprechen.</p>
+      </div>
+      <br />
+      <div class="box">
+        <h3 id="info2Title">Baby-Impfungen</h3>
+        <p id="info2Text">Die genauen Termine werden normalerweise mit dem Kinderarzt geplant.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="listTitle">Checkliste</h2>
+
+    <div class="filters" style="margin-top:14px;">
+      <button class="filter-button active" onclick="setCategory('all')" id="catAll">Alle</button>
+      <button class="filter-button" onclick="setCategory('mama')" id="catMama">Mama</button>
+      <button class="filter-button" onclick="setCategory('baby')" id="catBaby">Baby</button>
+      <button class="filter-button" onclick="setCategory('family')" id="catFamily">Familie</button>
+      <button class="filter-button" onclick="setCategory('documents')" id="catDocuments">Dokumente</button>
+    </div>
+
+    <div class="grid-3" id="itemsGrid"></div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br />
+  <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentUser = null;
+let currentProfile = null;
+let currentLang = localStorage.getItem("mama_lang") || "de";
+let categoryFilter = "all";
+
+const translations = {
+  de:{
+    backButton:"Zurück",pageTitle:"Impfungen",pageText:"Eine private Erinnerungsliste für Impfgespräche, Impfpass und Termine. Bitte endgültige Empfehlungen immer mit Frauenarzt, Kinderarzt oder Hausarzt klären.",
+    done:"erledigt",addTitle:"Eigene Erinnerung",titleLabel:"Titel",dateLabel:"Datum",categoryLabel:"Kategorie",noteLabel:"Notiz",
+    catMamaOption:"Mama",catBabyOption:"Baby",catFamilyOption:"Familie",catDocumentsOption:"Dokumente",saveButton:"Speichern",clearButton:"Leeren",
+    infoTitle:"Wichtig",info1Title:"Impfpass prüfen",info1Text:"Nimm deinen Impfpass zum Frauenarzt, Hausarzt oder Kinderarzt mit und lass offene Fragen besprechen.",
+    info2Title:"Baby-Impfungen",info2Text:"Die genauen Termine werden normalerweise mit dem Kinderarzt geplant.",listTitle:"Checkliste",
+    catAll:"Alle",catMama:"Mama",catBaby:"Baby",catFamily:"Familie",catDocuments:"Dokumente",
+    openStatus:"Offen",plannedStatus:"Geplant",doneStatus:"Erledigt",markPlanned:"Als geplant markieren",markDone:"Als erledigt markieren",markOpen:"Als offen markieren",
+    delete:"Löschen",empty:"Keine Einträge vorhanden.",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",
+    passport:"Impfpass suchen und bereitlegen",mamaDoctor:"Impfstatus mit Frauenarzt besprechen",flu:"Grippe-Impfung ansprechen",tdap:"Keuchhusten-Impfung ansprechen",
+    babyPlan:"Baby-Impfplan beim Kinderarzt fragen",uBooklet:"U-Heft und Impfpass für Baby vorbereiten",familyCheck:"Impfschutz der engen Familie prüfen",travel:"Reiseimpfungen vor Reisen klären"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Vaccins",pageText:"Une liste privée pour les discussions vaccinales, le carnet de vaccination et les rendez-vous. Les recommandations définitives doivent être vérifiées avec médecin ou pédiatre.",
+    done:"terminé",addTitle:"Rappel personnel",titleLabel:"Titre",dateLabel:"Date",categoryLabel:"Catégorie",noteLabel:"Note",
+    catMamaOption:"Maman",catBabyOption:"Bébé",catFamilyOption:"Famille",catDocumentsOption:"Documents",saveButton:"Enregistrer",clearButton:"Vider",
+    infoTitle:"Important",info1Title:"Vérifier le carnet",info1Text:"Apporte ton carnet de vaccination au gynécologue, médecin traitant ou pédiatre pour discuter des questions.",
+    info2Title:"Vaccins bébé",info2Text:"Les dates exactes sont généralement planifiées avec le pédiatre.",listTitle:"Checklist",
+    catAll:"Tous",catMama:"Maman",catBaby:"Bébé",catFamily:"Famille",catDocuments:"Documents",
+    openStatus:"Ouvert",plannedStatus:"Planifié",doneStatus:"Terminé",markPlanned:"Marquer comme planifié",markDone:"Marquer comme terminé",markOpen:"Marquer comme ouvert",
+    delete:"Supprimer",empty:"Aucune entrée.",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+    passport:"Trouver et préparer le carnet de vaccination",mamaDoctor:"Discuter le statut vaccinal avec le gynécologue",flu:"Parler du vaccin grippe",tdap:"Parler du vaccin coqueluche",
+    babyPlan:"Demander le calendrier bébé au pédiatre",uBooklet:"Préparer U-Heft et carnet vaccinal bébé",familyCheck:"Vérifier la protection des proches",travel:"Clarifier les vaccins voyage avant un départ"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"التطعيمات",pageText:"قائمة خاصة لتذكيرك بنقاشات التطعيم، دفتر التطعيم والمواعيد. التوصيات النهائية يجب توضيحها مع طبيبة النساء أو طبيب الأطفال أو طبيب العائلة.",
+    done:"تم",addTitle:"تذكير خاص",titleLabel:"العنوان",dateLabel:"التاريخ",categoryLabel:"الفئة",noteLabel:"ملاحظة",
+    catMamaOption:"الأم",catBabyOption:"الطفل",catFamilyOption:"العائلة",catDocumentsOption:"الوثائق",saveButton:"حفظ",clearButton:"مسح",
+    infoTitle:"مهم",info1Title:"فحص دفتر التطعيم",info1Text:"خذي دفتر التطعيم معك إلى طبيبة النساء أو طبيب العائلة أو طبيب الأطفال لمناقشة الأسئلة.",
+    info2Title:"تطعيمات الطفل",info2Text:"المواعيد الدقيقة تُخطط عادة مع طبيب الأطفال.",listTitle:"القائمة",
+    catAll:"الكل",catMama:"الأم",catBaby:"الطفل",catFamily:"العائلة",catDocuments:"الوثائق",
+    openStatus:"مفتوح",plannedStatus:"مخطط",doneStatus:"تم",markPlanned:"تحديد كمخطط",markDone:"تحديد كمنجز",markOpen:"تحديد كمفتوح",
+    delete:"حذف",empty:"لا توجد إدخالات.",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",
+    passport:"البحث عن دفتر التطعيم وتجهيزه",mamaDoctor:"مناقشة حالة التطعيم مع طبيبة النساء",flu:"السؤال عن تطعيم الإنفلونزا",tdap:"السؤال عن تطعيم السعال الديكي",
+    babyPlan:"سؤال طبيب الأطفال عن خطة تطعيم الطفل",uBooklet:"تحضير U-Heft ودفتر تطعيم الطفل",familyCheck:"فحص تطعيمات العائلة القريبة",travel:"توضيح تطعيمات السفر قبل السفر"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Vaccinations",pageText:"A private reminder list for vaccine discussions, vaccination records and appointments. Final recommendations should be clarified with your doctor or pediatrician.",
+    done:"done",addTitle:"Custom reminder",titleLabel:"Title",dateLabel:"Date",categoryLabel:"Category",noteLabel:"Note",
+    catMamaOption:"Mother",catBabyOption:"Baby",catFamilyOption:"Family",catDocumentsOption:"Documents",saveButton:"Save",clearButton:"Clear",
+    infoTitle:"Important",info1Title:"Check vaccination record",info1Text:"Take your vaccination record to your gynecologist, family doctor or pediatrician and discuss open questions.",
+    info2Title:"Baby vaccinations",info2Text:"Exact dates are usually planned with the pediatrician.",listTitle:"Checklist",
+    catAll:"All",catMama:"Mother",catBaby:"Baby",catFamily:"Family",catDocuments:"Documents",
+    openStatus:"Open",plannedStatus:"Planned",doneStatus:"Done",markPlanned:"Mark as planned",markDone:"Mark as done",markOpen:"Mark as open",
+    delete:"Delete",empty:"No entries.",loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",
+    passport:"Find and prepare vaccination record",mamaDoctor:"Discuss vaccination status with gynecologist",flu:"Ask about flu vaccine",tdap:"Ask about whooping cough vaccine",
+    babyPlan:"Ask pediatrician about baby vaccination plan",uBooklet:"Prepare U-Heft and baby vaccination record",familyCheck:"Check protection of close family",travel:"Clarify travel vaccines before trips"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Aşılar",pageText:"Aşı görüşmeleri, aşı kartı ve randevular için özel hatırlatma listesi. Son önerileri doktor veya çocuk doktoruyla netleştir.",
+    done:"tamamlandı",addTitle:"Özel hatırlatma",titleLabel:"Başlık",dateLabel:"Tarih",categoryLabel:"Kategori",noteLabel:"Not",
+    catMamaOption:"Anne",catBabyOption:"Bebek",catFamilyOption:"Aile",catDocumentsOption:"Belgeler",saveButton:"Kaydet",clearButton:"Temizle",
+    infoTitle:"Önemli",info1Title:"Aşı kartını kontrol et",info1Text:"Aşı kartını kadın doğum, aile hekimi veya çocuk doktoruna götür ve soruları konuş.",
+    info2Title:"Bebek aşıları",info2Text:"Kesin tarihler genellikle çocuk doktoruyla planlanır.",listTitle:"Kontrol listesi",
+    catAll:"Hepsi",catMama:"Anne",catBaby:"Bebek",catFamily:"Aile",catDocuments:"Belgeler",
+    openStatus:"Açık",plannedStatus:"Planlandı",doneStatus:"Tamamlandı",markPlanned:"Planlandı olarak işaretle",markDone:"Tamamlandı olarak işaretle",markOpen:"Açık olarak işaretle",
+    delete:"Sil",empty:"Kayıt yok.",loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",
+    passport:"Aşı kartını bul ve hazırla",mamaDoctor:"Aşı durumunu kadın doğum doktoruyla konuş",flu:"Grip aşısını sor",tdap:"Boğmaca aşısını sor",
+    babyPlan:"Bebek aşı planını çocuk doktoruna sor",uBooklet:"U-Heft ve bebek aşı kartını hazırla",familyCheck:"Yakın ailenin aşı korumasını kontrol et",travel:"Seyahatten önce seyahat aşılarını netleştir"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Прививки",pageText:"Личный список напоминаний для обсуждения прививок, прививочного паспорта и приёмов. Окончательные рекомендации уточняйте у врача или педиатра.",
+    done:"готово",addTitle:"Своё напоминание",titleLabel:"Название",dateLabel:"Дата",categoryLabel:"Категория",noteLabel:"Заметка",
+    catMamaOption:"Мама",catBabyOption:"Ребёнок",catFamilyOption:"Семья",catDocumentsOption:"Документы",saveButton:"Сохранить",clearButton:"Очистить",
+    infoTitle:"Важно",info1Title:"Проверить прививочный паспорт",info1Text:"Возьмите прививочный паспорт к гинекологу, семейному врачу или педиатру и обсудите вопросы.",
+    info2Title:"Прививки ребёнка",info2Text:"Точные даты обычно планируются с педиатром.",listTitle:"Список",
+    catAll:"Все",catMama:"Мама",catBaby:"Ребёнок",catFamily:"Семья",catDocuments:"Документы",
+    openStatus:"Открыто",plannedStatus:"Запланировано",doneStatus:"Готово",markPlanned:"Отметить как запланировано",markDone:"Отметить как готово",markOpen:"Отметить как открыто",
+    delete:"Удалить",empty:"Нет записей.",loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",
+    passport:"Найти и подготовить прививочный паспорт",mamaDoctor:"Обсудить статус прививок с гинекологом",flu:"Спросить о прививке от гриппа",tdap:"Спросить о прививке от коклюша",
+    babyPlan:"Спросить педиатра о плане прививок",uBooklet:"Подготовить U-Heft и прививочный паспорт ребёнка",familyCheck:"Проверить защиту близких родственников",travel:"Уточнить прививки для путешествий"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Щеплення",pageText:"Особистий список нагадувань для розмов про щеплення, паспорта щеплень і прийомів. Остаточні рекомендації уточнюйте у лікаря або педіатра.",
+    done:"готово",addTitle:"Своє нагадування",titleLabel:"Назва",dateLabel:"Дата",categoryLabel:"Категорія",noteLabel:"Нотатка",
+    catMamaOption:"Мама",catBabyOption:"Дитина",catFamilyOption:"Сім’я",catDocumentsOption:"Документи",saveButton:"Зберегти",clearButton:"Очистити",
+    infoTitle:"Важливо",info1Title:"Перевірити паспорт щеплень",info1Text:"Візьміть паспорт щеплень до гінеколога, сімейного лікаря або педіатра та обговоріть питання.",
+    info2Title:"Щеплення дитини",info2Text:"Точні дати зазвичай плануються з педіатром.",listTitle:"Список",
+    catAll:"Усі",catMama:"Мама",catBaby:"Дитина",catFamily:"Сім’я",catDocuments:"Документи",
+    openStatus:"Відкрито",plannedStatus:"Заплановано",doneStatus:"Готово",markPlanned:"Позначити як заплановано",markDone:"Позначити як готово",markOpen:"Позначити як відкрито",
+    delete:"Видалити",empty:"Немає записів.",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",
+    passport:"Знайти і підготувати паспорт щеплень",mamaDoctor:"Обговорити статус щеплень з гінекологом",flu:"Запитати про щеплення від грипу",tdap:"Запитати про щеплення від кашлюку",
+    babyPlan:"Запитати педіатра про план щеплень",uBooklet:"Підготувати U-Heft і паспорт щеплень дитини",familyCheck:"Перевірити захист близької родини",travel:"Уточнити щеплення для подорожей"
+  }
+};
+
+const defaultItems = [
+  {key:"passport", category:"documents"},
+  {key:"mamaDoctor", category:"mama"},
+  {key:"flu", category:"mama"},
+  {key:"tdap", category:"mama"},
+  {key:"babyPlan", category:"baby"},
+  {key:"uBooklet", category:"baby"},
+  {key:"familyCheck", category:"family"},
+  {key:"travel", category:"family"}
+];
+
+function t(){ return translations[currentLang] || translations.de; }
+
+function setLanguage(lang){
+  currentLang = lang;
+  localStorage.setItem("mama_lang", lang);
+  document.documentElement.lang = lang;
+  document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+  const active = document.getElementById("lang-" + lang);
+  if (active) active.classList.add("active");
+
+  const tr = t();
+  Object.keys(tr).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = tr[id];
+  });
+
+  updateButtons();
+  renderItems();
+}
+
+function determineTheme(type, gender){
+  if (gender === "boy" || gender === "twin_boys") return "boy";
+  if (gender === "girl" || gender === "twin_girls") return "girl";
+  if (type === "twins" || gender === "twin_mixed") return "twin";
+  return "neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if (theme === "boy") document.body.classList.add("theme-boy");
+  if (theme === "girl") document.body.classList.add("theme-girl");
+  if (theme === "twin") document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+  const { data, error } = await supabaseClient.auth.getSession();
+
+  if (error || !data.session) {
+    document.getElementById("loginMessage").style.display = "block";
+    document.getElementById("appShell").style.display = "none";
+    return;
+  }
+
+  currentUser = data.session.user;
+
+  const { data: profiles, error: profileError } = await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending:false })
+    .limit(1);
+
+  if (profileError || !profiles || profiles.length === 0) {
+    window.location.href = "index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile = profiles[0];
+  currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+  applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display = "none";
+  document.getElementById("appShell").style.display = "block";
+
+  setLanguage(currentLang);
+}
+
+function statusKey(){ return "mama-vaccination-status-" + (currentUser?.id || "guest"); }
+function customKey(){ return "mama-vaccination-custom-" + (currentUser?.id || "guest"); }
+
+function getStatuses(){
+  try { return JSON.parse(localStorage.getItem(statusKey())) || {}; }
+  catch(e) { return {}; }
+}
+
+function saveStatuses(statuses){ localStorage.setItem(statusKey(), JSON.stringify(statuses)); }
+
+function getCustomItems(){
+  try { return JSON.parse(localStorage.getItem(customKey())) || []; }
+  catch(e) { return []; }
+}
+
+function saveCustomItems(items){ localStorage.setItem(customKey(), JSON.stringify(items)); }
+
+function getAllItems(){
+  const custom = getCustomItems().map(item => ({
+    key:item.id,
+    title:item.title,
+    category:item.category,
+    date:item.date,
+    note:item.note,
+    custom:true
+  }));
+  return defaultItems.concat(custom);
+}
+
+function clearForm(){
+  document.getElementById("customTitle").value = "";
+  document.getElementById("customDate").value = "";
+  document.getElementById("customNote").value = "";
+}
+
+function addCustomItem(){
+  const title = document.getElementById("customTitle").value.trim();
+  if (!title) return;
+
+  const items = getCustomItems();
+  items.unshift({
+    id:"custom_" + Date.now(),
+    title,
+    date:document.getElementById("customDate").value,
+    category:document.getElementById("customCategory").value,
+    note:document.getElementById("customNote").value.trim()
+  });
+
+  saveCustomItems(items);
+  clearForm();
+  renderItems();
+}
+
+function setCategory(category){
+  categoryFilter = category;
+  updateButtons();
+  renderItems();
+}
+
+function updateButtons(){
+  [
+    ["catAll","all"],
+    ["catMama","mama"],
+    ["catBaby","baby"],
+    ["catFamily","family"],
+    ["catDocuments","documents"]
+  ].forEach(([id,value]) => {
+    const button = document.getElementById(id);
+    if (button) button.classList.toggle("active", categoryFilter === value);
+  });
+}
+
+function categoryLabel(category){
+  if (category === "mama") return t().catMama;
+  if (category === "baby") return t().catBaby;
+  if (category === "family") return t().catFamily;
+  if (category === "documents") return t().catDocuments;
+  return t().catAll;
+}
+
+function statusText(status){
+  if (status === "planned") return t().plannedStatus;
+  if (status === "done") return t().doneStatus;
+  return t().openStatus;
+}
+
+function nextStatus(current){
+  if (!current || current === "open") return "planned";
+  if (current === "planned") return "done";
+  return "open";
+}
+
+function nextButtonText(current){
+  if (!current || current === "open") return t().markPlanned;
+  if (current === "planned") return t().markDone;
+  return t().markOpen;
+}
+
+function toggleStatus(key){
+  const statuses = getStatuses();
+  statuses[key] = nextStatus(statuses[key] || "open");
+  saveStatuses(statuses);
+  renderItems();
+}
+
+function deleteCustom(key){
+  const items = getCustomItems().filter(item => item.id !== key);
+  saveCustomItems(items);
+
+  const statuses = getStatuses();
+  delete statuses[key];
+  saveStatuses(statuses);
+
+  renderItems();
+}
+
+function formatDate(value){
+  if (!value) return "";
+  const date = new Date(value + "T00:00:00");
+  return date.toLocaleDateString(currentLang === "ar" ? "ar-EG-u-ca-gregory-nu-latn" : "de-DE", {
+    day:"2-digit",
+    month:"2-digit",
+    year:"numeric",
+    calendar:"gregory",
+    numberingSystem:"latn"
+  });
+}
+
+function renderItems(){
+  const grid = document.getElementById("itemsGrid");
+  const statuses = getStatuses();
+  let items = getAllItems();
+
+  const doneCount = items.filter(item => statuses[item.key] === "done").length;
+  document.getElementById("summaryBox").textContent = `${doneCount} / ${items.length} ${t().done}`;
+
+  if (categoryFilter !== "all") {
+    items = items.filter(item => item.category === categoryFilter);
+  }
+
+  grid.innerHTML = "";
+
+  if (items.length === 0) {
+    grid.innerHTML = `<div class="empty">${t().empty}</div>`;
+    return;
+  }
+
+  items.forEach(item => {
+    const status = statuses[item.key] || "open";
+    const title = item.custom ? item.title : t()[item.key];
+
+    const card = document.createElement("div");
+    card.className = "item-card";
+    card.innerHTML = `
+      <div class="badge">${categoryLabel(item.category)}</div>
+      <div class="badge">${statusText(status)}</div>
+      ${item.date ? `<div class="badge">${formatDate(item.date)}</div>` : ""}
+      <h3>${title}</h3>
+      <p>${item.note || ""}</p>
+      <div class="actions" style="margin-top:14px;">
+        <button class="${status === "done" ? "button done" : "button"}" onclick="toggleStatus('${item.key}')">${nextButtonText(status)}</button>
+        ${item.custom ? `<button class="button-danger" onclick="deleteCustom('${item.key}')">${t().delete}</button>` : ""}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+loadApp();
+</script>
+</body>
+</html>

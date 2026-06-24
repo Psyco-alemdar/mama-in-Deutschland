@@ -120,8 +120,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
       <textarea id="postBody"></textarea>
 
       <div class="actions" style="margin-top:14px;">
-        <button class="button" onclick="createPost()" id="publishButton">Publier</button>
+        <button class="button" onclick="savePost()" id="publishButton">Publier</button>
         <button class="button-light" onclick="clearPostForm()" id="clearButton">Effacer</button>
+        <button class="button-danger" onclick="cancelEditPost()" id="cancelEditButton" style="display:none;">Annuler modification</button>
       </div>
 
       <div class="status" id="formStatus"></div>
@@ -158,6 +159,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
     <div class="filters" style="margin-top:14px;">
       <button class="filter-button active" onclick="setLanguageFilter('mine')" id="filterMine">Ma langue</button>
       <button class="filter-button" onclick="setLanguageFilter('all')" id="filterAllLang">Toutes les langues</button>
+      <button class="filter-button active" onclick="setSortMode('latest')" id="filterLatest">Récent</button>
+      <button class="filter-button" onclick="setSortMode('popular')" id="filterPopular">Populaire</button>
     </div>
 
     <div class="filters" style="margin-top:10px;">
@@ -193,16 +196,18 @@ let currentLang=localStorage.getItem("mama_lang")||"de";
 let currentWeek=1;
 let languageFilter="mine";
 let categoryFilter="all";
+let sortMode="latest";
 let postCache=[];
 let likesByPost={};
 let myLikes=new Set();
 let commentsByPost={};
+let editingPostId=null;
 
 const translations={
   de:{
     backButton:"Zurück",pageTitle:"Share your experience",pageText:"Teile deine Erfahrung mit anderen Mamas: Schwangerschaft, Geburt, Krankenhaus, Bürokratie, Stillen und Babyzeit.",
     privacyText:"Bleib respektvoll. Teile keine sensiblen medizinischen oder persönlichen Daten.",
-    writeTitle:"Erfahrung schreiben",postTitleLabel:"Titel",postCategoryLabel:"Kategorie",postBodyLabel:"Text",publishButton:"Veröffentlichen",clearButton:"Leeren",
+    writeTitle:"Erfahrung schreiben",editTitle:"Erfahrung bearbeiten",updateButton:"Änderungen speichern",cancelEditButton:"Bearbeitung abbrechen",filterLatest:"Neueste",filterPopular:"Beliebt",edit:"Bearbeiten",postTitleLabel:"Titel",postCategoryLabel:"Kategorie",postBodyLabel:"Text",publishButton:"Veröffentlichen",clearButton:"Leeren",
     rulesTitle:"Wichtige Regeln",rule1Title:"Respekt",rule1Text:"Keine Beleidigungen, kein Druck, keine medizinische Verurteilung.",
     rule2Title:"Sicherheit",rule2Text:"Keine Adresse, Telefonnummer, Dokumente, sensiblen Fotos oder detaillierten medizinischen Daten posten.",
     rule3Title:"Sprache",rule3Text:"Du siehst zuerst Erfahrungen in deiner Sprache. Du kannst alle Sprachen anzeigen.",
@@ -216,7 +221,7 @@ const translations={
   fr:{
     backButton:"Retour",pageTitle:"Share your experience",pageText:"Partage ton expérience avec d’autres mamans : grossesse, accouchement, hôpital, démarches, allaitement et vie avec bébé.",
     privacyText:"Reste respectueuse. Ne partage pas de données médicales ou personnelles sensibles.",
-    writeTitle:"Écrire une expérience",postTitleLabel:"Titre",postCategoryLabel:"Catégorie",postBodyLabel:"Texte",publishButton:"Publier",clearButton:"Effacer",
+    writeTitle:"Écrire une expérience",editTitle:"Modifier l’expérience",updateButton:"Sauvegarder les modifications",cancelEditButton:"Annuler modification",filterLatest:"Récent",filterPopular:"Populaire",edit:"Modifier",postTitleLabel:"Titre",postCategoryLabel:"Catégorie",postBodyLabel:"Texte",publishButton:"Publier",clearButton:"Effacer",
     rulesTitle:"Règles importantes",rule1Title:"Respect",rule1Text:"Pas d’insultes, pas de jugement, pas de pression médicale.",
     rule2Title:"Sécurité",rule2Text:"Ne publie pas d’adresse, numéro, documents, photos sensibles ou données médicales détaillées.",
     rule3Title:"Langue",rule3Text:"Tu vois d’abord les expériences dans ta langue. Tu peux afficher toutes les langues.",
@@ -230,7 +235,7 @@ const translations={
   ar:{
     backButton:"رجوع",pageTitle:"شاركي تجربتك",pageText:"شاركي تجربتك مع أمهات أخريات: الحمل، الولادة، المستشفى، الإجراءات، الرضاعة وحياة الطفل.",
     privacyText:"كوني محترمة. لا تشاركي بيانات طبية أو شخصية حساسة.",
-    writeTitle:"كتابة تجربة",postTitleLabel:"العنوان",postCategoryLabel:"الفئة",postBodyLabel:"النص",publishButton:"نشر",clearButton:"مسح",
+    writeTitle:"كتابة تجربة",editTitle:"تعديل التجربة",updateButton:"حفظ التعديلات",cancelEditButton:"إلغاء التعديل",filterLatest:"الأحدث",filterPopular:"الأكثر تفاعلاً",edit:"تعديل",postTitleLabel:"العنوان",postCategoryLabel:"الفئة",postBodyLabel:"النص",publishButton:"نشر",clearButton:"مسح",
     rulesTitle:"قواعد مهمة",rule1Title:"الاحترام",rule1Text:"لا إهانات، لا أحكام، لا ضغط طبي.",
     rule2Title:"الأمان",rule2Text:"لا تنشري عنواناً أو رقم هاتف أو وثائق أو صوراً حساسة أو تفاصيل طبية دقيقة.",
     rule3Title:"اللغة",rule3Text:"ترين أولاً التجارب بلغتك، ويمكنك عرض كل اللغات.",
@@ -244,7 +249,7 @@ const translations={
   en:{
     backButton:"Back",pageTitle:"Share your experience",pageText:"Share your experience with other mothers: pregnancy, birth, hospital, paperwork, breastfeeding and baby life.",
     privacyText:"Be respectful. Do not share sensitive medical or personal data.",
-    writeTitle:"Write an experience",postTitleLabel:"Title",postCategoryLabel:"Category",postBodyLabel:"Text",publishButton:"Publish",clearButton:"Clear",
+    writeTitle:"Write an experience",editTitle:"Edit experience",updateButton:"Save changes",cancelEditButton:"Cancel edit",filterLatest:"Latest",filterPopular:"Popular",edit:"Edit",postTitleLabel:"Title",postCategoryLabel:"Category",postBodyLabel:"Text",publishButton:"Publish",clearButton:"Clear",
     rulesTitle:"Important rules",rule1Title:"Respect",rule1Text:"No insults, no judgment, no medical pressure.",
     rule2Title:"Safety",rule2Text:"Do not post addresses, phone numbers, documents, sensitive photos or detailed medical data.",
     rule3Title:"Language",rule3Text:"You first see experiences in your language. You can show all languages.",
@@ -258,7 +263,7 @@ const translations={
   tr:{
     backButton:"Geri",pageTitle:"Deneyimini paylaş",pageText:"Deneyimini diğer annelerle paylaş: hamilelik, doğum, hastane, resmi işler, emzirme ve bebek dönemi.",
     privacyText:"Saygılı ol. Hassas tıbbi veya kişisel veri paylaşma.",
-    writeTitle:"Deneyim yaz",postTitleLabel:"Başlık",postCategoryLabel:"Kategori",postBodyLabel:"Metin",publishButton:"Yayınla",clearButton:"Temizle",
+    writeTitle:"Deneyim yaz",editTitle:"Deneyimi düzenle",updateButton:"Değişiklikleri kaydet",cancelEditButton:"Düzenlemeyi iptal et",filterLatest:"Yeni",filterPopular:"Popüler",edit:"Düzenle",postTitleLabel:"Başlık",postCategoryLabel:"Kategori",postBodyLabel:"Metin",publishButton:"Yayınla",clearButton:"Temizle",
     rulesTitle:"Önemli kurallar",rule1Title:"Saygı",rule1Text:"Hakaret yok, yargılama yok, tıbbi baskı yok.",
     rule2Title:"Güvenlik",rule2Text:"Adres, telefon, belge, hassas fotoğraf veya detaylı tıbbi veri paylaşma.",
     rule3Title:"Dil",rule3Text:"Önce kendi dilindeki deneyimleri görürsün. Tüm dilleri gösterebilirsin.",
@@ -272,7 +277,7 @@ const translations={
   ru:{
     backButton:"Назад",pageTitle:"Поделиться опытом",pageText:"Поделитесь опытом с другими мамами: беременность, роды, больница, документы, грудное вскармливание и жизнь с малышом.",
     privacyText:"Будьте уважительны. Не публикуйте чувствительные медицинские или личные данные.",
-    writeTitle:"Написать опыт",postTitleLabel:"Заголовок",postCategoryLabel:"Категория",postBodyLabel:"Текст",publishButton:"Опубликовать",clearButton:"Очистить",
+    writeTitle:"Написать опыт",editTitle:"Изменить опыт",updateButton:"Сохранить изменения",cancelEditButton:"Отменить редактирование",filterLatest:"Новые",filterPopular:"Популярные",edit:"Изменить",postTitleLabel:"Заголовок",postCategoryLabel:"Категория",postBodyLabel:"Текст",publishButton:"Опубликовать",clearButton:"Очистить",
     rulesTitle:"Важные правила",rule1Title:"Уважение",rule1Text:"Без оскорблений, осуждения и медицинского давления.",
     rule2Title:"Безопасность",rule2Text:"Не публикуйте адреса, телефоны, документы, чувствительные фото или подробные медицинские данные.",
     rule3Title:"Язык",rule3Text:"Сначала вы видите опыт на своём языке. Можно показать все языки.",
@@ -286,7 +291,7 @@ const translations={
   uk:{
     backButton:"Назад",pageTitle:"Поділитися досвідом",pageText:"Поділіться досвідом з іншими мамами: вагітність, пологи, лікарня, документи, грудне вигодовування і життя з дитиною.",
     privacyText:"Будьте поважними. Не публікуйте чутливі медичні або особисті дані.",
-    writeTitle:"Написати досвід",postTitleLabel:"Заголовок",postCategoryLabel:"Категорія",postBodyLabel:"Текст",publishButton:"Опублікувати",clearButton:"Очистити",
+    writeTitle:"Написати досвід",editTitle:"Змінити досвід",updateButton:"Зберегти зміни",cancelEditButton:"Скасувати редагування",filterLatest:"Нові",filterPopular:"Популярні",edit:"Змінити",postTitleLabel:"Заголовок",postCategoryLabel:"Категорія",postBodyLabel:"Текст",publishButton:"Опублікувати",clearButton:"Очистити",
     rulesTitle:"Важливі правила",rule1Title:"Повага",rule1Text:"Без образ, осуду і медичного тиску.",
     rule2Title:"Безпека",rule2Text:"Не публікуйте адреси, телефони, документи, чутливі фото або детальні медичні дані.",
     rule3Title:"Мова",rule3Text:"Спочатку ви бачите досвід своєю мовою. Можна показати всі мови.",
@@ -317,6 +322,7 @@ function setLanguage(lang){
   });
 
   updateFilterButtons();
+  updatePostFormMode();
   renderPosts();
 }
 
@@ -402,18 +408,87 @@ function showStatus(message){
   setTimeout(()=>{el.style.display="none"},3000);
 }
 
-function clearPostForm(){
-  document.getElementById("postTitle").value="";
-  document.getElementById("postBody").value="";
+
+function updatePostFormMode(){
+  const title=document.getElementById("writeTitle");
+  const publish=document.getElementById("publishButton");
+  const cancel=document.getElementById("cancelEditButton");
+
+  if(editingPostId){
+    title.textContent=t().editTitle || t().writeTitle;
+    publish.textContent=t().updateButton || t().publishButton;
+    cancel.style.display="inline-flex";
+  }else{
+    title.textContent=t().writeTitle;
+    publish.textContent=t().publishButton;
+    cancel.style.display="none";
+  }
 }
 
-async function createPost(){
+function editPost(postId){
+  const post=postCache.find(p=>p.id===postId);
+  if(!post)return;
+
+  editingPostId=postId;
+  document.getElementById("postTitle").value=post.title||"";
+  document.getElementById("postCategory").value=post.category||"general";
+  document.getElementById("postBody").value=post.body||"";
+  updatePostFormMode();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function cancelEditPost(){
+  clearPostForm();
+}
+
+function setSortMode(value){
+  sortMode=value;
+  updateFilterButtons();
+  renderPosts();
+}
+
+
+function clearPostForm(){
+  editingPostId=null;
+  document.getElementById("postTitle").value="";
+  document.getElementById("postBody").value="";
+  document.getElementById("postCategory").value="general";
+  updatePostFormMode();
+}
+
+async function savePost(){
   const title=document.getElementById("postTitle").value.trim();
   const body=document.getElementById("postBody").value.trim();
   const category=document.getElementById("postCategory").value;
 
   if(!title||!body){
     showStatus(t().error);
+    return;
+  }
+
+  if(editingPostId){
+    const {error}=await supabaseClient
+      .from("community_posts")
+      .update({
+        title,
+        body,
+        category,
+        language:currentLang,
+        city:currentProfile.city||null,
+        pregnancy_week:currentWeek||null
+      })
+      .eq("id",editingPostId)
+      .eq("user_id",currentUser.id);
+
+    if(error){
+      console.error(error);
+      showStatus(t().error);
+      return;
+    }
+
+    clearPostForm();
+    showStatus(t().saved);
+    await loadPosts();
     return;
   }
 
@@ -455,6 +530,10 @@ function setCategoryFilter(value){
 function updateFilterButtons(){
   document.getElementById("filterMine").classList.toggle("active",languageFilter==="mine");
   document.getElementById("filterAllLang").classList.toggle("active",languageFilter==="all");
+  const latest=document.getElementById("filterLatest");
+  const popular=document.getElementById("filterPopular");
+  if(latest)latest.classList.toggle("active",sortMode==="latest");
+  if(popular)popular.classList.toggle("active",sortMode==="popular");
 
   [
     ["filterCatAll","all"],
@@ -630,7 +709,15 @@ function renderPosts(){
     return;
   }
 
-  postCache.forEach(post=>{
+  const sortedPosts=postCache.slice().sort((a,b)=>{
+    if(sortMode==="popular"){
+      const likesDiff=(likesByPost[b.id]||0)-(likesByPost[a.id]||0);
+      if(likesDiff!==0)return likesDiff;
+    }
+    return new Date(b.created_at)-new Date(a.created_at);
+  });
+
+  sortedPosts.forEach(post=>{
     const likes=likesByPost[post.id]||0;
     const liked=myLikes.has(post.id);
     const comments=commentsByPost[post.id]||[];
@@ -666,6 +753,7 @@ function renderPosts(){
       <div class="actions" style="margin-top:14px;">
         <button class="${liked?"button-success button":"button-light"}" onclick="toggleLike('${post.id}')">${liked?t().liked:t().like} (${likes})</button>
         <button class="button-light" onclick="reportItem('community_post','${post.id}')">${t().report}</button>
+        ${own?`<button class="button-light" onclick="editPost('${post.id}')">${t().edit||"Edit"}</button>`:""}
         ${own?`<button class="button-danger" onclick="deletePost('${post.id}')">${t().delete}</button>`:""}
       </div>
 

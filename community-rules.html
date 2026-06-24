@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Community Rules</title>
+
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
+  radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
+  linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)
+}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button{
+  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;
+  cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center
+}
+.language-buttons button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.card{
+  background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;
+  box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px
+}
+.hero{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:30px;padding:26px;margin-bottom:18px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:36px;letter-spacing:-1.5px;line-height:1.06}
+h2{font-size:25px;letter-spacing:-.7px}
+h3{font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.65}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.box{
+  background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px
+}
+.warning{padding:14px 16px;border-radius:18px;background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:900;margin-top:14px}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:29px}.card,.hero{padding:20px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <h1 id="pageTitle">Community Rules & Safety</h1>
+    <p id="pageText">Before using Share your experience and Marketplace, please read the basic rules. They protect mothers, babies and trust inside the platform.</p>
+    <div class="warning" id="legalNote">This is a safety and community guideline page, not a legal document. Later, you still need Impressum, Datenschutz and Terms for a public launch in Germany.</div>
+  </section>
+
+  <section class="card">
+    <h2 id="communityTitle">Share your experience</h2>
+    <div class="grid-3">
+      <div class="box">
+        <span class="badge">1</span>
+        <h3 id="community1Title">Respect first</h3>
+        <p id="community1Text">No insults, humiliation, racism, hate, threats, pressure or judgment against mothers.</p>
+      </div>
+      <div class="box">
+        <span class="badge">2</span>
+        <h3 id="community2Title">No sensitive data</h3>
+        <p id="community2Text">Do not post phone numbers, exact addresses, documents, hospital files, patient data or private photos.</p>
+      </div>
+      <div class="box">
+        <span class="badge">3</span>
+        <h3 id="community3Title">No medical replacement</h3>
+        <p id="community3Text">Experiences can help emotionally, but they do not replace a doctor, midwife or emergency service.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="marketTitle">Marketplace Safety</h2>
+    <div class="grid-3">
+      <div class="box">
+        <span class="badge">1</span>
+        <h3 id="market1Title">Check products carefully</h3>
+        <p id="market1Text">Always check condition, missing parts, hygiene, age, recalls and instructions before using baby products.</p>
+      </div>
+      <div class="box">
+        <span class="badge">2</span>
+        <h3 id="market2Title">Special caution</h3>
+        <p id="market2Text">Be especially careful with car seats, baby beds, mattresses, breast pumps, electric devices and baby carriers.</p>
+      </div>
+      <div class="box">
+        <span class="badge">3</span>
+        <h3 id="market3Title">Meet safely</h3>
+        <p id="market3Text">Do not publish your exact address. Meet in safe public places and avoid suspicious payment requests.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="reportTitle">Reporting & moderation</h2>
+    <div class="grid-2">
+      <div class="box">
+        <h3 id="report1Title">Report bad content</h3>
+        <p id="report1Text">Use the report button for spam, scams, unsafe products, offensive content or dangerous medical misinformation.</p>
+      </div>
+      <div class="box">
+        <h3 id="report2Title">Moderation later</h3>
+        <p id="report2Text">The next technical step is an admin moderation page so the platform owner can review reports and hide unsafe content.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="launchTitle">Before public launch</h2>
+    <div class="grid-3">
+      <div class="box">
+        <h3 id="launch1Title">Impressum</h3>
+        <p id="launch1Text">A public German website normally needs a visible Impressum with responsible operator details.</p>
+      </div>
+      <div class="box">
+        <h3 id="launch2Title">Datenschutz</h3>
+        <p id="launch2Text">You need a privacy policy explaining what data is stored, why, where and how users can request deletion.</p>
+      </div>
+      <div class="box">
+        <h3 id="launch3Title">Terms</h3>
+        <p id="launch3Text">You need terms for community posts, marketplace listings, reports, prohibited content and user responsibility.</p>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top:18px;">
+      <a class="button" href="experience.html" id="experienceButton">Share your experience</a>
+      <a class="button-light" href="marketplace.html" id="marketplaceButton">Marketplace</a>
+    </div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Please log in</h2>
+  <p id="loginText">You need to log in first.</p>
+  <br />
+  <a class="button" href="index.html" id="loginBackButton">Back to home</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null;
+let currentProfile=null;
+let currentLang=localStorage.getItem("mama_lang")||"de";
+
+const translations={
+  de:{
+    backButton:"Zurück",pageTitle:"Community-Regeln & Sicherheit",pageText:"Bevor du Share your experience und Marketplace nutzt, lies bitte die Grundregeln. Sie schützen Mamas, Babys und das Vertrauen in der Plattform.",
+    legalNote:"Dies ist eine Sicherheits- und Community-Seite, kein juristisches Dokument. Vor einem öffentlichen Start in Deutschland brauchst du später trotzdem Impressum, Datenschutz und Nutzungsbedingungen.",
+    communityTitle:"Share your experience",community1Title:"Respekt zuerst",community1Text:"Keine Beleidigungen, Demütigung, Rassismus, Hass, Drohungen, Druck oder Verurteilung gegen Mamas.",
+    community2Title:"Keine sensiblen Daten",community2Text:"Keine Telefonnummern, genauen Adressen, Dokumente, Krankenhausakten, Patientendaten oder privaten Fotos posten.",
+    community3Title:"Kein medizinischer Ersatz",community3Text:"Erfahrungen können emotional helfen, ersetzen aber keinen Arzt, keine Hebamme und keinen Notdienst.",
+    marketTitle:"Marketplace-Sicherheit",market1Title:"Produkte genau prüfen",market1Text:"Prüfe Zustand, fehlende Teile, Hygiene, Alter, Rückrufe und Anleitungen, bevor Babyprodukte genutzt werden.",
+    market2Title:"Besondere Vorsicht",market2Text:"Besonders vorsichtig bei Autositzen, Babybetten, Matratzen, Milchpumpen, Elektrogeräten und Babytragen.",
+    market3Title:"Sicher treffen",market3Text:"Keine genaue Adresse veröffentlichen. Triff dich an sicheren öffentlichen Orten und vermeide verdächtige Zahlungsanfragen.",
+    reportTitle:"Meldung & Moderation",report1Title:"Schlechte Inhalte melden",report1Text:"Nutze den Meldebutton bei Spam, Betrug, unsicheren Produkten, beleidigenden Inhalten oder gefährlicher medizinischer Falschinformation.",
+    report2Title:"Moderation später",report2Text:"Der nächste technische Schritt ist eine Admin-Moderationsseite, damit der Betreiber Meldungen prüfen und unsichere Inhalte ausblenden kann.",
+    launchTitle:"Vor öffentlichem Start",launch1Title:"Impressum",launch1Text:"Eine öffentliche deutsche Website braucht normalerweise ein sichtbares Impressum mit Angaben zum verantwortlichen Betreiber.",
+    launch2Title:"Datenschutz",launch2Text:"Du brauchst eine Datenschutzerklärung: welche Daten gespeichert werden, warum, wo und wie Nutzer Löschung verlangen können.",
+    launch3Title:"Nutzungsbedingungen",launch3Text:"Du brauchst Regeln für Community-Posts, Marketplace-Anzeigen, Meldungen, verbotene Inhalte und Nutzerverantwortung.",
+    experienceButton:"Share your experience",marketplaceButton:"Marketplace",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Règles communauté & sécurité",pageText:"Avant d’utiliser Share your experience et Marketplace, lis les règles de base. Elles protègent les mamans, les bébés et la confiance dans la plateforme.",
+    legalNote:"Cette page est une page de sécurité et de communauté, pas un document juridique. Avant un lancement public en Allemagne, il faudra quand même Impressum, Datenschutz et conditions d’utilisation.",
+    communityTitle:"Share your experience",community1Title:"Respect d’abord",community1Text:"Pas d’insultes, humiliation, racisme, haine, menaces, pression ou jugement contre les mamans.",
+    community2Title:"Pas de données sensibles",community2Text:"Ne publie pas de téléphone, adresse exacte, documents, dossiers d’hôpital, données patient ou photos privées.",
+    community3Title:"Pas un remplacement médical",community3Text:"Les expériences peuvent aider émotionnellement, mais ne remplacent pas médecin, sage-femme ou urgence.",
+    marketTitle:"Sécurité marketplace",market1Title:"Vérifier les produits",market1Text:"Vérifie état, pièces manquantes, hygiène, âge, rappels et notice avant d’utiliser un produit bébé.",
+    market2Title:"Attention spéciale",market2Text:"Sois très prudent avec sièges auto, lits bébé, matelas, tire-laits, appareils électriques et porte-bébés.",
+    market3Title:"Rencontre sécurisée",market3Text:"Ne publie pas ton adresse exacte. Rencontre dans des lieux publics sûrs et évite les paiements suspects.",
+    reportTitle:"Signalement & modération",report1Title:"Signaler le mauvais contenu",report1Text:"Utilise le bouton signaler pour spam, arnaque, produit dangereux, contenu offensant ou désinformation médicale dangereuse.",
+    report2Title:"Modération plus tard",report2Text:"La prochaine étape technique est une page admin de modération pour examiner les signalements et masquer les contenus dangereux.",
+    launchTitle:"Avant lancement public",launch1Title:"Impressum",launch1Text:"Un site public allemand a normalement besoin d’un Impressum visible avec les données du responsable.",
+    launch2Title:"Datenschutz",launch2Text:"Il faut une politique de confidentialité expliquant quelles données sont stockées, pourquoi, où et comment demander suppression.",
+    launch3Title:"Conditions",launch3Text:"Il faut des règles pour posts, annonces, signalements, contenus interdits et responsabilité des utilisateurs.",
+    experienceButton:"Share your experience",marketplaceButton:"Marketplace",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"قواعد المجتمع والسلامة",pageText:"قبل استخدام شاركي تجربتك والسوق، اقرئي القواعد الأساسية. هي تحمي الأمهات والأطفال والثقة داخل المنصة.",
+    legalNote:"هذه صفحة إرشادات سلامة ومجتمع وليست وثيقة قانونية. قبل إطلاق عام في ألمانيا ستحتاج لاحقاً إلى Impressum و Datenschutz وشروط استخدام.",
+    communityTitle:"شاركي تجربتك",community1Title:"الاحترام أولاً",community1Text:"لا إهانات، لا إهانة، لا عنصرية، لا كراهية، لا تهديد، لا ضغط ولا أحكام على الأمهات.",
+    community2Title:"لا بيانات حساسة",community2Text:"لا تنشري أرقام هاتف، عناوين دقيقة، وثائق، ملفات مستشفى، بيانات مرضى أو صور خاصة.",
+    community3Title:"ليس بديلاً طبياً",community3Text:"التجارب قد تساعد نفسياً، لكنها لا تعوّض الطبيب أو القابلة أو الطوارئ.",
+    marketTitle:"سلامة السوق",market1Title:"فحص المنتجات جيداً",market1Text:"تحققي من الحالة، القطع الناقصة، النظافة، العمر، الاستدعاءات والتعليمات قبل استخدام أغراض الطفل.",
+    market2Title:"حذر خاص",market2Text:"كوني حذرة جداً مع كرسي السيارة، سرير الطفل، المرتبة، مضخة الحليب، الأجهزة الكهربائية وحامل الطفل.",
+    market3Title:"لقاء آمن",market3Text:"لا تنشري عنوانك الدقيق. قابلي في أماكن عامة آمنة وتجنبي طلبات الدفع المشبوهة.",
+    reportTitle:"الإبلاغ والمراقبة",report1Title:"الإبلاغ عن المحتوى السيئ",report1Text:"استخدمي زر الإبلاغ للرسائل المزعجة، الاحتيال، المنتجات غير الآمنة، المحتوى المسيء أو المعلومات الطبية الخطيرة الخاطئة.",
+    report2Title:"المراقبة لاحقاً",report2Text:"الخطوة التقنية التالية هي صفحة إدارة للمراجعة وإخفاء المحتوى غير الآمن.",
+    launchTitle:"قبل الإطلاق العام",launch1Title:"Impressum",launch1Text:"الموقع العام في ألمانيا يحتاج عادة إلى Impressum واضح مع بيانات المسؤول.",
+    launch2Title:"Datenschutz",launch2Text:"تحتاج سياسة خصوصية تشرح ما هي البيانات المخزنة، لماذا، أين وكيف يمكن طلب حذفها.",
+    launch3Title:"شروط الاستخدام",launch3Text:"تحتاج قواعد للمنشورات، الإعلانات، البلاغات، المحتوى الممنوع ومسؤولية المستخدم.",
+    experienceButton:"شاركي تجربتك",marketplaceButton:"السوق",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Community Rules & Safety",pageText:"Before using Share your experience and Marketplace, please read the basic rules. They protect mothers, babies and trust inside the platform.",
+    legalNote:"This is a safety and community guideline page, not a legal document. Later, you still need Impressum, privacy policy and terms for a public launch in Germany.",
+    communityTitle:"Share your experience",community1Title:"Respect first",community1Text:"No insults, humiliation, racism, hate, threats, pressure or judgment against mothers.",
+    community2Title:"No sensitive data",community2Text:"Do not post phone numbers, exact addresses, documents, hospital files, patient data or private photos.",
+    community3Title:"No medical replacement",community3Text:"Experiences can help emotionally, but they do not replace a doctor, midwife or emergency service.",
+    marketTitle:"Marketplace Safety",market1Title:"Check products carefully",market1Text:"Always check condition, missing parts, hygiene, age, recalls and instructions before using baby products.",
+    market2Title:"Special caution",market2Text:"Be especially careful with car seats, baby beds, mattresses, breast pumps, electric devices and baby carriers.",
+    market3Title:"Meet safely",market3Text:"Do not publish your exact address. Meet in safe public places and avoid suspicious payment requests.",
+    reportTitle:"Reporting & moderation",report1Title:"Report bad content",report1Text:"Use the report button for spam, scams, unsafe products, offensive content or dangerous medical misinformation.",
+    report2Title:"Moderation later",report2Text:"The next technical step is an admin moderation page so the platform owner can review reports and hide unsafe content.",
+    launchTitle:"Before public launch",launch1Title:"Impressum",launch1Text:"A public German website normally needs a visible Impressum with responsible operator details.",
+    launch2Title:"Privacy policy",launch2Text:"You need a privacy policy explaining what data is stored, why, where and how users can request deletion.",
+    launch3Title:"Terms",launch3Text:"You need terms for community posts, marketplace listings, reports, prohibited content and user responsibility.",
+    experienceButton:"Share your experience",marketplaceButton:"Marketplace",loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Topluluk kuralları ve güvenlik",pageText:"Deneyimini paylaş ve Pazar yeri kullanmadan önce temel kuralları oku. Bunlar anneleri, bebekleri ve platformdaki güveni korur.",
+    legalNote:"Bu bir güvenlik ve topluluk rehberi sayfasıdır, hukuki belge değildir. Almanya’da halka açık lansman için daha sonra Impressum, gizlilik ve kullanım şartları gerekir.",
+    communityTitle:"Deneyimini paylaş",community1Title:"Önce saygı",community1Text:"Hakaret, aşağılama, ırkçılık, nefret, tehdit, baskı veya anneleri yargılama yok.",
+    community2Title:"Hassas veri yok",community2Text:"Telefon, tam adres, belge, hastane dosyası, hasta verisi veya özel fotoğraf paylaşma.",
+    community3Title:"Tıbbi yerine geçmez",community3Text:"Deneyimler duygusal yardım sağlar ama doktor, ebe veya acil servisin yerine geçmez.",
+    marketTitle:"Pazar yeri güvenliği",market1Title:"Ürünleri dikkatle kontrol et",market1Text:"Bebek ürünlerini kullanmadan önce durum, eksik parça, hijyen, yaş, geri çağırma ve talimatları kontrol et.",
+    market2Title:"Özel dikkat",market2Text:"Oto koltuğu, bebek yatağı, yatak, süt pompası, elektrikli cihazlar ve bebek taşıyıcılarda çok dikkatli ol.",
+    market3Title:"Güvenli buluş",market3Text:"Tam adresini yayınlama. Güvenli halka açık yerlerde buluş ve şüpheli ödeme taleplerinden kaçın.",
+    reportTitle:"Bildirim ve moderasyon",report1Title:"Kötü içeriği bildir",report1Text:"Spam, dolandırıcılık, güvensiz ürün, saldırgan içerik veya tehlikeli tıbbi yanlış bilgi için bildirim butonunu kullan.",
+    report2Title:"Moderasyon sonra",report2Text:"Bir sonraki teknik adım, bildirimleri incelemek ve güvensiz içeriği gizlemek için admin moderasyon sayfasıdır.",
+    launchTitle:"Halka açmadan önce",launch1Title:"Impressum",launch1Text:"Almanya’da halka açık bir site normalde sorumlu işletmeci bilgilerini içeren görünür Impressum ister.",
+    launch2Title:"Gizlilik",launch2Text:"Hangi veriler saklanıyor, neden, nerede ve silme nasıl istenir açıklayan gizlilik politikası gerekir.",
+    launch3Title:"Şartlar",launch3Text:"Topluluk gönderileri, ilanlar, bildirimler, yasak içerik ve kullanıcı sorumluluğu için şartlar gerekir.",
+    experienceButton:"Deneyimini paylaş",marketplaceButton:"Pazar yeri",loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Правила сообщества и безопасность",pageText:"Перед использованием «Поделиться опытом» и маркетплейса прочитайте основные правила. Они защищают мам, детей и доверие на платформе.",
+    legalNote:"Это страница правил безопасности и сообщества, а не юридический документ. Для публичного запуска в Германии позже нужны Impressum, политика конфиденциальности и условия.",
+    communityTitle:"Поделиться опытом",community1Title:"Сначала уважение",community1Text:"Без оскорблений, унижения, расизма, ненависти, угроз, давления или осуждения мам.",
+    community2Title:"Без чувствительных данных",community2Text:"Не публикуйте телефоны, точные адреса, документы, больничные файлы, данные пациентов или личные фото.",
+    community3Title:"Не заменяет врача",community3Text:"Опыт может поддержать эмоционально, но не заменяет врача, акушерку или экстренную службу.",
+    marketTitle:"Безопасность маркетплейса",market1Title:"Тщательно проверяйте товары",market1Text:"Перед использованием детских товаров проверяйте состояние, недостающие части, гигиену, возраст, отзывы и инструкции.",
+    market2Title:"Особая осторожность",market2Text:"Особенно осторожно с автокреслами, кроватками, матрасами, молокоотсосами, электроприборами и переносками.",
+    market3Title:"Безопасная встреча",market3Text:"Не публикуйте точный адрес. Встречайтесь в безопасных общественных местах и избегайте подозрительных платежей.",
+    reportTitle:"Жалобы и модерация",report1Title:"Жаловаться на плохой контент",report1Text:"Используйте кнопку жалобы для спама, мошенничества, опасных товаров, оскорблений или опасной медицинской дезинформации.",
+    report2Title:"Модерация позже",report2Text:"Следующий технический шаг — страница админ-модерации для проверки жалоб и скрытия опасного контента.",
+    launchTitle:"Перед публичным запуском",launch1Title:"Impressum",launch1Text:"Публичный немецкий сайт обычно требует видимый Impressum с данными ответственного оператора.",
+    launch2Title:"Конфиденциальность",launch2Text:"Нужна политика конфиденциальности: какие данные хранятся, почему, где и как запросить удаление.",
+    launch3Title:"Условия",launch3Text:"Нужны условия для постов, объявлений, жалоб, запрещённого контента и ответственности пользователей.",
+    experienceButton:"Поделиться опытом",marketplaceButton:"Маркетплейс",loginTitle:"Войдите",loginText:"Сначала нужно войти.",loginBackButton:"На главную"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Правила спільноти та безпека",pageText:"Перед використанням «Поділитися досвідом» і маркетплейса прочитайте основні правила. Вони захищають мам, дітей і довіру на платформі.",
+    legalNote:"Це сторінка правил безпеки та спільноти, а не юридичний документ. Для публічного запуску в Німеччині пізніше потрібні Impressum, політика конфіденційності та умови.",
+    communityTitle:"Поділитися досвідом",community1Title:"Спершу повага",community1Text:"Без образ, приниження, расизму, ненависті, погроз, тиску або осуду мам.",
+    community2Title:"Без чутливих даних",community2Text:"Не публікуйте телефони, точні адреси, документи, лікарняні файли, дані пацієнтів або приватні фото.",
+    community3Title:"Не замінює лікаря",community3Text:"Досвід може підтримати емоційно, але не замінює лікаря, акушерку або екстрену службу.",
+    marketTitle:"Безпека маркетплейса",market1Title:"Ретельно перевіряйте товари",market1Text:"Перед використанням дитячих товарів перевіряйте стан, відсутні частини, гігієну, вік, відкликання та інструкції.",
+    market2Title:"Особлива обережність",market2Text:"Особливо обережно з автокріслами, ліжечками, матрацами, молоковідсмоктувачами, електроприладами і переносками.",
+    market3Title:"Безпечна зустріч",market3Text:"Не публікуйте точну адресу. Зустрічайтесь у безпечних публічних місцях і уникайте підозрілих платежів.",
+    reportTitle:"Скарги та модерація",report1Title:"Скаржитися на поганий контент",report1Text:"Використовуйте кнопку скарги для спаму, шахрайства, небезпечних товарів, образ або небезпечної медичної дезінформації.",
+    report2Title:"Модерація пізніше",report2Text:"Наступний технічний крок — сторінка адмін-модерації для перевірки скарг і приховування небезпечного контенту.",
+    launchTitle:"Перед публічним запуском",launch1Title:"Impressum",launch1Text:"Публічний німецький сайт зазвичай потребує видимий Impressum з даними відповідального оператора.",
+    launch2Title:"Конфіденційність",launch2Text:"Потрібна політика конфіденційності: які дані зберігаються, чому, де і як запросити видалення.",
+    launch3Title:"Умови",launch3Text:"Потрібні умови для постів, оголошень, скарг, забороненого контенту і відповідальності користувачів.",
+    experienceButton:"Поділитися досвідом",marketplaceButton:"Маркетплейс",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну"
+  }
+};
+
+function t(){return translations[currentLang]||translations.de}
+
+function setLanguage(lang){
+  currentLang=lang;
+  localStorage.setItem("mama_lang",lang);
+  document.documentElement.lang=lang;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+
+  document.querySelectorAll(".language-buttons button").forEach(btn=>btn.classList.remove("active"));
+  const active=document.getElementById("lang-"+lang);
+  if(active)active.classList.add("active");
+
+  Object.keys(t()).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=t()[id];
+  });
+}
+
+function determineTheme(type,gender){
+  if(gender==="boy"||gender==="twin_boys")return"boy";
+  if(gender==="girl"||gender==="twin_girls")return"girl";
+  if(type==="twins"||gender==="twin_mixed")return"twin";
+  return"neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if(theme==="boy")document.body.classList.add("theme-boy");
+  if(theme==="girl")document.body.classList.add("theme-girl");
+  if(theme==="twin")document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+  const {data,error}=await supabaseClient.auth.getSession();
+
+  if(error||!data.session){
+    document.getElementById("loginMessage").style.display="block";
+    document.getElementById("appShell").style.display="none";
+    return;
+  }
+
+  currentUser=data.session.user;
+
+  const {data:profiles,error:profileError}=await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .order("created_at",{ascending:false})
+    .limit(1);
+
+  if(profileError||!profiles||profiles.length===0){
+    window.location.href="index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile=profiles[0];
+  currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+
+  applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display="none";
+  document.getElementById("appShell").style.display="block";
+
+  setLanguage(currentLang);
+}
+
+loadApp();
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Tests & diagnostics</title>
+<style>
+:root{--page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--shadow:rgba(74,52,40,.12)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;text-decoration:none}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950}
+.button,.button-light{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.card{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:36px}
+p,li{color:var(--muted);line-height:1.65}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.notice{padding:14px 16px;border-radius:18px;background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:900;margin-top:14px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+<a class="button-light" href="app.html">Dashboard</a>
+</header>
+
+<section class="card">
+<h1>Tests & diagnostics</h1>
+<p>Vue d’ensemble des examens importants pendant la grossesse en Allemagne. Cette page est informative et ne remplace jamais ton/ta Frauenarzt, ta Hebamme ou la clinique.</p>
+<div class="notice">Les dates exactes peuvent varier selon ton dossier, ton assurance, la clinique et les recommandations médicales.</div>
+</section>
+
+<section class="card">
+<h2>Examens principaux</h2>
+<div class="grid">
+<div class="box"><span class="badge">Début</span><h3>Mutterpass + bilan initial</h3><p>Groupe sanguin, Rhésus, anticorps, hémoglobine/fer, urine, tension, infections et antécédents.</p></div>
+<div class="box"><span class="badge">SA 10+</span><h3>NIPT</h3><p>Test sanguin non invasif pour certaines trisomies. À discuter selon indication, âge, préférence et couverture.</p></div>
+<div class="box"><span class="badge">SA 11–14</span><h3>Clarté nucale</h3><p>Échographie de la nuque, souvent liée au screening du premier trimestre et à une discussion du risque.</p></div>
+<div class="box"><span class="badge">SA 19–22</span><h3>Échographie organes</h3><p>Contrôle morphologique, croissance, placenta, liquide amniotique et organes selon l’examen prévu.</p></div>
+<div class="box"><span class="badge">SA 24–28</span><h3>Test de glycémie</h3><p>Dépistage du diabète gestationnel. Important pour maman et bébé.</p></div>
+<div class="box"><span class="badge">Rh négatif</span><h3>Anti-D</h3><p>Prophylaxie si Rhésus négatif selon situation médicale et contrôles.</p></div>
+<div class="box"><span class="badge">SA 28+</span><h3>Vaccins</h3><p>Coqueluche, grippe, COVID/RSV selon saison, situation et recommandation médicale.</p></div>
+<div class="box"><span class="badge">SA 29–32</span><h3>Troisième échographie</h3><p>Croissance, position, placenta, liquide amniotique et suite de la planification.</p></div>
+<div class="box"><span class="badge">SA 35–37</span><h3>Streptocoque B / GBS</h3><p>Dépistage souvent proposé ou discuté selon pratique médicale.</p></div>
+<div class="box"><span class="badge">Fin grossesse</span><h3>CTG</h3><p>Contrôle du rythme cardiaque du bébé et des contractions si indiqué ou selon protocole.</p></div>
+<div class="box"><span class="badge">Toujours</span><h3>Urine + tension</h3><p>Surveillance protéinurie, tension, symptômes, œdèmes, douleurs, mouvements du bébé.</p></div>
+<div class="box"><span class="badge">Après naissance</span><h3>U-Untersuchungen</h3><p>Examens pédiatriques obligatoires/recommandés pour le bébé selon le calendrier allemand.</p></div>
+</div>
+</section>
+
+<section class="card">
+<h2>Signes à ne pas ignorer</h2>
+<ul>
+<li>Saignement important, douleurs fortes, fièvre, malaise sévère.</li>
+<li>Diminution nette des mouvements du bébé.</li>
+<li>Maux de tête intenses, troubles visuels, douleur haut ventre, tension élevée.</li>
+<li>Perte de liquide, contractions régulières avant terme ou inquiétude importante.</li>
+</ul>
+<a class="button" href="emergency.html">Voir urgence</a>
+<button class="button-light" onclick="history.back()" style="margin-left:8px;">Retour</button>
+</section>
+</div>
+</body>
+</html>

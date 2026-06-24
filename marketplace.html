@@ -147,8 +147,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
       <input id="cityInput">
 
       <label id="photoUploadLabel" for="photoFileInput">Photo réelle</label>
-      <input id="photoFileInput" type="file" accept="image/*" onchange="previewPhoto()">
-      <img id="photoPreview" class="preview" alt="">
+      <input id="photoFileInput" type="file" accept="image/*" multiple onchange="previewPhoto()">
+      <div id="photoPreviewBox" class="grid-3" style="margin-top:12px;"></div>
 
       <label id="descriptionLabel" for="descriptionInput">Description</label>
       <textarea id="descriptionInput"></textarea>
@@ -162,8 +162,9 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
       </div>
 
       <div class="actions" style="margin-top:14px;">
-        <button class="button" onclick="createItem()" id="publishButton">Publier</button>
+        <button class="button" onclick="saveItem()" id="publishButton">Publier</button>
         <button class="button-light" onclick="clearForm()" id="clearButton">Effacer</button>
+        <button class="button-danger" onclick="cancelEdit()" id="cancelEditButton" style="display:none;">Annuler modification</button>
       </div>
 
       <div class="status" id="formStatus"></div>
@@ -238,12 +239,14 @@ let categoryFilter="all";
 let myItemsOnly=false;
 let itemsCache=[];
 let myFavorites=new Set();
+let editingItemId=null;
+let editingExistingPhotos=[];
 
 const translations={
   de:{
     backButton:"Zurück",pageTitle:"Marketplace",pageText:"Verkaufen, kaufen oder kostenlos weitergeben: Kinderwagen, Babybett, Kleidung, Autositz, Spielzeug und mehr.",
     safetyTop:"Wichtig: Prüfe immer Zustand und Sicherheit von Babyprodukten, besonders Autositze, Betten, Matratzen und Milchpumpen.",
-    createTitle:"Anzeige erstellen",titleLabel:"Titel",categoryLabel:"Kategorie",typeLabel:"Typ",priceLabel:"Preis",conditionLabel:"Zustand",cityLabel:"Stadt",photoUploadLabel:"Echte Foto hochladen",descriptionLabel:"Beschreibung",contactLabel:"Kontakt / Notiz",
+    createTitle:"Anzeige erstellen",editTitle:"Anzeige bearbeiten",updateButton:"Änderungen speichern",cancelEditButton:"Bearbeitung abbrechen",edit:"Bearbeiten",titleLabel:"Titel",categoryLabel:"Kategorie",typeLabel:"Typ",priceLabel:"Preis",conditionLabel:"Zustand",cityLabel:"Stadt",photoUploadLabel:"Echte Fotos hochladen, max. 4",descriptionLabel:"Beschreibung",contactLabel:"Kontakt / Notiz",
     safetyCheckLabel:"Ich bestätige, dass ich den Sicherheitshinweis gelesen habe.",publishButton:"Veröffentlichen",clearButton:"Leeren",
     rulesTitle:"Marketplace-Regeln",rule1Title:"Keine Zahlung im Site",rule1Text:"Aktuell dient die Plattform nur dazu, Mamas miteinander in Kontakt zu bringen.",
     rule2Title:"Produktsicherheit",rule2Text:"Bei Autositz, Bett, Matratze und Milchpumpe: Alter, Zustand, Teile, Hygiene und Normen prüfen.",
@@ -259,7 +262,7 @@ const translations={
   fr:{
     backButton:"Retour",pageTitle:"Marketplace",pageText:"Vendre, acheter ou donner des affaires bébé entre mamans : poussette, lit bébé, vêtements, siège auto, jouets et plus.",
     safetyTop:"Important : vérifie toujours l’état et la sécurité des produits bébé, surtout sièges auto, lits, matelas et tire-laits.",
-    createTitle:"Créer une annonce",titleLabel:"Titre",categoryLabel:"Catégorie",typeLabel:"Type",priceLabel:"Prix",conditionLabel:"État",cityLabel:"Ville",photoUploadLabel:"Ajouter une vraie photo",descriptionLabel:"Description",contactLabel:"Contact / note",
+    createTitle:"Créer une annonce",editTitle:"Modifier l’annonce",updateButton:"Sauvegarder les modifications",cancelEditButton:"Annuler modification",edit:"Modifier",titleLabel:"Titre",categoryLabel:"Catégorie",typeLabel:"Type",priceLabel:"Prix",conditionLabel:"État",cityLabel:"Ville",photoUploadLabel:"Ajouter des photos, max. 4",descriptionLabel:"Description",contactLabel:"Contact / note",
     safetyCheckLabel:"Je confirme que j’ai lu la note de sécurité.",publishButton:"Publier",clearButton:"Effacer",
     rulesTitle:"Règles marketplace",rule1Title:"Pas de paiement dans le site",rule1Text:"Pour l’instant, la plateforme sert seulement à mettre les mamans en contact.",
     rule2Title:"Sécurité produit",rule2Text:"Pour siège auto, lit, matelas et tire-lait : vérifie l’âge, l’état, les pièces, l’hygiène et les normes.",
@@ -275,7 +278,7 @@ const translations={
   ar:{
     backButton:"رجوع",pageTitle:"السوق",pageText:"بيع أو شراء أو إعطاء أغراض الأطفال بين الأمهات: عربة، سرير، ملابس، كرسي سيارة، ألعاب والمزيد.",
     safetyTop:"مهم: تحققي دائماً من حالة وسلامة أغراض الأطفال، خاصة كرسي السيارة والسرير والمرتبة ومضخة الحليب.",
-    createTitle:"إنشاء إعلان",titleLabel:"العنوان",categoryLabel:"الفئة",typeLabel:"النوع",priceLabel:"السعر",conditionLabel:"الحالة",cityLabel:"المدينة",photoUploadLabel:"إضافة صورة حقيقية",descriptionLabel:"الوصف",contactLabel:"التواصل / ملاحظة",
+    createTitle:"إنشاء إعلان",editTitle:"تعديل الإعلان",updateButton:"حفظ التعديلات",cancelEditButton:"إلغاء التعديل",edit:"تعديل",titleLabel:"العنوان",categoryLabel:"الفئة",typeLabel:"النوع",priceLabel:"السعر",conditionLabel:"الحالة",cityLabel:"المدينة",photoUploadLabel:"إضافة صور، حتى 4",descriptionLabel:"الوصف",contactLabel:"التواصل / ملاحظة",
     safetyCheckLabel:"أؤكد أنني قرأت ملاحظة السلامة.",publishButton:"نشر",clearButton:"مسح",
     rulesTitle:"قواعد السوق",rule1Title:"لا يوجد دفع داخل الموقع",rule1Text:"حالياً المنصة فقط للتواصل بين الأمهات.",
     rule2Title:"سلامة المنتج",rule2Text:"للكرسي والسرير والمرتبة ومضخة الحليب: تحققي من العمر والحالة والقطع والنظافة والمعايير.",
@@ -291,7 +294,7 @@ const translations={
   en:{
     backButton:"Back",pageTitle:"Marketplace",pageText:"Sell, buy or give away baby items between mothers: stroller, baby bed, clothes, car seat, toys and more.",
     safetyTop:"Important: Always check the condition and safety of baby products, especially car seats, beds, mattresses and breast pumps.",
-    createTitle:"Create listing",titleLabel:"Title",categoryLabel:"Category",typeLabel:"Type",priceLabel:"Price",conditionLabel:"Condition",cityLabel:"City",photoUploadLabel:"Upload real photo",descriptionLabel:"Description",contactLabel:"Contact / note",
+    createTitle:"Create listing",editTitle:"Edit listing",updateButton:"Save changes",cancelEditButton:"Cancel edit",edit:"Edit",titleLabel:"Title",categoryLabel:"Category",typeLabel:"Type",priceLabel:"Price",conditionLabel:"Condition",cityLabel:"City",photoUploadLabel:"Upload photos, max. 4",descriptionLabel:"Description",contactLabel:"Contact / note",
     safetyCheckLabel:"I confirm that I have read the safety note.",publishButton:"Publish",clearButton:"Clear",
     rulesTitle:"Marketplace rules",rule1Title:"No payment on the site",rule1Text:"For now, the platform only connects mothers with each other.",
     rule2Title:"Product safety",rule2Text:"For car seats, beds, mattresses and breast pumps: check age, condition, parts, hygiene and standards.",
@@ -307,7 +310,7 @@ const translations={
   tr:{
     backButton:"Geri",pageTitle:"Pazar yeri",pageText:"Anneler arasında bebek eşyası sat, al veya ücretsiz ver: bebek arabası, yatak, kıyafet, oto koltuğu, oyuncak ve daha fazlası.",
     safetyTop:"Önemli: Bebek ürünlerinin durumunu ve güvenliğini her zaman kontrol et, özellikle oto koltuğu, yatak, yatak süngeri ve süt pompası.",
-    createTitle:"İlan oluştur",titleLabel:"Başlık",categoryLabel:"Kategori",typeLabel:"Tip",priceLabel:"Fiyat",conditionLabel:"Durum",cityLabel:"Şehir",photoUploadLabel:"Gerçek fotoğraf yükle",descriptionLabel:"Açıklama",contactLabel:"İletişim / not",
+    createTitle:"İlan oluştur",editTitle:"İlanı düzenle",updateButton:"Değişiklikleri kaydet",cancelEditButton:"Düzenlemeyi iptal et",edit:"Düzenle",titleLabel:"Başlık",categoryLabel:"Kategori",typeLabel:"Tip",priceLabel:"Fiyat",conditionLabel:"Durum",cityLabel:"Şehir",photoUploadLabel:"Fotoğraf yükle, en fazla 4",descriptionLabel:"Açıklama",contactLabel:"İletişim / not",
     safetyCheckLabel:"Güvenlik notunu okuduğumu onaylıyorum.",publishButton:"Yayınla",clearButton:"Temizle",
     rulesTitle:"Pazar yeri kuralları",rule1Title:"Sitede ödeme yok",rule1Text:"Şimdilik platform sadece anneleri birbirine bağlar.",
     rule2Title:"Ürün güvenliği",rule2Text:"Oto koltuğu, yatak, yatak süngeri ve süt pompasında yaş, durum, parçalar, hijyen ve standartları kontrol et.",
@@ -323,7 +326,7 @@ const translations={
   ru:{
     backButton:"Назад",pageTitle:"Маркетплейс",pageText:"Продавать, покупать или отдавать детские вещи между мамами: коляска, кроватка, одежда, автокресло, игрушки и другое.",
     safetyTop:"Важно: всегда проверяйте состояние и безопасность детских товаров, особенно автокресел, кроваток, матрасов и молокоотсосов.",
-    createTitle:"Создать объявление",titleLabel:"Название",categoryLabel:"Категория",typeLabel:"Тип",priceLabel:"Цена",conditionLabel:"Состояние",cityLabel:"Город",photoUploadLabel:"Загрузить настоящее фото",descriptionLabel:"Описание",contactLabel:"Контакт / заметка",
+    createTitle:"Создать объявление",editTitle:"Изменить объявление",updateButton:"Сохранить изменения",cancelEditButton:"Отменить редактирование",edit:"Изменить",titleLabel:"Название",categoryLabel:"Категория",typeLabel:"Тип",priceLabel:"Цена",conditionLabel:"Состояние",cityLabel:"Город",photoUploadLabel:"Загрузить фото, максимум 4",descriptionLabel:"Описание",contactLabel:"Контакт / заметка",
     safetyCheckLabel:"Я подтверждаю, что прочитала заметку о безопасности.",publishButton:"Опубликовать",clearButton:"Очистить",
     rulesTitle:"Правила маркетплейса",rule1Title:"Оплаты на сайте нет",rule1Text:"Пока платформа только помогает мамам связаться друг с другом.",
     rule2Title:"Безопасность товара",rule2Text:"Для автокресел, кроваток, матрасов и молокоотсосов проверяйте возраст, состояние, детали, гигиену и стандарты.",
@@ -339,7 +342,7 @@ const translations={
   uk:{
     backButton:"Назад",pageTitle:"Маркетплейс",pageText:"Продавати, купувати або віддавати дитячі речі між мамами: візочок, ліжечко, одяг, автокрісло, іграшки та інше.",
     safetyTop:"Важливо: завжди перевіряйте стан і безпеку дитячих товарів, особливо автокрісел, ліжечок, матраців і молоковідсмоктувачів.",
-    createTitle:"Створити оголошення",titleLabel:"Назва",categoryLabel:"Категорія",typeLabel:"Тип",priceLabel:"Ціна",conditionLabel:"Стан",cityLabel:"Місто",photoUploadLabel:"Завантажити справжнє фото",descriptionLabel:"Опис",contactLabel:"Контакт / нотатка",
+    createTitle:"Створити оголошення",editTitle:"Змінити оголошення",updateButton:"Зберегти зміни",cancelEditButton:"Скасувати редагування",edit:"Змінити",titleLabel:"Назва",categoryLabel:"Категорія",typeLabel:"Тип",priceLabel:"Ціна",conditionLabel:"Стан",cityLabel:"Місто",photoUploadLabel:"Завантажити фото, максимум 4",descriptionLabel:"Опис",contactLabel:"Контакт / нотатка",
     safetyCheckLabel:"Я підтверджую, що прочитала примітку про безпеку.",publishButton:"Опублікувати",clearButton:"Очистити",
     rulesTitle:"Правила маркетплейса",rule1Title:"Оплати на сайті немає",rule1Text:"Поки платформа лише допомагає мамам зв’язатися між собою.",
     rule2Title:"Безпека товару",rule2Text:"Для автокрісел, ліжечок, матраців і молоковідсмоктувачів перевіряйте вік, стан, деталі, гігієну і стандарти.",
@@ -446,64 +449,142 @@ function updatePriceField(){
   }
 }
 
+
+function updateFormModeText(){
+  const title=document.getElementById("createTitle");
+  const publish=document.getElementById("publishButton");
+  const cancel=document.getElementById("cancelEditButton");
+
+  if(editingItemId){
+    title.textContent=t().editTitle || t().createTitle;
+    publish.textContent=t().updateButton || t().publishButton;
+    cancel.style.display="inline-flex";
+  }else{
+    title.textContent=t().createTitle;
+    publish.textContent=t().publishButton;
+    cancel.style.display="none";
+  }
+}
+
+function cancelEdit(){
+  clearForm();
+}
+
+function renderExistingPhotoPreviews(urls){
+  const box=document.getElementById("photoPreviewBox");
+  box.innerHTML="";
+  (urls||[]).forEach(url=>{
+    const img=document.createElement("img");
+    img.src=url;
+    img.className="preview";
+    img.style.display="block";
+    img.style.height="120px";
+    img.style.objectFit="cover";
+    box.appendChild(img);
+  });
+}
+
+function editItem(itemId){
+  const item=itemsCache.find(x=>x.id===itemId);
+  if(!item)return;
+
+  editingItemId=itemId;
+  editingExistingPhotos=Array.isArray(item.photos)?item.photos:[];
+
+  document.getElementById("itemTitle").value=item.title||"";
+  document.getElementById("itemCategory").value=item.category||"other";
+  document.getElementById("listingType").value=item.listing_type||"sell";
+  document.getElementById("priceInput").value=Number(item.price||0);
+  document.getElementById("conditionInput").value=item.item_condition||"used_good";
+  document.getElementById("cityInput").value=item.city||"";
+  document.getElementById("descriptionInput").value=item.description||"";
+  document.getElementById("contactInput").value=item.contact_note||"";
+  document.getElementById("safetyCheck").checked=true;
+  document.getElementById("photoFileInput").value="";
+
+  updatePriceField();
+  updateFormModeText();
+  renderExistingPhotoPreviews(editingExistingPhotos);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function storagePathFromPublicUrl(url){
+  try{
+    const marker="/storage/v1/object/public/marketplace-photos/";
+    const idx=url.indexOf(marker);
+    if(idx<0)return null;
+    return decodeURIComponent(url.slice(idx+marker.length));
+  }catch(e){
+    return null;
+  }
+}
+
+async function removePhotosFromStorage(urls){
+  const paths=(urls||[]).map(storagePathFromPublicUrl).filter(Boolean);
+  if(paths.length===0)return;
+  await supabaseClient.storage.from("marketplace-photos").remove(paths);
+}
+
 function previewPhoto(){
   const input=document.getElementById("photoFileInput");
-  const preview=document.getElementById("photoPreview");
-  const file=input.files && input.files[0];
+  const box=document.getElementById("photoPreviewBox");
+  const files=Array.from(input.files||[]).slice(0,4);
 
-  if(!file){
-    preview.style.display="none";
-    preview.src="";
+  box.innerHTML="";
+
+  if(files.length===0){
+    renderExistingPhotoPreviews(editingExistingPhotos);
     return;
   }
 
-  preview.src=URL.createObjectURL(file);
-  preview.style.display="block";
-}
-
-function clearForm(){
-  document.getElementById("itemTitle").value="";
-  document.getElementById("priceInput").value="";
-  document.getElementById("photoFileInput").value="";
-  document.getElementById("photoPreview").src="";
-  document.getElementById("photoPreview").style.display="none";
-  document.getElementById("descriptionInput").value="";
-  document.getElementById("contactInput").value="";
-  document.getElementById("safetyCheck").checked=false;
-  updatePriceField();
+  files.forEach(file=>{
+    const img=document.createElement("img");
+    img.src=URL.createObjectURL(file);
+    img.className="preview";
+    img.style.display="block";
+    img.style.height="120px";
+    img.style.objectFit="cover";
+    box.appendChild(img);
+  });
 }
 
 async function uploadPhotoIfNeeded(){
   const input=document.getElementById("photoFileInput");
-  const file=input.files && input.files[0];
+  const files=Array.from(input.files||[]).slice(0,4);
 
-  if(!file)return [];
+  if(files.length===0)return [];
 
   showStatus(t().uploading);
 
-  const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
-  const safeExt=["jpg","jpeg","png","webp"].includes(ext)?ext:"jpg";
-  const fileName=currentUser.id+"/"+Date.now()+"-"+Math.random().toString(36).slice(2)+"."+safeExt;
+  const urls=[];
 
-  const {error}=await supabaseClient
-    .storage
-    .from("marketplace-photos")
-    .upload(fileName,file,{
-      cacheControl:"3600",
-      upsert:false,
-      contentType:file.type || "image/jpeg"
-    });
+  for(const file of files){
+    const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
+    const safeExt=["jpg","jpeg","png","webp"].includes(ext)?ext:"jpg";
+    const fileName=currentUser.id+"/"+Date.now()+"-"+Math.random().toString(36).slice(2)+"."+safeExt;
 
-  if(error){
-    console.error(error);
-    throw error;
+    const {error}=await supabaseClient
+      .storage
+      .from("marketplace-photos")
+      .upload(fileName,file,{
+        cacheControl:"3600",
+        upsert:false,
+        contentType:file.type || "image/jpeg"
+      });
+
+    if(error){
+      console.error(error);
+      throw error;
+    }
+
+    const {data}=supabaseClient.storage.from("marketplace-photos").getPublicUrl(fileName);
+    if(data && data.publicUrl)urls.push(data.publicUrl);
   }
 
-  const {data}=supabaseClient.storage.from("marketplace-photos").getPublicUrl(fileName);
-  return data && data.publicUrl ? [data.publicUrl] : [];
+  return urls;
 }
 
-async function createItem(){
+async function saveItem(){
   const title=document.getElementById("itemTitle").value.trim();
   const category=document.getElementById("itemCategory").value;
   const listing_type=document.getElementById("listingType").value;
@@ -520,17 +601,18 @@ async function createItem(){
     return;
   }
 
-  let photos=[];
+  let newPhotos=[];
   try{
-    photos=await uploadPhotoIfNeeded();
+    newPhotos=await uploadPhotoIfNeeded();
   }catch(e){
     showStatus(t().error);
     hideStatusLater();
     return;
   }
 
-  const {error}=await supabaseClient.from("marketplace_items").insert({
-    user_id:currentUser.id,
+  const photos=newPhotos.length>0 ? newPhotos : editingExistingPhotos;
+
+  const payload={
     title,
     description,
     category,
@@ -542,8 +624,38 @@ async function createItem(){
     language:currentLang,
     photos,
     contact_note:contact,
-    status:"active",
     safety_note_accepted:true
+  };
+
+  if(editingItemId){
+    const {error}=await supabaseClient
+      .from("marketplace_items")
+      .update(payload)
+      .eq("id",editingItemId)
+      .eq("user_id",currentUser.id);
+
+    if(error){
+      console.error(error);
+      showStatus(t().error);
+      hideStatusLater();
+      return;
+    }
+
+    if(newPhotos.length>0){
+      await removePhotosFromStorage(editingExistingPhotos);
+    }
+
+    clearForm();
+    showStatus(t().saved);
+    hideStatusLater();
+    await loadItems();
+    return;
+  }
+
+  const {error}=await supabaseClient.from("marketplace_items").insert({
+    user_id:currentUser.id,
+    ...payload,
+    status:"active"
   });
 
   if(error){
@@ -717,7 +829,12 @@ async function updateItemStatus(itemId,status){
 }
 
 async function deleteItem(itemId){
-  await supabaseClient.from("marketplace_items").update({status:"deleted"}).eq("id",itemId).eq("user_id",currentUser.id);
+  const item=itemsCache.find(x=>x.id===itemId);
+  if(item && item.user_id===currentUser.id){
+    await removePhotosFromStorage(Array.isArray(item.photos)?item.photos:[]);
+  }
+  await supabaseClient.from("marketplace_items").update({status:"deleted",photos:[]}).eq("id",itemId).eq("user_id",currentUser.id);
+  if(editingItemId===itemId)clearForm();
   await loadItems();
 }
 
@@ -751,7 +868,8 @@ function renderItems(){
   itemsCache.forEach(item=>{
     const own=item.user_id===currentUser.id;
     const fav=myFavorites.has(item.id);
-    const image=(Array.isArray(item.photos)&&item.photos.length>0) ? item.photos[0] : "";
+    const photos=(Array.isArray(item.photos)&&item.photos.length>0) ? item.photos : [];
+    const image=photos.length ? photos[0] : "";
     const city=item.city?escapeHtml(item.city):"";
     const contact=item.contact_note?escapeHtml(item.contact_note).replaceAll("\\n","<br>"):"";
 
@@ -760,6 +878,7 @@ function renderItems(){
 
     card.innerHTML=`
       ${image?`<img class="item-image" src="${escapeHtml(image)}" alt="">`:`<div class="item-image" style="display:flex;align-items:center;justify-content:center;color:var(--brown);font-weight:950;">${categoryText(item.category)}</div>`}
+      ${photos.length>1?`<div class="grid-3" style="margin-top:-4px;margin-bottom:12px;">${photos.slice(1,4).map(p=>`<img src="${escapeHtml(p)}" class="preview" style="display:block;height:85px;object-fit:cover;">`).join("")}</div>`:""}
       <div>
         <span class="badge">${categoryText(item.category)}</span>
         <span class="badge">${conditionText(item.item_condition)}</span>
@@ -775,6 +894,7 @@ function renderItems(){
       <div class="actions" style="margin-top:14px;">
         ${!own?`<button class="${fav?"button-success button":"button-light"}" onclick="toggleFavorite('${item.id}')">${fav?t().favorited:t().favorite}</button>`:""}
         ${!own?`<button class="button-light" onclick="reportItem('${item.id}')">${t().report}</button>`:""}
+        ${own?`<button class="button-light" onclick="editItem('${item.id}')">${t().edit||"Edit"}</button>`:""}
         ${own?`<button class="button-light" onclick="updateItemStatus('${item.id}','reserved')">${t().reserved}</button>`:""}
         ${own&&item.listing_type==="sell"?`<button class="button-light" onclick="updateItemStatus('${item.id}','sold')">${t().sold}</button>`:""}
         ${own&&item.listing_type==="free"?`<button class="button-light" onclick="updateItemStatus('${item.id}','given')">${t().given}</button>`:""}

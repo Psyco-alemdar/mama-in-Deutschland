@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Wehen-Timer</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center}
+.language-buttons button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+.timer-card{text-align:center;background:linear-gradient(180deg,var(--cream),white)}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:17px}
+p{margin:0;color:var(--muted);line-height:1.6}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.stat,.record-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.stat-label{color:var(--muted);font-size:13px;font-weight:900}
+.stat-value{margin-top:6px;color:var(--brown);font-size:28px;font-weight:950}
+.big-time{font-size:58px;font-weight:950;color:var(--brown);letter-spacing:-2px;margin:24px 0}
+.big-button{font-size:22px;padding:18px 26px;border-radius:24px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}.big-time{font-size:44px}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Wehen-Timer</h1>
+    <p id="pageText">Miss Beginn, Dauer und Abstand der Wehen. Bei Unsicherheit bitte Hebamme, Klinik oder ärztlichen Dienst kontaktieren.</p>
+    <div class="soft" id="adviceBox">Bei starken Schmerzen, Blutung, Fruchtwasserabgang oder Unsicherheit nicht warten.</div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card timer-card">
+      <h2 id="timerTitle">Timer</h2>
+      <div class="big-time" id="timerDisplay">00:00</div>
+      <div class="actions" style="justify-content:center;">
+        <button class="button big-button" onclick="toggleTimer()" id="timerButton">Wehe starten</button>
+        <button class="button-light" onclick="addManualRecord()" id="manualButton">Manuell hinzufügen</button>
+      </div>
+      <div class="soft" id="timerStatus">Bereit</div>
+    </div>
+
+    <div class="card">
+      <h2 id="summaryTitle">Zusammenfassung</h2>
+      <div class="grid-3">
+        <div class="stat"><div class="stat-label" id="countLabel">Anzahl</div><div class="stat-value" id="countValue">0</div></div>
+        <div class="stat"><div class="stat-label" id="durationLabel">Ø Dauer</div><div class="stat-value" id="durationValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="intervalLabel">Ø Abstand</div><div class="stat-value" id="intervalValue">-</div></div>
+      </div>
+      <div class="soft" id="patternBox">Noch kein Muster.</div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-danger" onclick="clearRecords()" id="clearButton">Liste löschen</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="recordsTitle">Wehen-Liste</h2>
+    <div class="grid-3" id="recordsGrid"></div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br />
+  <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentUser = null;
+let currentProfile = null;
+let currentLang = localStorage.getItem("mama_lang") || "de";
+let timerRunning = false;
+let timerStart = null;
+let timerInterval = null;
+
+const translations = {
+  de:{
+    backButton:"Zurück",pageTitle:"Wehen-Timer",pageText:"Miss Beginn, Dauer und Abstand der Wehen. Bei Unsicherheit bitte Hebamme, Klinik oder ärztlichen Dienst kontaktieren.",
+    adviceBox:"Bei starken Schmerzen, Blutung, Fruchtwasserabgang oder Unsicherheit nicht warten.",
+    timerTitle:"Timer",timerStart:"Wehe starten",timerStop:"Wehe stoppen",manualButton:"Manuell hinzufügen",ready:"Bereit",running:"Läuft...",
+    summaryTitle:"Zusammenfassung",countLabel:"Anzahl",durationLabel:"Ø Dauer",intervalLabel:"Ø Abstand",patternNone:"Noch kein Muster.",
+    patternWatch:"Beobachten und bei Unsicherheit Kontakt aufnehmen.",recordsTitle:"Wehen-Liste",clearButton:"Liste löschen",
+    empty:"Noch keine Wehen gespeichert.",start:"Beginn",duration:"Dauer",interval:"Abstand",delete:"Löschen",
+    loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",minutes:"Min",seconds:"Sek"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Timer contractions",pageText:"Mesure le début, la durée et l’intervalle des contractions. En cas de doute, contacte sage-femme, maternité ou service médical.",
+    adviceBox:"En cas de fortes douleurs, saignement, perte des eaux ou doute, ne pas attendre.",
+    timerTitle:"Timer",timerStart:"Démarrer contraction",timerStop:"Arrêter contraction",manualButton:"Ajouter manuel",ready:"Prêt",running:"En cours...",
+    summaryTitle:"Résumé",countLabel:"Nombre",durationLabel:"Durée moy.",intervalLabel:"Intervalle moy.",patternNone:"Pas encore de rythme.",
+    patternWatch:"Observer et contacter en cas de doute.",recordsTitle:"Liste des contractions",clearButton:"Supprimer la liste",
+    empty:"Aucune contraction enregistrée.",start:"Début",duration:"Durée",interval:"Intervalle",delete:"Supprimer",
+    loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",minutes:"min",seconds:"sec"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"مؤقت الطلق",pageText:"قيسي بداية الطلق ومدته والفاصل بين الانقباضات. عند الشك اتصلي بالقابلة أو المستشفى أو الخدمة الطبية.",
+    adviceBox:"عند ألم شديد أو نزيف أو نزول ماء الجنين أو الشك، لا تنتظري.",
+    timerTitle:"المؤقت",timerStart:"بدء الانقباض",timerStop:"إيقاف الانقباض",manualButton:"إضافة يدوية",ready:"جاهز",running:"يعمل...",
+    summaryTitle:"الملخص",countLabel:"العدد",durationLabel:"متوسط المدة",intervalLabel:"متوسط الفاصل",patternNone:"لا يوجد نمط بعد.",
+    patternWatch:"راقبي الوضع واتصلي عند الشك.",recordsTitle:"قائمة الانقباضات",clearButton:"حذف القائمة",
+    empty:"لا توجد انقباضات محفوظة.",start:"البداية",duration:"المدة",interval:"الفاصل",delete:"حذف",
+    loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",minutes:"د",seconds:"ث"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Contraction timer",pageText:"Measure the start, duration and interval of contractions. If unsure, contact your midwife, clinic or medical service.",
+    adviceBox:"Do not wait with severe pain, bleeding, waters breaking or uncertainty.",
+    timerTitle:"Timer",timerStart:"Start contraction",timerStop:"Stop contraction",manualButton:"Add manually",ready:"Ready",running:"Running...",
+    summaryTitle:"Summary",countLabel:"Count",durationLabel:"Avg duration",intervalLabel:"Avg interval",patternNone:"No pattern yet.",
+    patternWatch:"Observe and contact help if unsure.",recordsTitle:"Contraction list",clearButton:"Clear list",
+    empty:"No contractions saved yet.",start:"Start",duration:"Duration",interval:"Interval",delete:"Delete",
+    loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",minutes:"min",seconds:"sec"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Kasılma zamanlayıcı",pageText:"Kasılmaların başlangıcını, süresini ve aralığını ölç. Emin değilsen ebe, klinik veya sağlık hizmetiyle iletişime geç.",
+    adviceBox:"Şiddetli ağrı, kanama, su gelmesi veya belirsizlikte bekleme.",
+    timerTitle:"Zamanlayıcı",timerStart:"Kasılmayı başlat",timerStop:"Kasılmayı durdur",manualButton:"Manuel ekle",ready:"Hazır",running:"Çalışıyor...",
+    summaryTitle:"Özet",countLabel:"Sayı",durationLabel:"Ort. süre",intervalLabel:"Ort. aralık",patternNone:"Henüz düzen yok.",
+    patternWatch:"Gözlemle ve emin değilsen yardım al.",recordsTitle:"Kasılma listesi",clearButton:"Listeyi sil",
+    empty:"Henüz kasılma kaydedilmedi.",start:"Başlangıç",duration:"Süre",interval:"Aralık",delete:"Sil",
+    loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",minutes:"dk",seconds:"sn"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Таймер схваток",pageText:"Измеряйте начало, длительность и интервал схваток. Если есть сомнения, свяжитесь с акушеркой, клиникой или медслужбой.",
+    adviceBox:"При сильной боли, кровотечении, отхождении вод или сомнениях не ждите.",
+    timerTitle:"Таймер",timerStart:"Начать схватку",timerStop:"Остановить схватку",manualButton:"Добавить вручную",ready:"Готово",running:"Идёт...",
+    summaryTitle:"Сводка",countLabel:"Количество",durationLabel:"Сред. длит.",intervalLabel:"Сред. интервал",patternNone:"Пока нет ритма.",
+    patternWatch:"Наблюдайте и обращайтесь за помощью при сомнениях.",recordsTitle:"Список схваток",clearButton:"Очистить список",
+    empty:"Пока нет сохранённых схваток.",start:"Начало",duration:"Длительность",interval:"Интервал",delete:"Удалить",
+    loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",minutes:"мин",seconds:"сек"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Таймер перейм",pageText:"Вимірюйте початок, тривалість і інтервал перейм. Якщо є сумніви, зверніться до акушерки, клініки або медслужби.",
+    adviceBox:"При сильному болю, кровотечі, відходженні вод або сумнівах не чекайте.",
+    timerTitle:"Таймер",timerStart:"Почати перейму",timerStop:"Зупинити перейму",manualButton:"Додати вручну",ready:"Готово",running:"Триває...",
+    summaryTitle:"Підсумок",countLabel:"Кількість",durationLabel:"Сер. трив.",intervalLabel:"Сер. інтервал",patternNone:"Поки немає ритму.",
+    patternWatch:"Спостерігайте і звертайтесь по допомогу при сумнівах.",recordsTitle:"Список перейм",clearButton:"Очистити список",
+    empty:"Поки немає збережених перейм.",start:"Початок",duration:"Тривалість",interval:"Інтервал",delete:"Видалити",
+    loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",minutes:"хв",seconds:"сек"
+  }
+};
+
+function t(){ return translations[currentLang] || translations.de; }
+
+function setLanguage(lang){
+  currentLang = lang;
+  localStorage.setItem("mama_lang", lang);
+  document.documentElement.lang = lang;
+  document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+  const active = document.getElementById("lang-" + lang);
+  if (active) active.classList.add("active");
+
+  const tr = t();
+  Object.keys(tr).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = tr[id];
+  });
+
+  updateTimerText();
+  renderRecords();
+}
+
+function determineTheme(type, gender){
+  if (gender === "boy" || gender === "twin_boys") return "boy";
+  if (gender === "girl" || gender === "twin_girls") return "girl";
+  if (type === "twins" || gender === "twin_mixed") return "twin";
+  return "neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if (theme === "boy") document.body.classList.add("theme-boy");
+  if (theme === "girl") document.body.classList.add("theme-girl");
+  if (theme === "twin") document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+  const { data, error } = await supabaseClient.auth.getSession();
+
+  if (error || !data.session) {
+    document.getElementById("loginMessage").style.display = "block";
+    document.getElementById("appShell").style.display = "none";
+    return;
+  }
+
+  currentUser = data.session.user;
+
+  const { data: profiles, error: profileError } = await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending:false })
+    .limit(1);
+
+  if (profileError || !profiles || profiles.length === 0) {
+    window.location.href = "index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile = profiles[0];
+  currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+  applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display = "none";
+  document.getElementById("appShell").style.display = "block";
+
+  setLanguage(currentLang);
+}
+
+function storageKey(){ return "mama-contractions-" + (currentUser?.id || "guest"); }
+
+function getRecords(){
+  try { return JSON.parse(localStorage.getItem(storageKey())) || []; }
+  catch(e) { return []; }
+}
+
+function saveRecords(records){ localStorage.setItem(storageKey(), JSON.stringify(records)); }
+
+function formatClock(value){
+  const date = new Date(value);
+  return date.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+}
+
+function formatDuration(ms){
+  const sec = Math.max(0, Math.round(ms / 1000));
+  const min = Math.floor(sec / 60);
+  const rest = sec % 60;
+  return String(min).padStart(2,"0") + ":" + String(rest).padStart(2,"0");
+}
+
+function formatMinutes(ms){
+  if (!ms || ms < 0) return "-";
+  const min = Math.round(ms / 60000);
+  return min + " " + t().minutes;
+}
+
+function updateTimerText(){
+  const button = document.getElementById("timerButton");
+  const status = document.getElementById("timerStatus");
+  if (!button || !status) return;
+
+  button.textContent = timerRunning ? t().timerStop : t().timerStart;
+  status.textContent = timerRunning ? t().running : t().ready;
+}
+
+function toggleTimer(){
+  if (!timerRunning) {
+    timerRunning = true;
+    timerStart = Date.now();
+    timerInterval = setInterval(() => {
+      document.getElementById("timerDisplay").textContent = formatDuration(Date.now() - timerStart);
+    }, 500);
+  } else {
+    const end = Date.now();
+    const duration = end - timerStart;
+    timerRunning = false;
+    clearInterval(timerInterval);
+    document.getElementById("timerDisplay").textContent = "00:00";
+
+    const records = getRecords();
+    records.unshift({
+      id:Date.now(),
+      start:timerStart,
+      end:end,
+      duration:duration
+    });
+    saveRecords(records);
+    renderRecords();
+  }
+
+  updateTimerText();
+}
+
+function addManualRecord(){
+  const now = Date.now();
+  const records = getRecords();
+  records.unshift({
+    id:Date.now(),
+    start:now,
+    end:now + 60000,
+    duration:60000
+  });
+  saveRecords(records);
+  renderRecords();
+}
+
+function deleteRecord(id){
+  const records = getRecords().filter(record => record.id !== id);
+  saveRecords(records);
+  renderRecords();
+}
+
+function clearRecords(){
+  saveRecords([]);
+  renderRecords();
+}
+
+function average(values){
+  if (!values.length) return 0;
+  return values.reduce((a,b) => a+b, 0) / values.length;
+}
+
+function renderRecords(){
+  const records = getRecords();
+  const grid = document.getElementById("recordsGrid");
+
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  document.getElementById("countValue").textContent = records.length;
+
+  const avgDuration = average(records.map(r => r.duration || 0));
+  document.getElementById("durationValue").textContent = records.length ? formatDuration(avgDuration) : "-";
+
+  const intervals = [];
+  for (let i = 0; i < records.length - 1; i++) {
+    intervals.push(records[i].start - records[i+1].start);
+  }
+
+  const avgInterval = average(intervals);
+  document.getElementById("intervalValue").textContent = intervals.length ? formatMinutes(avgInterval) : "-";
+  document.getElementById("patternBox").textContent = records.length < 3 ? t().patternNone : t().patternWatch;
+
+  if (records.length === 0) {
+    grid.innerHTML = `<div class="empty">${t().empty}</div>`;
+    return;
+  }
+
+  records.forEach((record, index) => {
+    const interval = index < records.length - 1 ? record.start - records[index+1].start : null;
+
+    const card = document.createElement("div");
+    card.className = "record-card";
+    card.innerHTML = `
+      <div class="badge">${t().start}: ${formatClock(record.start)}</div>
+      <h3>${t().duration}: ${formatDuration(record.duration || 0)}</h3>
+      <p>${t().interval}: ${interval ? formatMinutes(interval) : "-"}</p>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-danger" onclick="deleteRecord(${record.id})">${t().delete}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+loadApp();
+</script>
+</body>
+</html>

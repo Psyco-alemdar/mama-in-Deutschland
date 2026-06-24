@@ -231,6 +231,8 @@ const translations={
     mFeeding:"Stillen & Flasche",dFeeding:"Stillen, Flasche, Pumpen und Windeln verfolgen.",
     mMovements:"Kindsbewegungen",dMovements:"Bewegungen des Babys zählen und speichern.",
     mSleep:"Schlaf",dSleep:"Babys Schlafphasen und Nickerchen verfolgen.",
+    mExperience:"Share your experience",dExperience:"Erfahrungen teilen, lesen, liken und kommentieren.",
+    mMarketplace:"Marketplace",dMarketplace:"Babyartikel verkaufen, kaufen oder kostenlos weitergeben.",
     noItems:"Keine Karten in dieser Kategorie."
   },
   fr:{
@@ -263,6 +265,8 @@ const translations={
     mFeeding:"Allaitement & biberon",dFeeding:"Suivre allaitement, biberon, tire-lait et couches.",
     mMovements:"Mouvements bébé",dMovements:"Compter et sauvegarder les mouvements du bébé.",
     mSleep:"Sommeil",dSleep:"Suivre les phases de sommeil et siestes du bébé.",
+    mExperience:"Share your experience",dExperience:"Partager, lire, liker et commenter les expériences des mamans.",
+    mMarketplace:"Marketplace",dMarketplace:"Vendre, acheter ou donner des affaires bébé.",
     noItems:"Aucune carte dans cette catégorie."
   },
   ar:{
@@ -295,6 +299,8 @@ const translations={
     mFeeding:"الرضاعة والقنينة",dFeeding:"متابعة الرضاعة والقنينة والضخ والحفاضات.",
     mMovements:"حركات الجنين",dMovements:"عدّ وحفظ حركات الطفل.",
     mSleep:"النوم",dSleep:"متابعة نوم الطفل والقيلولة.",
+    mExperience:"شاركي تجربتك",dExperience:"مشاركة وقراءة تجارب الأمهات والتفاعل معها.",
+    mMarketplace:"السوق",dMarketplace:"بيع أو شراء أو إعطاء أغراض الأطفال مجاناً.",
     noItems:"لا توجد بطاقات في هذه الفئة."
   },
   en:{
@@ -327,6 +333,8 @@ const translations={
     mFeeding:"Breast & bottle",dFeeding:"Track breastfeeding, bottles, pumping and diapers.",
     mMovements:"Baby movements",dMovements:"Count and save baby movements.",
     mSleep:"Sleep",dSleep:"Track baby's sleep phases and naps.",
+    mExperience:"Share your experience",dExperience:"Share, read, like and comment on mothers’ experiences.",
+    mMarketplace:"Marketplace",dMarketplace:"Sell, buy or give away baby items.",
     noItems:"No cards in this category."
   },
   tr:{
@@ -359,6 +367,8 @@ const translations={
     mFeeding:"Emzirme ve biberon",dFeeding:"Emzirme, biberon, pompa ve bez takibi.",
     mMovements:"Bebek hareketleri",dMovements:"Bebek hareketlerini say ve kaydet.",
     mSleep:"Uyku",dSleep:"Bebeğin uyku dönemlerini takip et.",
+    mExperience:"Deneyimini paylaş",dExperience:"Annelerin deneyimlerini paylaş, oku, beğen ve yorumla.",
+    mMarketplace:"Pazar yeri",dMarketplace:"Bebek eşyası sat, al veya ücretsiz ver.",
     noItems:"Bu kategoride kart yok."
   },
   ru:{
@@ -391,6 +401,8 @@ const translations={
     mFeeding:"Грудь и бутылочка",dFeeding:"Отслеживать кормления, бутылочки, сцеживание и подгузники.",
     mMovements:"Шевеления",dMovements:"Считать и сохранять движения ребёнка.",
     mSleep:"Сон",dSleep:"Отслеживать сон и дневные сны ребёнка.",
+    mExperience:"Поделиться опытом",dExperience:"Делиться, читать, отмечать полезное и комментировать опыт мам.",
+    mMarketplace:"Маркетплейс",dMarketplace:"Продавать, покупать или отдавать детские вещи.",
     noItems:"Нет карточек в этой категории."
   },
   uk:{
@@ -423,6 +435,8 @@ const translations={
     mFeeding:"Грудне і пляшечка",dFeeding:"Відстежувати годування, пляшечки, зціджування і підгузки.",
     mMovements:"Рухи дитини",dMovements:"Рахувати і зберігати рухи дитини.",
     mSleep:"Сон",dSleep:"Відстежувати сон і денні сни дитини.",
+    mExperience:"Поділитися досвідом",dExperience:"Ділитися, читати, позначати корисне і коментувати досвід мам.",
+    mMarketplace:"Маркетплейс",dMarketplace:"Продавати, купувати або віддавати дитячі речі.",
     noItems:"Немає карток у цій категорії."
   }
 };
@@ -447,7 +461,9 @@ const modules=[
   {id:"afterBirth",href:"after-birth.html",icon:"🌱",title:"mAfterBirth",desc:"dAfterBirth",category:"baby",min:30,max:60},
   {id:"feeding",href:"feeding.html",icon:"🍼",title:"mFeeding",desc:"dFeeding",category:"baby",min:34,max:60},
   {id:"sleep",href:"sleep.html",icon:"🌙",title:"mSleep",desc:"dSleep",category:"baby",min:34,max:60},
-  {id:"contractions",href:"contractions.html",icon:"⏱️",title:"mContractions",desc:"dContractions",category:"birth",min:34,max:42}
+  {id:"contractions",href:"contractions.html",icon:"⏱️",title:"mContractions",desc:"dContractions",category:"birth",min:34,max:42},
+  {id:"experience",href:"experience.html",icon:"💬",title:"mExperience",desc:"dExperience",category:"tools",always:true},
+  {id:"marketplace",href:"marketplace.html",icon:"🛒",title:"mMarketplace",desc:"dMarketplace",category:"tools",min:12,max:60}
 ];
 
 function t(){return translations[currentLang]||translations.de}

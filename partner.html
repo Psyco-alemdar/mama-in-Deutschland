@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mama in Deutschland - Partner</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center}
+.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button.done{background:var(--success);border-color:var(--success)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.card{background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:17px}
+p{margin:0;color:var(--muted);line-height:1.6}
+label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
+input,textarea{width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}
+textarea{min-height:100px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.box,.task-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Partner</h1>
+    <p id="pageText">Ein Bereich für den Partner: Unterstützung, Aufgaben, Gespräche und Vorbereitung auf Geburt und Babyzeit.</p>
+    <div class="soft" id="summaryBox">0 / 0 erledigt</div>
+  </section>
+
+  <section class="card">
+    <h2 id="tasksTitle">Partner-Checkliste</h2>
+    <p id="tasksText">Kleine praktische Schritte, die viel entlasten können.</p>
+
+    <div class="filters" style="margin-top:14px;">
+      <button class="filter-button active" onclick="setCategory('all')" id="catAll">Alle</button>
+      <button class="filter-button" onclick="setCategory('home')" id="catHome">Zuhause</button>
+      <button class="filter-button" onclick="setCategory('birth')" id="catBirth">Geburt</button>
+      <button class="filter-button" onclick="setCategory('emotion')" id="catEmotion">Emotionen</button>
+      <button class="filter-button" onclick="setCategory('after')" id="catAfter">Nach Geburt</button>
+    </div>
+
+    <div class="grid-3" id="tasksGrid"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="notesTitle">Gemeinsame Notizen</h2>
+
+      <label id="noteTitleLabel" for="noteTitle">Titel</label>
+      <input id="noteTitle" />
+
+      <label id="noteTextLabel" for="noteText">Notiz</label>
+      <textarea id="noteText"></textarea>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveNote()" id="saveNoteButton">Notiz speichern</button>
+        <button class="button-light" onclick="clearNoteForm()" id="clearNoteButton">Leeren</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="questionsTitle">Gesprächsfragen</h2>
+      <div class="grid-2" id="questionsGrid"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 id="savedNotesTitle">Gespeicherte Notizen</h2>
+    <div class="grid-3" id="notesGrid"></div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br />
+  <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+let currentUser = null;
+let currentProfile = null;
+let currentLang = localStorage.getItem("mama_lang") || "de";
+let categoryFilter = "all";
+
+const translations = {
+  de:{
+    backButton:"Zurück",pageTitle:"Partner",pageText:"Ein Bereich für den Partner: Unterstützung, Aufgaben, Gespräche und Vorbereitung auf Geburt und Babyzeit.",
+    done:"erledigt",tasksTitle:"Partner-Checkliste",tasksText:"Kleine praktische Schritte, die viel entlasten können.",
+    catAll:"Alle",catHome:"Zuhause",catBirth:"Geburt",catEmotion:"Emotionen",catAfter:"Nach Geburt",
+    openStatus:"Offen",doneStatus:"Erledigt",markDone:"Als erledigt markieren",markOpen:"Als offen markieren",
+    notesTitle:"Gemeinsame Notizen",noteTitleLabel:"Titel",noteTextLabel:"Notiz",saveNoteButton:"Notiz speichern",clearNoteButton:"Leeren",
+    questionsTitle:"Gesprächsfragen",savedNotesTitle:"Gespeicherte Notizen",delete:"Löschen",empty:"Noch nichts gespeichert.",
+    loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",
+    hospitalRoute:"Route zur Klinik testen",bagCheck:"Kliniktasche gemeinsam prüfen",documentsReady:"Dokumente griffbereit halten",
+    homeFood:"Essen und Einkäufe vorbereiten",cleanHome:"Wohnung ruhig und praktisch vorbereiten",carSeat:"Babyschale im Auto testen",
+    listen:"Zuhören ohne sofort Lösungen zu geben",askNeeds:"Täglich fragen: Was brauchst du heute?",protectRest:"Ruhezeiten schützen",
+    nightPlan:"Nachtplan nach Geburt besprechen",visitors:"Besucherregeln gemeinsam festlegen",adminHelp:"Bei Anträgen und Dokumenten helfen",
+    q1:"Was macht dir gerade am meisten Sorgen?",q2:"Wie kann ich dich diese Woche konkret entlasten?",q3:"Was wünschst du dir für die Geburt?",q4:"Wie wollen wir Besuch nach der Geburt regeln?"
+  },
+  fr:{
+    backButton:"Retour",pageTitle:"Partenaire",pageText:"Un espace pour le partenaire : soutien, tâches, discussions et préparation à la naissance.",
+    done:"terminé",tasksTitle:"Checklist partenaire",tasksText:"Petites actions pratiques qui peuvent beaucoup soulager.",
+    catAll:"Tous",catHome:"Maison",catBirth:"Naissance",catEmotion:"Émotions",catAfter:"Après naissance",
+    openStatus:"Ouvert",doneStatus:"Terminé",markDone:"Marquer comme terminé",markOpen:"Marquer comme ouvert",
+    notesTitle:"Notes communes",noteTitleLabel:"Titre",noteTextLabel:"Note",saveNoteButton:"Enregistrer",clearNoteButton:"Vider",
+    questionsTitle:"Questions à discuter",savedNotesTitle:"Notes enregistrées",delete:"Supprimer",empty:"Rien enregistré pour le moment.",
+    loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+    hospitalRoute:"Tester le trajet vers la clinique",bagCheck:"Vérifier la valise maternité ensemble",documentsReady:"Garder les documents prêts",
+    homeFood:"Préparer repas et courses",cleanHome:"Préparer la maison calmement",carSeat:"Tester la coque bébé dans la voiture",
+    listen:"Écouter sans proposer tout de suite des solutions",askNeeds:"Demander chaque jour : de quoi as-tu besoin ?",protectRest:"Protéger les temps de repos",
+    nightPlan:"Discuter du plan de nuit après la naissance",visitors:"Fixer ensemble les règles de visite",adminHelp:"Aider avec les demandes et documents",
+    q1:"Qu’est-ce qui t’inquiète le plus en ce moment ?",q2:"Comment puis-je t’aider concrètement cette semaine ?",q3:"Que souhaites-tu pour l’accouchement ?",q4:"Comment voulons-nous gérer les visites après la naissance ?"
+  },
+  ar:{
+    backButton:"رجوع",pageTitle:"الشريك",pageText:"مساحة للشريك: الدعم، المهام، الحوار والتحضير للولادة ومرحلة الطفل.",
+    done:"تم",tasksTitle:"قائمة الشريك",tasksText:"خطوات عملية صغيرة يمكن أن تخفف كثيراً.",
+    catAll:"الكل",catHome:"البيت",catBirth:"الولادة",catEmotion:"المشاعر",catAfter:"بعد الولادة",
+    openStatus:"مفتوح",doneStatus:"تم",markDone:"تحديد كمنجز",markOpen:"تحديد كمفتوح",
+    notesTitle:"ملاحظات مشتركة",noteTitleLabel:"العنوان",noteTextLabel:"ملاحظة",saveNoteButton:"حفظ الملاحظة",clearNoteButton:"مسح",
+    questionsTitle:"أسئلة للنقاش",savedNotesTitle:"الملاحظات المحفوظة",delete:"حذف",empty:"لا يوجد شيء محفوظ حالياً.",
+    loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",
+    hospitalRoute:"تجربة الطريق إلى المستشفى",bagCheck:"مراجعة حقيبة المستشفى معاً",documentsReady:"تجهيز الوثائق",
+    homeFood:"تحضير الأكل والمشتريات",cleanHome:"تحضير البيت بهدوء",carSeat:"تجربة كرسي السيارة للرضيع",
+    listen:"الاستماع دون تقديم حلول فوراً",askNeeds:"السؤال يومياً: ماذا تحتاجين اليوم؟",protectRest:"حماية أوقات الراحة",
+    nightPlan:"مناقشة خطة الليل بعد الولادة",visitors:"تحديد قواعد الزيارة معاً",adminHelp:"المساعدة في الطلبات والوثائق",
+    q1:"ما أكثر شيء يقلقك الآن؟",q2:"كيف أستطيع مساعدتك عملياً هذا الأسبوع؟",q3:"ماذا تتمنين للولادة؟",q4:"كيف نريد تنظيم الزيارات بعد الولادة؟"
+  },
+  en:{
+    backButton:"Back",pageTitle:"Partner",pageText:"A space for the partner: support, tasks, conversations and preparation for birth and baby time.",
+    done:"done",tasksTitle:"Partner checklist",tasksText:"Small practical steps that can relieve a lot.",
+    catAll:"All",catHome:"Home",catBirth:"Birth",catEmotion:"Emotions",catAfter:"After birth",
+    openStatus:"Open",doneStatus:"Done",markDone:"Mark as done",markOpen:"Mark as open",
+    notesTitle:"Shared notes",noteTitleLabel:"Title",noteTextLabel:"Note",saveNoteButton:"Save note",clearNoteButton:"Clear",
+    questionsTitle:"Conversation questions",savedNotesTitle:"Saved notes",delete:"Delete",empty:"Nothing saved yet.",
+    loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",
+    hospitalRoute:"Test route to clinic",bagCheck:"Check hospital bag together",documentsReady:"Keep documents ready",
+    homeFood:"Prepare food and shopping",cleanHome:"Prepare home calmly",carSeat:"Test infant car seat",
+    listen:"Listen without immediately offering solutions",askNeeds:"Ask daily: what do you need today?",protectRest:"Protect rest time",
+    nightPlan:"Discuss night plan after birth",visitors:"Set visitor rules together",adminHelp:"Help with applications and documents",
+    q1:"What worries you most right now?",q2:"How can I practically support you this week?",q3:"What do you wish for the birth?",q4:"How do we want to handle visitors after birth?"
+  },
+  tr:{
+    backButton:"Geri",pageTitle:"Partner",pageText:"Partner için alan: destek, görevler, konuşmalar ve doğum ile bebek dönemine hazırlık.",
+    done:"tamamlandı",tasksTitle:"Partner kontrol listesi",tasksText:"Çok rahatlatabilecek küçük pratik adımlar.",
+    catAll:"Hepsi",catHome:"Ev",catBirth:"Doğum",catEmotion:"Duygular",catAfter:"Doğum sonrası",
+    openStatus:"Açık",doneStatus:"Tamamlandı",markDone:"Tamamlandı olarak işaretle",markOpen:"Açık olarak işaretle",
+    notesTitle:"Ortak notlar",noteTitleLabel:"Başlık",noteTextLabel:"Not",saveNoteButton:"Notu kaydet",clearNoteButton:"Temizle",
+    questionsTitle:"Konuşma soruları",savedNotesTitle:"Kaydedilen notlar",delete:"Sil",empty:"Henüz kayıt yok.",
+    loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",
+    hospitalRoute:"Kliniğe yolu dene",bagCheck:"Hastane çantasını birlikte kontrol et",documentsReady:"Belgeleri hazır tut",
+    homeFood:"Yemek ve alışveriş hazırla",cleanHome:"Evi sakin ve pratik hazırla",carSeat:"Bebek oto koltuğunu dene",
+    listen:"Hemen çözüm vermeden dinle",askNeeds:"Her gün sor: bugün neye ihtiyacın var?",protectRest:"Dinlenme zamanını koru",
+    nightPlan:"Doğum sonrası gece planını konuş",visitors:"Ziyaret kurallarını birlikte belirle",adminHelp:"Başvuru ve belgelerde yardım et",
+    q1:"Şu anda seni en çok ne endişelendiriyor?",q2:"Bu hafta seni somut olarak nasıl rahatlatabilirim?",q3:"Doğum için ne diliyorsun?",q4:"Doğumdan sonra ziyaretleri nasıl düzenleyelim?"
+  },
+  ru:{
+    backButton:"Назад",pageTitle:"Партнёр",pageText:"Раздел для партнёра: поддержка, задачи, разговоры и подготовка к родам и периоду с малышом.",
+    done:"готово",tasksTitle:"Список партнёра",tasksText:"Небольшие практические шаги, которые могут сильно помочь.",
+    catAll:"Все",catHome:"Дом",catBirth:"Роды",catEmotion:"Эмоции",catAfter:"После родов",
+    openStatus:"Открыто",doneStatus:"Готово",markDone:"Отметить как готово",markOpen:"Отметить как открыто",
+    notesTitle:"Общие заметки",noteTitleLabel:"Название",noteTextLabel:"Заметка",saveNoteButton:"Сохранить заметку",clearNoteButton:"Очистить",
+    questionsTitle:"Вопросы для разговора",savedNotesTitle:"Сохранённые заметки",delete:"Удалить",empty:"Пока ничего не сохранено.",
+    loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",
+    hospitalRoute:"Проверить маршрут в клинику",bagCheck:"Проверить сумку в роддом вместе",documentsReady:"Держать документы готовыми",
+    homeFood:"Подготовить еду и покупки",cleanHome:"Спокойно подготовить дом",carSeat:"Проверить автокресло",
+    listen:"Слушать, не предлагая сразу решения",askNeeds:"Ежедневно спрашивать: что тебе нужно сегодня?",protectRest:"Беречь время отдыха",
+    nightPlan:"Обсудить ночной план после родов",visitors:"Договориться о правилах визитов",adminHelp:"Помогать с заявлениями и документами",
+    q1:"Что тебя сейчас больше всего беспокоит?",q2:"Как я могу конкретно помочь тебе на этой неделе?",q3:"Что ты хочешь для родов?",q4:"Как мы будем принимать гостей после родов?"
+  },
+  uk:{
+    backButton:"Назад",pageTitle:"Партнер",pageText:"Розділ для партнера: підтримка, завдання, розмови та підготовка до пологів і часу з дитиною.",
+    done:"готово",tasksTitle:"Список партнера",tasksText:"Невеликі практичні кроки, які можуть сильно допомогти.",
+    catAll:"Усі",catHome:"Дім",catBirth:"Пологи",catEmotion:"Емоції",catAfter:"Після пологів",
+    openStatus:"Відкрито",doneStatus:"Готово",markDone:"Позначити як готово",markOpen:"Позначити як відкрито",
+    notesTitle:"Спільні нотатки",noteTitleLabel:"Назва",noteTextLabel:"Нотатка",saveNoteButton:"Зберегти нотатку",clearNoteButton:"Очистити",
+    questionsTitle:"Питання для розмови",savedNotesTitle:"Збережені нотатки",delete:"Видалити",empty:"Поки нічого не збережено.",
+    loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",
+    hospitalRoute:"Перевірити маршрут до клініки",bagCheck:"Перевірити сумку разом",documentsReady:"Тримати документи готовими",
+    homeFood:"Підготувати їжу і покупки",cleanHome:"Спокійно підготувати дім",carSeat:"Перевірити автокрісло",
+    listen:"Слухати без негайних рішень",askNeeds:"Щодня питати: що тобі потрібно сьогодні?",protectRest:"Берегти час відпочинку",
+    nightPlan:"Обговорити нічний план після пологів",visitors:"Узгодити правила візитів",adminHelp:"Допомагати із заявами та документами",
+    q1:"Що тебе зараз найбільше турбує?",q2:"Як я можу конкретно допомогти цього тижня?",q3:"Чого ти хочеш для пологів?",q4:"Як ми організуємо відвідувачів після пологів?"
+  }
+};
+
+const tasks = [
+  {key:"hospitalRoute", category:"birth"},
+  {key:"bagCheck", category:"birth"},
+  {key:"documentsReady", category:"birth"},
+  {key:"homeFood", category:"home"},
+  {key:"cleanHome", category:"home"},
+  {key:"carSeat", category:"home"},
+  {key:"listen", category:"emotion"},
+  {key:"askNeeds", category:"emotion"},
+  {key:"protectRest", category:"emotion"},
+  {key:"nightPlan", category:"after"},
+  {key:"visitors", category:"after"},
+  {key:"adminHelp", category:"after"}
+];
+
+const questions = ["q1","q2","q3","q4"];
+
+function t(){ return translations[currentLang] || translations.de; }
+
+function setLanguage(lang){
+  currentLang = lang;
+  localStorage.setItem("mama_lang", lang);
+  document.documentElement.lang = lang;
+  document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+  document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
+  const active = document.getElementById("lang-" + lang);
+  if (active) active.classList.add("active");
+
+  const tr = t();
+  Object.keys(tr).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = tr[id];
+  });
+
+  updateButtons();
+  renderTasks();
+  renderQuestions();
+  renderNotes();
+}
+
+function determineTheme(type, gender){
+  if (gender === "boy" || gender === "twin_boys") return "boy";
+  if (gender === "girl" || gender === "twin_girls") return "girl";
+  if (type === "twins" || gender === "twin_mixed") return "twin";
+  return "neutral";
+}
+
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if (theme === "boy") document.body.classList.add("theme-boy");
+  if (theme === "girl") document.body.classList.add("theme-girl");
+  if (theme === "twin") document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+  const { data, error } = await supabaseClient.auth.getSession();
+
+  if (error || !data.session) {
+    document.getElementById("loginMessage").style.display = "block";
+    document.getElementById("appShell").style.display = "none";
+    return;
+  }
+
+  currentUser = data.session.user;
+
+  const { data: profiles, error: profileError } = await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending:false })
+    .limit(1);
+
+  if (profileError || !profiles || profiles.length === 0) {
+    window.location.href = "index.html?reason=no_profile";
+    return;
+  }
+
+  currentProfile = profiles[0];
+  currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+
+  applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
+
+  document.getElementById("loginMessage").style.display = "none";
+  document.getElementById("appShell").style.display = "block";
+
+  setLanguage(currentLang);
+}
+
+function taskKey(){ return "mama-partner-tasks-" + (currentUser?.id || "guest"); }
+function noteKey(){ return "mama-partner-notes-" + (currentUser?.id || "guest"); }
+
+function getTaskStatus(){
+  try { return JSON.parse(localStorage.getItem(taskKey())) || {}; }
+  catch(e) { return {}; }
+}
+
+function saveTaskStatus(statuses){ localStorage.setItem(taskKey(), JSON.stringify(statuses)); }
+
+function getNotes(){
+  try { return JSON.parse(localStorage.getItem(noteKey())) || []; }
+  catch(e) { return []; }
+}
+
+function saveNotes(notes){ localStorage.setItem(noteKey(), JSON.stringify(notes)); }
+
+function setCategory(category){
+  categoryFilter = category;
+  updateButtons();
+  renderTasks();
+}
+
+function updateButtons(){
+  [
+    ["catAll","all"],
+    ["catHome","home"],
+    ["catBirth","birth"],
+    ["catEmotion","emotion"],
+    ["catAfter","after"]
+  ].forEach(([id,value]) => {
+    const button = document.getElementById(id);
+    if (button) button.classList.toggle("active", categoryFilter === value);
+  });
+}
+
+function categoryLabel(category){
+  if (category === "home") return t().catHome;
+  if (category === "birth") return t().catBirth;
+  if (category === "emotion") return t().catEmotion;
+  if (category === "after") return t().catAfter;
+  return t().catAll;
+}
+
+function toggleTask(key){
+  const statuses = getTaskStatus();
+  statuses[key] = statuses[key] === "done" ? "open" : "done";
+  saveTaskStatus(statuses);
+  renderTasks();
+}
+
+function renderTasks(){
+  const grid = document.getElementById("tasksGrid");
+  const statuses = getTaskStatus();
+
+  let visible = tasks;
+  if (categoryFilter !== "all") visible = tasks.filter(task => task.category === categoryFilter);
+
+  const doneCount = tasks.filter(task => statuses[task.key] === "done").length;
+  document.getElementById("summaryBox").textContent = `${doneCount} / ${tasks.length} ${t().done}`;
+
+  grid.innerHTML = "";
+
+  visible.forEach(task => {
+    const done = statuses[task.key] === "done";
+    const card = document.createElement("div");
+    card.className = "task-card";
+    card.innerHTML = `
+      <div class="badge">${categoryLabel(task.category)}</div>
+      <div class="badge">${done ? t().doneStatus : t().openStatus}</div>
+      <h3>${t()[task.key]}</h3>
+      <div class="actions" style="margin-top:14px;">
+        <button class="${done ? "button done" : "button"}" onclick="toggleTask('${task.key}')">${done ? t().markOpen : t().markDone}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderQuestions(){
+  const grid = document.getElementById("questionsGrid");
+  grid.innerHTML = "";
+
+  questions.forEach(key => {
+    const card = document.createElement("div");
+    card.className = "box";
+    card.innerHTML = `<p>${t()[key]}</p>`;
+    grid.appendChild(card);
+  });
+}
+
+function saveNote(){
+  const title = document.getElementById("noteTitle").value.trim();
+  const text = document.getElementById("noteText").value.trim();
+
+  if (!title && !text) return;
+
+  const notes = getNotes();
+  notes.unshift({
+    id:Date.now(),
+    title,
+    text,
+    created_at:new Date().toISOString()
+  });
+
+  saveNotes(notes);
+  clearNoteForm();
+  renderNotes();
+}
+
+function clearNoteForm(){
+  document.getElementById("noteTitle").value = "";
+  document.getElementById("noteText").value = "";
+}
+
+function deleteNote(id){
+  const notes = getNotes().filter(note => note.id !== id);
+  saveNotes(notes);
+  renderNotes();
+}
+
+function renderNotes(){
+  const grid = document.getElementById("notesGrid");
+  const notes = getNotes();
+
+  grid.innerHTML = "";
+
+  if (notes.length === 0) {
+    grid.innerHTML = `<div class="empty">${t().empty}</div>`;
+    return;
+  }
+
+  notes.forEach(note => {
+    const card = document.createElement("div");
+    card.className = "task-card";
+    card.innerHTML = `
+      <h3>${note.title || "-"}</h3>
+      <p>${note.text || ""}</p>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-danger" onclick="deleteNote(${note.id})">${t().delete}</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+loadApp();
+</script>
+</body>
+</html>

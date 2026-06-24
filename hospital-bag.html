@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Kliniktasche</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950}
+.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.language-buttons button,.button-light,.button,.button-danger,.filter-button{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center}
+.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.card{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:34px;letter-spacing:-1.5px}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.box,.item-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
+.checkbox-row{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:10px;border-radius:16px;border:1px solid var(--border);background:white}
+.checkbox-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.item-title{font-weight:900;color:var(--brown)}
+.item-note{font-size:13px;color:var(--muted);margin-top:4px}
+.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
+.message{max-width:650px;margin:60px auto;text-align:center}
+.progress{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:var(--brown);width:0%}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
+  <div class="top-actions">
+    <a class="button-light" href="app.html" id="backButton">Zurück</a>
+    <div class="language-buttons">
+      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
+      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
+      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
+      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
+      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
+      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
+      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="card">
+    <h1 id="pageTitle">Kliniktasche</h1>
+    <p id="pageText">Eine praktische Checkliste für Klinik, Mama, Baby und Dokumente. Du kannst abhaken, was schon vorbereitet ist.</p>
+    <div class="soft" id="hintText">Ideal ab ungefähr SSW 28–34 vorbereiten.</div>
+    <div class="progress"><div id="progressBar"></div></div>
+    <div class="soft" id="progressText">0 / 0 erledigt</div>
+  </section>
+
+  <section class="card">
+    <div class="filters">
+      <button class="filter-button active" onclick="setFilter('all')" id="filterAll">Alle</button>
+      <button class="filter-button" onclick="setFilter('documents')" id="filterDocuments">Dokumente</button>
+      <button class="filter-button" onclick="setFilter('mama')" id="filterMama">Mama</button>
+      <button class="filter-button" onclick="setFilter('baby')" id="filterBaby">Baby</button>
+      <button class="filter-button" onclick="setFilter('partner')" id="filterPartner">Partner</button>
+    </div>
+    <div class="grid-2" id="itemsGrid"></div>
+    <div class="actions" style="margin-top:16px;">
+      <button class="button-danger" onclick="resetChecklist()" id="resetButton">Zurücksetzen</button>
+    </div>
+  </section>
+</main>
+
+<section class="message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Bitte einloggen</h2>
+  <p id="loginText">Du musst dich zuerst anmelden.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Zur Startseite</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null;
+let currentProfile=null;
+let currentLang=localStorage.getItem("mama_lang")||"de";
+let activeFilter="all";
+
+const translations={
+de:{backButton:"Zurück",pageTitle:"Kliniktasche",pageText:"Eine praktische Checkliste für Klinik, Mama, Baby und Dokumente. Du kannst abhaken, was schon vorbereitet ist.",hintText:"Ideal ab ungefähr SSW 28–34 vorbereiten.",filterAll:"Alle",filterDocuments:"Dokumente",filterMama:"Mama",filterBaby:"Baby",filterPartner:"Partner",resetButton:"Zurücksetzen",done:"erledigt",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",
+mutterpass:"Mutterpass",insurance:"Krankenversicherungskarte",id:"Ausweis / Pass",birthPlan:"Geburtsplan",phoneCharger:"Handy-Ladekabel",comfortableClothes:"Bequeme Kleidung",nightgown:"Nachthemd / Stillshirt",toiletries:"Kulturbeutel",slippers:"Hausschuhe",snacks:"Snacks und Wasser",babyBodies:"Bodys für Baby",babyClothes:"Kleidung für Heimfahrt",babyHat:"Mütze und Socken",blanket:"Babydecke",carSeat:"Babyschale / Autositz",partnerClothes:"Kleidung für Partner",partnerSnacks:"Snacks für Partner",camera:"Kamera / Handy",empty:"Keine Einträge."},
+fr:{backButton:"Retour",pageTitle:"Valise maternité",pageText:"Checklist pratique pour la maternité, maman, bébé et documents. Tu peux cocher ce qui est prêt.",hintText:"Idéal à préparer vers SA 28–34.",filterAll:"Tous",filterDocuments:"Documents",filterMama:"Maman",filterBaby:"Bébé",filterPartner:"Partenaire",resetButton:"Réinitialiser",done:"terminé",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+mutterpass:"Mutterpass",insurance:"Carte d’assurance maladie",id:"Carte d’identité / passeport",birthPlan:"Projet de naissance",phoneCharger:"Chargeur téléphone",comfortableClothes:"Vêtements confortables",nightgown:"Chemise de nuit / haut allaitement",toiletries:"Trousse de toilette",slippers:"Pantoufles",snacks:"Snacks et eau",babyBodies:"Bodies bébé",babyClothes:"Tenue de sortie bébé",babyHat:"Bonnet et chaussettes",blanket:"Couverture bébé",carSeat:"Coque bébé / siège auto",partnerClothes:"Vêtements partenaire",partnerSnacks:"Snacks partenaire",camera:"Caméra / téléphone",empty:"Aucun élément."},
+ar:{backButton:"رجوع",pageTitle:"حقيبة المستشفى",pageText:"قائمة عملية للمستشفى والأم والطفل والوثائق. يمكنك تحديد ما تم تحضيره.",hintText:"الأفضل تحضيرها تقريباً بين الأسبوع 28 و34.",filterAll:"الكل",filterDocuments:"الوثائق",filterMama:"الأم",filterBaby:"الطفل",filterPartner:"الشريك",resetButton:"إعادة ضبط",done:"تم",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",
+mutterpass:"دفتر الحمل Mutterpass",insurance:"بطاقة التأمين الصحي",id:"بطاقة الهوية / جواز السفر",birthPlan:"خطة الولادة",phoneCharger:"شاحن الهاتف",comfortableClothes:"ملابس مريحة",nightgown:"قميص نوم / ملابس رضاعة",toiletries:"حقيبة النظافة",slippers:"شبشب",snacks:"وجبات خفيفة وماء",babyBodies:"ملابس داخلية للطفل",babyClothes:"ملابس خروج الطفل",babyHat:"قبعة وجوارب",blanket:"بطانية الطفل",carSeat:"كرسي السيارة للطفل",partnerClothes:"ملابس للشريك",partnerSnacks:"وجبات للشريك",camera:"كاميرا / هاتف",empty:"لا توجد عناصر."},
+en:{backButton:"Back",pageTitle:"Hospital bag",pageText:"A practical checklist for hospital, mother, baby and documents. You can check what is ready.",hintText:"Best prepared around week 28–34.",filterAll:"All",filterDocuments:"Documents",filterMama:"Mother",filterBaby:"Baby",filterPartner:"Partner",resetButton:"Reset",done:"done",loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",
+mutterpass:"Mutterpass",insurance:"Health insurance card",id:"ID / passport",birthPlan:"Birth plan",phoneCharger:"Phone charger",comfortableClothes:"Comfortable clothes",nightgown:"Nightgown / nursing shirt",toiletries:"Toiletry bag",slippers:"Slippers",snacks:"Snacks and water",babyBodies:"Baby bodysuits",babyClothes:"Going-home outfit",babyHat:"Hat and socks",blanket:"Baby blanket",carSeat:"Infant car seat",partnerClothes:"Partner clothes",partnerSnacks:"Partner snacks",camera:"Camera / phone",empty:"No items."},
+tr:{backButton:"Geri",pageTitle:"Hastane çantası",pageText:"Hastane, anne, bebek ve belgeler için pratik kontrol listesi.",hintText:"Yaklaşık 28–34. haftadan itibaren hazırlamak iyi olur.",filterAll:"Hepsi",filterDocuments:"Belgeler",filterMama:"Anne",filterBaby:"Bebek",filterPartner:"Partner",resetButton:"Sıfırla",done:"tamamlandı",loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",
+mutterpass:"Mutterpass",insurance:"Sağlık sigortası kartı",id:"Kimlik / pasaport",birthPlan:"Doğum planı",phoneCharger:"Telefon şarjı",comfortableClothes:"Rahat kıyafetler",nightgown:"Gecelik / emzirme tişörtü",toiletries:"Bakım çantası",slippers:"Terlik",snacks:"Atıştırmalık ve su",babyBodies:"Bebek body",babyClothes:"Eve dönüş kıyafeti",babyHat:"Şapka ve çorap",blanket:"Bebek battaniyesi",carSeat:"Bebek oto koltuğu",partnerClothes:"Partner kıyafeti",partnerSnacks:"Partner atıştırmalığı",camera:"Kamera / telefon",empty:"Öğe yok."},
+ru:{backButton:"Назад",pageTitle:"Сумка в роддом",pageText:"Практический список для клиники, мамы, ребёнка и документов.",hintText:"Лучше подготовить примерно на 28–34 неделе.",filterAll:"Все",filterDocuments:"Документы",filterMama:"Мама",filterBaby:"Ребёнок",filterPartner:"Партнёр",resetButton:"Сбросить",done:"готово",loginTitle:"Войдите",loginText:"Сначала нужно войти.",loginBackButton:"На главную",
+mutterpass:"Mutterpass",insurance:"Карта медицинской страховки",id:"ID / паспорт",birthPlan:"План родов",phoneCharger:"Зарядка телефона",comfortableClothes:"Удобная одежда",nightgown:"Ночная рубашка / топ для ГВ",toiletries:"Косметичка",slippers:"Тапочки",snacks:"Перекусы и вода",babyBodies:"Боди для малыша",babyClothes:"Одежда на выписку",babyHat:"Шапочка и носки",blanket:"Одеяло малыша",carSeat:"Автокресло для младенца",partnerClothes:"Одежда партнёра",partnerSnacks:"Перекусы партнёра",camera:"Камера / телефон",empty:"Нет пунктов."},
+uk:{backButton:"Назад",pageTitle:"Сумка в пологовий",pageText:"Практичний список для клініки, мами, дитини та документів.",hintText:"Краще підготувати приблизно на 28–34 тижні.",filterAll:"Усі",filterDocuments:"Документи",filterMama:"Мама",filterBaby:"Дитина",filterPartner:"Партнер",resetButton:"Скинути",done:"готово",loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",
+mutterpass:"Mutterpass",insurance:"Картка медичного страхування",id:"ID / паспорт",birthPlan:"План пологів",phoneCharger:"Зарядка телефону",comfortableClothes:"Зручний одяг",nightgown:"Нічна сорочка / топ для ГВ",toiletries:"Косметичка",slippers:"Капці",snacks:"Перекуси і вода",babyBodies:"Боді для дитини",babyClothes:"Одяг на виписку",babyHat:"Шапочка і шкарпетки",blanket:"Ковдра дитини",carSeat:"Автокрісло для немовляти",partnerClothes:"Одяг партнера",partnerSnacks:"Перекуси партнера",camera:"Камера / телефон",empty:"Немає пунктів."}
+};
+
+const checklist=[
+{id:"mutterpass",cat:"documents"},{id:"insurance",cat:"documents"},{id:"id",cat:"documents"},{id:"birthPlan",cat:"documents"},
+{id:"phoneCharger",cat:"mama"},{id:"comfortableClothes",cat:"mama"},{id:"nightgown",cat:"mama"},{id:"toiletries",cat:"mama"},{id:"slippers",cat:"mama"},{id:"snacks",cat:"mama"},
+{id:"babyBodies",cat:"baby"},{id:"babyClothes",cat:"baby"},{id:"babyHat",cat:"baby"},{id:"blanket",cat:"baby"},{id:"carSeat",cat:"baby"},
+{id:"partnerClothes",cat:"partner"},{id:"partnerSnacks",cat:"partner"},{id:"camera",cat:"partner"}
+];
+
+function t(){return translations[currentLang]||translations.de}
+function storageKey(){return "mama-hospital-bag-"+(currentUser?currentUser.id:"guest")}
+function getState(){try{return JSON.parse(localStorage.getItem(storageKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(storageKey(),JSON.stringify(s))}
+
+function setLanguage(lang){
+ currentLang=lang;localStorage.setItem("mama_lang",lang);
+ document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ document.querySelectorAll(".language-buttons button").forEach(b=>b.classList.remove("active"));
+ const a=document.getElementById("lang-"+lang);if(a)a.classList.add("active");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ updateFilters();renderItems();
+}
+
+function setFilter(f){activeFilter=f;updateFilters();renderItems()}
+function updateFilters(){
+ [["filterAll","all"],["filterDocuments","documents"],["filterMama","mama"],["filterBaby","baby"],["filterPartner","partner"]].forEach(([id,val])=>{
+  const b=document.getElementById(id);if(b)b.classList.toggle("active",activeFilter===val);
+ });
+}
+
+function toggleItem(id){
+ const s=getState();s[id]=!s[id];saveState(s);renderItems();
+}
+
+function resetChecklist(){saveState({});renderItems()}
+
+function renderItems(){
+ const grid=document.getElementById("itemsGrid");if(!grid)return;
+ const s=getState();
+ const items=checklist.filter(i=>activeFilter==="all"||i.cat===activeFilter);
+ grid.innerHTML="";
+ if(items.length===0){grid.innerHTML='<div class="empty">'+t().empty+'</div>';return}
+ items.forEach(item=>{
+  const div=document.createElement("div");
+  div.className="item-card";
+  div.innerHTML='<label class="checkbox-row"><input type="checkbox" '+(s[item.id]?'checked':'')+' onchange="toggleItem(\''+item.id+'\')"><span><span class="item-title">'+t()[item.id]+'</span><div class="item-note">'+document.getElementById("filter"+item.cat.charAt(0).toUpperCase()+item.cat.slice(1))?.textContent+'</div></span></label>';
+  grid.appendChild(div);
+ });
+ const done=checklist.filter(i=>s[i.id]).length;
+ const total=checklist.length;
+ document.getElementById("progressText").textContent=done+" / "+total+" "+t().done;
+ document.getElementById("progressBar").style.width=Math.round(done/total*100)+"%";
+}
+
+function determineTheme(type,gender){
+ if(gender==="boy"||gender==="twin_boys")return"boy";
+ if(gender==="girl"||gender==="twin_girls")return"girl";
+ if(type==="twins"||gender==="twin_mixed")return"twin";
+ return"neutral";
+}
+function applyTheme(theme){
+ document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+ if(theme==="boy")document.body.classList.add("theme-boy");
+ if(theme==="girl")document.body.classList.add("theme-girl");
+ if(theme==="twin")document.body.classList.add("theme-twin");
+}
+
+async function loadApp(){
+ const result=await supabaseClient.auth.getSession();
+ if(!result.data.session){
+  document.getElementById("loginMessage").style.display="block";
+  document.getElementById("appShell").style.display="none";
+  return;
+ }
+ currentUser=result.data.session.user;
+ const profileResult=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ if(profileResult.error||!profileResult.data||profileResult.data.length===0){window.location.href="index.html?reason=no_profile";return}
+ currentProfile=profileResult.data[0];
+ currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
+ applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("loginMessage").style.display="none";
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+}
+loadApp();
+</script>
+</body>
+</html>

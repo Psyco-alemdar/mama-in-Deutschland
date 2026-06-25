@@ -8,45 +8,76 @@
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
   --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
-  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.12);
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
 }
-body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
-body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
-body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(198,164,106,.22),transparent 30%),radial-gradient(circle at 92% 8%,rgba(155,115,87,.16),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-.wrap{max-width:1220px;margin:0 auto;padding:22px 18px 34px}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
 header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;text-decoration:none;letter-spacing:-.5px}
-.brand-icon{width:46px;height:46px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.button,.button-light,.button-danger,.button-success{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
-.lang-menu{position:absolute;right:0;top:48px;width:190px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:10}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
-.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:900;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
 .lang-menu button:hover{background:var(--soft)}
-.card,.hero,.panel{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 65%,var(--soft));position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:210px;height:210px;border-radius:50%;background:rgba(155,115,87,.10)}
-.hero-content,.hero-side{position:relative;z-index:1}
-.kicker{display:inline-flex;padding:7px 11px;border-radius:99px;background:var(--soft);color:var(--brown);font-weight:950;font-size:12px;margin-bottom:12px}
-h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:40px;letter-spacing:-1.6px;line-height:1.05}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.box,.guide-item{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.timer-card,.source-card,.history-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.timer-display{font-size:56px;letter-spacing:-2px;font-weight:950;color:var(--brown);text-align:center;margin:18px 0}
+.big-action{width:100%;padding:18px 20px;border-radius:24px;border:0;background:var(--brown);color:white;font-size:20px;font-weight:950;cursor:pointer;font-family:inherit}
+.big-action.active{background:var(--danger)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.progress{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
-.checkbox-row{display:flex;gap:12px;align-items:flex-start;margin-top:11px;padding:12px;border-radius:17px;border:1px solid var(--border);background:white}
-.checkbox-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.badge-dark{background:var(--brown);color:white}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
-.login-message{max-width:650px;margin:60px auto;text-align:center}.status{display:none;margin-top:12px;font-weight:900;color:var(--brown)}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.timeline{display:grid;gap:12px}
+.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
+.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.history-list{display:grid;gap:10px;margin-top:12px}
+.history-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:white;border:1px solid var(--border);border-radius:18px;padding:12px}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-@media(max-width:960px){.hero,.grid-2{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:31px}.grid{grid-template-columns:1fr}.card,.hero,.panel{padding:20px}.top-actions{width:100%;justify-content:flex-start}}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.timer-display{font-size:44px}.history-item{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -54,8 +85,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 <header>
   <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
   <div class="top-actions">
-    <a class="button-light" href="profile.html" id="uiProfile">Profil</a>
-    <button class="button-danger" onclick="signOut()" id="uiLogout">Déconnexion</button>
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
     <div class="lang-wrap">
       <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
       <div class="lang-menu" id="langMenu">
@@ -64,8 +95,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
         <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
         <button onclick="setLanguage('en')">🇬🇧 EN English</button>
         <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
-        <button onclick="setLanguage('ru')">🇷🇺 RU Русский</button>
-        <button onclick="setLanguage('uk')">🇺🇦 UK Українська</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
     </div>
   </div>
@@ -73,66 +104,127 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 
 <main id="appShell" style="display:none;">
   <section class="hero">
-    <div class="hero-content">
-      <div class="kicker" id="pageKicker">-</div>
-      <h1 id="pageTitle">-</h1>
-      <p id="pageSubtitle">-</p>
-      <div class="soft" id="profileInfo">-</div>
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Timer contractions</div>
+      <h1 id="pageTitle">Mesurer les contractions clairement</h1>
+      <p id="pageText">Un timer simple pour noter la durée, l’intervalle et la régularité des contractions. Il aide à expliquer la situation au téléphone, mais ne remplace pas les consignes de ta clinique.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="weekLabel">Semaine actuelle</div><div class="stat-value" id="weekValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="avgDurationLabel">Durée moyenne</div><div class="stat-value" id="avgDuration">-</div></div>
+        <div class="stat"><div class="stat-label" id="avgIntervalLabel">Intervalle moyen</div><div class="stat-value" id="avgInterval">-</div></div>
+      </div>
     </div>
     <div class="hero-side">
-      <h2 id="uiProgress">Progression</h2>
-      <p id="progressText">0 / 0</p>
-      <div class="progress"><div id="progressBar"></div></div>
+      <h2 id="importantTitle">Ultra important</h2>
+      <p id="importantText">Appelle la clinique selon les consignes reçues, surtout si contractions régulières, perte de liquide, saignement, douleur inhabituelle, diminution des mouvements ou si tu te sens en danger.</p>
+      <div class="warning" id="warningText">Avant terme, contractions régulières ou douleur forte = demande un avis médical rapidement. En danger vital : 112.</div>
       <div class="actions" style="margin-top:14px;">
-        <a class="button" href="app.html" id="uiDashboard">Dashboard</a>
-        <button class="button-light" onclick="history.back()" id="uiBack">Retour</button>
+        <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
+        <a class="button-light" href="hospital-bag.html" id="bagButton">Valise maternité</a>
       </div>
     </div>
   </section>
 
-  <section class="card">
-    <h2 id="uiImportant">Important</h2>
-    <div class="grid" id="cardsGrid"></div>
-  </section>
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="timerTitle">Timer</h2>
+      <p id="timerText">Clique au début d’une contraction, puis à la fin.</p>
+      <div class="timer-display" id="timerDisplay">00:00</div>
+      <button class="big-action" onclick="toggleContraction()" id="timerButton">Démarrer contraction</button>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="undoLast()" id="undoButton">Annuler dernière</button>
+        <button class="button-danger" onclick="clearHistory()" id="clearButton">Effacer historique</button>
+      </div>
+      <div class="soft" id="timerTip">Le plus utile : durée de chaque contraction et intervalle entre le début de deux contractions.</div>
+    </div>
 
-  <section class="card">
-    <h2 id="uiChecklist">Checklist</h2>
-    <div id="checklistBox"></div>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button-light" onclick="resetChecklist()" id="uiReset">Réinitialiser</button>
+    <div class="card">
+      <h2 id="historyTitle">Historique</h2>
+      <p id="historyText">Les dernières contractions sont sauvegardées localement sur ton appareil.</p>
+      <div class="history-list" id="historyList"></div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="uiGuide">Guide rapide</h2>
-    <div class="grid" id="timelineGrid"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiTips">Conseils</h2>
-    <div id="tipsBox"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiNotes">Note personnelle</h2>
-    <textarea id="personalNote"></textarea>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button" onclick="saveNote()" id="uiSaveNote">Sauvegarder la note</button>
+    <div class="section-title">
+      <div>
+        <h2 id="understandTitle">Comprendre les chiffres</h2>
+        <p id="understandText">Les chiffres aident, mais ton état général et les consignes de la maternité passent avant.</p>
+      </div>
     </div>
-    <div class="status" id="noteStatus"></div>
+    <div class="grid" id="infoGrid"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="checkTitle">Checklist avant d’appeler</h2>
+      <p id="checkText">Prépare ces informations pour la clinique ou 116117.</p>
+      <div id="checklistBox"></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="whatToSayTitle">Que dire au téléphone ?</h2>
+      <div class="box"><ul id="phoneList"></ul></div>
+      <div class="warning" id="dontWaitText">Ne reste pas seule avec une inquiétude importante. Appelle plutôt trop tôt que trop tard.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="timelineTitle">Repères pratiques</h2>
+        <p id="timelineText">Organisation avant et pendant le départ.</p>
+      </div>
+    </div>
+    <div class="timeline" id="timelineBox"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="questionsTitle">Questions à poser à la clinique</h2>
+      <div class="box"><ul id="questionsList"></ul></div>
+    </div>
+    <div class="card">
+      <h2 id="notesTitle">Note personnelle</h2>
+      <p id="notesText">Note ici les consignes de ta maternité : quand appeler, où entrer, qui contacter.</p>
+      <textarea id="personalNote"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder</button>
+      </div>
+      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="sourcesTitle">Liens utiles</h2>
+        <p id="sourcesText">Pour compléter les informations avec des sources fiables.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="https://www.familienplanung.de/geburt/rund-um-die-geburt/wie-verlaeuft-eine-geburt/" target="_blank" rel="noopener">familienplanung.de Geburt</a><span>Déroulement de la naissance, contractions, perte des eaux et départ vers clinique.</span></div>
+      <div class="source-card"><a href="https://gesund.bund.de/wege-im-gesundheitswesen/schwangerschaft-und-geburt/geburt/kliniktasche" target="_blank" rel="noopener">Kliniktasche</a><span>Préparer valise, documents, téléphone, vêtements, snacks.</span></div>
+      <div class="source-card"><a href="emergency.html">Urgence</a><span>112, 116117, signes d’alerte et quoi dire au téléphone.</span></div>
+      <div class="source-card"><a href="hospital-bag.html">Valise maternité</a><span>Documents, maman, bébé, partenaire et sortie clinique.</span></div>
+    </div>
   </section>
 
   <div class="footer-actions">
-    <button class="button-light" onclick="history.back()" id="uiBackBottom">Retour</button>
-    <a class="button-light" href="app.html">Dashboard</a>
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
   </div>
 </main>
 
 <section class="login-message card" id="loginMessage" style="display:none;">
-  <h2 id="uiLoginTitle">Connexion nécessaire</h2>
-  <p id="uiLoginText">Tu dois d’abord te connecter.</p>
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
   <br>
-  <a class="button" href="index.html" id="uiHome">Retour à l’accueil</a>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
 
@@ -142,114 +234,132 @@ const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-const PAGE_ID="contractions";
-const CONTENT={"fr": {"icon": "⏱️", "title": "Timer contractions", "kicker": "Naissance", "subtitle": "Repères pour noter les contractions et savoir quand demander conseil.", "cards": [["Durée", "Combien de secondes dure une contraction."], ["Intervalle", "Temps entre deux contractions."], ["Intensité", "Évolution, douleur, régularité."]], "checklist": ["Noter début contraction", "Noter fin contraction", "Surveiller régularité", "Préparer appel clinique", "Ne pas attendre si perte liquide/sang/inquiétude"], "timeline": [["Irrégulier", "Observer et se reposer."], ["Régulier", "Appeler selon consignes clinique."], ["Urgence", "Signes d’alerte = appeler immédiatement."]], "tips": ["Chaque clinique donne ses propres consignes.", "Cette page ne remplace pas les instructions de ta maternité."]}, "en": {"icon": "⏱️", "title": "Timer contractions", "kicker": "Naissance", "subtitle": "Repères pour noter les contractions et savoir quand demander conseil.", "cards": [["Durée", "Combien de secondes dure une contraction."], ["Intervalle", "Temps entre deux contractions."], ["Intensité", "Évolution, douleur, régularité."]], "checklist": ["Noter début contraction", "Noter fin contraction", "Surveiller régularité", "Préparer appel clinique", "Ne pas attendre si perte liquide/sang/inquiétude"], "timeline": [["Irrégulier", "Observer et se reposer."], ["Régulier", "Appeler selon consignes clinique."], ["Urgence", "Signes d’alerte = appeler immédiatement."]], "tips": ["Chaque clinique donne ses propres consignes.", "Cette page ne remplace pas les instructions de ta maternité."]}, "de": {"icon": "⏱️", "title": "Timer contractions", "kicker": "Naissance", "subtitle": "Repères pour noter les contractions et savoir quand demander conseil.", "cards": [["Durée", "Combien de secondes dure une contraction."], ["Intervalle", "Temps entre deux contractions."], ["Intensité", "Évolution, douleur, régularité."]], "checklist": ["Noter début contraction", "Noter fin contraction", "Surveiller régularité", "Préparer appel clinique", "Ne pas attendre si perte liquide/sang/inquiétude"], "timeline": [["Irrégulier", "Observer et se reposer."], ["Régulier", "Appeler selon consignes clinique."], ["Urgence", "Signes d’alerte = appeler immédiatement."]], "tips": ["Chaque clinique donne ses propres consignes.", "Cette page ne remplace pas les instructions de ta maternité."]}, "ar": {"icon": "⏱️", "title": "Timer contractions", "kicker": "Naissance", "subtitle": "Repères pour noter les contractions et savoir quand demander conseil.", "cards": [["Durée", "Combien de secondes dure une contraction."], ["Intervalle", "Temps entre deux contractions."], ["Intensité", "Évolution, douleur, régularité."]], "checklist": ["Noter début contraction", "Noter fin contraction", "Surveiller régularité", "Préparer appel clinique", "Ne pas attendre si perte liquide/sang/inquiétude"], "timeline": [["Irrégulier", "Observer et se reposer."], ["Régulier", "Appeler selon consignes clinique."], ["Urgence", "Signes d’alerte = appeler immédiatement."]], "tips": ["Chaque clinique donne ses propres consignes.", "Cette page ne remplace pas les instructions de ta maternité."]}, "tr": {"icon": "⏱️", "title": "Timer contractions", "kicker": "Naissance", "subtitle": "Repères pour noter les contractions et savoir quand demander conseil.", "cards": [["Durée", "Combien de secondes dure une contraction."], ["Intervalle", "Temps entre deux contractions."], ["Intensité", "Évolution, douleur, régularité."]], "checklist": ["Noter début contraction", "Noter fin contraction", "Surveiller régularité", "Préparer appel clinique", "Ne pas attendre si perte liquide/sang/inquiétude"], "timeline": [["Irrégulier", "Observer et se reposer."], ["Régulier", "Appeler selon consignes clinique."], ["Urgence", "Signes d’alerte = appeler immédiatement."]], "tips": ["Chaque clinique donne ses propres consignes.", "Cette page ne remplace pas les instructions de ta maternité."]}, "ru": {"icon": "⏱️", "title": "Timer contractions", "kicker": "Naissance", "subtitle": "Repères pour noter les contractions et savoir quand demander conseil.", "cards": [["Durée", "Combien de secondes dure une contraction."], ["Intervalle", "Temps entre deux contractions."], ["Intensité", "Évolution, douleur, régularité."]], "checklist": ["Noter début contraction", "Noter fin contraction", "Surveiller régularité", "Préparer appel clinique", "Ne pas attendre si perte liquide/sang/inquiétude"], "timeline": [["Irrégulier", "Observer et se reposer."], ["Régulier", "Appeler selon consignes clinique."], ["Urgence", "Signes d’alerte = appeler immédiatement."]], "tips": ["Chaque clinique donne ses propres consignes.", "Cette page ne remplace pas les instructions de ta maternité."]}, "uk": {"icon": "⏱️", "title": "Timer contractions", "kicker": "Naissance", "subtitle": "Repères pour noter les contractions et savoir quand demander conseil.", "cards": [["Durée", "Combien de secondes dure une contraction."], ["Intervalle", "Temps entre deux contractions."], ["Intensité", "Évolution, douleur, régularité."]], "checklist": ["Noter début contraction", "Noter fin contraction", "Surveiller régularité", "Préparer appel clinique", "Ne pas attendre si perte liquide/sang/inquiétude"], "timeline": [["Irrégulier", "Observer et se reposer."], ["Régulier", "Appeler selon consignes clinique."], ["Urgence", "Signes d’alerte = appeler immédiatement."]], "tips": ["Chaque clinique donne ses propres consignes.", "Cette page ne remplace pas les instructions de ta maternité."]}};
-const UI={"fr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Déconnexion", "back": "Retour", "checklist": "Checklist", "progress": "Progression", "guide": "Guide rapide", "tips": "Conseils", "notes": "Note personnelle", "saveNote": "Sauvegarder la note", "reset": "Réinitialiser", "saved": "Sauvegardé", "loginTitle": "Connexion nécessaire", "loginText": "Tu dois d’abord te connecter.", "home": "Retour à l’accueil", "language": "Langue", "open": "Ouvrir", "important": "Important", "week": "SA", "status": "Statut", "notePlaceholder": "Écris ici une note personnelle. Elle reste sur ton appareil pour le moment."}, "de": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Ausloggen", "back": "Zurück", "checklist": "Checkliste", "progress": "Fortschritt", "guide": "Kurzguide", "tips": "Tipps", "notes": "Persönliche Notiz", "saveNote": "Notiz speichern", "reset": "Zurücksetzen", "saved": "Gespeichert", "loginTitle": "Bitte einloggen", "loginText": "Du musst dich zuerst anmelden.", "home": "Zur Startseite", "language": "Sprache", "open": "Öffnen", "important": "Wichtig", "week": "SSW", "status": "Status", "notePlaceholder": "Schreibe hier eine persönliche Notiz. Sie bleibt vorerst auf deinem Gerät."}, "en": {"dashboard": "Dashboard", "profile": "Profile", "logout": "Log out", "back": "Back", "checklist": "Checklist", "progress": "Progress", "guide": "Quick guide", "tips": "Tips", "notes": "Personal note", "saveNote": "Save note", "reset": "Reset", "saved": "Saved", "loginTitle": "Please log in", "loginText": "You need to log in first.", "home": "Back to home", "language": "Language", "open": "Open", "important": "Important", "week": "Week", "status": "Status", "notePlaceholder": "Write a personal note here. For now it stays on your device."}, "ar": {"dashboard": "لوحة التحكم", "profile": "الملف", "logout": "خروج", "back": "رجوع", "checklist": "قائمة", "progress": "التقدم", "guide": "دليل سريع", "tips": "نصائح", "notes": "ملاحظة شخصية", "saveNote": "حفظ الملاحظة", "reset": "إعادة ضبط", "saved": "تم الحفظ", "loginTitle": "يرجى تسجيل الدخول", "loginText": "يجب تسجيل الدخول أولاً.", "home": "العودة للرئيسية", "language": "اللغة", "open": "فتح", "important": "مهم", "week": "أسبوع", "status": "الحالة", "notePlaceholder": "اكتبي ملاحظة شخصية هنا. حالياً تبقى على جهازك."}, "tr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Çıkış", "back": "Geri", "checklist": "Kontrol listesi", "progress": "İlerleme", "guide": "Kısa rehber", "tips": "İpuçları", "notes": "Kişisel not", "saveNote": "Notu kaydet", "reset": "Sıfırla", "saved": "Kaydedildi", "loginTitle": "Lütfen giriş yap", "loginText": "Önce giriş yapmalısın.", "home": "Ana sayfa", "language": "Dil", "open": "Aç", "important": "Önemli", "week": "Hafta", "status": "Durum", "notePlaceholder": "Kişisel notunu buraya yaz. Şimdilik cihazında kalır."}, "ru": {"dashboard": "Панель", "profile": "Профиль", "logout": "Выйти", "back": "Назад", "checklist": "Список", "progress": "Прогресс", "guide": "Краткий гид", "tips": "Советы", "notes": "Личная заметка", "saveNote": "Сохранить", "reset": "Сбросить", "saved": "Сохранено", "loginTitle": "Войдите", "loginText": "Сначала нужно войти.", "home": "На главную", "language": "Язык", "open": "Открыть", "important": "Важно", "week": "Неделя", "status": "Статус", "notePlaceholder": "Напишите личную заметку. Пока она хранится на вашем устройстве."}, "uk": {"dashboard": "Панель", "profile": "Профіль", "logout": "Вийти", "back": "Назад", "checklist": "Список", "progress": "Прогрес", "guide": "Короткий гід", "tips": "Поради", "notes": "Особиста нотатка", "saveNote": "Зберегти", "reset": "Скинути", "saved": "Збережено", "loginTitle": "Увійдіть", "loginText": "Спочатку потрібно увійти.", "home": "На головну", "language": "Мова", "open": "Відкрити", "important": "Важливо", "week": "Тиждень", "status": "Статус", "notePlaceholder": "Напишіть особисту нотатку. Поки вона зберігається на вашому пристрої."}};
-const langInfo={de:{flag:"🇩🇪",abbr:"DE"},fr:{flag:"🇫🇷",abbr:"FR"},ar:{flag:"🇸🇦",abbr:"AR"},en:{flag:"🇬🇧",abbr:"EN"},tr:{flag:"🇹🇷",abbr:"TR"},ru:{flag:"🇷🇺",abbr:"RU"},uk:{flag:"🇺🇦",abbr:"UK"}};
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+let isRunning=false,startTime=null,timerInterval=null;
 
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"fr";
-let currentWeek=1;
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
-function ui(){return UI[currentLang]||UI.fr}
-function content(){return CONTENT[currentLang]||CONTENT.fr}
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Timer contractions",pageTitle:"Mesurer les contractions clairement",pageText:"Un timer simple pour noter la durée, l’intervalle et la régularité des contractions. Il aide à expliquer la situation au téléphone, mais ne remplace pas les consignes de ta clinique.",
+weekLabel:"Semaine actuelle",avgDurationLabel:"Durée moyenne",avgIntervalLabel:"Intervalle moyen",importantTitle:"Ultra important",importantText:"Appelle la clinique selon les consignes reçues, surtout si contractions régulières, perte de liquide, saignement, douleur inhabituelle, diminution des mouvements ou si tu te sens en danger.",warningText:"Avant terme, contractions régulières ou douleur forte = demande un avis médical rapidement. En danger vital : 112.",emergencyButton:"Urgence",bagButton:"Valise maternité",
+timerTitle:"Timer",timerText:"Clique au début d’une contraction, puis à la fin.",timerButton:"Démarrer contraction",stopButton:"Arrêter contraction",undoButton:"Annuler dernière",clearButton:"Effacer historique",timerTip:"Le plus utile : durée de chaque contraction et intervalle entre le début de deux contractions.",
+historyTitle:"Historique",historyText:"Les dernières contractions sont sauvegardées localement sur ton appareil.",understandTitle:"Comprendre les chiffres",understandText:"Les chiffres aident, mais ton état général et les consignes de la maternité passent avant.",
+checkTitle:"Checklist avant d’appeler",checkText:"Prépare ces informations pour la clinique ou 116117.",resetButton:"Réinitialiser",whatToSayTitle:"Que dire au téléphone ?",dontWaitText:"Ne reste pas seule avec une inquiétude importante. Appelle plutôt trop tôt que trop tard.",timelineTitle:"Repères pratiques",timelineText:"Organisation avant et pendant le départ.",questionsTitle:"Questions à poser à la clinique",notesTitle:"Note personnelle",notesText:"Note ici les consignes de ta maternité : quand appeler, où entrer, qui contacter.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Liens utiles",sourcesText:"Pour compléter les informations avec des sources fiables.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+normal:"Repère",important:"Important",urgent:"Urgent",none:"Aucune donnée",
+info:[
+["⏱️","Durée","Temps entre début et fin d’une contraction. Note si la douleur change ou devient très forte.","normal"],
+["🔁","Intervalle","Temps entre le début de deux contractions. C’est souvent ce qui montre la régularité.","important"],
+["📈","Régularité","Des contractions qui deviennent régulières, plus longues ou plus rapprochées peuvent annoncer le travail.","important"],
+["💧","Perte de liquide","Si suspicion perte des eaux, contacte la clinique selon leurs consignes, même sans contractions fortes.","urgent"],
+["🩸","Saignement","Saignement important ou douleur inhabituelle = avis médical rapide / urgence selon gravité.","urgent"],
+["👣","Mouvements bébé","Si les mouvements diminuent nettement, contacte la clinique ou demande un contrôle.","urgent"]
+],
+checklist:["Semaine de grossesse connue","Mutterpass prêt","Carte assurance prête","Adresse actuelle prête","Heure de début des contractions notée","Durée moyenne connue","Intervalle moyen connu","Perte de liquide oui/non","Saignement oui/non","Mouvements bébé comme d’habitude oui/non","Valise maternité prête","Personne accompagnante informée"],
+phone:["Je suis enceinte de SA ...","Les contractions ont commencé à ...","Durée moyenne : ... secondes","Intervalle moyen : ... minutes","Perte de liquide : oui/non","Saignement : oui/non","Mouvements bébé : comme d’habitude ou diminués","Douleur, fièvre, malaise ou autre symptôme","Mon adresse actuelle est ...","Combien de temps dois-je encore attendre ou dois-je venir maintenant ?"],
+timeline:[
+["Avant contractions","Valise, documents, trajet clinique, numéro Kreißsaal et Babyschale prêts."],
+["Contractions irrégulières","Observer, boire, se reposer si possible, noter durée et intervalle."],
+["Contractions régulières","Appeler la clinique selon leurs consignes, surtout si intervalle diminue."],
+["Signes associés","Perte de liquide, saignement, fièvre, douleur forte, diminution mouvements : demander avis rapidement."],
+["Départ clinique","Prendre Mutterpass, assurance, téléphone, valise, accompagnant et rester joignable."]
+],
+questions:["À partir de quel intervalle dois-je appeler ou venir ?","Que faire si j’ai perdu les eaux sans contractions ?","Où entrer la nuit ou le week-end ?","Puis-je venir directement ou dois-je appeler avant ?","Que faire si je suis avant terme avec contractions régulières ?","Quels symptômes imposent de venir immédiatement ?"]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Wehen-Timer",pageTitle:"Wehen klar messen",weekLabel:"Aktuelle SSW",avgDurationLabel:"Ø Dauer",avgIntervalLabel:"Ø Abstand",timerButton:"Wehe starten",stopButton:"Wehe stoppen",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Contraction timer",pageTitle:"Measure contractions clearly",weekLabel:"Current week",avgDurationLabel:"Avg duration",avgIntervalLabel:"Avg interval",timerButton:"Start contraction",stopButton:"Stop contraction",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"مؤقت الطلق",pageTitle:"قياس التقلصات بوضوح",weekLabel:"الأسبوع الحالي",avgDurationLabel:"متوسط المدة",avgIntervalLabel:"متوسط الفاصل",timerButton:"ابدئي التقلص",stopButton:"أوقفي التقلص",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+
+function t(){return tr[currentLang]||tr.fr}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-
 function setLanguage(lang){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  const info=langInfo[lang]||langInfo.fr;
-  document.getElementById("langTrigger").textContent=info.flag+" "+info.abbr;
-  document.getElementById("langMenu").classList.remove("open");
-  render();
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ render();
 }
-
 function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
-function addDays(d,days){const r=new Date(d);r.setDate(r.getDate()+days);return r}
-function calculatePregnancy(dueDateValue){
-  if(!dueDateValue)return currentProfile?.pregnancy_week||1;
-  const today=new Date();today.setHours(0,0,0,0);
-  const due=parseLocalDate(dueDateValue);
-  const start=addDays(due,-280);
-  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
-  if(week<1)week=1;if(week>60)week=60;
-  return week;
+function calculatePregnancy(due){
+ if(!due)return currentProfile?.pregnancy_week||1;
+ const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);
+ let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;
 }
-function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function badge(type){if(type==="urgent")return "badge badge-red";if(type==="important")return "badge badge-warning";return "badge badge-green"}
+function typeText(type){if(type==="urgent")return t().urgent;if(type==="important")return t().important;return t().normal}
+function historyKey(){return "mama-contractions-history-"+(currentUser?currentUser.id:"guest")}
+function checkKey(){return "mama-contractions-check-"+(currentUser?currentUser.id:"guest")}
+function noteKey(){return "mama-contractions-note-"+(currentUser?currentUser.id:"guest")}
+function getHistory(){try{return JSON.parse(localStorage.getItem(historyKey()))||[]}catch(e){return[]}}
+function saveHistory(h){localStorage.setItem(historyKey(),JSON.stringify(h.slice(0,20)))}
+function fmtSec(s){s=Math.max(0,Math.floor(s));const m=Math.floor(s/60),r=s%60;return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0")}
+function fmtMin(sec){if(!sec)return "-";return Math.round(sec/60*10)/10+" min"}
+function updateTimer(){if(!isRunning||!startTime)return;document.getElementById("timerDisplay").textContent=fmtSec((Date.now()-startTime)/1000)}
+function toggleContraction(){
+ if(!isRunning){
+  isRunning=true;startTime=Date.now();document.getElementById("timerButton").classList.add("active");document.getElementById("timerButton").textContent=t().stopButton;timerInterval=setInterval(updateTimer,300);updateTimer();
+ }else{
+  const end=Date.now();const duration=Math.round((end-startTime)/1000);let h=getHistory();h.unshift({start:startTime,end,duration});saveHistory(h);isRunning=false;startTime=null;clearInterval(timerInterval);document.getElementById("timerButton").classList.remove("active");document.getElementById("timerButton").textContent=t().timerButton;document.getElementById("timerDisplay").textContent="00:00";renderHistory();
+ }
 }
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
+function undoLast(){const h=getHistory();h.shift();saveHistory(h);renderHistory()}
+function clearHistory(){saveHistory([]);renderHistory()}
+function renderHistory(){
+ const h=getHistory();
+ if(!h.length){
+  document.getElementById("historyList").innerHTML=`<div class="history-card">${t().none}</div>`;
+  document.getElementById("avgDuration").textContent="-";document.getElementById("avgInterval").textContent="-";return;
+ }
+ let avgDur=h.reduce((a,x)=>a+x.duration,0)/h.length;
+ let intervals=[];
+ for(let i=0;i<h.length-1;i++){intervals.push((h[i].start-h[i+1].start)/1000)}
+ let avgInt=intervals.length?intervals.reduce((a,x)=>a+x,0)/intervals.length:null;
+ document.getElementById("avgDuration").textContent=fmtSec(avgDur);
+ document.getElementById("avgInterval").textContent=fmtMin(avgInt);
+ document.getElementById("historyList").innerHTML=h.map((x,i)=>{
+  const d=new Date(x.start).toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
+  const interval=i<h.length-1?fmtMin((x.start-h[i+1].start)/1000):"-";
+  return `<div class="history-item"><div><strong>${d}</strong><br><span>${fmtSec(x.duration)} · intervalle ${interval}</span></div><span class="badge">${i+1}</span></div>`;
+ }).join("");
 }
-function stateKey(){return "mama-page-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-note-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function getChecklistState(){try{return JSON.parse(localStorage.getItem(stateKey()))||{}}catch(e){return{}}}
-function saveChecklistState(s){localStorage.setItem(stateKey(),JSON.stringify(s))}
-function toggleItem(index){
-  const s=getChecklistState();s[index]=!s[index];saveChecklistState(s);renderChecklist();
-}
-function resetChecklist(){saveChecklistState({});renderChecklist()}
-function saveNote(){
-  localStorage.setItem(noteKey(),document.getElementById("personalNote").value);
-  const el=document.getElementById("noteStatus");
-  el.textContent=ui().saved;el.style.display="block";
-  setTimeout(()=>el.style.display="none",2500);
-}
+function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
+function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
+function resetChecklist(){saveState({});renderChecklist()}
 function renderChecklist(){
-  const c=content();
-  const s=getChecklistState();
-  const box=document.getElementById("checklistBox");
-  box.innerHTML=(c.checklist||[]).map((item,i)=>`
-    <label class="checkbox-row">
-      <input type="checkbox" ${s[i]?"checked":""} onchange="toggleItem(${i})">
-      <span>${item}</span>
-    </label>
-  `).join("");
-  const total=(c.checklist||[]).length;
-  const done=Object.keys(s).filter(k=>s[k]).length;
-  document.getElementById("progressText").textContent=done+" / "+total;
-  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ const s=state();const items=t().checklist;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
+ const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
+function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
 function render(){
-  const u=ui(); const c=content();
-  const map={uiProfile:"profile",uiLogout:"logout",uiProgress:"progress",uiDashboard:"dashboard",uiBack:"back",uiImportant:"important",uiChecklist:"checklist",uiGuide:"guide",uiTips:"tips",uiNotes:"notes",uiSaveNote:"saveNote",uiReset:"reset",uiBackBottom:"back",uiLoginTitle:"loginTitle",uiLoginText:"loginText",uiHome:"home"};
-  Object.entries(map).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.textContent=u[key]});
-  document.getElementById("pageKicker").textContent=c.kicker;
-  document.getElementById("pageTitle").textContent=c.icon+" "+c.title;
-  document.getElementById("pageSubtitle").textContent=c.subtitle;
-  document.getElementById("profileInfo").textContent=(currentProfile?.city?currentProfile.city+" · ":"")+u.week+" "+currentWeek;
-  document.getElementById("cardsGrid").innerHTML=(c.cards||[]).map(card=>`
-    <div class="box"><span class="badge">${u.important}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("timelineGrid").innerHTML=(c.timeline||[]).map(card=>`
-    <div class="guide-item"><span class="badge">${u.status}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("tipsBox").innerHTML=(c.tips||[]).map(x=>`<div class="soft">${x}</div>`).join("");
-  document.getElementById("personalNote").placeholder=u.notePlaceholder;
-  document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
-  renderChecklist();
+ document.getElementById("weekValue").textContent=currentWeek;
+ document.getElementById("timerButton").textContent=isRunning?t().stopButton:t().timerButton;
+ document.getElementById("infoGrid").innerHTML=t().info.map(x=>`<div class="timer-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("phoneList").innerHTML=t().phone.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
+ renderChecklist();renderHistory();
 }
 async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-  if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
-  currentUser=data.session.user;
-  const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
-  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
-  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
-  currentWeek=calculatePregnancy(currentProfile?.due_date);
-  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
-  document.getElementById("appShell").style.display="block";
-  setLanguage(currentLang);
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ currentWeek=calculatePregnancy(currentProfile?.due_date);
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

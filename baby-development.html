@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Développement bébé</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.dev-card,.source-card,.log-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.dev-card{position:relative;overflow:hidden}
+.dev-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.timeline{display:grid;gap:12px}
+.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
+.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.milestone-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:white;border:1px solid var(--border);border-radius:18px;padding:12px;margin-top:9px}
+.milestone-row input{width:18px;height:18px;accent-color:var(--brown)}
+textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.milestone-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+  <div class="top-actions">
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Développement bébé</div>
+      <h1 id="pageTitle">Observer bébé sans comparer</h1>
+      <p id="pageText">Un guide pour comprendre les premiers mois : adaptation, éveil, motricité, communication, U-Untersuchungen et signes qui méritent un avis pédiatrique.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="phaseLabel">Phase</div><div class="stat-value" id="phaseValue">0–12 mois</div></div>
+        <div class="stat"><div class="stat-label" id="focusLabel">Focus</div><div class="stat-value" id="focusValue">Développement</div></div>
+        <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">Important</h2>
+      <p id="importantText">Chaque bébé évolue à son rythme. Les repères servent à observer et poser les bonnes questions, pas à juger le bébé ou les parents.</p>
+      <div class="warning" id="dangerNote">Demande un avis médical si bébé est très somnolent, boit peu, a fièvre, respiration inquiétante, perte de compétences, asymétrie importante, manque de contact inhabituel ou si ton instinct dit que quelque chose ne va pas.</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
+        <a class="button-light" href="after-birth.html" id="afterBirthButton">Après naissance</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="areasTitle">Domaines de développement</h2>
+        <p id="areasText">Ce qu’on observe dans les premiers mois.</p>
+      </div>
+    </div>
+    <div class="grid" id="areasGrid"></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="timelineTitle">Timeline 0–12 mois</h2>
+        <p id="timelineText">Repères larges. Le pédiatre évalue le développement global pendant les U-Untersuchungen.</p>
+      </div>
+    </div>
+    <div class="timeline" id="timelineBox"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="milestonesTitle">Mini journal de repères</h2>
+      <p id="milestonesText">Coche seulement ce que tu veux retenir. Ce n’est pas une liste d’examen.</p>
+      <div id="milestonesBox"></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetMilestones()" id="resetMilestonesButton">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="appointmentsTitle">U-Untersuchungen importantes</h2>
+      <div class="box"><ul id="appointmentsList"></ul></div>
+      <div class="soft" id="appointmentNote">Garde toujours le gelbes Kinderuntersuchungsheft et note tes questions avant chaque U.</div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="supportTitle">Aider bébé à se développer</h2>
+      <div class="box"><ul id="supportList"></ul></div>
+      <div class="soft" id="supportNote">Le meilleur “programme” est souvent simple : sécurité, voix, contact, jeu court, repos et répétition.</div>
+    </div>
+    <div class="card">
+      <h2 id="questionsTitle">Questions à poser</h2>
+      <div class="box"><ul id="questionsList"></ul></div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="notesTitle">Note personnelle</h2>
+      <p id="notesText">Note ici observations, questions, dates U2/U3/U4, poids, sommeil, alimentation, motricité, inquiétudes.</p>
+      <textarea id="personalNote"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder la note</button>
+      </div>
+      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
+    </div>
+    <div class="card">
+      <h2 id="redFlagsTitle">Quand ne pas attendre ?</h2>
+      <div class="box"><ul id="redFlagsList"></ul></div>
+      <div class="warning" id="redFlagsNote">En cas de danger vital ou d’état qui se dégrade rapidement : 112.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="sourcesTitle">Sources et liens utiles</h2>
+        <p id="sourcesText">Liens officiels pour développement, U-Untersuchungen et soutien.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/entwicklung/0-12-monate/" target="_blank" rel="noopener">Développement 0–12 mois</a><span>Développement du bébé, différences individuelles, repères de la première année.</span></div>
+      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/entwicklung/0-12-monate/entwicklungsaufgaben/" target="_blank" rel="noopener">Premiers mois</a><span>Adaptation du bébé : sommeil/éveil, faim/satiété, régulation et besoin de soutien parental.</span></div>
+      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/frueherkennung-u1-u9-und-j1/untersuchungen-u1-bis-u9/u2-untersuchung/" target="_blank" rel="noopener">U2</a><span>U2 entre le 3e et le 10e jour de vie.</span></div>
+      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/frueherkennung-u1-u9-und-j1/untersuchungen-u1-bis-u9/u3-untersuchung/" target="_blank" rel="noopener">U3</a><span>U3 généralement entre la 4e et la 5e semaine de vie.</span></div>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
+</main>
+
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Développement bébé",pageTitle:"Observer bébé sans comparer",pageText:"Un guide pour comprendre les premiers mois : adaptation, éveil, motricité, communication, U-Untersuchungen et signes qui méritent un avis pédiatrique.",
+phaseLabel:"Phase",phaseValue:"0–12 mois",focusLabel:"Focus",focusValue:"Développement",progressLabel:"Checklist",importantTitle:"Important",importantText:"Chaque bébé évolue à son rythme. Les repères servent à observer et poser les bonnes questions, pas à juger le bébé ou les parents.",dangerNote:"Demande un avis médical si bébé est très somnolent, boit peu, a fièvre, respiration inquiétante, perte de compétences, asymétrie importante, manque de contact inhabituel ou si ton instinct dit que quelque chose ne va pas.",emergencyButton:"Urgence",afterBirthButton:"Après naissance",
+areasTitle:"Domaines de développement",areasText:"Ce qu’on observe dans les premiers mois.",timelineTitle:"Timeline 0–12 mois",timelineText:"Repères larges. Le pédiatre évalue le développement global pendant les U-Untersuchungen.",milestonesTitle:"Mini journal de repères",milestonesText:"Coche seulement ce que tu veux retenir. Ce n’est pas une liste d’examen.",resetMilestonesButton:"Réinitialiser",appointmentsTitle:"U-Untersuchungen importantes",appointmentNote:"Garde toujours le gelbes Kinderuntersuchungsheft et note tes questions avant chaque U.",supportTitle:"Aider bébé à se développer",supportNote:"Le meilleur “programme” est souvent simple : sécurité, voix, contact, jeu court, repos et répétition.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici observations, questions, dates U2/U3/U4, poids, sommeil, alimentation, motricité, inquiétudes.",saveNoteButton:"Sauvegarder la note",savedNote:"Sauvegardé",redFlagsTitle:"Quand ne pas attendre ?",redFlagsNote:"En cas de danger vital ou d’état qui se dégrade rapidement : 112.",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels pour développement, U-Untersuchungen et soutien.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+normal:"Repère",support:"Soutien",medical:"Médical",alert:"Alerte",
+areas:[
+["🌱","Adaptation","Respiration, température, digestion, rythme sommeil/éveil et faim/satiété se stabilisent progressivement.","normal"],
+["👀","Éveil & regard","Bébé découvre les visages, les voix, les lumières et a besoin de pauses quand il est surstimulé.","normal"],
+["🧠","Régulation","Au début, bébé a besoin des parents pour se calmer : portage, voix, succion, peau à peau, routine douce.","support"],
+["🦵","Motricité","Tête, posture, bras, jambes et coordination progressent étape par étape. Observer sans forcer.","normal"],
+["🗣️","Communication","Pleurs, mimiques, regards, sons et sourires sont déjà une forme de communication.","normal"],
+["🩺","U-Untersuchungen","Les examens U aident à vérifier croissance, organes, développement, alimentation et prévention.","medical"],
+["🤱","Lien & sécurité","La relation fiable avec les parents donne au bébé la sécurité pour explorer à son rythme.","support"],
+["🚨","Signaux d’alerte","Perte de compétences, bébé très mou, très somnolent, respire mal, boit peu ou contact inhabituel = avis médical.","alert"],
+["📓","Questions notées","Les observations quotidiennes aident beaucoup le Kinderarzt et la Hebamme.","support"]
+],
+timeline:[
+["0–1 mois","Adaptation : sommeil, faim, température, digestion. Beaucoup de proximité, portage, observation et U2/U3."],
+["1–3 mois","Éveil plus clair, regards, premiers sourires possibles, meilleure interaction, mais fatigue rapide."],
+["3–6 mois","Motricité plus active, mains, jeux simples, sons, intérêt pour environnement. Toujours beaucoup de repos."],
+["6–9 mois","Bébé explore davantage, se retourne/rampe selon rythme, commence souvent diversification si prêt."],
+["9–12 mois","Communication, mobilité, attachement et curiosité augmentent. Sécuriser maison et poser questions aux U."],
+["Toujours","Comparer moins, observer plus. En cas d’inquiétude persistante : Kinderarzt/Hebamme."]
+],
+milestones:["Bébé réagit aux voix familières","Bébé cherche le contact par le regard","Bébé a des phases d’éveil calmes","Bébé montre des signes de faim/satiété","Bébé se calme parfois avec aide","Bébé bouge bras/jambes de façon active","Bébé suit des objets/visages selon âge","Bébé émet des sons selon âge","Questions notées pour U-Untersuchung","Numéro Kinderarzt disponible"],
+appointments:["U1 : juste après la naissance.","U2 : entre le 3e et le 10e jour de vie.","U3 : entre la 4e et la 5e semaine de vie.","U4 et suivantes : suivre les dates du gelbes Kinderuntersuchungsheft.","Apporte : U-Heft, Impfpass si disponible, carte assurance, questions, observations."],
+supportList:["Parler doucement au bébé.","Alterner phases d’éveil et de repos.","Observer les signes de fatigue : détourne le regard, pleure, se crispe, s’agite.","Donner du temps au ventre seulement éveillé et surveillé, selon avis et tolérance.","Éviter de forcer une position ou un exercice.","Créer un environnement calme, sûr, sans surstimulation.","Demander conseil si bébé pleure beaucoup ou semble difficile à calmer."],
+redFlagsList:["Bébé respire difficilement, devient bleu/pâle ou très mou.","Bébé boit très peu ou refuse plusieurs repas.","Fièvre chez un nourrisson, état qui se dégrade ou somnolence inhabituelle.","Convulsions, malaise ou cris très inhabituels.","Perte de compétence ou changement brutal de comportement.","Asymétrie importante, ne bouge pas un côté comme l’autre, ou inquiétude persistante."],
+questions:["Mon bébé se développe-t-il globalement comme attendu ?","Quels repères dois-je surveiller à son âge ?","Quand faire U2/U3/U4 et que faut-il apporter ?","Que faire si bébé pleure beaucoup ou dort très peu ?","Quelle quantité de stimulation est adaptée ?","Quand dois-je consulter rapidement ?","Puis-je avoir une ordonnance/avis pour physiothérapie si besoin ?"]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Babyentwicklung",pageTitle:"Baby beobachten, nicht vergleichen",phaseValue:"0–12 Monate",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Baby development",pageTitle:"Observe baby without comparing",phaseValue:"0–12 months",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"تطور الطفل",pageTitle:"راقبي طفلك دون مقارنة",phaseValue:"0–12 شهر",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+
+function t(){return tr[currentLang]||tr.fr}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+function setLanguage(lang){
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ render();
+}
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function badge(type){if(type==="alert")return "badge badge-red";if(type==="medical")return "badge badge-warning";if(type==="support")return "badge badge-blue";return "badge badge-green"}
+function typeText(type){if(type==="alert")return t().alert;if(type==="medical")return t().medical;if(type==="support")return t().support;return t().normal}
+function milestoneKey(){return "mama-baby-development-milestones-"+(currentUser?currentUser.id:"guest")}
+function noteKey(){return "mama-baby-development-note-"+(currentUser?currentUser.id:"guest")}
+function state(){try{return JSON.parse(localStorage.getItem(milestoneKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(milestoneKey(),JSON.stringify(s))}
+function toggleMilestone(i){const s=state();s[i]=!s[i];saveState(s);renderMilestones()}
+function resetMilestones(){saveState({});renderMilestones()}
+function renderMilestones(){
+ const s=state();const items=t().milestones;
+ document.getElementById("milestonesBox").innerHTML=items.map((x,i)=>`<label class="milestone-row"><span>${x}</span><input type="checkbox" ${s[i]?"checked":""} onchange="toggleMilestone(${i})"></label>`).join("");
+ const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ document.getElementById("progressValue").textContent=done+" / "+total;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+}
+function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+function render(){
+ document.getElementById("phaseValue").textContent=t().phaseValue;
+ document.getElementById("focusValue").textContent=t().focusValue;
+ document.getElementById("areasGrid").innerHTML=t().areas.map(x=>`<div class="dev-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
+ document.getElementById("appointmentsList").innerHTML=t().appointments.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("supportList").innerHTML=t().supportList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("redFlagsList").innerHTML=t().redFlagsList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
+ renderMilestones();
+}
+async function loadApp(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+loadApp();
+</script>
+</body>
+</html>

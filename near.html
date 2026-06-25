@@ -8,45 +8,73 @@
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
   --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
-  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.12);
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
 }
-body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
-body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
-body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(198,164,106,.22),transparent 30%),radial-gradient(circle at 92% 8%,rgba(155,115,87,.16),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-.wrap{max-width:1220px;margin:0 auto;padding:22px 18px 34px}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
 header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;text-decoration:none;letter-spacing:-.5px}
-.brand-icon{width:46px;height:46px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
-.lang-menu{position:absolute;right:0;top:48px;width:190px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:10}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
-.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:900;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
 .lang-menu button:hover{background:var(--soft)}
-.card,.hero,.panel{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 65%,var(--soft));position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:210px;height:210px;border-radius:50%;background:rgba(155,115,87,.10)}
-.hero-content,.hero-side{position:relative;z-index:1}
-.kicker{display:inline-flex;padding:7px 11px;border-radius:99px;background:var(--soft);color:var(--brown);font-weight:950;font-size:12px;margin-bottom:12px}
-h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:40px;letter-spacing:-1.6px;line-height:1.05}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.box,.guide-item{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.near-card,.source-card,.contact-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.near-card{position:relative;overflow:hidden}
+.near-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.progress{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
-.checkbox-row{display:flex;gap:12px;align-items:flex-start;margin-top:11px;padding:12px;border-radius:17px;border:1px solid var(--border);background:white}
-.checkbox-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
-.login-message{max-width:650px;margin:60px auto;text-align:center}.status{display:none;margin-top:12px;font-weight:900;color:var(--brown)}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:130px;resize:vertical}
+.quick-form{display:grid;grid-template-columns:1fr auto auto;gap:10px;margin-top:14px;align-items:center}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.contact-card{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center}
+.contact-card .icon{margin:0}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-@media(max-width:960px){.hero,.grid-2{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:31px}.grid{grid-template-columns:1fr}.card,.hero,.panel{padding:20px}.top-actions{width:100%;justify-content:flex-start}}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}.quick-form{grid-template-columns:1fr}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.contact-card{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -54,8 +82,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 <header>
   <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
   <div class="top-actions">
-    <a class="button-light" href="profile.html" id="uiProfile">Profil</a>
-    <button class="button-danger" onclick="signOut()" id="uiLogout">Déconnexion</button>
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
     <div class="lang-wrap">
       <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
       <div class="lang-menu" id="langMenu">
@@ -64,8 +92,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
         <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
         <button onclick="setLanguage('en')">🇬🇧 EN English</button>
         <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
-        <button onclick="setLanguage('ru')">🇷🇺 RU Русский</button>
-        <button onclick="setLanguage('uk')">🇺🇦 UK Українська</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
     </div>
   </div>
@@ -73,66 +101,119 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 
 <main id="appShell" style="display:none;">
   <section class="hero">
-    <div class="hero-content">
-      <div class="kicker" id="pageKicker">-</div>
-      <h1 id="pageTitle">-</h1>
-      <p id="pageSubtitle">-</p>
-      <div class="soft" id="profileInfo">-</div>
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Près de moi</div>
+      <h1 id="pageTitle">Trouver rapidement l’aide autour de toi</h1>
+      <p id="pageText">Entre ta ville ou ton code postal pour ouvrir directement les recherches utiles : Hebamme, Kinderarzt, Frauenarzt, Kreißsaal, Beratung, pharmacie de garde et services officiels.</p>
+      <div class="quick-form">
+        <input id="placeInput" placeholder="Ville ou PLZ, ex. 45468 Mülheim">
+        <button class="button" onclick="savePlace()" id="savePlaceButton">Sauvegarder</button>
+        <button class="button-light" onclick="useLocation()" id="useLocationButton">Ma position</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="placeLabel">Lieu sauvegardé</div><div class="stat-value" id="placeValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="modeLabel">Mode</div><div class="stat-value" id="modeValue">Maps</div></div>
+        <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+      </div>
     </div>
     <div class="hero-side">
-      <h2 id="uiProgress">Progression</h2>
-      <p id="progressText">0 / 0</p>
+      <h2 id="importantTitle">Urgence ou recherche normale ?</h2>
+      <p id="importantText">Si danger vital : 112. Si problème médical urgent mais pas vital et les cabinets sont fermés : 116117. Pour le reste, utilise les recherches et note les contacts importants.</p>
+      <div class="grid-2" style="margin-top:14px;">
+        <a class="button-danger" href="tel:112">🚑 112</a>
+        <a class="button" href="tel:116117">☎️ 116117</a>
+      </div>
+      <div class="warning" id="privacyNote">Ta ville et tes notes sont sauvegardées localement sur ton appareil. La géolocalisation n’est utilisée que si tu cliques sur “Ma position”.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="searchTitle">Recherches rapides</h2>
+        <p id="searchText">Clique pour ouvrir la recherche près du lieu sauvegardé.</p>
+      </div>
+    </div>
+    <div class="grid" id="searchGrid"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="contactsTitle">Contacts à enregistrer</h2>
+      <p id="contactsText">Garde ces numéros visibles, surtout en fin de grossesse et après naissance.</p>
+      <div class="grid-2" id="contactGrid"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="checkTitle">Checklist près de moi</h2>
+      <p id="checkText">Coche ce qui est trouvé ou enregistré.</p>
+      <div id="checklistBox"></div>
       <div class="progress"><div id="progressBar"></div></div>
       <div class="actions" style="margin-top:14px;">
-        <a class="button" href="app.html" id="uiDashboard">Dashboard</a>
-        <button class="button-light" onclick="history.back()" id="uiBack">Retour</button>
+        <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
       </div>
     </div>
   </section>
 
-  <section class="card">
-    <h2 id="uiImportant">Important</h2>
-    <div class="grid" id="cardsGrid"></div>
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="officialTitle">Services officiels / fiables</h2>
+      <div class="box"><ul id="officialList"></ul></div>
+      <div class="soft" id="officialNote">Toujours vérifier les horaires, la prise en charge par Krankenkasse et la langue disponible avant de se déplacer.</div>
+    </div>
+    <div class="card">
+      <h2 id="callScriptTitle">Message prêt à copier</h2>
+      <p id="callScriptText">Texte simple pour appeler ou écrire à une Hebamme, un cabinet ou une Beratungsstelle.</p>
+      <textarea id="scriptBox"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="copyScript()" id="copyButton">Copier</button>
+      </div>
+      <div class="soft" id="copiedNote" style="display:none;">Copié</div>
+    </div>
   </section>
 
-  <section class="card">
-    <h2 id="uiChecklist">Checklist</h2>
-    <div id="checklistBox"></div>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button-light" onclick="resetChecklist()" id="uiReset">Réinitialiser</button>
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="notesTitle">Mes contacts locaux</h2>
+      <p id="notesText">Note noms, numéros, e-mails, horaires, adresse, parking, langue, remarques.</p>
+      <textarea id="personalNote"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder la note</button>
+      </div>
+      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
+    </div>
+    <div class="card">
+      <h2 id="whatToAskTitle">Questions avant rendez-vous</h2>
+      <div class="box"><ul id="questionsList"></ul></div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="uiGuide">Guide rapide</h2>
-    <div class="grid" id="timelineGrid"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiTips">Conseils</h2>
-    <div id="tipsBox"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiNotes">Note personnelle</h2>
-    <textarea id="personalNote"></textarea>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button" onclick="saveNote()" id="uiSaveNote">Sauvegarder la note</button>
+    <div class="section-title">
+      <div>
+        <h2 id="sourcesTitle">Liens utiles</h2>
+        <p id="sourcesText">Sites fiables pour chercher près de chez toi.</p>
+      </div>
     </div>
-    <div class="status" id="noteStatus"></div>
+    <div class="grid-4">
+      <div class="source-card"><a href="https://www.116117.de/" target="_blank" rel="noopener">116117</a><span>Arztsuche, Bereitschaftspraxen, Terminservice, aide médicale hors urgence vitale.</span></div>
+      <div class="source-card"><a href="https://www.familienplanung.de/beratung/beratungsstelle-finden/" target="_blank" rel="noopener">Beratungsstelle finden</a><span>Recherche de Schwangerschaftsberatungsstellen par ville ou code postal.</span></div>
+      <div class="source-card"><a href="https://www.hebammensuche.de/" target="_blank" rel="noopener">Hebammensuche</a><span>Recherche de Hebamme avec capacité selon région et terme prévu.</span></div>
+      <div class="source-card"><a href="https://www.apotheken.de/82049/" target="_blank" rel="noopener">Apotheken-Notdienst</a><span>Recherche de pharmacie et pharmacie de garde.</span></div>
+    </div>
   </section>
 
   <div class="footer-actions">
-    <button class="button-light" onclick="history.back()" id="uiBackBottom">Retour</button>
-    <a class="button-light" href="app.html">Dashboard</a>
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
   </div>
 </main>
 
 <section class="login-message card" id="loginMessage" style="display:none;">
-  <h2 id="uiLoginTitle">Connexion nécessaire</h2>
-  <p id="uiLoginText">Tu dois d’abord te connecter.</p>
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
   <br>
-  <a class="button" href="index.html" id="uiHome">Retour à l’accueil</a>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
 
@@ -142,114 +223,116 @@ const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-const PAGE_ID="near";
-const CONTENT={"fr": {"icon": "📍", "title": "Près de moi", "kicker": "Autour de toi", "subtitle": "Regroupe les contacts utiles : gynécologue, sage-femme, clinique, pharmacie et urgences.", "cards": [["Sage-femme", "Note nom, téléphone, disponibilité et prestations."], ["Clinique", "Adresse, route, parking, salle de naissance et numéro."], ["Pharmacie", "Pharmacie proche et pharmacie de garde."]], "checklist": ["Ajouter gynécologue", "Ajouter sage-femme", "Ajouter clinique choisie", "Ajouter pharmacie proche", "Ajouter contact urgence"], "timeline": [["Début", "Chercher sage-femme tôt."], ["Milieu", "Choisir clinique et cours."], ["Fin", "Préparer trajet clinique."]], "tips": ["Ne publie pas d’adresse précise dans la communauté.", "Garde les numéros importants accessibles hors ligne."]}, "en": {"icon": "📍", "title": "Pres de moi", "kicker": "Autour de toi", "subtitle": "Regroupe les contacts utiles : gynécologue, sage-femme, clinique, pharmacie et urgences.", "cards": [["Sage-femme", "Note nom, téléphone, disponibilité et prestations."], ["Clinique", "Adresse, route, parking, salle de naissance et numéro."], ["Pharmacie", "Pharmacie proche et pharmacie de garde."]], "checklist": ["Ajouter gynécologue", "Ajouter sage-femme", "Ajouter clinique choisie", "Ajouter pharmacie proche", "Ajouter contact urgence"], "timeline": [["Début", "Chercher sage-femme tôt."], ["Milieu", "Choisir clinique et cours."], ["Fin", "Préparer trajet clinique."]], "tips": ["Ne publie pas d’adresse précise dans la communauté.", "Garde les numéros importants accessibles hors ligne."]}, "de": {"icon": "📍", "title": "Pres de moi", "kicker": "Autour de toi", "subtitle": "Regroupe les contacts utiles : gynécologue, sage-femme, clinique, pharmacie et urgences.", "cards": [["Sage-femme", "Note nom, téléphone, disponibilité et prestations."], ["Clinique", "Adresse, route, parking, salle de naissance et numéro."], ["Pharmacie", "Pharmacie proche et pharmacie de garde."]], "checklist": ["Ajouter gynécologue", "Ajouter sage-femme", "Ajouter clinique choisie", "Ajouter pharmacie proche", "Ajouter contact urgence"], "timeline": [["Début", "Chercher sage-femme tôt."], ["Milieu", "Choisir clinique et cours."], ["Fin", "Préparer trajet clinique."]], "tips": ["Ne publie pas d’adresse précise dans la communauté.", "Garde les numéros importants accessibles hors ligne."]}, "ar": {"icon": "📍", "title": "Près de moi", "kicker": "Autour de toi", "subtitle": "Regroupe les contacts utiles : gynécologue, sage-femme, clinique, pharmacie et urgences.", "cards": [["Sage-femme", "Note nom, téléphone, disponibilité et prestations."], ["Clinique", "Adresse, route, parking, salle de naissance et numéro."], ["Pharmacie", "Pharmacie proche et pharmacie de garde."]], "checklist": ["Ajouter gynécologue", "Ajouter sage-femme", "Ajouter clinique choisie", "Ajouter pharmacie proche", "Ajouter contact urgence"], "timeline": [["Début", "Chercher sage-femme tôt."], ["Milieu", "Choisir clinique et cours."], ["Fin", "Préparer trajet clinique."]], "tips": ["Ne publie pas d’adresse précise dans la communauté.", "Garde les numéros importants accessibles hors ligne."]}, "tr": {"icon": "📍", "title": "Pres de moi", "kicker": "Autour de toi", "subtitle": "Regroupe les contacts utiles : gynécologue, sage-femme, clinique, pharmacie et urgences.", "cards": [["Sage-femme", "Note nom, téléphone, disponibilité et prestations."], ["Clinique", "Adresse, route, parking, salle de naissance et numéro."], ["Pharmacie", "Pharmacie proche et pharmacie de garde."]], "checklist": ["Ajouter gynécologue", "Ajouter sage-femme", "Ajouter clinique choisie", "Ajouter pharmacie proche", "Ajouter contact urgence"], "timeline": [["Début", "Chercher sage-femme tôt."], ["Milieu", "Choisir clinique et cours."], ["Fin", "Préparer trajet clinique."]], "tips": ["Ne publie pas d’adresse précise dans la communauté.", "Garde les numéros importants accessibles hors ligne."]}, "ru": {"icon": "📍", "title": "Pres de moi", "kicker": "Autour de toi", "subtitle": "Regroupe les contacts utiles : gynécologue, sage-femme, clinique, pharmacie et urgences.", "cards": [["Sage-femme", "Note nom, téléphone, disponibilité et prestations."], ["Clinique", "Adresse, route, parking, salle de naissance et numéro."], ["Pharmacie", "Pharmacie proche et pharmacie de garde."]], "checklist": ["Ajouter gynécologue", "Ajouter sage-femme", "Ajouter clinique choisie", "Ajouter pharmacie proche", "Ajouter contact urgence"], "timeline": [["Début", "Chercher sage-femme tôt."], ["Milieu", "Choisir clinique et cours."], ["Fin", "Préparer trajet clinique."]], "tips": ["Ne publie pas d’adresse précise dans la communauté.", "Garde les numéros importants accessibles hors ligne."]}, "uk": {"icon": "📍", "title": "Pres de moi", "kicker": "Autour de toi", "subtitle": "Regroupe les contacts utiles : gynécologue, sage-femme, clinique, pharmacie et urgences.", "cards": [["Sage-femme", "Note nom, téléphone, disponibilité et prestations."], ["Clinique", "Adresse, route, parking, salle de naissance et numéro."], ["Pharmacie", "Pharmacie proche et pharmacie de garde."]], "checklist": ["Ajouter gynécologue", "Ajouter sage-femme", "Ajouter clinique choisie", "Ajouter pharmacie proche", "Ajouter contact urgence"], "timeline": [["Début", "Chercher sage-femme tôt."], ["Milieu", "Choisir clinique et cours."], ["Fin", "Préparer trajet clinique."]], "tips": ["Ne publie pas d’adresse précise dans la communauté.", "Garde les numéros importants accessibles hors ligne."]}};
-const UI={"fr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Déconnexion", "back": "Retour", "checklist": "Checklist", "progress": "Progression", "guide": "Guide rapide", "tips": "Conseils", "notes": "Note personnelle", "saveNote": "Sauvegarder la note", "reset": "Réinitialiser", "saved": "Sauvegardé", "loginTitle": "Connexion nécessaire", "loginText": "Tu dois d’abord te connecter.", "home": "Retour à l’accueil", "language": "Langue", "open": "Ouvrir", "important": "Important", "week": "SA", "status": "Statut", "notePlaceholder": "Écris ici une note personnelle. Elle reste sur ton appareil pour le moment."}, "de": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Ausloggen", "back": "Zurück", "checklist": "Checkliste", "progress": "Fortschritt", "guide": "Kurzguide", "tips": "Tipps", "notes": "Persönliche Notiz", "saveNote": "Notiz speichern", "reset": "Zurücksetzen", "saved": "Gespeichert", "loginTitle": "Bitte einloggen", "loginText": "Du musst dich zuerst anmelden.", "home": "Zur Startseite", "language": "Sprache", "open": "Öffnen", "important": "Wichtig", "week": "SSW", "status": "Status", "notePlaceholder": "Schreibe hier eine persönliche Notiz. Sie bleibt vorerst auf deinem Gerät."}, "en": {"dashboard": "Dashboard", "profile": "Profile", "logout": "Log out", "back": "Back", "checklist": "Checklist", "progress": "Progress", "guide": "Quick guide", "tips": "Tips", "notes": "Personal note", "saveNote": "Save note", "reset": "Reset", "saved": "Saved", "loginTitle": "Please log in", "loginText": "You need to log in first.", "home": "Back to home", "language": "Language", "open": "Open", "important": "Important", "week": "Week", "status": "Status", "notePlaceholder": "Write a personal note here. For now it stays on your device."}, "ar": {"dashboard": "لوحة التحكم", "profile": "الملف", "logout": "خروج", "back": "رجوع", "checklist": "قائمة", "progress": "التقدم", "guide": "دليل سريع", "tips": "نصائح", "notes": "ملاحظة شخصية", "saveNote": "حفظ الملاحظة", "reset": "إعادة ضبط", "saved": "تم الحفظ", "loginTitle": "يرجى تسجيل الدخول", "loginText": "يجب تسجيل الدخول أولاً.", "home": "العودة للرئيسية", "language": "اللغة", "open": "فتح", "important": "مهم", "week": "أسبوع", "status": "الحالة", "notePlaceholder": "اكتبي ملاحظة شخصية هنا. حالياً تبقى على جهازك."}, "tr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Çıkış", "back": "Geri", "checklist": "Kontrol listesi", "progress": "İlerleme", "guide": "Kısa rehber", "tips": "İpuçları", "notes": "Kişisel not", "saveNote": "Notu kaydet", "reset": "Sıfırla", "saved": "Kaydedildi", "loginTitle": "Lütfen giriş yap", "loginText": "Önce giriş yapmalısın.", "home": "Ana sayfa", "language": "Dil", "open": "Aç", "important": "Önemli", "week": "Hafta", "status": "Durum", "notePlaceholder": "Kişisel notunu buraya yaz. Şimdilik cihazında kalır."}, "ru": {"dashboard": "Панель", "profile": "Профиль", "logout": "Выйти", "back": "Назад", "checklist": "Список", "progress": "Прогресс", "guide": "Краткий гид", "tips": "Советы", "notes": "Личная заметка", "saveNote": "Сохранить", "reset": "Сбросить", "saved": "Сохранено", "loginTitle": "Войдите", "loginText": "Сначала нужно войти.", "home": "На главную", "language": "Язык", "open": "Открыть", "important": "Важно", "week": "Неделя", "status": "Статус", "notePlaceholder": "Напишите личную заметку. Пока она хранится на вашем устройстве."}, "uk": {"dashboard": "Панель", "profile": "Профіль", "logout": "Вийти", "back": "Назад", "checklist": "Список", "progress": "Прогрес", "guide": "Короткий гід", "tips": "Поради", "notes": "Особиста нотатка", "saveNote": "Зберегти", "reset": "Скинути", "saved": "Збережено", "loginTitle": "Увійдіть", "loginText": "Спочатку потрібно увійти.", "home": "На головну", "language": "Мова", "open": "Відкрити", "important": "Важливо", "week": "Тиждень", "status": "Статус", "notePlaceholder": "Напишіть особисту нотатку. Поки вона зберігається на вашому пристрої."}};
-const langInfo={de:{flag:"🇩🇪",abbr:"DE"},fr:{flag:"🇫🇷",abbr:"FR"},ar:{flag:"🇸🇦",abbr:"AR"},en:{flag:"🇬🇧",abbr:"EN"},tr:{flag:"🇹🇷",abbr:"TR"},ru:{flag:"🇷🇺",abbr:"RU"},uk:{flag:"🇺🇦",abbr:"UK"}};
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+let geoPosition=null;
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"fr";
-let currentWeek=1;
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Près de moi",pageTitle:"Trouver rapidement l’aide autour de toi",pageText:"Entre ta ville ou ton code postal pour ouvrir directement les recherches utiles : Hebamme, Kinderarzt, Frauenarzt, Kreißsaal, Beratung, pharmacie de garde et services officiels.",
+savePlaceButton:"Sauvegarder",useLocationButton:"Ma position",placeLabel:"Lieu sauvegardé",modeLabel:"Mode",modeValue:"Maps",progressLabel:"Checklist",importantTitle:"Urgence ou recherche normale ?",importantText:"Si danger vital : 112. Si problème médical urgent mais pas vital et les cabinets sont fermés : 116117. Pour le reste, utilise les recherches et note les contacts importants.",privacyNote:"Ta ville et tes notes sont sauvegardées localement sur ton appareil. La géolocalisation n’est utilisée que si tu cliques sur “Ma position”.",
+searchTitle:"Recherches rapides",searchText:"Clique pour ouvrir la recherche près du lieu sauvegardé.",contactsTitle:"Contacts à enregistrer",contactsText:"Garde ces numéros visibles, surtout en fin de grossesse et après naissance.",checkTitle:"Checklist près de moi",checkText:"Coche ce qui est trouvé ou enregistré.",resetButton:"Réinitialiser",officialTitle:"Services officiels / fiables",officialNote:"Toujours vérifier les horaires, la prise en charge par Krankenkasse et la langue disponible avant de se déplacer.",callScriptTitle:"Message prêt à copier",callScriptText:"Texte simple pour appeler ou écrire à une Hebamme, un cabinet ou une Beratungsstelle.",copyButton:"Copier",copiedNote:"Copié",notesTitle:"Mes contacts locaux",notesText:"Note noms, numéros, e-mails, horaires, adresse, parking, langue, remarques.",saveNoteButton:"Sauvegarder la note",savedNote:"Sauvegardé",whatToAskTitle:"Questions avant rendez-vous",sourcesTitle:"Liens utiles",sourcesText:"Sites fiables pour chercher près de chez toi.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+urgent:"Urgent",medical:"Médical",family:"Famille",baby:"Bébé",admin:"Admin",support:"Soutien",
+searches:[
+["🚑","Notaufnahme / Kinder-Notaufnahme","Hôpital urgence grossesse bébé","Urgences, pédiatrie d’urgence, clinique la plus proche. En danger vital, appelle 112.","urgent"],
+["🏥","Kreißsaal / Geburtsklinik","Kreißsaal Geburtshilfe Klinik","Salle de naissance, maternité, visite d’information, inscription accouchement.","medical"],
+["👩‍⚕️","Frauenarzt","Frauenarzt Gynäkologie Schwangerschaft","Suivi grossesse, douleurs non vitales, contrôle, Mutterpass, certificats.","medical"],
+["👶","Kinderarzt","Kinderarzt Praxis","U2/U3, vaccins, fièvre bébé, suivi poids, développement.","baby"],
+["🤱","Hebamme","Hebamme Wochenbett Schwangerschaft","Suivi grossesse, Wochenbett, allaitement, Rückbildung, conseils à domicile.","support"],
+["💬","Schwangerschaftsberatung","Schwangerschaftsberatung Beratungsstelle","Conseil grossesse, aides financières, conflit, situation sociale, documents.","family"],
+["🍼","Stillberatung","Stillberatung IBCLC Hebamme","Allaitement, douleurs, biberon, prise de poids, tire-lait.","support"],
+["🧘","Rückbildungskurs","Rückbildungskurs Hebamme","Cours post-partum pour plancher pelvien et récupération maman.","support"],
+["💶","Elterngeldstelle","Elterngeldstelle Jugendamt","Elterngeld, documents, délais, aide administrative locale.","admin"],
+["👨‍👩‍👧","Frühe Hilfen","Frühe Hilfen Familienhebamme","Soutien familial, aide à domicile, conseils gratuits pour jeunes familles.","family"],
+["🏛️","Standesamt","Standesamt Geburt anmelden","Déclaration naissance, Geburtsurkunde, documents étrangers.","admin"],
+["💊","Apotheke Notdienst","Apotheke Notdienst","Pharmacie, pharmacie de garde, médicaments urgents, tire-lait parfois.","medical"]
+],
+contacts:[
+["🚑","112","Urgence vitale"],
+["☎️","116117","Garde médicale non vitale"],
+["☠️","Giftnotruf","0228 19240 NRW/Bonn"],
+["💬","TelefonSeelsorge","116123 / 0800 1110111"]
+],
+checklist:["Kreißsaal / clinique enregistré","Adresse et parking clinique notés","Frauenarzt enregistré","Hebamme contactée","Kinderarzt choisi","U2/U3 organisation connue","Pharmacie de garde connue","Schwangerschaftsberatung trouvée","Standesamt compétent noté","Elterngeldstelle / Jugendamt noté","116117 et 112 enregistrés","Contacts locaux notés dans cette page"],
+officialList:["116117 : Arztsuche, Terminservice et Bereitschaftspraxis hors urgence vitale.","familienplanung.de : base de données de plus de 1500 Schwangerschaftsberatungsstellen.","Hebammensuche / Ammely : recherche de Hebamme selon région, terme prévu et capacités.","Apotheken-Notdienst : chercher la pharmacie de garde près de toi.","Frühe Hilfen : soutien local pour familles avec bébé et jeunes enfants.","Google Maps : utile pour trajet, parking, horaires, mais toujours vérifier par téléphone."],
+questions:["Est-ce que vous acceptez de nouveaux patients / nouvelles familles ?","Parlez-vous français, arabe, anglais ou une autre langue ?","Êtes-vous pris en charge par gesetzliche Krankenkasse ?","Quels documents dois-je apporter ?","Quel est le délai pour avoir un rendez-vous ?","Où se trouve l’entrée de nuit / parking / Kreißsaal ?","Que dois-je faire en cas d’urgence hors horaires ?"],
+script:"Bonjour,\n\nJe suis enceinte / je viens d’accoucher et j’habite à [VILLE/PLZ]. Je cherche un rendez-vous / une prise en charge. Mon terme prévu est le [DATE] / mon bébé est né le [DATE].\n\nPouvez-vous me dire si vous avez une disponibilité, quels documents je dois apporter et si la prise en charge est possible avec ma Krankenkasse ?\n\nMerci beaucoup.\n\nCordialement"
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"In meiner Nähe",pageTitle:"Schnell Hilfe in deiner Nähe finden",placeLabel:"Gespeicherter Ort",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Near me",pageTitle:"Find nearby help quickly",placeLabel:"Saved place",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"قريب مني",pageTitle:"العثور بسرعة على المساعدة حولك",placeLabel:"المكان المحفوظ",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
-function ui(){return UI[currentLang]||UI.fr}
-function content(){return CONTENT[currentLang]||CONTENT.fr}
+function t(){return tr[currentLang]||tr.fr}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-
 function setLanguage(lang){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  const info=langInfo[lang]||langInfo.fr;
-  document.getElementById("langTrigger").textContent=info.flag+" "+info.abbr;
-  document.getElementById("langMenu").classList.remove("open");
-  render();
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ render();
 }
-
-function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
-function addDays(d,days){const r=new Date(d);r.setDate(r.getDate()+days);return r}
-function calculatePregnancy(dueDateValue){
-  if(!dueDateValue)return currentProfile?.pregnancy_week||1;
-  const today=new Date();today.setHours(0,0,0,0);
-  const due=parseLocalDate(dueDateValue);
-  const start=addDays(due,-280);
-  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
-  if(week<1)week=1;if(week>60)week=60;
-  return week;
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function badge(type){if(type==="urgent")return "badge badge-red";if(type==="medical")return "badge badge-warning";if(type==="baby")return "badge badge-green";if(type==="admin")return "badge badge-blue";return "badge"}
+function typeText(type){if(type==="urgent")return t().urgent;if(type==="medical")return t().medical;if(type==="baby")return t().baby;if(type==="admin")return t().admin;if(type==="family")return t().family;return t().support}
+function placeKey(){return "mama-near-me-place-"+(currentUser?currentUser.id:"guest")}
+function noteKey(){return "mama-near-me-note-"+(currentUser?currentUser.id:"guest")}
+function checkKey(){return "mama-near-me-check-"+(currentUser?currentUser.id:"guest")}
+function getPlace(){return localStorage.getItem(placeKey())||""}
+function savePlace(){const v=document.getElementById("placeInput").value.trim();localStorage.setItem(placeKey(),v);geoPosition=null;renderPlace();render()}
+function renderPlace(){const p=getPlace();document.getElementById("placeInput").value=p;document.getElementById("placeValue").textContent=geoPosition?"GPS":(p||"-")}
+function useLocation(){
+ if(!navigator.geolocation){alert("Geolocation not available");return}
+ navigator.geolocation.getCurrentPosition(pos=>{
+  geoPosition={lat:pos.coords.latitude,lng:pos.coords.longitude};
+  document.getElementById("placeValue").textContent="GPS";
+ },()=>alert("Position non autorisée."));
 }
-function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
+function openMaps(query){
+ const place=getPlace();
+ let url="";
+ if(geoPosition){url=`https://www.google.com/maps/search/${encodeURIComponent(query)}/@${geoPosition.lat},${geoPosition.lng},13z`;}
+ else{url=`https://www.google.com/maps/search/${encodeURIComponent(query+" "+place)}`;}
+ window.open(url,"_blank","noopener");
 }
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
-}
-function stateKey(){return "mama-page-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-note-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function getChecklistState(){try{return JSON.parse(localStorage.getItem(stateKey()))||{}}catch(e){return{}}}
-function saveChecklistState(s){localStorage.setItem(stateKey(),JSON.stringify(s))}
-function toggleItem(index){
-  const s=getChecklistState();s[index]=!s[index];saveChecklistState(s);renderChecklist();
-}
-function resetChecklist(){saveChecklistState({});renderChecklist()}
-function saveNote(){
-  localStorage.setItem(noteKey(),document.getElementById("personalNote").value);
-  const el=document.getElementById("noteStatus");
-  el.textContent=ui().saved;el.style.display="block";
-  setTimeout(()=>el.style.display="none",2500);
-}
+function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
+function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
+function resetChecklist(){saveState({});renderChecklist()}
 function renderChecklist(){
-  const c=content();
-  const s=getChecklistState();
-  const box=document.getElementById("checklistBox");
-  box.innerHTML=(c.checklist||[]).map((item,i)=>`
-    <label class="checkbox-row">
-      <input type="checkbox" ${s[i]?"checked":""} onchange="toggleItem(${i})">
-      <span>${item}</span>
-    </label>
-  `).join("");
-  const total=(c.checklist||[]).length;
-  const done=Object.keys(s).filter(k=>s[k]).length;
-  document.getElementById("progressText").textContent=done+" / "+total;
-  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ const s=state();const items=t().checklist;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
+ const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ document.getElementById("progressValue").textContent=done+" / "+total;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
+function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+function copyScript(){const box=document.getElementById("scriptBox");box.select();document.execCommand("copy");const n=document.getElementById("copiedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1500)}
 function render(){
-  const u=ui(); const c=content();
-  const map={uiProfile:"profile",uiLogout:"logout",uiProgress:"progress",uiDashboard:"dashboard",uiBack:"back",uiImportant:"important",uiChecklist:"checklist",uiGuide:"guide",uiTips:"tips",uiNotes:"notes",uiSaveNote:"saveNote",uiReset:"reset",uiBackBottom:"back",uiLoginTitle:"loginTitle",uiLoginText:"loginText",uiHome:"home"};
-  Object.entries(map).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.textContent=u[key]});
-  document.getElementById("pageKicker").textContent=c.kicker;
-  document.getElementById("pageTitle").textContent=c.icon+" "+c.title;
-  document.getElementById("pageSubtitle").textContent=c.subtitle;
-  document.getElementById("profileInfo").textContent=(currentProfile?.city?currentProfile.city+" · ":"")+u.week+" "+currentWeek;
-  document.getElementById("cardsGrid").innerHTML=(c.cards||[]).map(card=>`
-    <div class="box"><span class="badge">${u.important}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("timelineGrid").innerHTML=(c.timeline||[]).map(card=>`
-    <div class="guide-item"><span class="badge">${u.status}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("tipsBox").innerHTML=(c.tips||[]).map(x=>`<div class="soft">${x}</div>`).join("");
-  document.getElementById("personalNote").placeholder=u.notePlaceholder;
-  document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
-  renderChecklist();
+ renderPlace();
+ document.getElementById("modeValue").textContent=t().modeValue;
+ document.getElementById("searchGrid").innerHTML=t().searches.map((x,i)=>`<div class="near-card"><div class="icon">${x[0]}</div><span class="${badge(x[4])}">${typeText(x[4])}</span><h3>${x[1]}</h3><p>${x[3]}</p><div class="actions" style="margin-top:14px;"><button class="button" onclick="openMaps('${x[2].replaceAll("'","\\'")}')">Maps</button></div></div>`).join("");
+ document.getElementById("contactGrid").innerHTML=t().contacts.map(x=>`<div class="contact-card"><div class="icon">${x[0]}</div><div><h3>${x[1]}</h3><p>${x[2]}</p></div></div>`).join("");
+ document.getElementById("officialList").innerHTML=t().officialList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("scriptBox").value=t().script;
+ document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
+ renderChecklist();
 }
 async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-  if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
-  currentUser=data.session.user;
-  const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
-  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
-  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
-  currentWeek=calculatePregnancy(currentProfile?.due_date);
-  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
-  document.getElementById("appShell").style.display="block";
-  setLanguage(currentLang);
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

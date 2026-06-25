@@ -1,119 +1,205 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Mama in Deutschland - Admin Moderation</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Admin modération</title>
 <style>
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
   --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
-  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
 }
-body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
-body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
-body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
-  radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
-  linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)
-}
-.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
-.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
-.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.language-buttons button,.button-light,.button,.button-danger,.button-success,.filter-button{
-  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;
-  cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center
-}
-.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1320px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger,.button-green,.button-blue{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
-.button-success{background:var(--success);color:white;border-color:var(--success)}
-.card{
-  background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;
-  box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px
-}
+.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
+.button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
 h1,h2,h3{color:var(--brown);margin:0 0 12px}
-h1{font-size:34px;letter-spacing:-1.5px}
-h2{font-size:25px;letter-spacing:-.7px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
 h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
-.report-card,.box{
-  background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px
-}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.mod-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.mod-card{margin-bottom:14px}
+.mod-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.mod-meta{font-size:13px;color:var(--muted);font-weight:800}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-.warning{padding:14px 16px;border-radius:18px;background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:900;margin-top:14px}
-.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
-.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
-.message{max-width:750px;margin:60px auto;text-align:center}
-pre{white-space:pre-wrap;word-break:break-word;background:#fffdf9;border:1px solid var(--border);border-radius:18px;padding:14px;color:var(--brown);font-size:13px;text-align:left}
-@media(max-width:900px){.grid-2{grid-template-columns:1fr}}
-@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1px solid var(--border);background:white;border-radius:999px;padding:10px 13px;font-weight:950;color:var(--brown);cursor:pointer}
+.tabs button.active{background:var(--brown);color:white;border-color:var(--brown)}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.filter-row select,.filter-row input{padding:11px 12px;border-radius:16px;border:1px solid var(--border);background:white;color:var(--brown);font-weight:850;font-family:inherit}
+.mod-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.mod-actions button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer}
+.mod-actions .approve{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
+.mod-actions .hide{background:#fff6df;color:var(--warning);border-color:#efd49b}
+.mod-actions .delete{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.empty{padding:26px;border:1px dashed var(--border);border-radius:24px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}
+textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:10px;overflow:auto;color:var(--brown);white-space:pre-wrap}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4,.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
-
 <body>
 <div class="wrap">
 <header>
-  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
-
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
   <div class="top-actions">
-    <a class="button-light" href="app.html" id="backButton">Zurück</a>
-
-    <div class="language-buttons">
-      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
-      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
-      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
-      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
-      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
-      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
+      </div>
     </div>
   </div>
 </header>
 
 <main id="appShell" style="display:none;">
-  <section class="card">
-    <h1 id="pageTitle">Admin Moderation</h1>
-    <p id="pageText">Review reports from Share your experience and Marketplace, then hide unsafe content or close reports.</p>
-
-    <div class="soft" id="adminInfo">Admin mode active.</div>
-
-    <div class="filters" style="margin-top:14px;">
-      <button class="filter-button active" onclick="setStatusFilter('open')" id="filterOpen">Open</button>
-      <button class="filter-button" onclick="setStatusFilter('reviewed')" id="filterReviewed">Reviewed</button>
-      <button class="filter-button" onclick="setStatusFilter('closed')" id="filterClosed">Closed</button>
-      <button class="filter-button" onclick="setStatusFilter('all')" id="filterAll">All</button>
-      <button class="button-light" onclick="loadReports()" id="refreshButton">Refresh</button>
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Admin modération</div>
+      <h1 id="pageTitle">Centre de contrôle communauté</h1>
+      <p id="pageText">Modère les expériences, commentaires et annonces marketplace : publier, masquer, signaler, supprimer, vérifier les contenus dangereux et garder la communauté sûre.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="postsLabel">Posts</div><div class="stat-value" id="postsCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="itemsLabel">Annonces</div><div class="stat-value" id="itemsCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="reportsLabel">Signalés</div><div class="stat-value" id="reportsCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="modeLabel">Mode</div><div class="stat-value" id="modeValue">Online</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">Accès admin</h2>
+      <p id="importantText">Cette page est visible seulement pour les comptes ajoutés dans la liste ADMIN_USER_IDS du fichier. Ton UserID admin est déjà inclus.</p>
+      <div class="success" id="adminStatus">Vérification admin en cours...</div>
+      <div class="warning" id="warningText">Une modération doit rester prudente : ne supprime pas une expérience difficile seulement parce qu’elle est négative. Supprime ce qui est dangereux, insultant, illégal, spam ou contraire aux règles.</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button-light" href="community-rules.html" id="rulesButton">Règles</a>
+        <a class="button" href="share-experience.html" id="communityButton">Communauté</a>
+        <a class="button" href="marketplace.html" id="marketButton">Marketplace</a>
+      </div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="reportsTitle">Reports</h2>
-    <div class="grid-2" id="reportsGrid"></div>
+    <div class="section-title">
+      <div>
+        <h2 id="queueTitle">File de modération</h2>
+        <p id="queueText">Filtre les contenus par type et statut.</p>
+      </div>
+      <div class="actions">
+        <button class="button-light" onclick="loadAll()" id="refreshButton">Actualiser</button>
+        <button class="button-blue" onclick="exportModeration()" id="exportButton">Exporter JSON</button>
+      </div>
+    </div>
+
+    <div class="tabs" id="tabsBox"></div>
+
+    <div class="filter-row">
+      <select id="statusFilter" onchange="renderList()"></select>
+      <select id="langFilter" onchange="renderList()"></select>
+      <input id="searchInput" oninput="renderList()" placeholder="Recherche texte...">
+    </div>
+
+    <div id="moderationList"></div>
   </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="quickActionsTitle">Règles de décision rapides</h2>
+      <div class="box"><ul id="decisionList"></ul></div>
+    </div>
+    <div class="card">
+      <h2 id="tablesTitle">Tables Supabase nécessaires</h2>
+      <p id="tablesText">Cette page lit et modifie ces tables. Si une table n’existe pas encore, elle sera affichée comme indisponible.</p>
+      <div class="code" id="tablesCode"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="linksTitle">Liens admin utiles</h2>
+        <p id="linksText">Navigation rapide vers les pages à contrôler.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="share-experience.html">Share experience</a><span>Voir le forum comme utilisatrice.</span></div>
+      <div class="source-card"><a href="marketplace.html">Marketplace</a><span>Voir les annonces comme utilisatrice.</span></div>
+      <div class="source-card"><a href="community-rules.html">Règles communauté</a><span>Page officielle des règles de modération.</span></div>
+      <div class="source-card"><a href="admin.html">Admin général</a><span>Dashboard admin global si disponible dans ton projet.</span></div>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
 </main>
 
-<section class="message card" id="notAdminMessage" style="display:none;">
-  <h2 id="notAdminTitle">Admin access required</h2>
-  <p id="notAdminText">You are logged in, but this account is not registered as admin.</p>
-  <div class="warning" id="notAdminWarning">Copy your user ID below and add it to the admin_users table in Supabase.</div>
-  <pre id="currentUserIdBox"></pre>
-  <br />
-  <a class="button-light" href="app.html" id="notAdminBackButton">Back</a>
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 
-<section class="message card" id="loginMessage" style="display:none;">
-  <h2 id="loginTitle">Please log in</h2>
-  <p id="loginText">You need to log in first.</p>
-  <br />
-  <a class="button" href="index.html" id="loginBackButton">Back to home</a>
+<section class="login-message card" id="notAdminMessage" style="display:none;">
+  <h2 id="notAdminTitle">Accès réservé</h2>
+  <p id="notAdminText">Cette page est réservée à l’administrateur.</p>
+  <br>
+  <a class="button" href="app.html" id="notAdminBackButton">Retour au dashboard</a>
 </section>
 </div>
 
@@ -123,355 +209,220 @@ const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"de";
-let statusFilter="open";
-let reportsCache=[];
+/* Ajoute ici d'autres admins si besoin */
+const ADMIN_USER_IDS=[
+  "d4743994-af4c-4623-b6da-e8e9a7645a8e",
+  "d4743994-af4c-4623-b6da-e8e9a7645a8e"
+];
 
-const translations={
-  de:{
-    backButton:"Zurück",pageTitle:"Admin-Moderation",pageText:"Prüfe Meldungen aus Share your experience und Marketplace, blende unsichere Inhalte aus oder schließe Meldungen.",
-    adminInfo:"Admin-Modus aktiv.",filterOpen:"Offen",filterReviewed:"Geprüft",filterClosed:"Geschlossen",filterAll:"Alle",refreshButton:"Aktualisieren",
-    reportsTitle:"Meldungen",empty:"Keine Meldungen gefunden.",type:"Typ",reason:"Grund",details:"Details",reportedAt:"Gemeldet am",status:"Status",
-    itemTitle:"Inhalt",hideContent:"Inhalt ausblenden",deleteContent:"Inhalt löschen",markReviewed:"Als geprüft markieren",closeReport:"Meldung schließen",
-    notFound:"Inhalt nicht gefunden oder keine Berechtigung.",done:"Erledigt.",error:"Fehler. Bitte erneut versuchen.",
-    notAdminTitle:"Admin-Zugang erforderlich",notAdminText:"Du bist eingeloggt, aber dieses Konto ist nicht als Admin registriert.",
-    notAdminWarning:"Kopiere deine User-ID unten und füge sie in Supabase in die Tabelle admin_users ein.",notAdminBackButton:"Zurück",
-    loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite"
-  },
-  fr:{
-    backButton:"Retour",pageTitle:"Admin modération",pageText:"Vérifie les signalements de Share your experience et Marketplace, masque les contenus dangereux ou ferme les signalements.",
-    adminInfo:"Mode admin actif.",filterOpen:"Ouvert",filterReviewed:"Vérifié",filterClosed:"Fermé",filterAll:"Tous",refreshButton:"Rafraîchir",
-    reportsTitle:"Signalements",empty:"Aucun signalement trouvé.",type:"Type",reason:"Raison",details:"Détails",reportedAt:"Signalé le",status:"Statut",
-    itemTitle:"Contenu",hideContent:"Masquer le contenu",deleteContent:"Supprimer le contenu",markReviewed:"Marquer vérifié",closeReport:"Fermer signalement",
-    notFound:"Contenu introuvable ou pas de permission.",done:"Terminé.",error:"Erreur. Réessaie.",
-    notAdminTitle:"Accès admin nécessaire",notAdminText:"Tu es connecté, mais ce compte n’est pas enregistré comme admin.",
-    notAdminWarning:"Copie ton User-ID ci-dessous et ajoute-le dans Supabase dans la table admin_users.",notAdminBackButton:"Retour",
-    loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil"
-  },
-  ar:{
-    backButton:"رجوع",pageTitle:"إدارة المراقبة",pageText:"راجع البلاغات من شاركي تجربتك والسوق، ثم أخفِ المحتوى غير الآمن أو أغلق البلاغات.",
-    adminInfo:"وضع المدير نشط.",filterOpen:"مفتوح",filterReviewed:"تمت المراجعة",filterClosed:"مغلق",filterAll:"الكل",refreshButton:"تحديث",
-    reportsTitle:"البلاغات",empty:"لا توجد بلاغات.",type:"النوع",reason:"السبب",details:"التفاصيل",reportedAt:"تاريخ البلاغ",status:"الحالة",
-    itemTitle:"المحتوى",hideContent:"إخفاء المحتوى",deleteContent:"حذف المحتوى",markReviewed:"تحديد كمراجع",closeReport:"إغلاق البلاغ",
-    notFound:"المحتوى غير موجود أو لا توجد صلاحية.",done:"تم.",error:"حدث خطأ. حاول مرة أخرى.",
-    notAdminTitle:"صلاحية المدير مطلوبة",notAdminText:"أنت مسجل الدخول، لكن هذا الحساب غير مسجل كمدير.",
-    notAdminWarning:"انسخ User-ID الموجود أدناه وأضفه في Supabase إلى جدول admin_users.",notAdminBackButton:"رجوع",
-    loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية"
-  },
-  en:{
-    backButton:"Back",pageTitle:"Admin Moderation",pageText:"Review reports from Share your experience and Marketplace, then hide unsafe content or close reports.",
-    adminInfo:"Admin mode active.",filterOpen:"Open",filterReviewed:"Reviewed",filterClosed:"Closed",filterAll:"All",refreshButton:"Refresh",
-    reportsTitle:"Reports",empty:"No reports found.",type:"Type",reason:"Reason",details:"Details",reportedAt:"Reported at",status:"Status",
-    itemTitle:"Content",hideContent:"Hide content",deleteContent:"Delete content",markReviewed:"Mark reviewed",closeReport:"Close report",
-    notFound:"Content not found or no permission.",done:"Done.",error:"Error. Please try again.",
-    notAdminTitle:"Admin access required",notAdminText:"You are logged in, but this account is not registered as admin.",
-    notAdminWarning:"Copy your user ID below and add it to the admin_users table in Supabase.",notAdminBackButton:"Back",
-    loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home"
-  },
-  tr:{
-    backButton:"Geri",pageTitle:"Admin moderasyon",pageText:"Deneyimini paylaş ve Pazar yeri bildirimlerini incele, güvensiz içeriği gizle veya bildirimleri kapat.",
-    adminInfo:"Admin modu aktif.",filterOpen:"Açık",filterReviewed:"İncelendi",filterClosed:"Kapalı",filterAll:"Hepsi",refreshButton:"Yenile",
-    reportsTitle:"Bildirimler",empty:"Bildirim bulunamadı.",type:"Tip",reason:"Sebep",details:"Detay",reportedAt:"Bildirim tarihi",status:"Durum",
-    itemTitle:"İçerik",hideContent:"İçeriği gizle",deleteContent:"İçeriği sil",markReviewed:"İncelendi işaretle",closeReport:"Bildirimi kapat",
-    notFound:"İçerik bulunamadı veya izin yok.",done:"Tamam.",error:"Hata. Tekrar dene.",
-    notAdminTitle:"Admin erişimi gerekli",notAdminText:"Giriş yaptın ama bu hesap admin olarak kayıtlı değil.",
-    notAdminWarning:"Aşağıdaki User-ID’yi kopyala ve Supabase admin_users tablosuna ekle.",notAdminBackButton:"Geri",
-    loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön"
-  },
-  ru:{
-    backButton:"Назад",pageTitle:"Админ-модерация",pageText:"Проверяйте жалобы из «Поделиться опытом» и маркетплейса, скрывайте опасный контент или закрывайте жалобы.",
-    adminInfo:"Режим администратора активен.",filterOpen:"Открыто",filterReviewed:"Проверено",filterClosed:"Закрыто",filterAll:"Все",refreshButton:"Обновить",
-    reportsTitle:"Жалобы",empty:"Жалоб нет.",type:"Тип",reason:"Причина",details:"Детали",reportedAt:"Дата жалобы",status:"Статус",
-    itemTitle:"Контент",hideContent:"Скрыть контент",deleteContent:"Удалить контент",markReviewed:"Отметить проверено",closeReport:"Закрыть жалобу",
-    notFound:"Контент не найден или нет прав.",done:"Готово.",error:"Ошибка. Попробуйте снова.",
-    notAdminTitle:"Нужен доступ администратора",notAdminText:"Вы вошли, но этот аккаунт не зарегистрирован как администратор.",
-    notAdminWarning:"Скопируйте User-ID ниже и добавьте его в Supabase в таблицу admin_users.",notAdminBackButton:"Назад",
-    loginTitle:"Войдите",loginText:"Сначала нужно войти.",loginBackButton:"На главную"
-  },
-  uk:{
-    backButton:"Назад",pageTitle:"Адмін-модерація",pageText:"Перевіряйте скарги з «Поділитися досвідом» і маркетплейса, приховуйте небезпечний контент або закривайте скарги.",
-    adminInfo:"Режим адміністратора активний.",filterOpen:"Відкрито",filterReviewed:"Перевірено",filterClosed:"Закрито",filterAll:"Усі",refreshButton:"Оновити",
-    reportsTitle:"Скарги",empty:"Скарг немає.",type:"Тип",reason:"Причина",details:"Деталі",reportedAt:"Дата скарги",status:"Статус",
-    itemTitle:"Контент",hideContent:"Приховати контент",deleteContent:"Видалити контент",markReviewed:"Позначити перевірено",closeReport:"Закрити скаргу",
-    notFound:"Контент не знайдено або немає прав.",done:"Готово.",error:"Помилка. Спробуйте ще раз.",
-    notAdminTitle:"Потрібен доступ адміністратора",notAdminText:"Ви увійшли, але цей акаунт не зареєстрований як адміністратор.",
-    notAdminWarning:"Скопіюйте User-ID нижче і додайте його в Supabase у таблицю admin_users.",notAdminBackButton:"Назад",
-    loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну"
-  }
-};
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+let currentTab="community_posts";
+let rows={community_posts:[],community_comments:[],marketplace_items:[],marketplace_comments:[]};
+let tableErrors={};
+let dbOnline=true;
 
-function t(){return translations[currentLang]||translations.de}
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Admin modération",pageTitle:"Centre de contrôle communauté",pageText:"Modère les expériences, commentaires et annonces marketplace : publier, masquer, signaler, supprimer, vérifier les contenus dangereux et garder la communauté sûre.",
+postsLabel:"Posts",itemsLabel:"Annonces",reportsLabel:"Signalés",modeLabel:"Mode",modeValue:"Online",offline:"Table manquante",importantTitle:"Accès admin",importantText:"Cette page est visible seulement pour les comptes ajoutés dans la liste ADMIN_USER_IDS du fichier. Ton UserID admin est déjà inclus.",adminStatus:"Accès admin confirmé.",warningText:"Une modération doit rester prudente : ne supprime pas une expérience difficile seulement parce qu’elle est négative. Supprime ce qui est dangereux, insultant, illégal, spam ou contraire aux règles.",rulesButton:"Règles",communityButton:"Communauté",marketButton:"Marketplace",
+queueTitle:"File de modération",queueText:"Filtre les contenus par type et statut.",refreshButton:"Actualiser",exportButton:"Exporter JSON",quickActionsTitle:"Règles de décision rapides",tablesTitle:"Tables Supabase nécessaires",tablesText:"Cette page lit et modifie ces tables. Si une table n’existe pas encore, elle sera affichée comme indisponible.",linksTitle:"Liens admin utiles",linksText:"Navigation rapide vers les pages à contrôler.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",notAdminTitle:"Accès réservé",notAdminText:"Cette page est réservée à l’administrateur.",notAdminBackButton:"Retour au dashboard",
+tabs:{community_posts:"Expériences",community_comments:"Commentaires forum",marketplace_items:"Annonces",marketplace_comments:"Commentaires market"},
+allStatus:"Tous statuts",allLang:"Toutes langues",empty:"Aucun contenu dans ce filtre.",approve:"Publier",hide:"Masquer",report:"Marquer signalé",delete:"Supprimer",reserved:"Réserver",sold:"Vendu",active:"Activer",copy:"Copier",status:"Statut",author:"Auteur",date:"Date",user:"User",
+decisionList:["Approuver : contenu utile, respectueux, pas de données personnelles sensibles, pas de conseil médical dangereux.","Masquer : contenu ambigu, trop personnel, incomplet, à vérifier ou hors sujet.","Signaler : arnaque probable, conseil médical dangereux, harcèlement, produit risqué, donnée sensible.","Supprimer : spam clair, contenu illégal, insulte grave, danger médical direct, annonce manifestement dangereuse.","Marketplace : être très strict avec sièges auto, matelas, objets de sommeil, produits ouverts, médicaments et objets cassés.","Santé mentale : si une personne semble en danger, orienter vers aide réelle et urgence; ne pas laisser le débat s’installer."]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Admin Moderation",pageTitle:"Community-Kontrollzentrum",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Admin moderation",pageTitle:"Community control center",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"إدارة الإشراف",pageTitle:"مركز التحكم بالمجتمع",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+
+function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 function setLanguage(lang){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-
-  document.querySelectorAll(".language-buttons button").forEach(btn=>btn.classList.remove("active"));
-  const active=document.getElementById("lang-"+lang);
-  if(active)active.classList.add("active");
-
-  Object.keys(t()).forEach(id=>{
-    const el=document.getElementById(id);
-    if(el)el.textContent=t()[id];
-  });
-
-  updateFilterButtons();
-  renderReports();
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el && typeof t()[id]==="string")el.textContent=t()[id]});
+ renderStatic();renderList();
 }
-
-function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function isAdmin(){return currentUser && ADMIN_USER_IDS.includes(currentUser.id)}
+function localKey(table){return "mama-admin-local-"+table}
+function getLocal(table){try{return JSON.parse(localStorage.getItem(localKey(table)))||[]}catch(e){return[]}}
+function setLocal(table,data){localStorage.setItem(localKey(table),JSON.stringify(data))}
+function normalizeRow(table,row){
+ return {
+  ...row,
+  _table:table,
+  _title: row.title || row.content?.slice(0,60) || row.description?.slice(0,60) || row.id,
+  _content: row.content || row.description || "",
+  _author: row.author_name || row.seller_name || row.user_id || "Mama",
+  _status: row.status || (table.includes("comments")?"published":"active"),
+  _lang: row.language || "",
+  _date: row.created_at || row.updated_at || ""
+ }
 }
+function renderStatic(){
+ document.getElementById("modeValue").textContent=dbOnline?t().modeValue:t().offline;
+ document.getElementById("adminStatus").textContent=t().adminStatus;
+ document.getElementById("tabsBox").innerHTML=Object.keys(t().tabs).map(k=>`<button class="${currentTab===k?"active":""}" onclick="setTab('${k}')">${t().tabs[k]}</button>`).join("");
+ document.getElementById("statusFilter").innerHTML=[
+  ["all",t().allStatus],["published","published"],["active","active"],["pending","pending"],["reported","reported"],["hidden","hidden"],["reserved","reserved"],["sold","sold"],["deleted","deleted"]
+ ].map(x=>`<option value="${x[0]}">${x[1]}</option>`).join("");
+ document.getElementById("langFilter").innerHTML=`<option value="all">${t().allLang}</option>`+Object.keys(langInfo).map(k=>`<option value="${k}">${langInfo[k][0]} ${langInfo[k][1]}</option>`).join("");
+ document.getElementById("decisionList").innerHTML=t().decisionList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("tablesCode").textContent=`community_posts
+- id, user_id, author_name, category, phase, language, title, content, status, likes_count, created_at
 
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
+community_comments
+- id, post_id, user_id, author_name, content, language, status, created_at
+
+marketplace_items
+- id, user_id, seller_name, category, condition, price_type, price, location, title, description, photo_url, contact_info, language, status, created_at
+
+marketplace_comments
+- id, item_id, user_id, author_name, content, status, created_at`;
+ updateStats();
 }
-
+function setTab(tab){currentTab=tab;renderStatic();renderList()}
+async function fetchTable(table){
+ try{
+  const {data,error}=await supabaseClient.from(table).select("*").order("created_at",{ascending:false}).limit(200);
+  if(error)throw error;
+  tableErrors[table]=null;
+  rows[table]=(data||[]).map(r=>normalizeRow(table,r));
+  return true;
+ }catch(e){
+  tableErrors[table]=e.message||String(e);
+  rows[table]=getLocal(table).map(r=>normalizeRow(table,r));
+  return false;
+ }
+}
+async function loadAll(){
+ const results=await Promise.all(Object.keys(rows).map(fetchTable));
+ dbOnline=results.some(Boolean);
+ renderStatic();renderList();
+}
+function updateStats(){
+ const all=Object.values(rows).flat();
+ document.getElementById("postsCount").textContent=rows.community_posts.length;
+ document.getElementById("itemsCount").textContent=rows.marketplace_items.length;
+ document.getElementById("reportsCount").textContent=all.filter(r=>r._status==="reported").length;
+}
+function filteredRows(){
+ const status=document.getElementById("statusFilter")?.value||"all";
+ const lang=document.getElementById("langFilter")?.value||"all";
+ const q=(document.getElementById("searchInput")?.value||"").trim().toLowerCase();
+ return rows[currentTab].filter(r=>{
+  const okStatus=status==="all" || r._status===status;
+  const okLang=lang==="all" || r._lang===lang;
+  const blob=(r._title+" "+r._content+" "+r._author+" "+JSON.stringify(r)).toLowerCase();
+  const okQ=!q || blob.includes(q);
+  return okStatus&&okLang&&okQ;
+ });
+}
+function statusBadge(s){
+ if(s==="published"||s==="active")return "badge badge-green";
+ if(s==="reported")return "badge badge-red";
+ if(s==="pending"||s==="reserved")return "badge badge-warning";
+ if(s==="hidden"||s==="sold")return "badge badge-blue";
+ return "badge";
+}
+function renderList(){
+ updateStats();
+ const list=document.getElementById("moderationList");
+ const error=tableErrors[currentTab];
+ const data=filteredRows();
+ if(error && !data.length){list.innerHTML=`<div class="warning">Table indisponible : ${escapeHtml(error)}</div>`;return}
+ if(!data.length){list.innerHTML=`<div class="empty">${t().empty}</div>`;return}
+ list.innerHTML=data.map(r=>renderRow(r)).join("");
+}
+function renderRow(r){
+ const date=r._date?new Date(r._date).toLocaleString():"";
+ const details=JSON.stringify(r,null,2);
+ return `<article class="mod-card">
+   <div class="mod-head">
+    <div>
+      <span class="${statusBadge(r._status)}">${escapeHtml(r._status)}</span>
+      <span class="badge badge-blue">${escapeHtml(t().tabs[r._table]||r._table)}</span>
+      ${r._lang?`<span class="badge">${escapeHtml(r._lang)}</span>`:""}
+      <h3>${escapeHtml(r._title)}</h3>
+      <div class="mod-meta">${t().author}: ${escapeHtml(r._author)} · ${t().date}: ${escapeHtml(date)} · ID: ${escapeHtml(r.id)}</div>
+    </div>
+   </div>
+   <p>${escapeHtml(r._content).replaceAll("\n","<br>")}</p>
+   <details style="margin-top:12px;">
+    <summary class="badge">${t().copy} / JSON</summary>
+    <pre class="code">${escapeHtml(details)}</pre>
+   </details>
+   <div class="mod-actions">
+    <button class="approve" onclick="updateStatus('${r._table}','${r.id}','${r._table.includes("marketplace_items")?"active":"published"}')">${t().approve}</button>
+    <button class="hide" onclick="updateStatus('${r._table}','${r.id}','hidden')">${t().hide}</button>
+    <button class="delete" onclick="updateStatus('${r._table}','${r.id}','reported')">${t().report}</button>
+    ${r._table==="marketplace_items"?`<button onclick="updateStatus('${r._table}','${r.id}','reserved')">${t().reserved}</button><button onclick="updateStatus('${r._table}','${r.id}','sold')">${t().sold}</button>`:""}
+    <button class="delete" onclick="deleteRow('${r._table}','${r.id}')">${t().delete}</button>
+    <button onclick="copyText('${encodeURIComponent(details)}')">${t().copy}</button>
+   </div>
+  </article>`;
+}
+function persistLocal(table){
+ setLocal(table,rows[table].map(r=>{
+  const clean={...r};delete clean._table;delete clean._title;delete clean._content;delete clean._author;delete clean._status;delete clean._lang;delete clean._date;return clean;
+ }));
+}
+async function updateStatus(table,id,status){
+ const row=rows[table].find(r=>String(r.id)===String(id));
+ if(!row)return;
+ row.status=status;row._status=status;renderList();updateStats();
+ try{
+  const {error}=await supabaseClient.from(table).update({status}).eq("id",id);
+  if(error)throw error;
+ }catch(e){
+  persistLocal(table);
+  alert("Changement local uniquement. Supabase a répondu : "+(e.message||e));
+ }
+}
+async function deleteRow(table,id){
+ if(!confirm("Supprimer / masquer définitivement cet élément ?"))return;
+ rows[table]=rows[table].filter(r=>String(r.id)!==String(id));renderList();updateStats();
+ try{
+  const {error}=await supabaseClient.from(table).delete().eq("id",id);
+  if(error)throw error;
+ }catch(e){
+  persistLocal(table);
+  alert("Suppression locale uniquement. Supabase a répondu : "+(e.message||e));
+ }
+}
+function copyText(encoded){
+ navigator.clipboard?.writeText(decodeURIComponent(encoded));
+}
+function exportModeration(){
+ const data={exported_at:new Date().toISOString(),rows,tableErrors};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download="mama-moderation-export.json";a.click();
+ URL.revokeObjectURL(url);
+}
 async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-
-  if(error||!data.session){
-    document.getElementById("loginMessage").style.display="block";
-    document.getElementById("appShell").style.display="none";
-    document.getElementById("notAdminMessage").style.display="none";
-    return;
-  }
-
-  currentUser=data.session.user;
-
-  const {data:profiles}=await supabaseClient
-    .from("pregnancy_profiles")
-    .select("*")
-    .eq("user_id",currentUser.id)
-    .order("created_at",{ascending:false})
-    .limit(1);
-
-  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
-  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"de";
-
-  if(currentProfile){
-    applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
-  }
-
-  setLanguage(currentLang);
-
-  const {data:admin,error:adminError}=await supabaseClient
-    .from("admin_users")
-    .select("user_id,role")
-    .eq("user_id",currentUser.id)
-    .maybeSingle();
-
-  if(adminError || !admin){
-    document.getElementById("loginMessage").style.display="none";
-    document.getElementById("appShell").style.display="none";
-    document.getElementById("notAdminMessage").style.display="block";
-    document.getElementById("currentUserIdBox").textContent=currentUser.id;
-    return;
-  }
-
-  document.getElementById("loginMessage").style.display="none";
-  document.getElementById("notAdminMessage").style.display="none";
-  document.getElementById("appShell").style.display="block";
-
-  await loadReports();
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ if(!isAdmin()){document.getElementById("notAdminMessage").style.display="block";return}
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadAll();
 }
-
-function escapeHtml(value){
-  return String(value||"")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-function formatDate(value){
-  const date=new Date(value);
-  const locale=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":
-               currentLang==="fr"?"fr-FR":
-               currentLang==="tr"?"tr-TR":
-               currentLang==="ru"?"ru-RU":
-               currentLang==="uk"?"uk-UA":
-               currentLang==="en"?"en-GB":"de-DE";
-  return date.toLocaleString(locale,{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit",calendar:"gregory",numberingSystem:"latn"});
-}
-
-function setStatusFilter(status){
-  statusFilter=status;
-  updateFilterButtons();
-  loadReports();
-}
-
-function updateFilterButtons(){
-  [["filterOpen","open"],["filterReviewed","reviewed"],["filterClosed","closed"],["filterAll","all"]].forEach(([id,value])=>{
-    const btn=document.getElementById(id);
-    if(btn)btn.classList.toggle("active",statusFilter===value);
-  });
-}
-
-async function loadReports(){
-  let query=supabaseClient
-    .from("reports")
-    .select("*")
-    .order("created_at",{ascending:false})
-    .limit(80);
-
-  if(statusFilter!=="all")query=query.eq("status",statusFilter);
-
-  const {data,error}=await query;
-
-  if(error){
-    console.error(error);
-    reportsCache=[];
-    renderReports();
-    return;
-  }
-
-  reportsCache=data||[];
-  await loadReportItems();
-  renderReports();
-}
-
-async function loadReportItems(){
-  for(const report of reportsCache){
-    report.item=null;
-
-    if(report.item_type==="community_post"){
-      const {data}=await supabaseClient
-        .from("community_posts")
-        .select("id,title,body,status,user_id,category,language,created_at")
-        .eq("id",report.item_id)
-        .maybeSingle();
-      report.item=data;
-    }
-
-    if(report.item_type==="community_comment"){
-      const {data}=await supabaseClient
-        .from("community_comments")
-        .select("id,body,status,user_id,post_id,language,created_at")
-        .eq("id",report.item_id)
-        .maybeSingle();
-      report.item=data;
-    }
-
-    if(report.item_type==="marketplace_item"){
-      const {data}=await supabaseClient
-        .from("marketplace_items")
-        .select("id,title,description,status,user_id,category,language,created_at,price,listing_type")
-        .eq("id",report.item_id)
-        .maybeSingle();
-      report.item=data;
-    }
-  }
-}
-
-function itemTitle(report){
-  const item=report.item;
-  if(!item)return t().notFound;
-  if(report.item_type==="community_post")return item.title||"-";
-  if(report.item_type==="community_comment")return item.body||"-";
-  if(report.item_type==="marketplace_item")return item.title||"-";
-  return "-";
-}
-
-function itemBody(report){
-  const item=report.item;
-  if(!item)return "";
-  if(report.item_type==="community_post")return item.body||"";
-  if(report.item_type==="community_comment")return item.body||"";
-  if(report.item_type==="marketplace_item")return item.description||"";
-  return "";
-}
-
-function tableForType(type){
-  if(type==="community_post")return "community_posts";
-  if(type==="community_comment")return "community_comments";
-  if(type==="marketplace_item")return "marketplace_items";
-  return null;
-}
-
-async function hideContent(reportId,itemType,itemId){
-  const table=tableForType(itemType);
-  if(!table)return;
-  const {error}=await supabaseClient.from(table).update({status:"hidden"}).eq("id",itemId);
-  if(error){alert(t().error);console.error(error);return;}
-  await markReport(reportId,"reviewed");
-}
-
-async function deleteContent(reportId,itemType,itemId){
-  const table=tableForType(itemType);
-  if(!table)return;
-  const {error}=await supabaseClient.from(table).update({status:"deleted"}).eq("id",itemId);
-  if(error){alert(t().error);console.error(error);return;}
-  await markReport(reportId,"closed");
-}
-
-async function markReport(reportId,status){
-  const {error}=await supabaseClient.from("reports").update({status}).eq("id",reportId);
-  if(error){alert(t().error);console.error(error);return;}
-  await loadReports();
-}
-
-function renderReports(){
-  const grid=document.getElementById("reportsGrid");
-  if(!grid)return;
-
-  grid.innerHTML="";
-
-  if(reportsCache.length===0){
-    grid.innerHTML=`<div class="empty">${t().empty}</div>`;
-    return;
-  }
-
-  reportsCache.forEach(report=>{
-    const card=document.createElement("div");
-    card.className="report-card";
-
-    const title=escapeHtml(itemTitle(report));
-    const body=escapeHtml(itemBody(report)).replaceAll("\\n","<br>");
-    const status=report.item?escapeHtml(report.item.status):t().notFound;
-
-    card.innerHTML=`
-      <div>
-        <span class="badge">${t().type}: ${escapeHtml(report.item_type)}</span>
-        <span class="badge">${t().status}: ${escapeHtml(report.status)}</span>
-        <span class="badge">${t().reason}: ${escapeHtml(report.reason)}</span>
-      </div>
-
-      <h3>${t().itemTitle}: ${title}</h3>
-      ${body?`<p>${body}</p>`:""}
-
-      <div class="soft">
-        ${t().reportedAt}: ${formatDate(report.created_at)}<br>
-        ${t().status}: ${status}<br>
-        ${t().details}: ${escapeHtml(report.details||"-")}
-      </div>
-
-      <div class="actions" style="margin-top:14px;">
-        <button class="button-light" onclick="markReport('${report.id}','reviewed')">${t().markReviewed}</button>
-        <button class="button-light" onclick="markReport('${report.id}','closed')">${t().closeReport}</button>
-        ${report.item?`<button class="button-danger" onclick="hideContent('${report.id}','${report.item_type}','${report.item_id}')">${t().hideContent}</button>`:""}
-        ${report.item?`<button class="button-danger" onclick="deleteContent('${report.id}','${report.item_type}','${report.item_id}')">${t().deleteContent}</button>`:""}
-      </div>
-    `;
-
-    grid.appendChild(card);
-  });
-}
-
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();
 </script>
 </body>
 </html>
-
-

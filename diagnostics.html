@@ -5,67 +5,318 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mama in Deutschland - Tests & diagnostics</title>
 <style>
-:root{--page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--shadow:rgba(74,52,40,.12)}
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--gold:#c9a66b;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-.wrap{max-width:1120px;margin:0 auto;padding:24px 18px}
-header{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;text-decoration:none}
-.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950}
-.button,.button-light{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit}
+body{
+  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),
+    radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),
+    linear-gradient(180deg,#fbf7f1,var(--page));
+  color:var(--text);
+}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger,.button-success{
+  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;
+  cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px
+}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
-.card{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
-h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:36px}
-p,li{color:var(--muted);line-height:1.65}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero,.panel{
+  background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;
+  box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)
+}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.test-card,.source-card{
+  background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px
+}
+.test-card{position:relative;overflow:hidden}
+.test-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.notice{padding:14px 16px;border-radius:18px;background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:900;margin-top:14px}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.badge-dark{background:var(--brown);color:white}
+.badge-normal{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.badge-important{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-urgent{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.timeline{display:grid;gap:12px}
+.timeline-item{display:grid;grid-template-columns:115px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
+.timeline-week{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero,.panel{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
-<a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
-<a class="button-light" href="app.html">Dashboard</a>
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+  <div class="top-actions">
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 RU Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 UK Українська</button>
+      </div>
+    </div>
+  </div>
 </header>
 
-<section class="card">
-<h1>Tests & diagnostics</h1>
-<p>Vue d’ensemble des examens importants pendant la grossesse en Allemagne. Cette page est informative et ne remplace jamais ton/ta Frauenarzt, ta Hebamme ou la clinique.</p>
-<div class="notice">Les dates exactes peuvent varier selon ton dossier, ton assurance, la clinique et les recommandations médicales.</div>
-</section>
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Tests & diagnostics</div>
+      <h1 id="pageTitle">Comprendre les examens sans stress</h1>
+      <p id="pageText">Une carte claire des consultations, analyses, échographies, tests optionnels et signes d’alerte pendant la grossesse en Allemagne.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="weekLabel">Semaine actuelle</div><div class="stat-value" id="weekValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="nextTestLabel">Prochain examen</div><div class="stat-value" id="nextTestValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">Important</h2>
+      <p id="importantText">Cette page est un guide d’organisation. Les décisions médicales se prennent avec le/la Frauenarzt, la Hebamme ou la clinique.</p>
+      <div class="warning" id="urgentText">Urgence : saignement important, douleur forte, fièvre, perte de liquide, diminution nette des mouvements, maux de tête intenses ou troubles visuels → contacte rapidement une clinique, le 112 ou le service médical adapté.</div>
+    </div>
+  </section>
 
-<section class="card">
-<h2>Examens principaux</h2>
-<div class="grid">
-<div class="box"><span class="badge">Début</span><h3>Mutterpass + bilan initial</h3><p>Groupe sanguin, Rhésus, anticorps, hémoglobine/fer, urine, tension, infections et antécédents.</p></div>
-<div class="box"><span class="badge">SA 10+</span><h3>NIPT</h3><p>Test sanguin non invasif pour certaines trisomies. À discuter selon indication, âge, préférence et couverture.</p></div>
-<div class="box"><span class="badge">SA 11–14</span><h3>Clarté nucale</h3><p>Échographie de la nuque, souvent liée au screening du premier trimestre et à une discussion du risque.</p></div>
-<div class="box"><span class="badge">SA 19–22</span><h3>Échographie organes</h3><p>Contrôle morphologique, croissance, placenta, liquide amniotique et organes selon l’examen prévu.</p></div>
-<div class="box"><span class="badge">SA 24–28</span><h3>Test de glycémie</h3><p>Dépistage du diabète gestationnel. Important pour maman et bébé.</p></div>
-<div class="box"><span class="badge">Rh négatif</span><h3>Anti-D</h3><p>Prophylaxie si Rhésus négatif selon situation médicale et contrôles.</p></div>
-<div class="box"><span class="badge">SA 28+</span><h3>Vaccins</h3><p>Coqueluche, grippe, COVID/RSV selon saison, situation et recommandation médicale.</p></div>
-<div class="box"><span class="badge">SA 29–32</span><h3>Troisième échographie</h3><p>Croissance, position, placenta, liquide amniotique et suite de la planification.</p></div>
-<div class="box"><span class="badge">SA 35–37</span><h3>Streptocoque B / GBS</h3><p>Dépistage souvent proposé ou discuté selon pratique médicale.</p></div>
-<div class="box"><span class="badge">Fin grossesse</span><h3>CTG</h3><p>Contrôle du rythme cardiaque du bébé et des contractions si indiqué ou selon protocole.</p></div>
-<div class="box"><span class="badge">Toujours</span><h3>Urine + tension</h3><p>Surveillance protéinurie, tension, symptômes, œdèmes, douleurs, mouvements du bébé.</p></div>
-<div class="box"><span class="badge">Après naissance</span><h3>U-Untersuchungen</h3><p>Examens pédiatriques obligatoires/recommandés pour le bébé selon le calendrier allemand.</p></div>
-</div>
-</section>
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="overviewTitle">Examens principaux</h2>
+        <p id="overviewText">Les examens sont affichés avec leur fenêtre habituelle. Les dates exactes peuvent varier selon ton suivi.</p>
+      </div>
+      <a class="button-light" href="calendar.html" id="calendarButton">Voir calendrier</a>
+    </div>
+    <div class="grid" id="testsGrid"></div>
+  </section>
 
-<section class="card">
-<h2>Signes à ne pas ignorer</h2>
-<ul>
-<li>Saignement important, douleurs fortes, fièvre, malaise sévère.</li>
-<li>Diminution nette des mouvements du bébé.</li>
-<li>Maux de tête intenses, troubles visuels, douleur haut ventre, tension élevée.</li>
-<li>Perte de liquide, contractions régulières avant terme ou inquiétude importante.</li>
-</ul>
-<a class="button" href="emergency.html">Voir urgence</a>
-<button class="button-light" onclick="history.back()" style="margin-left:8px;">Retour</button>
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="timelineTitle">Timeline grossesse</h2>
+        <p id="timelineText">Vue organisée pour les femmes qui découvrent le système allemand.</p>
+      </div>
+    </div>
+    <div class="timeline" id="timelineBox"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="checkTitle">Checklist personnelle</h2>
+      <p id="checkText">Coche ce que tu as déjà clarifié avec ton médecin ou ta sage-femme.</p>
+      <div id="checklistBox"></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="questionsTitle">Questions à poser</h2>
+      <div class="box">
+        <ul id="questionsList"></ul>
+      </div>
+      <div class="soft" id="mutterpassNote">Astuce : note les résultats et questions dans ton Mutterpass ou dans ton calendrier.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="sourcesTitle">Sources et liens utiles</h2>
+        <p id="sourcesText">Liens officiels ou très utiles pour vérifier les informations.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="https://gesund.bund.de/wege-im-gesundheitswesen/schwangerschaft/schwangerschaftsvorsorge" target="_blank" rel="noopener">gesund.bund.de</a><span>Schwangerschaftsvorsorge, Mutterpass, rythme des consultations, ultrasons, Zuckertest.</span></div>
+      <div class="source-card"><a href="https://www.familienplanung.de/schwangerschaft/" target="_blank" rel="noopener">familienplanung.de</a><span>Informations BZgA sur grossesse, diagnostic prénatal, conseil et naissance.</span></div>
+      <div class="source-card"><a href="https://www.116117.de" target="_blank" rel="noopener">116117</a><span>Service médical de garde et aide pour soins non vitaux hors urgence.</span></div>
+      <div class="source-card"><a href="https://www.rki.de" target="_blank" rel="noopener">RKI / STIKO</a><span>Vaccinations et recommandations de prévention.</span></div>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
+</main>
+
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Tests & diagnostics",pageTitle:"Comprendre les examens sans stress",pageText:"Une carte claire des consultations, analyses, échographies, tests optionnels et signes d’alerte pendant la grossesse en Allemagne.",
+weekLabel:"Semaine actuelle",nextTestLabel:"Prochain examen",progressLabel:"Checklist",importantTitle:"Important",importantText:"Cette page est un guide d’organisation. Les décisions médicales se prennent avec le/la Frauenarzt, la Hebamme ou la clinique.",
+urgentText:"Urgence : saignement important, douleur forte, fièvre, perte de liquide, diminution nette des mouvements, maux de tête intenses ou troubles visuels → contacte rapidement une clinique, le 112 ou le service médical adapté.",
+overviewTitle:"Examens principaux",overviewText:"Les examens sont affichés avec leur fenêtre habituelle. Les dates exactes peuvent varier selon ton suivi.",calendarButton:"Voir calendrier",
+timelineTitle:"Timeline grossesse",timelineText:"Vue organisée pour les femmes qui découvrent le système allemand.",checkTitle:"Checklist personnelle",checkText:"Coche ce que tu as déjà clarifié avec ton médecin ou ta sage-femme.",resetButton:"Réinitialiser",
+questionsTitle:"Questions à poser",mutterpassNote:"Astuce : note les résultats et questions dans ton Mutterpass ou dans ton calendrier.",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels ou très utiles pour vérifier les informations.",
+bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+normal:"Routine",important:"Important",optional:"Optionnel",urgent:"Alerte",week:"SA",nextNone:"Selon ton suivi",
+tests:[
+["🩸","Bilan initial & Mutterpass","Début","Groupe sanguin, Rhésus, anticorps, hémoglobine/fer, urine, tension, infections, antécédents.","important"],
+["🧬","NIPT","SA 10+","Test sanguin non invasif pour certaines trisomies. À discuter selon indication, souhait et couverture.","optional"],
+["📏","Clarté nucale / screening 1er trimestre","SA 11–14","Échographie de la nuque, souvent liée à une évaluation du risque et aux choix de diagnostic prénatal.","optional"],
+["🖥️","Échographies de base","1er, 2e, 3e trimestre","Contrôle croissance, âge gestationnel, placenta, liquide, développement selon le terme.","important"],
+["🫀","Échographie morphologique / organes","SA 19–22","Contrôle détaillé du développement et des organes selon pratique médicale.","important"],
+["🍬","Test de glycémie","SA 24–28","Dépistage du diabète gestationnel. Important pour la sécurité de maman et bébé.","important"],
+["💉","Anti-D / Rhésus","env. SA 28","Si Rhésus négatif, discussion d’une prophylaxie selon situation et recommandations.","important"],
+["🦠","Streptocoque B / GBS","SA 35–37","Dépistage souvent discuté avant naissance selon pratique médicale locale.","optional"],
+["💓","CTG","Fin grossesse / si indiqué","Contrôle du rythme cardiaque bébé et contractions selon indication ou protocole.","normal"],
+["🧾","Examens réguliers","Toute grossesse","Tension, poids, urine, symptômes, croissance utérine, questions, conseils.","important"],
+["💉","Vaccins grossesse","Selon saison / trimestre","Coqueluche, grippe, autres vaccins selon situation et recommandations médicales.","important"],
+["🚨","Signes d’alerte","Toujours","Saignement, douleur forte, perte liquide, fièvre, diminution mouvements, troubles visuels.","urgent"]
+],
+timeline:[
+["Début grossesse","Confirmation, première consultation, Mutterpass, bilan initial, conseils médicaments/vitamines."],
+["SA 10–14","Discussion NIPT, clarté nucale, screening 1er trimestre et options de diagnostic prénatal."],
+["SA 19–22","Échographie morphologique et contrôle de la croissance/développement."],
+["SA 24–28","Test de glycémie, contrôle fer, prévention, discussion Anti-D si concernée."],
+["SA 29–34","Troisième échographie, croissance, position, planification clinique et cours."],
+["SA 35–37","GBS selon pratique, valise maternité, plan urgence, documents."],
+["Fin grossesse","Contrôles rapprochés, CTG si indiqué, signes de naissance, clinique."],
+["Après naissance","U-Untersuchungen, pédiatre, récupération maman, documents bébé."]
+],
+checklist:["J’ai mon Mutterpass","Je connais mon groupe sanguin/Rhésus","J’ai parlé du NIPT si je le souhaite","J’ai compris la clarté nucale/screening","J’ai une date pour l’échographie morphologique","J’ai prévu le test de glycémie","Je sais si Anti-D me concerne","J’ai discuté vaccins grossesse","J’ai noté les signes d’alerte","J’ai le numéro de ma clinique"],
+questions:["Quels examens sont obligatoires et lesquels sont optionnels ?","Quels coûts sont couverts par mon assurance ?","Ai-je besoin d’un suivi de grossesse à risque ?","Quels signes doivent me faire appeler directement ?","Quels documents dois-je apporter au prochain rendez-vous ?"]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Tests & Diagnostik",pageTitle:"Untersuchungen ohne Stress verstehen",weekLabel:"Aktuelle SSW",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Tests & diagnostics",pageTitle:"Understand exams without stress",weekLabel:"Current week",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"الفحوصات والتشخيص",pageTitle:"فهم الفحوصات بدون توتر",weekLabel:"الأسبوع الحالي",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+
+function t(){return tr[currentLang]||tr.fr}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+function setLanguage(lang){
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ render();
+}
+function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
+function calculatePregnancy(due){
+ if(!due)return currentProfile?.pregnancy_week||1;
+ const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);
+ let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;
+}
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function badge(type){if(type==="urgent")return "badge badge-urgent";if(type==="important")return "badge badge-important";if(type==="optional")return "badge badge-normal";return "badge"}
+function typeText(type){if(type==="urgent")return t().urgent;if(type==="important")return t().important;if(type==="optional")return t().optional;return t().normal}
+function checkKey(){return "mama-diagnostics-check-"+(currentUser?currentUser.id:"guest")}
+function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
+function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
+function resetChecklist(){saveState({});renderChecklist()}
+function renderChecklist(){
+ const s=state();const items=t().checklist;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
+ const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ document.getElementById("progressValue").textContent=done+" / "+total;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+}
+function nextTest(){
+ const map=[
+  [8,t().tests[0][1]],[10,t().tests[1][1]],[12,t().tests[2][1]],[20,t().tests[4][1]],[24,t().tests[5][1]],[28,t().tests[6][1]],[32,t().tests[3][1]],[35,t().tests[7][1]]
+ ];
+ for(const m of map){if(currentWeek<=m[0])return m[1]}
+ return t().nextNone;
+}
+function render(){
+ document.getElementById("weekValue").textContent=currentWeek;
+ document.getElementById("nextTestValue").textContent=nextTest();
+ document.getElementById("testsGrid").innerHTML=t().tests.map(x=>`<div class="test-card"><div class="icon">${x[0]}</div><span class="${badge(x[4])}">${typeText(x[4])}</span><span class="badge">${x[2]}</span><h3>${x[1]}</h3><p>${x[3]}</p></div>`).join("");
+ document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-week">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+ renderChecklist();
+}
+async function loadApp(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ currentWeek=calculatePregnancy(currentProfile?.due_date);
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+loadApp();
+</script>
 </body>
 </html>

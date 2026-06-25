@@ -7,46 +7,73 @@
 <style>
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
-  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
-  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.12);
+  --light:#9b7357;--gold:#c9a66b;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
 }
-body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
-body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
-body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(198,164,106,.22),transparent 30%),radial-gradient(circle at 92% 8%,rgba(155,115,87,.16),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-.wrap{max-width:1220px;margin:0 auto;padding:22px 18px 34px}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
 header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;text-decoration:none;letter-spacing:-.5px}
-.brand-icon{width:46px;height:46px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
-.lang-menu{position:absolute;right:0;top:48px;width:190px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:10}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
-.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:900;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
 .lang-menu button:hover{background:var(--soft)}
-.card,.hero,.panel{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 65%,var(--soft));position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:210px;height:210px;border-radius:50%;background:rgba(155,115,87,.10)}
-.hero-content,.hero-side{position:relative;z-index:1}
-.kicker{display:inline-flex;padding:7px 11px;border-radius:99px;background:var(--soft);color:var(--brown);font-weight:950;font-size:12px;margin-bottom:12px}
-h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:40px;letter-spacing:-1.6px;line-height:1.05}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.box,.guide-item{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.bag-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.bag-card{position:relative;overflow:hidden}
+.bag-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.progress{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
-.checkbox-row{display:flex;gap:12px;align-items:flex-start;margin-top:11px;padding:12px;border-radius:17px;border:1px solid var(--border);background:white}
-.checkbox-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.badge-dark{background:var(--brown);color:white}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
-.login-message{max-width:650px;margin:60px auto;text-align:center}.status{display:none;margin-top:12px;font-weight:900;color:var(--brown)}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.timeline{display:grid;gap:12px}
+.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
+.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-@media(max-width:960px){.hero,.grid-2{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:31px}.grid{grid-template-columns:1fr}.card,.hero,.panel{padding:20px}.top-actions{width:100%;justify-content:flex-start}}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -54,8 +81,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 <header>
   <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
   <div class="top-actions">
-    <a class="button-light" href="profile.html" id="uiProfile">Profil</a>
-    <button class="button-danger" onclick="signOut()" id="uiLogout">Déconnexion</button>
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
     <div class="lang-wrap">
       <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
       <div class="lang-menu" id="langMenu">
@@ -64,8 +91,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
         <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
         <button onclick="setLanguage('en')">🇬🇧 EN English</button>
         <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
-        <button onclick="setLanguage('ru')">🇷🇺 RU Русский</button>
-        <button onclick="setLanguage('uk')">🇺🇦 UK Українська</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
     </div>
   </div>
@@ -73,66 +100,107 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 
 <main id="appShell" style="display:none;">
   <section class="hero">
-    <div class="hero-content">
-      <div class="kicker" id="pageKicker">-</div>
-      <h1 id="pageTitle">-</h1>
-      <p id="pageSubtitle">-</p>
-      <div class="soft" id="profileInfo">-</div>
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Valise maternité</div>
+      <h1 id="pageTitle">Partir à la clinique sans stress</h1>
+      <p id="pageText">Une valise organisée pour la maman, le bébé et le partenaire : documents, confort, vêtements, hygiène, sortie clinique et plan B en Allemagne.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="weekLabel">Semaine actuelle</div><div class="stat-value" id="weekValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="focusLabel">À préparer vers</div><div class="stat-value" id="focusValue">SA 34–36</div></div>
+        <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+      </div>
     </div>
     <div class="hero-side">
-      <h2 id="uiProgress">Progression</h2>
-      <p id="progressText">0 / 0</p>
-      <div class="progress"><div id="progressBar"></div></div>
+      <h2 id="importantTitle">Ultra important</h2>
+      <p id="importantText">La valise doit être prête quelques semaines avant le terme, parce que les contractions ou la naissance peuvent commencer plus tôt.</p>
+      <div class="warning" id="safetyNote">Toujours avoir séparément : Mutterpass, carte d’assurance, pièce d’identité, téléphone chargé, numéro de la clinique et Babyschale pour la sortie.</div>
       <div class="actions" style="margin-top:14px;">
-        <a class="button" href="app.html" id="uiDashboard">Dashboard</a>
-        <button class="button-light" onclick="history.back()" id="uiBack">Retour</button>
+        <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
+        <a class="button-light" href="calendar.html" id="calendarButton">Calendrier</a>
       </div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="uiImportant">Important</h2>
-    <div class="grid" id="cardsGrid"></div>
+    <div class="section-title">
+      <div>
+        <h2 id="categoriesTitle">Valise par catégorie</h2>
+        <p id="categoriesText">Tout ce qu’il faut prévoir sans surcharger.</p>
+      </div>
+    </div>
+    <div class="grid" id="categoriesGrid"></div>
   </section>
 
-  <section class="card">
-    <h2 id="uiChecklist">Checklist</h2>
-    <div id="checklistBox"></div>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button-light" onclick="resetChecklist()" id="uiReset">Réinitialiser</button>
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="checkTitle">Checklist valise maternité</h2>
+      <p id="checkText">Coche ce qui est prêt.</p>
+      <div id="checklistBox"></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="partnerTitle">Sac partenaire / accompagnant</h2>
+      <div class="box"><ul id="partnerList"></ul></div>
+      <div class="soft" id="partnerNote">Le partenaire doit aussi connaître le trajet, le parking, le numéro de la salle de naissance et les documents importants.</div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="uiGuide">Guide rapide</h2>
-    <div class="grid" id="timelineGrid"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiTips">Conseils</h2>
-    <div id="tipsBox"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiNotes">Note personnelle</h2>
-    <textarea id="personalNote"></textarea>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button" onclick="saveNote()" id="uiSaveNote">Sauvegarder la note</button>
+    <div class="section-title">
+      <div>
+        <h2 id="timelineTitle">Quand préparer ?</h2>
+        <p id="timelineText">Plan simple pour ne rien faire dans la panique.</p>
+      </div>
     </div>
-    <div class="status" id="noteStatus"></div>
+    <div class="timeline" id="timelineBox"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="questionsTitle">Questions à poser à la clinique</h2>
+      <div class="box"><ul id="questionsList"></ul></div>
+    </div>
+    <div class="card">
+      <h2 id="notesTitle">Note personnelle</h2>
+      <p id="notesText">Note ici les particularités de ta clinique : parking, entrée de nuit, documents, liste officielle.</p>
+      <textarea id="personalNote"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder</button>
+      </div>
+      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="sourcesTitle">Sources et liens utiles</h2>
+        <p id="sourcesText">Liens fiables pour vérifier et compléter la préparation.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="https://gesund.bund.de/wege-im-gesundheitswesen/schwangerschaft-und-geburt/geburt/kliniktasche" target="_blank" rel="noopener">gesund.bund.de Kliniktasche</a><span>Liste officielle : vêtements maman/bébé, documents, chargeur, snacks, trousse toilette.</span></div>
+      <div class="source-card"><a href="documents.html">Documents</a><span>Mutterpass, carte assurance, Standesamt, Geburtsurkunde, documents étrangers.</span></div>
+      <div class="source-card"><a href="baby-equipment.html">Équipement bébé</a><span>Babyschale, sommeil sûr, vêtements et matériel maison.</span></div>
+      <div class="source-card"><a href="emergency.html">Urgence</a><span>112, 116117, signes d’alerte et quoi dire au téléphone.</span></div>
+    </div>
   </section>
 
   <div class="footer-actions">
-    <button class="button-light" onclick="history.back()" id="uiBackBottom">Retour</button>
-    <a class="button-light" href="app.html">Dashboard</a>
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
   </div>
 </main>
 
 <section class="login-message card" id="loginMessage" style="display:none;">
-  <h2 id="uiLoginTitle">Connexion nécessaire</h2>
-  <p id="uiLoginText">Tu dois d’abord te connecter.</p>
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
   <br>
-  <a class="button" href="index.html" id="uiHome">Retour à l’accueil</a>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
 
@@ -142,114 +210,99 @@ const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-const PAGE_ID="hospital-bag";
-const CONTENT={"fr": {"icon": "🧳", "title": "Valise maternité", "kicker": "Jour J", "subtitle": "Préparer documents, affaires maman, bébé et partenaire pour la clinique.", "cards": [["Documents", "Mutterpass, carte assurance, pièce d’identité, documents utiles."], ["Maman", "Vêtements confortables, chargeur, trousse toilette, snacks."], ["Bébé", "Bodies, tenue sortie, bonnet, couverture, siège auto."]], "checklist": ["Mutterpass", "Carte assurance", "Chargeur téléphone", "Vêtements maman", "Tenue sortie bébé", "Siège auto installé"], "timeline": [["SA 28–32", "Commencer doucement."], ["SA 34–36", "Valise presque prête."], ["SA 37+", "Garder près de la porte."]], "tips": ["Prépare aussi un petit sac partenaire.", "Le siège auto doit être disponible avant sortie de maternité."]}, "en": {"icon": "🧳", "title": "Valise maternite", "kicker": "Jour J", "subtitle": "Préparer documents, affaires maman, bébé et partenaire pour la clinique.", "cards": [["Documents", "Mutterpass, carte assurance, pièce d’identité, documents utiles."], ["Maman", "Vêtements confortables, chargeur, trousse toilette, snacks."], ["Bébé", "Bodies, tenue sortie, bonnet, couverture, siège auto."]], "checklist": ["Mutterpass", "Carte assurance", "Chargeur téléphone", "Vêtements maman", "Tenue sortie bébé", "Siège auto installé"], "timeline": [["SA 28–32", "Commencer doucement."], ["SA 34–36", "Valise presque prête."], ["SA 37+", "Garder près de la porte."]], "tips": ["Prépare aussi un petit sac partenaire.", "Le siège auto doit être disponible avant sortie de maternité."]}, "de": {"icon": "🧳", "title": "Valise maternite", "kicker": "Jour J", "subtitle": "Préparer documents, affaires maman, bébé et partenaire pour la clinique.", "cards": [["Documents", "Mutterpass, carte assurance, pièce d’identité, documents utiles."], ["Maman", "Vêtements confortables, chargeur, trousse toilette, snacks."], ["Bébé", "Bodies, tenue sortie, bonnet, couverture, siège auto."]], "checklist": ["Mutterpass", "Carte assurance", "Chargeur téléphone", "Vêtements maman", "Tenue sortie bébé", "Siège auto installé"], "timeline": [["SA 28–32", "Commencer doucement."], ["SA 34–36", "Valise presque prête."], ["SA 37+", "Garder près de la porte."]], "tips": ["Prépare aussi un petit sac partenaire.", "Le siège auto doit être disponible avant sortie de maternité."]}, "ar": {"icon": "🧳", "title": "Valise maternité", "kicker": "Jour J", "subtitle": "Préparer documents, affaires maman, bébé et partenaire pour la clinique.", "cards": [["Documents", "Mutterpass, carte assurance, pièce d’identité, documents utiles."], ["Maman", "Vêtements confortables, chargeur, trousse toilette, snacks."], ["Bébé", "Bodies, tenue sortie, bonnet, couverture, siège auto."]], "checklist": ["Mutterpass", "Carte assurance", "Chargeur téléphone", "Vêtements maman", "Tenue sortie bébé", "Siège auto installé"], "timeline": [["SA 28–32", "Commencer doucement."], ["SA 34–36", "Valise presque prête."], ["SA 37+", "Garder près de la porte."]], "tips": ["Prépare aussi un petit sac partenaire.", "Le siège auto doit être disponible avant sortie de maternité."]}, "tr": {"icon": "🧳", "title": "Valise maternite", "kicker": "Jour J", "subtitle": "Préparer documents, affaires maman, bébé et partenaire pour la clinique.", "cards": [["Documents", "Mutterpass, carte assurance, pièce d’identité, documents utiles."], ["Maman", "Vêtements confortables, chargeur, trousse toilette, snacks."], ["Bébé", "Bodies, tenue sortie, bonnet, couverture, siège auto."]], "checklist": ["Mutterpass", "Carte assurance", "Chargeur téléphone", "Vêtements maman", "Tenue sortie bébé", "Siège auto installé"], "timeline": [["SA 28–32", "Commencer doucement."], ["SA 34–36", "Valise presque prête."], ["SA 37+", "Garder près de la porte."]], "tips": ["Prépare aussi un petit sac partenaire.", "Le siège auto doit être disponible avant sortie de maternité."]}, "ru": {"icon": "🧳", "title": "Valise maternite", "kicker": "Jour J", "subtitle": "Préparer documents, affaires maman, bébé et partenaire pour la clinique.", "cards": [["Documents", "Mutterpass, carte assurance, pièce d’identité, documents utiles."], ["Maman", "Vêtements confortables, chargeur, trousse toilette, snacks."], ["Bébé", "Bodies, tenue sortie, bonnet, couverture, siège auto."]], "checklist": ["Mutterpass", "Carte assurance", "Chargeur téléphone", "Vêtements maman", "Tenue sortie bébé", "Siège auto installé"], "timeline": [["SA 28–32", "Commencer doucement."], ["SA 34–36", "Valise presque prête."], ["SA 37+", "Garder près de la porte."]], "tips": ["Prépare aussi un petit sac partenaire.", "Le siège auto doit être disponible avant sortie de maternité."]}, "uk": {"icon": "🧳", "title": "Valise maternite", "kicker": "Jour J", "subtitle": "Préparer documents, affaires maman, bébé et partenaire pour la clinique.", "cards": [["Documents", "Mutterpass, carte assurance, pièce d’identité, documents utiles."], ["Maman", "Vêtements confortables, chargeur, trousse toilette, snacks."], ["Bébé", "Bodies, tenue sortie, bonnet, couverture, siège auto."]], "checklist": ["Mutterpass", "Carte assurance", "Chargeur téléphone", "Vêtements maman", "Tenue sortie bébé", "Siège auto installé"], "timeline": [["SA 28–32", "Commencer doucement."], ["SA 34–36", "Valise presque prête."], ["SA 37+", "Garder près de la porte."]], "tips": ["Prépare aussi un petit sac partenaire.", "Le siège auto doit être disponible avant sortie de maternité."]}};
-const UI={"fr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Déconnexion", "back": "Retour", "checklist": "Checklist", "progress": "Progression", "guide": "Guide rapide", "tips": "Conseils", "notes": "Note personnelle", "saveNote": "Sauvegarder la note", "reset": "Réinitialiser", "saved": "Sauvegardé", "loginTitle": "Connexion nécessaire", "loginText": "Tu dois d’abord te connecter.", "home": "Retour à l’accueil", "language": "Langue", "open": "Ouvrir", "important": "Important", "week": "SA", "status": "Statut", "notePlaceholder": "Écris ici une note personnelle. Elle reste sur ton appareil pour le moment."}, "de": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Ausloggen", "back": "Zurück", "checklist": "Checkliste", "progress": "Fortschritt", "guide": "Kurzguide", "tips": "Tipps", "notes": "Persönliche Notiz", "saveNote": "Notiz speichern", "reset": "Zurücksetzen", "saved": "Gespeichert", "loginTitle": "Bitte einloggen", "loginText": "Du musst dich zuerst anmelden.", "home": "Zur Startseite", "language": "Sprache", "open": "Öffnen", "important": "Wichtig", "week": "SSW", "status": "Status", "notePlaceholder": "Schreibe hier eine persönliche Notiz. Sie bleibt vorerst auf deinem Gerät."}, "en": {"dashboard": "Dashboard", "profile": "Profile", "logout": "Log out", "back": "Back", "checklist": "Checklist", "progress": "Progress", "guide": "Quick guide", "tips": "Tips", "notes": "Personal note", "saveNote": "Save note", "reset": "Reset", "saved": "Saved", "loginTitle": "Please log in", "loginText": "You need to log in first.", "home": "Back to home", "language": "Language", "open": "Open", "important": "Important", "week": "Week", "status": "Status", "notePlaceholder": "Write a personal note here. For now it stays on your device."}, "ar": {"dashboard": "لوحة التحكم", "profile": "الملف", "logout": "خروج", "back": "رجوع", "checklist": "قائمة", "progress": "التقدم", "guide": "دليل سريع", "tips": "نصائح", "notes": "ملاحظة شخصية", "saveNote": "حفظ الملاحظة", "reset": "إعادة ضبط", "saved": "تم الحفظ", "loginTitle": "يرجى تسجيل الدخول", "loginText": "يجب تسجيل الدخول أولاً.", "home": "العودة للرئيسية", "language": "اللغة", "open": "فتح", "important": "مهم", "week": "أسبوع", "status": "الحالة", "notePlaceholder": "اكتبي ملاحظة شخصية هنا. حالياً تبقى على جهازك."}, "tr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Çıkış", "back": "Geri", "checklist": "Kontrol listesi", "progress": "İlerleme", "guide": "Kısa rehber", "tips": "İpuçları", "notes": "Kişisel not", "saveNote": "Notu kaydet", "reset": "Sıfırla", "saved": "Kaydedildi", "loginTitle": "Lütfen giriş yap", "loginText": "Önce giriş yapmalısın.", "home": "Ana sayfa", "language": "Dil", "open": "Aç", "important": "Önemli", "week": "Hafta", "status": "Durum", "notePlaceholder": "Kişisel notunu buraya yaz. Şimdilik cihazında kalır."}, "ru": {"dashboard": "Панель", "profile": "Профиль", "logout": "Выйти", "back": "Назад", "checklist": "Список", "progress": "Прогресс", "guide": "Краткий гид", "tips": "Советы", "notes": "Личная заметка", "saveNote": "Сохранить", "reset": "Сбросить", "saved": "Сохранено", "loginTitle": "Войдите", "loginText": "Сначала нужно войти.", "home": "На главную", "language": "Язык", "open": "Открыть", "important": "Важно", "week": "Неделя", "status": "Статус", "notePlaceholder": "Напишите личную заметку. Пока она хранится на вашем устройстве."}, "uk": {"dashboard": "Панель", "profile": "Профіль", "logout": "Вийти", "back": "Назад", "checklist": "Список", "progress": "Прогрес", "guide": "Короткий гід", "tips": "Поради", "notes": "Особиста нотатка", "saveNote": "Зберегти", "reset": "Скинути", "saved": "Збережено", "loginTitle": "Увійдіть", "loginText": "Спочатку потрібно увійти.", "home": "На головну", "language": "Мова", "open": "Відкрити", "important": "Важливо", "week": "Тиждень", "status": "Статус", "notePlaceholder": "Напишіть особисту нотатку. Поки вона зберігається на вашому пристрої."}};
-const langInfo={de:{flag:"🇩🇪",abbr:"DE"},fr:{flag:"🇫🇷",abbr:"FR"},ar:{flag:"🇸🇦",abbr:"AR"},en:{flag:"🇬🇧",abbr:"EN"},tr:{flag:"🇹🇷",abbr:"TR"},ru:{flag:"🇷🇺",abbr:"RU"},uk:{flag:"🇺🇦",abbr:"UK"}};
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"fr";
-let currentWeek=1;
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Valise maternité",pageTitle:"Partir à la clinique sans stress",pageText:"Une valise organisée pour la maman, le bébé et le partenaire : documents, confort, vêtements, hygiène, sortie clinique et plan B en Allemagne.",
+weekLabel:"Semaine actuelle",focusLabel:"À préparer vers",focusValue:"SA 34–36",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"La valise doit être prête quelques semaines avant le terme, parce que les contractions ou la naissance peuvent commencer plus tôt.",safetyNote:"Toujours avoir séparément : Mutterpass, carte d’assurance, pièce d’identité, téléphone chargé, numéro de la clinique et Babyschale pour la sortie.",emergencyButton:"Urgence",calendarButton:"Calendrier",
+categoriesTitle:"Valise par catégorie",categoriesText:"Tout ce qu’il faut prévoir sans surcharger.",checkTitle:"Checklist valise maternité",checkText:"Coche ce qui est prêt.",resetButton:"Réinitialiser",partnerTitle:"Sac partenaire / accompagnant",partnerNote:"Le partenaire doit aussi connaître le trajet, le parking, le numéro de la salle de naissance et les documents importants.",timelineTitle:"Quand préparer ?",timelineText:"Plan simple pour ne rien faire dans la panique.",questionsTitle:"Questions à poser à la clinique",notesTitle:"Note personnelle",notesText:"Note ici les particularités de ta clinique : parking, entrée de nuit, documents, liste officielle.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens fiables pour vérifier et compléter la préparation.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+must:"Indispensable",comfort:"Confort",baby:"Bébé",partner:"Partenaire",
+categories:[
+["📘","Documents","Mutterpass, carte assurance, pièce d’identité/passeport, documents clinique, plan de naissance si préparé.","must"],
+["👚","Maman naissance","Chemise longue ou vêtements confortables, chaussettes, pantoufles, élastique cheveux, lunettes si besoin.","must"],
+["🧴","Hygiène maman","Trousse toilette, brosse à dents, serviette, protections post-partum si souhaité, baume lèvres.","comfort"],
+["🔌","Téléphone & énergie","Chargeur long, powerbank, écouteurs, snacks, bouteille d’eau, petite monnaie ou carte bancaire.","comfort"],
+["👶","Bébé clinique","Bodies, pyjamas, bonnet, chaussettes, couverture légère, tenue de sortie selon saison.","baby"],
+["🚗","Sortie bébé","Babyschale/siège auto prêt dans la voiture, tenue chaude si hiver, couverture adaptée.","baby"],
+["🤱","Allaitement / biberon","Soutien-gorge allaitement si souhaité, coussinets, langes, biberon uniquement si nécessaire ou demandé.","comfort"],
+["🧑‍🤝‍🧑","Partenaire","Snack, eau, chargeur, pull, documents, appareil photo si souhaité, liste de contacts.","partner"],
+["🏠","Retour maison","Clés, vêtements retour maman, médicaments personnels autorisés, repas simple prévu à la maison.","comfort"]
+],
+partnerList:["Téléphone chargé + chargeur","Snacks et eau","Pull ou vêtement confortable","Pièce d’identité si demandée","Numéro Kreißsaal / clinique","Adresse clinique + parking","Liste des personnes à prévenir","Appareil photo si souhaité","Connaître le sac documents"],
+timeline:[
+["SA 28–32","Créer la liste, vérifier la liste officielle de ta clinique, acheter ce qui manque."],
+["SA 32–34","Préparer les documents, laver vêtements bébé, préparer sac maman et sac bébé."],
+["SA 34–36","Valise presque prête, chargeur/powerbank, snacks, plan clinique, Babyschale testée."],
+["SA 37+","Valise près de la porte, documents toujours accessibles, téléphone chargé."],
+["Jour J","Prendre Mutterpass, carte assurance, pièce d’identité, téléphone, clés, valise et personne contact."]
+],
+checklist:["Mutterpass","Carte assurance maladie","Pièce d’identité / passeport","Documents clinique","Plan de naissance si préparé","Chargeur téléphone","Powerbank","Trousse toilette maman","Vêtements confortables maman","Chaussettes / pantoufles","Snacks / bouteille d’eau","Tenue sortie maman","Bodies bébé","Pyjamas bébé","Bonnet / chaussettes bébé","Tenue sortie bébé","Couverture bébé","Babyschale installée/testée","Numéro clinique sauvegardé","Adresse/parking clinique connus"],
+questions:["La clinique fournit-elle couches, serviettes, protections, vêtements bébé ?","Quels documents exacts dois-je apporter ?","Où entrer la nuit ou le week-end ?","Où se garer et combien de temps prévoir ?","La Babyschale doit-elle être montrée avant la sortie ?","Que faut-il prévoir pour une césarienne ou une sortie ambulatoire ?","Le partenaire peut-il rester et que doit-il apporter ?"]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Kliniktasche",pageTitle:"Stressfrei in die Klinik",weekLabel:"Aktuelle SSW",focusLabel:"Vorbereiten ab",focusValue:"SSW 34–36",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Hospital bag",pageTitle:"Go to the clinic without stress",weekLabel:"Current week",focusLabel:"Prepare around",focusValue:"Week 34–36",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"حقيبة الولادة",pageTitle:"الذهاب إلى المستشفى بدون توتر",weekLabel:"الأسبوع الحالي",focusLabel:"التحضير حوالي",focusValue:"الأسبوع 34–36",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
-function ui(){return UI[currentLang]||UI.fr}
-function content(){return CONTENT[currentLang]||CONTENT.fr}
+function t(){return tr[currentLang]||tr.fr}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-
 function setLanguage(lang){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  const info=langInfo[lang]||langInfo.fr;
-  document.getElementById("langTrigger").textContent=info.flag+" "+info.abbr;
-  document.getElementById("langMenu").classList.remove("open");
-  render();
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ render();
 }
-
 function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
-function addDays(d,days){const r=new Date(d);r.setDate(r.getDate()+days);return r}
-function calculatePregnancy(dueDateValue){
-  if(!dueDateValue)return currentProfile?.pregnancy_week||1;
-  const today=new Date();today.setHours(0,0,0,0);
-  const due=parseLocalDate(dueDateValue);
-  const start=addDays(due,-280);
-  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
-  if(week<1)week=1;if(week>60)week=60;
-  return week;
+function calculatePregnancy(due){
+ if(!due)return currentProfile?.pregnancy_week||1;
+ const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);
+ let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;
 }
-function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
-}
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
-}
-function stateKey(){return "mama-page-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-note-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function getChecklistState(){try{return JSON.parse(localStorage.getItem(stateKey()))||{}}catch(e){return{}}}
-function saveChecklistState(s){localStorage.setItem(stateKey(),JSON.stringify(s))}
-function toggleItem(index){
-  const s=getChecklistState();s[index]=!s[index];saveChecklistState(s);renderChecklist();
-}
-function resetChecklist(){saveChecklistState({});renderChecklist()}
-function saveNote(){
-  localStorage.setItem(noteKey(),document.getElementById("personalNote").value);
-  const el=document.getElementById("noteStatus");
-  el.textContent=ui().saved;el.style.display="block";
-  setTimeout(()=>el.style.display="none",2500);
-}
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function badge(type){if(type==="must")return "badge badge-red";if(type==="baby")return "badge badge-green";if(type==="partner")return "badge badge-warning";return "badge"}
+function typeText(type){if(type==="must")return t().must;if(type==="baby")return t().baby;if(type==="partner")return t().partner;return t().comfort}
+function checkKey(){return "mama-hospital-bag-check-"+(currentUser?currentUser.id:"guest")}
+function noteKey(){return "mama-hospital-bag-note-"+(currentUser?currentUser.id:"guest")}
+function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
+function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
+function resetChecklist(){saveState({});renderChecklist()}
 function renderChecklist(){
-  const c=content();
-  const s=getChecklistState();
-  const box=document.getElementById("checklistBox");
-  box.innerHTML=(c.checklist||[]).map((item,i)=>`
-    <label class="checkbox-row">
-      <input type="checkbox" ${s[i]?"checked":""} onchange="toggleItem(${i})">
-      <span>${item}</span>
-    </label>
-  `).join("");
-  const total=(c.checklist||[]).length;
-  const done=Object.keys(s).filter(k=>s[k]).length;
-  document.getElementById("progressText").textContent=done+" / "+total;
-  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ const s=state();const items=t().checklist;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
+ const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ document.getElementById("progressValue").textContent=done+" / "+total;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
+function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
 function render(){
-  const u=ui(); const c=content();
-  const map={uiProfile:"profile",uiLogout:"logout",uiProgress:"progress",uiDashboard:"dashboard",uiBack:"back",uiImportant:"important",uiChecklist:"checklist",uiGuide:"guide",uiTips:"tips",uiNotes:"notes",uiSaveNote:"saveNote",uiReset:"reset",uiBackBottom:"back",uiLoginTitle:"loginTitle",uiLoginText:"loginText",uiHome:"home"};
-  Object.entries(map).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.textContent=u[key]});
-  document.getElementById("pageKicker").textContent=c.kicker;
-  document.getElementById("pageTitle").textContent=c.icon+" "+c.title;
-  document.getElementById("pageSubtitle").textContent=c.subtitle;
-  document.getElementById("profileInfo").textContent=(currentProfile?.city?currentProfile.city+" · ":"")+u.week+" "+currentWeek;
-  document.getElementById("cardsGrid").innerHTML=(c.cards||[]).map(card=>`
-    <div class="box"><span class="badge">${u.important}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("timelineGrid").innerHTML=(c.timeline||[]).map(card=>`
-    <div class="guide-item"><span class="badge">${u.status}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("tipsBox").innerHTML=(c.tips||[]).map(x=>`<div class="soft">${x}</div>`).join("");
-  document.getElementById("personalNote").placeholder=u.notePlaceholder;
-  document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
-  renderChecklist();
+ document.getElementById("weekValue").textContent=currentWeek;
+ document.getElementById("focusValue").textContent=t().focusValue;
+ document.getElementById("categoriesGrid").innerHTML=t().categories.map(x=>`<div class="bag-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("partnerList").innerHTML=t().partnerList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
+ renderChecklist();
 }
 async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-  if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
-  currentUser=data.session.user;
-  const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
-  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
-  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
-  currentWeek=calculatePregnancy(currentProfile?.due_date);
-  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
-  document.getElementById("appShell").style.display="block";
-  setLanguage(currentLang);
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ currentWeek=calculatePregnancy(currentProfile?.due_date);
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

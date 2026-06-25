@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Aide</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger,.button-green,.button-blue{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
+.button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.help-card,.source-card,.faq-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.help-card{position:relative;overflow:hidden}
+.help-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:130px;resize:vertical}
+.search-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px}
+.faq-card{margin-bottom:12px}
+.faq-card summary{cursor:pointer;font-weight:950;color:var(--brown);font-size:17px}
+.faq-card p{margin-top:10px}
+.steps{display:grid;gap:12px}
+.step{display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:flex-start;background:white;border:1px solid var(--border);border-radius:20px;padding:14px}
+.step-num{width:42px;height:42px;border-radius:16px;background:var(--brown);color:white;display:flex;align-items:center;justify-content:center;font-weight:950}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:10px;overflow:auto;color:var(--brown);white-space:pre-wrap}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.hidden{display:none!important}
+.empty{padding:22px;border:1px dashed var(--border);border-radius:22px;background:var(--cream);color:var(--muted);font-weight:900;text-align:center}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.search-row{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.step{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+  <div class="top-actions">
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Centre d’aide</div>
+      <h1 id="pageTitle">Trouver vite quoi faire</h1>
+      <p id="pageText">Aide pour utiliser la plateforme, corriger les erreurs fréquentes, comprendre les pages, créer le profil, gérer les rappels, la communauté, la marketplace et Supabase.</p>
+      <div class="search-row">
+        <input id="helpSearch" placeholder="Chercher : 404, profil, Supabase, rendez-vous, marketplace..." oninput="filterHelp()">
+        <button class="button" onclick="filterHelp()" id="searchButton">Chercher</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="pagesLabel">Pages</div><div class="stat-value" id="pagesValue">32</div></div>
+        <div class="stat"><div class="stat-label" id="supportLabel">Support</div><div class="stat-value" id="supportValue">Guide</div></div>
+        <div class="stat"><div class="stat-label" id="accountLabel">Compte</div><div class="stat-value" id="accountValue">-</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">En cas d’urgence</h2>
+      <p id="importantText">Cette page aide à utiliser le site. Pour un problème médical urgent, ne cherche pas dans l’aide : utilise 112, 116117, la clinique, Kinderarzt ou la page urgence.</p>
+      <div class="warning" id="medicalWarning">Saignement important, douleur thoracique, essoufflement, bébé très somnolent, fièvre nourrisson, idées noires ou danger immédiat = aide médicale réelle, pas forum.</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
+        <a class="button-light" href="near-me.html" id="nearButton">Près de moi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card help-section" data-keywords="commencer profil dashboard langue terme semaine">
+    <div class="section-title">
+      <div>
+        <h2 id="startTitle">Bien commencer</h2>
+        <p id="startText">Les premières étapes pour que la plateforme devienne personnalisée.</p>
+      </div>
+    </div>
+    <div class="steps" id="stepsBox"></div>
+  </section>
+
+  <section class="card help-section" data-keywords="pages navigation dashboard modules calendrier documents tests urgences">
+    <div class="section-title">
+      <div>
+        <h2 id="tourTitle">Tour des pages importantes</h2>
+        <p id="tourText">Les pages principales et quand les utiliser.</p>
+      </div>
+    </div>
+    <div class="grid" id="tourGrid"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card help-section" data-keywords="erreur 404 github cache fichier introuvable v= page">
+      <h2 id="errorsTitle">Erreurs fréquentes</h2>
+      <div id="errorsBox"></div>
+    </div>
+
+    <div class="card help-section" data-keywords="supabase table schema updated_at rls community marketplace admin">
+      <h2 id="supabaseTitle">Supabase / GitHub</h2>
+      <div class="box">
+        <ul id="supabaseList"></ul>
+      </div>
+      <div class="soft" id="supabaseNote">La règle la plus importante : si une erreur parle d’une colonne inexistante, corrige le code ou ajoute la colonne. Ne force jamais une colonne comme updated_at si la table ne l’a pas.</div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card help-section" data-keywords="faq question aide profil connexion mot de passe langue">
+      <h2 id="faqTitle">FAQ rapide</h2>
+      <div id="faqBox"></div>
+    </div>
+
+    <div class="card help-section" data-keywords="message support copier bug rapport administrateur">
+      <h2 id="supportMessageTitle">Message support prêt à copier</h2>
+      <p id="supportMessageText">Utilise ce modèle pour noter un bug ou me l’envoyer ici avec une capture.</p>
+      <textarea id="supportBox"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="copySupport()" id="copyButton">Copier</button>
+        <button class="button-light" onclick="fillDiagnostic()" id="diagnosticButton">Remplir diagnostic</button>
+      </div>
+      <div class="soft" id="copiedNote" style="display:none;">Copié</div>
+    </div>
+  </section>
+
+  <section class="card help-section" data-keywords="checklist test verifications avant final production">
+    <div class="section-title">
+      <div>
+        <h2 id="finalCheckTitle">Checklist avant version finale</h2>
+        <p id="finalCheckText">À vérifier avant de partager la plateforme avec d’autres mamans.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="box"><ul id="finalCheckList"></ul></div>
+      <div class="box">
+        <h3 id="testUrlTitle">Méthode de test</h3>
+        <p id="testUrlText">Après chaque modification GitHub, ouvre la page avec un numéro différent pour éviter le cache :</p>
+        <div class="code">https://psyco-alemdar.github.io/mama-in-Deutschland/app.html?v=9999</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="linksTitle">Liens rapides d’aide</h2>
+        <p id="linksText">Les pages à ouvrir quand tu es bloqué.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="profile.html">Profil</a><span>Corriger prénom, terme, semaine, thème, langue et sexe bébé.</span></div>
+      <div class="source-card"><a href="settings.html">Paramètres</a><span>Choisir les modules visibles et les priorités du dashboard.</span></div>
+      <div class="source-card"><a href="notifications.html">Notifications</a><span>Créer rappels, exporter .ics et tester notification.</span></div>
+      <div class="source-card"><a href="admin-moderation.html">Admin modération</a><span>Contrôler communauté et marketplace si le compte est admin.</span></div>
+    </div>
+  </section>
+
+  <div id="noResults" class="empty hidden">Aucun résultat pour cette recherche.</div>
+
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
+</main>
+
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Centre d’aide",pageTitle:"Trouver vite quoi faire",pageText:"Aide pour utiliser la plateforme, corriger les erreurs fréquentes, comprendre les pages, créer le profil, gérer les rappels, la communauté, la marketplace et Supabase.",
+searchButton:"Chercher",pagesLabel:"Pages",supportLabel:"Support",supportValue:"Guide",accountLabel:"Compte",importantTitle:"En cas d’urgence",importantText:"Cette page aide à utiliser le site. Pour un problème médical urgent, ne cherche pas dans l’aide : utilise 112, 116117, la clinique, Kinderarzt ou la page urgence.",medicalWarning:"Saignement important, douleur thoracique, essoufflement, bébé très somnolent, fièvre nourrisson, idées noires ou danger immédiat = aide médicale réelle, pas forum.",emergencyButton:"Urgence",nearButton:"Près de moi",
+startTitle:"Bien commencer",startText:"Les premières étapes pour que la plateforme devienne personnalisée.",tourTitle:"Tour des pages importantes",tourText:"Les pages principales et quand les utiliser.",errorsTitle:"Erreurs fréquentes",supabaseTitle:"Supabase / GitHub",supabaseNote:"La règle la plus importante : si une erreur parle d’une colonne inexistante, corrige le code ou ajoute la colonne. Ne force jamais une colonne comme updated_at si la table ne l’a pas.",
+faqTitle:"FAQ rapide",supportMessageTitle:"Message support prêt à copier",supportMessageText:"Utilise ce modèle pour noter un bug ou me l’envoyer ici avec une capture.",copyButton:"Copier",diagnosticButton:"Remplir diagnostic",copiedNote:"Copié",finalCheckTitle:"Checklist avant version finale",finalCheckText:"À vérifier avant de partager la plateforme avec d’autres mamans.",testUrlTitle:"Méthode de test",testUrlText:"Après chaque modification GitHub, ouvre la page avec un numéro différent pour éviter le cache :",linksTitle:"Liens rapides d’aide",linksText:"Les pages à ouvrir quand tu es bloqué.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+steps:[
+["Créer / connecter le compte","Va sur index.html, connecte-toi avec e-mail et mot de passe, puis entre dans app.html."],
+["Compléter le profil","Dans profile.html, ajoute prénom maman, prénom bébé, terme prévu ou semaine, langue et thème."],
+["Vérifier le dashboard","Sur app.html, vérifie que le prochain rendez-vous, bébé, maman, important maintenant et plus tard s’affichent."],
+["Ajouter les rendez-vous","Dans calendar.html ou notifications.html, ajoute les rendez-vous réels : Frauenarzt, Hebamme, clinique, tests."],
+["Configurer la communauté","Lis community-rules.html avant de publier une expérience ou une annonce marketplace."]
+],
+tour:[
+["🏠","Dashboard","Page principale. Elle doit montrer le prochain rendez-vous, les infos bébé, les priorités et les raccourcis."],
+["👤","Profil","Pour changer terme, semaine, prénom, langue, thème fille/garçon/jumeaux."],
+["🗓️","Calendrier","Pour les rendez-vous utilisateur et les dates standards de grossesse."],
+["🧪","Tests","Pour clarté nucale, NIPT, échographies, dépistages et questions médicales."],
+["📄","Documents","Pour Standesamt, Kindergeld, Elterngeld, Krankenkasse, Mutterschutz."],
+["🚑","Urgence","Pour savoir quoi faire et qui appeler si danger ou doute important."],
+["💬","Share experience","Pour lire ou partager une expérience avec commentaires."],
+["🧺","Marketplace","Pour donner, vendre ou chercher des affaires bébé avec prudence sécurité."],
+["🛡️","Admin","Pour modérer posts et annonces si tu es connecté avec un compte admin."]
+],
+errors:[
+["Page 404 sur GitHub","Vérifie que le fichier existe au bon nom exact : marketplace.html n’est pas Marketplace.html. Ajoute aussi ?v=1234 à l’URL pour éviter le cache."],
+["La page existe mais ancienne version","Le navigateur garde parfois l’ancien fichier. Change le numéro après ?v= ou vide le cache."],
+["Connexion nécessaire","La plupart des pages demandent une session Supabase. Connecte-toi depuis index.html."],
+["updated_at column not found","Le code essaie de modifier une colonne qui n’existe pas. Les nouvelles pages profile/settings n’utilisent pas updated_at."],
+["Table Supabase manquante","Community et marketplace fonctionnent en localStorage si les tables n’existent pas, mais les données ne sont pas partagées entre utilisateurs."],
+["Bouton ne fait rien","Ouvre la console navigateur, copie l’erreur, vérifie le nom de la fonction et que le fichier HTML a bien été remplacé."]
+],
+supabase:["pregnancy_profiles : nécessaire pour profil, langue, thème, terme prévu et semaine.","community_posts + community_comments : nécessaires pour partager les expériences entre utilisateurs.","marketplace_items + marketplace_comments : nécessaires pour marketplace partagée.","RLS : les politiques doivent permettre aux utilisateurs connectés de lire/insérer leurs contenus selon le niveau souhaité.","Admin : admin-moderation.html vérifie ton UserID dans ADMIN_USER_IDS.","Ne jamais publier la clé service_role dans le front-end. Utiliser seulement anon key côté navigateur."],
+faq:[
+["Pourquoi je ne vois pas marketplace ou share experience sur app.html ?","Il faut que app.html contienne les liens vers ces pages. Si la page existe mais le dashboard ne la montre pas, il faut mettre à jour app.html."],
+["Pourquoi les posts ne sont pas visibles sur un autre téléphone ?","Parce que la page est probablement en mode local. Il faut créer les tables Supabase community_posts/community_comments et les règles RLS."],
+["Pourquoi le design change selon bébé fille/garçon ?","Les pages lisent pregnancy_profiles puis appliquent un thème girl, boy, twin ou neutral."],
+["Puis-je modifier la langue après le début ?","Oui. La langue est choisie au début puis modifiable en haut à droite ou dans profile/settings."],
+["Pourquoi les notifications ne marchent pas toujours ?","GitHub Pages est statique. Le navigateur peut bloquer les notifications en arrière-plan. Le plus fiable reste le fichier .ics ajouté au calendrier."],
+["Est-ce que cette plateforme remplace un médecin ?","Non. Elle aide à s’organiser et comprendre le système allemand, mais ne remplace pas Frauenarzt, Hebamme, Kinderarzt, 116117 ou urgence."]
+],
+finalCheck:["Tester index.html : connexion, création compte, mot de passe oublié.","Tester app.html : prochain rendez-vous, thème, langue, boutons principaux.","Tester profile.html : sauvegarde sans erreur updated_at.","Tester calendar/notifications : ajout rendez-vous et export .ics.","Tester community/marketplace : local fallback ou tables Supabase partagées.","Tester admin-moderation avec ton UserID admin.","Tester mobile Safari/Chrome : design responsive et boutons visibles.","Vérifier que les pages légales seront ajoutées plus tard : Impressum, Datenschutz, Terms."]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Hilfezentrum",pageTitle:"Schnell wissen, was zu tun ist",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Help center",pageTitle:"Quickly find what to do",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"مركز المساعدة",pageTitle:"اعرفي بسرعة ماذا تفعلين",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+
+function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+function setLanguage(lang){
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el && typeof t()[id]==="string")el.textContent=t()[id]});
+ render();
+}
+function determineTheme(type,gender){
+ if(gender==="boy"||gender==="twin_boys")return"boy";
+ if(gender==="girl"||gender==="twin_girls")return"girl";
+ if(type==="twins"||gender==="twin_mixed")return"twin";
+ return"neutral";
+}
+function applyTheme(theme){
+ document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+ if(theme==="boy")document.body.classList.add("theme-boy");
+ if(theme==="girl")document.body.classList.add("theme-girl");
+ if(theme==="twin")document.body.classList.add("theme-twin");
+}
+function render(){
+ document.getElementById("stepsBox").innerHTML=t().steps.map((x,i)=>`<div class="step"><div class="step-num">${i+1}</div><div><h3>${x[0]}</h3><p>${x[1]}</p></div></div>`).join("");
+ document.getElementById("tourGrid").innerHTML=t().tour.map(x=>`<div class="help-card"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("errorsBox").innerHTML=t().errors.map(x=>`<details class="faq-card"><summary>${x[0]}</summary><p>${x[1]}</p></details>`).join("");
+ document.getElementById("supabaseList").innerHTML=t().supabase.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("faqBox").innerHTML=t().faq.map(x=>`<details class="faq-card"><summary>${x[0]}</summary><p>${x[1]}</p></details>`).join("");
+ document.getElementById("finalCheckList").innerHTML=t().finalCheck.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("supportBox").value=supportTemplate();
+}
+function supportTemplate(){
+ return `Bug / question Mama in Deutschland
+
+Page concernée : ${location.pathname.split("/").pop() || "help.html"}
+URL : ${location.href}
+Navigateur : ${navigator.userAgent}
+Compte : ${currentUser?.email || "-"}
+Langue : ${currentLang}
+Profil : ${currentProfile ? JSON.stringify({mother_name:currentProfile.mother_name,due_date:currentProfile.due_date,pregnancy_week:currentProfile.pregnancy_week,pregnancy_type:currentProfile.pregnancy_type,baby_gender:currentProfile.baby_gender,language:currentProfile.language,theme_mode:currentProfile.theme_mode}, null, 2) : "aucun profil chargé"}
+
+Problème :
+[écris ici ce qui ne marche pas]
+
+Message d’erreur exact :
+[copie/colle ici]
+
+Étapes pour reproduire :
+1.
+2.
+3.
+
+Capture d’écran : oui / non`;
+}
+function fillDiagnostic(){document.getElementById("supportBox").value=supportTemplate()}
+function copySupport(){
+ const box=document.getElementById("supportBox");box.select();document.execCommand("copy");
+ const n=document.getElementById("copiedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1500);
+}
+function filterHelp(){
+ const q=(document.getElementById("helpSearch").value||"").trim().toLowerCase();
+ let shown=0;
+ document.querySelectorAll(".help-section").forEach(sec=>{
+  const blob=(sec.dataset.keywords+" "+sec.textContent).toLowerCase();
+  const ok=!q || blob.includes(q);
+  sec.classList.toggle("hidden",!ok);
+  if(ok)shown++;
+ });
+ document.getElementById("noResults").classList.toggle("hidden",shown!==0);
+}
+async function loadApp(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ document.getElementById("accountValue").textContent=currentUser.email?currentUser.email.split("@")[0]:"Compte";
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+loadApp();
+</script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Notifications</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger,.button-green,.button-blue{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
+.button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.notify-card,.source-card,.reminder-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.notify-card{position:relative;overflow:hidden}
+.notify-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0 7px}
+input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:110px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:14px}
+.toggle-list{display:grid;gap:10px}
+.toggle-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:white;border:1px solid var(--border);border-radius:18px;padding:13px}
+.toggle-row input{width:20px;height:20px;accent-color:var(--brown)}
+.toggle-title{font-weight:950;color:var(--brown)}
+.toggle-desc{font-size:13px;color:var(--muted);line-height:1.4}
+.reminder-card{margin-bottom:12px}
+.reminder-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.reminder-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.reminder-actions button,.reminder-actions a{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer;text-decoration:none}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.empty{padding:26px;border:1px dashed var(--border);border-radius:24px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid,.form-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.toggle-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+  <div class="top-actions">
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Notifications</div>
+      <h1 id="pageTitle">Ne plus oublier les étapes importantes</h1>
+      <p id="pageText">Active les rappels locaux, crée des notifications test, prépare des fichiers calendrier et garde les prochains rendez-vous visibles. Cette page fonctionne sans serveur push.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="permissionLabel">Autorisation</div><div class="stat-value" id="permissionValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="remindersLabel">Rappels</div><div class="stat-value" id="remindersCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="nextLabel">Prochain</div><div class="stat-value" id="nextValue">-</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">Important</h2>
+      <p id="importantText">Sur un site statique GitHub Pages, les notifications automatiques en arrière-plan ne sont pas garanties. Pour un rappel fiable, ajoute aussi le rendez-vous dans Google Calendar / Apple Calendar avec le fichier .ics.</p>
+      <div class="warning" id="browserNote">Si le navigateur bloque les notifications, utilise le bouton “Télécharger .ics” ou crée le rappel dans ton calendrier téléphone.</div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="askPermission()" id="permissionButton">Autoriser notifications</button>
+        <button class="button-light" onclick="testNotification()" id="testButton">Test notification</button>
+      </div>
+      <div class="soft" id="statusBox">Notifications prêtes.</div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h2 id="newReminderTitle">Créer un rappel</h2>
+          <p id="newReminderText">Ajoute un rappel local pour rendez-vous, document, test, achat ou étape grossesse.</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label id="titleLabel" for="reminderTitle">Titre</label>
+          <input id="reminderTitle" placeholder="Ex. Rendez-vous Frauenarzt">
+        </div>
+        <div class="field">
+          <label id="typeLabel" for="reminderType">Type</label>
+          <select id="reminderType"></select>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label id="dateLabel" for="reminderDate">Date</label>
+          <input id="reminderDate" type="date">
+        </div>
+        <div class="field">
+          <label id="timeLabel" for="reminderTime">Heure</label>
+          <input id="reminderTime" type="time" value="09:00">
+        </div>
+      </div>
+
+      <div class="field">
+        <label id="noteLabel" for="reminderNote">Note</label>
+        <textarea id="reminderNote" placeholder="Adresse, documents à apporter, questions, téléphone..."></textarea>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label id="alertBeforeLabel" for="alertBefore">Me rappeler avant</label>
+          <select id="alertBefore">
+            <option value="0" id="sameDayOption">Le jour même</option>
+            <option value="1">1 jour avant</option>
+            <option value="3">3 jours avant</option>
+            <option value="7">7 jours avant</option>
+            <option value="14">14 jours avant</option>
+          </select>
+        </div>
+        <div class="field">
+          <label id="priorityLabel" for="priority">Priorité</label>
+          <select id="priority">
+            <option value="normal" id="normalOption">Normal</option>
+            <option value="important" id="importantOption">Important</option>
+            <option value="urgent" id="urgentOption">Très important</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="button" onclick="addReminder()" id="addReminderButton">Ajouter rappel</button>
+        <button class="button-light" onclick="clearForm()" id="clearButton">Effacer</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="settingsTitle">Réglages notification</h2>
+      <p id="settingsText">Ces réglages sont sauvegardés localement sur ton appareil.</p>
+      <div class="toggle-list" id="settingsBox"></div>
+      <div class="form-grid" style="margin-top:14px;">
+        <div class="field">
+          <label id="dailyTimeLabel" for="dailyTime">Heure résumé quotidien</label>
+          <input id="dailyTime" type="time" value="08:00">
+        </div>
+        <div class="field">
+          <label id="weeklyDayLabel" for="weeklyDay">Jour résumé semaine</label>
+          <select id="weeklyDay">
+            <option value="1">Lundi</option>
+            <option value="2">Mardi</option>
+            <option value="3">Mercredi</option>
+            <option value="4">Jeudi</option>
+            <option value="5">Vendredi</option>
+            <option value="6">Samedi</option>
+            <option value="0">Dimanche</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="button-green" onclick="saveNotifySettings()" id="saveSettingsButton">Sauvegarder réglages</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="listTitle">Mes rappels</h2>
+        <p id="listText">Les rappels sont triés par date. Tu peux les exporter en calendrier.</p>
+      </div>
+      <div class="actions">
+        <button class="button-light" onclick="seedStandardReminders()" id="standardButton">Ajouter rappels standards</button>
+        <button class="button-blue" onclick="downloadAllICS()" id="downloadAllButton">Tout télécharger .ics</button>
+      </div>
+    </div>
+    <div id="remindersList"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="smartTitle">Rappels intelligents conseillés</h2>
+      <div class="grid-2" id="smartGrid"></div>
+    </div>
+    <div class="card">
+      <h2 id="copyTitle">Message prêt à copier</h2>
+      <p id="copyText">Pour demander une confirmation de rendez-vous ou prévenir ton partenaire.</p>
+      <textarea id="copyBox"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="copyMessage()" id="copyButton">Copier</button>
+      </div>
+      <div class="soft" id="copiedNote" style="display:none;">Copié</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="linksTitle">Pages liées</h2>
+        <p id="linksText">Pour organiser les rendez-vous et documents.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="calendar.html">Calendrier</a><span>Voir tous les rendez-vous et étapes grossesse.</span></div>
+      <div class="source-card"><a href="documents.html">Documents</a><span>Kindergeld, Elterngeld, Standesamt, Krankenkasse.</span></div>
+      <div class="source-card"><a href="tests.html">Tests & diagnostic</a><span>Clarté nucale, NIPT, échographies, dépistages.</span></div>
+      <div class="source-card"><a href="settings.html">Paramètres</a><span>Choisir les modules visibles et priorités dashboard.</span></div>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
+</main>
+
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Notifications",pageTitle:"Ne plus oublier les étapes importantes",pageText:"Active les rappels locaux, crée des notifications test, prépare des fichiers calendrier et garde les prochains rendez-vous visibles. Cette page fonctionne sans serveur push.",
+permissionLabel:"Autorisation",remindersLabel:"Rappels",nextLabel:"Prochain",importantTitle:"Important",importantText:"Sur un site statique GitHub Pages, les notifications automatiques en arrière-plan ne sont pas garanties. Pour un rappel fiable, ajoute aussi le rendez-vous dans Google Calendar / Apple Calendar avec le fichier .ics.",browserNote:"Si le navigateur bloque les notifications, utilise le bouton “Télécharger .ics” ou crée le rappel dans ton calendrier téléphone.",permissionButton:"Autoriser notifications",testButton:"Test notification",statusReady:"Notifications prêtes.",
+newReminderTitle:"Créer un rappel",newReminderText:"Ajoute un rappel local pour rendez-vous, document, test, achat ou étape grossesse.",titleLabel:"Titre",typeLabel:"Type",dateLabel:"Date",timeLabel:"Heure",noteLabel:"Note",alertBeforeLabel:"Me rappeler avant",sameDayOption:"Le jour même",priorityLabel:"Priorité",normalOption:"Normal",importantOption:"Important",urgentOption:"Très important",addReminderButton:"Ajouter rappel",clearButton:"Effacer",
+settingsTitle:"Réglages notification",settingsText:"Ces réglages sont sauvegardés localement sur ton appareil.",dailyTimeLabel:"Heure résumé quotidien",weeklyDayLabel:"Jour résumé semaine",saveSettingsButton:"Sauvegarder réglages",
+listTitle:"Mes rappels",listText:"Les rappels sont triés par date. Tu peux les exporter en calendrier.",standardButton:"Ajouter rappels standards",downloadAllButton:"Tout télécharger .ics",smartTitle:"Rappels intelligents conseillés",copyTitle:"Message prêt à copier",copyText:"Pour demander une confirmation de rendez-vous ou prévenir ton partenaire.",copyButton:"Copier",copiedNote:"Copié",linksTitle:"Pages liées",linksText:"Pour organiser les rendez-vous et documents.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+permissionGranted:"Autorisé",permissionDenied:"Bloqué",permissionDefault:"Non demandé",added:"Rappel ajouté.",saved:"Réglages sauvegardés.",deleted:"Rappel supprimé.",done:"Terminé",downloadICS:"Télécharger .ics",delete:"Supprimer",markDone:"Marquer fait",empty:"Aucun rappel pour le moment.",
+types:[["appointment","Rendez-vous"],["test","Test / diagnostic"],["document","Document"],["shopping","Achat"],["medicine","Médicament"],["baby","Bébé"],["mama","Maman"],["other","Autre"]],
+settings:[
+ ["browserNotifications","🔔","Notifications navigateur","Autoriser les notifications locales quand la page est ouverte."],
+ ["dailySummary","☀️","Résumé quotidien","Voir les rappels du jour au moment choisi."],
+ ["weeklySummary","🗓️","Résumé hebdomadaire","Préparer la semaine avec les étapes importantes."],
+ ["urgentOnly","🚨","Mode urgent seulement","N’afficher que les rappels très importants."],
+ ["icsReminder","📅","Toujours proposer .ics","Afficher le téléchargement calendrier pour chaque rappel."],
+ ["partnerCopy","💬","Message partenaire","Générer un message prêt à copier pour les rappels."]
+],
+smart:[
+ ["🧪","Tests & diagnostic","Ajoute un rappel 7 jours avant NIPT, clarté nucale, échographie ou dépistage."],
+ ["📄","Documents","Ajoute des rappels pour Standesamt, Kindergeld, Elterngeld, Krankenkasse."],
+ ["🧳","Valise maternité","Ajoute un rappel autour de SA 32–34 pour préparer la valise."],
+ ["👶","Kinderarzt","Ajoute un rappel avant U2/U3, vaccinations et contrôle bébé."]
+],
+message:"Bonjour,\n\nPetit rappel : nous avons bientôt ce rendez-vous / cette étape importante : [TITRE] le [DATE] à [HEURE].\n\nÀ préparer : [DOCUMENTS / QUESTIONS / ADRESSE].\n\nMerci 💗"
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Benachrichtigungen",pageTitle:"Wichtige Schritte nicht vergessen",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Notifications",pageTitle:"Never forget important steps",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"التنبيهات",pageTitle:"لا تنسي الخطوات المهمة",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+
+function t(){return tr[currentLang]||tr.fr}
+function remindersKey(){return "mama-notifications-reminders-"+(currentUser?currentUser.id:"guest")}
+function settingsKey(){return "mama-notifications-settings-"+(currentUser?currentUser.id:"guest")}
+function getReminders(){try{return JSON.parse(localStorage.getItem(remindersKey()))||[]}catch(e){return[]}}
+function setReminders(v){localStorage.setItem(remindersKey(),JSON.stringify(v))}
+function getSettings(){try{return JSON.parse(localStorage.getItem(settingsKey()))||{browserNotifications:true,dailySummary:true,weeklySummary:true,urgentOnly:false,icsReminder:true,partnerCopy:true,dailyTime:"08:00",weeklyDay:"1"}}catch(e){return{}}}
+function setSettings(v){localStorage.setItem(settingsKey(),JSON.stringify(v))}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+function setLanguage(lang){
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el && typeof t()[id]==="string")el.textContent=t()[id]});
+ renderStatic();renderReminders();updatePermission();
+}
+function determineTheme(type,gender){
+ if(gender==="boy"||gender==="twin_boys")return"boy";
+ if(gender==="girl"||gender==="twin_girls")return"girl";
+ if(type==="twins"||gender==="twin_mixed")return"twin";
+ return"neutral";
+}
+function applyTheme(theme){
+ document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+ if(theme==="boy")document.body.classList.add("theme-boy");
+ if(theme==="girl")document.body.classList.add("theme-girl");
+ if(theme==="twin")document.body.classList.add("theme-twin");
+}
+function updatePermission(){
+ let val="-";
+ if(!("Notification" in window)) val="N/A";
+ else if(Notification.permission==="granted") val=t().permissionGranted;
+ else if(Notification.permission==="denied") val=t().permissionDenied;
+ else val=t().permissionDefault;
+ document.getElementById("permissionValue").textContent=val;
+}
+async function askPermission(){
+ if(!("Notification" in window)){showStatus("Notifications non supportées.",false);return}
+ const p=await Notification.requestPermission();
+ updatePermission();
+ if(p==="granted")showStatus(t().permissionGranted,true);else showStatus(t().permissionDenied,false);
+}
+function testNotification(){
+ if("Notification" in window && Notification.permission==="granted"){
+  new Notification("Mama in Deutschland", {body:"Test notification OK 💗"});
+  showStatus("Test envoyé.",true);
+ }else showStatus("Autorise d’abord les notifications.",false);
+}
+function showStatus(msg,ok=true){
+ const box=document.getElementById("statusBox");
+ box.textContent=msg;box.className=ok?"success":"warning";
+}
+function typeName(v){const x=t().types.find(a=>a[0]===v);return x?x[1]:v}
+function renderStatic(){
+ document.getElementById("reminderType").innerHTML=t().types.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join("");
+ const s=getSettings();
+ document.getElementById("dailyTime").value=s.dailyTime||"08:00";
+ document.getElementById("weeklyDay").value=s.weeklyDay||"1";
+ document.getElementById("settingsBox").innerHTML=t().settings.map(x=>`<label class="toggle-row">
+   <input type="checkbox" data-key="${x[0]}" ${s[x[0]]?"checked":""}>
+   <div><div class="toggle-title">${x[1]} ${x[2]}</div><div class="toggle-desc">${x[3]}</div></div>
+   <span class="badge">${s[x[0]]?"ON":"OFF"}</span>
+ </label>`).join("");
+ document.querySelectorAll("#settingsBox input").forEach(ch=>ch.addEventListener("change",()=>{ch.closest(".toggle-row").querySelector(".badge").textContent=ch.checked?"ON":"OFF"}));
+ document.getElementById("smartGrid").innerHTML=t().smart.map(x=>`<div class="notify-card"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("copyBox").value=t().message;
+}
+function saveNotifySettings(){
+ const s=getSettings();
+ document.querySelectorAll("#settingsBox input").forEach(ch=>s[ch.dataset.key]=ch.checked);
+ s.dailyTime=document.getElementById("dailyTime").value;
+ s.weeklyDay=document.getElementById("weeklyDay").value;
+ setSettings(s);
+ showStatus(t().saved,true);
+}
+function clearForm(){
+ ["reminderTitle","reminderDate","reminderNote"].forEach(id=>document.getElementById(id).value="");
+ document.getElementById("reminderTime").value="09:00";
+}
+function addReminder(){
+ const title=document.getElementById("reminderTitle").value.trim();
+ const date=document.getElementById("reminderDate").value;
+ if(!title||!date){showStatus("Titre et date obligatoires.",false);return}
+ const arr=getReminders();
+ arr.push({
+  id:"r-"+Date.now(),
+  title,
+  type:document.getElementById("reminderType").value,
+  date,
+  time:document.getElementById("reminderTime").value||"09:00",
+  note:document.getElementById("reminderNote").value.trim(),
+  alertBefore:Number(document.getElementById("alertBefore").value||0),
+  priority:document.getElementById("priority").value,
+  done:false,
+  created_at:new Date().toISOString()
+ });
+ setReminders(arr);clearForm();showStatus(t().added,true);renderReminders();
+}
+function deleteReminder(id){
+ setReminders(getReminders().filter(r=>r.id!==id));
+ showStatus(t().deleted,true);renderReminders();
+}
+function markDone(id){
+ const arr=getReminders();const r=arr.find(x=>x.id===id);if(r)r.done=!r.done;
+ setReminders(arr);renderReminders();
+}
+function reminderDateObj(r){return new Date(r.date+"T"+(r.time||"09:00"))}
+function priorityBadge(p){
+ if(p==="urgent")return"badge badge-red";
+ if(p==="important")return"badge badge-warning";
+ return"badge badge-green";
+}
+function nextReminder(arr){
+ const now=new Date();
+ return arr.filter(r=>!r.done && reminderDateObj(r)>=now).sort((a,b)=>reminderDateObj(a)-reminderDateObj(b))[0]||null;
+}
+function renderReminders(){
+ const arr=getReminders().sort((a,b)=>reminderDateObj(a)-reminderDateObj(b));
+ document.getElementById("remindersCount").textContent=arr.length;
+ const next=nextReminder(arr);
+ document.getElementById("nextValue").textContent=next?new Date(next.date+"T"+next.time).toLocaleDateString():"-";
+ const box=document.getElementById("remindersList");
+ if(!arr.length){box.innerHTML=`<div class="empty">${t().empty}</div>`;return}
+ box.innerHTML=arr.map(r=>{
+  const dt=reminderDateObj(r);
+  const past=dt<new Date()&&!r.done;
+  return `<div class="reminder-card">
+    <div class="reminder-head">
+      <div>
+        <span class="badge badge-blue">${escapeHtml(typeName(r.type))}</span>
+        <span class="${priorityBadge(r.priority)}">${escapeHtml(r.priority)}</span>
+        ${r.done?`<span class="badge badge-green">${t().done}</span>`:""}
+        ${past?`<span class="badge badge-red">En retard</span>`:""}
+        <h3>${escapeHtml(r.title)}</h3>
+        <p>${dt.toLocaleString()} · rappel ${r.alertBefore} j avant</p>
+      </div>
+    </div>
+    ${r.note?`<p style="margin-top:10px;">${escapeHtml(r.note).replaceAll("\n","<br>")}</p>`:""}
+    <div class="reminder-actions">
+      <button onclick="markDone('${r.id}')">${t().markDone}</button>
+      <button onclick="downloadICS('${r.id}')">${t().downloadICS}</button>
+      <button onclick="deleteReminder('${r.id}')">${t().delete}</button>
+    </div>
+  </div>`;
+ }).join("");
+}
+function icsDate(d){
+ return d.toISOString().replace(/[-:]/g,"").split(".")[0]+"Z";
+}
+function makeICS(reminders){
+ const lines=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Mama in Deutschland//Notifications//FR"];
+ reminders.forEach(r=>{
+  const start=reminderDateObj(r);
+  const end=new Date(start.getTime()+60*60*1000);
+  const alarmDays=Number(r.alertBefore||0);
+  lines.push("BEGIN:VEVENT");
+  lines.push("UID:"+r.id+"@mama-in-deutschland");
+  lines.push("DTSTAMP:"+icsDate(new Date()));
+  lines.push("DTSTART:"+icsDate(start));
+  lines.push("DTEND:"+icsDate(end));
+  lines.push("SUMMARY:"+escapeICS(r.title));
+  lines.push("DESCRIPTION:"+escapeICS((r.note||"")+"\\nType: "+typeName(r.type)));
+  lines.push("BEGIN:VALARM");
+  lines.push("TRIGGER:-P"+alarmDays+"D");
+  lines.push("ACTION:DISPLAY");
+  lines.push("DESCRIPTION:"+escapeICS(r.title));
+  lines.push("END:VALARM");
+  lines.push("END:VEVENT");
+ });
+ lines.push("END:VCALENDAR");
+ return lines.join("\r\n");
+}
+function escapeICS(s){return String(s||"").replaceAll("\\","\\\\").replaceAll(";","\\;").replaceAll(",","\\,").replaceAll("\n","\\n")}
+function downloadBlob(text,name){
+ const blob=new Blob([text],{type:"text/calendar"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download=name;a.click();
+ URL.revokeObjectURL(url);
+}
+function downloadICS(id){
+ const r=getReminders().find(x=>x.id===id);if(!r)return;
+ downloadBlob(makeICS([r]),"mama-reminder-"+r.date+".ics");
+}
+function downloadAllICS(){
+ const arr=getReminders();if(!arr.length)return;
+ downloadBlob(makeICS(arr),"mama-reminders-all.ics");
+}
+function seedStandardReminders(){
+ const due=currentProfile?.due_date ? new Date(currentProfile.due_date+"T09:00") : null;
+ const arr=getReminders();
+ const add=(title,daysBefore,type,priority,note)=>{
+  if(!due)return;
+  const d=new Date(due);d.setDate(d.getDate()-daysBefore);
+  arr.push({id:"std-"+Date.now()+"-"+daysBefore,title,type,date:d.toISOString().slice(0,10),time:"09:00",note,alertBefore:7,priority,done:false,created_at:new Date().toISOString()});
+ };
+ if(due){
+  add("Préparer valise maternité",56,"shopping","important","Vérifier hospitalbag.html et documents.");
+  add("Vérifier documents naissance",42,"document","important","Standesamt, Krankenkasse, Kindergeld, Elterngeld.");
+  add("Confirmer Kreißsaal / clinique",35,"appointment","urgent","Appeler ou vérifier inscription accouchement.");
+  add("Installer siège auto",28,"shopping","urgent","Vérifier ISOFIX, compatibilité et trajet retour clinique.");
+ }else{
+  const today=new Date();
+  [["Préparer documents importants",7,"document"],["Trouver Kinderarzt",14,"baby"],["Contacter Hebamme",3,"mama"]].forEach((x,i)=>{
+   const d=new Date(today);d.setDate(d.getDate()+Number(x[1]));
+   arr.push({id:"std-"+Date.now()+"-"+i,title:x[0],type:x[2],date:d.toISOString().slice(0,10),time:"09:00",note:"Rappel standard Mama in Deutschland.",alertBefore:1,priority:"important",done:false,created_at:new Date().toISOString()});
+  });
+ }
+ setReminders(arr);renderReminders();showStatus("Rappels standards ajoutés.",true);
+}
+function copyMessage(){
+ const box=document.getElementById("copyBox");box.select();document.execCommand("copy");
+ const n=document.getElementById("copiedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1500);
+}
+async function loadApp(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ updatePermission();
+}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+loadApp();
+</script>
+</body>
+</html>

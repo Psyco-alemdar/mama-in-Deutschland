@@ -5,82 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mama in Deutschland - Profil</title>
 <style>
-:root{
-  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
-  --light:#9b7357;--gold:#c9a66b;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
-  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
-  --shadow:rgba(74,52,40,.14);
-}
+:root{--page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.14)}
 body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
 body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
 body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
-*{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:
-    radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),
-    radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),
-    linear-gradient(180deg,#fbf7f1,var(--page));
-  color:var(--text);
-}
-.wrap{max-width:1240px;margin:0 auto;padding:22px 18px 36px}
-header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
-.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
-.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger,.button-success{
-  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;
-  cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px
-}
-.button{background:var(--brown);color:white;border-color:var(--brown)}
-.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
-.button-success{background:var(--success);color:white;border-color:var(--success)}
-.lang-wrap{position:relative}.lang-trigger{min-width:84px}
-.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
-.lang-menu.open{display:block}
-.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
-.lang-menu button:hover{background:var(--soft)}
-.card,.hero,.panel{
-  background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;
-  box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)
-}
-.hero{display:grid;grid-template-columns:1fr .9fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
-.hero-main,.hero-side{position:relative;z-index:1}
-.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
-h1,h2,h3{color:var(--brown);margin:0 0 12px}
-h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
-h2{font-size:26px;letter-spacing:-.8px}
-h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
-.stat-label{font-size:12px;color:var(--muted);font-weight:950}
-.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
-label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:950}
-input,select{
-  width:100%;padding:14px 15px;border:1px solid var(--border);border-radius:16px;background:#fffdf9;
-  color:var(--text);font-size:15px;outline:none;font-family:inherit;
-}
-input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
-.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
-.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.badge-dark{background:var(--brown);color:white}
-.badge-success{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
-.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-.message{display:none;margin-top:14px;padding:13px 14px;border-radius:18px;font-weight:900;line-height:1.45}
-.message.success{display:block;background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
-.message.error{display:block;background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
-.message.info{display:block;background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
-.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.preview-card{display:flex;align-items:center;gap:14px}
-.preview-icon{width:64px;height:64px;border-radius:22px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:34px;border:1px solid var(--border)}
-.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-.login-message{max-width:650px;margin:60px auto;text-align:center}
-@media(max-width:980px){.hero,.grid-2{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
-@media(max-width:680px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero,.panel{padding:20px}.grid-3{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.button,.button-light,.button-danger,.button-green{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}.button{background:var(--brown);color:white;border-color:var(--brown)}.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}.lang-wrap{position:relative}.lang-trigger{min-width:84px}.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}.lang-menu.open{display:block}.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}.hero-main,.hero-side{position:relative;z-index:1}.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}h2{font-size:26px;letter-spacing:-.8px}h3{font-size:18px}p,li{margin:0;color:var(--muted);line-height:1.6}ul{padding-left:20px;margin:10px 0 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}.stat-label{font-size:12px;color:var(--muted);font-weight:950}.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}.box,.profile-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}.profile-card{position:relative;overflow:hidden}.profile-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0 7px}input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}textarea{min-height:120px;resize:vertical}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:14px}.color-options{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.color-option{border:1px solid var(--border);border-radius:20px;padding:13px;background:white;cursor:pointer;font-weight:950;color:var(--brown);text-align:center}.color-option.active{box-shadow:0 0 0 3px rgba(74,52,40,.14);border-color:var(--brown);background:var(--soft)}.source-card a{color:var(--brown);font-weight:950;text-decoration:none}.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}.login-message{max-width:650px;margin:60px auto;text-align:center}@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.grid,.form-grid{grid-template-columns:1fr}}@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats,.color-options{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -93,13 +25,7 @@ input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155
     <div class="lang-wrap">
       <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
       <div class="lang-menu" id="langMenu">
-        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
-        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
-        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
-        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
-        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
-        <button onclick="setLanguage('ru')">🇷🇺 RU Русский</button>
-        <button onclick="setLanguage('uk')">🇺🇦 UK Українська</button>
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button><button onclick="setLanguage('fr')">🇫🇷 FR Français</button><button onclick="setLanguage('ar')">🇸🇦 AR العربية</button><button onclick="setLanguage('en')">🇬🇧 EN English</button><button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button><button onclick="setLanguage('ru')">🇷🇺 Русский</button><button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
     </div>
   </div>
@@ -108,132 +34,50 @@ input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155
 <main id="appShell" style="display:none;">
   <section class="hero">
     <div class="hero-main">
-      <div class="kicker" id="pageKicker">Profil grossesse</div>
-      <h1 id="pageTitle">Ton profil personnel</h1>
-      <p id="pageText">Ces informations personnalisent le dashboard, les rendez-vous standards, les couleurs et les recommandations semaine par semaine.</p>
+      <div class="kicker" id="pageKicker">Mon profil</div>
+      <h1 id="pageTitle">Personnaliser Mama in Deutschland</h1>
+      <p id="pageText">Ton profil permet d’adapter le dashboard : langue, thème, grossesse simple ou jumeaux, sexe du bébé, terme prévu, semaine actuelle et prénom affiché.</p>
       <div class="stats">
+        <div class="stat"><div class="stat-label" id="emailLabel">Compte</div><div class="stat-value" id="emailValue">-</div></div>
         <div class="stat"><div class="stat-label" id="weekLabel">Semaine</div><div class="stat-value" id="weekValue">-</div></div>
-        <div class="stat"><div class="stat-label" id="daysLabel">Jours avant terme</div><div class="stat-value" id="daysValue">-</div></div>
-        <div class="stat"><div class="stat-label" id="themeLabel">Thème</div><div class="stat-value" id="themeValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="daysLabel">Jours restants</div><div class="stat-value" id="daysValue">-</div></div>
       </div>
     </div>
-
     <div class="hero-side">
-      <h2 id="accountTitle">Compte</h2>
-      <div class="box">
-        <span class="badge badge-dark" id="emailBadge">Email</span>
-        <h3 id="userEmail">-</h3>
-        <p id="accountText">Ton email sert à te connecter et à récupérer ton mot de passe.</p>
-        <div class="actions" style="margin-top:14px;">
-          <button class="button-light" onclick="sendPasswordReset()" id="resetPasswordButton">Changer mot de passe</button>
-        </div>
-      </div>
+      <h2 id="importantTitle">Important</h2>
+      <p id="importantText">Cette page ne modifie pas la colonne updated_at. Elle corrige donc l’erreur “updated_at column not found” si ta table pregnancy_profiles ne possède pas cette colonne.</p>
+      <div class="success" id="profileStatus">Profil chargé.</div>
+      <div class="warning" id="privacyNote">Ne mets pas d’informations trop sensibles. Le profil sert uniquement à personnaliser l’expérience de la plateforme.</div>
+      <div class="actions" style="margin-top:14px;"><button class="button" onclick="saveProfile()" id="saveTopButton">Sauvegarder</button><a class="button-light" href="app.html" id="dashboardTopButton">Dashboard</a></div>
     </div>
   </section>
 
-  <section class="card">
-    <div class="section-title">
-      <div>
-        <h2 id="formTitle">Modifier le profil</h2>
-        <p id="formText">Garde ces données à jour pour que la plateforme reste précise.</p>
-      </div>
-      <span class="badge badge-success" id="statusBadge">Profil sécurisé</span>
+  <section class="grid-2">
+    <div class="card">
+      <div class="section-title"><div><h2 id="identityTitle">Informations principales</h2><p id="identityText">Ces informations personnalisent l’accueil, les cartes et les recommandations.</p></div></div>
+      <div class="form-grid"><div class="field"><label id="motherNameLabel">Prénom maman</label><input id="motherName" placeholder="Ex. Souha"></div><div class="field"><label id="babyNameLabel">Prénom bébé</label><input id="babyName" placeholder="Ex. Sophia"></div></div>
+      <div class="form-grid"><div class="field"><label id="dueDateLabel">Terme prévu</label><input id="dueDate" type="date" onchange="refreshPreview()"></div><div class="field"><label id="manualWeekLabel">Semaine manuelle si pas de terme</label><input id="manualWeek" type="number" min="1" max="42" placeholder="Ex. 28" oninput="refreshPreview()"></div></div>
+      <div class="form-grid"><div class="field"><label id="pregnancyTypeLabel">Type de grossesse</label><select id="pregnancyType" onchange="refreshPreview()"><option value="singleton" id="singletonOption">Grossesse simple</option><option value="twins" id="twinsOption">Jumeaux</option></select></div><div class="field"><label id="babyGenderLabel">Sexe / thème bébé</label><select id="babyGender" onchange="refreshPreview()"><option value="unknown" id="unknownOption">Pas encore connu</option><option value="girl" id="girlOption">Fille</option><option value="boy" id="boyOption">Garçon</option><option value="twin_girls" id="twinGirlsOption">Jumelles</option><option value="twin_boys" id="twinBoysOption">Jumeaux garçons</option><option value="twin_mixed" id="twinMixedOption">Jumeaux fille/garçon</option></select></div></div>
+      <div class="form-grid"><div class="field"><label id="languageProfileLabel">Langue principale</label><select id="languageProfile" onchange="setLanguage(this.value)"><option value="fr">🇫🇷 Français</option><option value="de">🇩🇪 Deutsch</option><option value="ar">🇸🇦 العربية</option><option value="en">🇬🇧 English</option><option value="tr">🇹🇷 Türkçe</option><option value="ru">🇷🇺 Русский</option><option value="uk">🇺🇦 Українська</option></select></div><div class="field"><label id="countryLabel">Pays / origine optionnel</label><input id="countryOrigin" placeholder="Ex. Tunisie, Maroc, Ukraine..."></div></div>
+      <div class="actions"><button class="button" onclick="saveProfile()" id="saveButton">Sauvegarder le profil</button><button class="button-light" onclick="reloadProfile()" id="reloadButton">Recharger</button></div><div class="soft" id="saveNote" style="display:none;"></div>
     </div>
-
-    <div id="messageBox" class="message"></div>
-
-    <div class="grid-2">
-      <div>
-        <label id="fullNameLabel" for="fullName">Prénom de la mère</label>
-        <input id="fullName" autocomplete="name">
-
-        <label id="babyNameLabel" for="babyName">Prénom bébé</label>
-        <input id="babyName">
-
-        <label id="cityLabel" for="cityInput">Ville en Allemagne</label>
-        <input id="cityInput" placeholder="Mülheim an der Ruhr">
-
-        <label id="languageLabel" for="languageInput">Langue principale</label>
-        <select id="languageInput">
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
-          <option value="ar">🇸🇦 العربية</option>
-          <option value="en">🇬🇧 English</option>
-          <option value="tr">🇹🇷 Türkçe</option>
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="uk">🇺🇦 Українська</option>
-        </select>
-      </div>
-
-      <div>
-        <label id="dueDateLabel" for="dueDate">Date prévue d’accouchement</label>
-        <input id="dueDate" type="date" onchange="updatePreview()">
-
-        <label id="pregnancyTypeLabel" for="pregnancyType">Type de grossesse</label>
-        <select id="pregnancyType" onchange="updateGenderOptions();updatePreview();">
-          <option value="single" id="singleOption">Un bébé</option>
-          <option value="twins" id="twinsOption">Jumeaux</option>
-        </select>
-
-        <label id="babyGenderLabel" for="babyGender">Sexe / situation bébé</label>
-        <select id="babyGender" onchange="updatePreview()">
-          <option value="unknown" data-kind="both" id="genderUnknownOption">Je ne sais pas encore</option>
-          <option value="girl" data-kind="single" id="genderGirlOption">Fille</option>
-          <option value="boy" data-kind="single" id="genderBoyOption">Garçon</option>
-          <option value="twin_girls" data-kind="twins" id="genderTwinGirlsOption">Jumelles</option>
-          <option value="twin_boys" data-kind="twins" id="genderTwinBoysOption">Jumeaux garçons</option>
-          <option value="twin_mixed" data-kind="twins" id="genderTwinMixedOption">Jumeaux mixtes</option>
-        </select>
-
-        <label id="themeModeLabel" for="themeMode">Design</label>
-        <select id="themeMode" onchange="applyTheme(this.value);updatePreview();">
-          <option value="auto" id="themeAutoOption">Automatique selon bébé</option>
-          <option value="neutral" id="themeNeutralOption">Neutre beige</option>
-          <option value="girl" id="themeGirlOption">Rose bébé</option>
-          <option value="boy" id="themeBoyOption">Bleu bébé</option>
-          <option value="twin" id="themeTwinOption">Vert jumeaux</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="actions" style="margin-top:18px;">
-      <button class="button" onclick="saveProfile()" id="saveButton">Sauvegarder</button>
-      <a class="button-light" href="app.html" id="dashboardButton2">Retour dashboard</a>
+    <div class="card">
+      <div class="section-title"><div><h2 id="themeTitle">Thème visuel</h2><p id="themeText">Le thème change l’ambiance des pages selon le profil.</p></div></div>
+      <div class="color-options"><button class="color-option" data-theme="auto" onclick="chooseTheme('auto')" id="themeAuto">Auto</button><button class="color-option" data-theme="girl" onclick="chooseTheme('girl')" id="themeGirl">Rose</button><button class="color-option" data-theme="boy" onclick="chooseTheme('boy')" id="themeBoy">Bleu</button><button class="color-option" data-theme="twin" onclick="chooseTheme('twin')" id="themeTwin">Vert</button></div>
+      <div class="box" style="margin-top:16px;"><h3 id="previewTitle">Aperçu profil</h3><div class="grid-2" style="margin-top:12px;"><div class="profile-card"><div class="icon">👩</div><span class="badge" id="previewMamaBadge">Mama</span><h3 id="previewMother">-</h3><p id="previewLanguage">-</p></div><div class="profile-card"><div class="icon">👶</div><span class="badge badge-green" id="previewBabyBadge">Bébé</span><h3 id="previewBaby">-</h3><p id="previewPregnancy">-</p></div></div></div>
+      <div class="box" style="margin-top:16px;"><h3 id="accountTitle">Compte</h3><p id="accountText">Actions liées au compte connecté.</p><div class="actions" style="margin-top:14px;"><button class="button-light" onclick="sendPasswordReset()" id="resetPasswordButton">Envoyer lien mot de passe</button><button class="button-danger" onclick="signOut()" id="logoutButton2">Déconnexion</button></div></div>
     </div>
   </section>
 
-  <section class="card">
-    <div class="section-title">
-      <div>
-        <h2 id="previewTitle">Aperçu</h2>
-        <p id="previewText">Ce que le dashboard utilisera pour calculer les semaines et les recommandations.</p>
-      </div>
-    </div>
-    <div class="grid-3">
-      <div class="box preview-card"><div class="preview-icon">📅</div><div><h3 id="previewWeekTitle">Semaine</h3><p id="previewWeek">-</p></div></div>
-      <div class="box preview-card"><div class="preview-icon">🎨</div><div><h3 id="previewThemeTitle">Thème</h3><p id="previewTheme">-</p></div></div>
-      <div class="box preview-card"><div class="preview-icon">👶</div><div><h3 id="previewBabyTitle">Bébé</h3><p id="previewBaby">-</p></div></div>
-    </div>
+  <section class="grid-2">
+    <div class="card"><h2 id="localTitle">Préférences locales</h2><p id="localText">Ces notes restent sur cet appareil et ne dépendent pas de Supabase.</p><div class="form-grid"><div class="field"><label id="cityLabel">Ville / PLZ</label><input id="cityLocal" placeholder="Ex. Mülheim, 45468"></div><div class="field"><label id="clinicLabel">Clinique / Kreißsaal</label><input id="clinicLocal" placeholder="Nom clinique"></div></div><div class="field"><label id="notesLabel">Notes privées</label><textarea id="privateNotes" placeholder="Contacts, préférences, rendez-vous, questions..."></textarea></div><div class="actions"><button class="button-green" onclick="saveLocalPrefs()" id="saveLocalButton">Sauvegarder localement</button></div><div class="soft" id="localSaved" style="display:none;">Sauvegardé localement</div></div>
+    <div class="card"><h2 id="dataTitle">Données utilisées</h2><div class="box"><ul id="dataList"></ul></div><div class="warning" id="schemaNote">Pour éviter les erreurs de schéma, cette page essaie d’abord les colonnes principales connues. Les champs optionnels sont sauvegardés seulement si ta table les accepte, sinon ils restent localement.</div></div>
   </section>
 
-  <section class="card">
-    <h2 id="privacyTitle">Confidentialité</h2>
-    <p id="privacyText">Ton profil est lié à ton compte. Les autres utilisatrices ne voient pas ces informations personnelles dans le dashboard.</p>
-    <div class="soft" id="privacyNote">Ne partage jamais ton mot de passe. Pour les informations médicales sensibles, évite de publier des détails dans la communauté.</div>
-  </section>
-
-  <div class="footer-actions">
-    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
-    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
-  </div>
+  <section class="card"><div class="section-title"><div><h2 id="linksTitle">Accès rapide</h2><p id="linksText">Après modification, reviens au dashboard pour vérifier le résultat.</p></div></div><div class="grid-4"><div class="source-card"><a href="app.html">Dashboard</a><span>Voir si le thème, le prénom et la semaine sont bien appliqués.</span></div><div class="source-card"><a href="calendar.html">Calendrier</a><span>Contrôler les rendez-vous et le prochain terme important.</span></div><div class="source-card"><a href="near-me.html">Près de moi</a><span>Sauvegarder ville, clinique, Kinderarzt, Hebamme et services locaux.</span></div><div class="source-card"><a href="emergency.html">Urgence</a><span>Garder les numéros importants accessibles.</span></div></div></section>
+  <div class="footer-actions"><button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button><a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a></div>
 </main>
-
-<section class="login-message card" id="loginMessage" style="display:none;">
-  <h2 id="loginTitle">Connexion nécessaire</h2>
-  <p id="loginText">Tu dois d’abord te connecter.</p>
-  <br>
-  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
-</section>
+<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a></section>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -241,228 +85,26 @@ input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"fr";
-
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",selectedTheme="auto";
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
-
-const tr={
-fr:{
-dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Profil grossesse",pageTitle:"Ton profil personnel",pageText:"Ces informations personnalisent le dashboard, les rendez-vous standards, les couleurs et les recommandations semaine par semaine.",
-weekLabel:"Semaine",daysLabel:"Jours avant terme",themeLabel:"Thème",accountTitle:"Compte",emailBadge:"Email",accountText:"Ton email sert à te connecter et à récupérer ton mot de passe.",resetPasswordButton:"Changer mot de passe",
-formTitle:"Modifier le profil",formText:"Garde ces données à jour pour que la plateforme reste précise.",statusBadge:"Profil sécurisé",
-fullNameLabel:"Prénom de la mère",babyNameLabel:"Prénom bébé",cityLabel:"Ville en Allemagne",languageLabel:"Langue principale",dueDateLabel:"Date prévue d’accouchement",pregnancyTypeLabel:"Type de grossesse",babyGenderLabel:"Sexe / situation bébé",themeModeLabel:"Design",
-singleOption:"Un bébé",twinsOption:"Jumeaux",genderUnknownOption:"Je ne sais pas encore",genderGirlOption:"Fille",genderBoyOption:"Garçon",genderTwinGirlsOption:"Jumelles",genderTwinBoysOption:"Jumeaux garçons",genderTwinMixedOption:"Jumeaux mixtes",
-themeAutoOption:"Automatique selon bébé",themeNeutralOption:"Neutre beige",themeGirlOption:"Rose bébé",themeBoyOption:"Bleu bébé",themeTwinOption:"Vert jumeaux",
-saveButton:"Sauvegarder",dashboardButton2:"Retour dashboard",previewTitle:"Aperçu",previewText:"Ce que le dashboard utilisera pour calculer les semaines et les recommandations.",previewWeekTitle:"Semaine",previewThemeTitle:"Thème",previewBabyTitle:"Bébé",
-privacyTitle:"Confidentialité",privacyText:"Ton profil est lié à ton compte. Les autres utilisatrices ne voient pas ces informations personnelles dans le dashboard.",privacyNote:"Ne partage jamais ton mot de passe. Pour les informations médicales sensibles, évite de publier des détails dans la communauté.",
-bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-weekShort:"SA",days:"jours",unknown:"Non indiqué",auto:"Automatique",neutral:"Neutre",girl:"Fille",boy:"Garçon",twins:"Jumeaux",twin_girls:"Jumelles",twin_boys:"Jumeaux garçons",twin_mixed:"Jumeaux mixtes",
-saved:"Profil sauvegardé.",error:"Erreur. Réessaie.",missing:"Merci d’ajouter au moins prénom et date prévue.",resetSent:"Email envoyé pour changer le mot de passe."
-},
-de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
-["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Schwangerschaftsprofil",pageTitle:"Dein persönliches Profil",weekLabel:"SSW",daysLabel:"Tage bis Termin",themeLabel:"Design",accountTitle:"Konto",resetPasswordButton:"Passwort ändern",formTitle:"Profil bearbeiten",fullNameLabel:"Vorname der Mutter",babyNameLabel:"Babyname",cityLabel:"Stadt in Deutschland",languageLabel:"Hauptsprache",dueDateLabel:"Voraussichtlicher Geburtstermin",pregnancyTypeLabel:"Schwangerschaft",saveButton:"Speichern",bottomBackButton:"Zurück",weekShort:"SSW",days:"Tage",saved:"Profil gespeichert."});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Pregnancy profile",pageTitle:"Your personal profile",weekLabel:"Week",daysLabel:"Days to due date",themeLabel:"Theme",accountTitle:"Account",resetPasswordButton:"Change password",formTitle:"Edit profile",fullNameLabel:"Mother’s first name",babyNameLabel:"Baby name",cityLabel:"City in Germany",languageLabel:"Main language",dueDateLabel:"Estimated due date",pregnancyTypeLabel:"Pregnancy type",saveButton:"Save",bottomBackButton:"Back",weekShort:"Week",days:"days",saved:"Profile saved."});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"ملف الحمل",pageTitle:"ملفك الشخصي",weekLabel:"أسبوع",daysLabel:"أيام حتى الموعد",themeLabel:"التصميم",accountTitle:"الحساب",resetPasswordButton:"تغيير كلمة المرور",formTitle:"تعديل الملف",fullNameLabel:"اسم الأم",babyNameLabel:"اسم الطفل",cityLabel:"المدينة في ألمانيا",languageLabel:"اللغة الرئيسية",dueDateLabel:"موعد الولادة المتوقع",pregnancyTypeLabel:"نوع الحمل",saveButton:"حفظ",bottomBackButton:"رجوع",weekShort:"أسبوع",days:"أيام",saved:"تم حفظ الملف."});
-Object.assign(tr.tr,{logoutButton:"Çıkış",pageTitle:"Kişisel profilin",bottomBackButton:"Geri"});
-Object.assign(tr.ru,{logoutButton:"Выйти",pageTitle:"Ваш профиль",bottomBackButton:"Назад"});
-Object.assign(tr.uk,{logoutButton:"Вийти",pageTitle:"Ваш профіль",bottomBackButton:"Назад"});
-
-function t(){return tr[currentLang]||tr.fr}
-function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
-document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-
-function setLanguage(lang, updateSelect=true){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  const info=langInfo[lang]||langInfo.fr;
-  document.getElementById("langTrigger").textContent=info[0]+" "+info[1];
-  document.getElementById("langMenu").classList.remove("open");
-  Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
-  if(updateSelect)document.getElementById("languageInput").value=lang;
-  updateGenderOptions();
-  updatePreview();
-}
-
-function showMessage(type,text){
-  const box=document.getElementById("messageBox");
-  box.className="message "+type;
-  box.textContent=text;
-}
-
-function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
-function calculatePregnancy(due){
-  if(!due)return {week:null,daysLeft:null};
-  const today=new Date();today.setHours(0,0,0,0);
-  const dueDate=parseLocalDate(due);dueDate.setHours(0,0,0,0);
-  const start=new Date(dueDate);start.setDate(start.getDate()-280);
-  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
-  if(week<1)week=1;if(week>60)week=60;
-  return {week,daysLeft:Math.ceil((dueDate-today)/(1000*60*60*24))};
-}
-
-function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
-}
-
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
-}
-
-function updateGenderOptions(){
-  const type=document.getElementById("pregnancyType").value;
-  const select=document.getElementById("babyGender");
-  Array.from(select.options).forEach(o=>{
-    const kind=o.dataset.kind;
-    o.hidden=!(kind==="both"||kind===type);
-  });
-  if(select.selectedOptions[0]?.hidden)select.value="unknown";
-}
-
-function chosenTheme(){
-  const manual=document.getElementById("themeMode").value;
-  if(manual && manual!=="auto")return manual;
-  return determineTheme(document.getElementById("pregnancyType").value,document.getElementById("babyGender").value);
-}
-
-function labelFor(value){
-  return t()[value]||value||t().unknown;
-}
-
-function updatePreview(){
-  const due=document.getElementById("dueDate").value;
-  const calc=calculatePregnancy(due);
-  const theme=chosenTheme();
-  applyTheme(theme);
-
-  document.getElementById("weekValue").textContent=calc.week||"-";
-  document.getElementById("daysValue").textContent=calc.daysLeft===null?"-":Math.max(0,calc.daysLeft);
-  document.getElementById("themeValue").textContent=theme;
-
-  document.getElementById("previewWeek").textContent=calc.week? t().weekShort+" "+calc.week+" · "+Math.max(0,calc.daysLeft)+" "+t().days : "-";
-  document.getElementById("previewTheme").textContent=theme;
-  const babyName=document.getElementById("babyName").value||t().unknown;
-  const gender=document.getElementById("babyGender").value;
-  document.getElementById("previewBaby").textContent=babyName+" · "+(t()[gender]||gender||t().unknown);
-}
-
-async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-  if(error||!data.session){
-    document.getElementById("loginMessage").style.display="block";
-    return;
-  }
-
-  currentUser=data.session.user;
-  document.getElementById("userEmail").textContent=currentUser.email||"-";
-
-  const {data:profiles,error:profileError}=await supabaseClient
-    .from("pregnancy_profiles")
-    .select("*")
-    .eq("user_id",currentUser.id)
-    .order("created_at",{ascending:false})
-    .limit(1);
-
-  currentProfile=(profiles&&profiles.length)?profiles[0]:null;
-
-  if(currentProfile){
-    currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"fr";
-    document.getElementById("fullName").value=currentProfile.full_name||currentProfile.mother_name||"";
-    document.getElementById("babyName").value=currentProfile.baby_name||"";
-    document.getElementById("cityInput").value=currentProfile.city||"";
-    document.getElementById("languageInput").value=currentLang;
-    document.getElementById("dueDate").value=currentProfile.due_date||"";
-    document.getElementById("pregnancyType").value=currentProfile.pregnancy_type||"single";
-    updateGenderOptions();
-    document.getElementById("babyGender").value=currentProfile.baby_gender||"unknown";
-    document.getElementById("themeMode").value=currentProfile.theme_mode||"auto";
-  }else{
-    document.getElementById("languageInput").value=currentLang;
-  }
-
-  document.getElementById("appShell").style.display="block";
-  setLanguage(currentLang,false);
-  updatePreview();
-}
-
-async function saveProfile(){
-  const fullName=document.getElementById("fullName").value.trim();
-  const dueDate=document.getElementById("dueDate").value;
-  const language=document.getElementById("languageInput").value;
-  const pregnancyType=document.getElementById("pregnancyType").value;
-  const babyGender=document.getElementById("babyGender").value;
-  const themeValue=chosenTheme();
-  const calc=calculatePregnancy(dueDate);
-
-  if(!fullName||!dueDate){
-    showMessage("error",t().missing);
-    return;
-  }
-
-  const row={
-    user_id:currentUser.id,
-    full_name:fullName,
-    baby_name:document.getElementById("babyName").value.trim(),
-    city:document.getElementById("cityInput").value.trim(),
-    language,
-    due_date:dueDate,
-    pregnancy_week:calc.week,
-    pregnancy_type:pregnancyType,
-    baby_gender:babyGender,
-    theme_mode:themeValue,
-    gender_revealed_at_week:babyGender!=="unknown"?calc.week:null,
-    updated_at:new Date().toISOString()
-  };
-
-  showMessage("info","...");
-
-  let result;
-  if(currentProfile&&currentProfile.id){
-    result=await supabaseClient.from("pregnancy_profiles").update(row).eq("id",currentProfile.id).eq("user_id",currentUser.id).select().single();
-  }else{
-    result=await supabaseClient.from("pregnancy_profiles").insert(row).select().single();
-  }
-
-  if(result.error){
-    console.error(result.error);
-    showMessage("error",t().error+" "+result.error.message);
-    return;
-  }
-
-  currentProfile=result.data;
-  setLanguage(language);
-  showMessage("success",t().saved);
-  updatePreview();
-}
-
-async function sendPasswordReset(){
-  if(!currentUser||!currentUser.email)return;
-  const redirectTo=window.location.origin+window.location.pathname.replace("profile.html","")+"reset-password.html";
-  const {error}=await supabaseClient.auth.resetPasswordForEmail(currentUser.email,{redirectTo});
-  if(error){
-    showMessage("error",error.message);
-    return;
-  }
-  showMessage("success",t().resetSent);
-}
-
-async function signOut(){
-  await supabaseClient.auth.signOut();
-  window.location.href="index.html";
-}
-
-loadApp();
+const tr={fr:{dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Mon profil",pageTitle:"Personnaliser Mama in Deutschland",pageText:"Ton profil permet d’adapter le dashboard : langue, thème, grossesse simple ou jumeaux, sexe du bébé, terme prévu, semaine actuelle et prénom affiché.",emailLabel:"Compte",weekLabel:"Semaine",daysLabel:"Jours restants",importantTitle:"Important",importantText:"Cette page ne modifie pas la colonne updated_at. Elle corrige donc l’erreur “updated_at column not found” si ta table pregnancy_profiles ne possède pas cette colonne.",profileStatus:"Profil chargé.",privacyNote:"Ne mets pas d’informations trop sensibles. Le profil sert uniquement à personnaliser l’expérience de la plateforme.",saveTopButton:"Sauvegarder",dashboardTopButton:"Dashboard",identityTitle:"Informations principales",identityText:"Ces informations personnalisent l’accueil, les cartes et les recommandations.",motherNameLabel:"Prénom maman",babyNameLabel:"Prénom bébé",dueDateLabel:"Terme prévu",manualWeekLabel:"Semaine manuelle si pas de terme",pregnancyTypeLabel:"Type de grossesse",singletonOption:"Grossesse simple",twinsOption:"Jumeaux",babyGenderLabel:"Sexe / thème bébé",unknownOption:"Pas encore connu",girlOption:"Fille",boyOption:"Garçon",twinGirlsOption:"Jumelles",twinBoysOption:"Jumeaux garçons",twinMixedOption:"Jumeaux fille/garçon",languageProfileLabel:"Langue principale",countryLabel:"Pays / origine optionnel",saveButton:"Sauvegarder le profil",reloadButton:"Recharger",themeTitle:"Thème visuel",themeText:"Le thème change l’ambiance des pages selon le profil.",themeAuto:"Auto",themeGirl:"Rose",themeBoy:"Bleu",themeTwin:"Vert",previewTitle:"Aperçu profil",previewMamaBadge:"Mama",previewBabyBadge:"Bébé",accountTitle:"Compte",accountText:"Actions liées au compte connecté.",resetPasswordButton:"Envoyer lien mot de passe",logoutButton2:"Déconnexion",localTitle:"Préférences locales",localText:"Ces notes restent sur cet appareil et ne dépendent pas de Supabase.",cityLabel:"Ville / PLZ",clinicLabel:"Clinique / Kreißsaal",notesLabel:"Notes privées",saveLocalButton:"Sauvegarder localement",localSaved:"Sauvegardé localement",dataTitle:"Données utilisées",schemaNote:"Pour éviter les erreurs de schéma, cette page essaie d’abord les colonnes principales connues. Les champs optionnels sont sauvegardés seulement si ta table les accepte, sinon ils restent localement.",linksTitle:"Accès rapide",linksText:"Après modification, reviens au dashboard pour vérifier le résultat.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",saved:"Profil sauvegardé.",savedLocalOnly:"Profil principal sauvegardé. Certains champs optionnels restent localement car ta table ne les accepte pas.",notConfigured:"Table profil indisponible : sauvegarde locale uniquement.",resetSent:"E-mail de réinitialisation envoyé si l’adresse est valide.",singleton:"Grossesse simple",twins:"Jumeaux",unknown:"Non connu",girl:"Fille",boy:"Garçon",twin_girls:"Jumelles",twin_boys:"Jumeaux garçons",twin_mixed:"Jumeaux fille/garçon",dataList:["mother_name : prénom affiché de la maman","due_date : terme prévu pour calculer la semaine","pregnancy_week : semaine manuelle si pas de terme","pregnancy_type : simple ou jumeaux","baby_gender : thème bébé fille/garçon/jumeaux","theme_mode : thème visuel choisi","language : langue principale"]},de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Mein Profil",pageTitle:"Mama in Deutschland personalisieren",bottomBackButton:"Zurück"});Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"My profile",pageTitle:"Personalize Mama in Deutschland",bottomBackButton:"Back"});Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"ملفي",pageTitle:"تخصيص Mama in Deutschland",bottomBackButton:"رجوع"});
+function t(){return tr[currentLang]||tr.fr}function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+function setLanguage(lang){currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];const lp=document.getElementById("languageProfile");if(lp)lp.value=lang;document.getElementById("langMenu").classList.remove("open");Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el&&typeof t()[id]==="string")el.textContent=t()[id]});renderDataList();refreshPreview()}
+function parseLocalDate(v){if(!v)return null;const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}function calculatePregnancy(due,manual){if(due){const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);dueDate.setHours(0,0,0,0);const start=new Date(dueDate);start.setDate(start.getDate()-280);let days=Math.floor((today-start)/(1000*60*60*24));let week=Math.floor(days/7)+1;let rest=Math.ceil((dueDate-today)/(1000*60*60*24));if(week<1)week=1;if(week>42)week=42;return{week,daysLeft:rest}}let w=Number(manual||1);if(w<1)w=1;if(w>42)w=42;return{week:w,daysLeft:"-"}}
+function determineTheme(type,gender){if(selectedTheme&&selectedTheme!=="auto")return selectedTheme;if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function localProfileKey(){return"mama-profile-local-"+(currentUser?currentUser.id:"guest")}function localPrefsKey(){return"mama-profile-prefs-"+(currentUser?currentUser.id:"guest")}function getLocalProfile(){try{return JSON.parse(localStorage.getItem(localProfileKey()))||{}}catch(e){return{}}}function setLocalProfile(v){localStorage.setItem(localProfileKey(),JSON.stringify(v))}function getLocalPrefs(){try{return JSON.parse(localStorage.getItem(localPrefsKey()))||{}}catch(e){return{}}}function setLocalPrefs(v){localStorage.setItem(localPrefsKey(),JSON.stringify(v))}
+function chooseTheme(theme){selectedTheme=theme;document.querySelectorAll(".color-option").forEach(b=>b.classList.toggle("active",b.dataset.theme===theme));refreshPreview()}
+function formPayload(){return{user_id:currentUser.id,mother_name:document.getElementById("motherName").value.trim(),due_date:document.getElementById("dueDate").value||null,pregnancy_week:Number(document.getElementById("manualWeek").value||1),pregnancy_type:document.getElementById("pregnancyType").value,baby_gender:document.getElementById("babyGender").value,theme_mode:selectedTheme,language:document.getElementById("languageProfile").value}}
+function optionalPayload(){return{baby_name:document.getElementById("babyName").value.trim(),country_origin:document.getElementById("countryOrigin").value.trim()}}
+function fillForm(p){const local=getLocalProfile();p=p||{};document.getElementById("motherName").value=p.mother_name||local.mother_name||"";document.getElementById("babyName").value=p.baby_name||local.baby_name||"";document.getElementById("countryOrigin").value=p.country_origin||local.country_origin||"";document.getElementById("dueDate").value=p.due_date||local.due_date||"";document.getElementById("manualWeek").value=p.pregnancy_week||local.pregnancy_week||"";document.getElementById("pregnancyType").value=p.pregnancy_type||local.pregnancy_type||"singleton";document.getElementById("babyGender").value=p.baby_gender||local.baby_gender||"unknown";selectedTheme=p.theme_mode||local.theme_mode||"auto";chooseTheme(selectedTheme);setLanguage(p.language||local.language||currentLang||"fr")}
+function fillLocalPrefs(){const p=getLocalPrefs();document.getElementById("cityLocal").value=p.city||"";document.getElementById("clinicLocal").value=p.clinic||"";document.getElementById("privateNotes").value=p.notes||""}
+function refreshPreview(){const payload=formPayload();const opt=optionalPayload();const calc=calculatePregnancy(payload.due_date,payload.pregnancy_week);document.getElementById("weekValue").textContent=calc.week;document.getElementById("daysValue").textContent=calc.daysLeft;document.getElementById("previewMother").textContent=payload.mother_name||"Mama";document.getElementById("previewBaby").textContent=opt.baby_name||t()[payload.baby_gender]||"Bébé";document.getElementById("previewLanguage").textContent=(langInfo[payload.language]||langInfo.fr).join(" ");document.getElementById("previewPregnancy").textContent=(t()[payload.pregnancy_type]||payload.pregnancy_type)+" · "+(t()[payload.baby_gender]||payload.baby_gender)+" · SA "+calc.week;applyTheme(determineTheme(payload.pregnancy_type,payload.baby_gender))}
+function showSave(txt,ok=true){const el=document.getElementById("saveNote");el.textContent=txt;el.className=ok?"success":"warning";el.style.display="block";setTimeout(()=>el.style.display="none",4500);document.getElementById("profileStatus").textContent=txt}
+async function saveProfile(){const base=formPayload();const optional=optionalPayload();setLocalProfile({...base,...optional});localStorage.setItem("mama_lang",base.language);currentLang=base.language;try{if(currentProfile&&currentProfile.id){const{error}=await supabaseClient.from("pregnancy_profiles").update(base).eq("id",currentProfile.id);if(error)throw error;currentProfile={...currentProfile,...base}}else{const{data,error}=await supabaseClient.from("pregnancy_profiles").insert(base).select("*").single();if(error)throw error;currentProfile=data}}catch(e){showSave(t().notConfigured+" "+(e.message||e),false);setLanguage(base.language);return}try{if((optional.baby_name||optional.country_origin)&&currentProfile?.id){await supabaseClient.from("pregnancy_profiles").update(optional).eq("id",currentProfile.id);currentProfile={...currentProfile,...optional}}showSave(t().saved,true)}catch(e){showSave(t().savedLocalOnly,true)}setLanguage(base.language)}
+async function reloadProfile(){await loadProfile();showSave(t().profileStatus,true)}async function loadProfile(){const{data:profiles,error}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);if(error){fillForm(getLocalProfile());return}currentProfile=(profiles&&profiles[0])?profiles[0]:null;fillForm(currentProfile||getLocalProfile())}
+function saveLocalPrefs(){setLocalPrefs({city:document.getElementById("cityLocal").value.trim(),clinic:document.getElementById("clinicLocal").value.trim(),notes:document.getElementById("privateNotes").value});const n=document.getElementById("localSaved");n.style.display="block";setTimeout(()=>n.style.display="none",1500)}async function sendPasswordReset(){if(!currentUser?.email)return;const{error}=await supabaseClient.auth.resetPasswordForEmail(currentUser.email,{redirectTo:window.location.origin+window.location.pathname.replace("profile.html","index.html")});if(error)showSave(error.message,false);else showSave(t().resetSent,true)}function renderDataList(){document.getElementById("dataList").innerHTML=t().dataList.map(x=>`<li>${x}</li>`).join("")}
+async function loadApp(){const{data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;document.getElementById("emailValue").textContent=currentUser.email?currentUser.email.split("@")[0]:"Compte";document.getElementById("appShell").style.display="block";await loadProfile();fillLocalPrefs();renderDataList();refreshPreview()}async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}loadApp();
 </script>
 </body>
 </html>

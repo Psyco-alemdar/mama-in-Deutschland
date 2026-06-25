@@ -1,223 +1,229 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mama in Deutschland - Marketplace</title>
-
 <style>
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
   --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
-  --danger:#b45b48;--success:#5f8d63;--shadow:rgba(74,52,40,.12);
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
 }
-body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
-body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
-body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
-body{
-  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
-  radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
-  linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)
-}
-.wrap{max-width:1180px;margin:0 auto;padding:24px 18px}
-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:22px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;letter-spacing:-.5px}
-.brand-icon{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
-.top-actions,.language-buttons,.actions,.filters{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.language-buttons button,.button-light,.button,.button-danger,.filter-button{
-  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 13px;border-radius:999px;
-  cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center
-}
-.language-buttons button.active,.filter-button.active{background:var(--brown);color:white}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
-.button-success{background:var(--success);color:white;border-color:var(--success)}
-.card{
-  background:rgba(255,255,255,.92);border:1px solid var(--border);border-radius:30px;padding:24px;
-  box-shadow:0 24px 70px var(--shadow);backdrop-filter:blur(16px);margin-bottom:18px
-}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
 h1,h2,h3{color:var(--brown);margin:0 0 12px}
-h1{font-size:34px;letter-spacing:-1.5px}
-h2{font-size:25px;letter-spacing:-.7px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
 h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:900}
-input,select,textarea{
-  width:100%;padding:13px 14px;border-radius:15px;border:1px solid var(--border);
-  background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none
-}
-textarea{min-height:105px;resize:vertical}
-input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.item-card,.source-card,.tip-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.tip-card{position:relative;overflow:hidden}
+.tip-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-.warning{padding:14px 16px;border-radius:18px;background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:900;margin-top:14px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
-.item-card,.box{
-  background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px
-}
-.item-image{
-  width:100%;height:190px;object-fit:cover;border-radius:18px;border:1px solid var(--border);
-  background:var(--soft);margin-bottom:12px
-}
-.preview{
-  width:100%;max-height:220px;object-fit:cover;border-radius:18px;border:1px solid var(--border);
-  background:var(--soft);margin-top:12px;display:none
-}
-.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:900;margin:0 5px 8px 0}
-.price{font-size:28px;color:var(--brown);font-weight:950;margin:10px 0}
-.empty{padding:18px;border-radius:18px;background:var(--soft);color:var(--muted);border:1px solid var(--border);margin-top:16px}
-.message{max-width:650px;margin:60px auto;text-align:center}
-.status{display:none;margin-top:14px;padding:12px 14px;border-radius:16px;background:var(--soft);color:var(--brown);font-weight:900}
-.checkbox-row{display:flex;gap:10px;align-items:flex-start;margin-top:14px}
-.checkbox-row input{width:auto;margin-top:3px}
-.small{font-size:13px;color:var(--muted)}
-@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
-@media(max-width:560px){.wrap{padding:18px 12px}h1{font-size:28px}.card{padding:20px}}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:130px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid.full{grid-template-columns:1fr}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap}
+.filter-row button{border:1px solid var(--border);background:white;border-radius:999px;padding:9px 12px;font-weight:950;color:var(--brown);cursor:pointer}
+.filter-row button.active{background:var(--brown);color:white;border-color:var(--brown)}
+.item-card{margin-bottom:14px;position:relative;overflow:hidden}
+.item-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.item-meta{font-size:13px;color:var(--muted);font-weight:800}
+.item-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.item-actions button,.item-actions a{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer;text-decoration:none}
+.price{font-size:28px;font-weight:950;color:var(--brown)}
+.item-img{width:100%;height:180px;border-radius:20px;background:var(--soft);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:50px;overflow:hidden;margin:12px 0}
+.item-img img{width:100%;height:100%;object-fit:cover}
+.comment-box{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.comment{background:white;border:1px solid var(--border);border-radius:16px;padding:12px;margin-top:9px}
+.comment small{color:var(--muted);font-weight:800}
+.empty{padding:26px;border:1px dashed var(--border);border-radius:24px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid,.form-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
-
 <body>
 <div class="wrap">
 <header>
-  <div class="brand"><div class="brand-icon">M</div><span>Mama in Deutschland</span></div>
-
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
   <div class="top-actions">
-    <a class="button-light" href="app.html" id="backButton">Zurück</a>
-
-    <div class="language-buttons">
-      <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-      <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
-      <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
-      <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
-      <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
-      <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
-      <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
+      </div>
     </div>
   </div>
 </header>
 
 <main id="appShell" style="display:none;">
-  <section class="card">
-    <h1 id="pageTitle">Marketplace</h1>
-    <p id="pageText">Vendre, acheter ou donner des affaires bébé entre mamans : poussette, lit bébé, vêtements, siège auto, jouets et plus.</p>
-    <div class="warning" id="safetyTop">Important : vérifie toujours l’état et la sécurité des produits bébé, surtout sièges auto, lits, matelas et tire-laits.</div>
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Marketplace</div>
+      <h1 id="pageTitle">Donner, vendre ou trouver du matériel bébé</h1>
+      <p id="pageText">Une marketplace bienveillante entre mamans : poussette, lit, vêtements, siège auto, jouets, tire-lait, accessoires. Chaque annonce doit être honnête, claire et sûre.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="itemsLabel">Annonces</div><div class="stat-value" id="itemsCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="freeLabel">Gratuit</div><div class="stat-value" id="freeCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="modeLabel">Mode</div><div class="stat-value" id="modeValue">Online</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">Sécurité avant tout</h2>
+      <p id="importantText">Pour les objets de sécurité, ne te fie pas seulement à une annonce : vérifie norme, état, historique, hygiène, pièces manquantes et compatibilité.</p>
+      <div class="warning" id="dangerNote">Siège auto accidenté ou historique inconnu, matelas affaissé, lit cassé, tire-lait/biberons mal nettoyables, objet instable ou rappel produit : ne pas acheter.</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button-light" href="community-rules.html" id="rulesButton">Règles</a>
+        <a class="button" href="baby-equipment.html" id="equipmentButton">Équipement</a>
+      </div>
+    </div>
   </section>
 
   <section class="grid-2">
     <div class="card">
-      <h2 id="createTitle">Créer une annonce</h2>
-
-      <label id="titleLabel" for="itemTitle">Titre</label>
-      <input id="itemTitle">
-
-      <label id="categoryLabel" for="itemCategory">Catégorie</label>
-      <select id="itemCategory">
-        <option value="stroller" id="catStrollerOption">Poussette</option>
-        <option value="baby_bed" id="catBedOption">Lit bébé</option>
-        <option value="car_seat" id="catCarSeatOption">Siège auto</option>
-        <option value="clothes" id="catClothesOption">Vêtements</option>
-        <option value="breast_pump" id="catPumpOption">Tire-lait</option>
-        <option value="babyphone" id="catBabyphoneOption">Babyphone</option>
-        <option value="toys" id="catToysOption">Jouets</option>
-        <option value="furniture" id="catFurnitureOption">Meubles</option>
-        <option value="diapers" id="catDiapersOption">Couches</option>
-        <option value="other" id="catOtherOption">Autre</option>
-      </select>
-
-      <label id="typeLabel" for="listingType">Type</label>
-      <select id="listingType" onchange="updatePriceField()">
-        <option value="sell" id="typeSellOption">Vendre</option>
-        <option value="free" id="typeFreeOption">Donner gratuitement</option>
-      </select>
-
-      <label id="priceLabel" for="priceInput">Prix</label>
-      <input id="priceInput" type="number" step="0.01" min="0" placeholder="0">
-
-      <label id="conditionLabel" for="conditionInput">État</label>
-      <select id="conditionInput">
-        <option value="new" id="conditionNewOption">Neuf</option>
-        <option value="like_new" id="conditionLikeNewOption">Comme neuf</option>
-        <option value="used_good" id="conditionGoodOption">Bon état</option>
-        <option value="used_ok" id="conditionOkOption">Utilisé</option>
-      </select>
-
-      <label id="cityLabel" for="cityInput">Ville</label>
-      <input id="cityInput">
-
-      <label id="photoUploadLabel" for="photoFileInput">Photo réelle</label>
-      <input id="photoFileInput" type="file" accept="image/*" multiple onchange="previewPhoto()">
-      <div id="photoPreviewBox" class="grid-3" style="margin-top:12px;"></div>
-
-      <label id="descriptionLabel" for="descriptionInput">Description</label>
-      <textarea id="descriptionInput"></textarea>
-
-      <label id="contactLabel" for="contactInput">Contact / note</label>
-      <textarea id="contactInput"></textarea>
-
-      <div class="checkbox-row">
-        <input id="safetyCheck" type="checkbox">
-        <label for="safetyCheck" id="safetyCheckLabel" style="margin:0;">Je confirme que j’ai lu la note de sécurité.</label>
+      <h2 id="newItemTitle">Nouvelle annonce</h2>
+      <p id="newItemText">Décris clairement l’objet. La photo peut être un lien image public pour le moment.</p>
+      <div class="form-grid">
+        <input id="sellerName" placeholder="Prénom ou pseudo">
+        <select id="itemCategory"></select>
       </div>
-
+      <div class="form-grid" style="margin-top:12px;">
+        <select id="itemCondition"></select>
+        <select id="priceType"></select>
+      </div>
+      <div class="form-grid" style="margin-top:12px;">
+        <input id="itemPrice" type="number" min="0" step="0.5" placeholder="Prix en €">
+        <input id="itemLocation" placeholder="Ville / quartier">
+      </div>
+      <div class="form-grid full" style="margin-top:12px;">
+        <input id="itemTitle" placeholder="Titre de l’annonce">
+        <input id="photoUrl" placeholder="Lien photo optionnel">
+        <input id="contactInfo" placeholder="Contact optionnel : e-mail, téléphone, WhatsApp...">
+        <textarea id="itemDescription" placeholder="Description : marque, modèle, âge, état, défauts, pièces, achat neuf/seconde main, raison de vente/don..."></textarea>
+      </div>
       <div class="actions" style="margin-top:14px;">
-        <button class="button" onclick="saveItem()" id="publishButton">Publier</button>
+        <button class="button" onclick="createItem()" id="publishButton">Publier</button>
         <button class="button-light" onclick="clearForm()" id="clearButton">Effacer</button>
-        <button class="button-danger" onclick="cancelEdit()" id="cancelEditButton" style="display:none;">Annuler modification</button>
       </div>
-
-      <div class="status" id="formStatus"></div>
+      <div class="soft" id="itemStatus" style="display:none;"></div>
     </div>
 
     <div class="card">
-      <h2 id="rulesTitle">Règles marketplace</h2>
-      <div class="box">
-        <h3 id="rule1Title">Pas de paiement dans le site</h3>
-        <p id="rule1Text">Pour l’instant, la plateforme sert seulement à mettre les mamans en contact.</p>
-      </div>
-      <br>
-      <div class="box">
-        <h3 id="rule2Title">Sécurité produit</h3>
-        <p id="rule2Text">Pour siège auto, lit, matelas et tire-lait : vérifie l’âge, l’état, les pièces, l’hygiène et les normes.</p>
-      </div>
-      <br>
-      <div class="box">
-        <h3 id="rule3Title">Protection</h3>
-        <p id="rule3Text">Ne publie pas ton adresse exacte. Utilise la ville et échange les détails seulement avec prudence.</p>
+      <h2 id="safetyTitle">Checklist sécurité annonce</h2>
+      <p id="safetyText">À vérifier surtout pour les objets bébé sensibles.</p>
+      <div id="checklistBox"></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
       </div>
     </div>
   </section>
 
   <section class="card">
-    <div class="actions" style="justify-content:space-between;align-items:flex-start;">
+    <div class="section-title">
       <div>
-        <h2 id="itemsTitle">Annonces</h2>
-        <p id="itemsText">Trouve des affaires bébé dans ta langue ou toutes les langues.</p>
+        <h2 id="feedTitle">Annonces marketplace</h2>
+        <p id="feedText">Filtre par catégorie. Contacte la maman directement et reste prudente pour le paiement et la remise.</p>
       </div>
-      <button class="button-light" onclick="loadItems()" id="refreshButton">Rafraîchir</button>
+      <div class="actions">
+        <button class="button-light" onclick="loadItems()" id="refreshButton">Actualiser</button>
+      </div>
     </div>
-
-    <div class="filters" style="margin-top:14px;">
-      <button class="filter-button active" onclick="setLanguageFilter('mine')" id="filterMine">Ma langue</button>
-      <button class="filter-button" onclick="setLanguageFilter('all')" id="filterAllLang">Toutes les langues</button>
-      <button class="filter-button" onclick="setMineFilter()" id="filterMyItems">Mes annonces</button>
-    </div>
-
-    <div class="filters" style="margin-top:10px;">
-      <button class="filter-button active" onclick="setCategoryFilter('all')" id="filterCatAll">Toutes</button>
-      <button class="filter-button" onclick="setCategoryFilter('stroller')" id="filterCatStroller">Poussette</button>
-      <button class="filter-button" onclick="setCategoryFilter('baby_bed')" id="filterCatBed">Lit</button>
-      <button class="filter-button" onclick="setCategoryFilter('car_seat')" id="filterCatCarSeat">Siège auto</button>
-      <button class="filter-button" onclick="setCategoryFilter('clothes')" id="filterCatClothes">Vêtements</button>
-      <button class="filter-button" onclick="setCategoryFilter('free')" id="filterCatFree">Gratuit</button>
-    </div>
-
-    <div class="grid-3" id="itemsGrid"></div>
+    <div class="filter-row" id="filterRow"></div>
+    <div id="itemsList" style="margin-top:16px;"></div>
   </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="buyerTitle">Conseils acheteuse</h2>
+      <div class="box"><ul id="buyerList"></ul></div>
+    </div>
+    <div class="card">
+      <h2 id="sellerTitle">Conseils vendeuse / donneuse</h2>
+      <div class="box"><ul id="sellerList"></ul></div>
+      <div class="soft" id="sellerNote">Une annonce honnête évite les conflits et protège les bébés.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="linksTitle">Liens utiles</h2>
+        <p id="linksText">Pour acheter et vendre avec plus de prudence.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="community-rules.html">Règles communauté</a><span>Respect, confidentialité, santé, marketplace et modération.</span></div>
+      <div class="source-card"><a href="baby-equipment.html">Équipement bébé</a><span>Sommeil sûr, siège auto, lit, matelas, poussette et achats utiles.</span></div>
+      <div class="source-card"><a href="near-me.html">Près de moi</a><span>Pharmacie, Kinderarzt, Hebamme, Beratungsstelle et services locaux.</span></div>
+      <div class="source-card"><a href="share-experience.html">Share experience</a><span>Partager des retours sur produits, cliniques, Hebamme et organisation.</span></div>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
 </main>
 
-<section class="message card" id="loginMessage" style="display:none;">
+<section class="login-message card" id="loginMessage" style="display:none;">
   <h2 id="loginTitle">Connexion nécessaire</h2>
   <p id="loginText">Tu dois d’abord te connecter.</p>
   <br>
@@ -231,681 +237,224 @@ const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"de";
-let languageFilter="mine";
-let categoryFilter="all";
-let myItemsOnly=false;
-let itemsCache=[];
-let myFavorites=new Set();
-let editingItemId=null;
-let editingExistingPhotos=[];
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+let items=[],activeFilter="all",dbOnline=true;
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
-const translations={
-  de:{
-    backButton:"Zurück",pageTitle:"Marketplace",pageText:"Verkaufen, kaufen oder kostenlos weitergeben: Kinderwagen, Babybett, Kleidung, Autositz, Spielzeug und mehr.",
-    safetyTop:"Wichtig: Prüfe immer Zustand und Sicherheit von Babyprodukten, besonders Autositze, Betten, Matratzen und Milchpumpen.",
-    createTitle:"Anzeige erstellen",editTitle:"Anzeige bearbeiten",updateButton:"Änderungen speichern",cancelEditButton:"Bearbeitung abbrechen",edit:"Bearbeiten",titleLabel:"Titel",categoryLabel:"Kategorie",typeLabel:"Typ",priceLabel:"Preis",conditionLabel:"Zustand",cityLabel:"Stadt",photoUploadLabel:"Echte Fotos hochladen, max. 4",descriptionLabel:"Beschreibung",contactLabel:"Kontakt / Notiz",
-    safetyCheckLabel:"Ich bestätige, dass ich den Sicherheitshinweis gelesen habe.",publishButton:"Veröffentlichen",clearButton:"Leeren",
-    rulesTitle:"Marketplace-Regeln",rule1Title:"Keine Zahlung im Site",rule1Text:"Aktuell dient die Plattform nur dazu, Mamas miteinander in Kontakt zu bringen.",
-    rule2Title:"Produktsicherheit",rule2Text:"Bei Autositz, Bett, Matratze und Milchpumpe: Alter, Zustand, Teile, Hygiene und Normen prüfen.",
-    rule3Title:"Schutz",rule3Text:"Veröffentliche keine genaue Adresse. Nutze die Stadt und teile Details nur vorsichtig.",
-    itemsTitle:"Anzeigen",itemsText:"Finde Babyartikel in deiner Sprache oder in allen Sprachen.",refreshButton:"Aktualisieren",
-    filterMine:"Meine Sprache",filterAllLang:"Alle Sprachen",filterMyItems:"Meine Anzeigen",filterCatAll:"Alle",filterCatStroller:"Kinderwagen",filterCatBed:"Bett",filterCatCarSeat:"Autositz",filterCatClothes:"Kleidung",filterCatFree:"Kostenlos",
-    catStrollerOption:"Kinderwagen",catBedOption:"Babybett",catCarSeatOption:"Autositz",catClothesOption:"Kleidung",catPumpOption:"Milchpumpe",catBabyphoneOption:"Babyphone",catToysOption:"Spielzeug",catFurnitureOption:"Möbel",catDiapersOption:"Windeln",catOtherOption:"Andere",
-    typeSellOption:"Verkaufen",typeFreeOption:"Kostenlos geben",conditionNewOption:"Neu",conditionLikeNewOption:"Wie neu",conditionGoodOption:"Gut",conditionOkOption:"Gebraucht",
-    free:"Kostenlos",favorite:"Merken",favorited:"Gemerkt ✓",report:"Melden",delete:"Löschen",reserved:"Reservieren",sold:"Verkauft",given:"Abgegeben",active:"Aktiv",myItem:"Meine Anzeige",
-    empty:"Noch keine Anzeigen vorhanden.",saved:"Anzeige veröffentlicht.",uploading:"Foto wird hochgeladen...",error:"Fehler. Bitte erneut versuchen.",reported:"Danke, die Meldung wurde gespeichert.",
-    loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden.",loginBackButton:"Zur Startseite",contact:"Kontakt",status:"Status"
-  },
-  fr:{
-    backButton:"Retour",pageTitle:"Marketplace",pageText:"Vendre, acheter ou donner des affaires bébé entre mamans : poussette, lit bébé, vêtements, siège auto, jouets et plus.",
-    safetyTop:"Important : vérifie toujours l’état et la sécurité des produits bébé, surtout sièges auto, lits, matelas et tire-laits.",
-    createTitle:"Créer une annonce",editTitle:"Modifier l’annonce",updateButton:"Sauvegarder les modifications",cancelEditButton:"Annuler modification",edit:"Modifier",titleLabel:"Titre",categoryLabel:"Catégorie",typeLabel:"Type",priceLabel:"Prix",conditionLabel:"État",cityLabel:"Ville",photoUploadLabel:"Ajouter des photos, max. 4",descriptionLabel:"Description",contactLabel:"Contact / note",
-    safetyCheckLabel:"Je confirme que j’ai lu la note de sécurité.",publishButton:"Publier",clearButton:"Effacer",
-    rulesTitle:"Règles marketplace",rule1Title:"Pas de paiement dans le site",rule1Text:"Pour l’instant, la plateforme sert seulement à mettre les mamans en contact.",
-    rule2Title:"Sécurité produit",rule2Text:"Pour siège auto, lit, matelas et tire-lait : vérifie l’âge, l’état, les pièces, l’hygiène et les normes.",
-    rule3Title:"Protection",rule3Text:"Ne publie pas ton adresse exacte. Utilise la ville et échange les détails seulement avec prudence.",
-    itemsTitle:"Annonces",itemsText:"Trouve des affaires bébé dans ta langue ou toutes les langues.",refreshButton:"Rafraîchir",
-    filterMine:"Ma langue",filterAllLang:"Toutes les langues",filterMyItems:"Mes annonces",filterCatAll:"Toutes",filterCatStroller:"Poussette",filterCatBed:"Lit",filterCatCarSeat:"Siège auto",filterCatClothes:"Vêtements",filterCatFree:"Gratuit",
-    catStrollerOption:"Poussette",catBedOption:"Lit bébé",catCarSeatOption:"Siège auto",catClothesOption:"Vêtements",catPumpOption:"Tire-lait",catBabyphoneOption:"Babyphone",catToysOption:"Jouets",catFurnitureOption:"Meubles",catDiapersOption:"Couches",catOtherOption:"Autre",
-    typeSellOption:"Vendre",typeFreeOption:"Donner gratuitement",conditionNewOption:"Neuf",conditionLikeNewOption:"Comme neuf",conditionGoodOption:"Bon état",conditionOkOption:"Utilisé",
-    free:"Gratuit",favorite:"Favori",favorited:"Favori ✓",report:"Signaler",delete:"Supprimer",reserved:"Réserver",sold:"Vendu",given:"Donné",active:"Actif",myItem:"Mon annonce",
-    empty:"Aucune annonce pour le moment.",saved:"Annonce publiée.",uploading:"Photo en cours d’envoi...",error:"Erreur. Réessaie.",reported:"Merci, le signalement a été enregistré.",
-    loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",contact:"Contact",status:"Statut"
-  },
-  ar:{
-    backButton:"رجوع",pageTitle:"السوق",pageText:"بيع أو شراء أو إعطاء أغراض الأطفال بين الأمهات: عربة، سرير، ملابس، كرسي سيارة، ألعاب والمزيد.",
-    safetyTop:"مهم: تحققي دائماً من حالة وسلامة أغراض الأطفال، خاصة كرسي السيارة والسرير والمرتبة ومضخة الحليب.",
-    createTitle:"إنشاء إعلان",editTitle:"تعديل الإعلان",updateButton:"حفظ التعديلات",cancelEditButton:"إلغاء التعديل",edit:"تعديل",titleLabel:"العنوان",categoryLabel:"الفئة",typeLabel:"النوع",priceLabel:"السعر",conditionLabel:"الحالة",cityLabel:"المدينة",photoUploadLabel:"إضافة صور، حتى 4",descriptionLabel:"الوصف",contactLabel:"التواصل / ملاحظة",
-    safetyCheckLabel:"أؤكد أنني قرأت ملاحظة السلامة.",publishButton:"نشر",clearButton:"مسح",
-    rulesTitle:"قواعد السوق",rule1Title:"لا يوجد دفع داخل الموقع",rule1Text:"حالياً المنصة فقط للتواصل بين الأمهات.",
-    rule2Title:"سلامة المنتج",rule2Text:"للكرسي والسرير والمرتبة ومضخة الحليب: تحققي من العمر والحالة والقطع والنظافة والمعايير.",
-    rule3Title:"الحماية",rule3Text:"لا تنشري عنوانك الدقيق. استخدمي المدينة وتبادلي التفاصيل بحذر.",
-    itemsTitle:"الإعلانات",itemsText:"ابحثي عن أغراض الأطفال بلغتك أو بكل اللغات.",refreshButton:"تحديث",
-    filterMine:"لغتي",filterAllLang:"كل اللغات",filterMyItems:"إعلاناتي",filterCatAll:"الكل",filterCatStroller:"عربة",filterCatBed:"سرير",filterCatCarSeat:"كرسي سيارة",filterCatClothes:"ملابس",filterCatFree:"مجاني",
-    catStrollerOption:"عربة أطفال",catBedOption:"سرير طفل",catCarSeatOption:"كرسي سيارة",catClothesOption:"ملابس",catPumpOption:"مضخة حليب",catBabyphoneOption:"مراقبة الطفل",catToysOption:"ألعاب",catFurnitureOption:"أثاث",catDiapersOption:"حفاضات",catOtherOption:"أخرى",
-    typeSellOption:"بيع",typeFreeOption:"مجاني",conditionNewOption:"جديد",conditionLikeNewOption:"كالجديد",conditionGoodOption:"حالة جيدة",conditionOkOption:"مستعمل",
-    free:"مجاني",favorite:"حفظ",favorited:"محفوظ ✓",report:"إبلاغ",delete:"حذف",reserved:"حجز",sold:"مباع",given:"تم الإعطاء",active:"نشط",myItem:"إعلاني",
-    empty:"لا توجد إعلانات حالياً.",saved:"تم نشر الإعلان.",uploading:"جاري رفع الصورة...",error:"حدث خطأ. حاولي مرة أخرى.",reported:"شكراً، تم حفظ البلاغ.",
-    loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً.",loginBackButton:"العودة للرئيسية",contact:"التواصل",status:"الحالة"
-  },
-  en:{
-    backButton:"Back",pageTitle:"Marketplace",pageText:"Sell, buy or give away baby items between mothers: stroller, baby bed, clothes, car seat, toys and more.",
-    safetyTop:"Important: Always check the condition and safety of baby products, especially car seats, beds, mattresses and breast pumps.",
-    createTitle:"Create listing",editTitle:"Edit listing",updateButton:"Save changes",cancelEditButton:"Cancel edit",edit:"Edit",titleLabel:"Title",categoryLabel:"Category",typeLabel:"Type",priceLabel:"Price",conditionLabel:"Condition",cityLabel:"City",photoUploadLabel:"Upload photos, max. 4",descriptionLabel:"Description",contactLabel:"Contact / note",
-    safetyCheckLabel:"I confirm that I have read the safety note.",publishButton:"Publish",clearButton:"Clear",
-    rulesTitle:"Marketplace rules",rule1Title:"No payment on the site",rule1Text:"For now, the platform only connects mothers with each other.",
-    rule2Title:"Product safety",rule2Text:"For car seats, beds, mattresses and breast pumps: check age, condition, parts, hygiene and standards.",
-    rule3Title:"Protection",rule3Text:"Do not publish your exact address. Use the city and share details carefully.",
-    itemsTitle:"Listings",itemsText:"Find baby items in your language or all languages.",refreshButton:"Refresh",
-    filterMine:"My language",filterAllLang:"All languages",filterMyItems:"My listings",filterCatAll:"All",filterCatStroller:"Stroller",filterCatBed:"Bed",filterCatCarSeat:"Car seat",filterCatClothes:"Clothes",filterCatFree:"Free",
-    catStrollerOption:"Stroller",catBedOption:"Baby bed",catCarSeatOption:"Car seat",catClothesOption:"Clothes",catPumpOption:"Breast pump",catBabyphoneOption:"Baby monitor",catToysOption:"Toys",catFurnitureOption:"Furniture",catDiapersOption:"Diapers",catOtherOption:"Other",
-    typeSellOption:"Sell",typeFreeOption:"Give away",conditionNewOption:"New",conditionLikeNewOption:"Like new",conditionGoodOption:"Good",conditionOkOption:"Used",
-    free:"Free",favorite:"Save",favorited:"Saved ✓",report:"Report",delete:"Delete",reserved:"Reserve",sold:"Sold",given:"Given",active:"Active",myItem:"My listing",
-    empty:"No listings yet.",saved:"Listing published.",uploading:"Uploading photo...",error:"Error. Please try again.",reported:"Thanks, the report was saved.",
-    loginTitle:"Please log in",loginText:"You need to log in first.",loginBackButton:"Back to home",contact:"Contact",status:"Status"
-  },
-  tr:{
-    backButton:"Geri",pageTitle:"Pazar yeri",pageText:"Anneler arasında bebek eşyası sat, al veya ücretsiz ver: bebek arabası, yatak, kıyafet, oto koltuğu, oyuncak ve daha fazlası.",
-    safetyTop:"Önemli: Bebek ürünlerinin durumunu ve güvenliğini her zaman kontrol et, özellikle oto koltuğu, yatak, yatak süngeri ve süt pompası.",
-    createTitle:"İlan oluştur",editTitle:"İlanı düzenle",updateButton:"Değişiklikleri kaydet",cancelEditButton:"Düzenlemeyi iptal et",edit:"Düzenle",titleLabel:"Başlık",categoryLabel:"Kategori",typeLabel:"Tip",priceLabel:"Fiyat",conditionLabel:"Durum",cityLabel:"Şehir",photoUploadLabel:"Fotoğraf yükle, en fazla 4",descriptionLabel:"Açıklama",contactLabel:"İletişim / not",
-    safetyCheckLabel:"Güvenlik notunu okuduğumu onaylıyorum.",publishButton:"Yayınla",clearButton:"Temizle",
-    rulesTitle:"Pazar yeri kuralları",rule1Title:"Sitede ödeme yok",rule1Text:"Şimdilik platform sadece anneleri birbirine bağlar.",
-    rule2Title:"Ürün güvenliği",rule2Text:"Oto koltuğu, yatak, yatak süngeri ve süt pompasında yaş, durum, parçalar, hijyen ve standartları kontrol et.",
-    rule3Title:"Koruma",rule3Text:"Tam adresini yayınlama. Şehri kullan ve detayları dikkatli paylaş.",
-    itemsTitle:"İlanlar",itemsText:"Bebek eşyalarını kendi dilinde veya tüm dillerde bul.",refreshButton:"Yenile",
-    filterMine:"Benim dilim",filterAllLang:"Tüm diller",filterMyItems:"İlanlarım",filterCatAll:"Hepsi",filterCatStroller:"Bebek arabası",filterCatBed:"Yatak",filterCatCarSeat:"Oto koltuğu",filterCatClothes:"Kıyafet",filterCatFree:"Ücretsiz",
-    catStrollerOption:"Bebek arabası",catBedOption:"Bebek yatağı",catCarSeatOption:"Oto koltuğu",catClothesOption:"Kıyafet",catPumpOption:"Süt pompası",catBabyphoneOption:"Bebek telsizi",catToysOption:"Oyuncak",catFurnitureOption:"Mobilya",catDiapersOption:"Bez",catOtherOption:"Diğer",
-    typeSellOption:"Sat",typeFreeOption:"Ücretsiz ver",conditionNewOption:"Yeni",conditionLikeNewOption:"Yeni gibi",conditionGoodOption:"İyi",conditionOkOption:"Kullanılmış",
-    free:"Ücretsiz",favorite:"Kaydet",favorited:"Kaydedildi ✓",report:"Bildir",delete:"Sil",reserved:"Rezerve",sold:"Satıldı",given:"Verildi",active:"Aktif",myItem:"İlanım",
-    empty:"Henüz ilan yok.",saved:"İlan yayınlandı.",uploading:"Fotoğraf yükleniyor...",error:"Hata. Tekrar dene.",reported:"Teşekkürler, bildirim kaydedildi.",
-    loginTitle:"Lütfen giriş yap",loginText:"Önce giriş yapmalısın.",loginBackButton:"Ana sayfaya dön",contact:"İletişim",status:"Durum"
-  },
-  ru:{
-    backButton:"Назад",pageTitle:"Маркетплейс",pageText:"Продавать, покупать или отдавать детские вещи между мамами: коляска, кроватка, одежда, автокресло, игрушки и другое.",
-    safetyTop:"Важно: всегда проверяйте состояние и безопасность детских товаров, особенно автокресел, кроваток, матрасов и молокоотсосов.",
-    createTitle:"Создать объявление",editTitle:"Изменить объявление",updateButton:"Сохранить изменения",cancelEditButton:"Отменить редактирование",edit:"Изменить",titleLabel:"Название",categoryLabel:"Категория",typeLabel:"Тип",priceLabel:"Цена",conditionLabel:"Состояние",cityLabel:"Город",photoUploadLabel:"Загрузить фото, максимум 4",descriptionLabel:"Описание",contactLabel:"Контакт / заметка",
-    safetyCheckLabel:"Я подтверждаю, что прочитала заметку о безопасности.",publishButton:"Опубликовать",clearButton:"Очистить",
-    rulesTitle:"Правила маркетплейса",rule1Title:"Оплаты на сайте нет",rule1Text:"Пока платформа только помогает мамам связаться друг с другом.",
-    rule2Title:"Безопасность товара",rule2Text:"Для автокресел, кроваток, матрасов и молокоотсосов проверяйте возраст, состояние, детали, гигиену и стандарты.",
-    rule3Title:"Защита",rule3Text:"Не публикуйте точный адрес. Используйте город и обменивайтесь деталями осторожно.",
-    itemsTitle:"Объявления",itemsText:"Найдите детские вещи на своём языке или на всех языках.",refreshButton:"Обновить",
-    filterMine:"Мой язык",filterAllLang:"Все языки",filterMyItems:"Мои объявления",filterCatAll:"Все",filterCatStroller:"Коляска",filterCatBed:"Кроватка",filterCatCarSeat:"Автокресло",filterCatClothes:"Одежда",filterCatFree:"Бесплатно",
-    catStrollerOption:"Коляска",catBedOption:"Кроватка",catCarSeatOption:"Автокресло",catClothesOption:"Одежда",catPumpOption:"Молокоотсос",catBabyphoneOption:"Радионяня",catToysOption:"Игрушки",catFurnitureOption:"Мебель",catDiapersOption:"Подгузники",catOtherOption:"Другое",
-    typeSellOption:"Продать",typeFreeOption:"Отдать бесплатно",conditionNewOption:"Новое",conditionLikeNewOption:"Как новое",conditionGoodOption:"Хорошее",conditionOkOption:"Б/у",
-    free:"Бесплатно",favorite:"Сохранить",favorited:"Сохранено ✓",report:"Пожаловаться",delete:"Удалить",reserved:"Зарезервировать",sold:"Продано",given:"Отдано",active:"Активно",myItem:"Моё объявление",
-    empty:"Пока нет объявлений.",saved:"Объявление опубликовано.",uploading:"Фото загружается...",error:"Ошибка. Попробуйте снова.",reported:"Спасибо, жалоба сохранена.",
-    loginTitle:"Войдите в аккаунт",loginText:"Сначала нужно войти.",loginBackButton:"На главную",contact:"Контакт",status:"Статус"
-  },
-  uk:{
-    backButton:"Назад",pageTitle:"Маркетплейс",pageText:"Продавати, купувати або віддавати дитячі речі між мамами: візочок, ліжечко, одяг, автокрісло, іграшки та інше.",
-    safetyTop:"Важливо: завжди перевіряйте стан і безпеку дитячих товарів, особливо автокрісел, ліжечок, матраців і молоковідсмоктувачів.",
-    createTitle:"Створити оголошення",editTitle:"Змінити оголошення",updateButton:"Зберегти зміни",cancelEditButton:"Скасувати редагування",edit:"Змінити",titleLabel:"Назва",categoryLabel:"Категорія",typeLabel:"Тип",priceLabel:"Ціна",conditionLabel:"Стан",cityLabel:"Місто",photoUploadLabel:"Завантажити фото, максимум 4",descriptionLabel:"Опис",contactLabel:"Контакт / нотатка",
-    safetyCheckLabel:"Я підтверджую, що прочитала примітку про безпеку.",publishButton:"Опублікувати",clearButton:"Очистити",
-    rulesTitle:"Правила маркетплейса",rule1Title:"Оплати на сайті немає",rule1Text:"Поки платформа лише допомагає мамам зв’язатися між собою.",
-    rule2Title:"Безпека товару",rule2Text:"Для автокрісел, ліжечок, матраців і молоковідсмоктувачів перевіряйте вік, стан, деталі, гігієну і стандарти.",
-    rule3Title:"Захист",rule3Text:"Не публікуйте точну адресу. Використовуйте місто і обмінюйтесь деталями обережно.",
-    itemsTitle:"Оголошення",itemsText:"Знайдіть дитячі речі своєю мовою або всіма мовами.",refreshButton:"Оновити",
-    filterMine:"Моя мова",filterAllLang:"Усі мови",filterMyItems:"Мої оголошення",filterCatAll:"Усі",filterCatStroller:"Візочок",filterCatBed:"Ліжечко",filterCatCarSeat:"Автокрісло",filterCatClothes:"Одяг",filterCatFree:"Безкоштовно",
-    catStrollerOption:"Візочок",catBedOption:"Ліжечко",catCarSeatOption:"Автокрісло",catClothesOption:"Одяг",catPumpOption:"Молоковідсмоктувач",catBabyphoneOption:"Радіоняня",catToysOption:"Іграшки",catFurnitureOption:"Меблі",catDiapersOption:"Підгузки",catOtherOption:"Інше",
-    typeSellOption:"Продати",typeFreeOption:"Віддати безкоштовно",conditionNewOption:"Нове",conditionLikeNewOption:"Як нове",conditionGoodOption:"Добре",conditionOkOption:"Вживане",
-    free:"Безкоштовно",favorite:"Зберегти",favorited:"Збережено ✓",report:"Поскаржитись",delete:"Видалити",reserved:"Зарезервувати",sold:"Продано",given:"Віддано",active:"Активно",myItem:"Моє оголошення",
-    empty:"Поки немає оголошень.",saved:"Оголошення опубліковано.",uploading:"Фото завантажується...",error:"Помилка. Спробуйте ще раз.",reported:"Дякуємо, скаргу збережено.",
-    loginTitle:"Увійдіть",loginText:"Спочатку потрібно увійти.",loginBackButton:"На головну",contact:"Контакт",status:"Статус"
-  }
-};
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Marketplace",pageTitle:"Donner, vendre ou trouver du matériel bébé",pageText:"Une marketplace bienveillante entre mamans : poussette, lit, vêtements, siège auto, jouets, tire-lait, accessoires. Chaque annonce doit être honnête, claire et sûre.",
+itemsLabel:"Annonces",freeLabel:"Gratuit",modeLabel:"Mode",importantTitle:"Sécurité avant tout",importantText:"Pour les objets de sécurité, ne te fie pas seulement à une annonce : vérifie norme, état, historique, hygiène, pièces manquantes et compatibilité.",dangerNote:"Siège auto accidenté ou historique inconnu, matelas affaissé, lit cassé, tire-lait/biberons mal nettoyables, objet instable ou rappel produit : ne pas acheter.",rulesButton:"Règles",equipmentButton:"Équipement",
+newItemTitle:"Nouvelle annonce",newItemText:"Décris clairement l’objet. La photo peut être un lien image public pour le moment.",publishButton:"Publier",clearButton:"Effacer",safetyTitle:"Checklist sécurité annonce",safetyText:"À vérifier surtout pour les objets bébé sensibles.",resetButton:"Réinitialiser",feedTitle:"Annonces marketplace",feedText:"Filtre par catégorie. Contacte la maman directement et reste prudente pour le paiement et la remise.",refreshButton:"Actualiser",buyerTitle:"Conseils acheteuse",sellerTitle:"Conseils vendeuse / donneuse",sellerNote:"Une annonce honnête évite les conflits et protège les bébés.",linksTitle:"Liens utiles",linksText:"Pour acheter et vendre avec plus de prudence.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+online:"Online",local:"Local",all:"Tout",free:"Gratuit",sale:"Vente",donation:"Don",exchange:"Échange",contact:"Contact",reserve:"Réserver",sold:"Vendu",report:"Signaler",comment:"Question",send:"Envoyer",noItems:"Aucune annonce pour le moment.",posted:"Annonce publiée.",localSaved:"Base non disponible : annonce sauvegardée localement sur cet appareil.",error:"Erreur. Vérifie la table Supabase ou réessaie.",placeholderComment:"Poser une question bienveillante...",
+categories:[["all","Tout"],["stroller","Poussette"],["carseat","Siège auto"],["bed","Lit / sommeil"],["clothes","Vêtements"],["feeding","Allaitement / biberon"],["toys","Jouets"],["bath","Bain / soin"],["furniture","Meubles"],["other","Autre"]],
+conditions:[["new","Neuf"],["very_good","Très bon état"],["good","Bon état"],["used","Utilisé"],["needs_check","À vérifier"]],
+priceTypes:[["sale","Vente"],["free","Gratuit"],["donation","Don libre"],["exchange","Échange"]],
+checklist:["État réel décrit honnêtement","Défauts et pièces manquantes mentionnés","Prix ou gratuit clairement indiqué","Photo actuelle ajoutée si possible","Lieu de remise sécurisé prévu","Pas de médicament ou produit ouvert dangereux","Pour siège auto : historique accident clair","Pour lit/matelas : stabilité et hygiène vérifiées","Pour tire-lait/biberons : nettoyage possible et accessoires clairs","Contact partagé avec prudence"],
+buyerList:["Demande toujours l’état réel, défauts, année d’achat et photos actuelles.","Pour siège auto : demande norme, modèle exact, historique sans accident, notice et compatibilité voiture.","Évite paiement anticipé à une personne inconnue.","Privilégie remise en main propre dans un lieu sûr.","Vérifie stabilité, odeur, moisissure, pièces manquantes, freins et harnais.","Pour les objets liés au sommeil, au transport et à l’alimentation : prudence maximale."],
+sellerList:["Décris les défauts au lieu de les cacher.","Mets un prix clair ou indique gratuit/don.","Ajoute modèle, marque, âge, dimensions et accessoires inclus.","Retire ou marque vendu dès que l’objet n’est plus disponible.","Ne vends pas un produit que tu n’utiliserais pas toi-même pour un bébé.","Ne partage pas ton adresse exacte publiquement."],
+safetyTags:{stroller:"Vérifier freins/roues",carseat:"Historique accident obligatoire",bed:"Stabilité + matelas",clothes:"Lavage conseillé",feeding:"Hygiène stricte",toys:"Petites pièces",bath:"Stabilité",furniture:"Fixation murale",other:"Vérifier"}
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Marktplatz",pageTitle:"Babysachen geben, verkaufen oder finden",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Marketplace",pageTitle:"Give, sell or find baby items",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"السوق",pageTitle:"بيع أو إهداء أو إيجاد أغراض الطفل",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
-function t(){return translations[currentLang]||translations.de}
-
+function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 function setLanguage(lang){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-
-  document.querySelectorAll(".language-buttons button").forEach(btn=>btn.classList.remove("active"));
-  const active=document.getElementById("lang-"+lang);
-  if(active)active.classList.add("active");
-
-  Object.keys(t()).forEach(id=>{
-    const el=document.getElementById(id);
-    if(el)el.textContent=t()[id];
-  });
-
-  updateFilterButtons();
-  renderItems();
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ renderStatic();renderItems();
 }
-
-function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function localItemsKey(){return "mama-marketplace-items"}
+function localCommentsKey(){return "mama-marketplace-comments"}
+function getLocalItems(){try{return JSON.parse(localStorage.getItem(localItemsKey()))||[]}catch(e){return[]}}
+function setLocalItems(v){localStorage.setItem(localItemsKey(),JSON.stringify(v.slice(0,100)))}
+function getLocalComments(){try{return JSON.parse(localStorage.getItem(localCommentsKey()))||{}}catch(e){return{}}}
+function setLocalComments(v){localStorage.setItem(localCommentsKey(),JSON.stringify(v))}
+function checkKey(){return "mama-marketplace-check-"+(currentUser?currentUser.id:"guest")}
+function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
+function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
+function resetChecklist(){saveState({});renderChecklist()}
+function renderChecklist(){
+ const s=state();const checks=t().checklist;
+ document.getElementById("checklistBox").innerHTML=checks.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
+ const done=Object.keys(s).filter(k=>s[k]).length,total=checks.length;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
-
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
+function categoryName(v){const c=t().categories.find(x=>x[0]===v);return c?c[1]:v}
+function conditionName(v){const c=t().conditions.find(x=>x[0]===v);return c?c[1]:v}
+function priceTypeName(v){const c=t().priceTypes.find(x=>x[0]===v);return c?c[1]:v}
+function renderStatic(){
+ document.getElementById("modeValue").textContent=dbOnline?t().online:t().local;
+ document.getElementById("filterRow").innerHTML=t().categories.map(c=>`<button class="${activeFilter===c[0]?"active":""}" onclick="setFilter('${c[0]}')">${c[1]}</button>`).join("");
+ document.getElementById("itemCategory").innerHTML=t().categories.filter(c=>c[0]!=="all").map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
+ document.getElementById("itemCondition").innerHTML=t().conditions.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
+ document.getElementById("priceType").innerHTML=t().priceTypes.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
+ document.getElementById("buyerList").innerHTML=t().buyerList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("sellerList").innerHTML=t().sellerList.map(x=>`<li>${x}</li>`).join("");
+ renderChecklist();
 }
-
-async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-
-  if(error||!data.session){
-    document.getElementById("loginMessage").style.display="block";
-    document.getElementById("appShell").style.display="none";
-    return;
-  }
-
-  currentUser=data.session.user;
-
-  const {data:profiles,error:profileError}=await supabaseClient
-    .from("pregnancy_profiles")
-    .select("*")
-    .eq("user_id",currentUser.id)
-    .order("created_at",{ascending:false})
-    .limit(1);
-
-  if(profileError||!profiles||profiles.length===0){
-    window.location.href="index.html?reason=no_profile";
-    return;
-  }
-
-  currentProfile=profiles[0];
-  currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"de";
-
-  applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
-
-  document.getElementById("loginMessage").style.display="none";
-  document.getElementById("appShell").style.display="block";
-  document.getElementById("cityInput").value=currentProfile.city||"";
-
-  setLanguage(currentLang);
-  await loadItems();
+function setFilter(f){activeFilter=f;renderStatic();renderItems()}
+function clearForm(){["itemTitle","itemDescription","itemPrice","itemLocation","photoUrl","contactInfo"].forEach(id=>document.getElementById(id).value="")}
+function showStatus(txt){const el=document.getElementById("itemStatus");el.textContent=txt;el.style.display="block";setTimeout(()=>el.style.display="none",3500)}
+function payload(){
+ const pt=document.getElementById("priceType").value;
+ const rawPrice=document.getElementById("itemPrice").value;
+ return {
+  user_id: currentUser.id,
+  seller_name: document.getElementById("sellerName").value.trim() || (currentProfile?.mother_name || "Mama"),
+  category: document.getElementById("itemCategory").value,
+  condition: document.getElementById("itemCondition").value,
+  price_type: pt,
+  price: pt==="free" ? 0 : (rawPrice ? Number(rawPrice) : null),
+  location: document.getElementById("itemLocation").value.trim(),
+  title: document.getElementById("itemTitle").value.trim(),
+  description: document.getElementById("itemDescription").value.trim(),
+  photo_url: document.getElementById("photoUrl").value.trim(),
+  contact_info: document.getElementById("contactInfo").value.trim(),
+  language: currentLang,
+  status: "active"
+ }
 }
-
-function showStatus(message){
-  const el=document.getElementById("formStatus");
-  el.textContent=message;
-  el.style.display="block";
+async function createItem(){
+ const p=payload();
+ if(!p.title || !p.description || !p.location){showStatus("Titre, description et lieu obligatoires.");return}
+ try{
+  const {data,error}=await supabaseClient.from("marketplace_items").insert(p).select("*").single();
+  if(error)throw error;
+  items.unshift({...data,comments:[]});dbOnline=true;showStatus(t().posted);clearForm();renderStatic();renderItems();
+ }catch(e){
+  dbOnline=false;
+  const li=getLocalItems();
+  li.unshift({...p,id:"local-"+Date.now(),created_at:new Date().toISOString(),comments:[]});
+  setLocalItems(li);showStatus(t().localSaved);clearForm();await loadItems();
+ }
 }
-
-function hideStatusLater(){
-  setTimeout(()=>{document.getElementById("formStatus").style.display="none"},3000);
-}
-
-function updatePriceField(){
-  const type=document.getElementById("listingType").value;
-  const price=document.getElementById("priceInput");
-  if(type==="free"){
-    price.value=0;
-    price.disabled=true;
-  }else{
-    price.disabled=false;
-  }
-}
-
-
-function updateFormModeText(){
-  const title=document.getElementById("createTitle");
-  const publish=document.getElementById("publishButton");
-  const cancel=document.getElementById("cancelEditButton");
-
-  if(editingItemId){
-    title.textContent=t().editTitle || t().createTitle;
-    publish.textContent=t().updateButton || t().publishButton;
-    cancel.style.display="inline-flex";
-  }else{
-    title.textContent=t().createTitle;
-    publish.textContent=t().publishButton;
-    cancel.style.display="none";
-  }
-}
-
-function cancelEdit(){
-  clearForm();
-}
-
-function renderExistingPhotoPreviews(urls){
-  const box=document.getElementById("photoPreviewBox");
-  box.innerHTML="";
-  (urls||[]).forEach(url=>{
-    const img=document.createElement("img");
-    img.src=url;
-    img.className="preview";
-    img.style.display="block";
-    img.style.height="120px";
-    img.style.objectFit="cover";
-    box.appendChild(img);
-  });
-}
-
-function editItem(itemId){
-  const item=itemsCache.find(x=>x.id===itemId);
-  if(!item)return;
-
-  editingItemId=itemId;
-  editingExistingPhotos=Array.isArray(item.photos)?item.photos:[];
-
-  document.getElementById("itemTitle").value=item.title||"";
-  document.getElementById("itemCategory").value=item.category||"other";
-  document.getElementById("listingType").value=item.listing_type||"sell";
-  document.getElementById("priceInput").value=Number(item.price||0);
-  document.getElementById("conditionInput").value=item.item_condition||"used_good";
-  document.getElementById("cityInput").value=item.city||"";
-  document.getElementById("descriptionInput").value=item.description||"";
-  document.getElementById("contactInput").value=item.contact_note||"";
-  document.getElementById("safetyCheck").checked=true;
-  document.getElementById("photoFileInput").value="";
-
-  updatePriceField();
-  updateFormModeText();
-  renderExistingPhotoPreviews(editingExistingPhotos);
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function storagePathFromPublicUrl(url){
-  try{
-    const marker="/storage/v1/object/public/marketplace-photos/";
-    const idx=url.indexOf(marker);
-    if(idx<0)return null;
-    return decodeURIComponent(url.slice(idx+marker.length));
-  }catch(e){
-    return null;
-  }
-}
-
-async function removePhotosFromStorage(urls){
-  const paths=(urls||[]).map(storagePathFromPublicUrl).filter(Boolean);
-  if(paths.length===0)return;
-  await supabaseClient.storage.from("marketplace-photos").remove(paths);
-}
-
-function previewPhoto(){
-  const input=document.getElementById("photoFileInput");
-  const box=document.getElementById("photoPreviewBox");
-  const files=Array.from(input.files||[]).slice(0,4);
-
-  box.innerHTML="";
-
-  if(files.length===0){
-    renderExistingPhotoPreviews(editingExistingPhotos);
-    return;
-  }
-
-  files.forEach(file=>{
-    const img=document.createElement("img");
-    img.src=URL.createObjectURL(file);
-    img.className="preview";
-    img.style.display="block";
-    img.style.height="120px";
-    img.style.objectFit="cover";
-    box.appendChild(img);
-  });
-}
-
-async function uploadPhotoIfNeeded(){
-  const input=document.getElementById("photoFileInput");
-  const files=Array.from(input.files||[]).slice(0,4);
-
-  if(files.length===0)return [];
-
-  showStatus(t().uploading);
-
-  const urls=[];
-
-  for(const file of files){
-    const ext=(file.name.split(".").pop()||"jpg").toLowerCase();
-    const safeExt=["jpg","jpeg","png","webp"].includes(ext)?ext:"jpg";
-    const fileName=currentUser.id+"/"+Date.now()+"-"+Math.random().toString(36).slice(2)+"."+safeExt;
-
-    const {error}=await supabaseClient
-      .storage
-      .from("marketplace-photos")
-      .upload(fileName,file,{
-        cacheControl:"3600",
-        upsert:false,
-        contentType:file.type || "image/jpeg"
-      });
-
-    if(error){
-      console.error(error);
-      throw error;
-    }
-
-    const {data}=supabaseClient.storage.from("marketplace-photos").getPublicUrl(fileName);
-    if(data && data.publicUrl)urls.push(data.publicUrl);
-  }
-
-  return urls;
-}
-
-async function saveItem(){
-  const title=document.getElementById("itemTitle").value.trim();
-  const category=document.getElementById("itemCategory").value;
-  const listing_type=document.getElementById("listingType").value;
-  const price=listing_type==="free" ? 0 : Number(document.getElementById("priceInput").value||0);
-  const condition=document.getElementById("conditionInput").value;
-  const city=document.getElementById("cityInput").value.trim();
-  const description=document.getElementById("descriptionInput").value.trim();
-  const contact=document.getElementById("contactInput").value.trim();
-  const safety=document.getElementById("safetyCheck").checked;
-
-  if(!title||!safety){
-    showStatus(t().error);
-    hideStatusLater();
-    return;
-  }
-
-  let newPhotos=[];
-  try{
-    newPhotos=await uploadPhotoIfNeeded();
-  }catch(e){
-    showStatus(t().error);
-    hideStatusLater();
-    return;
-  }
-
-  const photos=newPhotos.length>0 ? newPhotos : editingExistingPhotos;
-
-  const payload={
-    title,
-    description,
-    category,
-    listing_type,
-    price,
-    currency:"EUR",
-    item_condition:condition,
-    city:city||null,
-    language:currentLang,
-    photos,
-    contact_note:contact,
-    safety_note_accepted:true
-  };
-
-  if(editingItemId){
-    const {error}=await supabaseClient
-      .from("marketplace_items")
-      .update(payload)
-      .eq("id",editingItemId)
-      .eq("user_id",currentUser.id);
-
-    if(error){
-      console.error(error);
-      showStatus(t().error);
-      hideStatusLater();
-      return;
-    }
-
-    if(newPhotos.length>0){
-      await removePhotosFromStorage(editingExistingPhotos);
-    }
-
-    clearForm();
-    showStatus(t().saved);
-    hideStatusLater();
-    await loadItems();
-    return;
-  }
-
-  const {error}=await supabaseClient.from("marketplace_items").insert({
-    user_id:currentUser.id,
-    ...payload,
-    status:"active"
-  });
-
-  if(error){
-    console.error(error);
-    showStatus(t().error);
-    hideStatusLater();
-    return;
-  }
-
-  clearForm();
-  showStatus(t().saved);
-  hideStatusLater();
-  await loadItems();
-}
-
-function setLanguageFilter(value){
-  languageFilter=value;
-  myItemsOnly=false;
-  updateFilterButtons();
-  loadItems();
-}
-
-function setMineFilter(){
-  myItemsOnly=!myItemsOnly;
-  updateFilterButtons();
-  loadItems();
-}
-
-function setCategoryFilter(value){
-  categoryFilter=value;
-  updateFilterButtons();
-  loadItems();
-}
-
-function updateFilterButtons(){
-  document.getElementById("filterMine").classList.toggle("active",languageFilter==="mine"&&!myItemsOnly);
-  document.getElementById("filterAllLang").classList.toggle("active",languageFilter==="all"&&!myItemsOnly);
-  document.getElementById("filterMyItems").classList.toggle("active",myItemsOnly);
-
-  [
-    ["filterCatAll","all"],
-    ["filterCatStroller","stroller"],
-    ["filterCatBed","baby_bed"],
-    ["filterCatCarSeat","car_seat"],
-    ["filterCatClothes","clothes"],
-    ["filterCatFree","free"]
-  ].forEach(([id,value])=>{
-    const btn=document.getElementById(id);
-    if(btn)btn.classList.toggle("active",categoryFilter===value);
-  });
-}
-
 async function loadItems(){
-  let query=supabaseClient
-    .from("marketplace_items")
-    .select("*")
-    .order("created_at",{ascending:false})
-    .limit(60);
-
-  if(myItemsOnly){
-    query=query.eq("user_id",currentUser.id);
-  }else{
-    if(languageFilter==="mine")query=query.eq("language",currentLang);
+ try{
+  const {data,error}=await supabaseClient.from("marketplace_items").select("*").in("status",["active","reserved"]).order("created_at",{ascending:false}).limit(80);
+  if(error)throw error;
+  items=data||[];
+  for(const item of items){
+    try{
+      const {data:comments}=await supabaseClient.from("marketplace_comments").select("*").eq("item_id",item.id).order("created_at",{ascending:true}).limit(20);
+      item.comments=comments||[];
+    }catch(err){item.comments=[]}
   }
-
-  if(categoryFilter==="free"){
-    query=query.eq("listing_type","free");
-  }else if(categoryFilter!=="all"){
-    query=query.eq("category",categoryFilter);
-  }
-
-  const {data,error}=await query;
-
-  if(error){
-    console.error(error);
-    itemsCache=[];
-    renderItems();
-    return;
-  }
-
-  itemsCache=data||[];
-  await loadFavorites();
-  renderItems();
+  dbOnline=true;
+ }catch(e){
+  dbOnline=false;
+  const comments=getLocalComments();
+  items=getLocalItems().map(p=>({...p,comments:comments[p.id]||[]}));
+ }
+ renderStatic();renderItems();
 }
-
-async function loadFavorites(){
-  myFavorites=new Set();
-  const ids=itemsCache.map(i=>i.id);
-  if(ids.length===0)return;
-
-  const {data}=await supabaseClient
-    .from("marketplace_favorites")
-    .select("item_id")
-    .eq("user_id",currentUser.id)
-    .in("item_id",ids);
-
-  (data||[]).forEach(f=>myFavorites.add(f.item_id));
+async function setStatus(id,status){
+ const item=items.find(x=>String(x.id)===String(id));if(!item)return;
+ item.status=status;renderItems();
+ if(String(id).startsWith("local-")||!dbOnline){setLocalItems(items);return}
+ try{await supabaseClient.from("marketplace_items").update({status}).eq("id",id)}catch(e){}
 }
-
-function escapeHtml(value){
-  return String(value||"")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+async function reportItem(id){await setStatus(id,"reported");alert("Merci. L’annonce a été signalée.");}
+async function addComment(id){
+ const input=document.getElementById("comment-"+id);
+ const content=(input?.value||"").trim();
+ if(!content)return;
+ const p={item_id:id,user_id:currentUser.id,author_name:currentProfile?.mother_name||"Mama",content,status:"published",created_at:new Date().toISOString()};
+ if(String(id).startsWith("local-")||!dbOnline){
+  const all=getLocalComments();all[id]=all[id]||[];all[id].push({...p,id:"c-"+Date.now()});setLocalComments(all);input.value="";await loadItems();return;
+ }
+ try{
+  const {data,error}=await supabaseClient.from("marketplace_comments").insert(p).select("*").single();
+  if(error)throw error;
+  const item=items.find(x=>String(x.id)===String(id));if(item){item.comments=item.comments||[];item.comments.push(data)}
+  input.value="";renderItems();
+ }catch(e){
+  const all=getLocalComments();all[id]=all[id]||[];all[id].push({...p,id:"c-"+Date.now()});setLocalComments(all);input.value="";await loadItems();
+ }
 }
-
-function formatDate(value){
-  const date=new Date(value);
-  const locale=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":
-               currentLang==="fr"?"fr-FR":
-               currentLang==="tr"?"tr-TR":
-               currentLang==="ru"?"ru-RU":
-               currentLang==="uk"?"uk-UA":
-               currentLang==="en"?"en-GB":"de-DE";
-
-  return date.toLocaleDateString(locale,{day:"2-digit",month:"2-digit",year:"numeric",calendar:"gregory",numberingSystem:"latn"});
+function priceLabel(i){
+ if(i.price_type==="free")return t().free;
+ if(i.price_type==="donation")return t().donation;
+ if(i.price_type==="exchange")return t().exchange;
+ if(i.price!==null && i.price!==undefined && i.price!=="")return Number(i.price).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2})+" €";
+ return "-";
 }
-
-function categoryText(category){
-  const map={
-    stroller:"catStrollerOption",
-    baby_bed:"catBedOption",
-    car_seat:"catCarSeatOption",
-    clothes:"catClothesOption",
-    breast_pump:"catPumpOption",
-    babyphone:"catBabyphoneOption",
-    toys:"catToysOption",
-    furniture:"catFurnitureOption",
-    diapers:"catDiapersOption",
-    other:"catOtherOption"
-  };
-  return t()[map[category]]||category;
-}
-
-function conditionText(condition){
-  const map={
-    new:"conditionNewOption",
-    like_new:"conditionLikeNewOption",
-    used_good:"conditionGoodOption",
-    used_ok:"conditionOkOption"
-  };
-  return t()[map[condition]]||condition;
-}
-
-function statusText(status){
-  if(status==="reserved")return t().reserved;
-  if(status==="sold")return t().sold;
-  if(status==="given")return t().given;
-  return t().active;
-}
-
-function priceText(item){
-  if(item.listing_type==="free")return t().free;
-  return new Intl.NumberFormat("de-DE",{style:"currency",currency:"EUR"}).format(Number(item.price||0));
-}
-
-async function toggleFavorite(itemId){
-  if(myFavorites.has(itemId)){
-    await supabaseClient.from("marketplace_favorites").delete().eq("item_id",itemId).eq("user_id",currentUser.id);
-  }else{
-    await supabaseClient.from("marketplace_favorites").insert({item_id:itemId,user_id:currentUser.id});
-  }
-  await loadItems();
-}
-
-async function updateItemStatus(itemId,status){
-  await supabaseClient.from("marketplace_items").update({status}).eq("id",itemId).eq("user_id",currentUser.id);
-  await loadItems();
-}
-
-async function deleteItem(itemId){
-  const item=itemsCache.find(x=>x.id===itemId);
-  if(item && item.user_id===currentUser.id){
-    await removePhotosFromStorage(Array.isArray(item.photos)?item.photos:[]);
-  }
-  await supabaseClient.from("marketplace_items").update({status:"deleted",photos:[]}).eq("id",itemId).eq("user_id",currentUser.id);
-  if(editingItemId===itemId)clearForm();
-  await loadItems();
-}
-
-async function reportItem(itemId){
-  const {error}=await supabaseClient.from("reports").insert({
-    reporter_user_id:currentUser.id,
-    item_type:"marketplace_item",
-    item_id:itemId,
-    reason:"other",
-    details:"Reported from marketplace.html"
-  });
-
-  if(error){
-    console.error(error);
-    alert(t().error);
-    return;
-  }
-
-  alert(t().reported);
-}
-
 function renderItems(){
-  const grid=document.getElementById("itemsGrid");
-  grid.innerHTML="";
-
-  if(itemsCache.length===0){
-    grid.innerHTML=`<div class="empty">${t().empty}</div>`;
-    return;
-  }
-
-  itemsCache.forEach(item=>{
-    const own=item.user_id===currentUser.id;
-    const fav=myFavorites.has(item.id);
-    const photos=(Array.isArray(item.photos)&&item.photos.length>0) ? item.photos : [];
-    const image=photos.length ? photos[0] : "";
-    const city=item.city?escapeHtml(item.city):"";
-    const contact=item.contact_note?escapeHtml(item.contact_note).replaceAll("\\n","<br>"):"";
-
-    const card=document.createElement("div");
-    card.className="item-card";
-
-    card.innerHTML=`
-      ${image?`<img class="item-image" src="${escapeHtml(image)}" alt="">`:`<div class="item-image" style="display:flex;align-items:center;justify-content:center;color:var(--brown);font-weight:950;">${categoryText(item.category)}</div>`}
-      ${photos.length>1?`<div class="grid-3" style="margin-top:-4px;margin-bottom:12px;">${photos.slice(1,4).map(p=>`<img src="${escapeHtml(p)}" class="preview" style="display:block;height:85px;object-fit:cover;">`).join("")}</div>`:""}
+ const visible=items.filter(i=>(i.status||"active")==="active"||i.status==="reserved").filter(i=>activeFilter==="all"||i.category===activeFilter);
+ document.getElementById("itemsCount").textContent=visible.length;
+ document.getElementById("freeCount").textContent=items.filter(i=>i.price_type==="free" && (i.status||"active")==="active").length;
+ const list=document.getElementById("itemsList");
+ if(!visible.length){list.innerHTML=`<div class="empty">${t().noItems}</div>`;return}
+ list.innerHTML=visible.map(i=>{
+  const comments=(i.comments||[]).filter(c=>(c.status||"published")==="published");
+  const date=i.created_at?new Date(i.created_at).toLocaleDateString():"";
+  const img=i.photo_url?`<img src="${escapeHtml(i.photo_url)}" alt="">`:`${categoryEmoji(i.category)}`;
+  const owner=i.user_id===currentUser.id;
+  const contact=i.contact_info?`<a href="${contactHref(i.contact_info)}">${t().contact}</a>`:"";
+  return `<article class="item-card">
+    <div class="item-head">
       <div>
-        <span class="badge">${categoryText(item.category)}</span>
-        <span class="badge">${conditionText(item.item_condition)}</span>
-        <span class="badge">${statusText(item.status)}</span>
-        ${own?`<span class="badge">${t().myItem}</span>`:""}
+        <span class="badge badge-blue">${escapeHtml(categoryName(i.category))}</span>
+        <span class="badge badge-green">${escapeHtml(conditionName(i.condition))}</span>
+        <span class="badge badge-warning">${escapeHtml(t().safetyTags[i.category]||"")}</span>
+        ${i.status==="reserved"?`<span class="badge badge-red">Reservé</span>`:""}
+        <h3>${escapeHtml(i.title)}</h3>
+        <div class="item-meta">${escapeHtml(i.seller_name||"Mama")} · ${escapeHtml(i.location||"")} · ${escapeHtml(date)}</div>
       </div>
-      <h3>${escapeHtml(item.title)}</h3>
-      <div class="price">${priceText(item)}</div>
-      <p>${escapeHtml(item.description||"").replaceAll("\\n","<br>")}</p>
-      <div class="soft">${city?city+" · ":""}${escapeHtml(item.language.toUpperCase())} · ${formatDate(item.created_at)}</div>
-      ${contact?`<div class="soft"><strong>${t().contact}:</strong><br>${contact}</div>`:""}
-
-      <div class="actions" style="margin-top:14px;">
-        ${!own?`<button class="${fav?"button-success button":"button-light"}" onclick="toggleFavorite('${item.id}')">${fav?t().favorited:t().favorite}</button>`:""}
-        ${!own?`<button class="button-light" onclick="reportItem('${item.id}')">${t().report}</button>`:""}
-        ${own?`<button class="button-light" onclick="editItem('${item.id}')">${t().edit||"Edit"}</button>`:""}
-        ${own?`<button class="button-light" onclick="updateItemStatus('${item.id}','reserved')">${t().reserved}</button>`:""}
-        ${own&&item.listing_type==="sell"?`<button class="button-light" onclick="updateItemStatus('${item.id}','sold')">${t().sold}</button>`:""}
-        ${own&&item.listing_type==="free"?`<button class="button-light" onclick="updateItemStatus('${item.id}','given')">${t().given}</button>`:""}
-        ${own?`<button class="button-danger" onclick="deleteItem('${item.id}')">${t().delete}</button>`:""}
+      <div class="price">${escapeHtml(priceLabel(i))}</div>
+    </div>
+    <div class="item-img">${img}</div>
+    <p>${escapeHtml(i.description).replaceAll("\n","<br>")}</p>
+    <div class="item-actions">
+      ${contact}
+      ${owner?`<button onclick="setStatus('${i.id}','reserved')">${t().reserve}</button><button onclick="setStatus('${i.id}','sold')">${t().sold}</button>`:""}
+      <button onclick="reportItem('${i.id}')">⚑ ${t().report}</button>
+    </div>
+    <div class="comment-box">
+      ${comments.map(c=>`<div class="comment"><small>${escapeHtml(c.author_name||"Mama")} · ${c.created_at?new Date(c.created_at).toLocaleDateString():""}</small><br>${escapeHtml(c.content)}</div>`).join("")}
+      <div class="form-grid" style="margin-top:10px;">
+        <input id="comment-${i.id}" placeholder="${t().placeholderComment}">
+        <button class="button-light" onclick="addComment('${i.id}')">${t().send}</button>
       </div>
-    `;
-
-    grid.appendChild(card);
-  });
+    </div>
+  </article>`
+ }).join("");
 }
-
+function categoryEmoji(c){
+ const map={stroller:"🛒",carseat:"🚗",bed:"🛏️",clothes:"👕",feeding:"🍼",toys:"🧸",bath:"🛁",furniture:"🪑",other:"🎁"};
+ return map[c]||"🎁";
+}
+function contactHref(v){
+ const s=String(v||"").trim();
+ if(s.includes("@"))return "mailto:"+encodeURIComponent(s);
+ if(s.match(/^[+0-9 ()-]{6,}$/))return "tel:"+s.replaceAll(" ","");
+ return "#";
+}
+async function loadApp(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("sellerName").value=currentProfile?.mother_name||"";
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadItems();
+}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();
 </script>
 </body>

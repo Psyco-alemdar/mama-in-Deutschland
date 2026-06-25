@@ -1,938 +1,468 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Mama in Deutschland - Profil</title>
-
-  <style>
-    :root {
-      --page:#f8f3ec;
-      --card:#ffffff;
-      --cream:#fffaf4;
-      --soft:#f3eadf;
-      --brown:#4a3428;
-      --light:#9b7357;
-      --text:#2f2621;
-      --muted:#7b6a60;
-      --border:#eadfd2;
-      --danger:#b45b48;
-      --success:#5f8d63;
-      --shadow:rgba(74,52,40,.12);
-    }
-
-    body.theme-boy {
-      --page:#eef7ff;
-      --cream:#f7fbff;
-      --soft:#e8f4ff;
-      --brown:#244b6b;
-      --light:#5f93bd;
-      --text:#1d3347;
-      --muted:#5c7285;
-      --border:#d6e8f7;
-      --shadow:rgba(36,75,107,.12);
-    }
-
-    body.theme-girl {
-      --page:#fff1f5;
-      --cream:#fff8fa;
-      --soft:#fde8ef;
-      --brown:#7a3d55;
-      --light:#c47a98;
-      --text:#3d2430;
-      --muted:#7b6070;
-      --border:#f0d4df;
-      --shadow:rgba(122,61,85,.12);
-    }
-
-    body.theme-twin {
-      --page:#f1f7ef;
-      --cream:#fbfff8;
-      --soft:#e7f3df;
-      --brown:#3e5c3a;
-      --light:#7ca878;
-      --text:#263522;
-      --muted:#62745f;
-      --border:#dbe9d4;
-      --shadow:rgba(62,92,58,.12);
-    }
-
-    * {
-      box-sizing:border-box;
-    }
-
-    body {
-      margin:0;
-      min-height:100vh;
-      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-      background:
-        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
-        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
-        linear-gradient(180deg,#fbf7f1,var(--page));
-      color:var(--text);
-    }
-
-    .wrap {
-      max-width:1180px;
-      margin:0 auto;
-      padding:24px 18px;
-    }
-
-    header {
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-bottom:22px;
-    }
-
-    .brand {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      color:var(--brown);
-      font-size:23px;
-      font-weight:950;
-      letter-spacing:-.5px;
-    }
-
-    .brand-icon {
-      width:44px;
-      height:44px;
-      border-radius:16px;
-      background:linear-gradient(135deg,var(--brown),var(--light));
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:950;
-      box-shadow:0 14px 28px var(--shadow);
-    }
-
-    .top-actions,
-    .language-buttons,
-    .actions {
-      display:flex;
-      gap:9px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .language-buttons button,
-    .button-light,
-    .button,
-    .button-danger {
-      border:1px solid var(--border);
-      background:white;
-      color:var(--brown);
-      padding:10px 13px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:900;
-      text-decoration:none;
-      font-family:inherit;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .language-buttons button.active {
-      background:var(--brown);
-      color:white;
-    }
-
-    .button {
-      background:var(--brown);
-      color:white;
-      border-color:var(--brown);
-    }
-
-    .button-danger {
-      background:#fff0ec;
-      color:var(--danger);
-      border-color:#f1c9bf;
-    }
-
-    .card {
-      background:rgba(255,255,255,.92);
-      border:1px solid var(--border);
-      border-radius:30px;
-      padding:24px;
-      box-shadow:0 24px 70px var(--shadow);
-      backdrop-filter:blur(16px);
-      margin-bottom:18px;
-    }
-
-    h1,h2,h3 {
-      color:var(--brown);
-      margin:0 0 12px;
-    }
-
-    h1 {
-      font-size:34px;
-      letter-spacing:-1.5px;
-    }
-
-    h2 {
-      font-size:25px;
-      letter-spacing:-.7px;
-    }
-
-    p {
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .soft {
-      padding:14px 16px;
-      border-radius:18px;
-      background:var(--soft);
-      border:1px solid var(--border);
-      color:var(--brown);
-      font-weight:900;
-      margin-top:14px;
-    }
-
-    .grid-2 {
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:14px;
-      margin-top:16px;
-    }
-
-    .box {
-      background:linear-gradient(180deg,var(--cream),white);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:18px;
-    }
-
-    label {
-      display:block;
-      margin:14px 0 7px;
-      color:var(--brown);
-      font-size:13px;
-      font-weight:900;
-    }
-
-    input,
-    select {
-      width:100%;
-      padding:13px 14px;
-      border-radius:15px;
-      border:1px solid var(--border);
-      background:#fffdf9;
-      color:var(--text);
-      font-size:15px;
-      font-family:inherit;
-      outline:none;
-    }
-
-    input:focus,
-    select:focus {
-      border-color:var(--light);
-      box-shadow:0 0 0 4px rgba(155,115,87,.12);
-    }
-
-    .message {
-      display:none;
-      margin-top:14px;
-      padding:14px 15px;
-      border-radius:18px;
-      font-weight:850;
-      line-height:1.45;
-    }
-
-    .message.error {
-      display:block;
-      background:#fff0ec;
-      color:var(--danger);
-      border:1px solid #f1c9bf;
-    }
-
-    .message.success {
-      display:block;
-      background:#edf7ee;
-      color:var(--success);
-      border:1px solid #cfe8d2;
-    }
-
-    .login-message {
-      max-width:650px;
-      margin:60px auto;
-      text-align:center;
-    }
-
-    @media(max-width:900px) {
-      .grid-2 {
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media(max-width:560px) {
-      .wrap {
-        padding:18px 12px;
-      }
-
-      h1 {
-        font-size:28px;
-      }
-
-      .card {
-        padding:20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Profil</title>
+<style>
+:root{
+  --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
+  --light:#9b7357;--gold:#c9a66b;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:
+    radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),
+    radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),
+    linear-gradient(180deg,#fbf7f1,var(--page));
+  color:var(--text);
+}
+.wrap{max-width:1240px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger,.button-success{
+  border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;
+  cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px
+}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero,.panel{
+  background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;
+  box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)
+}
+.hero{display:grid;grid-template-columns:1fr .9fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p{margin:0;color:var(--muted);line-height:1.6}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+label{display:block;margin:14px 0 7px;color:var(--brown);font-size:13px;font-weight:950}
+input,select{
+  width:100%;padding:14px 15px;border:1px solid var(--border);border-radius:16px;background:#fffdf9;
+  color:var(--text);font-size:15px;outline:none;font-family:inherit;
+}
+input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+.box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-dark{background:var(--brown);color:white}
+.badge-success{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.message{display:none;margin-top:14px;padding:13px 14px;border-radius:18px;font-weight:900;line-height:1.45}
+.message.success{display:block;background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.message.error{display:block;background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.message.info{display:block;background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.preview-card{display:flex;align-items:center;gap:14px}
+.preview-icon{width:64px;height:64px;border-radius:22px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:34px;border:1px solid var(--border)}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:980px){.hero,.grid-2{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+@media(max-width:680px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero,.panel{padding:20px}.grid-3{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="brand-icon">M</div>
-        <span>Mama in Deutschland</span>
+<div class="wrap">
+<header>
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+  <div class="top-actions">
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 RU Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 UK Українська</button>
       </div>
-
-      <div class="top-actions">
-        <a class="button-light" href="app.html" id="backButton">Zurück</a>
-
-        <div class="language-buttons">
-          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
-          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
-          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
-          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
-          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
-          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
-        </div>
-      </div>
-    </header>
-
-    <main id="appShell" style="display:none;">
-      <section class="card">
-        <h1 id="pageTitle">Profil</h1>
-        <p id="pageText">Ändere Sprache, Stadt, Babyname, Geburtstermin und Design.</p>
-        <div class="soft" id="summaryBox">-</div>
-      </section>
-
-      <section class="card">
-        <div class="grid-2">
-          <div class="box">
-            <h2 id="mamaTitle">Mama</h2>
-
-            <label id="fullNameLabel" for="fullName">Name</label>
-            <input id="fullName" />
-
-            <label id="cityLabel" for="cityInput">Stadt</label>
-            <input id="cityInput" />
-
-            <label id="languageLabel" for="languageInput">Sprache</label>
-            <select id="languageInput" onchange="profileLanguageChanged()">
-              <option value="de">Deutsch</option>
-              <option value="fr">Français</option>
-              <option value="ar">العربية</option>
-              <option value="en">English</option>
-              <option value="tr">Türkçe</option>
-              <option value="ru">Русский</option>
-              <option value="uk">Українська</option>
-            </select>
-          </div>
-
-          <div class="box">
-            <h2 id="babyTitle">Baby</h2>
-
-            <label id="babyNameLabel" for="babyName">Babyname</label>
-            <input id="babyName" />
-
-            <label id="dueDateLabel" for="dueDateInput">Geburtstermin</label>
-            <input type="date" id="dueDateInput" onchange="updateSummary()" />
-
-            <label id="pregnancyTypeLabel" for="pregnancyType">Schwangerschaft</label>
-            <select id="pregnancyType" onchange="updateGenderOptions(); updateSummary();">
-              <option value="singleton" id="singletonOption">Ein Baby</option>
-              <option value="twins" id="twinsOption">Zwillinge</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="box">
-            <h2 id="genderTitle">Geschlecht & Design</h2>
-
-            <label id="genderLabel" for="babyGender">Geschlecht</label>
-            <select id="babyGender" onchange="previewTheme(); updateSummary();">
-              <option value="unknown" data-kind="both" id="genderUnknown">Noch nicht bekannt</option>
-              <option value="boy" data-kind="singleton" id="genderBoy">Junge</option>
-              <option value="girl" data-kind="singleton" id="genderGirl">Mädchen</option>
-              <option value="twin_boys" data-kind="twins" id="genderTwinBoys">Zwillinge: Jungen</option>
-              <option value="twin_girls" data-kind="twins" id="genderTwinGirls">Zwillinge: Mädchen</option>
-              <option value="twin_mixed" data-kind="twins" id="genderTwinMixed">Zwillinge: Junge & Mädchen</option>
-            </select>
-
-            <div class="soft" id="themeBox">Design: neutral</div>
-          </div>
-
-          <div class="box">
-            <h2 id="accountTitle">Konto</h2>
-
-            <p id="emailText">E-mail</p>
-            <div class="soft" id="emailBox">-</div>
-
-            <div class="actions" style="margin-top:16px;">
-              <button class="button-danger" onclick="signOut()" id="logoutButton">Ausloggen</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="actions" style="margin-top:16px;">
-          <button class="button" onclick="saveProfile()" id="saveButton">Profil speichern</button>
-          <a class="button-light" href="app.html" id="backDashboardButton">Zum Dashboard</a>
-        </div>
-
-        <div class="message" id="messageBox"></div>
-      </section>
-    </main>
-
-    <section class="login-message card" id="loginMessage" style="display:none;">
-      <h2 id="loginTitle">Bitte einloggen</h2>
-      <p id="loginText">Du musst dich zuerst anmelden.</p>
-      <br />
-      <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
-    </section>
+    </div>
   </div>
+</header>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Profil grossesse</div>
+      <h1 id="pageTitle">Ton profil personnel</h1>
+      <p id="pageText">Ces informations personnalisent le dashboard, les rendez-vous standards, les couleurs et les recommandations semaine par semaine.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="weekLabel">Semaine</div><div class="stat-value" id="weekValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="daysLabel">Jours avant terme</div><div class="stat-value" id="daysValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="themeLabel">Thème</div><div class="stat-value" id="themeValue">-</div></div>
+      </div>
+    </div>
 
-  <script>
-    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    <div class="hero-side">
+      <h2 id="accountTitle">Compte</h2>
+      <div class="box">
+        <span class="badge badge-dark" id="emailBadge">Email</span>
+        <h3 id="userEmail">-</h3>
+        <p id="accountText">Ton email sert à te connecter et à récupérer ton mot de passe.</p>
+        <div class="actions" style="margin-top:14px;">
+          <button class="button-light" onclick="sendPasswordReset()" id="resetPasswordButton">Changer mot de passe</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    let currentUser = null;
-    let currentProfile = null;
-    let currentLang = localStorage.getItem("mama_lang") || "de";
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="formTitle">Modifier le profil</h2>
+        <p id="formText">Garde ces données à jour pour que la plateforme reste précise.</p>
+      </div>
+      <span class="badge badge-success" id="statusBadge">Profil sécurisé</span>
+    </div>
 
-    const translations = {
-      de:{
-        backButton:"Zurück",
-        pageTitle:"Profil",
-        pageText:"Ändere Sprache, Stadt, Babyname, Geburtstermin und Design.",
-        mamaTitle:"Mama",
-        fullNameLabel:"Name",
-        cityLabel:"Stadt",
-        languageLabel:"Sprache",
-        babyTitle:"Baby",
-        babyNameLabel:"Babyname",
-        dueDateLabel:"Geburtstermin",
-        pregnancyTypeLabel:"Schwangerschaft",
-        singletonOption:"Ein Baby",
-        twinsOption:"Zwillinge",
-        genderTitle:"Geschlecht & Design",
-        genderLabel:"Geschlecht",
-        genderUnknown:"Noch nicht bekannt",
-        genderBoy:"Junge",
-        genderGirl:"Mädchen",
-        genderTwinBoys:"Zwillinge: Jungen",
-        genderTwinGirls:"Zwillinge: Mädchen",
-        genderTwinMixed:"Zwillinge: Junge & Mädchen",
-        accountTitle:"Konto",
-        emailText:"E-mail",
-        logoutButton:"Ausloggen",
-        saveButton:"Profil speichern",
-        backDashboardButton:"Zum Dashboard",
-        loginTitle:"Bitte einloggen",
-        loginText:"Du musst dich zuerst anmelden.",
-        loginBackButton:"Zur Startseite",
-        saved:"Profil gespeichert ✅",
-        missing:"Bitte mindestens Stadt und Geburtstermin ausfüllen.",
-        week:"SSW",
-        daysLeft:"Tage übrig",
-        theme:"Design",
-        themeNeutral:"Neutral",
-        themeBoy:"Junge · Blau",
-        themeGirl:"Mädchen · Rosa",
-        themeTwin:"Zwillinge · Grün"
-      },
-      fr:{
-        backButton:"Retour",
-        pageTitle:"Profil",
-        pageText:"Modifie la langue, la ville, le prénom du bébé, le terme et le design.",
-        mamaTitle:"Maman",
-        fullNameLabel:"Nom",
-        cityLabel:"Ville",
-        languageLabel:"Langue",
-        babyTitle:"Bébé",
-        babyNameLabel:"Prénom du bébé",
-        dueDateLabel:"Date prévue",
-        pregnancyTypeLabel:"Grossesse",
-        singletonOption:"Un bébé",
-        twinsOption:"Jumeaux",
-        genderTitle:"Sexe & design",
-        genderLabel:"Sexe",
-        genderUnknown:"Pas encore connu",
-        genderBoy:"Garçon",
-        genderGirl:"Fille",
-        genderTwinBoys:"Jumeaux : garçons",
-        genderTwinGirls:"Jumeaux : filles",
-        genderTwinMixed:"Jumeaux : garçon & fille",
-        accountTitle:"Compte",
-        emailText:"E-mail",
-        logoutButton:"Déconnexion",
-        saveButton:"Enregistrer le profil",
-        backDashboardButton:"Vers le dashboard",
-        loginTitle:"Connexion nécessaire",
-        loginText:"Tu dois d’abord te connecter.",
-        loginBackButton:"Retour à l’accueil",
-        saved:"Profil enregistré ✅",
-        missing:"Merci de remplir au minimum la ville et la date prévue.",
-        week:"SSW",
-        daysLeft:"jours restants",
-        theme:"Design",
-        themeNeutral:"Neutre",
-        themeBoy:"Garçon · Bleu",
-        themeGirl:"Fille · Rose",
-        themeTwin:"Jumeaux · Vert"
-      },
-      ar:{
-        backButton:"رجوع",
-        pageTitle:"الملف",
-        pageText:"غيّري اللغة والمدينة واسم الطفل وموعد الولادة والتصميم.",
-        mamaTitle:"الأم",
-        fullNameLabel:"الاسم",
-        cityLabel:"المدينة",
-        languageLabel:"اللغة",
-        babyTitle:"الطفل",
-        babyNameLabel:"اسم الطفل",
-        dueDateLabel:"موعد الولادة",
-        pregnancyTypeLabel:"الحمل",
-        singletonOption:"طفل واحد",
-        twinsOption:"توأم",
-        genderTitle:"الجنس والتصميم",
-        genderLabel:"الجنس",
-        genderUnknown:"غير معروف بعد",
-        genderBoy:"ولد",
-        genderGirl:"بنت",
-        genderTwinBoys:"توأم: أولاد",
-        genderTwinGirls:"توأم: بنات",
-        genderTwinMixed:"توأم: ولد وبنت",
-        accountTitle:"الحساب",
-        emailText:"البريد الإلكتروني",
-        logoutButton:"تسجيل الخروج",
-        saveButton:"حفظ الملف",
-        backDashboardButton:"إلى لوحة التحكم",
-        loginTitle:"يرجى تسجيل الدخول",
-        loginText:"يجب تسجيل الدخول أولاً.",
-        loginBackButton:"العودة للرئيسية",
-        saved:"تم حفظ الملف ✅",
-        missing:"يرجى إدخال المدينة وموعد الولادة على الأقل.",
-        week:"أسبوع الحمل",
-        daysLeft:"الأيام المتبقية",
-        theme:"التصميم",
-        themeNeutral:"محايد",
-        themeBoy:"ولد · أزرق",
-        themeGirl:"بنت · وردي",
-        themeTwin:"توأم · أخضر"
-      },
-      en:{
-        backButton:"Back",
-        pageTitle:"Profile",
-        pageText:"Change language, city, baby name, due date and design.",
-        mamaTitle:"Mother",
-        fullNameLabel:"Name",
-        cityLabel:"City",
-        languageLabel:"Language",
-        babyTitle:"Baby",
-        babyNameLabel:"Baby name",
-        dueDateLabel:"Due date",
-        pregnancyTypeLabel:"Pregnancy",
-        singletonOption:"One baby",
-        twinsOption:"Twins",
-        genderTitle:"Gender & design",
-        genderLabel:"Gender",
-        genderUnknown:"Not known yet",
-        genderBoy:"Boy",
-        genderGirl:"Girl",
-        genderTwinBoys:"Twins: boys",
-        genderTwinGirls:"Twins: girls",
-        genderTwinMixed:"Twins: boy & girl",
-        accountTitle:"Account",
-        emailText:"E-mail",
-        logoutButton:"Log out",
-        saveButton:"Save profile",
-        backDashboardButton:"To dashboard",
-        loginTitle:"Please log in",
-        loginText:"You need to log in first.",
-        loginBackButton:"Back to home",
-        saved:"Profile saved ✅",
-        missing:"Please fill in at least city and due date.",
-        week:"Week",
-        daysLeft:"days left",
-        theme:"Design",
-        themeNeutral:"Neutral",
-        themeBoy:"Boy · Blue",
-        themeGirl:"Girl · Pink",
-        themeTwin:"Twins · Green"
-      },
-      tr:{
-        backButton:"Geri",
-        pageTitle:"Profil",
-        pageText:"Dil, şehir, bebek adı, doğum tarihi ve tasarımı değiştir.",
-        mamaTitle:"Anne",
-        fullNameLabel:"İsim",
-        cityLabel:"Şehir",
-        languageLabel:"Dil",
-        babyTitle:"Bebek",
-        babyNameLabel:"Bebek adı",
-        dueDateLabel:"Doğum tarihi",
-        pregnancyTypeLabel:"Hamilelik",
-        singletonOption:"Bir bebek",
-        twinsOption:"İkizler",
-        genderTitle:"Cinsiyet ve tasarım",
-        genderLabel:"Cinsiyet",
-        genderUnknown:"Henüz bilinmiyor",
-        genderBoy:"Erkek",
-        genderGirl:"Kız",
-        genderTwinBoys:"İkizler: erkek",
-        genderTwinGirls:"İkizler: kız",
-        genderTwinMixed:"İkizler: erkek ve kız",
-        accountTitle:"Hesap",
-        emailText:"E-mail",
-        logoutButton:"Çıkış yap",
-        saveButton:"Profili kaydet",
-        backDashboardButton:"Dashboard’a git",
-        loginTitle:"Lütfen giriş yap",
-        loginText:"Önce giriş yapmalısın.",
-        loginBackButton:"Ana sayfaya dön",
-        saved:"Profil kaydedildi ✅",
-        missing:"Lütfen en az şehir ve doğum tarihini doldur.",
-        week:"Hafta",
-        daysLeft:"kalan gün",
-        theme:"Tasarım",
-        themeNeutral:"Nötr",
-        themeBoy:"Erkek · Mavi",
-        themeGirl:"Kız · Pembe",
-        themeTwin:"İkizler · Yeşil"
-      },
-      ru:{
-        backButton:"Назад",
-        pageTitle:"Профиль",
-        pageText:"Измените язык, город, имя ребёнка, дату родов и дизайн.",
-        mamaTitle:"Мама",
-        fullNameLabel:"Имя",
-        cityLabel:"Город",
-        languageLabel:"Язык",
-        babyTitle:"Ребёнок",
-        babyNameLabel:"Имя ребёнка",
-        dueDateLabel:"Дата родов",
-        pregnancyTypeLabel:"Беременность",
-        singletonOption:"Один ребёнок",
-        twinsOption:"Близнецы",
-        genderTitle:"Пол и дизайн",
-        genderLabel:"Пол",
-        genderUnknown:"Пока неизвестно",
-        genderBoy:"Мальчик",
-        genderGirl:"Девочка",
-        genderTwinBoys:"Близнецы: мальчики",
-        genderTwinGirls:"Близнецы: девочки",
-        genderTwinMixed:"Близнецы: мальчик и девочка",
-        accountTitle:"Аккаунт",
-        emailText:"E-mail",
-        logoutButton:"Выйти",
-        saveButton:"Сохранить профиль",
-        backDashboardButton:"К панели",
-        loginTitle:"Войдите в аккаунт",
-        loginText:"Сначала нужно войти.",
-        loginBackButton:"На главную",
-        saved:"Профиль сохранён ✅",
-        missing:"Заполните хотя бы город и дату родов.",
-        week:"Неделя",
-        daysLeft:"дней осталось",
-        theme:"Дизайн",
-        themeNeutral:"Нейтрально",
-        themeBoy:"Мальчик · Синий",
-        themeGirl:"Девочка · Розовый",
-        themeTwin:"Близнецы · Зелёный"
-      },
-      uk:{
-        backButton:"Назад",
-        pageTitle:"Профіль",
-        pageText:"Змініть мову, місто, ім’я дитини, дату пологів і дизайн.",
-        mamaTitle:"Мама",
-        fullNameLabel:"Ім’я",
-        cityLabel:"Місто",
-        languageLabel:"Мова",
-        babyTitle:"Дитина",
-        babyNameLabel:"Ім’я дитини",
-        dueDateLabel:"Дата пологів",
-        pregnancyTypeLabel:"Вагітність",
-        singletonOption:"Одна дитина",
-        twinsOption:"Близнюки",
-        genderTitle:"Стать і дизайн",
-        genderLabel:"Стать",
-        genderUnknown:"Поки невідомо",
-        genderBoy:"Хлопчик",
-        genderGirl:"Дівчинка",
-        genderTwinBoys:"Близнюки: хлопчики",
-        genderTwinGirls:"Близнюки: дівчатка",
-        genderTwinMixed:"Близнюки: хлопчик і дівчинка",
-        accountTitle:"Акаунт",
-        emailText:"E-mail",
-        logoutButton:"Вийти",
-        saveButton:"Зберегти профіль",
-        backDashboardButton:"До панелі",
-        loginTitle:"Увійдіть",
-        loginText:"Спочатку потрібно увійти.",
-        loginBackButton:"На головну",
-        saved:"Профіль збережено ✅",
-        missing:"Заповніть хоча б місто і дату пологів.",
-        week:"Тиждень",
-        daysLeft:"днів залишилось",
-        theme:"Дизайн",
-        themeNeutral:"Нейтрально",
-        themeBoy:"Хлопчик · Синій",
-        themeGirl:"Дівчинка · Рожевий",
-        themeTwin:"Близнюки · Зелений"
-      }
-    };
+    <div id="messageBox" class="message"></div>
 
-    function t(){
-      return translations[currentLang] || translations.de;
-    }
+    <div class="grid-2">
+      <div>
+        <label id="fullNameLabel" for="fullName">Prénom de la mère</label>
+        <input id="fullName" autocomplete="name">
 
-    function setLanguage(lang){
-      currentLang = lang;
-      localStorage.setItem("mama_lang", lang);
+        <label id="babyNameLabel" for="babyName">Prénom bébé</label>
+        <input id="babyName">
 
-      document.documentElement.lang = lang;
-      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+        <label id="cityLabel" for="cityInput">Ville en Allemagne</label>
+        <input id="cityInput" placeholder="Mülheim an der Ruhr">
 
-      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
-      const active = document.getElementById("lang-" + lang);
-      if (active) active.classList.add("active");
+        <label id="languageLabel" for="languageInput">Langue principale</label>
+        <select id="languageInput">
+          <option value="fr">🇫🇷 Français</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="ar">🇸🇦 العربية</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="tr">🇹🇷 Türkçe</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="uk">🇺🇦 Українська</option>
+        </select>
+      </div>
 
-      const tr = t();
+      <div>
+        <label id="dueDateLabel" for="dueDate">Date prévue d’accouchement</label>
+        <input id="dueDate" type="date" onchange="updatePreview()">
 
-      Object.keys(tr).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = tr[id];
-      });
+        <label id="pregnancyTypeLabel" for="pregnancyType">Type de grossesse</label>
+        <select id="pregnancyType" onchange="updateGenderOptions();updatePreview();">
+          <option value="single" id="singleOption">Un bébé</option>
+          <option value="twins" id="twinsOption">Jumeaux</option>
+        </select>
 
-      document.getElementById("languageInput").value = lang;
+        <label id="babyGenderLabel" for="babyGender">Sexe / situation bébé</label>
+        <select id="babyGender" onchange="updatePreview()">
+          <option value="unknown" data-kind="both" id="genderUnknownOption">Je ne sais pas encore</option>
+          <option value="girl" data-kind="single" id="genderGirlOption">Fille</option>
+          <option value="boy" data-kind="single" id="genderBoyOption">Garçon</option>
+          <option value="twin_girls" data-kind="twins" id="genderTwinGirlsOption">Jumelles</option>
+          <option value="twin_boys" data-kind="twins" id="genderTwinBoysOption">Jumeaux garçons</option>
+          <option value="twin_mixed" data-kind="twins" id="genderTwinMixedOption">Jumeaux mixtes</option>
+        </select>
 
-      updateGenderOptions();
-      updateSummary();
-    }
+        <label id="themeModeLabel" for="themeMode">Design</label>
+        <select id="themeMode" onchange="applyTheme(this.value);updatePreview();">
+          <option value="auto" id="themeAutoOption">Automatique selon bébé</option>
+          <option value="neutral" id="themeNeutralOption">Neutre beige</option>
+          <option value="girl" id="themeGirlOption">Rose bébé</option>
+          <option value="boy" id="themeBoyOption">Bleu bébé</option>
+          <option value="twin" id="themeTwinOption">Vert jumeaux</option>
+        </select>
+      </div>
+    </div>
 
-    function showMessage(type, text){
-      const box = document.getElementById("messageBox");
-      box.className = "message " + type;
-      box.textContent = text;
-    }
+    <div class="actions" style="margin-top:18px;">
+      <button class="button" onclick="saveProfile()" id="saveButton">Sauvegarder</button>
+      <a class="button-light" href="app.html" id="dashboardButton2">Retour dashboard</a>
+    </div>
+  </section>
 
-    function parseLocalDate(value){
-      const parts = value.split("-").map(Number);
-      return new Date(parts[0], parts[1] - 1, parts[2]);
-    }
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="previewTitle">Aperçu</h2>
+        <p id="previewText">Ce que le dashboard utilisera pour calculer les semaines et les recommandations.</p>
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="box preview-card"><div class="preview-icon">📅</div><div><h3 id="previewWeekTitle">Semaine</h3><p id="previewWeek">-</p></div></div>
+      <div class="box preview-card"><div class="preview-icon">🎨</div><div><h3 id="previewThemeTitle">Thème</h3><p id="previewTheme">-</p></div></div>
+      <div class="box preview-card"><div class="preview-icon">👶</div><div><h3 id="previewBabyTitle">Bébé</h3><p id="previewBaby">-</p></div></div>
+    </div>
+  </section>
 
-    function addDays(date, days){
-      const result = new Date(date);
-      result.setDate(result.getDate() + days);
-      return result;
-    }
+  <section class="card">
+    <h2 id="privacyTitle">Confidentialité</h2>
+    <p id="privacyText">Ton profil est lié à ton compte. Les autres utilisatrices ne voient pas ces informations personnelles dans le dashboard.</p>
+    <div class="soft" id="privacyNote">Ne partage jamais ton mot de passe. Pour les informations médicales sensibles, évite de publier des détails dans la communauté.</div>
+  </section>
 
-    function calculatePregnancy(dueDate){
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const start = addDays(dueDate, -280);
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
+</main>
 
-      let week = Math.floor((today - start) / (1000 * 60 * 60 * 24 * 7)) + 1;
-      if (week < 1) week = 1;
-      if (week > 42) week = 42;
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+</section>
+</div>
 
-      const daysLeft = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
-      return {
-        week,
-        daysLeft: daysLeft > 0 ? daysLeft : 0
-      };
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-    function determineTheme(type, gender){
-      if (gender === "boy" || gender === "twin_boys") return "boy";
-      if (gender === "girl" || gender === "twin_girls") return "girl";
-      if (type === "twins" || gender === "twin_mixed") return "twin";
-      return "neutral";
-    }
+let currentUser=null;
+let currentProfile=null;
+let currentLang=localStorage.getItem("mama_lang")||"fr";
 
-    function applyTheme(theme){
-      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-      if (theme === "boy") document.body.classList.add("theme-boy");
-      if (theme === "girl") document.body.classList.add("theme-girl");
-      if (theme === "twin") document.body.classList.add("theme-twin");
-    }
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
-    function getThemeText(theme){
-      if (theme === "boy") return t().themeBoy;
-      if (theme === "girl") return t().themeGirl;
-      if (theme === "twin") return t().themeTwin;
-      return t().themeNeutral;
-    }
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Profil grossesse",pageTitle:"Ton profil personnel",pageText:"Ces informations personnalisent le dashboard, les rendez-vous standards, les couleurs et les recommandations semaine par semaine.",
+weekLabel:"Semaine",daysLabel:"Jours avant terme",themeLabel:"Thème",accountTitle:"Compte",emailBadge:"Email",accountText:"Ton email sert à te connecter et à récupérer ton mot de passe.",resetPasswordButton:"Changer mot de passe",
+formTitle:"Modifier le profil",formText:"Garde ces données à jour pour que la plateforme reste précise.",statusBadge:"Profil sécurisé",
+fullNameLabel:"Prénom de la mère",babyNameLabel:"Prénom bébé",cityLabel:"Ville en Allemagne",languageLabel:"Langue principale",dueDateLabel:"Date prévue d’accouchement",pregnancyTypeLabel:"Type de grossesse",babyGenderLabel:"Sexe / situation bébé",themeModeLabel:"Design",
+singleOption:"Un bébé",twinsOption:"Jumeaux",genderUnknownOption:"Je ne sais pas encore",genderGirlOption:"Fille",genderBoyOption:"Garçon",genderTwinGirlsOption:"Jumelles",genderTwinBoysOption:"Jumeaux garçons",genderTwinMixedOption:"Jumeaux mixtes",
+themeAutoOption:"Automatique selon bébé",themeNeutralOption:"Neutre beige",themeGirlOption:"Rose bébé",themeBoyOption:"Bleu bébé",themeTwinOption:"Vert jumeaux",
+saveButton:"Sauvegarder",dashboardButton2:"Retour dashboard",previewTitle:"Aperçu",previewText:"Ce que le dashboard utilisera pour calculer les semaines et les recommandations.",previewWeekTitle:"Semaine",previewThemeTitle:"Thème",previewBabyTitle:"Bébé",
+privacyTitle:"Confidentialité",privacyText:"Ton profil est lié à ton compte. Les autres utilisatrices ne voient pas ces informations personnelles dans le dashboard.",privacyNote:"Ne partage jamais ton mot de passe. Pour les informations médicales sensibles, évite de publier des détails dans la communauté.",
+bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+weekShort:"SA",days:"jours",unknown:"Non indiqué",auto:"Automatique",neutral:"Neutre",girl:"Fille",boy:"Garçon",twins:"Jumeaux",twin_girls:"Jumelles",twin_boys:"Jumeaux garçons",twin_mixed:"Jumeaux mixtes",
+saved:"Profil sauvegardé.",error:"Erreur. Réessaie.",missing:"Merci d’ajouter au moins prénom et date prévue.",resetSent:"Email envoyé pour changer le mot de passe."
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Schwangerschaftsprofil",pageTitle:"Dein persönliches Profil",weekLabel:"SSW",daysLabel:"Tage bis Termin",themeLabel:"Design",accountTitle:"Konto",resetPasswordButton:"Passwort ändern",formTitle:"Profil bearbeiten",fullNameLabel:"Vorname der Mutter",babyNameLabel:"Babyname",cityLabel:"Stadt in Deutschland",languageLabel:"Hauptsprache",dueDateLabel:"Voraussichtlicher Geburtstermin",pregnancyTypeLabel:"Schwangerschaft",saveButton:"Speichern",bottomBackButton:"Zurück",weekShort:"SSW",days:"Tage",saved:"Profil gespeichert."});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Pregnancy profile",pageTitle:"Your personal profile",weekLabel:"Week",daysLabel:"Days to due date",themeLabel:"Theme",accountTitle:"Account",resetPasswordButton:"Change password",formTitle:"Edit profile",fullNameLabel:"Mother’s first name",babyNameLabel:"Baby name",cityLabel:"City in Germany",languageLabel:"Main language",dueDateLabel:"Estimated due date",pregnancyTypeLabel:"Pregnancy type",saveButton:"Save",bottomBackButton:"Back",weekShort:"Week",days:"days",saved:"Profile saved."});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"ملف الحمل",pageTitle:"ملفك الشخصي",weekLabel:"أسبوع",daysLabel:"أيام حتى الموعد",themeLabel:"التصميم",accountTitle:"الحساب",resetPasswordButton:"تغيير كلمة المرور",formTitle:"تعديل الملف",fullNameLabel:"اسم الأم",babyNameLabel:"اسم الطفل",cityLabel:"المدينة في ألمانيا",languageLabel:"اللغة الرئيسية",dueDateLabel:"موعد الولادة المتوقع",pregnancyTypeLabel:"نوع الحمل",saveButton:"حفظ",bottomBackButton:"رجوع",weekShort:"أسبوع",days:"أيام",saved:"تم حفظ الملف."});
+Object.assign(tr.tr,{logoutButton:"Çıkış",pageTitle:"Kişisel profilin",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",pageTitle:"Ваш профиль",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",pageTitle:"Ваш профіль",bottomBackButton:"Назад"});
 
-    function updateGenderOptions(){
-      const type = document.getElementById("pregnancyType").value;
-      const select = document.getElementById("babyGender");
+function t(){return tr[currentLang]||tr.fr}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 
-      Array.from(select.options).forEach(option => {
-        const kind = option.dataset.kind;
-        option.hidden = !(kind === "both" || kind === type);
-      });
+function setLanguage(lang, updateSelect=true){
+  currentLang=lang;
+  localStorage.setItem("mama_lang",lang);
+  document.documentElement.lang=lang;
+  document.body.dir=lang==="ar"?"rtl":"ltr";
+  const info=langInfo[lang]||langInfo.fr;
+  document.getElementById("langTrigger").textContent=info[0]+" "+info[1];
+  document.getElementById("langMenu").classList.remove("open");
+  Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+  if(updateSelect)document.getElementById("languageInput").value=lang;
+  updateGenderOptions();
+  updatePreview();
+}
 
-      if (select.selectedOptions[0]?.hidden) {
-        select.value = "unknown";
-      }
+function showMessage(type,text){
+  const box=document.getElementById("messageBox");
+  box.className="message "+type;
+  box.textContent=text;
+}
 
-      previewTheme();
-    }
+function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
+function calculatePregnancy(due){
+  if(!due)return {week:null,daysLeft:null};
+  const today=new Date();today.setHours(0,0,0,0);
+  const dueDate=parseLocalDate(due);dueDate.setHours(0,0,0,0);
+  const start=new Date(dueDate);start.setDate(start.getDate()-280);
+  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
+  if(week<1)week=1;if(week>60)week=60;
+  return {week,daysLeft:Math.ceil((dueDate-today)/(1000*60*60*24))};
+}
 
-    function previewTheme(){
-      const type = document.getElementById("pregnancyType").value;
-      const gender = document.getElementById("babyGender").value;
-      const theme = determineTheme(type, gender);
+function determineTheme(type,gender){
+  if(gender==="boy"||gender==="twin_boys")return"boy";
+  if(gender==="girl"||gender==="twin_girls")return"girl";
+  if(type==="twins"||gender==="twin_mixed")return"twin";
+  return"neutral";
+}
 
-      applyTheme(theme);
-      document.getElementById("themeBox").textContent = `${t().theme}: ${getThemeText(theme)}`;
-    }
+function applyTheme(theme){
+  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
+  if(theme==="boy")document.body.classList.add("theme-boy");
+  if(theme==="girl")document.body.classList.add("theme-girl");
+  if(theme==="twin")document.body.classList.add("theme-twin");
+}
 
-    function updateSummary(){
-      const dueDateValue = document.getElementById("dueDateInput").value;
-      const city = document.getElementById("cityInput").value || "-";
-      const baby = document.getElementById("babyName").value || "-";
-      const type = document.getElementById("pregnancyType").value;
-      const gender = document.getElementById("babyGender").value;
-      const theme = determineTheme(type, gender);
+function updateGenderOptions(){
+  const type=document.getElementById("pregnancyType").value;
+  const select=document.getElementById("babyGender");
+  Array.from(select.options).forEach(o=>{
+    const kind=o.dataset.kind;
+    o.hidden=!(kind==="both"||kind===type);
+  });
+  if(select.selectedOptions[0]?.hidden)select.value="unknown";
+}
 
-      let text = `${baby} · ${city} · ${t().theme}: ${getThemeText(theme)}`;
+function chosenTheme(){
+  const manual=document.getElementById("themeMode").value;
+  if(manual && manual!=="auto")return manual;
+  return determineTheme(document.getElementById("pregnancyType").value,document.getElementById("babyGender").value);
+}
 
-      if (dueDateValue) {
-        const result = calculatePregnancy(parseLocalDate(dueDateValue));
-        text += ` · ${t().week} ${result.week} · ${result.daysLeft} ${t().daysLeft}`;
-      }
+function labelFor(value){
+  return t()[value]||value||t().unknown;
+}
 
-      document.getElementById("summaryBox").textContent = text;
-      previewTheme();
-    }
+function updatePreview(){
+  const due=document.getElementById("dueDate").value;
+  const calc=calculatePregnancy(due);
+  const theme=chosenTheme();
+  applyTheme(theme);
 
-    function profileLanguageChanged(){
-      setLanguage(document.getElementById("languageInput").value);
-    }
+  document.getElementById("weekValue").textContent=calc.week||"-";
+  document.getElementById("daysValue").textContent=calc.daysLeft===null?"-":Math.max(0,calc.daysLeft);
+  document.getElementById("themeValue").textContent=theme;
 
-    async function loadApp(){
-      const { data, error } = await supabaseClient.auth.getSession();
+  document.getElementById("previewWeek").textContent=calc.week? t().weekShort+" "+calc.week+" · "+Math.max(0,calc.daysLeft)+" "+t().days : "-";
+  document.getElementById("previewTheme").textContent=theme;
+  const babyName=document.getElementById("babyName").value||t().unknown;
+  const gender=document.getElementById("babyGender").value;
+  document.getElementById("previewBaby").textContent=babyName+" · "+(t()[gender]||gender||t().unknown);
+}
 
-      if (error || !data.session) {
-        document.getElementById("loginMessage").style.display = "block";
-        document.getElementById("appShell").style.display = "none";
-        return;
-      }
+async function loadApp(){
+  const {data,error}=await supabaseClient.auth.getSession();
+  if(error||!data.session){
+    document.getElementById("loginMessage").style.display="block";
+    return;
+  }
 
-      currentUser = data.session.user;
-      document.getElementById("emailBox").textContent = currentUser.email || "-";
+  currentUser=data.session.user;
+  document.getElementById("userEmail").textContent=currentUser.email||"-";
 
-      const { data: profiles, error: profileError } = await supabaseClient
-        .from("pregnancy_profiles")
-        .select("*")
-        .eq("user_id", currentUser.id)
-        .order("created_at", { ascending:false })
-        .limit(1);
+  const {data:profiles,error:profileError}=await supabaseClient
+    .from("pregnancy_profiles")
+    .select("*")
+    .eq("user_id",currentUser.id)
+    .order("created_at",{ascending:false})
+    .limit(1);
 
-      if (profileError || !profiles || profiles.length === 0) {
-        window.location.href = "index.html?reason=no_profile";
-        return;
-      }
+  currentProfile=(profiles&&profiles.length)?profiles[0]:null;
 
-      currentProfile = profiles[0];
-      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
+  if(currentProfile){
+    currentLang=localStorage.getItem("mama_lang")||currentProfile.language||"fr";
+    document.getElementById("fullName").value=currentProfile.full_name||currentProfile.mother_name||"";
+    document.getElementById("babyName").value=currentProfile.baby_name||"";
+    document.getElementById("cityInput").value=currentProfile.city||"";
+    document.getElementById("languageInput").value=currentLang;
+    document.getElementById("dueDate").value=currentProfile.due_date||"";
+    document.getElementById("pregnancyType").value=currentProfile.pregnancy_type||"single";
+    updateGenderOptions();
+    document.getElementById("babyGender").value=currentProfile.baby_gender||"unknown";
+    document.getElementById("themeMode").value=currentProfile.theme_mode||"auto";
+  }else{
+    document.getElementById("languageInput").value=currentLang;
+  }
 
-      document.getElementById("fullName").value = currentProfile.full_name || "";
-      document.getElementById("cityInput").value = currentProfile.city || "";
-      document.getElementById("languageInput").value = currentLang;
-      document.getElementById("babyName").value = currentProfile.baby_name || "";
-      document.getElementById("dueDateInput").value = currentProfile.due_date || "";
-      document.getElementById("pregnancyType").value = currentProfile.pregnancy_type || "singleton";
-      document.getElementById("babyGender").value = currentProfile.baby_gender || "unknown";
+  document.getElementById("appShell").style.display="block";
+  setLanguage(currentLang,false);
+  updatePreview();
+}
 
-      applyTheme(
-        currentProfile.theme_mode ||
-        determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender)
-      );
+async function saveProfile(){
+  const fullName=document.getElementById("fullName").value.trim();
+  const dueDate=document.getElementById("dueDate").value;
+  const language=document.getElementById("languageInput").value;
+  const pregnancyType=document.getElementById("pregnancyType").value;
+  const babyGender=document.getElementById("babyGender").value;
+  const themeValue=chosenTheme();
+  const calc=calculatePregnancy(dueDate);
 
-      document.getElementById("loginMessage").style.display = "none";
-      document.getElementById("appShell").style.display = "block";
+  if(!fullName||!dueDate){
+    showMessage("error",t().missing);
+    return;
+  }
 
-      setLanguage(currentLang);
-      updateGenderOptions();
-      updateSummary();
-    }
+  const row={
+    user_id:currentUser.id,
+    full_name:fullName,
+    baby_name:document.getElementById("babyName").value.trim(),
+    city:document.getElementById("cityInput").value.trim(),
+    language,
+    due_date:dueDate,
+    pregnancy_week:calc.week,
+    pregnancy_type:pregnancyType,
+    baby_gender:babyGender,
+    theme_mode:themeValue,
+    gender_revealed_at_week:babyGender!=="unknown"?calc.week:null,
+    updated_at:new Date().toISOString()
+  };
 
-    async function saveProfile(){
-      const city = document.getElementById("cityInput").value.trim();
-      const dueDate = document.getElementById("dueDateInput").value;
+  showMessage("info","...");
 
-      if (!city || !dueDate) {
-        showMessage("error", t().missing);
-        return;
-      }
+  let result;
+  if(currentProfile&&currentProfile.id){
+    result=await supabaseClient.from("pregnancy_profiles").update(row).eq("id",currentProfile.id).eq("user_id",currentUser.id).select().single();
+  }else{
+    result=await supabaseClient.from("pregnancy_profiles").insert(row).select().single();
+  }
 
-      const pregnancyType = document.getElementById("pregnancyType").value;
-      const babyGender = document.getElementById("babyGender").value;
-      const theme = determineTheme(pregnancyType, babyGender);
-      const pregnancy = calculatePregnancy(parseLocalDate(dueDate));
+  if(result.error){
+    console.error(result.error);
+    showMessage("error",t().error+" "+result.error.message);
+    return;
+  }
 
-      const payload = {
-        full_name:document.getElementById("fullName").value.trim(),
-        city,
-        language:document.getElementById("languageInput").value,
-        baby_name:document.getElementById("babyName").value.trim(),
-        due_date:dueDate,
-        pregnancy_week:pregnancy.week,
-        pregnancy_type:pregnancyType,
-        baby_gender:babyGender,
-        theme_mode:theme,
-        updated_at:new Date().toISOString()
-      };
+  currentProfile=result.data;
+  setLanguage(language);
+  showMessage("success",t().saved);
+  updatePreview();
+}
 
-      const { error } = await supabaseClient
-        .from("pregnancy_profiles")
-        .update(payload)
-        .eq("id", currentProfile.id)
-        .eq("user_id", currentUser.id);
+async function sendPasswordReset(){
+  if(!currentUser||!currentUser.email)return;
+  const redirectTo=window.location.origin+window.location.pathname.replace("profile.html","")+"reset-password.html";
+  const {error}=await supabaseClient.auth.resetPasswordForEmail(currentUser.email,{redirectTo});
+  if(error){
+    showMessage("error",error.message);
+    return;
+  }
+  showMessage("success",t().resetSent);
+}
 
-      if (error) {
-        showMessage("error", error.message);
-        return;
-      }
+async function signOut(){
+  await supabaseClient.auth.signOut();
+  window.location.href="index.html";
+}
 
-      currentProfile = {
-        ...currentProfile,
-        ...payload
-      };
-
-      currentLang = payload.language;
-      localStorage.setItem("mama_lang", currentLang);
-
-      applyTheme(theme);
-      setLanguage(currentLang);
-      showMessage("success", t().saved);
-    }
-
-    async function signOut(){
-      await supabaseClient.auth.signOut();
-      window.location.href = "index.html";
-    }
-
-    loadApp();
-  </script>
+loadApp();
+</script>
 </body>
 </html>

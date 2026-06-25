@@ -8,45 +8,76 @@
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
   --light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;
-  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.12);
+  --danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;
+  --shadow:rgba(74,52,40,.14);
 }
-body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.12)}
-body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.12)}
-body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(198,164,106,.22),transparent 30%),radial-gradient(circle at 92% 8%,rgba(155,115,87,.16),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-.wrap{max-width:1220px;margin:0 auto;padding:22px 18px 34px}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
 header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;text-decoration:none;letter-spacing:-.5px}
-.brand-icon{width:46px;height:46px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
-.lang-menu{position:absolute;right:0;top:48px;width:190px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:10}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
-.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:900;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
 .lang-menu button:hover{background:var(--soft)}
-.card,.hero,.panel{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 65%,var(--soft));position:relative;overflow:hidden}
-.hero:after{content:"";position:absolute;right:-70px;top:-70px;width:210px;height:210px;border-radius:50%;background:rgba(155,115,87,.10)}
-.hero-content,.hero-side{position:relative;z-index:1}
-.kicker{display:inline-flex;padding:7px 11px;border-radius:99px;background:var(--soft);color:var(--brown);font-weight:950;font-size:12px;margin-bottom:12px}
-h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:40px;letter-spacing:-1.6px;line-height:1.05}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.box,.guide-item{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.feed-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.feed-card{position:relative;overflow:hidden}
+.feed-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.progress{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
-.checkbox-row{display:flex;gap:12px;align-items:flex-start;margin-top:11px;padding:12px;border-radius:17px;border:1px solid var(--border);background:white}
-.checkbox-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.badge-dark{background:var(--brown);color:white}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
-.login-message{max-width:650px;margin:60px auto;text-align:center}.status{display:none;margin-top:12px;font-weight:900;color:var(--brown)}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.timeline{display:grid;gap:12px}
+.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
+.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
+.counter{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
+.counter button{border:1px solid var(--border);border-radius:18px;background:white;color:var(--brown);font-weight:950;padding:13px;cursor:pointer;font-family:inherit}
+.log-list{display:grid;gap:10px;margin-top:12px}
+.log-item{background:white;border:1px solid var(--border);border-radius:18px;padding:12px}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-@media(max-width:960px){.hero,.grid-2{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:31px}.grid{grid-template-columns:1fr}.card,.hero,.panel{padding:20px}.top-actions{width:100%;justify-content:flex-start}}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.counter{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -54,8 +85,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 <header>
   <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
   <div class="top-actions">
-    <a class="button-light" href="profile.html" id="uiProfile">Profil</a>
-    <button class="button-danger" onclick="signOut()" id="uiLogout">Déconnexion</button>
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
     <div class="lang-wrap">
       <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
       <div class="lang-menu" id="langMenu">
@@ -64,8 +95,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
         <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
         <button onclick="setLanguage('en')">🇬🇧 EN English</button>
         <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
-        <button onclick="setLanguage('ru')">🇷🇺 RU Русский</button>
-        <button onclick="setLanguage('uk')">🇺🇦 UK Українська</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
     </div>
   </div>
@@ -73,66 +104,133 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 
 <main id="appShell" style="display:none;">
   <section class="hero">
-    <div class="hero-content">
-      <div class="kicker" id="pageKicker">-</div>
-      <h1 id="pageTitle">-</h1>
-      <p id="pageSubtitle">-</p>
-      <div class="soft" id="profileInfo">-</div>
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Allaitement & biberon</div>
+      <h1 id="pageTitle">Nourrir bébé avec confiance</h1>
+      <p id="pageText">Un guide bienveillant pour les premiers jours : allaitement, biberon, signes de faim/satiété, couches, poids, soutien Hebamme et situations où demander de l’aide.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="phaseLabel">Phase</div><div class="stat-value" id="phaseValue">0–12 mois</div></div>
+        <div class="stat"><div class="stat-label" id="focusLabel">Focus</div><div class="stat-value" id="focusValue">Bébé nourri</div></div>
+        <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+      </div>
     </div>
     <div class="hero-side">
-      <h2 id="uiProgress">Progression</h2>
-      <p id="progressText">0 / 0</p>
-      <div class="progress"><div id="progressBar"></div></div>
+      <h2 id="importantTitle">Ultra important</h2>
+      <p id="importantText">Le plus important est que bébé boive suffisamment, prenne du poids progressivement et que la maman soit soutenue. Allaitement, tire-lait, mixte ou biberon : il faut un plan réaliste et sûr.</p>
+      <div class="warning" id="dangerNote">Demande vite de l’aide si bébé boit très peu, devient très somnolent, a peu de couches mouillées, fièvre, jaunisse marquée, vomissements répétés, ou si la maman a fièvre, douleur intense au sein, rougeur ou épuisement extrême.</div>
       <div class="actions" style="margin-top:14px;">
-        <a class="button" href="app.html" id="uiDashboard">Dashboard</a>
-        <button class="button-light" onclick="history.back()" id="uiBack">Retour</button>
+        <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
+        <a class="button-light" href="after-birth.html" id="afterBirthButton">Après naissance</a>
       </div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="uiImportant">Important</h2>
-    <div class="grid" id="cardsGrid"></div>
+    <div class="section-title">
+      <div>
+        <h2 id="basicsTitle">Bases à comprendre</h2>
+        <p id="basicsText">Des repères simples pour les premières semaines.</p>
+      </div>
+    </div>
+    <div class="grid" id="basicsGrid"></div>
   </section>
 
-  <section class="card">
-    <h2 id="uiChecklist">Checklist</h2>
-    <div id="checklistBox"></div>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button-light" onclick="resetChecklist()" id="uiReset">Réinitialiser</button>
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="trackerTitle">Mini suivi quotidien</h2>
+      <p id="trackerText">Aide locale pour noter rapidement les repas et couches. Ce n’est pas un diagnostic.</p>
+      <div class="counter">
+        <button onclick="addLog('feed')" id="feedButton">+ Repas</button>
+        <button onclick="addLog('wet')" id="wetButton">+ Couche mouillée</button>
+        <button onclick="addLog('stool')" id="stoolButton">+ Selle</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="feedLabel">Repas</div><div class="stat-value" id="feedCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="wetLabel">Mouillées</div><div class="stat-value" id="wetCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="stoolLabel">Selles</div><div class="stat-value" id="stoolCount">0</div></div>
+      </div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="clearTodayLog()" id="clearTrackerButton">Effacer aujourd’hui</button>
+      </div>
+      <div class="soft" id="trackerNote">Si tu es inquiète par le nombre de couches ou de repas, contacte Hebamme/pédiatre.</div>
+    </div>
+
+    <div class="card">
+      <h2 id="logTitle">Journal du jour</h2>
+      <div class="log-list" id="logList"></div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="checkTitle">Checklist alimentation</h2>
+      <p id="checkText">Coche ce que tu veux surveiller.</p>
+      <div id="checklistBox"></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="helpTitle">Quand demander de l’aide ?</h2>
+      <div class="box"><ul id="helpList"></ul></div>
+      <div class="soft" id="helpNote">Contacts utiles : Hebamme, Kinderarzt, Klinik, Stillberatung, 116117 si besoin hors horaires.</div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="uiGuide">Guide rapide</h2>
-    <div class="grid" id="timelineGrid"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiTips">Conseils</h2>
-    <div id="tipsBox"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiNotes">Note personnelle</h2>
-    <textarea id="personalNote"></textarea>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button" onclick="saveNote()" id="uiSaveNote">Sauvegarder la note</button>
+    <div class="section-title">
+      <div>
+        <h2 id="timelineTitle">Timeline alimentation</h2>
+        <p id="timelineText">Les besoins changent vite au début.</p>
+      </div>
     </div>
-    <div class="status" id="noteStatus"></div>
+    <div class="timeline" id="timelineBox"></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="questionsTitle">Questions à poser</h2>
+      <div class="box"><ul id="questionsList"></ul></div>
+    </div>
+    <div class="card">
+      <h2 id="notesTitle">Note personnelle</h2>
+      <p id="notesText">Note ici : poids bébé, difficultés, positions, quantités, consignes Hebamme/pédiatre.</p>
+      <textarea id="personalNote"></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder</button>
+      </div>
+      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="sourcesTitle">Sources et liens utiles</h2>
+        <p id="sourcesText">Liens officiels et fiables pour l’alimentation bébé en Allemagne.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/ernaehrung/stillen/stillen/" target="_blank" rel="noopener">kindergesundheit-info Stillen</a><span>Allaitement, avantages, soutien et recommandations pour les premiers mois.</span></div>
+      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/ernaehrung/0-12-monate/flaschenmilch/" target="_blank" rel="noopener">Flaschenmilch</a><span>Pré, 1, biberon, alimentation au lait infantile, conseils de sécurité.</span></div>
+      <div class="source-card"><a href="https://www.familienplanung.de/schwangerschaft/nach-der-geburt/das-wochenbett/stillbeginn/" target="_blank" rel="noopener">Stillbeginn</a><span>Début de l’allaitement, colostrum, peau à peau et soutien.</span></div>
+      <div class="source-card"><a href="https://gesund.bund.de/wege-im-gesundheitswesen/schwangerschaft-und-geburt/nach-der-geburt/stillen" target="_blank" rel="noopener">gesund.bund Stillen</a><span>Contacts : Hebamme et Stillberatung pour questions ou problèmes.</span></div>
+    </div>
   </section>
 
   <div class="footer-actions">
-    <button class="button-light" onclick="history.back()" id="uiBackBottom">Retour</button>
-    <a class="button-light" href="app.html">Dashboard</a>
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
   </div>
 </main>
 
 <section class="login-message card" id="loginMessage" style="display:none;">
-  <h2 id="uiLoginTitle">Connexion nécessaire</h2>
-  <p id="uiLoginText">Tu dois d’abord te connecter.</p>
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
   <br>
-  <a class="button" href="index.html" id="uiHome">Retour à l’accueil</a>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
 
@@ -142,114 +240,106 @@ const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-const PAGE_ID="feeding";
-const CONTENT={"fr": {"icon": "🍼", "title": "Allaitement & biberon", "kicker": "Nourrir bébé", "subtitle": "Suivre alimentation, couches, questions et besoins du bébé sans pression.", "cards": [["Allaitement", "Fréquence, douleur, position, soutien sage-femme."], ["Biberon", "Quantités, préparation, hygiène."], ["Couches", "Urines/selles aident à surveiller l’hydratation."]], "checklist": ["Noter tétées/biberons", "Surveiller couches", "Préparer matériel propre", "Demander aide si douleur", "Suivre poids avec pédiatre"], "timeline": [["Premiers jours", "Colostrum, apprentissage."], ["Semaines 1–4", "Rythme plus clair."], ["Si difficulté", "Demander soutien rapidement."]], "tips": ["Le meilleur choix est celui qui nourrit le bébé et protège la maman.", "Douleur persistante = demander aide."]}, "en": {"icon": "🍼", "title": "Allaitement & biberon", "kicker": "Nourrir bébé", "subtitle": "Suivre alimentation, couches, questions et besoins du bébé sans pression.", "cards": [["Allaitement", "Fréquence, douleur, position, soutien sage-femme."], ["Biberon", "Quantités, préparation, hygiène."], ["Couches", "Urines/selles aident à surveiller l’hydratation."]], "checklist": ["Noter tétées/biberons", "Surveiller couches", "Préparer matériel propre", "Demander aide si douleur", "Suivre poids avec pédiatre"], "timeline": [["Premiers jours", "Colostrum, apprentissage."], ["Semaines 1–4", "Rythme plus clair."], ["Si difficulté", "Demander soutien rapidement."]], "tips": ["Le meilleur choix est celui qui nourrit le bébé et protège la maman.", "Douleur persistante = demander aide."]}, "de": {"icon": "🍼", "title": "Allaitement & biberon", "kicker": "Nourrir bébé", "subtitle": "Suivre alimentation, couches, questions et besoins du bébé sans pression.", "cards": [["Allaitement", "Fréquence, douleur, position, soutien sage-femme."], ["Biberon", "Quantités, préparation, hygiène."], ["Couches", "Urines/selles aident à surveiller l’hydratation."]], "checklist": ["Noter tétées/biberons", "Surveiller couches", "Préparer matériel propre", "Demander aide si douleur", "Suivre poids avec pédiatre"], "timeline": [["Premiers jours", "Colostrum, apprentissage."], ["Semaines 1–4", "Rythme plus clair."], ["Si difficulté", "Demander soutien rapidement."]], "tips": ["Le meilleur choix est celui qui nourrit le bébé et protège la maman.", "Douleur persistante = demander aide."]}, "ar": {"icon": "🍼", "title": "Allaitement & biberon", "kicker": "Nourrir bébé", "subtitle": "Suivre alimentation, couches, questions et besoins du bébé sans pression.", "cards": [["Allaitement", "Fréquence, douleur, position, soutien sage-femme."], ["Biberon", "Quantités, préparation, hygiène."], ["Couches", "Urines/selles aident à surveiller l’hydratation."]], "checklist": ["Noter tétées/biberons", "Surveiller couches", "Préparer matériel propre", "Demander aide si douleur", "Suivre poids avec pédiatre"], "timeline": [["Premiers jours", "Colostrum, apprentissage."], ["Semaines 1–4", "Rythme plus clair."], ["Si difficulté", "Demander soutien rapidement."]], "tips": ["Le meilleur choix est celui qui nourrit le bébé et protège la maman.", "Douleur persistante = demander aide."]}, "tr": {"icon": "🍼", "title": "Allaitement & biberon", "kicker": "Nourrir bébé", "subtitle": "Suivre alimentation, couches, questions et besoins du bébé sans pression.", "cards": [["Allaitement", "Fréquence, douleur, position, soutien sage-femme."], ["Biberon", "Quantités, préparation, hygiène."], ["Couches", "Urines/selles aident à surveiller l’hydratation."]], "checklist": ["Noter tétées/biberons", "Surveiller couches", "Préparer matériel propre", "Demander aide si douleur", "Suivre poids avec pédiatre"], "timeline": [["Premiers jours", "Colostrum, apprentissage."], ["Semaines 1–4", "Rythme plus clair."], ["Si difficulté", "Demander soutien rapidement."]], "tips": ["Le meilleur choix est celui qui nourrit le bébé et protège la maman.", "Douleur persistante = demander aide."]}, "ru": {"icon": "🍼", "title": "Allaitement & biberon", "kicker": "Nourrir bébé", "subtitle": "Suivre alimentation, couches, questions et besoins du bébé sans pression.", "cards": [["Allaitement", "Fréquence, douleur, position, soutien sage-femme."], ["Biberon", "Quantités, préparation, hygiène."], ["Couches", "Urines/selles aident à surveiller l’hydratation."]], "checklist": ["Noter tétées/biberons", "Surveiller couches", "Préparer matériel propre", "Demander aide si douleur", "Suivre poids avec pédiatre"], "timeline": [["Premiers jours", "Colostrum, apprentissage."], ["Semaines 1–4", "Rythme plus clair."], ["Si difficulté", "Demander soutien rapidement."]], "tips": ["Le meilleur choix est celui qui nourrit le bébé et protège la maman.", "Douleur persistante = demander aide."]}, "uk": {"icon": "🍼", "title": "Allaitement & biberon", "kicker": "Nourrir bébé", "subtitle": "Suivre alimentation, couches, questions et besoins du bébé sans pression.", "cards": [["Allaitement", "Fréquence, douleur, position, soutien sage-femme."], ["Biberon", "Quantités, préparation, hygiène."], ["Couches", "Urines/selles aident à surveiller l’hydratation."]], "checklist": ["Noter tétées/biberons", "Surveiller couches", "Préparer matériel propre", "Demander aide si douleur", "Suivre poids avec pédiatre"], "timeline": [["Premiers jours", "Colostrum, apprentissage."], ["Semaines 1–4", "Rythme plus clair."], ["Si difficulté", "Demander soutien rapidement."]], "tips": ["Le meilleur choix est celui qui nourrit le bébé et protège la maman.", "Douleur persistante = demander aide."]}};
-const UI={"fr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Déconnexion", "back": "Retour", "checklist": "Checklist", "progress": "Progression", "guide": "Guide rapide", "tips": "Conseils", "notes": "Note personnelle", "saveNote": "Sauvegarder la note", "reset": "Réinitialiser", "saved": "Sauvegardé", "loginTitle": "Connexion nécessaire", "loginText": "Tu dois d’abord te connecter.", "home": "Retour à l’accueil", "language": "Langue", "open": "Ouvrir", "important": "Important", "week": "SA", "status": "Statut", "notePlaceholder": "Écris ici une note personnelle. Elle reste sur ton appareil pour le moment."}, "de": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Ausloggen", "back": "Zurück", "checklist": "Checkliste", "progress": "Fortschritt", "guide": "Kurzguide", "tips": "Tipps", "notes": "Persönliche Notiz", "saveNote": "Notiz speichern", "reset": "Zurücksetzen", "saved": "Gespeichert", "loginTitle": "Bitte einloggen", "loginText": "Du musst dich zuerst anmelden.", "home": "Zur Startseite", "language": "Sprache", "open": "Öffnen", "important": "Wichtig", "week": "SSW", "status": "Status", "notePlaceholder": "Schreibe hier eine persönliche Notiz. Sie bleibt vorerst auf deinem Gerät."}, "en": {"dashboard": "Dashboard", "profile": "Profile", "logout": "Log out", "back": "Back", "checklist": "Checklist", "progress": "Progress", "guide": "Quick guide", "tips": "Tips", "notes": "Personal note", "saveNote": "Save note", "reset": "Reset", "saved": "Saved", "loginTitle": "Please log in", "loginText": "You need to log in first.", "home": "Back to home", "language": "Language", "open": "Open", "important": "Important", "week": "Week", "status": "Status", "notePlaceholder": "Write a personal note here. For now it stays on your device."}, "ar": {"dashboard": "لوحة التحكم", "profile": "الملف", "logout": "خروج", "back": "رجوع", "checklist": "قائمة", "progress": "التقدم", "guide": "دليل سريع", "tips": "نصائح", "notes": "ملاحظة شخصية", "saveNote": "حفظ الملاحظة", "reset": "إعادة ضبط", "saved": "تم الحفظ", "loginTitle": "يرجى تسجيل الدخول", "loginText": "يجب تسجيل الدخول أولاً.", "home": "العودة للرئيسية", "language": "اللغة", "open": "فتح", "important": "مهم", "week": "أسبوع", "status": "الحالة", "notePlaceholder": "اكتبي ملاحظة شخصية هنا. حالياً تبقى على جهازك."}, "tr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Çıkış", "back": "Geri", "checklist": "Kontrol listesi", "progress": "İlerleme", "guide": "Kısa rehber", "tips": "İpuçları", "notes": "Kişisel not", "saveNote": "Notu kaydet", "reset": "Sıfırla", "saved": "Kaydedildi", "loginTitle": "Lütfen giriş yap", "loginText": "Önce giriş yapmalısın.", "home": "Ana sayfa", "language": "Dil", "open": "Aç", "important": "Önemli", "week": "Hafta", "status": "Durum", "notePlaceholder": "Kişisel notunu buraya yaz. Şimdilik cihazında kalır."}, "ru": {"dashboard": "Панель", "profile": "Профиль", "logout": "Выйти", "back": "Назад", "checklist": "Список", "progress": "Прогресс", "guide": "Краткий гид", "tips": "Советы", "notes": "Личная заметка", "saveNote": "Сохранить", "reset": "Сбросить", "saved": "Сохранено", "loginTitle": "Войдите", "loginText": "Сначала нужно войти.", "home": "На главную", "language": "Язык", "open": "Открыть", "important": "Важно", "week": "Неделя", "status": "Статус", "notePlaceholder": "Напишите личную заметку. Пока она хранится на вашем устройстве."}, "uk": {"dashboard": "Панель", "profile": "Профіль", "logout": "Вийти", "back": "Назад", "checklist": "Список", "progress": "Прогрес", "guide": "Короткий гід", "tips": "Поради", "notes": "Особиста нотатка", "saveNote": "Зберегти", "reset": "Скинути", "saved": "Збережено", "loginTitle": "Увійдіть", "loginText": "Спочатку потрібно увійти.", "home": "На головну", "language": "Мова", "open": "Відкрити", "important": "Важливо", "week": "Тиждень", "status": "Статус", "notePlaceholder": "Напишіть особисту нотатку. Поки вона зберігається на вашому пристрої."}};
-const langInfo={de:{flag:"🇩🇪",abbr:"DE"},fr:{flag:"🇫🇷",abbr:"FR"},ar:{flag:"🇸🇦",abbr:"AR"},en:{flag:"🇬🇧",abbr:"EN"},tr:{flag:"🇹🇷",abbr:"TR"},ru:{flag:"🇷🇺",abbr:"RU"},uk:{flag:"🇺🇦",abbr:"UK"}};
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"fr";
-let currentWeek=1;
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Allaitement & biberon",pageTitle:"Nourrir bébé avec confiance",pageText:"Un guide bienveillant pour les premiers jours : allaitement, biberon, signes de faim/satiété, couches, poids, soutien Hebamme et situations où demander de l’aide.",
+phaseLabel:"Phase",phaseValue:"0–12 mois",focusLabel:"Focus",focusValue:"Bébé nourri",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"Le plus important est que bébé boive suffisamment, prenne du poids progressivement et que la maman soit soutenue. Allaitement, tire-lait, mixte ou biberon : il faut un plan réaliste et sûr.",dangerNote:"Demande vite de l’aide si bébé boit très peu, devient très somnolent, a peu de couches mouillées, fièvre, jaunisse marquée, vomissements répétés, ou si la maman a fièvre, douleur intense au sein, rougeur ou épuisement extrême.",emergencyButton:"Urgence",afterBirthButton:"Après naissance",
+basicsTitle:"Bases à comprendre",basicsText:"Des repères simples pour les premières semaines.",trackerTitle:"Mini suivi quotidien",trackerText:"Aide locale pour noter rapidement les repas et couches. Ce n’est pas un diagnostic.",feedButton:"+ Repas",wetButton:"+ Couche mouillée",stoolButton:"+ Selle",feedLabel:"Repas",wetLabel:"Mouillées",stoolLabel:"Selles",clearTrackerButton:"Effacer aujourd’hui",trackerNote:"Si tu es inquiète par le nombre de couches ou de repas, contacte Hebamme/pédiatre.",logTitle:"Journal du jour",
+checkTitle:"Checklist alimentation",checkText:"Coche ce que tu veux surveiller.",resetButton:"Réinitialiser",helpTitle:"Quand demander de l’aide ?",helpNote:"Contacts utiles : Hebamme, Kinderarzt, Klinik, Stillberatung, 116117 si besoin hors horaires.",timelineTitle:"Timeline alimentation",timelineText:"Les besoins changent vite au début.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici : poids bébé, difficultés, positions, quantités, consignes Hebamme/pédiatre.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels et fiables pour l’alimentation bébé en Allemagne.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+breast:"Allaitement",bottle:"Biberon",baby:"Bébé",alert:"Alerte",empty:"Aucun élément aujourd’hui",
+basics:[
+["🤱","Allaitement","Le lait maternel s’adapte aux besoins du bébé. Le colostrum des premiers jours est précieux même en petite quantité.","breast"],
+["🍼","Biberon","Si tu ne peux pas ou ne veux pas allaiter, le lait infantile adapté permet aussi de nourrir bébé avec proximité et sécurité.","bottle"],
+["👶","Signes de faim","Bébé cherche, ouvre la bouche, tourne la tête, met les mains à la bouche, s’agite; pleurer est souvent un signe tardif.","baby"],
+["😌","Signes de satiété","Bébé ralentit, lâche le sein ou le biberon, ouvre les mains, paraît détendu ou s’endort calmement.","baby"],
+["🧼","Hygiène biberon","Préparer selon notice, mains propres, eau adaptée, matériel propre; ne pas improviser les dosages.","bottle"],
+["⚖️","Poids & couches","Le poids, les couches mouillées/selles et l’état général sont des indicateurs importants de bonne alimentation.","baby"],
+["🚨","Quand réagir","Bébé très somnolent, boit peu, couches rares, fièvre, vomissements répétés, jaunisse forte ou inquiétude parentale = avis médical.","alert"],
+["👩‍⚕️","Soutien","Hebamme, Kinderarzt, clinique et conseillère en lactation peuvent aider tôt, avant que la situation devienne trop difficile.","breast"],
+["💗","Maman aussi compte","Douleur intense, crevasses importantes, fièvre, rougeur du sein, épuisement ou détresse mentale : demander aide.","alert"]
+],
+timeline:[
+["Naissance","Peau à peau si possible, premières mises au sein ou premier biberon selon situation, colostrum, observation bébé."],
+["Jours 1–3","Apprendre les signes de faim, position, succion, quantités biberon selon avis, couches, poids, jaunisse."],
+["Semaine 1","Hebamme, suivi poids, nombril, couches, douleurs maman, adaptation allaitement/biberon."],
+["Semaines 2–6","Rythme encore variable; demander aide si douleur, fatigue extrême, doute sur quantité ou prise de poids."],
+["Après 4–6 mois","Introduction de la diversification selon développement et recommandations; lait reste central au début."]
+],
+checklist:["Bébé boit régulièrement","Couches mouillées surveillées","Selles surveillées","Poids suivi selon Hebamme/pédiatre","Maman a un contact Hebamme","Position d’allaitement/biberon confortable","Biberons préparés selon notice si utilisés","Numéro pédiatre/clinique disponible","Signes d’alerte connus","Maman reçoit nourriture, eau et repos","Douleur sein/mamelon surveillée","Questions notées pour Hebamme"],
+helpList:["Bébé boit très peu ou refuse plusieurs repas.","Bébé est anormalement somnolent, difficile à réveiller ou très faible.","Peu de couches mouillées ou signes de déshydratation.","Fièvre, vomissements répétés, jaunisse marquée ou respiration inquiétante.","Douleurs intenses au sein, fièvre, rougeur, suspicion mastite.","Crevasses importantes, saignements, douleur qui empêche de nourrir.","Maman se sent dépassée, triste, anxieuse ou épuisée de façon inquiétante."],
+questions:["Mon bébé prend-il assez de poids ?","Combien de couches mouillées/selles attendre à ce stade ?","La prise du sein ou la tétine est-elle adaptée ?","Quelle quantité de lait infantile donner selon l’âge et le poids ?","Comment préparer et conserver les biberons correctement ?","Quand dois-je appeler pédiatre, Hebamme ou clinique ?","Que faire si douleurs, crevasses, engorgement ou mastite ?","Puis-je combiner allaitement et biberon, et comment ?"]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Stillen & Flasche",pageTitle:"Baby sicher ernähren",phaseValue:"0–12 Monate",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Breastfeeding & bottle",pageTitle:"Feed baby with confidence",phaseValue:"0–12 months",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"الرضاعة والرضّاعة",pageTitle:"إطعام الطفل بثقة",phaseValue:"0–12 شهر",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
+Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
+Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
-function ui(){return UI[currentLang]||UI.fr}
-function content(){return CONTENT[currentLang]||CONTENT.fr}
+function t(){return tr[currentLang]||tr.fr}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-
 function setLanguage(lang){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  const info=langInfo[lang]||langInfo.fr;
-  document.getElementById("langTrigger").textContent=info.flag+" "+info.abbr;
-  document.getElementById("langMenu").classList.remove("open");
-  render();
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ render();
 }
-
-function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
-function addDays(d,days){const r=new Date(d);r.setDate(r.getDate()+days);return r}
-function calculatePregnancy(dueDateValue){
-  if(!dueDateValue)return currentProfile?.pregnancy_week||1;
-  const today=new Date();today.setHours(0,0,0,0);
-  const due=parseLocalDate(dueDateValue);
-  const start=addDays(due,-280);
-  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
-  if(week<1)week=1;if(week>60)week=60;
-  return week;
-}
-function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
-}
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
-}
-function stateKey(){return "mama-page-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-note-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function getChecklistState(){try{return JSON.parse(localStorage.getItem(stateKey()))||{}}catch(e){return{}}}
-function saveChecklistState(s){localStorage.setItem(stateKey(),JSON.stringify(s))}
-function toggleItem(index){
-  const s=getChecklistState();s[index]=!s[index];saveChecklistState(s);renderChecklist();
-}
-function resetChecklist(){saveChecklistState({});renderChecklist()}
-function saveNote(){
-  localStorage.setItem(noteKey(),document.getElementById("personalNote").value);
-  const el=document.getElementById("noteStatus");
-  el.textContent=ui().saved;el.style.display="block";
-  setTimeout(()=>el.style.display="none",2500);
-}
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function badge(type){if(type==="alert")return "badge badge-red";if(type==="bottle")return "badge badge-warning";if(type==="baby")return "badge badge-green";return "badge"}
+function typeText(type){if(type==="alert")return t().alert;if(type==="bottle")return t().bottle;if(type==="baby")return t().baby;return t().breast}
+function checkKey(){return "mama-feeding-check-"+(currentUser?currentUser.id:"guest")}
+function noteKey(){return "mama-feeding-note-"+(currentUser?currentUser.id:"guest")}
+function logKey(){return "mama-feeding-log-"+(currentUser?currentUser.id:"guest")+"-"+new Date().toISOString().slice(0,10)}
+function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
+function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
+function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
+function resetChecklist(){saveState({});renderChecklist()}
 function renderChecklist(){
-  const c=content();
-  const s=getChecklistState();
-  const box=document.getElementById("checklistBox");
-  box.innerHTML=(c.checklist||[]).map((item,i)=>`
-    <label class="checkbox-row">
-      <input type="checkbox" ${s[i]?"checked":""} onchange="toggleItem(${i})">
-      <span>${item}</span>
-    </label>
-  `).join("");
-  const total=(c.checklist||[]).length;
-  const done=Object.keys(s).filter(k=>s[k]).length;
-  document.getElementById("progressText").textContent=done+" / "+total;
-  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ const s=state();const items=t().checklist;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
+ const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ document.getElementById("progressValue").textContent=done+" / "+total;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
+function getLog(){try{return JSON.parse(localStorage.getItem(logKey()))||[]}catch(e){return[]}}
+function saveLog(l){localStorage.setItem(logKey(),JSON.stringify(l.slice(0,60)))}
+function addLog(type){const l=getLog();l.unshift({type,time:new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"})});saveLog(l);renderLog()}
+function clearTodayLog(){saveLog([]);renderLog()}
+function renderLog(){
+ const l=getLog();
+ document.getElementById("feedCount").textContent=l.filter(x=>x.type==="feed").length;
+ document.getElementById("wetCount").textContent=l.filter(x=>x.type==="wet").length;
+ document.getElementById("stoolCount").textContent=l.filter(x=>x.type==="stool").length;
+ const label={feed:t().feedButton.replace("+ ",""),wet:t().wetButton.replace("+ ",""),stool:t().stoolButton.replace("+ ","")};
+ document.getElementById("logList").innerHTML=l.length?l.map(x=>`<div class="log-item"><strong>${label[x.type]||x.type}</strong> · ${x.time}</div>`).join(""):`<div class="log-item">${t().empty}</div>`;
+}
+function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
 function render(){
-  const u=ui(); const c=content();
-  const map={uiProfile:"profile",uiLogout:"logout",uiProgress:"progress",uiDashboard:"dashboard",uiBack:"back",uiImportant:"important",uiChecklist:"checklist",uiGuide:"guide",uiTips:"tips",uiNotes:"notes",uiSaveNote:"saveNote",uiReset:"reset",uiBackBottom:"back",uiLoginTitle:"loginTitle",uiLoginText:"loginText",uiHome:"home"};
-  Object.entries(map).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.textContent=u[key]});
-  document.getElementById("pageKicker").textContent=c.kicker;
-  document.getElementById("pageTitle").textContent=c.icon+" "+c.title;
-  document.getElementById("pageSubtitle").textContent=c.subtitle;
-  document.getElementById("profileInfo").textContent=(currentProfile?.city?currentProfile.city+" · ":"")+u.week+" "+currentWeek;
-  document.getElementById("cardsGrid").innerHTML=(c.cards||[]).map(card=>`
-    <div class="box"><span class="badge">${u.important}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("timelineGrid").innerHTML=(c.timeline||[]).map(card=>`
-    <div class="guide-item"><span class="badge">${u.status}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("tipsBox").innerHTML=(c.tips||[]).map(x=>`<div class="soft">${x}</div>`).join("");
-  document.getElementById("personalNote").placeholder=u.notePlaceholder;
-  document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
-  renderChecklist();
+ document.getElementById("phaseValue").textContent=t().phaseValue;
+ document.getElementById("focusValue").textContent=t().focusValue;
+ document.getElementById("basicsGrid").innerHTML=t().basics.map(x=>`<div class="feed-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
+ document.getElementById("helpList").innerHTML=t().helpList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
+ renderChecklist();renderLog();
 }
 async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-  if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
-  currentUser=data.session.user;
-  const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
-  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
-  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
-  currentWeek=calculatePregnancy(currentProfile?.due_date);
-  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
-  document.getElementById("appShell").style.display="block";
-  setLanguage(currentLang);
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mama in Deutschland - Dashboard</title>
 <style>
-:root{
+:root {
   --page:#f8f3ec;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;
   --text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;
   --success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.14);
 }
-body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
-body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
-body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
+body.theme-boy {--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl {--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin {--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(201,166,107,.25),transparent 30%),radial-gradient(circle at 92% 8%,rgba(155,115,87,.16),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
 .wrap{max-width:1360px;margin:0 auto;padding:22px 18px 40px}
@@ -23,7 +23,6 @@ header{display:flex;justify-content:space-between;align-items:center;gap:16px;fl
 .button,.button-light,.button-danger,.button-green,.button-blue{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
-.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
 .button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
 .lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
@@ -49,8 +48,6 @@ p,li{margin:0;color:var(--muted);line-height:1.6}
 .stat-value{font-size:22px;color:var(--brown);font-weight:950;margin-top:6px}
 .box,.dash-card,.page-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
 .dash-card{position:relative;overflow:hidden}
-.dash-card:after{content:"";position:absolute;right:-38px;top:-38px;width:112px;height:112px;border-radius:50%;background:rgba(155,115,87,.08)}
-.dash-card>*{position:relative;z-index:1}
 .icon{width:50px;height:50px;border-radius:18px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:25px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
 .badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
@@ -67,7 +64,7 @@ input{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);
 .tabs button{border:1px solid var(--border);background:white;border-radius:999px;padding:10px 13px;font-weight:950;color:var(--brown);cursor:pointer}
 .tabs button.active{background:var(--brown);color:white;border-color:var(--brown)}
 .card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.card-actions a{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer;text-decoration:none}
+.card-actions a,.card-actions button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer;text-decoration:none}
 .page-card{display:flex;gap:12px;align-items:flex-start}
 .page-card .icon{flex:0 0 auto;margin:0}
 .page-card a.title{color:var(--brown);font-weight:950;text-decoration:none;font-size:16px;display:block;margin-bottom:4px}
@@ -80,7 +77,7 @@ input{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);
 .hidden{display:none!important}
 .empty{padding:24px;border:1px dashed var(--border);border-radius:24px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-.login-message{max-width:650px;margin:60px auto;text-align:center}
+.login-message{max-width:650px;margin:20px auto;text-align:center}
 @media(max-width:1150px){.hero,.grid-2{grid-template-columns:1fr}.grid-4,.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:880px){.grid{grid-template-columns:1fr}.search-row{grid-template-columns:1fr}.fruit-card{grid-template-columns:1fr}}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.page-card{display:block}.page-card .icon{margin-bottom:12px}}
@@ -109,7 +106,14 @@ input{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);
   </div>
 </header>
 
-<main id="appShell" style="display:none;">
+<section class="login-message card hidden" id="loginMessage">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Si tu n’es pas connecté, retourne à l’accueil. Le dashboard reste visible pour éviter la page blanche.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+</section>
+
+<main id="appShell">
   <section class="hero">
     <div class="hero-main">
       <div class="kicker" id="heroKicker">Dashboard premium</div>
@@ -120,35 +124,38 @@ input{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);
         <button class="button" onclick="renderPages()" id="searchButton">Chercher</button>
       </div>
       <div class="stats">
-        <div class="stat"><div class="stat-label" id="weekLabel">Semaine</div><div class="stat-value" id="weekValue">-</div></div>
-        <div class="stat"><div class="stat-label" id="daysLabel">Jours restants</div><div class="stat-value" id="daysValue">-</div></div>
-        <div class="stat"><div class="stat-label" id="babyLabel">Bébé</div><div class="stat-value" id="babyNameValue">-</div></div>
-        <div class="stat"><div class="stat-label" id="nextLabel">Prochain</div><div class="stat-value" id="nextMiniValue">-</div></div>
+        <div class="stat"><div class="stat-label">Semaine</div><div class="stat-value" id="weekValue">SA -</div></div>
+        <div class="stat"><div class="stat-label">Jours restants</div><div class="stat-value" id="daysValue">-</div></div>
+        <div class="stat"><div class="stat-label">Bébé</div><div class="stat-value" id="babyNameValue">Bébé</div></div>
+        <div class="stat"><div class="stat-label">Prochain</div><div class="stat-value" id="nextMiniValue">-</div></div>
       </div>
     </div>
     <div class="hero-side">
-      <h2 id="nextTitle">Prochain rendez-vous / terme important</h2>
-      <p id="nextText">Cette case reste toujours remplie avec le prochain rendez-vous utilisateur ou une étape standard calculée selon la date.</p>
-      <div class="next-box" id="nextBox"></div>
+      <h2>Prochain rendez-vous / terme important</h2>
+      <p>Cette case reste toujours remplie avec le prochain rendez-vous utilisateur ou une étape standard.</p>
+      <div class="next-box" id="nextBox">
+        <div class="next-date"><strong>✓</strong><small>OK</small></div>
+        <div><h3>Complète ton profil</h3><p>Ajoute le terme prévu pour calculer les étapes.</p><div class="card-actions"><a href="profile.html">Profil</a></div></div>
+      </div>
       <div class="actions" style="margin-top:14px;">
-        <a class="button" href="calendar.html" id="calendarButton">Voir calendrier</a>
-        <a class="button-blue" href="notifications.html" id="notificationsButton">Rappels</a>
-        <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
+        <a class="button" href="calendar.html">Voir calendrier</a>
+        <a class="button-blue" href="notifications.html">Rappels</a>
+        <a class="button-danger" href="emergency.html">Urgence</a>
       </div>
     </div>
   </section>
 
   <section class="grid-2">
     <div class="card">
-      <div class="section-title"><div><h2 id="babyOverviewTitle">Bébé maintenant</h2><p id="babyOverviewText">Poids estimé, comparaison fruit/légume et développement de la semaine.</p></div></div>
+      <div class="section-title"><div><h2>Bébé maintenant</h2><p>Poids estimé, comparaison fruit/légume et développement de la semaine.</p></div></div>
       <div class="fruit-card">
         <div class="fruit-visual" id="fruitEmoji">🍓</div>
         <div>
-          <span class="badge badge-green" id="fruitBadge">Fruit / légume</span>
-          <h3 id="fruitTitle">-</h3>
-          <p id="babyDevText">Complète ton profil pour voir les informations bébé.</p>
+          <span class="badge badge-green">Fruit / légume</span>
+          <h3 id="fruitTitle">Complète ton profil</h3>
+          <p id="babyDevText">Ajoute le terme prévu ou la semaine actuelle pour voir les informations bébé.</p>
           <div class="card-actions">
-            <a href="baby-development.html">Développement bébé</a>
+            <a href="baby-development.html">Baby development</a>
             <a href="baby-equipment.html">Équipement</a>
             <a href="baby-sleep.html">Sommeil</a>
             <a href="feeding.html">Feeding</a>
@@ -158,7 +165,7 @@ input{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);
     </div>
 
     <div class="card">
-      <div class="section-title"><div><h2 id="importantNowTitle">Important maintenant</h2><p id="importantNowText">Ce qui doit rester visible selon ta phase.</p></div></div>
+      <div class="section-title"><div><h2>Important maintenant</h2><p>Les cartes prioritaires restent visibles.</p></div></div>
       <div class="grid-2" id="importantNowGrid"></div>
     </div>
   </section>
@@ -166,10 +173,10 @@ input{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);
   <section class="card">
     <div class="section-title">
       <div>
-        <h2 id="allPagesTitle">Toutes les pages visibles depuis le Dashboard</h2>
-        <p id="allPagesText">Baby development, mother recovery, feeding et toutes les autres pages sont maintenant affichées ici.</p>
+        <h2>Toutes les pages visibles depuis le Dashboard</h2>
+        <p>Baby development, Mother recovery, Feeding et toutes les autres pages sont maintenant directement accessibles ici.</p>
       </div>
-      <a class="button-light" href="sitemap.html" id="sitemapButton">Plan du site</a>
+      <a class="button-light" href="sitemap.html">Plan du site</a>
     </div>
     <div class="tabs" id="tabsBox"></div>
     <div class="grid" id="pagesGrid"></div>
@@ -178,42 +185,33 @@ input{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);
 
   <section class="grid-2">
     <div class="card">
-      <h2 id="laterTitle">Important plus tard</h2>
+      <h2>Important plus tard</h2>
       <div class="grid-2" id="laterGrid"></div>
     </div>
     <div class="card">
-      <h2 id="communityTitle">Communauté & aide</h2>
+      <h2>Communauté & aide</h2>
       <div class="grid-2" id="communityGrid"></div>
     </div>
   </section>
 
   <div class="footer-actions">
-    <a class="button-light" href="help.html" id="helpButton">Aide</a>
-    <a class="button" href="sitemap.html" id="bottomSitemapButton">Toutes les pages</a>
+    <a class="button-light" href="help.html">Aide</a>
+    <a class="button" href="sitemap.html">Toutes les pages</a>
   </div>
 </main>
-
-<section class="login-message card" id="loginMessage" style="display:none;">
-  <h2 id="loginTitle">Connexion nécessaire</h2>
-  <p id="loginText">Tu dois d’abord te connecter.</p>
-  <br>
-  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
-</section>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+let supabaseClient = null;
+try { supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch(e) { console.warn(e); }
 
 const ADMIN_USER_IDS=["d4743994-af4c-4623-b6da-e8e9a7645a8e"];
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",activeSection="all";
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
-
-const sections=[
- ["all","Tout"],["pregnancy","Grossesse"],["baby","Bébé"],["mama","Maman"],["admin","Documents"],["community","Communauté"],["account","Compte"],["support","Support"]
-];
+const sections=[["all","Tout"],["pregnancy","Grossesse"],["baby","Bébé"],["mama","Maman"],["admin","Documents"],["community","Communauté"],["account","Compte"],["support","Support"]];
 
 const pages=[
  {s:"pregnancy",i:"🗓️",t:"Calendrier",f:"calendar.html",d:"Rendez-vous utilisateur + standards, prochain terme important."},
@@ -227,7 +225,7 @@ const pages=[
  {s:"baby",i:"🌱",t:"Baby development / Développement bébé",f:"baby-development.html",d:"0–12 mois, U-Untersuchungen, motricité, communication."},
  {s:"baby",i:"💉",t:"Vaccinations bébé",f:"vaccinations.html",d:"RSV, rotavirus, 6-fach, pneumocoques, ROR, varicelle."},
  {s:"baby",i:"🍼",t:"After birth / Après naissance",f:"after-birth.html",d:"Premiers jours, U2/U3, retour maison."},
- {s:"baby",i:"🍼",t:"Feeding / Allaitement & biberon",f:"feeding.html",d:"Allaitement, biberon, tire-lait, douleurs, rythme."},
+ {s:"baby",i:"🤱",t:"Feeding / Allaitement & biberon",f:"feeding.html",d:"Allaitement, biberon, tire-lait, douleurs, rythme."},
  {s:"baby",i:"🛏️",t:"Équipement bébé",f:"baby-equipment.html",d:"Lit, poussette, siège auto, vêtements, sécurité."},
  {s:"baby",i:"🌙",t:"Sommeil bébé",f:"baby-sleep.html",d:"Sommeil sûr, rythme, environnement."},
 
@@ -259,137 +257,70 @@ const pages=[
  {s:"admin-only",i:"📊",t:"Admin général",f:"admin.html",d:"Dashboard administrateur global."}
 ];
 
-const tr={
-fr:{
-profileButton:"Profil",settingsButton:"Paramètres",logoutButton:"Déconnexion",heroKicker:"Dashboard premium",heroText:"Ton espace complet pour suivre la grossesse, les rendez-vous, bébé, maman, documents, communauté, marketplace et urgences en Allemagne.",searchButton:"Chercher",weekLabel:"Semaine",daysLabel:"Jours restants",babyLabel:"Bébé",nextLabel:"Prochain",nextTitle:"Prochain rendez-vous / terme important",nextText:"Cette case reste toujours remplie avec le prochain rendez-vous utilisateur ou une étape standard calculée selon la date.",calendarButton:"Voir calendrier",notificationsButton:"Rappels",emergencyButton:"Urgence",babyOverviewTitle:"Bébé maintenant",babyOverviewText:"Poids estimé, comparaison fruit/légume et développement de la semaine.",importantNowTitle:"Important maintenant",importantNowText:"Ce qui doit rester visible selon ta phase.",allPagesTitle:"Toutes les pages visibles depuis le Dashboard",allPagesText:"Baby development, mother recovery, feeding et toutes les autres pages sont maintenant affichées ici.",sitemapButton:"Plan du site",laterTitle:"Important plus tard",communityTitle:"Communauté & aide",helpButton:"Aide",bottomSitemapButton:"Toutes les pages",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",open:"Ouvrir",noDue:"Complète le profil",today:"Aujourd’hui"},
-de:{},en:{},ar:{},tr:{},ru:{},uk:{}}
-};
-["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",heroKicker:"Premium Dashboard",bottomSitemapButton:"Alle Seiten"});
-Object.assign(tr.en,{logoutButton:"Log out",heroKicker:"Premium dashboard",bottomSitemapButton:"All pages"});
-Object.assign(tr.ar,{logoutButton:"خروج",heroKicker:"لوحة التحكم",bottomSitemapButton:"كل الصفحات"});
-function t(){return tr[currentLang]||tr.fr}
 function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-function setLanguage(lang){
- currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
- const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
- Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el && typeof t()[id]==="string")el.textContent=t()[id]});
- renderAll();
-}
+function setLanguage(lang){currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];renderAll();}
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
-function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin");}
 function parseDate(v){if(!v)return null;const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
 function calcPregnancy(){
  const due=currentProfile?.due_date;
- if(due){
-  const today=new Date();today.setHours(0,0,0,0);
-  const dueDate=parseDate(due);dueDate.setHours(0,0,0,0);
-  const start=new Date(dueDate);start.setDate(start.getDate()-280);
-  let days=Math.floor((today-start)/86400000);
-  let week=Math.floor(days/7)+1;
-  let daysLeft=Math.ceil((dueDate-today)/86400000);
-  if(week<1)week=1;if(week>42)week=42;
-  return {week,daysLeft,dueDate};
- }
- const week=Number(currentProfile?.pregnancy_week||1);
- return {week:Math.max(1,Math.min(42,week)),daysLeft:"-",dueDate:null};
+ if(due){const today=new Date();today.setHours(0,0,0,0);const dueDate=parseDate(due);dueDate.setHours(0,0,0,0);const start=new Date(dueDate);start.setDate(start.getDate()-280);let days=Math.floor((today-start)/86400000);let week=Math.floor(days/7)+1;let daysLeft=Math.ceil((dueDate-today)/86400000);if(week<1)week=1;if(week>42)week=42;return {week,daysLeft,dueDate};}
+ const week=Number(currentProfile?.pregnancy_week||1);return {week:Math.max(1,Math.min(42,week)),daysLeft:"-",dueDate:null};
 }
-const fruits=[
- [4,"🌱","graine","≈1 mm"],[8,"🫐","myrtille","≈1 g"],[10,"🍒","cerise","≈4 g"],[12,"🍋","citron vert","≈14 g"],[14,"🍑","pêche","≈43 g"],[16,"🥑","avocat","≈100 g"],[18,"🥒","concombre","≈190 g"],[20,"🍌","banane","≈300 g"],[22,"🥭","mangue","≈430 g"],[24,"🌽","maïs","≈600 g"],[26,"🥬","laitue","≈760 g"],[28,"🍆","aubergine","≈1000 g"],[30,"🥥","noix de coco","≈1300 g"],[32,"🍍","ananas","≈1700 g"],[34,"🍈","melon","≈2100 g"],[36,"🥬","chou","≈2600 g"],[38,"🎃","petit potiron","≈3100 g"],[40,"🍉","pastèque","≈3400 g"]
-];
+const fruits=[[4,"🌱","graine","≈1 mm"],[8,"🫐","myrtille","≈1 g"],[10,"🍒","cerise","≈4 g"],[12,"🍋","citron vert","≈14 g"],[14,"🍑","pêche","≈43 g"],[16,"🥑","avocat","≈100 g"],[18,"🥒","concombre","≈190 g"],[20,"🍌","banane","≈300 g"],[22,"🥭","mangue","≈430 g"],[24,"🌽","maïs","≈600 g"],[26,"🥬","laitue","≈760 g"],[28,"🍆","aubergine","≈1000 g"],[30,"🥥","noix de coco","≈1300 g"],[32,"🍍","ananas","≈1700 g"],[34,"🍈","melon","≈2100 g"],[36,"🥬","chou","≈2600 g"],[38,"🎃","petit potiron","≈3100 g"],[40,"🍉","pastèque","≈3400 g"]];
 function fruitForWeek(w){let f=fruits[0];for(const x of fruits){if(w>=x[0])f=x}return f}
-function greeting(){
- const h=new Date().getHours();const mom=currentProfile?.mother_name||"Mama";
- const g=h<12?"Bonjour":h<18?"Bon après-midi":"Bonsoir";
- return `${g} ${mom}`;
-}
-function standardMilestones(){
- const {week,dueDate}=calcPregnancy();
- const arr=[];
- if(dueDate){
-  const add=(title,daysBefore,file)=>{const d=new Date(dueDate);d.setDate(d.getDate()-daysBefore);arr.push({title,date:d,file});};
-  add("Clarté nucale / Ersttrimester",280-84,"tests.html");
-  add("NIPT / dépistages",280-70,"tests.html");
-  add("Échographie morphologique",280-140,"tests.html");
-  add("Préparer valise maternité",56,"hospitalbag.html");
-  add("Confirmer Kreißsaal",42,"birth-preparation.html");
-  add("Installer siège auto",28,"baby-equipment.html");
-  add("Terme prévu",0,"calendar.html");
-  const today=new Date();today.setHours(0,0,0,0);
-  return arr.filter(x=>x.date>=today).sort((a,b)=>a.date-b.date);
- }
- const stage = week<20 ? "Tests & diagnostic" : week<32 ? "Documents et préparation" : "Valise maternité";
- return [{title:stage,date:new Date(),file:week<20?"tests.html":week<32?"documents.html":"hospitalbag.html"}];
-}
-function localReminders(){
- const out=[];
- for(let i=0;i<localStorage.length;i++){
-  const key=localStorage.key(i);
-  if(key && key.includes("reminders") && key.includes(currentUser?.id||"guest")){
-   try{(JSON.parse(localStorage.getItem(key))||[]).forEach(r=>{if(r.date&&!r.done)out.push({title:r.title||"Rappel",date:new Date(r.date+"T"+(r.time||"09:00")),file:"notifications.html"});});}catch(e){}
-  }
- }
- const today=new Date();today.setHours(0,0,0,0);
- return out.filter(x=>x.date>=today);
-}
-function getNextItem(){
- const all=[...localReminders(),...standardMilestones()].sort((a,b)=>a.date-b.date);
- return all[0]||{title:t().noDue,date:new Date(),file:"profile.html"};
-}
+function greeting(){const h=new Date().getHours();const mom=currentProfile?.mother_name||"Mama";const g=h<12?"Bonjour":h<18?"Bon après-midi":"Bonsoir";return `${g} ${mom}`;}
+function getNextItem(){const c=calcPregnancy();if(c.dueDate){const d=new Date(c.dueDate);d.setDate(d.getDate()-56);if(d>=new Date())return {title:"Préparer valise maternité",date:d,file:"hospitalbag.html"};return {title:"Terme prévu",date:c.dueDate,file:"calendar.html"};}return {title:"Complète ton profil",date:new Date(),file:"profile.html"};}
+function sectionName(s){return (sections.find(x=>x[0]===s)||["",s])[1]}
 function renderHero(){
  const c=calcPregnancy(), f=fruitForWeek(c.week);
  document.getElementById("greetingTitle").textContent=greeting();
  document.getElementById("weekValue").textContent="SA "+c.week;
  document.getElementById("daysValue").textContent=c.daysLeft;
- document.getElementById("babyNameValue").textContent=currentProfile?.baby_name || (currentProfile?.baby_gender==="girl"?"Bébé fille":currentProfile?.baby_gender==="boy"?"Bébé garçon":"Bébé");
+ document.getElementById("babyNameValue").textContent=currentProfile?.baby_name || "Bébé";
  document.getElementById("fruitEmoji").textContent=f[1];
  document.getElementById("fruitTitle").textContent=`SA ${c.week} · ${f[2]} · ${f[3]}`;
- document.getElementById("babyDevText").textContent=`À cette période, bébé grandit progressivement. Ouvre “Développement bébé” pour voir les repères et les questions à poser au Kinderarzt/Hebamme.`;
- const n=getNextItem();
- const d=n.date;
- const month=d.toLocaleString(currentLang==="fr"?"fr-FR":"de-DE",{month:"short"});
- const day=d.getDate();
+ document.getElementById("babyDevText").textContent="Ouvre Développement bébé pour voir les repères, les étapes et les questions importantes.";
+ const n=getNextItem(); const d=n.date; const month=d.toLocaleString("fr-FR",{month:"short"});
  document.getElementById("nextMiniValue").textContent=d.toLocaleDateString();
- document.getElementById("nextBox").innerHTML=`<div class="next-date"><strong>${day}</strong><small>${month}</small></div><div><h3>${escapeHtml(n.title)}</h3><p>${d.toLocaleDateString()} · toujours visible</p><div class="card-actions"><a href="${n.file}">Ouvrir</a></div></div>`;
+ document.getElementById("nextBox").innerHTML=`<div class="next-date"><strong>${d.getDate()}</strong><small>${month}</small></div><div><h3>${escapeHtml(n.title)}</h3><p>${d.toLocaleDateString()} · toujours visible</p><div class="card-actions"><a href="${n.file}">Ouvrir</a></div></div>`;
 }
-function smallCard(p){return `<div class="dash-card"><div class="icon">${p.i}</div><span class="badge">${sectionName(p.s)}</span><h3>${p.t}</h3><p>${p.d}</p><div class="card-actions"><a href="${p.f}">${t().open}</a></div></div>`}
-function sectionName(s){return (sections.find(x=>x[0]===s)||["",s])[1]}
+function smallCard(p){return `<div class="dash-card"><div class="icon">${p.i}</div><span class="badge">${sectionName(p.s)}</span><h3>${p.t}</h3><p>${p.d}</p><div class="card-actions"><a href="${p.f}">Ouvrir</a></div></div>`}
 function renderHighlights(){
- const must=["tests.html","hospitalbag.html","documents.html","emergency.html"];
- document.getElementById("importantNowGrid").innerHTML=pages.filter(p=>must.includes(p.f)).map(smallCard).join("");
- const later=["birth-preparation.html","baby-equipment.html","vaccinations.html","mother-recovery.html"];
- document.getElementById("laterGrid").innerHTML=pages.filter(p=>later.includes(p.f)).map(smallCard).join("");
- const comm=["near-me.html","share-experience.html","marketplace.html","help.html"];
- document.getElementById("communityGrid").innerHTML=pages.filter(p=>comm.includes(p.f)).map(smallCard).join("");
+ document.getElementById("importantNowGrid").innerHTML=pages.filter(p=>["tests.html","hospitalbag.html","documents.html","emergency.html"].includes(p.f)).map(smallCard).join("");
+ document.getElementById("laterGrid").innerHTML=pages.filter(p=>["birth-preparation.html","baby-equipment.html","vaccinations.html","mother-recovery.html"].includes(p.f)).map(smallCard).join("");
+ document.getElementById("communityGrid").innerHTML=pages.filter(p=>["near-me.html","share-experience.html","marketplace.html","help.html"].includes(p.f)).map(smallCard).join("");
 }
-function renderTabs(){
- document.getElementById("tabsBox").innerHTML=sections.map(s=>`<button class="${activeSection===s[0]?"active":""}" onclick="activeSection='${s[0]}';renderTabs();renderPages();">${s[1]}</button>`).join("");
-}
+function renderTabs(){document.getElementById("tabsBox").innerHTML=sections.map(s=>`<button class="${activeSection===s[0]?"active":""}" onclick="activeSection='${s[0]}';renderTabs();renderPages();">${s[1]}</button>`).join("");}
 function renderPages(){
  const isAdmin=ADMIN_USER_IDS.includes(currentUser?.id);
  const q=(document.getElementById("pageSearch")?.value||"").trim().toLowerCase();
- const visible=pages.filter(p=>p.s!=="admin-only"||isAdmin).filter(p=>activeSection==="all"||p.s===activeSection).filter(p=>{
-  const blob=(p.t+" "+p.f+" "+p.d+" "+p.s).toLowerCase();
-  return !q || blob.includes(q);
- });
+ const visible=pages.filter(p=>p.s!=="admin-only"||isAdmin).filter(p=>activeSection==="all"||p.s===activeSection).filter(p=>!q||(p.t+" "+p.f+" "+p.d+" "+p.s).toLowerCase().includes(q));
  document.getElementById("noResult").classList.toggle("hidden",visible.length!==0);
- document.getElementById("pagesGrid").innerHTML=visible.map(p=>`<div class="page-card"><div class="icon">${p.i}</div><div><span class="badge">${sectionName(p.s)}</span><a class="title" href="${p.f}">${escapeHtml(p.t)}</a><p>${escapeHtml(p.d)}</p><div class="card-actions"><a href="${p.f}">${t().open}</a></div></div></div>`).join("");
+ document.getElementById("pagesGrid").innerHTML=visible.map(p=>`<div class="page-card"><div class="icon">${p.i}</div><div><span class="badge">${sectionName(p.s)}</span><a class="title" href="${p.f}">${escapeHtml(p.t)}</a><p>${escapeHtml(p.d)}</p><div class="card-actions"><a href="${p.f}">Ouvrir</a></div></div></div>`).join("");
 }
 function renderAll(){renderHero();renderHighlights();renderTabs();renderPages();}
 async function loadApp(){
- const {data,error}=await supabaseClient.auth.getSession();
- if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
- currentUser=data.session.user;
- const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
- currentProfile=(profiles&&profiles[0])?profiles[0]:null;
- currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
- if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";
- setLanguage(currentLang);
+ try {
+   if(!supabaseClient) throw new Error("Supabase non chargé");
+   const sessionRes=await supabaseClient.auth.getSession();
+   if(sessionRes.error || !sessionRes.data.session){document.getElementById("loginMessage").classList.remove("hidden");renderAll();return;}
+   currentUser=sessionRes.data.session.user;
+   const profileRes=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+   if(!profileRes.error && profileRes.data && profileRes.data[0]) currentProfile=profileRes.data[0];
+   currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+   if(currentProfile) applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+   setLanguage(currentLang);
+ } catch(e) {
+   console.error("Dashboard fallback:", e);
+   document.getElementById("loginMessage").classList.remove("hidden");
+   renderAll();
+ }
 }
-async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+async function signOut(){try{if(supabaseClient) await supabaseClient.auth.signOut();}catch(e){} window.location.href="index.html";}
+renderAll();
 loadApp();
 </script>
 </body>

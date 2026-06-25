@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Plan du site</title>
+<style>
+:root{
+  --page:#f8f3ec;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;
+  --text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;
+  --success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.14);
+}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(201,166,107,.25),transparent 30%),radial-gradient(circle at 92% 8%,rgba(155,115,87,.16),transparent 30%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
+.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.button,.button-light,.button-danger,.button-green,.button-blue{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button{background:var(--brown);color:white;border-color:var(--brown)}
+.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
+.button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}
+.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
+.lang-menu.open{display:block}
+.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}
+.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
+.hero-main,.hero-side{position:relative;z-index:1}
+.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}
+h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
+h2{font-size:26px;letter-spacing:-.8px}
+h3{font-size:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
+.stat-label{font-size:12px;color:var(--muted);font-weight:950}
+.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.page-card,.box,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.page-card{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:190px}
+.page-card:after{content:"";position:absolute;right:-44px;top:-44px;width:126px;height:126px;border-radius:50%;background:rgba(155,115,87,.08)}
+.page-card>*{position:relative;z-index:1}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
+.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
+.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.search-row{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px}
+input,select{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{border:1px solid var(--border);background:white;border-radius:999px;padding:10px 13px;font-weight:950;color:var(--brown);cursor:pointer}
+.tabs button.active{background:var(--brown);color:white;border-color:var(--brown)}
+.page-card a.title{color:var(--brown);font-weight:950;text-decoration:none;font-size:18px;margin-bottom:8px;display:block}
+.page-card .file{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;color:var(--muted);background:white;border:1px solid var(--border);padding:7px 9px;border-radius:12px;margin:9px 0}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:14px}
+.card-actions a,.card-actions button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer;text-decoration:none}
+.hidden{display:none!important}
+.empty{padding:26px;border:1px dashed var(--border);border-radius:24px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
+.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.search-row{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+  <div class="top-actions">
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Plan du site</div>
+      <h1 id="pageTitle">Toutes les pages de Mama in Deutschland</h1>
+      <p id="pageText">Une carte complète pour retrouver rapidement chaque page : dashboard, grossesse, bébé, maman, documents, communauté, marketplace, admin, paramètres et support.</p>
+      <div class="search-row">
+        <input id="searchInput" oninput="renderPages()" placeholder="Chercher une page : bébé, document, urgence, marketplace...">
+        <button class="button" onclick="renderPages()" id="searchButton">Chercher</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="totalLabel">Pages affichées</div><div class="stat-value" id="visibleCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="sectionsLabel">Sections</div><div class="stat-value">9</div></div>
+        <div class="stat"><div class="stat-label" id="accountLabel">Compte</div><div class="stat-value" id="accountValue">-</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">Utilisation rapide</h2>
+      <p id="importantText">Clique sur une catégorie, puis ouvre la page. Le bouton “Copier lien” aide à partager une URL précise pendant les tests.</p>
+      <div class="success" id="copyStatus">Plan du site prêt.</div>
+      <div class="warning" id="cacheNote">Après modification GitHub, teste avec ?v=nouveau-numéro pour éviter le cache navigateur.</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button" href="app.html" id="dashboardTopButton">Dashboard</a>
+        <a class="button-light" href="help.html" id="helpTopButton">Aide</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="tabs" id="tabsBox"></div>
+    <div id="pagesGrid" class="grid"></div>
+    <div id="noResult" class="empty hidden">Aucune page trouvée.</div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="recommendedTitle">Parcours conseillé</h2>
+      <div class="box">
+        <ol id="recommendedList"></ol>
+      </div>
+    </div>
+    <div class="card">
+      <h2 id="testTitle">Tests rapides</h2>
+      <div class="box">
+        <ul id="testList"></ul>
+      </div>
+      <div class="soft" id="testNote">Le fichier sitemap.html sert aussi de contrôle final : si une page manque ici, ajoute-la aussi dans le dashboard ou dans l’aide.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="quickLinksTitle">Liens essentiels</h2>
+        <p id="quickLinksText">Les pages les plus importantes quand une maman ouvre la plateforme.</p>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="source-card"><a href="app.html">Dashboard</a><span>Page centrale de l’utilisatrice.</span></div>
+      <div class="source-card"><a href="emergency.html">Urgence</a><span>Numéros et conduite à tenir.</span></div>
+      <div class="source-card"><a href="calendar.html">Calendrier</a><span>Rendez-vous et termes importants.</span></div>
+      <div class="source-card"><a href="profile.html">Profil</a><span>Langue, thème, terme, semaine, bébé.</span></div>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
+    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
+  </div>
+</main>
+
+<section class="login-message card" id="loginMessage" style="display:none;">
+  <h2 id="loginTitle">Connexion nécessaire</h2>
+  <p id="loginText">Tu dois d’abord te connecter.</p>
+  <br>
+  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+</section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+let activeSection="all";
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+
+const sections=[
+ ["all","Tout"],
+ ["main","Accueil"],
+ ["pregnancy","Grossesse"],
+ ["mama","Maman"],
+ ["baby","Bébé"],
+ ["admin","Administratif"],
+ ["community","Communauté"],
+ ["account","Compte"],
+ ["support","Support"]
+];
+
+const pages=[
+ {section:"main",icon:"🏠",title:"Accueil / Connexion",file:"index.html",desc:"Page publique : connexion, création compte, mot de passe oublié, choix langue initial."},
+ {section:"main",icon:"✨",title:"Dashboard",file:"app.html",desc:"Centre principal : bonjour mama, semaine, bébé, poids/fruit, prochain rendez-vous, important maintenant et plus tard."},
+ {section:"pregnancy",icon:"🗓️",title:"Calendrier",file:"calendar.html",desc:"Rendez-vous utilisateur, rendez-vous standards, étapes importantes et prochaine date."},
+ {section:"pregnancy",icon:"🧪",title:"Tests & diagnostic",file:"tests.html",desc:"Clarté nucale, NIPT, échographies, dépistages, questions à poser."},
+ {section:"pregnancy",icon:"🏥",title:"Rendez-vous médicaux",file:"appointments.html",desc:"Organisation Frauenarzt, Hebamme, Kreißsaal, examens et préparation consultation."},
+ {section:"pregnancy",icon:"🧳",title:"Valise maternité",file:"hospitalbag.html",desc:"Checklist maternité selon fin de grossesse, documents, maman, bébé, partenaire."},
+ {section:"pregnancy",icon:"👶",title:"Préparation naissance",file:"birth-preparation.html",desc:"Kreißsaal, plan, accompagnant, contractions, arrivée clinique et questions."},
+ {section:"pregnancy",icon:"📝",title:"Plan de naissance",file:"birth-plan.html",desc:"Préférences accouchement, douleur, peau à peau, allaitement, césarienne, questions."},
+ {section:"pregnancy",icon:"🚑",title:"Urgence",file:"emergency.html",desc:"Signaux d’alerte grossesse/bébé, 112, 116117, clinique, Kinderarzt."},
+ {section:"mama",icon:"👩",title:"Santé maman",file:"mother-health.html",desc:"Symptômes, tension, douleurs, fatigue, signaux d’alerte et suivi."},
+ {section:"mama",icon:"💗",title:"Émotions maman",file:"emotions.html",desc:"Stress, peur, moral, baby blues, soutien, quand demander de l’aide."},
+ {section:"mama",icon:"🍽️",title:"Nutrition grossesse",file:"nutrition.html",desc:"Alimentation, hydratation, compléments, prudence aliments, organisation."},
+ {section:"mama",icon:"🧘",title:"Récupération maman",file:"mother-recovery.html",desc:"Wochenbett, périnée, césarienne, plancher pelvien, repos, moral."},
+ {section:"mama",icon:"🤱",title:"Allaitement / biberon",file:"feeding.html",desc:"Allaitement, biberon, tire-lait, douleurs, rythme, conseils et signaux."},
+ {section:"baby",icon:"🛏️",title:"Équipement bébé",file:"baby-equipment.html",desc:"Lit, poussette, siège auto, vêtements, hygiène, sécurité, priorités d’achat."},
+ {section:"baby",icon:"🌙",title:"Sommeil bébé",file:"baby-sleep.html",desc:"Sommeil sûr, rythme, environnement, fatigue et questions à poser."},
+ {section:"baby",icon:"🍼",title:"Après naissance",file:"after-birth.html",desc:"Premiers jours, U2/U3, documents, bébé, maman, clinique, retour maison."},
+ {section:"baby",icon:"🌱",title:"Développement bébé",file:"baby-development.html",desc:"0–12 mois, adaptation, éveil, motricité, communication, U-Untersuchungen."},
+ {section:"baby",icon:"💉",title:"Vaccinations bébé",file:"vaccinations.html",desc:"Calendrier vaccinal allemand, STIKO/RKI, RSV, rotavirus, 6-fach, ROR, varicelle."},
+ {section:"admin",icon:"📄",title:"Documents",file:"documents.html",desc:"Standesamt, Geburtsurkunde, Kindergeld, Elterngeld, Krankenkasse, Mutterschutz."},
+ {section:"admin",icon:"💶",title:"Elterngeld",file:"elterngeld.html",desc:"Préparer demande, documents, délais, questions et liens utiles."},
+ {section:"admin",icon:"👨‍👩‍👧",title:"Kindergeld",file:"kindergeld.html",desc:"Démarches Familienkasse, documents, IBAN, identifiants et suivi."},
+ {section:"admin",icon:"🏛️",title:"Standesamt",file:"standesamt.html",desc:"Déclaration naissance, Geburtsurkunde, documents étrangers, délais."},
+ {section:"community",icon:"📍",title:"Près de moi",file:"near-me.html",desc:"Recherche locale Hebamme, Kinderarzt, Frauenarzt, Kreißsaal, Beratung, pharmacie."},
+ {section:"community",icon:"📜",title:"Règles communauté",file:"community-rules.html",desc:"Respect, confidentialité, santé, marketplace, modération et signalement."},
+ {section:"community",icon:"💬",title:"Share your experience",file:"share-experience.html",desc:"Partager expériences, lire posts, commenter, signaler, réactions utiles."},
+ {section:"community",icon:"🧺",title:"Marketplace",file:"marketplace.html",desc:"Donner, vendre, chercher matériel bébé, commentaires, sécurité."},
+ {section:"account",icon:"👤",title:"Profil",file:"profile.html",desc:"Prénom maman/bébé, terme, semaine, thème, langue, grossesse simple/jumeaux."},
+ {section:"account",icon:"⚙️",title:"Paramètres",file:"settings.html",desc:"Modules visibles, priorités dashboard, communauté, langue, thème, export."},
+ {section:"account",icon:"🔔",title:"Notifications",file:"notifications.html",desc:"Rappels locaux, notification test, export .ics, rappels standards."},
+ {section:"support",icon:"❓",title:"Aide",file:"help.html",desc:"Guide, erreurs 404/cache, Supabase, FAQ, diagnostic bug."},
+ {section:"support",icon:"ℹ️",title:"À propos",file:"about.html",desc:"Mission, limites, valeurs, vision future et confidentialité."},
+ {section:"support",icon:"✉️",title:"Contact",file:"contact.html",desc:"Formulaire contact, bug, idée, partenariat, fallback local."},
+ {section:"support",icon:"🧭",title:"Plan du site",file:"sitemap.html",desc:"Toutes les pages et navigation complète."},
+ {section:"admin",icon:"🛡️",title:"Admin modération",file:"admin-moderation.html",desc:"Modération communauté, commentaires, marketplace, signalements, admin only."},
+ {section:"admin",icon:"📊",title:"Admin général",file:"admin.html",desc:"Dashboard administrateur global si disponible dans le projet."}
+];
+
+const tr={
+fr:{
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Plan du site",pageTitle:"Toutes les pages de Mama in Deutschland",pageText:"Une carte complète pour retrouver rapidement chaque page : dashboard, grossesse, bébé, maman, documents, communauté, marketplace, admin, paramètres et support.",searchButton:"Chercher",totalLabel:"Pages affichées",sectionsLabel:"Sections",accountLabel:"Compte",importantTitle:"Utilisation rapide",importantText:"Clique sur une catégorie, puis ouvre la page. Le bouton “Copier lien” aide à partager une URL précise pendant les tests.",copyStatus:"Plan du site prêt.",cacheNote:"Après modification GitHub, teste avec ?v=nouveau-numéro pour éviter le cache navigateur.",dashboardTopButton:"Dashboard",helpTopButton:"Aide",recommendedTitle:"Parcours conseillé",testTitle:"Tests rapides",testNote:"Le fichier sitemap.html sert aussi de contrôle final : si une page manque ici, ajoute-la aussi dans le dashboard ou dans l’aide.",quickLinksTitle:"Liens essentiels",quickLinksText:"Les pages les plus importantes quand une maman ouvre la plateforme.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",open:"Ouvrir",copy:"Copier lien",copied:"Lien copié.",recommended:["index.html → connexion / création compte","profile.html → compléter terme, langue, thème","app.html → vérifier dashboard","calendar.html + notifications.html → ajouter rendez-vous réels","documents.html → préparer démarches","emergency.html + near-me.html → garder aide réelle disponible","community-rules.html → lire avant communauté/marketplace"],tests:["Ouvrir chaque page avec ?v=3400 ou plus.","Vérifier que Mama in Deutschland revient toujours au dashboard.","Vérifier que la langue compacte reste visible.","Vérifier que retour en bas existe.","Tester mobile Safari/Chrome.","Tester compte admin pour admin-moderation.html."]},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}}
+};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Sitemap",pageTitle:"Alle Seiten von Mama in Deutschland",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Sitemap",pageTitle:"All Mama in Deutschland pages",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"خريطة الموقع",pageTitle:"كل صفحات Mama in Deutschland",bottomBackButton:"رجوع"});
+function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
+document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+function setLanguage(lang){
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el && typeof t()[id]==="string")el.textContent=t()[id]});
+ renderTabs();renderPages();renderLists();
+}
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function renderTabs(){
+ document.getElementById("tabsBox").innerHTML=sections.map(s=>`<button class="${activeSection===s[0]?"active":""}" onclick="activeSection='${s[0]}';renderTabs();renderPages();">${s[1]}</button>`).join("");
+}
+function badgeClass(sec){
+ if(sec==="admin")return"badge badge-red";
+ if(sec==="community")return"badge badge-blue";
+ if(sec==="baby")return"badge badge-green";
+ if(sec==="pregnancy")return"badge badge-warning";
+ return"badge";
+}
+function sectionName(sec){return (sections.find(s=>s[0]===sec)||["",sec])[1]}
+function renderPages(){
+ const q=(document.getElementById("searchInput")?.value||"").trim().toLowerCase();
+ const filtered=pages.filter(p=>(activeSection==="all"||p.section===activeSection)).filter(p=>{
+  const blob=(p.title+" "+p.file+" "+p.desc+" "+p.section).toLowerCase();
+  return !q || blob.includes(q);
+ });
+ document.getElementById("visibleCount").textContent=filtered.length;
+ document.getElementById("noResult").classList.toggle("hidden",filtered.length!==0);
+ document.getElementById("pagesGrid").innerHTML=filtered.map(p=>`<div class="page-card">
+   <div class="icon">${p.icon}</div>
+   <span class="${badgeClass(p.section)}">${sectionName(p.section)}</span>
+   <a class="title" href="${p.file}">${escapeHtml(p.title)}</a>
+   <p>${escapeHtml(p.desc)}</p>
+   <div class="file">${escapeHtml(p.file)}</div>
+   <div class="card-actions">
+    <a href="${p.file}">${t().open}</a>
+    <button onclick="copyLink('${p.file}')">${t().copy}</button>
+   </div>
+  </div>`).join("");
+}
+function renderLists(){
+ document.getElementById("recommendedList").innerHTML=t().recommended.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("testList").innerHTML=t().tests.map(x=>`<li>${x}</li>`).join("");
+}
+function copyLink(file){
+ const url=new URL(file, location.href).href+"?v=3500";
+ navigator.clipboard?.writeText(url);
+ const box=document.getElementById("copyStatus");
+ box.textContent=t().copied;box.className="success";
+ setTimeout(()=>{box.textContent=t().copyStatus},1800);
+}
+async function loadApp(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ document.getElementById("accountValue").textContent=currentUser.email?currentUser.email.split("@")[0]:"Compte";
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ if(currentProfile)applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+loadApp();
+</script>
+</body>
+</html>

@@ -192,6 +192,8 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+let documentRowsCache=[],checklistLoaded=false,checklistError=null;
+
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
@@ -199,9 +201,9 @@ fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Documents Allemagne",pageTitle:"Tous les papiers importants au même endroit",pageText:"Une page pensée pour les femmes étrangères en Allemagne : savoir quoi préparer avant la naissance, à la clinique, au Standesamt et après la naissance.",
 weekLabel:"Semaine actuelle",progressLabel:"Checklist",deadlineLabel:"Deadline clé",deadlineValue:"1 sem.",importantTitle:"Important",importantText:"Après la naissance, l’enfant doit être déclaré au Standesamt compétent pour le lieu de naissance. La Geburtsurkunde est ensuite nécessaire pour plusieurs démarches.",foreignText:"Pour les documents étrangers : demande tôt au Standesamt quels originaux, traductions certifiées ou apostilles sont exigés. Les règles pratiques peuvent varier selon la ville.",
 overviewTitle:"Documents par situation",overviewText:"Prépare ces papiers en avance pour éviter le stress après la naissance.",timelineTitle:"Timeline documents",timelineText:"Ce qu’il faut préparer avant, pendant et après la naissance.",
-checkTitle:"Checklist documents",checkText:"Coche ce que tu as déjà préparé.",resetButton:"Réinitialiser",questionsTitle:"Questions à poser",tipNote:"Astuce : fais un dossier papier + un dossier digital avec photos/scans des documents.",sourcesTitle:"Adresses officielles utiles",sourcesText:"Les formulaires exacts dépendent souvent de ta ville, de ton employeur et de ta caisse maladie.",
+checkTitle:"Checklist documents",checkText:"Coche ce que tu as déjà préparé. La sauvegarde se fait maintenant dans Supabase pour ton compte.",resetButton:"Réinitialiser",questionsTitle:"Questions à poser",tipNote:"Astuce : fais un dossier papier + un dossier digital avec photos/scans des documents.",sourcesTitle:"Adresses officielles utiles",sourcesText:"Les formulaires exacts dépendent souvent de ta ville, de ton employeur et de ta caisse maladie.",
 bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-important:"Important",routine:"À préparer",after:"Après naissance",
+important:"Important",routine:"À préparer",after:"Après naissance",loading:"Chargement de ta checklist...",saveError:"Erreur de sauvegarde Supabase. Réessaie.",savedCloud:"Sauvegardé",resetDone:"Checklist réinitialisée",todo:"À faire",done:"Fait",
 docs:[
 ["🪪","Identité des parents","Avant naissance","Passeports ou Personalausweis/Aufenthaltstitel des parents. Très important pour la clinique et le Standesamt.","important"],
 ["📘","Mutterpass","Toujours","Document central de suivi de grossesse. À garder avec soi pour consultations, urgences et clinique.","important"],
@@ -229,25 +231,43 @@ questions:["Quels documents exacts demande le Standesamt de la ville où le béb
 },
 de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Dokumente Deutschland",pageTitle:"Alle wichtigen Unterlagen an einem Ort",weekLabel:"Aktuelle SSW",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Documents Germany",pageTitle:"All important documents in one place",weekLabel:"Current week",bottomBackButton:"Back"});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"وثائق ألمانيا",pageTitle:"كل الأوراق المهمة في مكان واحد",weekLabel:"الأسبوع الحالي",bottomBackButton:"رجوع"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Dokumente Deutschland",pageTitle:"Alle wichtigen Unterlagen an einem Ort",weekLabel:"Aktuelle SSW",bottomBackButton:"Zurück",loading:"Checkliste wird geladen...",savedCloud:"Gespeichert",done:"Erledigt",todo:"Offen"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Documents Germany",pageTitle:"All important documents in one place",weekLabel:"Current week",bottomBackButton:"Back",loading:"Loading your checklist...",savedCloud:"Saved",done:"Done",todo:"To do"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"وثائق ألمانيا",pageTitle:"كل الأوراق المهمة في مكان واحد",weekLabel:"الأسبوع الحالي",bottomBackButton:"رجوع",loading:"جاري تحميل القائمة...",savedCloud:"تم الحفظ",done:"تم",todo:"للقيام به"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
 Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
+const documentMeta=[
+ {key:"parents_ids",category:"bureaucracy"},
+ {key:"mutterpass",category:"pregnancy"},
+ {key:"health_insurance_card",category:"insurance"},
+ {key:"marriage_or_parentage",category:"bureaucracy"},
+ {key:"parents_birth_certificates",category:"bureaucracy"},
+ {key:"foreign_documents_translated",category:"bureaucracy"},
+ {key:"standesamt_contacted",category:"birth"},
+ {key:"hospital_registration",category:"birth"},
+ {key:"elterngeld_started",category:"finance"},
+ {key:"kindergeld_prepared",category:"finance"},
+ {key:"baby_health_insurance",category:"insurance"},
+ {key:"pediatrician_found",category:"baby"}
+];
+
 function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+
 function setLanguage(lang){
  currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
  const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
  Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
  render();
 }
+
 function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
 function calculatePregnancy(due){
- if(!due)return currentProfile?.pregnancy_week||1;
+ if(!due)return currentProfile?.current_week||currentProfile?.pregnancy_week||1;
  const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);
  let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;
 }
@@ -255,36 +275,121 @@ function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")ret
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
 function badge(type){if(type==="important")return "badge badge-important";if(type==="after")return "badge badge-normal";return "badge"}
 function typeText(type){if(type==="important")return t().important;if(type==="after")return t().after;return t().routine}
-function checkKey(){return "mama-documents-check-"+(currentUser?currentUser.id:"guest")}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
+function checklistItems(){return documentMeta.map((m,i)=>({...m,title:(t().checklist&&t().checklist[i])?t().checklist[i]:m.key}))}
+function rowByKey(){return new Map((documentRowsCache||[]).map(r=>[r.document_key,r]))}
+
+async function loadDocumentChecklist(){
+ checklistLoaded=false;checklistError=null;renderChecklist();
+ const items=checklistItems();
+ const {data,error}=await supabaseClient
+   .from("document_checklists")
+   .select("*")
+   .eq("user_id",currentUser.id);
+ if(error){checklistError=error.message;documentRowsCache=[];checklistLoaded=true;renderChecklist();return}
+ let rows=data||[];
+ const existing=new Set(rows.map(r=>r.document_key));
+ const missing=items
+   .filter(item=>!existing.has(item.key))
+   .map(item=>({user_id:currentUser.id,document_key:item.key,title:item.title,category:item.category,status:"todo"}));
+ if(missing.length){
+   const {data:inserted,error:insertError}=await supabaseClient
+     .from("document_checklists")
+     .insert(missing)
+     .select("*");
+   if(insertError){checklistError=insertError.message}else{rows=[...rows,...(inserted||[])]}
+ }
+ documentRowsCache=rows.filter(r=>documentMeta.some(m=>m.key===r.document_key));
+ checklistLoaded=true;renderChecklist();
+}
+
+async function toggleCheck(key){
+ const items=checklistItems();
+ const item=items.find(x=>x.key===key);
+ if(!item||!currentUser)return;
+ const rows=rowByKey();
+ const row=rows.get(key);
+ const newStatus=row&&row.status==="done"?"todo":"done";
+ let result;
+ if(row&&row.id){
+   result=await supabaseClient
+     .from("document_checklists")
+     .update({status:newStatus,title:item.title,category:item.category})
+     .eq("id",row.id)
+     .eq("user_id",currentUser.id)
+     .select("*")
+     .single();
+ }else{
+   result=await supabaseClient
+     .from("document_checklists")
+     .insert({user_id:currentUser.id,document_key:key,title:item.title,category:item.category,status:newStatus})
+     .select("*")
+     .single();
+ }
+ if(result.error){checklistError=result.error.message;renderChecklist();return}
+ const updated=result.data;
+ documentRowsCache=documentRowsCache.filter(r=>r.document_key!==key);
+ documentRowsCache.push(updated);
+ checklistError=null;renderChecklist();
+}
+
+async function resetChecklist(){
+ if(!currentUser)return;
+ const keys=documentMeta.map(x=>x.key);
+ const {error}=await supabaseClient
+   .from("document_checklists")
+   .update({status:"todo"})
+   .eq("user_id",currentUser.id)
+   .in("document_key",keys);
+ if(error){checklistError=error.message;renderChecklist();return}
+ await loadDocumentChecklist();
+}
+
 function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ const box=document.getElementById("checklistBox");
+ if(!box)return;
+ if(!checklistLoaded){
+   box.innerHTML=`<div class="soft">${escapeHtml(t().loading)}</div>`;
+   document.getElementById("progressValue").textContent="0 / 0";
+   document.getElementById("progressBar").style.width="0%";
+   return;
+ }
+ const items=checklistItems();
+ const rows=rowByKey();
+ box.innerHTML=items.map(item=>{
+   const row=rows.get(item.key);
+   const isDone=row&&row.status==="done";
+   const statusText=isDone?t().done:t().todo;
+   return `<label class="check-row">
+     <input type="checkbox" ${isDone?"checked":""} onchange="toggleCheck('${item.key}')">
+     <span><strong>${escapeHtml(item.title)}</strong><br><small style="color:var(--muted);font-weight:800;">${escapeHtml(statusText)} · Supabase</small></span>
+   </label>`;
+ }).join("")+(checklistError?`<div class="warning">${escapeHtml(t().saveError)}<br><small>${escapeHtml(checklistError)}</small></div>`:"");
+ const done=items.filter(item=>{const row=rows.get(item.key);return row&&row.status==="done"}).length,total=items.length;
  document.getElementById("progressValue").textContent=done+" / "+total;
  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
+
 function render(){
  document.getElementById("weekValue").textContent=currentWeek;
  document.getElementById("deadlineValue").textContent=t().deadlineValue;
- document.getElementById("documentsGrid").innerHTML=t().docs.map(x=>`<div class="doc-card"><div class="icon">${x[0]}</div><span class="${badge(x[4])}">${typeText(x[4])}</span><span class="badge">${x[2]}</span><h3>${x[1]}</h3><p>${x[3]}</p></div>`).join("");
- document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
- document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("documentsGrid").innerHTML=t().docs.map(x=>`<div class="doc-card"><div class="icon">${x[0]}</div><span class="${badge(x[4])}">${escapeHtml(typeText(x[4]))}</span><span class="badge">${escapeHtml(x[2])}</span><h3>${escapeHtml(x[1])}</h3><p>${escapeHtml(x[3])}</p></div>`).join("");
+ document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${escapeHtml(x[0])}</div><div><p>${escapeHtml(x[1])}</p></div></div>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
  renderChecklist();
 }
+
 async function loadApp(){
  const {data,error}=await supabaseClient.auth.getSession();
  if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
  currentUser=data.session.user;
  const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
- currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ currentLang=localStorage.getItem("mama_lang")||"fr";
  currentWeek=calculatePregnancy(currentProfile?.due_date);
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadDocumentChecklist();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

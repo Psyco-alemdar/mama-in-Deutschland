@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mama in Deutschland - Émotions & mental health</title>
+<title>Mama in Deutschland - Émotions & santé mentale</title>
 <style>
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
@@ -45,12 +45,13 @@ p,li{margin:0;color:var(--muted);line-height:1.6}
 ul{padding-left:20px;margin:10px 0 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
 .stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
 .stat-label{font-size:12px;color:var(--muted);font-weight:950}
 .stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
-.box,.emotion-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.box,.emotion-card,.source-card,.form-box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
 .emotion-card{position:relative;overflow:hidden}
 .emotion-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
 .icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
@@ -73,14 +74,22 @@ ul{padding-left:20px;margin:10px 0 0}
 .mood-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
 .mood-row button{border:1px solid var(--border);background:white;border-radius:20px;padding:14px 10px;font-size:24px;cursor:pointer}
 .mood-row button.active{background:var(--soft);border-color:var(--brown);box-shadow:0 0 0 3px rgba(74,52,40,.08)}
-textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
+label.field{display:grid;gap:7px;font-weight:950;color:var(--brown);font-size:13px}
+input,select,textarea{width:100%;padding:13px 14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:130px;resize:vertical}
+.small-text{font-size:12px;color:var(--muted);font-weight:800;line-height:1.45}
 .log-list{display:grid;gap:10px;margin-top:12px}
 .log-item{background:white;border:1px solid var(--border);border-radius:18px;padding:12px}
+.log-item strong{color:var(--brown)}
+.item-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.mini-button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:7px 10px;font-weight:950;cursor:pointer;font-family:inherit;font-size:12px}
+.mini-button.danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
 .source-card a{color:var(--brown);font-weight:950;text-decoration:none}
 .source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
 .login-message{max-width:650px;margin:60px auto;text-align:center}
-@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+.status-line{display:none;margin-top:12px;font-weight:950;color:var(--brown)}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:1fr}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.mood-row{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
@@ -137,6 +146,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
         <h2 id="signalsTitle">Comprendre les signaux</h2>
         <p id="signalsText">Repères pratiques pour demander le bon type d’aide au bon moment.</p>
       </div>
+      <button class="button-light" onclick="exportData()" id="exportButton">Exporter JSON</button>
     </div>
     <div class="grid" id="signalsGrid"></div>
   </section>
@@ -144,7 +154,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
   <section class="grid-2">
     <div class="card">
       <h2 id="moodTitle">Mini journal d’humeur</h2>
-      <p id="moodText">Choisis ton état du jour et ajoute une note. Sauvegarde locale sur ton appareil.</p>
+      <p id="moodText">Choisis ton état du jour et ajoute une note. Sauvegarde dans ton compte si possible.</p>
       <div class="mood-row" id="moodButtons">
         <button onclick="chooseMood(1)">😭</button>
         <button onclick="chooseMood(2)">😟</button>
@@ -152,15 +162,26 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
         <button onclick="chooseMood(4)">🙂</button>
         <button onclick="chooseMood(5)">🌤️</button>
       </div>
+      <div class="grid-3" style="margin-top:12px;">
+        <label class="field"><span id="anxietyLabel">Anxiété</span><select id="anxietyLevel"><option value="low">Faible</option><option value="medium">Moyenne</option><option value="high">Forte</option><option value="urgent">Inquiétante</option></select></label>
+        <label class="field"><span id="sleepLabel">Sommeil</span><input id="sleepHours" type="number" min="0" max="24" step="0.5" placeholder="heures"></label>
+        <label class="field"><span id="supportNeededLabel">Besoin aide</span><select id="supportNeeded"><option value="no">Non</option><option value="yes">Oui</option><option value="urgent">Urgent</option></select></label>
+      </div>
       <textarea id="moodNote" placeholder="Qu’est-ce qui était difficile aujourd’hui ? Qu’est-ce qui a aidé ?"></textarea>
       <div class="actions" style="margin-top:14px;">
         <button class="button" onclick="saveMood()" id="saveMoodButton">Sauvegarder l’humeur</button>
-        <button class="button-light" onclick="clearMoodLog()" id="clearMoodButton">Effacer journal</button>
+        <button class="button-light" onclick="clearMoodLog()" id="clearMoodButton">Effacer journal local</button>
       </div>
+      <div class="status-line" id="moodStatus"></div>
     </div>
 
     <div class="card">
       <h2 id="logTitle">Journal récent</h2>
+      <div class="stats" style="margin-top:0;margin-bottom:12px;">
+        <div class="stat"><div class="stat-label" id="entriesLabel">Entrées</div><div class="stat-value" id="entriesCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="lastMoodLabel">Dernière</div><div class="stat-value" id="lastMoodValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="alertMoodLabel">Aide</div><div class="stat-value" id="alertMoodValue">-</div></div>
+      </div>
       <div class="log-list" id="moodLog"></div>
     </div>
   </section>
@@ -177,9 +198,43 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     </div>
 
     <div class="card">
+      <h2 id="appointmentTitle">Rendez-vous soutien</h2>
+      <div class="form-box">
+        <div class="grid-2">
+          <label class="field"><span id="appointmentTypeLabel">Type</span><select id="appointmentType"><option value="hebamme">Hebamme</option><option value="frauenarzt">Frauenarzt</option><option value="hausarzt">Hausarzt</option><option value="psychotherapy">Psychothérapie</option><option value="clinic">Clinique</option><option value="other">Autre</option></select></label>
+          <label class="field"><span id="appointmentDateLabel">Date</span><input id="appointmentDate" type="date"></label>
+        </div>
+        <div class="grid-2" style="margin-top:10px;">
+          <label class="field"><span id="appointmentTimeLabel">Heure</span><input id="appointmentTime" type="time"></label>
+          <label class="field"><span id="appointmentLocationLabel">Lieu</span><input id="appointmentLocation" type="text" placeholder="Cabinet, clinique, téléphone..."></label>
+        </div>
+        <label class="field" style="margin-top:10px;"><span id="appointmentNotesLabel">Notes</span><textarea id="appointmentNotes" style="min-height:90px" placeholder="Pourquoi ce rendez-vous ? Questions importantes..."></textarea></label>
+        <div class="actions" style="margin-top:14px;">
+          <button class="button" onclick="addAppointment()" id="addAppointmentButton">Ajouter rendez-vous</button>
+          <a class="button-light" href="calendar.html" id="calendarButton">Calendrier</a>
+        </div>
+      </div>
+      <div class="log-list" id="appointmentsList"></div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
       <h2 id="helpTitle">Qui contacter ?</h2>
       <div class="box"><ul id="helpList"></ul></div>
       <div class="soft" id="helpNote">Le premier contact peut être très simple : “Je ne vais pas bien depuis la naissance/la grossesse, j’ai besoin d’aide.”</div>
+    </div>
+    <div class="card">
+      <h2 id="supportTaskTitle">Plan d’aide concret</h2>
+      <div class="form-box">
+        <label class="field"><span id="supportTaskLabel">Action à demander</span><input id="supportTaskInput" type="text" placeholder="Ex: demander relais bébé pour dormir 2h"></label>
+        <div class="grid-2" style="margin-top:10px;">
+          <label class="field"><span id="supportPriorityLabel">Priorité</span><select id="supportPriority"><option value="normal">Normal</option><option value="high">Important</option><option value="urgent">Urgent</option></select></label>
+          <label class="field"><span id="supportDueLabel">Date</span><input id="supportDue" type="date"></label>
+        </div>
+        <div class="actions" style="margin-top:14px;"><button class="button" onclick="addSupportTask()" id="addSupportTaskButton">Ajouter action</button></div>
+      </div>
+      <div class="log-list" id="supportTasksList"></div>
     </div>
   </section>
 
@@ -241,15 +296,17 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",selectedMood=0;
+let useLocal=false, moodEntries=[], checklistTasks=[], supportTasks=[], appointments=[];
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Émotions & santé mentale",pageTitle:"Tu n’as pas besoin d’être parfaite",pageText:"Grossesse, naissance et post-partum peuvent apporter joie, peur, fatigue, irritabilité, tristesse ou ambivalence. Cette page aide à distinguer ce qui peut être fréquent de ce qui mérite un soutien rapide.",
 phaseLabel:"Phase",phaseValue:"Périnatal",focusLabel:"Focus",focusValue:"Soutien",progressLabel:"Checklist",importantTitle:"À lire maintenant",importantText:"Les émotions difficiles ne font pas de toi une mauvaise mère. Mais si elles deviennent intenses, durent, empêchent de fonctionner ou font peur, il faut chercher de l’aide.",dangerNote:"Si tu as peur de te faire du mal, de faire du mal au bébé, si tu entends/vois des choses inhabituelles, si tu te sens hors de contrôle ou en danger : appelle 112 ou va aux urgences. Ne reste pas seule.",
-signalsTitle:"Comprendre les signaux",signalsText:"Repères pratiques pour demander le bon type d’aide au bon moment.",moodTitle:"Mini journal d’humeur",moodText:"Choisis ton état du jour et ajoute une note. Sauvegarde locale sur ton appareil.",saveMoodButton:"Sauvegarder l’humeur",clearMoodButton:"Effacer journal",logTitle:"Journal récent",
+signalsTitle:"Comprendre les signaux",signalsText:"Repères pratiques pour demander le bon type d’aide au bon moment.",moodTitle:"Mini journal d’humeur",moodText:"Choisis ton état du jour et ajoute une note. Sauvegarde dans ton compte si possible.",saveMoodButton:"Sauvegarder l’humeur",clearMoodButton:"Effacer journal local",logTitle:"Journal récent",exportButton:"Exporter JSON",
 checkTitle:"Checklist soutien",checkText:"Coche ce qui est organisé ou à faire.",resetButton:"Réinitialiser",helpTitle:"Qui contacter ?",helpNote:"Le premier contact peut être très simple : “Je ne vais pas bien depuis la naissance/la grossesse, j’ai besoin d’aide.”",timelineTitle:"Repères émotionnels",timelineText:"Ce qui peut arriver, et quand il ne faut pas minimiser.",partnerTitle:"Pour le partenaire / famille",partnerWarning:"Ne discute pas avec elle pour “prouver” que tout va bien. Écoute, protège, organise une aide réelle et appelle en urgence si danger.",questionsTitle:"Questions à poser",sourcesTitle:"Aide et sources fiables",sourcesText:"Contacts utiles en Allemagne et informations médicales fiables.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-normal:"Fréquent",support:"Soutien",urgent:"Urgent",empty:"Aucune note.",
+anxietyLabel:"Anxiété",sleepLabel:"Sommeil",supportNeededLabel:"Besoin aide",entriesLabel:"Entrées",lastMoodLabel:"Dernière",alertMoodLabel:"Aide",appointmentTitle:"Rendez-vous soutien",appointmentTypeLabel:"Type",appointmentDateLabel:"Date",appointmentTimeLabel:"Heure",appointmentLocationLabel:"Lieu",appointmentNotesLabel:"Notes",addAppointmentButton:"Ajouter rendez-vous",calendarButton:"Calendrier",supportTaskTitle:"Plan d’aide concret",supportTaskLabel:"Action à demander",supportPriorityLabel:"Priorité",supportDueLabel:"Date",addSupportTaskButton:"Ajouter action",
+normal:"Fréquent",support:"Soutien",urgent:"Urgent",empty:"Aucune note.",saved:"Sauvegardé",localMode:"Mode local activé",done:"fait",open:"à faire",delete:"Supprimer",markDone:"Marquer fait",scheduled:"prévu",noDate:"Sans date",noAppointments:"Aucun rendez-vous soutien.",noTasks:"Aucune action.",high:"important",urgentPriority:"urgent",yes:"oui",no:"non",
 signals:[
 ["🌧️","Baby Blues","Les premiers jours après la naissance, pleurs, hypersensibilité, anxiété et fatigue peuvent arriver. Cela doit s’améliorer avec repos et soutien.","normal"],
 ["🕰️","Quand ça dure","Si tristesse, anxiété, vide, irritabilité ou culpabilité durent plus de deux semaines ou s’aggravent, parle rapidement à un professionnel.","support"],
@@ -258,77 +315,187 @@ signals:[
 ["🚨","Danger immédiat","Pensées suicidaires, peur de blesser bébé, hallucinations, confusion, sentiment de perdre le contrôle : urgence médicale.","urgent"],
 ["🤝","Aide concrète","Sommeil, repas, ménage, relais bébé, limitation des visites et accompagnement aux rendez-vous sont des soins, pas un luxe.","normal"]
 ],
-timeline:[
-["Grossesse","Les peurs et changements d’humeur peuvent augmenter. Préparer un plan de soutien avant naissance."],
-["Jours 2–5","Baby Blues possible : pleurs, irritabilité, hypersensibilité. Repos, soutien et compréhension aident."],
-["Après 2 semaines","Si ça ne s’améliore pas ou s’aggrave : Hebamme, Frauenarzt, Hausarzt, psychologue/psychiatre."],
-["Post-partum","Fatigue + isolement + pression peuvent aggraver l’état. Demander aide tôt évite l’épuisement."],
-["À tout moment","Pensées dangereuses, hallucinations, confusion, idées noires : urgence, ne pas rester seule."]
-],
+timeline:[["Grossesse","Les peurs et changements d’humeur peuvent augmenter. Préparer un plan de soutien avant naissance."],["Jours 2–5","Baby Blues possible : pleurs, irritabilité, hypersensibilité. Repos, soutien et compréhension aident."],["Après 2 semaines","Si ça ne s’améliore pas ou s’aggrave : Hebamme, Frauenarzt, Hausarzt, psychologue/psychiatre."],["Post-partum","Fatigue + isolement + pression peuvent aggraver l’état. Demander aide tôt évite l’épuisement."],["À tout moment","Pensées dangereuses, hallucinations, confusion, idées noires : urgence, ne pas rester seule."]],
 checklist:["Je peux dire à quelqu’un quand ça ne va pas","J’ai un contact Hebamme / médecin","Mon partenaire/famille connaît les signes d’alerte","Je dors au moins un peu avec relais si possible","Je mange et bois régulièrement","Les visites sont limitées si elles m’épuisent","J’ai noté les numéros 112 / 116117 / TelefonSeelsorge","J’ai demandé aide pour ménage/courses/repas","Je sais que demander de l’aide n’est pas un échec","Je surveille tristesse/anxiété qui dure plus de 2 semaines"],
 helpList:["Hebamme : premier soutien post-partum, allaitement, fatigue, inquiétudes.","Frauenarzt/Hausarzt : évaluation médicale, arrêt maladie, orientation psychothérapie/psychiatrie.","Kinderarzt : si inquiétude bébé qui augmente l’anxiété parentale.","116117 : aide médicale hors urgence vitale quand tu ne sais pas où aller.","TelefonSeelsorge : parler anonymement 24h/24 en crise ou solitude.","112 / urgences : danger immédiat, idées suicidaires, peur de blesser bébé, hallucinations, confusion."],
 partnerList:["Demander : “Qu’est-ce qui est le plus difficile maintenant ?”","Prendre un relais concret : repas, bébé, ménage, téléphone, rendez-vous.","Ne pas minimiser : “tu devrais être heureuse” n’aide pas.","Surveiller sommeil, alimentation, pleurs, anxiété, idées noires.","Accompagner aux rendez-vous et expliquer les symptômes si elle n’y arrive pas.","Appeler 112 si danger, confusion, hallucinations ou risque de passage à l’acte."],
 questions:["Est-ce encore un Baby Blues ou déjà une dépression/anxiété post-partum ?","Quel professionnel dois-je contacter en premier ?","Puis-je recevoir un traitement compatible avec l’allaitement ?","Quels signes imposent d’aller aux urgences ?","Comment organiser un relais sommeil réaliste ?","Existe-t-il des groupes, Hebamme, Frühe Hilfen ou Beratungsstellen près de moi ?"]
 },
-de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}
+};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Emotionen & mentale Gesundheit",pageTitle:"Du musst nicht perfekt sein",phaseValue:"Perinatal",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Emotions & mental health",pageTitle:"You do not need to be perfect",phaseValue:"Perinatal",bottomBackButton:"Back"});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"المشاعر والصحة النفسية",pageTitle:"لا يجب أن تكوني مثالية",phaseValue:"حول الولادة",bottomBackButton:"رجوع"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Emotionen & mentale Gesundheit",pageTitle:"Du musst nicht perfekt sein",phaseValue:"Perinatal",bottomBackButton:"Zurück",saved:"Gespeichert",delete:"Löschen",markDone:"Erledigt"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Emotions & mental health",pageTitle:"You do not need to be perfect",phaseValue:"Perinatal",bottomBackButton:"Back",saved:"Saved",delete:"Delete",markDone:"Mark done"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"المشاعر والصحة النفسية",pageTitle:"لا يجب أن تكوني مثالية",phaseValue:"حول الولادة",bottomBackButton:"رجوع",saved:"تم الحفظ",delete:"حذف",markDone:"تم"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
 Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
 function t(){return tr[currentLang]||tr.fr}
+function todayISO(){return new Date().toISOString().slice(0,10)}
+function currentTime(){return new Date().toTimeString().slice(0,5)}
+function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function safeJson(v){try{return typeof v==="string"?JSON.parse(v):(v||{})}catch(e){return{note:v||""}}}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 function setLanguage(lang){
  currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
  const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
- Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el&&typeof t()[id]==="string")el.textContent=t()[id]});
  render();
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
 function badge(type){if(type==="urgent")return "badge badge-red";if(type==="support")return "badge badge-warning";return "badge badge-green"}
 function typeText(type){if(type==="urgent")return t().urgent;if(type==="support")return t().support;return t().normal}
-function checkKey(){return "mama-emotions-check-"+(currentUser?currentUser.id:"guest")}
-function moodKey(){return "mama-emotions-mood-"+(currentUser?currentUser.id:"guest")}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
-function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
- document.getElementById("progressValue").textContent=done+" / "+total;
- document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+function localKey(name){return "mama-emotions-"+name+"-"+(currentUser?currentUser.id:"guest")}
+function getLocal(name){try{return JSON.parse(localStorage.getItem(localKey(name)))||[]}catch(e){return[]}}
+function setLocal(name,value){localStorage.setItem(localKey(name),JSON.stringify(value))}
+function showStatus(id,msg){const el=document.getElementById(id);el.textContent=msg;el.style.display="block";setTimeout(()=>el.style.display="none",2200)}
+
+async function loadAllData(){
+ if(useLocal){
+  moodEntries=getLocal("moods"); checklistTasks=getLocal("checklist"); supportTasks=getLocal("support"); appointments=getLocal("appointments");
+  if(!checklistTasks.length) seedChecklistLocal();
+  renderDynamic();return;
+ }
+ try{
+  await Promise.all([loadMoodEntries(),loadChecklist(),loadSupportTasks(),loadAppointments()]);
+ }catch(e){
+  console.warn(e);useLocal=true;showStatus("moodStatus",t().localMode);loadAllData();return;
+ }
+ renderDynamic();
 }
-function getMoodLog(){try{return JSON.parse(localStorage.getItem(moodKey()))||[]}catch(e){return[]}}
-function saveMoodLog(l){localStorage.setItem(moodKey(),JSON.stringify(l.slice(0,14)))}
+async function loadMoodEntries(){
+ const {data,error}=await supabaseClient.from("baby_tracking").select("*").eq("user_id",currentUser.id).eq("entry_type","maternal_emotion").order("created_at",{ascending:false}).limit(20);
+ if(error)throw error;moodEntries=data||[];
+}
+async function loadChecklist(){
+ const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page","emotions.html").eq("task_area","emotions_checklist").order("created_at",{ascending:true});
+ if(error)throw error;
+ checklistTasks=data||[];
+ if(!checklistTasks.length){await seedChecklistSupabase();}
+}
+async function seedChecklistSupabase(){
+ const rows=t().checklist.map((label,i)=>({user_id:currentUser.id,title:label,task_key:"emotions_check_"+i,task_area:"emotions_checklist",source_page:"emotions.html",category:"mental_health",priority:i===6?"high":"normal",status:"open",completed:false,notes:""}));
+ const {data,error}=await supabaseClient.from("user_tasks").insert(rows).select("*");
+ if(error)throw error;checklistTasks=data||[];
+}
+function seedChecklistLocal(){checklistTasks=t().checklist.map((label,i)=>({id:"local-check-"+i,title:label,task_key:"emotions_check_"+i,status:"open",completed:false,priority:i===6?"high":"normal"}));setLocal("checklist",checklistTasks)}
+async function loadSupportTasks(){
+ const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page","emotions.html").eq("task_area","support_plan").order("created_at",{ascending:false}).limit(20);
+ if(error)throw error;supportTasks=data||[];
+}
+async function loadAppointments(){
+ const {data,error}=await supabaseClient.from("appointments").select("*").eq("user_id",currentUser.id).eq("appointment_type","mental_health").order("appointment_date",{ascending:true}).limit(20);
+ if(error)throw error;appointments=data||[];
+}
+
 function chooseMood(n){
  selectedMood=n;
  document.querySelectorAll("#moodButtons button").forEach((b,i)=>b.classList.toggle("active",i+1===n));
 }
-function saveMood(){
+async function saveMood(){
  if(!selectedMood)selectedMood=3;
  const emojis=["","😭","😟","😐","🙂","🌤️"];
- const l=getMoodLog();
- l.unshift({mood:selectedMood,emoji:emojis[selectedMood],note:document.getElementById("moodNote").value.trim(),date:new Date().toLocaleString()});
- saveMoodLog(l);
- document.getElementById("moodNote").value="";
- selectedMood=0;
- document.querySelectorAll("#moodButtons button").forEach(b=>b.classList.remove("active"));
- renderMoodLog();
+ const labels=["","très difficile","difficile","moyen","stable","bon"];
+ const payload={mood:selectedMood,emoji:emojis[selectedMood],label:labels[selectedMood],note:document.getElementById("moodNote").value.trim(),anxiety:document.getElementById("anxietyLevel").value,sleep_hours:document.getElementById("sleepHours").value||null,support_needed:document.getElementById("supportNeeded").value,created_local:new Date().toLocaleString()};
+ if(useLocal){
+  moodEntries.unshift({id:"local-"+Date.now(),created_at:new Date().toISOString(),tracking_date:todayISO(),tracking_time:currentTime(),milestone_label:payload.label,milestone_key:"emotion_mood_"+selectedMood,notes:JSON.stringify(payload)});
+  moodEntries=moodEntries.slice(0,20);setLocal("moods",moodEntries);afterMoodSaved();return;
+ }
+ try{
+  const {data,error}=await supabaseClient.from("baby_tracking").insert({user_id:currentUser.id,tracking_date:todayISO(),tracking_time:currentTime(),entry_type:"maternal_emotion",milestone_key:"emotion_mood_"+selectedMood,milestone_label:payload.label,notes:JSON.stringify(payload),completed:false}).select("*").single();
+  if(error)throw error;moodEntries.unshift(data);moodEntries=moodEntries.slice(0,20);afterMoodSaved();
+ }catch(e){console.warn(e);useLocal=true;saveMood();}
 }
-function clearMoodLog(){saveMoodLog([]);renderMoodLog()}
-function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function afterMoodSaved(){
+ document.getElementById("moodNote").value="";document.getElementById("sleepHours").value="";document.getElementById("supportNeeded").value="no";selectedMood=0;
+ document.querySelectorAll("#moodButtons button").forEach(b=>b.classList.remove("active"));showStatus("moodStatus",t().saved);renderMoodLog();
+}
+function clearMoodLog(){
+ if(!confirm("Effacer seulement le journal local affiché sur cet appareil ?"))return;
+ moodEntries=[];setLocal("moods",[]);renderMoodLog();
+}
+async function deleteMood(id){
+ if(String(id).startsWith("local-")){moodEntries=moodEntries.filter(x=>x.id!==id);setLocal("moods",moodEntries);renderMoodLog();return;}
+ if(useLocal)return;
+ const {error}=await supabaseClient.from("baby_tracking").delete().eq("id",id).eq("user_id",currentUser.id);
+ if(error){alert(error.message);return;}moodEntries=moodEntries.filter(x=>x.id!==id);renderMoodLog();
+}
+
+async function toggleCheck(id){
+ const item=checklistTasks.find(x=>x.id===id);if(!item)return;const next=!item.completed;
+ if(useLocal||String(id).startsWith("local-")){item.completed=next;item.status=next?"done":"open";setLocal("checklist",checklistTasks);renderChecklist();return;}
+ const {error}=await supabaseClient.from("user_tasks").update({completed:next,status:next?"done":"open",completed_at:next?new Date().toISOString():null}).eq("id",id).eq("user_id",currentUser.id);
+ if(error){alert(error.message);return;}item.completed=next;item.status=next?"done":"open";renderChecklist();
+}
+async function resetChecklist(){
+ if(!confirm("Réinitialiser la checklist soutien ?"))return;
+ if(useLocal){checklistTasks.forEach(x=>{x.completed=false;x.status="open"});setLocal("checklist",checklistTasks);renderChecklist();return;}
+ const ids=checklistTasks.map(x=>x.id);
+ const {error}=await supabaseClient.from("user_tasks").update({completed:false,status:"open",completed_at:null}).in("id",ids).eq("user_id",currentUser.id);
+ if(error){alert(error.message);return;}checklistTasks.forEach(x=>{x.completed=false;x.status="open"});renderChecklist();
+}
+async function addSupportTask(){
+ const title=document.getElementById("supportTaskInput").value.trim();if(!title){alert("Ajoute une action.");return;}
+ const row={user_id:currentUser.id,title,task_key:"support_"+Date.now(),task_area:"support_plan",source_page:"emotions.html",category:"mental_health",priority:document.getElementById("supportPriority").value,status:"open",completed:false,due_date:document.getElementById("supportDue").value||null,notes:""};
+ if(useLocal){row.id="local-support-"+Date.now();supportTasks.unshift(row);setLocal("support",supportTasks);document.getElementById("supportTaskInput").value="";renderSupportTasks();return;}
+ const {data,error}=await supabaseClient.from("user_tasks").insert(row).select("*").single();
+ if(error){alert(error.message);return;}supportTasks.unshift(data);document.getElementById("supportTaskInput").value="";renderSupportTasks();
+}
+async function markSupportDone(id){
+ const item=supportTasks.find(x=>x.id===id);if(!item)return;const next=!item.completed;
+ if(useLocal||String(id).startsWith("local-")){item.completed=next;item.status=next?"done":"open";setLocal("support",supportTasks);renderSupportTasks();return;}
+ const {error}=await supabaseClient.from("user_tasks").update({completed:next,status:next?"done":"open",completed_at:next?new Date().toISOString():null}).eq("id",id).eq("user_id",currentUser.id);
+ if(error){alert(error.message);return;}item.completed=next;item.status=next?"done":"open";renderSupportTasks();
+}
+async function deleteSupportTask(id){
+ if(useLocal||String(id).startsWith("local-")){supportTasks=supportTasks.filter(x=>x.id!==id);setLocal("support",supportTasks);renderSupportTasks();return;}
+ const {error}=await supabaseClient.from("user_tasks").delete().eq("id",id).eq("user_id",currentUser.id);
+ if(error){alert(error.message);return;}supportTasks=supportTasks.filter(x=>x.id!==id);renderSupportTasks();
+}
+async function addAppointment(){
+ const d=document.getElementById("appointmentDate").value;if(!d){alert("Ajoute une date.");return;}
+ const type=document.getElementById("appointmentType").value;
+ const label=document.getElementById("appointmentType").selectedOptions[0].textContent;
+ const row={user_id:currentUser.id,title:"Soutien émotionnel - "+label,appointment_type:"mental_health",appointment_date:d,appointment_time:document.getElementById("appointmentTime").value||null,location:document.getElementById("appointmentLocation").value.trim()||null,doctor_name:label,notes:document.getElementById("appointmentNotes").value.trim(),priority:type==="clinic"?"urgent":"high",completed:false,status:"scheduled"};
+ if(useLocal){row.id="local-apt-"+Date.now();appointments.push(row);setLocal("appointments",appointments);clearAppointmentForm();renderAppointments();return;}
+ const {data,error}=await supabaseClient.from("appointments").insert(row).select("*").single();
+ if(error){alert(error.message);return;}appointments.push(data);clearAppointmentForm();renderAppointments();
+}
+function clearAppointmentForm(){document.getElementById("appointmentDate").value="";document.getElementById("appointmentTime").value="";document.getElementById("appointmentLocation").value="";document.getElementById("appointmentNotes").value="";}
+async function deleteAppointment(id){
+ if(useLocal||String(id).startsWith("local-")){appointments=appointments.filter(x=>x.id!==id);setLocal("appointments",appointments);renderAppointments();return;}
+ const {error}=await supabaseClient.from("appointments").delete().eq("id",id).eq("user_id",currentUser.id);
+ if(error){alert(error.message);return;}appointments=appointments.filter(x=>x.id!==id);renderAppointments();
+}
+
 function renderMoodLog(){
- const l=getMoodLog();
- document.getElementById("moodLog").innerHTML=l.length?l.map(x=>`<div class="log-item"><strong>${x.emoji} ${x.date}</strong><br>${escapeHtml(x.note||"")}</div>`).join(""):`<div class="log-item">${t().empty}</div>`;
+ const list=moodEntries||[];
+ document.getElementById("entriesCount").textContent=list.length;
+ const first=list[0]?safeJson(list[0].notes):null;
+ document.getElementById("lastMoodValue").textContent=first?(first.emoji||"")+" "+(first.label||list[0].milestone_label||""):"-";
+ document.getElementById("alertMoodValue").textContent=first?(first.support_needed==="urgent"?"urgent":first.support_needed==="yes"?t().yes:t().no):"-";
+ document.getElementById("moodLog").innerHTML=list.length?list.map(x=>{
+  const meta=safeJson(x.notes);const date=(x.tracking_date||"")+(x.tracking_time?" · "+String(x.tracking_time).slice(0,5):"");
+  const danger=meta.support_needed==="urgent"||meta.anxiety==="urgent"?`<div class="warning">Besoin d’aide urgent indiqué. Ne reste pas seule si danger.</div>`:"";
+  return `<div class="log-item"><strong>${escapeHtml(meta.emoji||"")} ${escapeHtml(meta.label||x.milestone_label||"")} · ${escapeHtml(date||meta.created_local||"")}</strong><p>${escapeHtml(meta.note||"")}</p><div class="small-text">Anxiété: ${escapeHtml(meta.anxiety||"-")} · Sommeil: ${escapeHtml(meta.sleep_hours||"-")}h · Aide: ${escapeHtml(meta.support_needed||"-")}</div>${danger}<div class="item-actions"><button class="mini-button danger" onclick="deleteMood('${x.id}')">${t().delete}</button></div></div>`;
+ }).join(""):`<div class="log-item">${t().empty}</div>`;
 }
-function render(){
+function renderChecklist(){
+ const total=checklistTasks.length||t().checklist.length;const done=checklistTasks.filter(x=>x.completed||x.status==="done").length;
+ document.getElementById("progressValue").textContent=done+" / "+total;document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ document.getElementById("checklistBox").innerHTML=checklistTasks.map(x=>`<label class="check-row"><input type="checkbox" ${x.completed||x.status==="done"?"checked":""} onchange="toggleCheck('${x.id}')"><span>${escapeHtml(x.title)}</span></label>`).join("");
+}
+function renderSupportTasks(){
+ document.getElementById("supportTasksList").innerHTML=supportTasks.length?supportTasks.map(x=>`<div class="log-item"><strong>${escapeHtml(x.title)}</strong><div class="small-text">${escapeHtml(x.priority||"normal")} · ${escapeHtml(x.due_date||t().noDate)} · ${x.completed?t().done:t().open}</div><div class="item-actions"><button class="mini-button" onclick="markSupportDone('${x.id}')">${t().markDone}</button><button class="mini-button danger" onclick="deleteSupportTask('${x.id}')">${t().delete}</button></div></div>`).join(""):`<div class="log-item">${t().noTasks}</div>`;
+}
+function renderAppointments(){
+ const sorted=[...appointments].sort((a,b)=>String(a.appointment_date||"").localeCompare(String(b.appointment_date||"")));
+ document.getElementById("appointmentsList").innerHTML=sorted.length?sorted.map(x=>`<div class="log-item"><strong>${escapeHtml(x.title||"Rendez-vous")}</strong><div class="small-text">${escapeHtml(x.appointment_date||t().noDate)} ${escapeHtml(x.appointment_time?String(x.appointment_time).slice(0,5):"")} · ${escapeHtml(x.location||"")}</div><p>${escapeHtml(x.notes||"")}</p><div class="item-actions"><button class="mini-button danger" onclick="deleteAppointment('${x.id}')">${t().delete}</button></div></div>`).join(""):`<div class="log-item">${t().noAppointments}</div>`;
+}
+function renderStatic(){
  document.getElementById("phaseValue").textContent=t().phaseValue;
  document.getElementById("focusValue").textContent=t().focusValue;
  document.getElementById("signalsGrid").innerHTML=t().signals.map(x=>`<div class="emotion-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
@@ -336,7 +503,12 @@ function render(){
  document.getElementById("helpList").innerHTML=t().helpList.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("partnerList").innerHTML=t().partnerList.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
- renderChecklist();renderMoodLog();
+}
+function renderDynamic(){renderChecklist();renderMoodLog();renderSupportTasks();renderAppointments();}
+function render(){renderStatic();renderDynamic();}
+function exportData(){
+ const data={page:"emotions",exported_at:new Date().toISOString(),moodEntries,checklistTasks,supportTasks,appointments};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mama-emotions-export.json";a.click();URL.revokeObjectURL(url);
 }
 async function loadApp(){
  const {data,error}=await supabaseClient.auth.getSession();
@@ -346,7 +518,7 @@ async function loadApp(){
  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadAllData();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

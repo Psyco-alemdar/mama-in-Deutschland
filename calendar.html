@@ -333,7 +333,7 @@ function fmtDate(e){
  const d=new Date(e.event_date+"T"+(e.event_time||"00:00"));
  const loc=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":currentLang==="de"?"de-DE":currentLang==="fr"?"fr-FR":currentLang==="tr"?"tr-TR":currentLang==="ru"?"ru-RU":currentLang==="uk"?"uk-UA":"en-GB";
  let txt=d.toLocaleDateString(loc,{day:"2-digit",month:"long",year:"numeric",calendar:"gregory",numberingSystem:"latn"});
- if(e.event_time)txt+=" · "+e.event_time;return txt;
+ if(e.event_time)txt+=" · "+String(e.event_time).slice(0,5);return txt;
 }
 function eventSort(e){if(!e.event_date)return 999999999999;return new Date(e.event_date+"T"+(e.event_time||"00:00")).getTime()}
 function priorityText(p){if(p==="urgent")return t().priorityUrgent;if(p==="important")return t().priorityImportant;return t().priorityNormal}
@@ -343,24 +343,77 @@ function showMessage(type,msg){const b=document.getElementById("messageBox");b.c
 function clearForm(){editingEventId=null;["eventTitle","eventDate","eventTime","eventDescription"].forEach(id=>document.getElementById(id).value="");document.getElementById("eventCategory").value="doctor";document.getElementById("eventPriority").value="normal";updateFormMode()}
 function cancelEdit(){clearForm()}
 function updateFormMode(){document.getElementById("formTitle").textContent=editingEventId?t().editTitle:t().formTitle;document.getElementById("saveButton").textContent=editingEventId?t().updateButton:t().saveButton;document.getElementById("cancelEditButton").style.display=editingEventId?"inline-flex":"none"}
+function categoryToAppointmentType(category){
+ const map={doctor:"frauenarzt",midwife:"hebamme",hospital:"klinik",diagnostic:"diagnostic",bureaucracy:"administration",course:"course",personal:"other",general:"other"};
+ return map[category]||"other";
+}
+function appointmentTypeToCategory(type){
+ const map={frauenarzt:"doctor",hebamme:"midwife",klinik:"hospital",diagnostic:"diagnostic",administration:"bureaucracy",course:"course",other:"general"};
+ return map[type]||"general";
+}
 async function saveEvent(){
- const title=document.getElementById("eventTitle").value.trim(), event_date=document.getElementById("eventDate").value;
- if(!title||!event_date){showMessage("error",t().missing);return}
- const payload={title,event_date,event_time:document.getElementById("eventTime").value||null,category:document.getElementById("eventCategory").value,priority:document.getElementById("eventPriority").value,description:document.getElementById("eventDescription").value.trim()};
+ const title=document.getElementById("eventTitle").value.trim(), appointment_date=document.getElementById("eventDate").value;
+ if(!title||!appointment_date){showMessage("error",t().missing);return}
+ const payload={
+  user_id:currentUser.id,
+  title,
+  appointment_date,
+  appointment_time:document.getElementById("eventTime").value||null,
+  appointment_type:categoryToAppointmentType(document.getElementById("eventCategory").value),
+  priority:document.getElementById("eventPriority").value||"normal",
+  notes:document.getElementById("eventDescription").value.trim()
+ };
  let res;
- if(editingEventId){res=await supabaseClient.from("user_events").update(payload).eq("id",editingEventId).eq("user_id",currentUser.id)}
- else{res=await supabaseClient.from("user_events").insert({user_id:currentUser.id,...payload,status:"active"})}
+ if(editingEventId){
+  delete payload.user_id;
+  res=await supabaseClient.from("appointments").update(payload).eq("id",editingEventId).eq("user_id",currentUser.id)
+ } else {
+  res=await supabaseClient.from("appointments").insert({...payload,completed:false})
+ }
  if(res.error){showMessage("error",t().error+" "+res.error.message);return}
  showMessage("success",editingEventId?t().updated:t().saved);clearForm();await loadEvents();
 }
-function editEvent(id){const e=eventsCache.find(x=>x.id===id);if(!e)return;editingEventId=id;document.getElementById("eventTitle").value=e.title||"";document.getElementById("eventDate").value=e.event_date||"";document.getElementById("eventTime").value=e.event_time||"";document.getElementById("eventCategory").value=e.category||"general";document.getElementById("eventPriority").value=e.priority||"normal";document.getElementById("eventDescription").value=e.description||"";updateFormMode();scrollTo({top:0,behavior:"smooth"})}
-async function updateStatus(id,status){await supabaseClient.from("user_events").update({status}).eq("id",id).eq("user_id",currentUser.id);await loadEvents()}
-async function deleteEvent(id){await supabaseClient.from("user_events").update({status:"deleted"}).eq("id",id).eq("user_id",currentUser.id);if(editingEventId===id)clearForm();await loadEvents()}
+function editEvent(id){
+ const e=eventsCache.find(x=>x.id===id);if(!e)return;
+ editingEventId=id;
+ document.getElementById("eventTitle").value=e.title||"";
+ document.getElementById("eventDate").value=e.event_date||"";
+ document.getElementById("eventTime").value=(e.event_time||"").slice(0,5);
+ document.getElementById("eventCategory").value=e.category||"general";
+ document.getElementById("eventPriority").value=e.priority||"normal";
+ document.getElementById("eventDescription").value=e.description||"";
+ updateFormMode();scrollTo({top:0,behavior:"smooth"})
+}
+async function updateStatus(id,status){
+ const completed=status==="done";
+ await supabaseClient.from("appointments").update({completed}).eq("id",id).eq("user_id",currentUser.id);
+ await loadEvents()
+}
+async function deleteEvent(id){
+ await supabaseClient.from("appointments").delete().eq("id",id).eq("user_id",currentUser.id);
+ if(editingEventId===id)clearForm();
+ await loadEvents()
+}
 async function addStandard(eid){const e=standardCache.find(x=>x.id===eid);if(!e)return;document.getElementById("eventTitle").value=e.title;document.getElementById("eventDate").value=e.event_date||"";document.getElementById("eventTime").value=e.event_time||"";document.getElementById("eventCategory").value=e.category;document.getElementById("eventPriority").value=e.priority;document.getElementById("eventDescription").value=e.description;scrollTo({top:0,behavior:"smooth"})}
 function setFilter(f){filterMode=f;document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));const id={upcoming:"filterUpcoming",all:"filterAll",important:"filterImportant",standard:"filterStandard",personal:"filterPersonal",done:"filterDone"}[f];if(id)document.getElementById(id).classList.add("active");renderEvents()}
 async function loadEvents(){
- const {data,error}=await supabaseClient.from("user_events").select("*").neq("status","deleted").order("event_date",{ascending:true}).order("event_time",{ascending:true});
- eventsCache=error?[]:(data||[]).map(e=>({...e,source:"personal"}));
+ const {data,error}=await supabaseClient
+  .from("appointments")
+  .select("*")
+  .eq("user_id",currentUser.id)
+  .order("appointment_date",{ascending:true})
+  .order("appointment_time",{ascending:true});
+ eventsCache=error?[]:(data||[]).map(a=>({
+  id:a.id,
+  source:"personal",
+  title:a.title||"",
+  event_date:a.appointment_date,
+  event_time:a.appointment_time,
+  category:appointmentTypeToCategory(a.appointment_type),
+  priority:a.priority||"normal",
+  description:a.notes||"",
+  status:a.completed?"done":"active"
+ }));
  standardCache=standardEvents();
  renderEvents();
 }

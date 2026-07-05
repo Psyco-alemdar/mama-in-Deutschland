@@ -68,6 +68,14 @@ ul{padding-left:20px;margin:10px 0 0}
 .progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
 .source-card a{color:var(--brown);font-weight:950;text-decoration:none}
 .source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+
+input,select{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.empty{padding:20px;border:1px dashed var(--border);border-radius:20px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}
+.log-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.log-actions button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:7px 10px;font-weight:950;cursor:pointer;font-family:inherit}
+@media(max-width:620px){.form-grid{grid-template-columns:1fr}}
+
 textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
 .counter{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
 .counter button{border:1px solid var(--border);border-radius:18px;background:white;color:var(--brown);font-weight:950;padding:13px;cursor:pointer;font-family:inherit}
@@ -138,19 +146,34 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
   <section class="grid-2">
     <div class="card">
       <h2 id="trackerTitle">Mini suivi sommeil</h2>
-      <p id="trackerText">Note rapidement une sieste, une nuit ou un réveil. Sauvegarde locale sur ton appareil.</p>
+      <p id="trackerText">Note rapidement une sieste, une nuit ou un réveil. Les données sont sauvegardées dans Supabase si disponible.</p>
       <div class="counter">
-        <button onclick="addLog('nap')" id="napButton">+ Sieste</button>
-        <button onclick="addLog('night')" id="nightButton">+ Nuit</button>
-        <button onclick="addLog('wake')" id="wakeButton">+ Réveil</button>
+        <button onclick="addQuickSleep('nap')" id="napButton">+ Sieste</button>
+        <button onclick="addQuickSleep('night')" id="nightButton">+ Nuit</button>
+        <button onclick="addQuickSleep('wake')" id="wakeButton">+ Réveil</button>
       </div>
       <div class="stats">
         <div class="stat"><div class="stat-label" id="napLabel">Siestes</div><div class="stat-value" id="napCount">0</div></div>
         <div class="stat"><div class="stat-label" id="nightLabel">Nuit</div><div class="stat-value" id="nightCount">0</div></div>
         <div class="stat"><div class="stat-label" id="wakeLabel">Réveils</div><div class="stat-value" id="wakeCount">0</div></div>
       </div>
+      <div class="form-grid" style="margin-top:16px;">
+        <div class="field"><label id="sleepTypeLabel" for="sleepType">Type</label><select id="sleepType"><option value="nap">Sieste</option><option value="night">Nuit</option><option value="wake">Réveil</option></select></div>
+        <div class="field"><label id="sleepDateLabel" for="sleepDate">Date</label><input id="sleepDate" type="date"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label id="sleepTimeLabel" for="sleepTime">Heure</label><input id="sleepTime" type="time"></div>
+        <div class="field"><label id="sleepDurationLabel" for="sleepDuration">Durée minutes</label><input id="sleepDuration" type="number" min="0" step="5" placeholder="Ex. 90"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label id="sleepWakeCountLabel" for="sleepWakeCount">Réveils</label><input id="sleepWakeCount" type="number" min="0" step="1" placeholder="Ex. 2"></div>
+        <div class="field"><label id="sleepQualityLabel" for="sleepQuality">Qualité</label><select id="sleepQuality"><option value="normal">Normal</option><option value="calm">Calme</option><option value="restless">Agité</option><option value="difficult">Difficile</option></select></div>
+      </div>
+      <div class="field"><label id="sleepNoteLabel" for="sleepNote">Note</label><textarea id="sleepNote" placeholder="Routine, reflux, coliques, réveils, conseils Hebamme/Kinderarzt..."></textarea></div>
       <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="addDetailedSleep()" id="addSleepButton">Ajouter entrée</button>
         <button class="button-light" onclick="clearTodayLog()" id="clearTrackerButton">Effacer aujourd’hui</button>
+        <button class="button-light" onclick="exportSleepJson()" id="exportSleepButton">Exporter JSON</button>
       </div>
       <div class="soft" id="trackerNote">Le suivi aide à comprendre un rythme, pas à forcer bébé à dormir.</div>
     </div>
@@ -241,15 +264,18 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+let sleepEntries=[],dbOnline=true;
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+const sleepTypes=["sleep_nap","sleep_night","sleep_wake","sleep_check","sleep_note"];
 
 const tr={
 fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Sommeil bébé",pageTitle:"Dormir plus sûr, pas forcément plus parfait",pageText:"Une page pour comprendre le sommeil du nourrisson : environnement sûr, réveils normaux, routine douce, fatigue des parents et quand demander de l’aide.",
 phaseLabel:"Phase",phaseValue:"0–12 mois",focusLabel:"Focus",focusValue:"Sommeil sûr",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"Les réveils nocturnes sont normaux chez les nourrissons. L’objectif principal n’est pas un sommeil parfait : c’est un environnement de sommeil sûr et des parents soutenus.",dangerNote:"Urgence : si bébé respire mal, devient bleu/pâle, très mou, difficile à réveiller, fièvre, convulsions ou comportement très inquiétant → aide médicale rapide / 112 si danger vital.",emergencyButton:"Urgence",feedingButton:"Alimentation",
-safeTitle:"Sommeil sûr",safeText:"Les règles simples qui comptent le plus.",trackerTitle:"Mini suivi sommeil",trackerText:"Note rapidement une sieste, une nuit ou un réveil. Sauvegarde locale sur ton appareil.",napButton:"+ Sieste",nightButton:"+ Nuit",wakeButton:"+ Réveil",napLabel:"Siestes",nightLabel:"Nuit",wakeLabel:"Réveils",clearTrackerButton:"Effacer aujourd’hui",trackerNote:"Le suivi aide à comprendre un rythme, pas à forcer bébé à dormir.",logTitle:"Journal du jour",
+safeTitle:"Sommeil sûr",safeText:"Les règles simples qui comptent le plus.",trackerTitle:"Mini suivi sommeil",trackerText:"Note rapidement une sieste, une nuit ou un réveil. Les données sont sauvegardées dans Supabase si disponible.",napButton:"+ Sieste",nightButton:"+ Nuit",wakeButton:"+ Réveil",napLabel:"Siestes",nightLabel:"Nuit",wakeLabel:"Réveils",clearTrackerButton:"Effacer aujourd’hui",trackerNote:"Le suivi aide à comprendre un rythme, pas à forcer bébé à dormir.",logTitle:"Journal du jour",
+sleepTypeLabel:"Type",sleepDateLabel:"Date",sleepTimeLabel:"Heure",sleepDurationLabel:"Durée minutes",sleepWakeCountLabel:"Réveils",sleepQualityLabel:"Qualité",sleepNoteLabel:"Note",addSleepButton:"Ajouter entrée",exportSleepButton:"Exporter JSON",
 checkTitle:"Checklist sommeil sûr",checkText:"Coche ce qui est prêt.",resetButton:"Réinitialiser",parentsTitle:"Parents épuisés",parentsNote:"Le manque de sommeil peut devenir dangereux. Demander de l’aide concrète est une mesure de sécurité.",timelineTitle:"Repères par âge",timelineText:"Le rythme change souvent pendant la première année.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici : routine, heures difficiles, conseils pédiatre/Hebamme, choses qui aident bébé à se calmer.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens fiables pour vérifier les règles de sommeil sûr.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-safe:"Sûr",caution:"Prudence",avoid:"À éviter",empty:"Aucun élément aujourd’hui",
+safe:"Sûr",caution:"Prudence",avoid:"À éviter",empty:"Aucun élément aujourd’hui",saved:"Sauvegardé",savedLocal:"Supabase indisponible : sauvegardé localement.",deleted:"Supprimé",modeOnline:"Mode Supabase connecté.",modeLocal:"Mode local sur cet appareil.",duration:"Durée",minutes:"min",wakes:"réveils",quality:"qualité",
 safeItems:[
 ["🛌","Position sur le dos","Pour dormir, coucher bébé sur le dos. Évite la position ventrale ou latérale non surveillée.","safe"],
 ["🧸","Lit dégagé","Pas de coussin, peluche, nid, tour de lit, couverture lourde ou objets mous dans le lit.","safe"],
@@ -282,45 +308,172 @@ Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
 function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function today(){return new Date().toISOString().slice(0,10)}
+function nowTime(){return new Date().toTimeString().slice(0,5)}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 function setLanguage(lang){
  currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
  const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
- Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el && typeof t()[id]==="string")el.textContent=t()[id]});
  render();
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
 function badge(type){if(type==="avoid")return "badge badge-red";if(type==="caution")return "badge badge-warning";return "badge badge-green"}
 function typeText(type){if(type==="avoid")return t().avoid;if(type==="caution")return t().caution;return t().safe}
-function checkKey(){return "mama-sleep-check-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-sleep-note-"+(currentUser?currentUser.id:"guest")}
-function logKey(){return "mama-sleep-log-"+(currentUser?currentUser.id:"guest")+"-"+new Date().toISOString().slice(0,10)}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
+function localKey(){return "mama-sleep-tracking-v1-"+(currentUser?currentUser.id:"guest")}
+function getLocal(){try{return JSON.parse(localStorage.getItem(localKey()))||[]}catch(e){return[]}}
+function setLocal(v){localStorage.setItem(localKey(),JSON.stringify(v.slice(0,300)))}
+function showStatus(msg,ok=true){const el=document.getElementById("trackerNote");el.textContent=msg;el.className=ok?"success":"warning";setTimeout(()=>{el.textContent=t().trackerNote;el.className="soft"},3500)}
+function metadataText({quality,wakes,note}){
+ const lines=[];
+ if(quality)lines.push("Qualité: "+quality);
+ if(wakes!==null && wakes!==undefined && wakes!=="")lines.push("Réveils: "+wakes);
+ if(note)lines.push(String(note));
+ return lines.join("\n");
+}
+function getSleepLabel(kind){if(kind==="nap")return t().napButton.replace("+ ","");if(kind==="night")return t().nightButton.replace("+ ","");return t().wakeButton.replace("+ ","")}
+function normalize(row){return {...row,tracking_date:row.tracking_date||today(),tracking_time:(row.tracking_time||"").slice(0,5)}}
+async function saveEntry(entry){
+ if(!currentUser){return null}
+ const payload={...entry,user_id:currentUser.id};
+ try{
+  const {data,error}=await supabaseClient.from("baby_tracking").insert(payload).select("*").single();
+  if(error)throw error;
+  dbOnline=true;
+  return normalize(data);
+ }catch(e){
+  dbOnline=false;
+  const local=getLocal();
+  const fallback=normalize({...payload,id:"local-"+Date.now(),created_at:new Date().toISOString()});
+  local.unshift(fallback);setLocal(local);
+  return fallback;
+ }
+}
+async function loadSleepEntries(){
+ try{
+  const {data,error}=await supabaseClient.from("baby_tracking").select("*").eq("user_id",currentUser.id).in("entry_type",sleepTypes).order("tracking_date",{ascending:false}).order("created_at",{ascending:false}).limit(250);
+  if(error)throw error;
+  sleepEntries=(data||[]).map(normalize);
+  dbOnline=true;
+ }catch(e){
+  sleepEntries=getLocal().map(normalize);
+  dbOnline=false;
+ }
+ render();
+ showStatus(dbOnline?t().modeOnline:t().modeLocal,dbOnline);
+}
+async function addQuickSleep(kind){
+ const entry={tracking_date:today(),tracking_time:nowTime(),entry_type:"sleep_"+kind,milestone_label:getSleepLabel(kind),sleep_minutes:null,notes:"",completed:false};
+ const saved=await saveEntry(entry);
+ if(saved)sleepEntries.unshift(saved);
+ renderLog();
+ showStatus(dbOnline?t().saved:t().savedLocal,dbOnline);
+}
+async function addDetailedSleep(){
+ const kind=document.getElementById("sleepType").value||"nap";
+ const date=document.getElementById("sleepDate").value||today();
+ const time=document.getElementById("sleepTime").value||nowTime();
+ const duration=document.getElementById("sleepDuration").value;
+ const wakes=document.getElementById("sleepWakeCount").value;
+ const quality=document.getElementById("sleepQuality").value;
+ const note=document.getElementById("sleepNote").value.trim();
+ const entry={
+  tracking_date:date,tracking_time:time,entry_type:"sleep_"+kind,
+  milestone_label:getSleepLabel(kind),sleep_minutes:duration?Number(duration):null,
+  notes:metadataText({quality,wakes,note}),completed:false
+ };
+ const saved=await saveEntry(entry);
+ if(saved)sleepEntries.unshift(saved);
+ ["sleepDuration","sleepWakeCount","sleepNote"].forEach(id=>document.getElementById(id).value="");
+ renderLog();showStatus(dbOnline?t().saved:t().savedLocal,dbOnline);
+}
+function todaySleepLogs(){return sleepEntries.filter(e=>["sleep_nap","sleep_night","sleep_wake"].includes(e.entry_type)&&e.tracking_date===today()).sort((a,b)=>String(b.tracking_time||"").localeCompare(String(a.tracking_time||"")))}
+function renderLog(){
+ const l=todaySleepLogs();
+ document.getElementById("napCount").textContent=l.filter(x=>x.entry_type==="sleep_nap").length;
+ document.getElementById("nightCount").textContent=l.filter(x=>x.entry_type==="sleep_night").length;
+ document.getElementById("wakeCount").textContent=l.filter(x=>x.entry_type==="sleep_wake").length;
+ const box=document.getElementById("logList");
+ if(!l.length){box.innerHTML=`<div class="empty">${t().empty}</div>`;return}
+ box.innerHTML=l.map(x=>{
+  const kind=x.entry_type.replace("sleep_","");
+  const duration=x.sleep_minutes?` · ${t().duration}: ${escapeHtml(x.sleep_minutes)} ${t().minutes}`:"";
+  const notes=x.notes?`<p style="margin-top:8px;">${escapeHtml(x.notes).replaceAll("\n","<br>")}</p>`:"";
+  return `<div class="log-item"><strong>${escapeHtml(getSleepLabel(kind))}</strong> · ${escapeHtml(x.tracking_time||"")}${duration}${notes}<div class="log-actions"><button onclick="deleteEntry('${x.id}')">Supprimer</button></div></div>`;
+ }).join("");
+}
+async function deleteEntry(id){
+ sleepEntries=sleepEntries.filter(e=>String(e.id)!==String(id));
+ if(String(id).startsWith("local-")||!dbOnline){setLocal(sleepEntries);render();showStatus(t().deleted,true);return}
+ try{await supabaseClient.from("baby_tracking").delete().eq("id",id)}catch(e){}
+ render();showStatus(t().deleted,true);
+}
+async function clearTodayLog(){
+ const todayIds=todaySleepLogs().map(e=>e.id);
+ if(!todayIds.length){renderLog();return}
+ sleepEntries=sleepEntries.filter(e=>!todayIds.includes(e.id));
+ setLocal(sleepEntries);
+ if(dbOnline){try{await supabaseClient.from("baby_tracking").delete().in("id",todayIds.filter(id=>!String(id).startsWith("local-")))}catch(e){}}
+ render();showStatus(t().deleted,true);
+}
+function currentChecklistState(){
+ const out={};
+ sleepEntries.filter(e=>e.entry_type==="sleep_check").forEach(e=>{out[e.milestone_key]=e});
+ return out;
+}
+async function toggleCheck(i){
+ const label=t().checklist[i];
+ const key="sleep_check_"+i;
+ const existing=currentChecklistState()[key];
+ if(existing){
+  existing.completed=!existing.completed;
+  if(!String(existing.id).startsWith("local-")&&dbOnline){try{await supabaseClient.from("baby_tracking").update({completed:existing.completed,updated_at:new Date().toISOString()}).eq("id",existing.id)}catch(e){}}
+ }else{
+  const saved=await saveEntry({tracking_date:today(),tracking_time:nowTime(),entry_type:"sleep_check",milestone_key:key,milestone_label:label,completed:true,notes:""});
+  if(saved)sleepEntries.unshift(saved);
+ }
+ setLocal(sleepEntries);renderChecklist();
+}
+async function resetChecklist(){
+ const checks=sleepEntries.filter(e=>e.entry_type==="sleep_check");
+ checks.forEach(e=>e.completed=false);
+ const remoteIds=checks.map(e=>e.id).filter(id=>!String(id).startsWith("local-"));
+ if(dbOnline && remoteIds.length){try{await supabaseClient.from("baby_tracking").update({completed:false,updated_at:new Date().toISOString()}).in("id",remoteIds)}catch(e){}}
+ setLocal(sleepEntries);renderChecklist();
+}
 function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ const state=currentChecklistState();const items=t().checklist;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>{const e=state["sleep_check_"+i];return `<label class="check-row"><input type="checkbox" ${e&&e.completed?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`}).join("");
+ const done=Object.values(state).filter(e=>e.completed).length,total=items.length;
  document.getElementById("progressValue").textContent=done+" / "+total;
  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
-function getLog(){try{return JSON.parse(localStorage.getItem(logKey()))||[]}catch(e){return[]}}
-function saveLog(l){localStorage.setItem(logKey(),JSON.stringify(l.slice(0,60)))}
-function addLog(type){const l=getLog();l.unshift({type,time:new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"})});saveLog(l);renderLog()}
-function clearTodayLog(){saveLog([]);renderLog()}
-function renderLog(){
- const l=getLog();
- document.getElementById("napCount").textContent=l.filter(x=>x.type==="nap").length;
- document.getElementById("nightCount").textContent=l.filter(x=>x.type==="night").length;
- document.getElementById("wakeCount").textContent=l.filter(x=>x.type==="wake").length;
- const label={nap:t().napButton.replace("+ ",""),night:t().nightButton.replace("+ ",""),wake:t().wakeButton.replace("+ ","")};
- document.getElementById("logList").innerHTML=l.length?l.map(x=>`<div class="log-item"><strong>${label[x.type]||x.type}</strong> · ${x.time}</div>`).join(""):`<div class="log-item">${t().empty}</div>`;
+async function saveNote(){
+ const value=document.getElementById("personalNote").value.trim();
+ const existing=sleepEntries.find(e=>e.entry_type==="sleep_note"&&e.milestone_key==="sleep_personal_note");
+ if(existing){
+  existing.notes=value;existing.tracking_date=today();existing.tracking_time=nowTime();
+  if(!String(existing.id).startsWith("local-")&&dbOnline){try{await supabaseClient.from("baby_tracking").update({notes:value,tracking_date:today(),tracking_time:nowTime(),updated_at:new Date().toISOString()}).eq("id",existing.id)}catch(e){}}
+ }else{
+  const saved=await saveEntry({tracking_date:today(),tracking_time:nowTime(),entry_type:"sleep_note",milestone_key:"sleep_personal_note",milestone_label:"Note sommeil",notes:value,completed:false});
+  if(saved)sleepEntries.unshift(saved);
+ }
+ setLocal(sleepEntries);
+ const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800);
+ showStatus(dbOnline?t().saved:t().savedLocal,dbOnline);
 }
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+function loadNote(){
+ const n=sleepEntries.find(e=>e.entry_type==="sleep_note"&&e.milestone_key==="sleep_personal_note");
+ document.getElementById("personalNote").value=n?.notes||"";
+}
+function exportSleepJson(){
+ const data={exported_at:new Date().toISOString(),user_id:currentUser?.id||null,entries:sleepEntries};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mama-sleep-tracking.json";a.click();URL.revokeObjectURL(url);
+}
 function render(){
  document.getElementById("phaseValue").textContent=t().phaseValue;
  document.getElementById("focusValue").textContent=t().focusValue;
@@ -328,8 +481,9 @@ function render(){
  document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
  document.getElementById("parentsList").innerHTML=t().parentsList.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
- renderChecklist();renderLog();
+ if(document.getElementById("sleepDate")&&!document.getElementById("sleepDate").value)document.getElementById("sleepDate").value=today();
+ if(document.getElementById("sleepTime")&&!document.getElementById("sleepTime").value)document.getElementById("sleepTime").value=nowTime();
+ renderChecklist();renderLog();loadNote();
 }
 async function loadApp(){
  const {data,error}=await supabaseClient.auth.getSession();
@@ -339,7 +493,9 @@ async function loadApp(){
  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadSleepEntries();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

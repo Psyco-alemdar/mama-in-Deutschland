@@ -15,38 +15,51 @@ body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--
 body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.12)}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 8% 0%,rgba(198,164,106,.22),transparent 30%),radial-gradient(circle at 92% 8%,rgba(155,115,87,.16),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-.wrap{max-width:1220px;margin:0 auto;padding:22px 18px 34px}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 34px}
 header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
 .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:23px;font-weight:950;text-decoration:none;letter-spacing:-.5px}
 .brand-icon{width:46px;height:46px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.button,.button-light,.button-danger,.button-green,.button-blue{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:900;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
+.button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
 .lang-menu{position:absolute;right:0;top:48px;width:190px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:10}
 .lang-menu.open{display:block}
 .lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:900;text-align:left;cursor:pointer;font-family:inherit}
 .lang-menu button:hover{background:var(--soft)}
-.card,.hero,.panel{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px}
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 65%,var(--soft));position:relative;overflow:hidden}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:30px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}
+.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 65%,var(--soft));position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-70px;top:-70px;width:210px;height:210px;border-radius:50%;background:rgba(155,115,87,.10)}
 .hero-content,.hero-side{position:relative;z-index:1}
 .kicker{display:inline-flex;padding:7px 11px;border-radius:99px;background:var(--soft);color:var(--brown);font-weight:950;font-size:12px;margin-bottom:12px}
 h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:40px;letter-spacing:-1.6px;line-height:1.05}h2{font-size:25px;letter-spacing:-.7px}h3{font-size:18px}
-p{margin:0;color:var(--muted);line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.box,.guide-item{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
+p,li{margin:0;color:var(--muted);line-height:1.6}
+ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}.stat-label{font-size:12px;color:var(--muted);font-weight:950}.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.guide-item,.purchase-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:22px;padding:18px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
+.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
 .progress{height:12px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
 .checkbox-row{display:flex;gap:12px;align-items:flex-start;margin-top:11px;padding:12px;border-radius:17px;border:1px solid var(--border);background:white}
 .checkbox-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
-.login-message{max-width:650px;margin:60px auto;text-align:center}.status{display:none;margin-top:12px;font-weight:900;color:var(--brown)}
+.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0 7px}
+input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:120px;resize:vertical}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:14px}
+.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.purchase-card{margin-bottom:12px}.purchase-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.purchase-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.purchase-actions button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+.empty{padding:24px;border:1px dashed var(--border);border-radius:22px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}.login-message{max-width:650px;margin:60px auto;text-align:center}.status{display:none;margin-top:12px;font-weight:900;color:var(--brown)}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-@media(max-width:960px){.hero,.grid-2{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:31px}.grid{grid-template-columns:1fr}.card,.hero,.panel{padding:20px}.top-actions{width:100%;justify-content:flex-start}}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid,.form-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:31px}.grid-4,.stats{grid-template-columns:1fr}.card,.hero{padding:20px}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -55,6 +68,7 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
   <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
   <div class="top-actions">
     <a class="button-light" href="profile.html" id="uiProfile">Profil</a>
+    <a class="button-light" href="documents.html" id="uiDocs">Documents</a>
     <button class="button-danger" onclick="signOut()" id="uiLogout">Déconnexion</button>
     <div class="lang-wrap">
       <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
@@ -74,52 +88,134 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 <main id="appShell" style="display:none;">
   <section class="hero">
     <div class="hero-content">
-      <div class="kicker" id="pageKicker">-</div>
-      <h1 id="pageTitle">-</h1>
-      <p id="pageSubtitle">-</p>
-      <div class="soft" id="profileInfo">-</div>
+      <div class="kicker" id="pageKicker">Budget bébé</div>
+      <h1 id="pageTitle">Organiser les dépenses sans stress</h1>
+      <p id="pageSubtitle">Prépare les achats essentiels, les aides financières et les coûts mensuels après naissance en Allemagne.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="plannedLabel">Prévu</div><div class="stat-value" id="plannedValue">0 €</div></div>
+        <div class="stat"><div class="stat-label" id="spentLabel">Dépensé</div><div class="stat-value" id="spentValue">0 €</div></div>
+        <div class="stat"><div class="stat-label" id="monthlyLabel">Mensuel</div><div class="stat-value" id="monthlyValue">0 €</div></div>
+      </div>
     </div>
     <div class="hero-side">
       <h2 id="uiProgress">Progression</h2>
       <p id="progressText">0 / 0</p>
       <div class="progress"><div id="progressBar"></div></div>
+      <div class="soft" id="profileInfo">-</div>
       <div class="actions" style="margin-top:14px;">
         <a class="button" href="app.html" id="uiDashboard">Dashboard</a>
         <button class="button-light" onclick="history.back()" id="uiBack">Retour</button>
+      </div>
+      <div class="warning" id="budgetWarning">Les montants sont une organisation personnelle, pas un conseil financier. Vérifie toujours les droits réels auprès de Familienkasse, Elterngeldstelle, Krankenkasse et employeur.</div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="simTitle">Simulateur simple</h2>
+      <p id="simText">Estime rapidement les coûts principaux. Les valeurs restent modifiables.</p>
+      <div class="form-grid">
+        <div class="field"><label id="oneTimeLabel">Achats naissance estimés</label><input id="oneTimeInput" type="number" min="0" step="10" value="1500" oninput="saveBudgetSettings()"></div>
+        <div class="field"><label id="monthlyExtraLabel">Dépenses bébé mensuelles</label><input id="monthlyInput" type="number" min="0" step="10" value="250" oninput="saveBudgetSettings()"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label id="kindergeldLabel">Kindergeld estimé</label><input id="kindergeldInput" type="number" min="0" step="10" value="250" oninput="saveBudgetSettings()"></div>
+        <div class="field"><label id="savingLabel">Épargne bébé mensuelle</label><input id="savingInput" type="number" min="0" step="10" value="100" oninput="saveBudgetSettings()"></div>
+      </div>
+      <div class="grid" style="margin-top:12px;">
+        <div class="box"><span class="badge">Naissance</span><h3 id="birthCostValue">0 €</h3><p id="birthCostText">Coût unique estimé.</p></div>
+        <div class="box"><span class="badge">Mensuel net</span><h3 id="monthlyNetValue">0 €</h3><p id="monthlyNetText">Dépenses bébé - Kindergeld.</p></div>
+        <div class="box"><span class="badge">Annuel</span><h3 id="yearlyValue">0 €</h3><p id="yearlyText">Projection simple sur 12 mois.</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="quickTitle">Priorités budget</h2>
+      <div class="grid" id="cardsGrid"></div>
+      <div class="soft" id="quickNote">Sécurité avant économie pour siège auto, lit/matelas et objets liés au sommeil.</div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="newPurchaseTitle">Ajouter un achat / dépense</h2>
+      <p id="newPurchaseText">Les achats sont sauvegardés dans Supabase via user_tasks.</p>
+      <div class="form-grid">
+        <div class="field"><label id="purchaseTitleLabel">Titre</label><input id="purchaseTitle" placeholder="Ex. Siège auto"></div>
+        <div class="field"><label id="categoryLabel">Catégorie</label><select id="purchaseCategory"></select></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label id="estimatedLabel">Prix prévu €</label><input id="estimatedAmount" type="number" min="0" step="0.5"></div>
+        <div class="field"><label id="actualLabel">Prix payé €</label><input id="actualAmount" type="number" min="0" step="0.5"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label id="dueDateLabel">Date cible</label><input id="purchaseDueDate" type="date"></div>
+        <div class="field"><label id="statusLabel">Statut</label><select id="purchaseStatus"><option value="planned">Prévu</option><option value="bought">Acheté</option><option value="skipped">Annulé</option></select></div>
+      </div>
+      <div class="field"><label id="noteLabel">Note</label><textarea id="purchaseNote" placeholder="Modèle, lien, taille, priorité, comparaison prix..."></textarea></div>
+      <div class="actions">
+        <button class="button" onclick="savePurchase()" id="savePurchaseButton">Sauvegarder achat</button>
+        <button class="button-light" onclick="clearPurchaseForm()" id="clearButton">Effacer</button>
+      </div>
+      <div class="soft" id="statusBox" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="checklistTitle">Checklist budget</h2>
+      <div id="checklistBox"></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetChecklist()" id="uiReset">Réinitialiser</button>
       </div>
     </div>
   </section>
 
   <section class="card">
-    <h2 id="uiImportant">Important</h2>
-    <div class="grid" id="cardsGrid"></div>
-  </section>
-
-  <section class="card">
-    <h2 id="uiChecklist">Checklist</h2>
-    <div id="checklistBox"></div>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button-light" onclick="resetChecklist()" id="uiReset">Réinitialiser</button>
+    <div class="section-title">
+      <div>
+        <h2 id="purchasesTitle">Mes achats et démarches</h2>
+        <p id="purchasesText">Suivi des achats importants, aides et démarches financières.</p>
+      </div>
+      <div class="actions">
+        <button class="button-light" onclick="loadBudgetData()" id="refreshButton">Actualiser</button>
+        <button class="button-blue" onclick="exportBudget()" id="exportButton">Exporter JSON</button>
+      </div>
     </div>
+    <div id="purchasesList"></div>
   </section>
 
   <section class="card">
-    <h2 id="uiGuide">Guide rapide</h2>
+    <h2 id="guideTitle">Guide rapide Allemagne</h2>
     <div class="grid" id="timelineGrid"></div>
   </section>
 
-  <section class="card">
-    <h2 id="uiTips">Conseils</h2>
-    <div id="tipsBox"></div>
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="tipsTitle">Conseils</h2>
+      <div id="tipsBox"></div>
+    </div>
+    <div class="card">
+      <h2 id="notesTitle">Note personnelle</h2>
+      <textarea id="personalNote" placeholder="Budget global, liens utiles, prix comparés, questions à Elterngeldstelle..."></textarea>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveBudgetNote()" id="uiSaveNote">Sauvegarder la note</button>
+      </div>
+      <div class="status" id="noteStatus"></div>
+    </div>
   </section>
 
   <section class="card">
-    <h2 id="uiNotes">Note personnelle</h2>
-    <textarea id="personalNote"></textarea>
-    <div class="actions" style="margin-top:14px;">
-      <button class="button" onclick="saveNote()" id="uiSaveNote">Sauvegarder la note</button>
+    <div class="section-title">
+      <div>
+        <h2 id="linksTitle">Liens utiles</h2>
+        <p id="linksText">Pages internes liées au budget et aux démarches.</p>
+      </div>
     </div>
-    <div class="status" id="noteStatus"></div>
+    <div class="grid-4">
+      <div class="source-card"><a href="documents.html">Documents</a><span>Kindergeld, Elterngeld, Krankenkasse, Standesamt.</span></div>
+      <div class="source-card"><a href="baby-equipment.html">Équipement bébé</a><span>Achats utiles et sécurité.</span></div>
+      <div class="source-card"><a href="marketplace.html">Marketplace</a><span>Seconde main, dons et matériel bébé.</span></div>
+      <div class="source-card"><a href="contact.html">Contact</a><span>Question, bug ou suggestion de fonctionnalité.</span></div>
+    </div>
   </section>
 
   <div class="footer-actions">
@@ -140,116 +236,309 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const FALLBACK_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+let supabaseClient;
+try{ supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY); }catch(e){ supabaseClient=window.supabase.createClient(SUPABASE_URL,FALLBACK_ANON_KEY); }
 
-const PAGE_ID="budget";
-const CONTENT={"fr": {"icon": "💶", "title": "Budget bébé", "kicker": "Organisation financière", "subtitle": "Planifie les achats essentiels, aides possibles et coûts mensuels après naissance.", "cards": [["Achats essentiels", "Poussette, siège auto, lit, vêtements, couches, soins."], ["Aides", "Elterngeld, Kindergeld, Mutterschaftsgeld selon situation."], ["Économies", "Marketplace, dons, seconde main, achats prioritaires."]], "checklist": ["Lister achats obligatoires", "Définir budget maximum", "Comparer neuf/seconde main", "Noter aides à demander", "Prévoir coût couches/lait"], "timeline": [["SA 20–28", "Lister gros achats."], ["SA 28–34", "Acheter essentiel."], ["Après naissance", "Suivre dépenses réelles."]], "tips": ["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.", "Sécurité avant économie pour siège auto et lit."]}, "en": {"icon": "💶", "title": "Budget bebe", "kicker": "Organisation financière", "subtitle": "Planifie les achats essentiels, aides possibles et coûts mensuels après naissance.", "cards": [["Achats essentiels", "Poussette, siège auto, lit, vêtements, couches, soins."], ["Aides", "Elterngeld, Kindergeld, Mutterschaftsgeld selon situation."], ["Économies", "Marketplace, dons, seconde main, achats prioritaires."]], "checklist": ["Lister achats obligatoires", "Définir budget maximum", "Comparer neuf/seconde main", "Noter aides à demander", "Prévoir coût couches/lait"], "timeline": [["SA 20–28", "Lister gros achats."], ["SA 28–34", "Acheter essentiel."], ["Après naissance", "Suivre dépenses réelles."]], "tips": ["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.", "Sécurité avant économie pour siège auto et lit."]}, "de": {"icon": "💶", "title": "Budget bebe", "kicker": "Organisation financière", "subtitle": "Planifie les achats essentiels, aides possibles et coûts mensuels après naissance.", "cards": [["Achats essentiels", "Poussette, siège auto, lit, vêtements, couches, soins."], ["Aides", "Elterngeld, Kindergeld, Mutterschaftsgeld selon situation."], ["Économies", "Marketplace, dons, seconde main, achats prioritaires."]], "checklist": ["Lister achats obligatoires", "Définir budget maximum", "Comparer neuf/seconde main", "Noter aides à demander", "Prévoir coût couches/lait"], "timeline": [["SA 20–28", "Lister gros achats."], ["SA 28–34", "Acheter essentiel."], ["Après naissance", "Suivre dépenses réelles."]], "tips": ["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.", "Sécurité avant économie pour siège auto et lit."]}, "ar": {"icon": "💶", "title": "Budget bébé", "kicker": "Organisation financière", "subtitle": "Planifie les achats essentiels, aides possibles et coûts mensuels après naissance.", "cards": [["Achats essentiels", "Poussette, siège auto, lit, vêtements, couches, soins."], ["Aides", "Elterngeld, Kindergeld, Mutterschaftsgeld selon situation."], ["Économies", "Marketplace, dons, seconde main, achats prioritaires."]], "checklist": ["Lister achats obligatoires", "Définir budget maximum", "Comparer neuf/seconde main", "Noter aides à demander", "Prévoir coût couches/lait"], "timeline": [["SA 20–28", "Lister gros achats."], ["SA 28–34", "Acheter essentiel."], ["Après naissance", "Suivre dépenses réelles."]], "tips": ["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.", "Sécurité avant économie pour siège auto et lit."]}, "tr": {"icon": "💶", "title": "Budget bebe", "kicker": "Organisation financière", "subtitle": "Planifie les achats essentiels, aides possibles et coûts mensuels après naissance.", "cards": [["Achats essentiels", "Poussette, siège auto, lit, vêtements, couches, soins."], ["Aides", "Elterngeld, Kindergeld, Mutterschaftsgeld selon situation."], ["Économies", "Marketplace, dons, seconde main, achats prioritaires."]], "checklist": ["Lister achats obligatoires", "Définir budget maximum", "Comparer neuf/seconde main", "Noter aides à demander", "Prévoir coût couches/lait"], "timeline": [["SA 20–28", "Lister gros achats."], ["SA 28–34", "Acheter essentiel."], ["Après naissance", "Suivre dépenses réelles."]], "tips": ["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.", "Sécurité avant économie pour siège auto et lit."]}, "ru": {"icon": "💶", "title": "Budget bebe", "kicker": "Organisation financière", "subtitle": "Planifie les achats essentiels, aides possibles et coûts mensuels après naissance.", "cards": [["Achats essentiels", "Poussette, siège auto, lit, vêtements, couches, soins."], ["Aides", "Elterngeld, Kindergeld, Mutterschaftsgeld selon situation."], ["Économies", "Marketplace, dons, seconde main, achats prioritaires."]], "checklist": ["Lister achats obligatoires", "Définir budget maximum", "Comparer neuf/seconde main", "Noter aides à demander", "Prévoir coût couches/lait"], "timeline": [["SA 20–28", "Lister gros achats."], ["SA 28–34", "Acheter essentiel."], ["Après naissance", "Suivre dépenses réelles."]], "tips": ["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.", "Sécurité avant économie pour siège auto et lit."]}, "uk": {"icon": "💶", "title": "Budget bebe", "kicker": "Organisation financière", "subtitle": "Planifie les achats essentiels, aides possibles et coûts mensuels après naissance.", "cards": [["Achats essentiels", "Poussette, siège auto, lit, vêtements, couches, soins."], ["Aides", "Elterngeld, Kindergeld, Mutterschaftsgeld selon situation."], ["Économies", "Marketplace, dons, seconde main, achats prioritaires."]], "checklist": ["Lister achats obligatoires", "Définir budget maximum", "Comparer neuf/seconde main", "Noter aides à demander", "Prévoir coût couches/lait"], "timeline": [["SA 20–28", "Lister gros achats."], ["SA 28–34", "Acheter essentiel."], ["Après naissance", "Suivre dépenses réelles."]], "tips": ["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.", "Sécurité avant économie pour siège auto et lit."]}};
-const UI={"fr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Déconnexion", "back": "Retour", "checklist": "Checklist", "progress": "Progression", "guide": "Guide rapide", "tips": "Conseils", "notes": "Note personnelle", "saveNote": "Sauvegarder la note", "reset": "Réinitialiser", "saved": "Sauvegardé", "loginTitle": "Connexion nécessaire", "loginText": "Tu dois d’abord te connecter.", "home": "Retour à l’accueil", "language": "Langue", "open": "Ouvrir", "important": "Important", "week": "SA", "status": "Statut", "notePlaceholder": "Écris ici une note personnelle. Elle reste sur ton appareil pour le moment."}, "de": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Ausloggen", "back": "Zurück", "checklist": "Checkliste", "progress": "Fortschritt", "guide": "Kurzguide", "tips": "Tipps", "notes": "Persönliche Notiz", "saveNote": "Notiz speichern", "reset": "Zurücksetzen", "saved": "Gespeichert", "loginTitle": "Bitte einloggen", "loginText": "Du musst dich zuerst anmelden.", "home": "Zur Startseite", "language": "Sprache", "open": "Öffnen", "important": "Wichtig", "week": "SSW", "status": "Status", "notePlaceholder": "Schreibe hier eine persönliche Notiz. Sie bleibt vorerst auf deinem Gerät."}, "en": {"dashboard": "Dashboard", "profile": "Profile", "logout": "Log out", "back": "Back", "checklist": "Checklist", "progress": "Progress", "guide": "Quick guide", "tips": "Tips", "notes": "Personal note", "saveNote": "Save note", "reset": "Reset", "saved": "Saved", "loginTitle": "Please log in", "loginText": "You need to log in first.", "home": "Back to home", "language": "Language", "open": "Open", "important": "Important", "week": "Week", "status": "Status", "notePlaceholder": "Write a personal note here. For now it stays on your device."}, "ar": {"dashboard": "لوحة التحكم", "profile": "الملف", "logout": "خروج", "back": "رجوع", "checklist": "قائمة", "progress": "التقدم", "guide": "دليل سريع", "tips": "نصائح", "notes": "ملاحظة شخصية", "saveNote": "حفظ الملاحظة", "reset": "إعادة ضبط", "saved": "تم الحفظ", "loginTitle": "يرجى تسجيل الدخول", "loginText": "يجب تسجيل الدخول أولاً.", "home": "العودة للرئيسية", "language": "اللغة", "open": "فتح", "important": "مهم", "week": "أسبوع", "status": "الحالة", "notePlaceholder": "اكتبي ملاحظة شخصية هنا. حالياً تبقى على جهازك."}, "tr": {"dashboard": "Dashboard", "profile": "Profil", "logout": "Çıkış", "back": "Geri", "checklist": "Kontrol listesi", "progress": "İlerleme", "guide": "Kısa rehber", "tips": "İpuçları", "notes": "Kişisel not", "saveNote": "Notu kaydet", "reset": "Sıfırla", "saved": "Kaydedildi", "loginTitle": "Lütfen giriş yap", "loginText": "Önce giriş yapmalısın.", "home": "Ana sayfa", "language": "Dil", "open": "Aç", "important": "Önemli", "week": "Hafta", "status": "Durum", "notePlaceholder": "Kişisel notunu buraya yaz. Şimdilik cihazında kalır."}, "ru": {"dashboard": "Панель", "profile": "Профиль", "logout": "Выйти", "back": "Назад", "checklist": "Список", "progress": "Прогресс", "guide": "Краткий гид", "tips": "Советы", "notes": "Личная заметка", "saveNote": "Сохранить", "reset": "Сбросить", "saved": "Сохранено", "loginTitle": "Войдите", "loginText": "Сначала нужно войти.", "home": "На главную", "language": "Язык", "open": "Открыть", "important": "Важно", "week": "Неделя", "status": "Статус", "notePlaceholder": "Напишите личную заметку. Пока она хранится на вашем устройстве."}, "uk": {"dashboard": "Панель", "profile": "Профіль", "logout": "Вийти", "back": "Назад", "checklist": "Список", "progress": "Прогрес", "guide": "Короткий гід", "tips": "Поради", "notes": "Особиста нотатка", "saveNote": "Зберегти", "reset": "Скинути", "saved": "Збережено", "loginTitle": "Увійдіть", "loginText": "Спочатку потрібно увійти.", "home": "На головну", "language": "Мова", "open": "Відкрити", "important": "Важливо", "week": "Тиждень", "status": "Статус", "notePlaceholder": "Напишіть особисту нотатку. Поки вона зберігається на вашому пристрої."}};
+let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+let tasks=[],dbOnline=true,editingId=null;
+
 const langInfo={de:{flag:"🇩🇪",abbr:"DE"},fr:{flag:"🇫🇷",abbr:"FR"},ar:{flag:"🇸🇦",abbr:"AR"},en:{flag:"🇬🇧",abbr:"EN"},tr:{flag:"🇹🇷",abbr:"TR"},ru:{flag:"🇷🇺",abbr:"RU"},uk:{flag:"🇺🇦",abbr:"UK"}};
 
-let currentUser=null;
-let currentProfile=null;
-let currentLang=localStorage.getItem("mama_lang")||"fr";
-let currentWeek=1;
+const TEXT={
+fr:{
+profile:"Profil",docs:"Documents",logout:"Déconnexion",dashboard:"Dashboard",back:"Retour",progress:"Progression",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",home:"Retour à l’accueil",
+saved:"Sauvegardé",savedLocal:"Supabase indisponible : sauvegardé localement.",deleted:"Supprimé.",empty:"Aucun achat ou démarche pour le moment.",planned:"Prévu",bought:"Acheté",skipped:"Annulé",done:"Fait",open:"À faire",
+categories:[["gear","Équipement"],["documents","Démarches"],["health","Santé"],["monthly","Mensuel"],["clothes","Vêtements"],["feeding","Alimentation"],["safety","Sécurité"],["other","Autre"]],
+cards:[["Achats essentiels","Poussette, siège auto, lit, matelas, couches, soins et vêtements."],["Aides financières","Kindergeld, Elterngeld, Mutterschaftsgeld, Krankenkasse selon situation."],["Économie intelligente","Seconde main, dons, marketplace, achats différés et comparaison de prix."]],
+checklist:["Lister les achats obligatoires","Définir un budget maximum avant naissance","Comparer neuf / seconde main","Prévoir Kindergeld","Prévoir Elterngeld","Clarifier Mutterschaftsgeld / employeur","Prévoir coût couches / lait / soins","Contrôler couverture Krankenkasse","Acheter siège auto sûr","Préparer une réserve d’urgence"],
+timeline:[["SA 20–28","Lister les gros achats et séparer urgent / utile / optionnel."],["SA 28–34","Acheter l’essentiel : siège auto, lit, couches, vêtements naissance, soins."],["SA 32–36","Préparer demandes Kindergeld, Elterngeld, Krankenkasse et documents naissance."],["Après naissance","Suivre dépenses réelles et adapter les achats au vrai besoin."],["Mensuel","Prévoir couches, alimentation, pharmacie, vêtements, transport et épargne bébé."],["Toujours","Ne pas sacrifier la sécurité pour économiser sur les objets critiques."]],
+tips:["Ne pas acheter tout trop tôt : certains besoins deviennent clairs après naissance.","Sécurité avant économie pour siège auto, lit, matelas et sommeil.","La marketplace est utile pour vêtements, petits meubles et accessoires non critiques.","Garde les factures pour garantie, assurance ou retour.","Sépare budget naissance unique et budget mensuel bébé."]
+},
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>TEXT[l]={...TEXT.fr});
+Object.assign(TEXT.de,{logout:"Ausloggen",back:"Zurück",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden."});
+Object.assign(TEXT.en,{logout:"Log out",back:"Back",loginTitle:"Please log in",loginText:"You need to log in first."});
+Object.assign(TEXT.ar,{logout:"خروج",back:"رجوع",loginTitle:"يرجى تسجيل الدخول",loginText:"يجب تسجيل الدخول أولاً."});
+Object.assign(TEXT.tr,{logout:"Çıkış",back:"Geri"});
+Object.assign(TEXT.ru,{logout:"Выйти",back:"Назад"});
+Object.assign(TEXT.uk,{logout:"Вийти",back:"Назад"});
 
-function ui(){return UI[currentLang]||UI.fr}
-function content(){return CONTENT[currentLang]||CONTENT.fr}
+function t(){return TEXT[currentLang]||TEXT.fr}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 
 function setLanguage(lang){
-  currentLang=lang;
-  localStorage.setItem("mama_lang",lang);
-  document.documentElement.lang=lang;
-  document.body.dir=lang==="ar"?"rtl":"ltr";
-  const info=langInfo[lang]||langInfo.fr;
-  document.getElementById("langTrigger").textContent=info.flag+" "+info.abbr;
-  document.getElementById("langMenu").classList.remove("open");
-  render();
+ currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
+ const info=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=info.flag+" "+info.abbr;
+ document.getElementById("langMenu").classList.remove("open");
+ applyTranslations();renderAll();
 }
-
-function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
-function addDays(d,days){const r=new Date(d);r.setDate(r.getDate()+days);return r}
+function applyTranslations(){
+ const map={uiProfile:"profile",uiDocs:"docs",uiLogout:"logout",uiDashboard:"dashboard",uiBack:"back",uiProgress:"progress",uiBackBottom:"back",uiLoginTitle:"loginTitle",uiLoginText:"loginText",uiHome:"home"};
+ Object.entries(map).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.textContent=t()[key]});
+}
+function parseLocalDate(v){if(!v)return null;const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
 function calculatePregnancy(dueDateValue){
-  if(!dueDateValue)return currentProfile?.pregnancy_week||1;
-  const today=new Date();today.setHours(0,0,0,0);
-  const due=parseLocalDate(dueDateValue);
-  const start=addDays(due,-280);
-  let week=Math.floor((today-start)/(1000*60*60*24*7))+1;
-  if(week<1)week=1;if(week>60)week=60;
-  return week;
+ if(!dueDateValue)return currentProfile?.current_week||currentProfile?.pregnancy_week||1;
+ const today=new Date();today.setHours(0,0,0,0);
+ const due=parseLocalDate(dueDateValue);const start=new Date(due);start.setDate(start.getDate()-280);
+ let week=Math.floor((today-start)/(1000*60*60*24*7))+1;if(week<1)week=1;if(week>60)week=60;return week;
 }
 function determineTheme(type,gender){
-  if(gender==="boy"||gender==="twin_boys")return"boy";
-  if(gender==="girl"||gender==="twin_girls")return"girl";
-  if(type==="twins"||gender==="twin_mixed")return"twin";
-  return"neutral";
+ if(gender==="boy"||gender==="twin_boys")return"boy"; if(gender==="girl"||gender==="twin_girls")return"girl"; if(type==="twins"||gender==="twin_mixed")return"twin"; return"neutral";
 }
-function applyTheme(theme){
-  document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-  if(theme==="boy")document.body.classList.add("theme-boy");
-  if(theme==="girl")document.body.classList.add("theme-girl");
-  if(theme==="twin")document.body.classList.add("theme-twin");
+function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+
+function cents(v){const n=Number(v||0);return Math.round(n*100)}
+function euros(c){return ((Number(c||0))/100).toLocaleString(undefined,{maximumFractionDigits:2})+" €"}
+function categoryName(c){const x=t().categories.find(a=>a[0]===c);return x?x[1]:c}
+function localTasksKey(){return "mama-budget-tasks-"+(currentUser?currentUser.id:"guest")}
+function localNoteKey(){return "mama-budget-note-"+(currentUser?currentUser.id:"guest")}
+function localSettingsKey(){return "mama-budget-settings-"+(currentUser?currentUser.id:"guest")}
+function getLocalTasks(){try{return JSON.parse(localStorage.getItem(localTasksKey()))||[]}catch(e){return[]}}
+function setLocalTasks(v){localStorage.setItem(localTasksKey(),JSON.stringify(v.slice(0,200)))}
+function getBudgetSettings(){try{return JSON.parse(localStorage.getItem(localSettingsKey()))||{oneTime:1500,monthly:250,kindergeld:250,saving:100}}catch(e){return{oneTime:1500,monthly:250,kindergeld:250,saving:100}}}
+function setBudgetSettings(v){localStorage.setItem(localSettingsKey(),JSON.stringify(v))}
+
+function checklistRows(){return tasks.filter(x=>x.task_area==="budget_checklist")}
+function purchaseRows(){return tasks.filter(x=>x.task_area==="budget_purchase")}
+function noteRows(){return tasks.filter(x=>x.task_area==="budget_note")}
+
+async function loadBudgetData(){
+ try{
+  const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page","budget").order("created_at",{ascending:false}).limit(250);
+  if(error)throw error;
+  tasks=data||[];
+  dbOnline=true;
+ }catch(e){
+  dbOnline=false;
+  tasks=getLocalTasks();
+ }
+ await ensureChecklistTasks();
+ renderAll();
 }
-function stateKey(){return "mama-page-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-note-"+PAGE_ID+"-"+(currentUser?currentUser.id:"guest")}
-function getChecklistState(){try{return JSON.parse(localStorage.getItem(stateKey()))||{}}catch(e){return{}}}
-function saveChecklistState(s){localStorage.setItem(stateKey(),JSON.stringify(s))}
-function toggleItem(index){
-  const s=getChecklistState();s[index]=!s[index];saveChecklistState(s);renderChecklist();
+
+async function ensureChecklistTasks(){
+ const existingKeys=new Set(checklistRows().map(x=>x.task_key));
+ const missing=t().checklist.map((label,i)=>({key:"budget-check-"+i,label})).filter(x=>!existingKeys.has(x.key));
+ if(!missing.length)return;
+ const newRows=missing.map(x=>({
+  user_id:currentUser.id,
+  source_page:"budget",
+  task_area:"budget_checklist",
+  task_key:x.key,
+  title:x.label,
+  description:"Checklist budget bébé",
+  priority:"normal",
+  completed:false,
+  status:"open"
+ }));
+ if(dbOnline){
+  try{
+   const {data,error}=await supabaseClient.from("user_tasks").insert(newRows).select("*");
+   if(error)throw error;
+   tasks=[...(data||[]),...tasks];
+  }catch(e){
+   dbOnline=false;
+   tasks=[...newRows.map((r,i)=>({...r,id:"local-check-"+Date.now()+"-"+i,created_at:new Date().toISOString()})),...tasks];
+   setLocalTasks(tasks);
+  }
+ }else{
+  tasks=[...newRows.map((r,i)=>({...r,id:"local-check-"+Date.now()+"-"+i,created_at:new Date().toISOString()})),...tasks];
+  setLocalTasks(tasks);
+ }
 }
-function resetChecklist(){saveChecklistState({});renderChecklist()}
-function saveNote(){
-  localStorage.setItem(noteKey(),document.getElementById("personalNote").value);
-  const el=document.getElementById("noteStatus");
-  el.textContent=ui().saved;el.style.display="block";
-  setTimeout(()=>el.style.display="none",2500);
+
+async function toggleChecklist(id){
+ const row=tasks.find(x=>String(x.id)===String(id)); if(!row)return;
+ row.completed=!row.completed; row.status=row.completed?"done":"open"; renderAll();
+ await updateTask(row.id,{completed:row.completed,status:row.status});
 }
+async function resetChecklist(){
+ for(const row of checklistRows()){row.completed=false;row.status="open"}
+ renderAll();
+ if(dbOnline){
+  try{await supabaseClient.from("user_tasks").update({completed:false,status:"open"}).eq("user_id",currentUser.id).eq("source_page","budget").eq("task_area","budget_checklist")}catch(e){setLocalTasks(tasks)}
+ }else setLocalTasks(tasks);
+}
+async function updateTask(id,payload){
+ if(String(id).startsWith("local-")||!dbOnline){setLocalTasks(tasks);return}
+ try{
+  const {error}=await supabaseClient.from("user_tasks").update(payload).eq("id",id).eq("user_id",currentUser.id);
+  if(error)throw error;
+ }catch(e){setLocalTasks(tasks)}
+}
+
+function fillPurchaseForm(row){
+ editingId=row.id;
+ document.getElementById("purchaseTitle").value=row.title||"";
+ document.getElementById("purchaseCategory").value=row.category||"other";
+ document.getElementById("estimatedAmount").value=row.estimated_amount_cents?Number(row.estimated_amount_cents)/100:"";
+ document.getElementById("actualAmount").value=row.actual_amount_cents?Number(row.actual_amount_cents)/100:"";
+ document.getElementById("purchaseDueDate").value=row.due_date||"";
+ document.getElementById("purchaseStatus").value=row.status||"planned";
+ document.getElementById("purchaseNote").value=row.notes||row.description||"";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function clearPurchaseForm(){
+ editingId=null;
+ ["purchaseTitle","estimatedAmount","actualAmount","purchaseDueDate","purchaseNote"].forEach(id=>document.getElementById(id).value="");
+ document.getElementById("purchaseStatus").value="planned";
+ document.getElementById("purchaseCategory").value="gear";
+}
+function purchasePayload(){
+ const title=document.getElementById("purchaseTitle").value.trim();
+ return {
+  user_id:currentUser.id,
+  source_page:"budget",
+  task_area:"budget_purchase",
+  task_key:editingId?undefined:"budget-purchase-"+Date.now(),
+  title,
+  category:document.getElementById("purchaseCategory").value,
+  estimated_amount_cents:cents(document.getElementById("estimatedAmount").value),
+  actual_amount_cents:cents(document.getElementById("actualAmount").value),
+  due_date:document.getElementById("purchaseDueDate").value||null,
+  priority:"normal",
+  completed:document.getElementById("purchaseStatus").value==="bought",
+  status:document.getElementById("purchaseStatus").value,
+  description:document.getElementById("purchaseNote").value.trim(),
+  notes:document.getElementById("purchaseNote").value.trim()
+ }
+}
+async function savePurchase(){
+ const p=purchasePayload();
+ if(!p.title){showStatus("Titre obligatoire.",false);return}
+ if(editingId){
+  const row=tasks.find(x=>String(x.id)===String(editingId));
+  if(row){Object.assign(row,p);delete row.task_key}
+  if(dbOnline && !String(editingId).startsWith("local-")){
+   const clean={...p};delete clean.user_id;delete clean.source_page;delete clean.task_area;delete clean.task_key;
+   try{const {error}=await supabaseClient.from("user_tasks").update(clean).eq("id",editingId).eq("user_id",currentUser.id);if(error)throw error;showStatus(t().saved,true)}catch(e){dbOnline=false;setLocalTasks(tasks);showStatus(t().savedLocal,false)}
+  }else{setLocalTasks(tasks);showStatus(t().savedLocal,false)}
+ }else{
+  if(dbOnline){
+   try{const {data,error}=await supabaseClient.from("user_tasks").insert(p).select("*").single();if(error)throw error;tasks.unshift(data);showStatus(t().saved,true)}catch(e){dbOnline=false;const r={...p,id:"local-"+Date.now(),created_at:new Date().toISOString()};tasks.unshift(r);setLocalTasks(tasks);showStatus(t().savedLocal,false)}
+  }else{
+   const r={...p,id:"local-"+Date.now(),created_at:new Date().toISOString()};tasks.unshift(r);setLocalTasks(tasks);showStatus(t().savedLocal,false)
+  }
+ }
+ clearPurchaseForm();renderAll();
+}
+async function deleteTask(id){
+ if(!confirm("Supprimer cet élément ?"))return;
+ tasks=tasks.filter(x=>String(x.id)!==String(id));renderAll();
+ if(dbOnline && !String(id).startsWith("local-")){
+  try{await supabaseClient.from("user_tasks").delete().eq("id",id).eq("user_id",currentUser.id)}catch(e){setLocalTasks(tasks)}
+ }else setLocalTasks(tasks);
+}
+async function markBought(id){
+ const row=tasks.find(x=>String(x.id)===String(id));if(!row)return;
+ row.status=row.status==="bought"?"planned":"bought";row.completed=row.status==="bought";renderAll();
+ await updateTask(id,{status:row.status,completed:row.completed});
+}
+
+function saveBudgetSettings(){
+ const s={oneTime:Number(document.getElementById("oneTimeInput").value||0),monthly:Number(document.getElementById("monthlyInput").value||0),kindergeld:Number(document.getElementById("kindergeldInput").value||0),saving:Number(document.getElementById("savingInput").value||0)};
+ setBudgetSettings(s);renderStats();
+}
+function loadBudgetSettings(){
+ const s=getBudgetSettings();
+ document.getElementById("oneTimeInput").value=s.oneTime??1500;
+ document.getElementById("monthlyInput").value=s.monthly??250;
+ document.getElementById("kindergeldInput").value=s.kindergeld??250;
+ document.getElementById("savingInput").value=s.saving??100;
+}
+function renderStats(){
+ const s=getBudgetSettings();
+ const purchases=purchaseRows();
+ const planned=purchases.reduce((sum,x)=>sum+Number(x.estimated_amount_cents||0),0);
+ const spent=purchases.reduce((sum,x)=>sum+Number(x.actual_amount_cents||0),0);
+ const monthlyNet=Math.max(0,Number(s.monthly||0)-Number(s.kindergeld||0)+Number(s.saving||0));
+ document.getElementById("plannedValue").textContent=euros(planned);
+ document.getElementById("spentValue").textContent=euros(spent);
+ document.getElementById("monthlyValue").textContent=Math.round(monthlyNet)+" €";
+ document.getElementById("birthCostValue").textContent=(Number(s.oneTime||0)+planned/100).toLocaleString(undefined,{maximumFractionDigits:0})+" €";
+ document.getElementById("monthlyNetValue").textContent=Math.round(monthlyNet)+" €";
+ document.getElementById("yearlyValue").textContent=Math.round(monthlyNet*12+Number(s.oneTime||0)+planned/100)+" €";
+}
+
 function renderChecklist(){
-  const c=content();
-  const s=getChecklistState();
-  const box=document.getElementById("checklistBox");
-  box.innerHTML=(c.checklist||[]).map((item,i)=>`
-    <label class="checkbox-row">
-      <input type="checkbox" ${s[i]?"checked":""} onchange="toggleItem(${i})">
-      <span>${item}</span>
-    </label>
-  `).join("");
-  const total=(c.checklist||[]).length;
-  const done=Object.keys(s).filter(k=>s[k]).length;
-  document.getElementById("progressText").textContent=done+" / "+total;
-  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ const rows=checklistRows().sort((a,b)=>(a.task_key||"").localeCompare(b.task_key||""));
+ const done=rows.filter(x=>x.completed).length,total=rows.length;
+ document.getElementById("progressText").textContent=done+" / "+total;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ document.getElementById("checklistBox").innerHTML=rows.map(row=>`
+  <label class="checkbox-row">
+    <input type="checkbox" ${row.completed?"checked":""} onchange="toggleChecklist('${row.id}')">
+    <span>${escapeHtml(row.title)}</span>
+  </label>
+ `).join("");
 }
-function render(){
-  const u=ui(); const c=content();
-  const map={uiProfile:"profile",uiLogout:"logout",uiProgress:"progress",uiDashboard:"dashboard",uiBack:"back",uiImportant:"important",uiChecklist:"checklist",uiGuide:"guide",uiTips:"tips",uiNotes:"notes",uiSaveNote:"saveNote",uiReset:"reset",uiBackBottom:"back",uiLoginTitle:"loginTitle",uiLoginText:"loginText",uiHome:"home"};
-  Object.entries(map).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.textContent=u[key]});
-  document.getElementById("pageKicker").textContent=c.kicker;
-  document.getElementById("pageTitle").textContent=c.icon+" "+c.title;
-  document.getElementById("pageSubtitle").textContent=c.subtitle;
-  document.getElementById("profileInfo").textContent=(currentProfile?.city?currentProfile.city+" · ":"")+u.week+" "+currentWeek;
-  document.getElementById("cardsGrid").innerHTML=(c.cards||[]).map(card=>`
-    <div class="box"><span class="badge">${u.important}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("timelineGrid").innerHTML=(c.timeline||[]).map(card=>`
-    <div class="guide-item"><span class="badge">${u.status}</span><h3>${card[0]}</h3><p>${card[1]}</p></div>
-  `).join("");
-  document.getElementById("tipsBox").innerHTML=(c.tips||[]).map(x=>`<div class="soft">${x}</div>`).join("");
-  document.getElementById("personalNote").placeholder=u.notePlaceholder;
-  document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
-  renderChecklist();
+
+function statusBadge(s){
+ if(s==="bought"||s==="done")return"badge badge-green";
+ if(s==="skipped")return"badge badge-red";
+ if(s==="planned"||s==="open")return"badge badge-warning";
+ return"badge badge-blue";
+}
+function renderPurchases(){
+ const rows=purchaseRows().sort((a,b)=>(a.status==="bought")-(b.status==="bought") || String(a.created_at||"").localeCompare(String(b.created_at||""))).reverse();
+ const box=document.getElementById("purchasesList");
+ if(!rows.length){box.innerHTML=`<div class="empty">${t().empty}</div>`;return}
+ box.innerHTML=rows.map(row=>`
+  <article class="purchase-card">
+    <div class="purchase-head">
+      <div>
+        <span class="${statusBadge(row.status)}">${escapeHtml(t()[row.status]||row.status||"planned")}</span>
+        <span class="badge badge-blue">${escapeHtml(categoryName(row.category||"other"))}</span>
+        ${row.due_date?`<span class="badge">${escapeHtml(row.due_date)}</span>`:""}
+        <h3>${escapeHtml(row.title)}</h3>
+        <p>${escapeHtml(row.notes||row.description||"").replaceAll("\\n","<br>")}</p>
+      </div>
+      <div>
+        <strong style="color:var(--brown);font-size:22px;">${euros(row.actual_amount_cents || row.estimated_amount_cents || 0)}</strong>
+        <p>${row.actual_amount_cents?"payé":"prévu"}</p>
+      </div>
+    </div>
+    <div class="purchase-actions">
+      <button onclick='fillPurchaseForm(${JSON.stringify(row).replaceAll("'","&#039;")})'>Modifier</button>
+      <button onclick="markBought('${row.id}')">${row.status==="bought"?"Prévu":"Acheté"}</button>
+      <button onclick="deleteTask('${row.id}')">Supprimer</button>
+    </div>
+  </article>
+ `).join("");
+}
+function renderStatic(){
+ document.getElementById("purchaseCategory").innerHTML=t().categories.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join("");
+ document.getElementById("cardsGrid").innerHTML=t().cards.map(card=>`<div class="box"><span class="badge">Budget</span><h3>${escapeHtml(card[0])}</h3><p>${escapeHtml(card[1])}</p></div>`).join("");
+ document.getElementById("timelineGrid").innerHTML=t().timeline.map(card=>`<div class="guide-item"><span class="badge">${escapeHtml(card[0])}</span><h3>${escapeHtml(card[0])}</h3><p>${escapeHtml(card[1])}</p></div>`).join("");
+ document.getElementById("tipsBox").innerHTML=t().tips.map(x=>`<div class="soft">${escapeHtml(x)}</div>`).join("");
+ document.getElementById("profileInfo").textContent=(currentProfile?.city?currentProfile.city+" · ":"")+"SA "+currentWeek+" · "+(dbOnline?"Supabase":"Local");
+}
+function renderAll(){renderStatic();renderChecklist();renderPurchases();renderStats();document.getElementById("personalNote").value=localStorage.getItem(localNoteKey())||""}
+function showStatus(msg,ok=true){const el=document.getElementById("statusBox");el.textContent=msg;el.className=ok?"success":"warning";el.style.display="block";setTimeout(()=>el.style.display="none",3500)}
+function saveBudgetNote(){localStorage.setItem(localNoteKey(),document.getElementById("personalNote").value);const el=document.getElementById("noteStatus");el.textContent=t().saved;el.style.display="block";setTimeout(()=>el.style.display="none",2000)}
+function exportBudget(){
+ const data={exported_at:new Date().toISOString(),settings:getBudgetSettings(),tasks,profile:{week:currentWeek,city:currentProfile?.city||""}};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download="mama-budget-export.json";a.click();URL.revokeObjectURL(url);
 }
 async function loadApp(){
-  const {data,error}=await supabaseClient.auth.getSession();
-  if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
-  currentUser=data.session.user;
-  const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
-  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
-  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
-  currentWeek=calculatePregnancy(currentProfile?.due_date);
-  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
-  document.getElementById("appShell").style.display="block";
-  setLanguage(currentLang);
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;
+ currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
+ currentWeek=calculatePregnancy(currentProfile?.due_date);
+ if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ loadBudgetSettings();
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadBudgetData();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

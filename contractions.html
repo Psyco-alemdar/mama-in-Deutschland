@@ -44,12 +44,12 @@ ul{padding-left:20px;margin:10px 0 0}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
 .stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
 .stat-label{font-size:12px;color:var(--muted);font-weight:950}
-.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.stat-value{font-size:23px;color:var(--brown);font-weight:950;margin-top:6px}
 .box,.timer-card,.source-card,.history-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
-.timer-display{font-size:56px;letter-spacing:-2px;font-weight:950;color:var(--brown);text-align:center;margin:18px 0}
+.timer-display{font-size:58px;letter-spacing:-2px;font-weight:950;color:var(--brown);text-align:center;margin:18px 0}
 .big-action{width:100%;padding:18px 20px;border-radius:24px;border:0;background:var(--brown);color:white;font-size:20px;font-weight:950;cursor:pointer;font-family:inherit}
 .big-action.active{background:var(--danger)}
 .icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
@@ -58,8 +58,10 @@ ul{padding-left:20px;margin:10px 0 0}
 .badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
 .badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
 .badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
 .warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
 .section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .timeline{display:grid;gap:12px}
 .timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
@@ -70,14 +72,21 @@ ul{padding-left:20px;margin:10px 0 0}
 .progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
 .history-list{display:grid;gap:10px;margin-top:12px}
 .history-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:white;border:1px solid var(--border);border-radius:18px;padding:12px}
+.history-item small{display:block;color:var(--muted);font-weight:800;margin-top:4px;line-height:1.45}
+.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+label{display:block;color:var(--brown);font-size:12px;font-weight:950;margin:0 0 6px}
+input,select,textarea{width:100%;padding:12px 13px;border-radius:16px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:14px}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+.alert-box{display:none;margin-top:14px}
+.alert-box.show{display:block}
 .source-card a{color:var(--brown);font-weight:950;text-decoration:none}
 .source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
-textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
 .login-message{max-width:650px;margin:60px auto;text-align:center}
-@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}.stats,.form-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.timer-display{font-size:44px}.history-item{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.form-grid{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.timer-display{font-size:44px}.history-item{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -107,20 +116,23 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     <div class="hero-main">
       <div class="kicker" id="pageKicker">Timer contractions</div>
       <h1 id="pageTitle">Mesurer les contractions clairement</h1>
-      <p id="pageText">Un timer simple pour noter la durée, l’intervalle et la régularité des contractions. Il aide à expliquer la situation au téléphone, mais ne remplace pas les consignes de ta clinique.</p>
+      <p id="pageText">Un timer simple pour noter la durée, l’intervalle, l’intensité et les signes associés. Utile pour expliquer la situation à la maternité.</p>
       <div class="stats">
         <div class="stat"><div class="stat-label" id="weekLabel">Semaine actuelle</div><div class="stat-value" id="weekValue">-</div></div>
         <div class="stat"><div class="stat-label" id="avgDurationLabel">Durée moyenne</div><div class="stat-value" id="avgDuration">-</div></div>
         <div class="stat"><div class="stat-label" id="avgIntervalLabel">Intervalle moyen</div><div class="stat-value" id="avgInterval">-</div></div>
+        <div class="stat"><div class="stat-label" id="syncLabel">Sauvegarde</div><div class="stat-value" id="syncValue">-</div></div>
       </div>
     </div>
     <div class="hero-side">
       <h2 id="importantTitle">Ultra important</h2>
       <p id="importantText">Appelle la clinique selon les consignes reçues, surtout si contractions régulières, perte de liquide, saignement, douleur inhabituelle, diminution des mouvements ou si tu te sens en danger.</p>
       <div class="warning" id="warningText">Avant terme, contractions régulières ou douleur forte = demande un avis médical rapidement. En danger vital : 112.</div>
+      <div class="alert-box warning" id="ruleAlert"></div>
       <div class="actions" style="margin-top:14px;">
         <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
         <a class="button-light" href="hospital-bag.html" id="bagButton">Valise maternité</a>
+        <button class="button-light" onclick="copyPhoneSummary()" id="copyButton">Copier résumé</button>
       </div>
     </div>
   </section>
@@ -128,19 +140,60 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
   <section class="grid-2">
     <div class="card">
       <h2 id="timerTitle">Timer</h2>
-      <p id="timerText">Clique au début d’une contraction, puis à la fin.</p>
+      <p id="timerText">Clique au début d’une contraction, puis à la fin. Les détails ci-dessous sont ajoutés à la contraction enregistrée.</p>
       <div class="timer-display" id="timerDisplay">00:00</div>
       <button class="big-action" onclick="toggleContraction()" id="timerButton">Démarrer contraction</button>
+
+      <div class="form-grid">
+        <div>
+          <label id="intensityLabel" for="intensityInput">Intensité</label>
+          <select id="intensityInput">
+            <option value="">-</option>
+            <option value="1">1 / 10</option><option value="2">2 / 10</option><option value="3">3 / 10</option>
+            <option value="4">4 / 10</option><option value="5">5 / 10</option><option value="6">6 / 10</option>
+            <option value="7">7 / 10</option><option value="8">8 / 10</option><option value="9">9 / 10</option><option value="10">10 / 10</option>
+          </select>
+        </div>
+        <div>
+          <label id="waterLabel" for="waterInput">Liquide</label>
+          <select id="waterInput">
+            <option value="no">Non</option>
+            <option value="suspected">Possible</option>
+            <option value="yes">Oui</option>
+          </select>
+        </div>
+        <div>
+          <label id="bleedingLabel" for="bleedingInput">Saignement</label>
+          <select id="bleedingInput">
+            <option value="no">Non</option>
+            <option value="light">Léger</option>
+            <option value="heavy">Important</option>
+          </select>
+        </div>
+        <div>
+          <label id="movementsLabel" for="movementsInput">Mouvements bébé</label>
+          <select id="movementsInput">
+            <option value="normal">Normaux</option>
+            <option value="reduced">Diminués</option>
+            <option value="unclear">Je ne sais pas</option>
+          </select>
+        </div>
+      </div>
+
+      <label id="quickNoteLabel" for="quickNote" style="margin-top:12px;">Note rapide</label>
+      <textarea id="quickNote" placeholder="Douleur, perte des eaux, trajet, consigne clinique..."></textarea>
+
       <div class="actions" style="margin-top:14px;">
         <button class="button-light" onclick="undoLast()" id="undoButton">Annuler dernière</button>
         <button class="button-danger" onclick="clearHistory()" id="clearButton">Effacer historique</button>
+        <button class="button-light" onclick="exportHistory()" id="exportButton">Export JSON</button>
       </div>
       <div class="soft" id="timerTip">Le plus utile : durée de chaque contraction et intervalle entre le début de deux contractions.</div>
     </div>
 
     <div class="card">
       <h2 id="historyTitle">Historique</h2>
-      <p id="historyText">Les dernières contractions sont sauvegardées localement sur ton appareil.</p>
+      <p id="historyText">Les dernières contractions sont sauvegardées dans Supabase. Si Supabase ne répond pas, elles restent localement sur ton appareil.</p>
       <div class="history-list" id="historyList"></div>
     </div>
   </section>
@@ -169,6 +222,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     <div class="card">
       <h2 id="whatToSayTitle">Que dire au téléphone ?</h2>
       <div class="box"><ul id="phoneList"></ul></div>
+      <div class="success" id="phoneSummary"></div>
       <div class="warning" id="dontWaitText">Ne reste pas seule avec une inquiétude importante. Appelle plutôt trop tôt que trop tard.</div>
     </div>
   </section>
@@ -235,18 +289,21 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
-let isRunning=false,startTime=null,timerInterval=null;
+let isRunning=false,startTime=null,timerInterval=null,contractions=[],checkTasks=[],apiMode="supabase";
 
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
-dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Timer contractions",pageTitle:"Mesurer les contractions clairement",pageText:"Un timer simple pour noter la durée, l’intervalle et la régularité des contractions. Il aide à expliquer la situation au téléphone, mais ne remplace pas les consignes de ta clinique.",
-weekLabel:"Semaine actuelle",avgDurationLabel:"Durée moyenne",avgIntervalLabel:"Intervalle moyen",importantTitle:"Ultra important",importantText:"Appelle la clinique selon les consignes reçues, surtout si contractions régulières, perte de liquide, saignement, douleur inhabituelle, diminution des mouvements ou si tu te sens en danger.",warningText:"Avant terme, contractions régulières ou douleur forte = demande un avis médical rapidement. En danger vital : 112.",emergencyButton:"Urgence",bagButton:"Valise maternité",
-timerTitle:"Timer",timerText:"Clique au début d’une contraction, puis à la fin.",timerButton:"Démarrer contraction",stopButton:"Arrêter contraction",undoButton:"Annuler dernière",clearButton:"Effacer historique",timerTip:"Le plus utile : durée de chaque contraction et intervalle entre le début de deux contractions.",
-historyTitle:"Historique",historyText:"Les dernières contractions sont sauvegardées localement sur ton appareil.",understandTitle:"Comprendre les chiffres",understandText:"Les chiffres aident, mais ton état général et les consignes de la maternité passent avant.",
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Timer contractions",pageTitle:"Mesurer les contractions clairement",pageText:"Un timer simple pour noter la durée, l’intervalle, l’intensité et les signes associés. Utile pour expliquer la situation à la maternité.",
+weekLabel:"Semaine actuelle",avgDurationLabel:"Durée moyenne",avgIntervalLabel:"Intervalle moyen",syncLabel:"Sauvegarde",importantTitle:"Ultra important",importantText:"Appelle la clinique selon les consignes reçues, surtout si contractions régulières, perte de liquide, saignement, douleur inhabituelle, diminution des mouvements ou si tu te sens en danger.",warningText:"Avant terme, contractions régulières ou douleur forte = demande un avis médical rapidement. En danger vital : 112.",emergencyButton:"Urgence",bagButton:"Valise maternité",copyButton:"Copier résumé",
+timerTitle:"Timer",timerText:"Clique au début d’une contraction, puis à la fin. Les détails ci-dessous sont ajoutés à la contraction enregistrée.",timerButton:"Démarrer contraction",stopButton:"Arrêter contraction",intensityLabel:"Intensité",waterLabel:"Liquide",bleedingLabel:"Saignement",movementsLabel:"Mouvements bébé",quickNoteLabel:"Note rapide",undoButton:"Annuler dernière",clearButton:"Effacer historique",exportButton:"Export JSON",timerTip:"Le plus utile : durée de chaque contraction et intervalle entre le début de deux contractions.",
+historyTitle:"Historique",historyText:"Les dernières contractions sont sauvegardées dans Supabase. Si Supabase ne répond pas, elles restent localement sur ton appareil.",understandTitle:"Comprendre les chiffres",understandText:"Les chiffres aident, mais ton état général et les consignes de la maternité passent avant.",
 checkTitle:"Checklist avant d’appeler",checkText:"Prépare ces informations pour la clinique ou 116117.",resetButton:"Réinitialiser",whatToSayTitle:"Que dire au téléphone ?",dontWaitText:"Ne reste pas seule avec une inquiétude importante. Appelle plutôt trop tôt que trop tard.",timelineTitle:"Repères pratiques",timelineText:"Organisation avant et pendant le départ.",questionsTitle:"Questions à poser à la clinique",notesTitle:"Note personnelle",notesText:"Note ici les consignes de ta maternité : quand appeler, où entrer, qui contacter.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Liens utiles",sourcesText:"Pour compléter les informations avec des sources fiables.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-normal:"Repère",important:"Important",urgent:"Urgent",none:"Aucune donnée",
+normal:"Repère",important:"Important",urgent:"Urgent",none:"Aucune donnée",supabase:"Supabase",local:"Local",copied:"Résumé copié ✅",
+alertRegular:"Contractions rapprochées et régulières : appelle la maternité selon tes consignes, surtout si tu es avant terme ou inquiète.",
+alertWater:"Perte de liquide possible/confirmée : contacte la clinique selon leurs consignes.",
+alertBleeding:"Saignement ou mouvements diminués : demande un avis médical rapidement.",
 info:[
 ["⏱️","Durée","Temps entre début et fin d’une contraction. Note si la douleur change ou devient très forte.","normal"],
 ["🔁","Intervalle","Temps entre le début de deux contractions. C’est souvent ce qui montre la régularité.","important"],
@@ -276,6 +333,7 @@ Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
 function t(){return tr[currentLang]||tr.fr}
+function esc(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 function setLanguage(lang){
@@ -286,7 +344,7 @@ function setLanguage(lang){
 }
 function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
 function calculatePregnancy(due){
- if(!due)return currentProfile?.pregnancy_week||1;
+ if(!due)return currentProfile?.current_week||currentProfile?.pregnancy_week||1;
  const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);
  let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;
 }
@@ -295,51 +353,245 @@ function applyTheme(theme){document.body.classList.remove("theme-boy","theme-gir
 function badge(type){if(type==="urgent")return "badge badge-red";if(type==="important")return "badge badge-warning";return "badge badge-green"}
 function typeText(type){if(type==="urgent")return t().urgent;if(type==="important")return t().important;return t().normal}
 function historyKey(){return "mama-contractions-history-"+(currentUser?currentUser.id:"guest")}
-function checkKey(){return "mama-contractions-check-"+(currentUser?currentUser.id:"guest")}
+function checkLocalKey(){return "mama-contractions-check-"+(currentUser?currentUser.id:"guest")}
 function noteKey(){return "mama-contractions-note-"+(currentUser?currentUser.id:"guest")}
-function getHistory(){try{return JSON.parse(localStorage.getItem(historyKey()))||[]}catch(e){return[]}}
-function saveHistory(h){localStorage.setItem(historyKey(),JSON.stringify(h.slice(0,20)))}
-function fmtSec(s){s=Math.max(0,Math.floor(s));const m=Math.floor(s/60),r=s%60;return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0")}
+function localHistory(){try{return JSON.parse(localStorage.getItem(historyKey()))||[]}catch(e){return[]}}
+function saveLocalHistory(h){localStorage.setItem(historyKey(),JSON.stringify(h.slice(0,50)))}
+function fmtSec(s){s=Math.max(0,Math.floor(Number(s)||0));const m=Math.floor(s/60),r=s%60;return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0")}
 function fmtMin(sec){if(!sec)return "-";return Math.round(sec/60*10)/10+" min"}
+function fmtDateTime(v){try{return new Date(v).toLocaleString([], {day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})}catch(e){return"-"}}
+function updateSync(){document.getElementById("syncValue").textContent=apiMode==="supabase"?t().supabase:t().local}
 function updateTimer(){if(!isRunning||!startTime)return;document.getElementById("timerDisplay").textContent=fmtSec((Date.now()-startTime)/1000)}
-function toggleContraction(){
+function getRecentForInterval(){
+ const first=contractions[0];
+ return first ? new Date(first.start_at || first.start).getTime() : null;
+}
+function collectContractionPayload(start,end,duration){
+ const prevStart=getRecentForInterval();
+ const intervalSeconds=prevStart ? Math.round((start-prevStart)/1000) : null;
+ const intensityRaw=document.getElementById("intensityInput").value;
+ return {
+  user_id:currentUser.id,
+  profile_id:currentProfile?.id||null,
+  start_at:new Date(start).toISOString(),
+  end_at:new Date(end).toISOString(),
+  duration_seconds:duration,
+  interval_seconds:intervalSeconds && intervalSeconds>0 ? intervalSeconds : null,
+  intensity:intensityRaw?Number(intensityRaw):null,
+  membranes_status:document.getElementById("waterInput").value,
+  bleeding_status:document.getElementById("bleedingInput").value,
+  baby_movements:document.getElementById("movementsInput").value,
+  notes:document.getElementById("quickNote").value.trim(),
+  created_at:new Date().toISOString()
+ };
+}
+async function toggleContraction(){
  if(!isRunning){
   isRunning=true;startTime=Date.now();document.getElementById("timerButton").classList.add("active");document.getElementById("timerButton").textContent=t().stopButton;timerInterval=setInterval(updateTimer,300);updateTimer();
  }else{
-  const end=Date.now();const duration=Math.round((end-startTime)/1000);let h=getHistory();h.unshift({start:startTime,end,duration});saveHistory(h);isRunning=false;startTime=null;clearInterval(timerInterval);document.getElementById("timerButton").classList.remove("active");document.getElementById("timerButton").textContent=t().timerButton;document.getElementById("timerDisplay").textContent="00:00";renderHistory();
+  const end=Date.now();const duration=Math.round((end-startTime)/1000);const payload=collectContractionPayload(startTime,end,duration);
+  isRunning=false;startTime=null;clearInterval(timerInterval);document.getElementById("timerButton").classList.remove("active");document.getElementById("timerButton").textContent=t().timerButton;document.getElementById("timerDisplay").textContent="00:00";
+  await saveContraction(payload);
+  document.getElementById("quickNote").value="";
+  await loadContractions();
  }
 }
-function undoLast(){const h=getHistory();h.shift();saveHistory(h);renderHistory()}
-function clearHistory(){saveHistory([]);renderHistory()}
+async function saveContraction(payload){
+ try{
+  const {error}=await supabaseClient.from("contraction_logs").insert(payload);
+  if(error) throw error;
+  apiMode="supabase";
+ }catch(e){
+  apiMode="local";
+  const h=localHistory();
+  h.unshift({...payload,id:crypto.randomUUID(),local:true,start:Date.parse(payload.start_at),end:Date.parse(payload.end_at),duration:payload.duration_seconds});
+  saveLocalHistory(h);
+ }
+ updateSync();
+}
+async function loadContractions(){
+ try{
+  const {data,error}=await supabaseClient.from("contraction_logs").select("*").eq("user_id",currentUser.id).order("start_at",{ascending:false}).limit(40);
+  if(error) throw error;
+  contractions=data||[];
+  apiMode="supabase";
+ }catch(e){
+  apiMode="local";
+  contractions=localHistory().map(x=>({
+   ...x,
+   start_at:x.start_at || new Date(x.start||Date.now()).toISOString(),
+   end_at:x.end_at || new Date(x.end||Date.now()).toISOString(),
+   duration_seconds:x.duration_seconds || x.duration || 0,
+   interval_seconds:x.interval_seconds || null,
+   local:true
+  }));
+ }
+ updateSync();
+ renderHistory();
+}
+async function deleteContraction(id,isLocal){
+ if(isLocal || apiMode==="local"){
+  saveLocalHistory(localHistory().filter(x=>x.id!==id));await loadContractions();return;
+ }
+ const {error}=await supabaseClient.from("contraction_logs").delete().eq("id",id).eq("user_id",currentUser.id);
+ if(error){apiMode="local"} 
+ await loadContractions();
+}
+async function undoLast(){if(!contractions.length)return;await deleteContraction(contractions[0].id,contractions[0].local)}
+async function clearHistory(){
+ if(!confirm("Effacer l’historique des contractions ?"))return;
+ if(apiMode==="supabase"){
+  const {error}=await supabaseClient.from("contraction_logs").delete().eq("user_id",currentUser.id);
+  if(error){apiMode="local";saveLocalHistory([])}
+ }else{saveLocalHistory([])}
+ await loadContractions();
+}
+function calcStats(){
+ if(!contractions.length)return {avgDur:null,avgInt:null};
+ const avgDur=contractions.reduce((a,x)=>a+(Number(x.duration_seconds)||0),0)/contractions.length;
+ const intervals=contractions.map(x=>Number(x.interval_seconds)).filter(Boolean);
+ const avgInt=intervals.length?intervals.reduce((a,x)=>a+x,0)/intervals.length:null;
+ return {avgDur,avgInt};
+}
+function renderRuleAlert(){
+ const alert=document.getElementById("ruleAlert");
+ const messages=[];
+ const recent=contractions.slice(0,5);
+ const intervals=recent.map(x=>Number(x.interval_seconds)).filter(Boolean);
+ const durations=recent.map(x=>Number(x.duration_seconds)).filter(Boolean);
+ const avgInt=intervals.length?intervals.reduce((a,x)=>a+x,0)/intervals.length:null;
+ const avgDur=durations.length?durations.reduce((a,x)=>a+x,0)/durations.length:null;
+ if(recent.length>=3 && avgInt && avgInt<=300 && avgDur && avgDur>=45)messages.push(t().alertRegular);
+ if(recent.some(x=>x.membranes_status==="yes"||x.membranes_status==="suspected"))messages.push(t().alertWater);
+ if(recent.some(x=>x.bleeding_status==="heavy"||x.baby_movements==="reduced"))messages.push(t().alertBleeding);
+ alert.classList.toggle("show",messages.length>0);
+ alert.innerHTML=messages.map(esc).join("<br>");
+}
 function renderHistory(){
- const h=getHistory();
+ const h=contractions;
+ const {avgDur,avgInt}=calcStats();
+ document.getElementById("avgDuration").textContent=avgDur?fmtSec(avgDur):"-";
+ document.getElementById("avgInterval").textContent=avgInt?fmtMin(avgInt):"-";
  if(!h.length){
   document.getElementById("historyList").innerHTML=`<div class="history-card">${t().none}</div>`;
-  document.getElementById("avgDuration").textContent="-";document.getElementById("avgInterval").textContent="-";return;
+  document.getElementById("phoneSummary").textContent=buildPhoneSummary();
+  renderRuleAlert();
+  return;
  }
- let avgDur=h.reduce((a,x)=>a+x.duration,0)/h.length;
- let intervals=[];
- for(let i=0;i<h.length-1;i++){intervals.push((h[i].start-h[i+1].start)/1000)}
- let avgInt=intervals.length?intervals.reduce((a,x)=>a+x,0)/intervals.length:null;
- document.getElementById("avgDuration").textContent=fmtSec(avgDur);
- document.getElementById("avgInterval").textContent=fmtMin(avgInt);
  document.getElementById("historyList").innerHTML=h.map((x,i)=>{
-  const d=new Date(x.start).toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"});
-  const interval=i<h.length-1?fmtMin((x.start-h[i+1].start)/1000):"-";
-  return `<div class="history-item"><div><strong>${d}</strong><br><span>${fmtSec(x.duration)} · intervalle ${interval}</span></div><span class="badge">${i+1}</span></div>`;
+  const time=fmtDateTime(x.start_at);
+  const dur=fmtSec(x.duration_seconds);
+  const interval=x.interval_seconds?fmtMin(x.interval_seconds):"-";
+  const details=[
+   x.intensity?("intensité "+x.intensity+"/10"):"",
+   x.membranes_status&&x.membranes_status!=="no"?("liquide: "+x.membranes_status):"",
+   x.bleeding_status&&x.bleeding_status!=="no"?("saignement: "+x.bleeding_status):"",
+   x.baby_movements&&x.baby_movements!=="normal"?("mouvements: "+x.baby_movements):""
+  ].filter(Boolean).join(" · ");
+  return `<div class="history-item">
+    <div><strong>${time}</strong><br><span>${dur} · intervalle ${interval}</span><small>${esc(details||x.notes||"")}</small></div>
+    <div class="actions"><span class="badge">${i+1}</span><button class="button-light" onclick="deleteContraction('${x.id}',${x.local?'true':'false'})">×</button></div>
+  </div>`;
  }).join("");
+ document.getElementById("phoneSummary").textContent=buildPhoneSummary();
+ renderRuleAlert();
 }
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
+function buildPhoneSummary(){
+ const {avgDur,avgInt}=calcStats();
+ const first=contractions.length?contractions[contractions.length-1]:null;
+ const latest=contractions.length?contractions[0]:null;
+ return [
+  "SA "+currentWeek,
+  contractions.length+" contractions notées",
+  "début: "+(first?fmtDateTime(first.start_at):"-"),
+  "durée moyenne: "+(avgDur?fmtSec(avgDur):"-"),
+  "intervalle moyen: "+(avgInt?fmtMin(avgInt):"-"),
+  "liquide: "+(latest?.membranes_status||"-"),
+  "saignement: "+(latest?.bleeding_status||"-"),
+  "mouvements: "+(latest?.baby_movements||"-")
+ ].join(" · ");
+}
+async function copyPhoneSummary(){
+ const text=buildPhoneSummary();
+ try{await navigator.clipboard.writeText(text);document.getElementById("phoneSummary").textContent=t().copied+" "+text}catch(e){document.getElementById("phoneSummary").textContent=text}
+}
+function exportHistory(){
+ const data={exported_at:new Date().toISOString(),week:currentWeek,summary:buildPhoneSummary(),contractions};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json;charset=utf-8"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mama-contractions-export.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+async function ensureChecklistTasks(){
+ const labels=t().checklist;
+ try{
+  const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page","contractions").eq("task_area","checklist").order("created_at",{ascending:true});
+  if(error) throw error;
+  checkTasks=data||[];
+  const existing=new Set(checkTasks.map(x=>x.task_key));
+  const missing=labels.map((title,i)=>({title,i,key:"contractions_check_"+i})).filter(x=>!existing.has(x.key));
+  if(missing.length){
+   const payload=missing.map(x=>({user_id:currentUser.id,title:x.title,task_key:x.key,task_area:"checklist",source_page:"contractions",category:"birth",priority:x.i>=7?"high":"normal",status:"open",completed:false}));
+   await supabaseClient.from("user_tasks").insert(payload);
+   const refreshed=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page","contractions").eq("task_area","checklist").order("created_at",{ascending:true});
+   checkTasks=refreshed.data||[];
+  }
+ }catch(e){
+  checkTasks=null;
+ }
+ renderChecklist();
+}
+function localChecklist(){try{return JSON.parse(localStorage.getItem(checkLocalKey()))||{}}catch(e){return{}}}
+function saveLocalChecklist(s){localStorage.setItem(checkLocalKey(),JSON.stringify(s))}
+async function toggleCheck(i){
+ const labels=t().checklist;
+ if(checkTasks){
+  const key="contractions_check_"+i;const task=checkTasks.find(x=>x.task_key===key);
+  if(task){
+   const done=!task.completed;
+   await supabaseClient.from("user_tasks").update({completed:done,status:done?"done":"open",completed_at:done?new Date().toISOString():null}).eq("id",task.id).eq("user_id",currentUser.id);
+   await ensureChecklistTasks();return;
+  }
+ }
+ const s=localChecklist();s[i]=!s[i];saveLocalChecklist(s);renderChecklist();
+}
+async function resetChecklist(){
+ if(checkTasks){
+  await supabaseClient.from("user_tasks").update({completed:false,status:"open",completed_at:null}).eq("user_id",currentUser.id).eq("source_page","contractions").eq("task_area","checklist");
+  await ensureChecklistTasks();return;
+ }
+ saveLocalChecklist({});renderChecklist();
+}
 function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ const items=t().checklist;
+ let done=0;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>{
+  let checked=false;
+  if(checkTasks){const task=checkTasks.find(y=>y.task_key==="contractions_check_"+i);checked=!!task?.completed}else{checked=!!localChecklist()[i]}
+  if(checked)done++;
+  return `<label class="check-row"><input type="checkbox" ${checked?"checked":""} onchange="toggleCheck(${i})"><span>${esc(x)}</span></label>`;
+ }).join("");
+ const total=items.length;
  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+async function saveNote(){
+ const value=document.getElementById("personalNote").value.trim();
+ try{
+  const payload={user_id:currentUser.id,title:"Note contractions",description:value,notes:value,task_key:"contractions_note",task_area:"note",source_page:"contractions",category:"birth",priority:"normal",status:"open",completed:false};
+  const existing=await supabaseClient.from("user_tasks").select("id").eq("user_id",currentUser.id).eq("task_key","contractions_note").limit(1);
+  if(existing.data&&existing.data[0]){
+   await supabaseClient.from("user_tasks").update({description:value,notes:value,updated_at:new Date().toISOString()}).eq("id",existing.data[0].id).eq("user_id",currentUser.id);
+  }else{
+   await supabaseClient.from("user_tasks").insert(payload);
+  }
+ }catch(e){localStorage.setItem(noteKey(),value)}
+ const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)
+}
+async function loadNote(){
+ try{
+  const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("task_key","contractions_note").limit(1);
+  if(error) throw error;
+  document.getElementById("personalNote").value=data?.[0]?.notes||data?.[0]?.description||localStorage.getItem(noteKey())||"";
+ }catch(e){document.getElementById("personalNote").value=localStorage.getItem(noteKey())||""}
+}
 function render(){
  document.getElementById("weekValue").textContent=currentWeek;
  document.getElementById("timerButton").textContent=isRunning?t().stopButton:t().timerButton;
@@ -347,8 +599,7 @@ function render(){
  document.getElementById("phoneList").innerHTML=t().phone.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
  document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
- renderChecklist();renderHistory();
+ renderChecklist();renderHistory();updateSync();
 }
 async function loadApp(){
  const {data,error}=await supabaseClient.auth.getSession();
@@ -359,7 +610,11 @@ async function loadApp(){
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  currentWeek=calculatePregnancy(currentProfile?.due_date);
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadContractions();
+ await ensureChecklistTasks();
+ await loadNote();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

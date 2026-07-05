@@ -1,866 +1,196 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Mama in Deutschland - Geburtsplan</title>
-
-  <style>
-    :root {
-      --page:#f8f3ec;
-      --card:#ffffff;
-      --cream:#fffaf4;
-      --soft:#f3eadf;
-      --brown:#4a3428;
-      --light:#9b7357;
-      --text:#2f2621;
-      --muted:#7b6a60;
-      --border:#eadfd2;
-      --danger:#b45b48;
-      --success:#5f8d63;
-      --shadow:rgba(74,52,40,.12);
-    }
-
-    body.theme-boy {
-      --page:#eef7ff;
-      --cream:#f7fbff;
-      --soft:#e8f4ff;
-      --brown:#244b6b;
-      --light:#5f93bd;
-      --text:#1d3347;
-      --muted:#5c7285;
-      --border:#d6e8f7;
-      --shadow:rgba(36,75,107,.12);
-    }
-
-    body.theme-girl {
-      --page:#fff1f5;
-      --cream:#fff8fa;
-      --soft:#fde8ef;
-      --brown:#7a3d55;
-      --light:#c47a98;
-      --text:#3d2430;
-      --muted:#7b6070;
-      --border:#f0d4df;
-      --shadow:rgba(122,61,85,.12);
-    }
-
-    body.theme-twin {
-      --page:#f1f7ef;
-      --cream:#fbfff8;
-      --soft:#e7f3df;
-      --brown:#3e5c3a;
-      --light:#7ca878;
-      --text:#263522;
-      --muted:#62745f;
-      --border:#dbe9d4;
-      --shadow:rgba(62,92,58,.12);
-    }
-
-    * {
-      box-sizing:border-box;
-    }
-
-    body {
-      margin:0;
-      min-height:100vh;
-      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-      background:
-        radial-gradient(circle at 10% 0%,rgba(198,164,106,.18),transparent 32%),
-        radial-gradient(circle at 90% 10%,rgba(155,115,87,.12),transparent 30%),
-        linear-gradient(180deg,#fbf7f1,var(--page));
-      color:var(--text);
-    }
-
-    .wrap {
-      max-width:1180px;
-      margin:0 auto;
-      padding:24px 18px;
-    }
-
-    header {
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-bottom:22px;
-    }
-
-    .brand {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      color:var(--brown);
-      font-size:23px;
-      font-weight:950;
-      letter-spacing:-.5px;
-    }
-
-    .brand-icon {
-      width:44px;
-      height:44px;
-      border-radius:16px;
-      background:linear-gradient(135deg,var(--brown),var(--light));
-      color:white;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:950;
-      box-shadow:0 14px 28px var(--shadow);
-    }
-
-    .top-actions,
-    .language-buttons,
-    .actions {
-      display:flex;
-      gap:9px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .language-buttons button,
-    .button-light,
-    .button {
-      border:1px solid var(--border);
-      background:white;
-      color:var(--brown);
-      padding:10px 13px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:900;
-      text-decoration:none;
-      font-family:inherit;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .language-buttons button.active {
-      background:var(--brown);
-      color:white;
-    }
-
-    .button {
-      background:var(--brown);
-      color:white;
-      border-color:var(--brown);
-    }
-
-    .card {
-      background:rgba(255,255,255,.92);
-      border:1px solid var(--border);
-      border-radius:30px;
-      padding:24px;
-      box-shadow:0 24px 70px var(--shadow);
-      backdrop-filter:blur(16px);
-      margin-bottom:18px;
-    }
-
-    h1,h2,h3 {
-      color:var(--brown);
-      margin:0 0 12px;
-    }
-
-    h1 {
-      font-size:34px;
-      letter-spacing:-1.5px;
-    }
-
-    h2 {
-      font-size:25px;
-      letter-spacing:-.7px;
-    }
-
-    p {
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .soft {
-      padding:14px 16px;
-      border-radius:18px;
-      background:var(--soft);
-      border:1px solid var(--border);
-      color:var(--brown);
-      font-weight:900;
-      margin-top:14px;
-    }
-
-    .grid-2 {
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:14px;
-      margin-top:16px;
-    }
-
-    .box {
-      background:linear-gradient(180deg,var(--cream),white);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:18px;
-    }
-
-    label {
-      display:block;
-      margin:14px 0 7px;
-      color:var(--brown);
-      font-size:13px;
-      font-weight:900;
-    }
-
-    input,
-    select,
-    textarea {
-      width:100%;
-      padding:13px 14px;
-      border-radius:15px;
-      border:1px solid var(--border);
-      background:#fffdf9;
-      color:var(--text);
-      font-size:15px;
-      font-family:inherit;
-      outline:none;
-    }
-
-    textarea {
-      min-height:118px;
-      resize:vertical;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color:var(--light);
-      box-shadow:0 0 0 4px rgba(155,115,87,.12);
-    }
-
-    .message {
-      display:none;
-      margin-top:14px;
-      padding:14px 15px;
-      border-radius:18px;
-      font-weight:850;
-      line-height:1.45;
-    }
-
-    .message.error {
-      display:block;
-      background:#fff0ec;
-      color:var(--danger);
-      border:1px solid #f1c9bf;
-    }
-
-    .message.success {
-      display:block;
-      background:#edf7ee;
-      color:var(--success);
-      border:1px solid #cfe8d2;
-    }
-
-    .login-message {
-      max-width:650px;
-      margin:60px auto;
-      text-align:center;
-    }
-
-    @media(max-width:900px) {
-      .grid-2 {
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media(max-width:560px) {
-      .wrap {
-        padding:18px 12px;
-      }
-
-      h1 {
-        font-size:28px;
-      }
-
-      .card {
-        padding:20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mama in Deutschland - Projet de naissance</title>
+<style>
+:root{--page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.14)}
+body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
+body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
+body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
+*{box-sizing:border-box} body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
+.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px} header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.button,.button-light,.button-danger,.button-success{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}.button{background:var(--brown);color:white;border-color:var(--brown)}.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}.button-success{background:#edf7ee;color:var(--success);border-color:#cfe8d2}
+.lang-wrap{position:relative}.lang-trigger{min-width:84px}.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}.lang-menu.open{display:block}.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}.lang-menu button:hover{background:var(--soft)}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}.hero-main,.hero-side{position:relative;z-index:1}.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}h2{font-size:26px;letter-spacing:-.8px}h3{font-size:18px}p,li{margin:0;color:var(--muted);line-height:1.6}ul{padding-left:20px;margin:10px 0 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}.stat-label{font-size:12px;color:var(--muted);font-weight:950}.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.plan-card,.summary-box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}.plan-card{position:relative;overflow:hidden}.plan-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+label{display:block;margin:12px 0 7px;color:var(--brown);font-size:13px;font-weight:950}input,select,textarea{width:100%;padding:13px 14px;border-radius:16px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}.mini-list{display:grid;gap:10px}.mini-item{background:white;border:1px solid var(--border);border-radius:18px;padding:12px}.summary-box{white-space:pre-wrap;line-height:1.55;color:var(--text);font-size:14px;max-height:520px;overflow:auto}.status{display:none;margin-top:12px;font-weight:950;color:var(--brown)}.message{display:none;margin-top:12px;padding:14px;border-radius:18px;font-weight:950}.message.error{display:block;background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}.message.success{display:block;background:#edf7ee;color:var(--success);border:1px solid #cfe8d2}.login-message{max-width:650px;margin:60px auto;text-align:center}.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="brand-icon">M</div>
-        <span>Mama in Deutschland</span>
+<div class="wrap">
+<header>
+  <a class="brand" href="app.html"><div class="brand-icon">M</div><span>Mama in Deutschland</span></a>
+  <div class="top-actions">
+    <a class="button" href="app.html" id="dashboardButton">Dashboard</a>
+    <button class="button-danger" onclick="signOut()" id="logoutButton">Déconnexion</button>
+    <div class="lang-wrap">
+      <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
+      <div class="lang-menu" id="langMenu">
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
+        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
+        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
+        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
+        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
+        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
+        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
-
-      <div class="top-actions">
-        <a class="button-light" href="app.html" id="backButton">Zurück</a>
-
-        <div class="language-buttons">
-          <button id="lang-de" onclick="setLanguage('de')">🇩🇪 Deutsch</button>
-          <button id="lang-fr" onclick="setLanguage('fr')">🇫🇷 Français</button>
-          <button id="lang-ar" onclick="setLanguage('ar')">🇸🇦 العربية</button>
-          <button id="lang-en" onclick="setLanguage('en')">🇬🇧 English</button>
-          <button id="lang-tr" onclick="setLanguage('tr')">🇹🇷 Türkçe</button>
-          <button id="lang-ru" onclick="setLanguage('ru')">🇷🇺 Русский</button>
-          <button id="lang-uk" onclick="setLanguage('uk')">🇺🇦 Українська</button>
-        </div>
-      </div>
-    </header>
-
-    <main id="appShell" style="display:none;">
-      <section class="card">
-        <h1 id="pageTitle">Geburtsplan</h1>
-        <p id="pageText">Halte deine Wünsche für Geburt, Klinik und die erste Zeit mit dem Baby privat fest.</p>
-        <div class="soft" id="statusBox">Noch nicht gespeichert</div>
-      </section>
-
-      <section class="card">
-        <div class="grid-2">
-          <div class="box">
-            <h2 id="generalTitle">Allgemein</h2>
-
-            <label id="birthClinicLabel" for="birthClinic">Gewünschte Klinik</label>
-            <input type="text" id="birthClinic" oninput="scheduleAutoSave()" />
-
-            <label id="companionNameLabel" for="companionName">Begleitperson</label>
-            <input type="text" id="companionName" oninput="scheduleAutoSave()" />
-
-            <label id="preferredLanguageLabel" for="preferredLanguage">Sprache im Krankenhaus</label>
-            <select id="preferredLanguage" onchange="scheduleAutoSave()">
-              <option value="de">Deutsch</option>
-              <option value="fr">Français</option>
-              <option value="ar">العربية</option>
-              <option value="en">English</option>
-              <option value="tr">Türkçe</option>
-              <option value="ru">Русский</option>
-              <option value="uk">Українська</option>
-            </select>
-          </div>
-
-          <div class="box">
-            <h2 id="painTitle">Geburt & Schmerzen</h2>
-
-            <label id="painReliefLabel" for="painReliefWishes">Schmerzlinderung / PDA</label>
-            <textarea id="painReliefWishes" oninput="scheduleAutoSave()"></textarea>
-
-            <label id="birthPositionLabel" for="birthPositionWishes">Geburtspositionen</label>
-            <textarea id="birthPositionWishes" oninput="scheduleAutoSave()"></textarea>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <div class="box">
-            <h2 id="atmosphereTitle">Atmosphäre</h2>
-
-            <label id="atmosphereLabel" for="atmosphereWishes">Wünsche zur Atmosphäre</label>
-            <textarea id="atmosphereWishes" oninput="scheduleAutoSave()"></textarea>
-
-            <label id="importantNotesLabel" for="importantNotes">Wichtige Hinweise</label>
-            <textarea id="importantNotes" oninput="scheduleAutoSave()"></textarea>
-          </div>
-
-          <div class="box">
-            <h2 id="babyTitle">Baby nach der Geburt</h2>
-
-            <label id="feedingPlanLabel" for="feedingPlan">Stillen / Flasche</label>
-            <select id="feedingPlan" onchange="scheduleAutoSave()">
-              <option value="undecided" id="feedingUndecided">Noch nicht entschieden</option>
-              <option value="breastfeeding" id="feedingBreast">Stillen</option>
-              <option value="bottle" id="feedingBottle">Flasche</option>
-              <option value="both" id="feedingBoth">Beides</option>
-            </select>
-
-            <label id="babyAfterBirthLabel" for="babyAfterBirthWishes">Direkt nach der Geburt</label>
-            <textarea id="babyAfterBirthWishes" oninput="scheduleAutoSave()"></textarea>
-
-            <label id="emergencyNotesLabel" for="emergencyNotes">Falls etwas anders läuft</label>
-            <textarea id="emergencyNotes" oninput="scheduleAutoSave()"></textarea>
-          </div>
-        </div>
-
-        <div class="actions" style="margin-top:16px;">
-          <button class="button" onclick="saveBirthPlan(true)" id="saveButton">Geburtsplan speichern</button>
-          <button class="button-light" onclick="downloadBirthPlanText()" id="downloadButton">Als Text herunterladen</button>
-        </div>
-
-        <div class="message" id="messageBox"></div>
-      </section>
-    </main>
-
-    <section class="login-message card" id="loginMessage" style="display:none;">
-      <h2 id="loginTitle">Bitte einloggen</h2>
-      <p id="loginText">Du musst dich zuerst anmelden.</p>
-      <br />
-      <a class="button-light" href="index.html" id="loginBackButton">Zur Startseite</a>
-    </section>
+    </div>
   </div>
+</header>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<main id="appShell" style="display:none;">
+  <section class="hero">
+    <div class="hero-main">
+      <div class="kicker" id="pageKicker">Projet de naissance</div>
+      <h1 id="pageTitle">Préparer l’accouchement sans rigidité</h1>
+      <p id="pageText">Un document privé pour clarifier les souhaits : clinique, accompagnant, douleur, péridurale, césarienne si nécessaire, peau à peau, allaitement et urgences.</p>
+      <div class="stats">
+        <div class="stat"><div class="stat-label" id="weekLabel">Semaine</div><div class="stat-value" id="weekValue">-</div></div>
+        <div class="stat"><div class="stat-label" id="statusLabel">Statut</div><div class="stat-value" id="statusValue">Brouillon</div></div>
+        <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <h2 id="importantTitle">Important</h2>
+      <p id="importantText">Un projet de naissance n’est pas un contrat médical. C’est une base de discussion avec la maternité. En urgence, l’équipe choisit ce qui protège maman et bébé.</p>
+      <div class="warning" id="urgentText">À discuter clairement avec la clinique : antécédents, allergies, langue, accompagnant, consentement aux gestes, césarienne, peau à peau, allaitement/biberon et situations d’urgence.</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button-light" href="calendar.html" id="calendarButton">Calendrier</a>
+        <a class="button-light" href="hospital-bag.html" id="bagButton">Valise maternité</a>
+        <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  <section class="card">
+    <div class="section-title">
+      <div><h2 id="planTitle">Projet de naissance</h2><p id="planText">Sauvegarde automatique dans Supabase. Tu peux aussi exporter une version texte pour la maternité.</p></div>
+      <div class="actions"><button class="button" onclick="saveBirthPlan(true)" id="saveButton">Enregistrer</button><button class="button-light" onclick="downloadBirthPlanText()" id="downloadButton">Exporter texte</button><button class="button-light" onclick="window.print()" id="printButton">Imprimer</button></div>
+    </div>
+    <div class="grid-2">
+      <div class="box">
+        <h3 id="generalTitle">Général</h3>
+        <label id="birthClinicLabel" for="birthClinic">Maternité souhaitée</label><input id="birthClinic" type="text" oninput="scheduleAutoSave()">
+        <label id="dueDateLabel" for="dueDate">Date prévue d’accouchement</label><input id="dueDate" type="date" oninput="scheduleAutoSave()">
+        <label id="companionNameLabel" for="companionName">Accompagnant</label><input id="companionName" type="text" oninput="scheduleAutoSave()">
+        <label id="supportPhoneLabel" for="supportPhone">Téléphone accompagnant</label><input id="supportPhone" type="tel" oninput="scheduleAutoSave()">
+        <label id="preferredLanguageLabel" for="preferredLanguage">Langue à l’hôpital</label><select id="preferredLanguage" onchange="scheduleAutoSave()"><option value="de">Deutsch</option><option value="fr">Français</option><option value="ar">العربية</option><option value="en">English</option><option value="tr">Türkçe</option><option value="ru">Русский</option><option value="uk">Українська</option></select>
+      </div>
+      <div class="box">
+        <h3 id="medicalTitle">Informations médicales utiles</h3>
+        <label id="allergiesLabel" for="allergies">Allergies / médicaments</label><textarea id="allergies" oninput="scheduleAutoSave()"></textarea>
+        <label id="medicalNotesLabel" for="medicalNotes">Antécédents / points à connaître</label><textarea id="medicalNotes" oninput="scheduleAutoSave()"></textarea>
+        <label id="importantNotesLabel" for="importantNotes">Notes importantes pour l’équipe</label><textarea id="importantNotes" oninput="scheduleAutoSave()"></textarea>
+      </div>
+    </div>
 
-    let currentUser = null;
-    let currentProfile = null;
-    let currentBirthPlan = null;
-    let currentLang = localStorage.getItem("mama_lang") || "de";
-    let saveTimer = null;
+    <div class="grid-2">
+      <div class="box">
+        <h3 id="painTitle">Accouchement & douleur</h3>
+        <label id="painReliefLabel" for="painReliefWishes">Soulagement / péridurale / alternatives</label><textarea id="painReliefWishes" oninput="scheduleAutoSave()"></textarea>
+        <label id="birthPositionLabel" for="birthPositionWishes">Positions / mobilité / baignoire</label><textarea id="birthPositionWishes" oninput="scheduleAutoSave()"></textarea>
+        <label id="interventionLabel" for="interventionWishes">Monitoring, perfusion, gestes, consentement</label><textarea id="interventionWishes" oninput="scheduleAutoSave()"></textarea>
+      </div>
+      <div class="box">
+        <h3 id="atmosphereTitle">Atmosphère & sécurité</h3>
+        <label id="atmosphereLabel" for="atmosphereWishes">Ambiance souhaitée</label><textarea id="atmosphereWishes" oninput="scheduleAutoSave()"></textarea>
+        <label id="cesareanLabel" for="cesareanWishes">Si césarienne devient nécessaire</label><textarea id="cesareanWishes" oninput="scheduleAutoSave()"></textarea>
+        <label id="emergencyNotesLabel" for="emergencyNotes">Si le plan change / urgence</label><textarea id="emergencyNotes" oninput="scheduleAutoSave()"></textarea>
+      </div>
+    </div>
 
-    const translations = {
-      de:{
-        backButton:"Zurück",
-        pageTitle:"Geburtsplan",
-        pageText:"Halte deine Wünsche für Geburt, Klinik und die erste Zeit mit dem Baby privat fest.",
-        statusEmpty:"Noch nicht gespeichert",
-        statusSaving:"Wird gespeichert...",
-        statusSaved:"Gespeichert ✅",
-        generalTitle:"Allgemein",
-        birthClinicLabel:"Gewünschte Klinik",
-        companionNameLabel:"Begleitperson",
-        preferredLanguageLabel:"Sprache im Krankenhaus",
-        painTitle:"Geburt & Schmerzen",
-        painReliefLabel:"Schmerzlinderung / PDA",
-        birthPositionLabel:"Geburtspositionen",
-        atmosphereTitle:"Atmosphäre",
-        atmosphereLabel:"Wünsche zur Atmosphäre",
-        importantNotesLabel:"Wichtige Hinweise",
-        babyTitle:"Baby nach der Geburt",
-        feedingPlanLabel:"Stillen / Flasche",
-        feedingUndecided:"Noch nicht entschieden",
-        feedingBreast:"Stillen",
-        feedingBottle:"Flasche",
-        feedingBoth:"Beides",
-        babyAfterBirthLabel:"Direkt nach der Geburt",
-        emergencyNotesLabel:"Falls etwas anders läuft",
-        saveButton:"Geburtsplan speichern",
-        downloadButton:"Als Text herunterladen",
-        loginTitle:"Bitte einloggen",
-        loginText:"Du musst dich zuerst anmelden.",
-        loginBackButton:"Zur Startseite",
-        savedMessage:"Geburtsplan gespeichert ✅"
-      },
-      fr:{
-        backButton:"Retour",
-        pageTitle:"Projet de naissance",
-        pageText:"Garde tes souhaits pour l’accouchement, la maternité et les premiers moments avec bébé.",
-        statusEmpty:"Pas encore enregistré",
-        statusSaving:"Enregistrement...",
-        statusSaved:"Enregistré ✅",
-        generalTitle:"Général",
-        birthClinicLabel:"Maternité souhaitée",
-        companionNameLabel:"Accompagnant",
-        preferredLanguageLabel:"Langue à l’hôpital",
-        painTitle:"Accouchement & douleur",
-        painReliefLabel:"Soulagement / péridurale",
-        birthPositionLabel:"Positions d’accouchement",
-        atmosphereTitle:"Atmosphère",
-        atmosphereLabel:"Souhaits d’ambiance",
-        importantNotesLabel:"Notes importantes",
-        babyTitle:"Bébé après la naissance",
-        feedingPlanLabel:"Allaitement / biberon",
-        feedingUndecided:"Pas encore décidé",
-        feedingBreast:"Allaitement",
-        feedingBottle:"Biberon",
-        feedingBoth:"Les deux",
-        babyAfterBirthLabel:"Juste après la naissance",
-        emergencyNotesLabel:"Si les choses changent",
-        saveButton:"Enregistrer le projet",
-        downloadButton:"Télécharger en texte",
-        loginTitle:"Connexion nécessaire",
-        loginText:"Tu dois d’abord te connecter.",
-        loginBackButton:"Retour à l’accueil",
-        savedMessage:"Projet de naissance enregistré ✅"
-      },
-      ar:{
-        backButton:"رجوع",
-        pageTitle:"خطة الولادة",
-        pageText:"احفظي رغباتك للولادة والمستشفى واللحظات الأولى مع الطفل بشكل خاص.",
-        statusEmpty:"لم يتم الحفظ بعد",
-        statusSaving:"جاري الحفظ...",
-        statusSaved:"تم الحفظ ✅",
-        generalTitle:"عام",
-        birthClinicLabel:"المستشفى المرغوب",
-        companionNameLabel:"المرافق",
-        preferredLanguageLabel:"اللغة في المستشفى",
-        painTitle:"الولادة والألم",
-        painReliefLabel:"تخفيف الألم / إبرة الظهر",
-        birthPositionLabel:"وضعيات الولادة",
-        atmosphereTitle:"الأجواء",
-        atmosphereLabel:"رغبات الأجواء",
-        importantNotesLabel:"ملاحظات مهمة",
-        babyTitle:"الطفل بعد الولادة",
-        feedingPlanLabel:"رضاعة / قنينة",
-        feedingUndecided:"لم أقرر بعد",
-        feedingBreast:"رضاعة طبيعية",
-        feedingBottle:"قنينة",
-        feedingBoth:"الاثنان",
-        babyAfterBirthLabel:"مباشرة بعد الولادة",
-        emergencyNotesLabel:"إذا تغيرت الخطة",
-        saveButton:"حفظ خطة الولادة",
-        downloadButton:"تحميل كنص",
-        loginTitle:"يرجى تسجيل الدخول",
-        loginText:"يجب تسجيل الدخول أولاً.",
-        loginBackButton:"العودة للرئيسية",
-        savedMessage:"تم حفظ خطة الولادة ✅"
-      },
-      en:{
-        backButton:"Back",
-        pageTitle:"Birth plan",
-        pageText:"Save your wishes for birth, clinic and the first time with your baby privately.",
-        statusEmpty:"Not saved yet",
-        statusSaving:"Saving...",
-        statusSaved:"Saved ✅",
-        generalTitle:"General",
-        birthClinicLabel:"Preferred clinic",
-        companionNameLabel:"Companion",
-        preferredLanguageLabel:"Hospital language",
-        painTitle:"Birth & pain",
-        painReliefLabel:"Pain relief / epidural",
-        birthPositionLabel:"Birth positions",
-        atmosphereTitle:"Atmosphere",
-        atmosphereLabel:"Atmosphere wishes",
-        importantNotesLabel:"Important notes",
-        babyTitle:"Baby after birth",
-        feedingPlanLabel:"Breastfeeding / bottle",
-        feedingUndecided:"Not decided yet",
-        feedingBreast:"Breastfeeding",
-        feedingBottle:"Bottle",
-        feedingBoth:"Both",
-        babyAfterBirthLabel:"Directly after birth",
-        emergencyNotesLabel:"If things change",
-        saveButton:"Save birth plan",
-        downloadButton:"Download as text",
-        loginTitle:"Please log in",
-        loginText:"You need to log in first.",
-        loginBackButton:"Back to home",
-        savedMessage:"Birth plan saved ✅"
-      },
-      tr:{
-        backButton:"Geri",
-        pageTitle:"Doğum planı",
-        pageText:"Doğum, klinik ve bebekle ilk zamanlar için isteklerini özel olarak kaydet.",
-        statusEmpty:"Henüz kaydedilmedi",
-        statusSaving:"Kaydediliyor...",
-        statusSaved:"Kaydedildi ✅",
-        generalTitle:"Genel",
-        birthClinicLabel:"Tercih edilen klinik",
-        companionNameLabel:"Refakatçi",
-        preferredLanguageLabel:"Hastanede dil",
-        painTitle:"Doğum ve ağrı",
-        painReliefLabel:"Ağrı kesici / epidural",
-        birthPositionLabel:"Doğum pozisyonları",
-        atmosphereTitle:"Atmosfer",
-        atmosphereLabel:"Atmosfer istekleri",
-        importantNotesLabel:"Önemli notlar",
-        babyTitle:"Doğumdan sonra bebek",
-        feedingPlanLabel:"Emzirme / biberon",
-        feedingUndecided:"Henüz karar verilmedi",
-        feedingBreast:"Emzirme",
-        feedingBottle:"Biberon",
-        feedingBoth:"İkisi de",
-        babyAfterBirthLabel:"Doğumdan hemen sonra",
-        emergencyNotesLabel:"Plan değişirse",
-        saveButton:"Doğum planını kaydet",
-        downloadButton:"Metin olarak indir",
-        loginTitle:"Lütfen giriş yap",
-        loginText:"Önce giriş yapmalısın.",
-        loginBackButton:"Ana sayfaya dön",
-        savedMessage:"Doğum planı kaydedildi ✅"
-      },
-      ru:{
-        backButton:"Назад",
-        pageTitle:"План родов",
-        pageText:"Сохраните пожелания для родов, клиники и первых моментов с ребёнком.",
-        statusEmpty:"Пока не сохранено",
-        statusSaving:"Сохранение...",
-        statusSaved:"Сохранено ✅",
-        generalTitle:"Общее",
-        birthClinicLabel:"Желаемая клиника",
-        companionNameLabel:"Сопровождающий",
-        preferredLanguageLabel:"Язык в больнице",
-        painTitle:"Роды и боль",
-        painReliefLabel:"Обезболивание / эпидуральная анестезия",
-        birthPositionLabel:"Позиции для родов",
-        atmosphereTitle:"Атмосфера",
-        atmosphereLabel:"Пожелания к атмосфере",
-        importantNotesLabel:"Важные заметки",
-        babyTitle:"Ребёнок после рождения",
-        feedingPlanLabel:"Грудь / бутылочка",
-        feedingUndecided:"Пока не решено",
-        feedingBreast:"Грудное вскармливание",
-        feedingBottle:"Бутылочка",
-        feedingBoth:"Оба варианта",
-        babyAfterBirthLabel:"Сразу после рождения",
-        emergencyNotesLabel:"Если план изменится",
-        saveButton:"Сохранить план родов",
-        downloadButton:"Скачать как текст",
-        loginTitle:"Войдите в аккаунт",
-        loginText:"Сначала нужно войти.",
-        loginBackButton:"На главную",
-        savedMessage:"План родов сохранён ✅"
-      },
-      uk:{
-        backButton:"Назад",
-        pageTitle:"План пологів",
-        pageText:"Збережіть побажання для пологів, клініки та перших моментів з дитиною.",
-        statusEmpty:"Ще не збережено",
-        statusSaving:"Збереження...",
-        statusSaved:"Збережено ✅",
-        generalTitle:"Загальне",
-        birthClinicLabel:"Бажана клініка",
-        companionNameLabel:"Супроводжуючий",
-        preferredLanguageLabel:"Мова в лікарні",
-        painTitle:"Пологи і біль",
-        painReliefLabel:"Знеболення / епідуральна анестезія",
-        birthPositionLabel:"Позиції для пологів",
-        atmosphereTitle:"Атмосфера",
-        atmosphereLabel:"Побажання щодо атмосфери",
-        importantNotesLabel:"Важливі нотатки",
-        babyTitle:"Дитина після народження",
-        feedingPlanLabel:"Грудне / пляшечка",
-        feedingUndecided:"Ще не вирішено",
-        feedingBreast:"Грудне вигодовування",
-        feedingBottle:"Пляшечка",
-        feedingBoth:"Обидва варіанти",
-        babyAfterBirthLabel:"Одразу після народження",
-        emergencyNotesLabel:"Якщо план зміниться",
-        saveButton:"Зберегти план пологів",
-        downloadButton:"Завантажити як текст",
-        loginTitle:"Увійдіть",
-        loginText:"Спочатку потрібно увійти.",
-        loginBackButton:"На головну",
-        savedMessage:"План пологів збережено ✅"
-      }
-    };
+    <div class="grid-2">
+      <div class="box">
+        <h3 id="babyTitle">Bébé après naissance</h3>
+        <label id="feedingPlanLabel" for="feedingPlan">Allaitement / biberon</label><select id="feedingPlan" onchange="scheduleAutoSave()"><option value="undecided" id="feedingUndecided">Pas encore décidé</option><option value="breastfeeding" id="feedingBreast">Allaitement</option><option value="bottle" id="feedingBottle">Biberon</option><option value="both" id="feedingBoth">Les deux</option></select>
+        <label id="babyAfterBirthLabel" for="babyAfterBirthWishes">Peau à peau / cordon / premiers soins</label><textarea id="babyAfterBirthWishes" oninput="scheduleAutoSave()"></textarea>
+      </div>
+      <div class="box">
+        <h3 id="appointmentTitle">Rendez-vous maternité</h3>
+        <p id="appointmentText">Ajoute une inscription maternité, visite Kreißsaal ou entretien anesthésie dans le calendrier.</p>
+        <label id="appointmentTypeLabel" for="appointmentType">Type</label><select id="appointmentType"><option value="clinic_registration">Inscription maternité</option><option value="kreißsaal_visit">Visite Kreißsaal</option><option value="anesthesia">Entretien anesthésie</option><option value="birth_plan_discussion">Discussion projet de naissance</option></select>
+        <label id="appointmentDateLabel" for="appointmentDate">Date</label><input id="appointmentDate" type="date">
+        <label id="appointmentTimeLabel" for="appointmentTime">Heure</label><input id="appointmentTime" type="time">
+        <label id="appointmentLocationLabel" for="appointmentLocation">Lieu</label><input id="appointmentLocation" type="text">
+        <button class="button-success" onclick="createBirthAppointment()" id="createAppointmentButton" style="margin-top:14px;">Ajouter au calendrier</button>
+      </div>
+    </div>
+    <div class="soft" id="statusBox">Pas encore enregistré</div><div class="message" id="messageBox"></div>
+  </section>
 
-    function t(){
-      return translations[currentLang] || translations.de;
-    }
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="checkTitle">Checklist projet de naissance</h2><p id="checkText">Coche ce qui est prêt ou à discuter.</p>
+      <div id="checklistBox"></div><div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;"><button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button></div>
+    </div>
+    <div class="card">
+      <h2 id="appointmentsTitle">Rendez-vous liés</h2><div class="mini-list" id="appointmentsList"></div>
+      <div class="soft" id="appointmentsNote">Ces rendez-vous sont sauvegardés dans appointments et apparaissent aussi dans le calendrier.</div>
+    </div>
+  </section>
 
-    function setLanguage(lang){
-      currentLang = lang;
-      localStorage.setItem("mama_lang", lang);
+  <section class="card">
+    <div class="section-title"><div><h2 id="summaryTitle">Résumé exportable</h2><p id="summaryText">Version claire à copier, imprimer ou donner à la maternité.</p></div><button class="button-light" onclick="copySummary()" id="copyButton">Copier</button></div>
+    <div class="summary-box" id="summaryBox"></div>
+  </section>
 
-      document.documentElement.lang = lang;
-      document.body.dir = lang === "ar" ? "rtl" : "ltr";
+  <section class="card">
+    <div class="section-title"><div><h2 id="tipsTitle">Conseils pratiques</h2><p id="tipsText">Le plan doit rester simple, lisible et flexible.</p></div></div>
+    <div class="grid" id="tipsGrid"></div>
+  </section>
 
-      document.querySelectorAll(".language-buttons button").forEach(btn => btn.classList.remove("active"));
-      const active = document.getElementById("lang-" + lang);
-      if (active) active.classList.add("active");
+  <div class="footer-actions"><button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button><a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a></div>
+</main>
 
-      const tr = t();
+<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a></section>
+</div>
 
-      Object.keys(tr).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = tr[id];
-      });
-
-      updateStatusText();
-    }
-
-    function showMessage(type, text){
-      const box = document.getElementById("messageBox");
-      box.className = "message " + type;
-      box.textContent = text;
-    }
-
-    function determineTheme(type, gender){
-      if (gender === "boy" || gender === "twin_boys") return "boy";
-      if (gender === "girl" || gender === "twin_girls") return "girl";
-      if (type === "twins" || gender === "twin_mixed") return "twin";
-      return "neutral";
-    }
-
-    function applyTheme(theme){
-      document.body.classList.remove("theme-boy","theme-girl","theme-twin");
-      if (theme === "boy") document.body.classList.add("theme-boy");
-      if (theme === "girl") document.body.classList.add("theme-girl");
-      if (theme === "twin") document.body.classList.add("theme-twin");
-    }
-
-    async function loadApp(){
-      const { data, error } = await supabaseClient.auth.getSession();
-
-      if (error || !data.session) {
-        document.getElementById("loginMessage").style.display = "block";
-        document.getElementById("appShell").style.display = "none";
-        return;
-      }
-
-      currentUser = data.session.user;
-
-      const { data: profiles, error: profileError } = await supabaseClient
-        .from("pregnancy_profiles")
-        .select("*")
-        .eq("user_id", currentUser.id)
-        .order("created_at", { ascending:false })
-        .limit(1);
-
-      if (profileError || !profiles || profiles.length === 0) {
-        window.location.href = "index.html?reason=no_profile";
-        return;
-      }
-
-      currentProfile = profiles[0];
-      currentLang = localStorage.getItem("mama_lang") || currentProfile.language || "de";
-
-      applyTheme(determineTheme(currentProfile.pregnancy_type, currentProfile.baby_gender));
-
-      document.getElementById("loginMessage").style.display = "none";
-      document.getElementById("appShell").style.display = "block";
-
-      setLanguage(currentLang);
-      await loadBirthPlan();
-    }
-
-    function updateStatusText(){
-      const box = document.getElementById("statusBox");
-      if (!box) return;
-
-      if (currentBirthPlan) {
-        box.textContent = t().statusSaved;
-      } else {
-        box.textContent = t().statusEmpty;
-      }
-    }
-
-    async function loadBirthPlan(){
-      const { data, error } = await supabaseClient
-        .from("birth_plans")
-        .select("*")
-        .eq("user_id", currentUser.id)
-        .eq("profile_id", currentProfile.id)
-        .limit(1);
-
-      if (error) {
-        showMessage("error", error.message);
-        return;
-      }
-
-      currentBirthPlan = data && data.length ? data[0] : null;
-
-      document.getElementById("birthClinic").value = currentBirthPlan?.birth_clinic || "";
-      document.getElementById("companionName").value = currentBirthPlan?.companion_name || "";
-      document.getElementById("preferredLanguage").value = currentBirthPlan?.preferred_language || currentLang;
-      document.getElementById("painReliefWishes").value = currentBirthPlan?.pain_relief_wishes || "";
-      document.getElementById("birthPositionWishes").value = currentBirthPlan?.birth_position_wishes || "";
-      document.getElementById("atmosphereWishes").value = currentBirthPlan?.atmosphere_wishes || "";
-      document.getElementById("feedingPlan").value = currentBirthPlan?.feeding_plan || "undecided";
-      document.getElementById("babyAfterBirthWishes").value = currentBirthPlan?.baby_after_birth_wishes || "";
-      document.getElementById("importantNotes").value = currentBirthPlan?.important_notes || "";
-      document.getElementById("emergencyNotes").value = currentBirthPlan?.emergency_notes || "";
-
-      updateStatusText();
-    }
-
-    function collectPayload(){
-      return {
-        user_id:currentUser.id,
-        profile_id:currentProfile.id,
-        birth_clinic:document.getElementById("birthClinic").value.trim(),
-        companion_name:document.getElementById("companionName").value.trim(),
-        preferred_language:document.getElementById("preferredLanguage").value,
-        pain_relief_wishes:document.getElementById("painReliefWishes").value.trim(),
-        birth_position_wishes:document.getElementById("birthPositionWishes").value.trim(),
-        atmosphere_wishes:document.getElementById("atmosphereWishes").value.trim(),
-        feeding_plan:document.getElementById("feedingPlan").value,
-        baby_after_birth_wishes:document.getElementById("babyAfterBirthWishes").value.trim(),
-        important_notes:document.getElementById("importantNotes").value.trim(),
-        emergency_notes:document.getElementById("emergencyNotes").value.trim(),
-        status:"draft",
-        updated_at:new Date().toISOString()
-      };
-    }
-
-    function scheduleAutoSave(){
-      const status = document.getElementById("statusBox");
-      if (status) status.textContent = t().statusSaving;
-
-      clearTimeout(saveTimer);
-
-      saveTimer = setTimeout(() => {
-        saveBirthPlan(false);
-      }, 900);
-    }
-
-    async function saveBirthPlan(showAlert){
-      const payload = collectPayload();
-
-      const { data, error } = await supabaseClient
-        .from("birth_plans")
-        .upsert(payload, { onConflict:"user_id,profile_id" })
-        .select()
-        .limit(1);
-
-      if (error) {
-        showMessage("error", error.message);
-        return;
-      }
-
-      currentBirthPlan = data && data.length ? data[0] : payload;
-
-      updateStatusText();
-
-      if (showAlert) {
-        showMessage("success", t().savedMessage);
-      }
-    }
-
-    function downloadBirthPlanText(){
-      const lines = [
-        "Mama in Deutschland - " + t().pageTitle,
-        "",
-        t().birthClinicLabel + ": " + document.getElementById("birthClinic").value,
-        t().companionNameLabel + ": " + document.getElementById("companionName").value,
-        t().preferredLanguageLabel + ": " + document.getElementById("preferredLanguage").value,
-        "",
-        t().painReliefLabel + ":",
-        document.getElementById("painReliefWishes").value,
-        "",
-        t().birthPositionLabel + ":",
-        document.getElementById("birthPositionWishes").value,
-        "",
-        t().atmosphereLabel + ":",
-        document.getElementById("atmosphereWishes").value,
-        "",
-        t().importantNotesLabel + ":",
-        document.getElementById("importantNotes").value,
-        "",
-        t().feedingPlanLabel + ": " + document.getElementById("feedingPlan").value,
-        "",
-        t().babyAfterBirthLabel + ":",
-        document.getElementById("babyAfterBirthWishes").value,
-        "",
-        t().emergencyNotesLabel + ":",
-        document.getElementById("emergencyNotes").value
-      ];
-
-      const blob = new Blob([lines.join("\n")], {
-        type:"text/plain;charset=utf-8"
-      });
-
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-
-      a.href = url;
-      a.download = "geburtsplan-mama-in-deutschland.txt";
-
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-
-      URL.revokeObjectURL(url);
-    }
-
-    loadApp();
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+let currentUser=null,currentProfile=null,currentBirthPlan=null,currentAppointments=[],currentTasks=[],currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1,saveTimer=null,usingLocal=false;
+const pageKey="birth-plan";
+const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+const tr={fr:{dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Projet de naissance",pageTitle:"Préparer l’accouchement sans rigidité",pageText:"Un document privé pour clarifier les souhaits : clinique, accompagnant, douleur, péridurale, césarienne si nécessaire, peau à peau, allaitement et urgences.",weekLabel:"Semaine",statusLabel:"Statut",statusDraft:"Brouillon",statusSaved:"Enregistré",statusLocal:"Local",progressLabel:"Checklist",importantTitle:"Important",importantText:"Un projet de naissance n’est pas un contrat médical. C’est une base de discussion avec la maternité. En urgence, l’équipe choisit ce qui protège maman et bébé.",urgentText:"À discuter clairement avec la clinique : antécédents, allergies, langue, accompagnant, consentement aux gestes, césarienne, peau à peau, allaitement/biberon et situations d’urgence.",calendarButton:"Calendrier",bagButton:"Valise maternité",emergencyButton:"Urgence",planTitle:"Projet de naissance",planText:"Sauvegarde automatique dans Supabase. Tu peux aussi exporter une version texte pour la maternité.",saveButton:"Enregistrer",downloadButton:"Exporter texte",printButton:"Imprimer",generalTitle:"Général",birthClinicLabel:"Maternité souhaitée",dueDateLabel:"Date prévue d’accouchement",companionNameLabel:"Accompagnant",supportPhoneLabel:"Téléphone accompagnant",preferredLanguageLabel:"Langue à l’hôpital",medicalTitle:"Informations médicales utiles",allergiesLabel:"Allergies / médicaments",medicalNotesLabel:"Antécédents / points à connaître",importantNotesLabel:"Notes importantes pour l’équipe",painTitle:"Accouchement & douleur",painReliefLabel:"Soulagement / péridurale / alternatives",birthPositionLabel:"Positions / mobilité / baignoire",interventionLabel:"Monitoring, perfusion, gestes, consentement",atmosphereTitle:"Atmosphère & sécurité",atmosphereLabel:"Ambiance souhaitée",cesareanLabel:"Si césarienne devient nécessaire",emergencyNotesLabel:"Si le plan change / urgence",babyTitle:"Bébé après naissance",feedingPlanLabel:"Allaitement / biberon",feedingUndecided:"Pas encore décidé",feedingBreast:"Allaitement",feedingBottle:"Biberon",feedingBoth:"Les deux",babyAfterBirthLabel:"Peau à peau / cordon / premiers soins",appointmentTitle:"Rendez-vous maternité",appointmentText:"Ajoute une inscription maternité, visite Kreißsaal ou entretien anesthésie dans le calendrier.",appointmentTypeLabel:"Type",appointmentDateLabel:"Date",appointmentTimeLabel:"Heure",appointmentLocationLabel:"Lieu",createAppointmentButton:"Ajouter au calendrier",statusEmpty:"Pas encore enregistré",statusSaving:"Enregistrement...",statusSavedBox:"Enregistré dans Supabase ✅",statusLocalBox:"Sauvegardé localement ⚠️",savedMessage:"Projet de naissance enregistré ✅",checkTitle:"Checklist projet de naissance",checkText:"Coche ce qui est prêt ou à discuter.",resetButton:"Réinitialiser",appointmentsTitle:"Rendez-vous liés",appointmentsNote:"Ces rendez-vous sont sauvegardés dans appointments et apparaissent aussi dans le calendrier.",summaryTitle:"Résumé exportable",summaryText:"Version claire à copier, imprimer ou donner à la maternité.",copyButton:"Copier",tipsTitle:"Conseils pratiques",tipsText:"Le plan doit rester simple, lisible et flexible.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",none:"Aucun rendez-vous lié",copied:"Résumé copié ✅",createdAppointment:"Rendez-vous ajouté ✅",appointmentMissing:"Choisis au moins une date.",checklist:["Maternité choisie","Accompagnant défini","Langue / traduction clarifiée","Allergies et antécédents notés","Souhaits douleur / péridurale écrits","Positions / mobilité discutées","Souhaits césarienne notés","Peau à peau / cordon discutés","Allaitement ou biberon clarifié","Projet imprimé ou exporté","Rendez-vous maternité planifié","Valise maternité prête"],tips:[["🧾","Une page suffit","L’équipe lit plus facilement un plan court, clair et flexible."],["🤝","Discuter avant","Le meilleur moment pour clarifier les souhaits est avant le travail, pendant un rendez-vous."],["🚑","Rester flexible","En urgence, l’objectif principal reste la sécurité de maman et bébé."]]},de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Geburtsplan",pageTitle:"Geburt vorbereiten, ohne starr zu sein",weekLabel:"SSW",statusDraft:"Entwurf",statusSaved:"Gespeichert",bottomBackButton:"Zurück",loginTitle:"Bitte einloggen",loginText:"Du musst dich zuerst anmelden."});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Birth plan",pageTitle:"Prepare birth without rigidity",weekLabel:"Week",bottomBackButton:"Back",loginTitle:"Please log in",loginText:"You need to log in first."});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"خطة الولادة",pageTitle:"الاستعداد للولادة بمرونة",weekLabel:"أسبوع",bottomBackButton:"رجوع",loginTitle:"تسجيل الدخول مطلوب",loginText:"يجب تسجيل الدخول أولاً."});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+function t(){return tr[currentLang]||tr.fr} function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")} function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")} document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
+function setLanguage(lang){currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el&&typeof t()[id]==="string")el.textContent=t()[id]});document.getElementById("feedingUndecided").textContent=t().feedingUndecided;document.getElementById("feedingBreast").textContent=t().feedingBreast;document.getElementById("feedingBottle").textContent=t().feedingBottle;document.getElementById("feedingBoth").textContent=t().feedingBoth;renderAll()}
+function parseLocalDate(v){const p=String(v||"").split("-").map(Number);return new Date(p[0],p[1]-1,p[2])} function calculatePregnancy(due){if(!due)return currentProfile?.current_week||currentProfile?.pregnancy_week||1;const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w}
+function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"} function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
+function localPlanKey(){return"mama-birth-plan-"+(currentUser?currentUser.id:"guest")} function localTasksKey(){return"mama-birth-plan-tasks-"+(currentUser?currentUser.id:"guest")} function getLocalTasks(){try{return JSON.parse(localStorage.getItem(localTasksKey()))||[]}catch(e){return[]}} function saveLocalTasks(v){localStorage.setItem(localTasksKey(),JSON.stringify(v))}
+function collectPayload(){return{user_id:currentUser.id,profile_id:currentProfile?.id||null,birth_clinic:document.getElementById("birthClinic").value.trim(),due_date:document.getElementById("dueDate").value||currentProfile?.due_date||null,companion_name:document.getElementById("companionName").value.trim(),support_phone:document.getElementById("supportPhone").value.trim(),preferred_language:document.getElementById("preferredLanguage").value,allergies:document.getElementById("allergies").value.trim(),medical_notes:document.getElementById("medicalNotes").value.trim(),important_notes:document.getElementById("importantNotes").value.trim(),pain_relief_wishes:document.getElementById("painReliefWishes").value.trim(),birth_position_wishes:document.getElementById("birthPositionWishes").value.trim(),intervention_wishes:document.getElementById("interventionWishes").value.trim(),atmosphere_wishes:document.getElementById("atmosphereWishes").value.trim(),cesarean_wishes:document.getElementById("cesareanWishes").value.trim(),emergency_notes:document.getElementById("emergencyNotes").value.trim(),feeding_plan:document.getElementById("feedingPlan").value,baby_after_birth_wishes:document.getElementById("babyAfterBirthWishes").value.trim(),status:"draft",export_summary:buildSummary(),updated_at:new Date().toISOString()}}
+function fillForm(p){p=p||{};document.getElementById("birthClinic").value=p.birth_clinic||"";document.getElementById("dueDate").value=p.due_date||currentProfile?.due_date||"";document.getElementById("companionName").value=p.companion_name||"";document.getElementById("supportPhone").value=p.support_phone||"";document.getElementById("preferredLanguage").value=p.preferred_language||currentLang;document.getElementById("allergies").value=p.allergies||"";document.getElementById("medicalNotes").value=p.medical_notes||"";document.getElementById("importantNotes").value=p.important_notes||"";document.getElementById("painReliefWishes").value=p.pain_relief_wishes||"";document.getElementById("birthPositionWishes").value=p.birth_position_wishes||"";document.getElementById("interventionWishes").value=p.intervention_wishes||"";document.getElementById("atmosphereWishes").value=p.atmosphere_wishes||"";document.getElementById("cesareanWishes").value=p.cesarean_wishes||"";document.getElementById("emergencyNotes").value=p.emergency_notes||"";document.getElementById("feedingPlan").value=p.feeding_plan||"undecided";document.getElementById("babyAfterBirthWishes").value=p.baby_after_birth_wishes||""}
+function showMessage(type,text){const box=document.getElementById("messageBox");box.className="message "+type;box.textContent=text;setTimeout(()=>{box.className="message"},3200)} function updateStatus(){document.getElementById("statusValue").textContent=usingLocal?t().statusLocal:(currentBirthPlan?t().statusSaved:t().statusDraft);document.getElementById("statusBox").textContent=usingLocal?t().statusLocalBox:(currentBirthPlan?t().statusSavedBox:t().statusEmpty)}
+async function loadBirthPlan(){try{const q=supabaseClient.from("birth_plans").select("*").eq("user_id",currentUser.id).eq("profile_id",currentProfile.id).limit(1);const {data,error}=await q;if(error)throw error;currentBirthPlan=data&&data.length?data[0]:null;usingLocal=false;fillForm(currentBirthPlan||{});updateStatus()}catch(e){usingLocal=true;try{currentBirthPlan=JSON.parse(localStorage.getItem(localPlanKey()))||null}catch(err){currentBirthPlan=null}fillForm(currentBirthPlan||{});updateStatus();showMessage("error","Supabase birth_plans indisponible : sauvegarde locale active.")}}
+function scheduleAutoSave(){document.getElementById("statusBox").textContent=t().statusSaving;clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveBirthPlan(false),800)}
+async function saveBirthPlan(showAlert){const payload=collectPayload();try{const {data,error}=await supabaseClient.from("birth_plans").upsert(payload,{onConflict:"user_id,profile_id"}).select().limit(1);if(error)throw error;currentBirthPlan=data&&data.length?data[0]:payload;usingLocal=false;updateStatus();renderSummary();if(showAlert)showMessage("success",t().savedMessage)}catch(e){usingLocal=true;localStorage.setItem(localPlanKey(),JSON.stringify(payload));currentBirthPlan=payload;updateStatus();renderSummary();if(showAlert)showMessage("error","Sauvegarde locale active : "+e.message)}}
+async function loadTasks(){try{const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page",pageKey).eq("task_area","birth_plan").order("created_at",{ascending:true});if(error)throw error;currentTasks=data||[]}catch(e){currentTasks=getLocalTasks()}ensureChecklistTasks();renderChecklist()}
+async function ensureChecklistTasks(){const items=t().checklist;let changed=false;for(let i=0;i<items.length;i++){const key="birthplan_"+i;if(!currentTasks.find(x=>x.task_key===key)){currentTasks.push({task_key:key,title:items[i],completed:false,status:"open",priority:i>=8?"high":"normal",source_page:pageKey,task_area:"birth_plan",category:"birth_plan"});changed=true}}if(changed&&!usingLocal){for(const task of currentTasks.filter(x=>!x.id)){try{const {data}=await supabaseClient.from("user_tasks").insert({...task,user_id:currentUser.id}).select().limit(1);if(data&&data[0])Object.assign(task,data[0])}catch(e){}}}saveLocalTasks(currentTasks)}
+async function toggleTask(key){const task=currentTasks.find(x=>x.task_key===key);if(!task)return;const done=!(task.completed||task.status==="done");task.completed=done;task.status=done?"done":"open";task.completed_at=done?new Date().toISOString():null;saveLocalTasks(currentTasks);renderChecklist();try{if(task.id)await supabaseClient.from("user_tasks").update({completed:task.completed,status:task.status,completed_at:task.completed_at}).eq("id",task.id)}catch(e){}}
+async function resetChecklist(){for(const task of currentTasks){task.completed=false;task.status="open";task.completed_at=null}saveLocalTasks(currentTasks);renderChecklist();try{await supabaseClient.from("user_tasks").update({completed:false,status:"open",completed_at:null}).eq("user_id",currentUser.id).eq("source_page",pageKey).eq("task_area","birth_plan")}catch(e){}}
+function renderChecklist(){const box=document.getElementById("checklistBox");box.innerHTML=currentTasks.map((task,i)=>`<label class="check-row"><input type="checkbox" ${task.completed||task.status==="done"?"checked":""} onchange="toggleTask('${escapeHtml(task.task_key)}')"><span>${escapeHtml(task.title||t().checklist[i]||"")}</span></label>`).join("");const total=currentTasks.length,done=currentTasks.filter(x=>x.completed||x.status==="done").length;document.getElementById("progressValue").textContent=done+" / "+total;document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%"}
+async function loadAppointments(){try{const {data,error}=await supabaseClient.from("appointments").select("*").eq("user_id",currentUser.id).eq("appointment_type","birth_plan").order("appointment_date",{ascending:true});if(error)throw error;currentAppointments=data||[]}catch(e){currentAppointments=[]}renderAppointments()}
+function appointmentTitle(type){const map={clinic_registration:"Inscription maternité",kreißsaal_visit:"Visite Kreißsaal",anesthesia:"Entretien anesthésie",birth_plan_discussion:"Discussion projet de naissance"};return map[type]||"Rendez-vous maternité"}
+async function createBirthAppointment(){const date=document.getElementById("appointmentDate").value;if(!date){showMessage("error",t().appointmentMissing);return}const type=document.getElementById("appointmentType").value;const payload={user_id:currentUser.id,title:appointmentTitle(type),appointment_type:"birth_plan",appointment_date:date,appointment_time:document.getElementById("appointmentTime").value||null,location:document.getElementById("appointmentLocation").value.trim()||document.getElementById("birthClinic").value.trim(),priority:"high",status:"scheduled",completed:false,notes:"Projet de naissance / maternité"};try{const {data,error}=await supabaseClient.from("appointments").insert(payload).select().limit(1);if(error)throw error;if(data&&data[0])currentAppointments.push(data[0]);showMessage("success",t().createdAppointment);renderAppointments()}catch(e){showMessage("error",e.message)}}
+async function deleteAppointment(id){try{await supabaseClient.from("appointments").delete().eq("id",id);currentAppointments=currentAppointments.filter(x=>x.id!==id);renderAppointments()}catch(e){showMessage("error",e.message)}}
+function renderAppointments(){const box=document.getElementById("appointmentsList");box.innerHTML=currentAppointments.length?currentAppointments.map(a=>`<div class="mini-item"><strong>${escapeHtml(a.title)}</strong><br>${escapeHtml(a.appointment_date||"")} ${escapeHtml(a.appointment_time||"")}<br>${escapeHtml(a.location||"")}<div class="actions" style="margin-top:8px"><button class="button-danger" onclick="deleteAppointment('${a.id}')">Supprimer</button></div></div>`).join(""):`<div class="mini-item">${t().none}</div>`}
+function buildSummary(){const get=id=>document.getElementById(id)?.value||"";const labels=t();return ["Mama in Deutschland - "+labels.pageKicker,"",labels.birthClinicLabel+": "+get("birthClinic"),labels.dueDateLabel+": "+get("dueDate"),labels.companionNameLabel+": "+get("companionName"),labels.supportPhoneLabel+": "+get("supportPhone"),labels.preferredLanguageLabel+": "+get("preferredLanguage"),"",labels.allergiesLabel+":\n"+get("allergies"),"",labels.medicalNotesLabel+":\n"+get("medicalNotes"),"",labels.painReliefLabel+":\n"+get("painReliefWishes"),"",labels.birthPositionLabel+":\n"+get("birthPositionWishes"),"",labels.interventionLabel+":\n"+get("interventionWishes"),"",labels.atmosphereLabel+":\n"+get("atmosphereWishes"),"",labels.cesareanLabel+":\n"+get("cesareanWishes"),"",labels.feedingPlanLabel+": "+get("feedingPlan"),"",labels.babyAfterBirthLabel+":\n"+get("babyAfterBirthWishes"),"",labels.importantNotesLabel+":\n"+get("importantNotes"),"",labels.emergencyNotesLabel+":\n"+get("emergencyNotes")].join("\n")}
+function renderSummary(){document.getElementById("summaryBox").textContent=buildSummary()} function downloadBirthPlanText(){const blob=new Blob([buildSummary()],{type:"text/plain;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="projet-de-naissance-mama-in-deutschland.txt";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)} async function copySummary(){try{await navigator.clipboard.writeText(buildSummary());showMessage("success",t().copied)}catch(e){showMessage("error",e.message)}}
+function renderTips(){document.getElementById("tipsGrid").innerHTML=t().tips.map(x=>`<div class="plan-card"><div class="icon">${x[0]}</div><span class="badge badge-blue">Info</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("")}
+function renderAll(){document.getElementById("weekValue").textContent=currentWeek;updateStatus();renderChecklist();renderAppointments();renderSummary();renderTips()}
+async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);currentProfile=(profiles&&profiles[0])?profiles[0]:null;currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";currentWeek=calculatePregnancy(currentProfile?.due_date);if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadBirthPlan();await loadTasks();await loadAppointments();renderAll()}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"} loadApp();
+</script>
 </body>
 </html>
-
-

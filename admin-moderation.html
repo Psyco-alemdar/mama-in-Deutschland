@@ -109,24 +109,24 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
 <main id="appShell" style="display:none;">
   <section class="hero">
     <div class="hero-main">
-      <div class="kicker" id="pageKicker">Admin modération</div>
-      <h1 id="pageTitle">Centre de contrôle communauté</h1>
-      <p id="pageText">Modère les expériences, commentaires et annonces marketplace : publier, masquer, signaler, supprimer, vérifier les contenus dangereux et garder la communauté sûre.</p>
+      <div class="kicker" id="pageKicker">Admin SaaS</div>
+      <h1 id="pageTitle">Centre de contrôle Mama in Deutschland</h1>
+      <p id="pageText">Modération réelle connectée à Supabase : signalements, expériences, commentaires, marketplace, messages contact, utilisateurs et abonnements.</p>
       <div class="stats">
+        <div class="stat"><div class="stat-label" id="usersLabel">Utilisateurs</div><div class="stat-value" id="usersCount">0</div></div>
         <div class="stat"><div class="stat-label" id="postsLabel">Posts</div><div class="stat-value" id="postsCount">0</div></div>
         <div class="stat"><div class="stat-label" id="itemsLabel">Annonces</div><div class="stat-value" id="itemsCount">0</div></div>
-        <div class="stat"><div class="stat-label" id="reportsLabel">Signalés</div><div class="stat-value" id="reportsCount">0</div></div>
-        <div class="stat"><div class="stat-label" id="modeLabel">Mode</div><div class="stat-value" id="modeValue">Online</div></div>
+        <div class="stat"><div class="stat-label" id="reportsLabel">Signalements</div><div class="stat-value" id="reportsCount">0</div></div>
       </div>
     </div>
     <div class="hero-side">
-      <h2 id="importantTitle">Accès admin</h2>
-      <p id="importantText">Cette page est visible seulement pour les comptes ajoutés dans la liste ADMIN_USER_IDS du fichier. Ton UserID admin est déjà inclus.</p>
+      <h2 id="importantTitle">Accès admin sécurisé</h2>
+      <p id="importantText">Cette page vérifie ton rôle dans Supabase avec la table admin_roles et la fonction is_admin().</p>
       <div class="success" id="adminStatus">Vérification admin en cours...</div>
-      <div class="warning" id="warningText">Une modération doit rester prudente : ne supprime pas une expérience difficile seulement parce qu’elle est négative. Supprime ce qui est dangereux, insultant, illégal, spam ou contraire aux règles.</div>
+      <div class="warning" id="warningText">Modération prudente : masquer le contenu dangereux, insultant, illégal, spam, trop personnel ou contraire aux règles. Ne pas supprimer une expérience uniquement parce qu’elle est négative.</div>
       <div class="actions" style="margin-top:14px;">
         <a class="button-light" href="community-rules.html" id="rulesButton">Règles</a>
-        <a class="button" href="share-experience.html" id="communityButton">Communauté</a>
+        <a class="button" href="experience.html" id="communityButton">Communauté</a>
         <a class="button" href="marketplace.html" id="marketButton">Marketplace</a>
       </div>
     </div>
@@ -136,7 +136,7 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
     <div class="section-title">
       <div>
         <h2 id="queueTitle">File de modération</h2>
-        <p id="queueText">Filtre les contenus par type et statut.</p>
+        <p id="queueText">Filtre les contenus par table, statut, langue et recherche texte.</p>
       </div>
       <div class="actions">
         <button class="button-light" onclick="loadAll()" id="refreshButton">Actualiser</button>
@@ -161,8 +161,8 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
       <div class="box"><ul id="decisionList"></ul></div>
     </div>
     <div class="card">
-      <h2 id="tablesTitle">Tables Supabase nécessaires</h2>
-      <p id="tablesText">Cette page lit et modifie ces tables. Si une table n’existe pas encore, elle sera affichée comme indisponible.</p>
+      <h2 id="tablesTitle">Tables Supabase utilisées</h2>
+      <p id="tablesText">Cette version utilise uniquement les vraies tables du backend SaaS v1.</p>
       <div class="code" id="tablesCode"></div>
     </div>
   </section>
@@ -175,7 +175,7 @@ textarea{width:100%;min-height:140px;padding:14px;border-radius:18px;border:1px 
       </div>
     </div>
     <div class="grid-4">
-      <div class="source-card"><a href="share-experience.html">Share experience</a><span>Voir le forum comme utilisatrice.</span></div>
+      <div class="source-card"><a href="experience.html">Experience</a><span>Voir le forum comme utilisatrice.</span></div>
       <div class="source-card"><a href="marketplace.html">Marketplace</a><span>Voir les annonces comme utilisatrice.</span></div>
       <div class="source-card"><a href="community-rules.html">Règles communauté</a><span>Page officielle des règles de modération.</span></div>
       <div class="source-card"><a href="admin.html">Admin général</a><span>Dashboard admin global si disponible dans ton projet.</span></div>
@@ -209,34 +209,30 @@ const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
-/* Ajoute ici d'autres admins si besoin */
-const ADMIN_USER_IDS=[
-  "d4743994-af4c-4623-b6da-e8e9a7645a8e",
-  "d4743994-af4c-4623-b6da-e8e9a7645a8e"
-];
+const ADMIN_USER_IDS=["d4743994-af4c-4623-b6da-e8e9a7645a8e"];
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
-let currentTab="community_posts";
-let rows={community_posts:[],community_comments:[],marketplace_items:[],marketplace_comments:[]};
-let tableErrors={};
+let currentTab="admin_reports";
 let dbOnline=true;
+let rows={admin_reports:[],community_posts:[],community_comments:[],marketplace_items:[],contact_messages:[],profiles:[],subscriptions:[]};
+let tableErrors={};
 
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
-dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Admin modération",pageTitle:"Centre de contrôle communauté",pageText:"Modère les expériences, commentaires et annonces marketplace : publier, masquer, signaler, supprimer, vérifier les contenus dangereux et garder la communauté sûre.",
-postsLabel:"Posts",itemsLabel:"Annonces",reportsLabel:"Signalés",modeLabel:"Mode",modeValue:"Online",offline:"Table manquante",importantTitle:"Accès admin",importantText:"Cette page est visible seulement pour les comptes ajoutés dans la liste ADMIN_USER_IDS du fichier. Ton UserID admin est déjà inclus.",adminStatus:"Accès admin confirmé.",warningText:"Une modération doit rester prudente : ne supprime pas une expérience difficile seulement parce qu’elle est négative. Supprime ce qui est dangereux, insultant, illégal, spam ou contraire aux règles.",rulesButton:"Règles",communityButton:"Communauté",marketButton:"Marketplace",
-queueTitle:"File de modération",queueText:"Filtre les contenus par type et statut.",refreshButton:"Actualiser",exportButton:"Exporter JSON",quickActionsTitle:"Règles de décision rapides",tablesTitle:"Tables Supabase nécessaires",tablesText:"Cette page lit et modifie ces tables. Si une table n’existe pas encore, elle sera affichée comme indisponible.",linksTitle:"Liens admin utiles",linksText:"Navigation rapide vers les pages à contrôler.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",notAdminTitle:"Accès réservé",notAdminText:"Cette page est réservée à l’administrateur.",notAdminBackButton:"Retour au dashboard",
-tabs:{community_posts:"Expériences",community_comments:"Commentaires forum",marketplace_items:"Annonces",marketplace_comments:"Commentaires market"},
-allStatus:"Tous statuts",allLang:"Toutes langues",empty:"Aucun contenu dans ce filtre.",approve:"Publier",hide:"Masquer",report:"Marquer signalé",delete:"Supprimer",reserved:"Réserver",sold:"Vendu",active:"Activer",copy:"Copier",status:"Statut",author:"Auteur",date:"Date",user:"User",
-decisionList:["Approuver : contenu utile, respectueux, pas de données personnelles sensibles, pas de conseil médical dangereux.","Masquer : contenu ambigu, trop personnel, incomplet, à vérifier ou hors sujet.","Signaler : arnaque probable, conseil médical dangereux, harcèlement, produit risqué, donnée sensible.","Supprimer : spam clair, contenu illégal, insulte grave, danger médical direct, annonce manifestement dangereuse.","Marketplace : être très strict avec sièges auto, matelas, objets de sommeil, produits ouverts, médicaments et objets cassés.","Santé mentale : si une personne semble en danger, orienter vers aide réelle et urgence; ne pas laisser le débat s’installer."]
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Admin SaaS",pageTitle:"Centre de contrôle Mama in Deutschland",pageText:"Modération réelle connectée à Supabase : signalements, expériences, commentaires, marketplace, messages contact, utilisateurs et abonnements.",
+usersLabel:"Utilisateurs",postsLabel:"Posts",itemsLabel:"Annonces",reportsLabel:"Signalements",importantTitle:"Accès admin sécurisé",importantText:"Cette page vérifie ton rôle dans Supabase avec la table admin_roles et la fonction is_admin().",adminStatus:"Accès admin confirmé via Supabase.",warningText:"Modération prudente : masquer le contenu dangereux, insultant, illégal, spam, trop personnel ou contraire aux règles. Ne pas supprimer une expérience uniquement parce qu’elle est négative.",rulesButton:"Règles",communityButton:"Communauté",marketButton:"Marketplace",
+queueTitle:"File de modération",queueText:"Filtre les contenus par table, statut, langue et recherche texte.",refreshButton:"Actualiser",exportButton:"Exporter JSON",quickActionsTitle:"Règles de décision rapides",tablesTitle:"Tables Supabase utilisées",tablesText:"Cette version utilise uniquement les vraies tables du backend SaaS v1.",linksTitle:"Liens admin utiles",linksText:"Navigation rapide vers les pages à contrôler.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",notAdminTitle:"Accès réservé",notAdminText:"Cette page est réservée à l’administrateur.",notAdminBackButton:"Retour au dashboard",
+tabs:{admin_reports:"Signalements",community_posts:"Expériences",community_comments:"Commentaires",marketplace_items:"Marketplace",contact_messages:"Messages contact",profiles:"Utilisateurs",subscriptions:"Abonnements"},
+allStatus:"Tous statuts",allLang:"Toutes langues",empty:"Aucun contenu dans ce filtre.",approve:"Publier / activer",hide:"Masquer",report:"Marquer signalé",delete:"Supprimer",resolved:"Résolu",reviewing:"En revue",dismiss:"Ignorer",reserved:"Réserver",sold:"Vendu",read:"Lu",answered:"Répondu",spam:"Spam",copy:"Copier",status:"Statut",author:"Auteur",date:"Date",user:"User",target:"Cible",hideTarget:"Masquer la cible",tableUnavailable:"Table indisponible",
+decisionList:["Approuver : contenu utile, respectueux, sans données personnelles sensibles, sans conseil médical dangereux.","Masquer : contenu ambigu, trop personnel, incomplet, hors sujet ou à vérifier.","Signaler : arnaque probable, conseil médical dangereux, harcèlement, produit risqué, donnée sensible.","Supprimer : spam clair, contenu illégal, insulte grave, danger médical direct ou annonce manifestement dangereuse.","Marketplace : être très strict avec sièges auto, matelas, objets de sommeil, produits ouverts, médicaments et objets cassés.","Santé mentale : si une personne semble en danger, orienter vers aide réelle et urgence; ne pas laisser le débat s’installer."]
 },
 de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Admin Moderation",pageTitle:"Community-Kontrollzentrum",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Admin moderation",pageTitle:"Community control center",bottomBackButton:"Back"});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"إدارة الإشراف",pageTitle:"مركز التحكم بالمجتمع",bottomBackButton:"رجوع"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Admin SaaS",pageTitle:"Kontrollzentrum Mama in Deutschland",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Admin SaaS",pageTitle:"Mama in Deutschland control center",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"إدارة SaaS",pageTitle:"مركز التحكم Mama in Deutschland",bottomBackButton:"رجوع"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
 Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
@@ -253,174 +249,80 @@ function setLanguage(lang){
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
-function isAdmin(){return currentUser && ADMIN_USER_IDS.includes(currentUser.id)}
-function localKey(table){return "mama-admin-local-"+table}
-function getLocal(table){try{return JSON.parse(localStorage.getItem(localKey(table)))||[]}catch(e){return[]}}
-function setLocal(table,data){localStorage.setItem(localKey(table),JSON.stringify(data))}
-function normalizeRow(table,row){
- return {
-  ...row,
-  _table:table,
-  _title: row.title || row.content?.slice(0,60) || row.description?.slice(0,60) || row.id,
-  _content: row.content || row.description || "",
-  _author: row.author_name || row.seller_name || row.user_id || "Mama",
-  _status: row.status || (table.includes("comments")?"published":"active"),
-  _lang: row.language || "",
-  _date: row.created_at || row.updated_at || ""
- }
+async function verifyAdmin(){
+ try{
+   const {data,error}=await supabaseClient.rpc("is_admin");
+   if(error)throw error;
+   return data===true || ADMIN_USER_IDS.includes(currentUser?.id);
+ }catch(e){return ADMIN_USER_IDS.includes(currentUser?.id);}
 }
 function renderStatic(){
- document.getElementById("modeValue").textContent=dbOnline?t().modeValue:t().offline;
  document.getElementById("adminStatus").textContent=t().adminStatus;
  document.getElementById("tabsBox").innerHTML=Object.keys(t().tabs).map(k=>`<button class="${currentTab===k?"active":""}" onclick="setTab('${k}')">${t().tabs[k]}</button>`).join("");
- document.getElementById("statusFilter").innerHTML=[
-  ["all",t().allStatus],["published","published"],["active","active"],["pending","pending"],["reported","reported"],["hidden","hidden"],["reserved","reserved"],["sold","sold"],["deleted","deleted"]
- ].map(x=>`<option value="${x[0]}">${x[1]}</option>`).join("");
+ const statuses=["all","open","reviewing","resolved","dismissed","published","active","hidden","deleted","reserved","sold","new","read","answered","closed","spam","inactive","trialing","past_due","canceled"];
+ document.getElementById("statusFilter").innerHTML=statuses.map(s=>`<option value="${s}">${s==="all"?t().allStatus:s}</option>`).join("");
  document.getElementById("langFilter").innerHTML=`<option value="all">${t().allLang}</option>`+Object.keys(langInfo).map(k=>`<option value="${k}">${langInfo[k][0]} ${langInfo[k][1]}</option>`).join("");
  document.getElementById("decisionList").innerHTML=t().decisionList.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("tablesCode").textContent=`community_posts
-- id, user_id, author_name, category, phase, language, title, content, status, likes_count, created_at
+ document.getElementById("tablesCode").textContent=`admin_reports
+- id, reporter_id, target_type, target_id, reason, details, status, admin_notes, created_at
+
+community_posts
+- id, user_id, title, body, category, language, is_anonymous, status, likes_count, report_count
 
 community_comments
-- id, post_id, user_id, author_name, content, language, status, created_at
+- id, post_id, user_id, body, is_anonymous, status, report_count
 
 marketplace_items
-- id, user_id, seller_name, category, condition, price_type, price, location, title, description, photo_url, contact_info, language, status, created_at
+- id, seller_id, seller_name, title, description, category, price_cents, currency, item_condition, city, image_url, status, contact_method
 
-marketplace_comments
-- id, item_id, user_id, author_name, content, status, created_at`;
+contact_messages
+- id, user_id, name, email, subject, message, status, admin_notes
+
+profiles
+- id, email, full_name, mother_name, preferred_language, app_role, city, country
+
+subscriptions
+- id, user_id, plan, status, stripe_customer_id, current_period_end`;
  updateStats();
 }
 function setTab(tab){currentTab=tab;renderStatic();renderList()}
+function normalizeRow(table,row){
+ const titleMap={admin_reports: row.reason || row.target_type || row.id,community_posts: row.title || row.id,community_comments: (row.body||"").slice(0,70) || row.id,marketplace_items: row.title || row.id,contact_messages: row.subject || row.email || row.id,profiles: row.full_name || row.mother_name || row.email || row.id,subscriptions: (row.plan||"subscription")+" / "+(row.status||"")};
+ const contentMap={admin_reports: [row.details,row.admin_notes,row.target_type,row.target_id].filter(Boolean).join("\n"),community_posts: row.body || "",community_comments: row.body || "",marketplace_items: row.description || "",contact_messages: row.message || "",profiles: [row.email,row.mother_name,row.city,row.country].filter(Boolean).join(" · "),subscriptions: [row.stripe_customer_id,row.stripe_subscription_id,row.current_period_end].filter(Boolean).join(" · ")};
+ const authorMap={admin_reports: row.reporter_id || "reporter",community_posts: row.is_anonymous ? "Anonyme" : (row.user_id||"user"),community_comments: row.is_anonymous ? "Anonyme" : (row.user_id||"user"),marketplace_items: row.seller_name || row.seller_id || "seller",contact_messages: row.name || row.email || row.user_id || "contact",profiles: row.email || row.id,subscriptions: row.user_id || "user"};
+ return {...row,_table:table,_title:titleMap[table] || row.id,_content:contentMap[table] || "",_author:authorMap[table] || "-",_status: row.status || (table==="profiles"?(row.app_role||"user"):"active"),_lang: row.language || row.preferred_language || "",_date: row.created_at || row.updated_at || row.current_period_end || ""};
+}
 async function fetchTable(table){
  try{
-  const {data,error}=await supabaseClient.from(table).select("*").order("created_at",{ascending:false}).limit(200);
+  let query=supabaseClient.from(table).select("*");
+  if(["admin_reports","community_posts","community_comments","marketplace_items","contact_messages"].includes(table)) query=query.order("created_at",{ascending:false});
+  query=query.limit(200);
+  const {data,error}=await query;
   if(error)throw error;
   tableErrors[table]=null;
   rows[table]=(data||[]).map(r=>normalizeRow(table,r));
   return true;
- }catch(e){
-  tableErrors[table]=e.message||String(e);
-  rows[table]=getLocal(table).map(r=>normalizeRow(table,r));
-  return false;
- }
+ }catch(e){tableErrors[table]=e.message||String(e);rows[table]=[];return false;}
 }
-async function loadAll(){
- const results=await Promise.all(Object.keys(rows).map(fetchTable));
- dbOnline=results.some(Boolean);
- renderStatic();renderList();
+async function loadAll(){const results=await Promise.all(Object.keys(rows).map(fetchTable));dbOnline=results.some(Boolean);renderStatic();renderList();}
+function updateStats(){document.getElementById("usersCount").textContent=rows.profiles.length;document.getElementById("postsCount").textContent=rows.community_posts.length;document.getElementById("itemsCount").textContent=rows.marketplace_items.length;document.getElementById("reportsCount").textContent=rows.admin_reports.filter(r=>!["resolved","dismissed"].includes(r._status)).length;}
+function filteredRows(){const status=document.getElementById("statusFilter")?.value||"all";const lang=document.getElementById("langFilter")?.value||"all";const q=(document.getElementById("searchInput")?.value||"").trim().toLowerCase();return (rows[currentTab]||[]).filter(r=>{const okStatus=status==="all" || r._status===status;const okLang=lang==="all" || r._lang===lang;const blob=(r._title+" "+r._content+" "+r._author+" "+JSON.stringify(r)).toLowerCase();const okQ=!q || blob.includes(q);return okStatus&&okLang&&okQ;});}
+function statusBadge(s){if(["published","active","answered","resolved","trialing"].includes(s))return "badge badge-green";if(["open","new","reviewing","reserved","past_due"].includes(s))return "badge badge-warning";if(["reported","deleted","spam","canceled"].includes(s))return "badge badge-red";if(["hidden","sold","closed","dismissed","inactive"].includes(s))return "badge badge-blue";return "badge";}
+function renderList(){updateStats();const list=document.getElementById("moderationList");const error=tableErrors[currentTab];const data=filteredRows();if(error && !data.length){list.innerHTML=`<div class="warning">${t().tableUnavailable} : ${escapeHtml(error)}</div>`;return}if(!data.length){list.innerHTML=`<div class="empty">${t().empty}</div>`;return}list.innerHTML=data.map(r=>renderRow(r)).join("");}
+function renderRow(r){const date=r._date?new Date(r._date).toLocaleString():"";const details=JSON.stringify(r,null,2);const safeDetails=encodeURIComponent(details);const targetLine=r._table==="admin_reports"?`<span class="badge badge-warning">${t().target}: ${escapeHtml(r.target_type||"")} ${escapeHtml(r.target_id||"")}</span>`:"";return `<article class="mod-card"><div class="mod-head"><div><span class="${statusBadge(r._status)}">${escapeHtml(r._status)}</span><span class="badge badge-blue">${escapeHtml(t().tabs[r._table]||r._table)}</span>${r._lang?`<span class="badge">${escapeHtml(r._lang)}</span>`:""}${targetLine}<h3>${escapeHtml(r._title)}</h3><div class="mod-meta">${t().author}: ${escapeHtml(r._author)} · ${t().date}: ${escapeHtml(date)} · ID: ${escapeHtml(r.id)}</div></div></div><p>${escapeHtml(r._content).replaceAll("\n","<br>")}</p><details style="margin-top:12px;"><summary class="badge">${t().copy} / JSON</summary><pre class="code">${escapeHtml(details)}</pre></details><div class="mod-actions">${actionButtons(r,safeDetails)}</div></article>`;}
+function actionButtons(r,safeDetails){
+ if(r._table==="profiles"||r._table==="subscriptions") return `<button onclick="copyText('${safeDetails}')">${t().copy}</button>`;
+ if(r._table==="admin_reports") return `<button class="hide" onclick="updateStatus('${r._table}','${r.id}','reviewing')">${t().reviewing}</button><button class="approve" onclick="updateStatus('${r._table}','${r.id}','resolved')">${t().resolved}</button><button onclick="hideReportTarget('${r.id}')">${t().hideTarget}</button><button class="delete" onclick="updateStatus('${r._table}','${r.id}','dismissed')">${t().dismiss}</button><button onclick="copyText('${safeDetails}')">${t().copy}</button>`;
+ if(r._table==="contact_messages") return `<button class="approve" onclick="updateStatus('${r._table}','${r.id}','read')">${t().read}</button><button class="approve" onclick="updateStatus('${r._table}','${r.id}','answered')">${t().answered}</button><button class="hide" onclick="updateStatus('${r._table}','${r.id}','closed')">closed</button><button class="delete" onclick="updateStatus('${r._table}','${r.id}','spam')">${t().spam}</button><button onclick="copyText('${safeDetails}')">${t().copy}</button>`;
+ if(r._table==="marketplace_items") return `<button class="approve" onclick="updateStatus('${r._table}','${r.id}','active')">${t().approve}</button><button class="hide" onclick="updateStatus('${r._table}','${r.id}','hidden')">${t().hide}</button><button onclick="updateStatus('${r._table}','${r.id}','reserved')">${t().reserved}</button><button onclick="updateStatus('${r._table}','${r.id}','sold')">${t().sold}</button><button class="delete" onclick="updateStatus('${r._table}','${r.id}','deleted')">${t().delete}</button><button onclick="copyText('${safeDetails}')">${t().copy}</button>`;
+ return `<button class="approve" onclick="updateStatus('${r._table}','${r.id}','published')">${t().approve}</button><button class="hide" onclick="updateStatus('${r._table}','${r.id}','hidden')">${t().hide}</button><button class="delete" onclick="updateStatus('${r._table}','${r.id}','deleted')">${t().delete}</button><button onclick="copyText('${safeDetails}')">${t().copy}</button>`;
 }
-function updateStats(){
- const all=Object.values(rows).flat();
- document.getElementById("postsCount").textContent=rows.community_posts.length;
- document.getElementById("itemsCount").textContent=rows.marketplace_items.length;
- document.getElementById("reportsCount").textContent=all.filter(r=>r._status==="reported").length;
-}
-function filteredRows(){
- const status=document.getElementById("statusFilter")?.value||"all";
- const lang=document.getElementById("langFilter")?.value||"all";
- const q=(document.getElementById("searchInput")?.value||"").trim().toLowerCase();
- return rows[currentTab].filter(r=>{
-  const okStatus=status==="all" || r._status===status;
-  const okLang=lang==="all" || r._lang===lang;
-  const blob=(r._title+" "+r._content+" "+r._author+" "+JSON.stringify(r)).toLowerCase();
-  const okQ=!q || blob.includes(q);
-  return okStatus&&okLang&&okQ;
- });
-}
-function statusBadge(s){
- if(s==="published"||s==="active")return "badge badge-green";
- if(s==="reported")return "badge badge-red";
- if(s==="pending"||s==="reserved")return "badge badge-warning";
- if(s==="hidden"||s==="sold")return "badge badge-blue";
- return "badge";
-}
-function renderList(){
- updateStats();
- const list=document.getElementById("moderationList");
- const error=tableErrors[currentTab];
- const data=filteredRows();
- if(error && !data.length){list.innerHTML=`<div class="warning">Table indisponible : ${escapeHtml(error)}</div>`;return}
- if(!data.length){list.innerHTML=`<div class="empty">${t().empty}</div>`;return}
- list.innerHTML=data.map(r=>renderRow(r)).join("");
-}
-function renderRow(r){
- const date=r._date?new Date(r._date).toLocaleString():"";
- const details=JSON.stringify(r,null,2);
- return `<article class="mod-card">
-   <div class="mod-head">
-    <div>
-      <span class="${statusBadge(r._status)}">${escapeHtml(r._status)}</span>
-      <span class="badge badge-blue">${escapeHtml(t().tabs[r._table]||r._table)}</span>
-      ${r._lang?`<span class="badge">${escapeHtml(r._lang)}</span>`:""}
-      <h3>${escapeHtml(r._title)}</h3>
-      <div class="mod-meta">${t().author}: ${escapeHtml(r._author)} · ${t().date}: ${escapeHtml(date)} · ID: ${escapeHtml(r.id)}</div>
-    </div>
-   </div>
-   <p>${escapeHtml(r._content).replaceAll("\n","<br>")}</p>
-   <details style="margin-top:12px;">
-    <summary class="badge">${t().copy} / JSON</summary>
-    <pre class="code">${escapeHtml(details)}</pre>
-   </details>
-   <div class="mod-actions">
-    <button class="approve" onclick="updateStatus('${r._table}','${r.id}','${r._table.includes("marketplace_items")?"active":"published"}')">${t().approve}</button>
-    <button class="hide" onclick="updateStatus('${r._table}','${r.id}','hidden')">${t().hide}</button>
-    <button class="delete" onclick="updateStatus('${r._table}','${r.id}','reported')">${t().report}</button>
-    ${r._table==="marketplace_items"?`<button onclick="updateStatus('${r._table}','${r.id}','reserved')">${t().reserved}</button><button onclick="updateStatus('${r._table}','${r.id}','sold')">${t().sold}</button>`:""}
-    <button class="delete" onclick="deleteRow('${r._table}','${r.id}')">${t().delete}</button>
-    <button onclick="copyText('${encodeURIComponent(details)}')">${t().copy}</button>
-   </div>
-  </article>`;
-}
-function persistLocal(table){
- setLocal(table,rows[table].map(r=>{
-  const clean={...r};delete clean._table;delete clean._title;delete clean._content;delete clean._author;delete clean._status;delete clean._lang;delete clean._date;return clean;
- }));
-}
-async function updateStatus(table,id,status){
- const row=rows[table].find(r=>String(r.id)===String(id));
- if(!row)return;
- row.status=status;row._status=status;renderList();updateStats();
- try{
-  const {error}=await supabaseClient.from(table).update({status}).eq("id",id);
-  if(error)throw error;
- }catch(e){
-  persistLocal(table);
-  alert("Changement local uniquement. Supabase a répondu : "+(e.message||e));
- }
-}
-async function deleteRow(table,id){
- if(!confirm("Supprimer / masquer définitivement cet élément ?"))return;
- rows[table]=rows[table].filter(r=>String(r.id)!==String(id));renderList();updateStats();
- try{
-  const {error}=await supabaseClient.from(table).delete().eq("id",id);
-  if(error)throw error;
- }catch(e){
-  persistLocal(table);
-  alert("Suppression locale uniquement. Supabase a répondu : "+(e.message||e));
- }
-}
-function copyText(encoded){
- navigator.clipboard?.writeText(decodeURIComponent(encoded));
-}
-function exportModeration(){
- const data={exported_at:new Date().toISOString(),rows,tableErrors};
- const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
- const url=URL.createObjectURL(blob);
- const a=document.createElement("a");a.href=url;a.download="mama-moderation-export.json";a.click();
- URL.revokeObjectURL(url);
-}
-async function loadApp(){
- const {data,error}=await supabaseClient.auth.getSession();
- if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
- currentUser=data.session.user;
- if(!isAdmin()){document.getElementById("notAdminMessage").style.display="block";return}
- const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
- currentProfile=(profiles&&profiles[0])?profiles[0]:null;
- currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
- if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadAll();
-}
+async function updateStatus(table,id,status){const row=rows[table].find(r=>String(r.id)===String(id));if(row){row.status=status;row._status=status;}renderList();updateStats();try{const {error}=await supabaseClient.from(table).update({status}).eq("id",id);if(error)throw error;await fetchTable(table);renderList();updateStats();}catch(e){alert("Supabase a refusé la modification : "+(e.message||e));}}
+function targetTableFromType(type){if(type==="community_post")return "community_posts";if(type==="community_comment")return "community_comments";if(type==="marketplace_item")return "marketplace_items";return null;}
+async function hideReportTarget(reportId){const report=rows.admin_reports.find(r=>String(r.id)===String(reportId));if(!report||!report.target_type||!report.target_id){alert("Cible introuvable.");return;}const table=targetTableFromType(report.target_type);if(!table){alert("Type de cible non supporté : "+report.target_type);return;}try{const {error}=await supabaseClient.from(table).update({status:"hidden"}).eq("id",report.target_id);if(error)throw error;await supabaseClient.from("admin_reports").update({status:"resolved",admin_notes:"Cible masquée depuis admin-moderation.html"}).eq("id",reportId);await loadAll();}catch(e){alert("Impossible de masquer la cible : "+(e.message||e));}}
+function copyText(encoded){navigator.clipboard?.writeText(decodeURIComponent(encoded));}
+function exportModeration(){const data={exported_at:new Date().toISOString(),rows,tableErrors};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mama-moderation-export.json";a.click();URL.revokeObjectURL(url);}
+async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;const admin=await verifyAdmin();if(!admin){document.getElementById("notAdminMessage").style.display="block";return}const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);currentProfile=(profiles&&profiles[0])?profiles[0]:null;currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadAll();}
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();
 </script>

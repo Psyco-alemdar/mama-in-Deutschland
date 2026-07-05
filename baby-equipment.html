@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mama in Deutschland - Équipement bébé</title>
 <style>
-:root{--page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.14)}
+:root{--page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;--light:#9b7357;--gold:#c9a66b;--text:#2f2621;--muted:#7b6a60;--border:#eadfd2;--danger:#b45b48;--success:#5f8d63;--warning:#b47a2b;--blue:#4f7ea3;--shadow:rgba(74,52,40,.14)}
 body.theme-boy{--page:#eef7ff;--cream:#f7fbff;--soft:#e8f4ff;--brown:#244b6b;--light:#5f93bd;--text:#1d3347;--muted:#5c7285;--border:#d6e8f7;--shadow:rgba(36,75,107,.13)}
 body.theme-girl{--page:#fff1f5;--cream:#fff8fa;--soft:#fde8ef;--brown:#7a3d55;--light:#c47a98;--text:#3d2430;--muted:#7b6070;--border:#f0d4df;--shadow:rgba(122,61,85,.13)}
 body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--light:#7ca878;--text:#263522;--muted:#62745f;--border:#dbe9d4;--shadow:rgba(62,92,58,.13)}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:radial-gradient(circle at 7% 0%,rgba(201,166,107,.26),transparent 31%),radial-gradient(circle at 92% 10%,rgba(155,115,87,.18),transparent 28%),linear-gradient(180deg,#fbf7f1,var(--page));color:var(--text)}
-.wrap{max-width:1280px;margin:0 auto;padding:22px 18px 36px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
-.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}.button{background:var(--brown);color:white;border-color:var(--brown)}.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.wrap{max-width:1320px;margin:0 auto;padding:22px 18px 36px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}.brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
+.top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}.button{background:var(--brown);color:white;border-color:var(--brown)}.button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}.button:disabled,.button-light:disabled{opacity:.55;cursor:not-allowed}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}.lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}.lang-menu.open{display:block}.lang-menu button{width:100%;border:0;background:transparent;color:var(--brown);padding:10px 12px;border-radius:14px;font-weight:950;text-align:left;cursor:pointer;font-family:inherit}.lang-menu button:hover{background:var(--soft)}
-.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}.hero-main,.hero-side{position:relative;z-index:1}
-.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}h2{font-size:26px;letter-spacing:-.8px}h3{font-size:18px}p,li{margin:0;color:var(--muted);line-height:1.6}ul{padding-left:20px;margin:10px 0 0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}.stat-label{font-size:12px;color:var(--muted);font-weight:950}.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
-.box,.equip-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}.equip-card{position:relative;overflow:hidden}.equip-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
-.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
-.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.timeline{display:grid;gap:12px}.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
-.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
-.source-card a{color:var(--brown);font-weight:950;text-decoration:none}.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}.login-message{max-width:650px;margin:60px auto;text-align:center}
-@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+.card,.hero{background:rgba(255,255,255,.94);border:1px solid var(--border);border-radius:32px;padding:24px;box-shadow:0 24px 70px var(--shadow);margin-bottom:18px;backdrop-filter:blur(18px)}.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;background:linear-gradient(145deg,var(--cream),white 62%,var(--soft));position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}.hero-main,.hero-side{position:relative;z-index:1}.kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}h2{font-size:26px;letter-spacing:-.8px}h3{font-size:18px}p,li{margin:0;color:var(--muted);line-height:1.6}ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}.stat-label{font-size:12px;color:var(--muted);font-weight:950}.stat-value{font-size:22px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.equip-card,.source-card,.item-card,.market-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}.equip-card,.item-card{position:relative;overflow:hidden}.equip-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}.section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}.timeline{display:grid;gap:12px}.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
+.form-grid{display:grid;grid-template-columns:1.2fr .8fr .7fr .7fr;gap:10px}.form-grid-wide{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}label{display:block;margin:0 0 6px;color:var(--brown);font-size:13px;font-weight:950}input,select,textarea{width:100%;padding:13px 14px;border-radius:16px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-size:15px;font-family:inherit;outline:none}textarea{min-height:110px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}.item-list,.market-list{display:grid;gap:10px}.item-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}.item-meta{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.item-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.mini-select{max-width:165px;padding:9px 10px;border-radius:999px;font-weight:900}.source-card a,.market-card a{color:var(--brown);font-weight:950;text-decoration:none}.source-card span,.market-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}.summary-box{white-space:pre-wrap;background:#fffdf9;border:1px solid var(--border);border-radius:18px;padding:14px;color:var(--brown);font-weight:850;line-height:1.55}.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}.login-message{max-width:650px;margin:60px auto;text-align:center}.fallback{display:none;margin-top:12px}.fallback.show{display:block}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr 1fr}.form-grid-wide{grid-template-columns:1fr}}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}.item-card{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.form-grid{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.item-actions{justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -49,25 +47,45 @@ body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--
       <p id="pageText">Une checklist premium pour préparer l’essentiel en Allemagne : sommeil sûr, transport, change, soins, vêtements, sortie clinique et achats de seconde main.</p>
       <div class="stats">
         <div class="stat"><div class="stat-label" id="weekLabel">Semaine actuelle</div><div class="stat-value" id="weekValue">-</div></div>
-        <div class="stat"><div class="stat-label" id="focusLabel">Focus</div><div class="stat-value" id="focusValue">Sécurité</div></div>
         <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+        <div class="stat"><div class="stat-label" id="boughtLabel">Acheté</div><div class="stat-value" id="boughtValue">0</div></div>
+        <div class="stat"><div class="stat-label" id="budgetLabel">Payé</div><div class="stat-value" id="paidValue">0 €</div></div>
       </div>
     </div>
     <div class="hero-side">
       <h2 id="importantTitle">Ultra important</h2>
-      <p id="importantText">Les achats les plus critiques sont ceux liés à la sécurité : sommeil, siège auto, table à langer, bain et petits objets. Pour le reste, commence simple et complète après la naissance.</p>
+      <p id="importantText">Les achats les plus critiques sont ceux liés à la sécurité : sommeil, siège auto, table à langer, bain et petits objets.</p>
       <div class="warning" id="safetyNote">Seconde main : très bien pour vêtements et meubles en bon état, mais prudence pour siège auto, matelas, tire-lait, biberons et objets de sécurité si l’historique n’est pas clair.</div>
-      <div class="actions" style="margin-top:14px;"><a class="button" href="marketplace.html" id="marketButton">Marketplace</a><a class="button-light" href="hospital-bag.html" id="bagButton">Valise maternité</a></div>
+      <div class="fallback soft" id="fallbackNote">Mode local actif : certaines données seront gardées sur cet appareil jusqu’au retour de Supabase.</div>
+      <div class="actions" style="margin-top:14px;"><a class="button" href="marketplace.html" id="marketButton">Marketplace</a><a class="button-light" href="hospital-bag.html" id="bagButton">Valise maternité</a><a class="button-light" href="budget.html" id="budgetButton">Budget</a></div>
     </div>
   </section>
 
   <section class="card"><div class="section-title"><div><h2 id="essentialTitle">Essentiel par catégorie</h2><p id="essentialText">Ce qu’il faut vraiment préparer avant la naissance.</p></div></div><div class="grid" id="essentialGrid"></div></section>
-  <section class="card"><div class="section-title"><div><h2 id="safetyTitle">Sécurité à vérifier</h2><p id="safetyText">Les points qui méritent le plus d’attention avant d’acheter.</p></div></div><div class="grid" id="safetyGrid"></div></section>
 
   <section class="grid-2">
     <div class="card"><h2 id="checkTitle">Checklist équipement</h2><p id="checkText">Coche ce qui est prêt à la maison.</p><div id="checklistBox"></div><div class="progress"><div id="progressBar"></div></div><div class="actions" style="margin-top:14px;"><button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button></div></div>
     <div class="card"><h2 id="buyTitle">Acheter neuf ou seconde main ?</h2><div class="box"><ul id="buyList"></ul></div><div class="soft" id="budgetNote">Astuce budget : achète d’abord l’essentiel sécurité, puis utilise wishlist, cadeaux, marketplace et seconde main pour le reste.</div></div>
   </section>
+
+  <section class="card">
+    <div class="section-title"><div><h2 id="purchaseTitle">Liste d’achats SaaS</h2><p id="purchaseText">Ajoute les produits, liens, prix estimés et statut acheté / à acheter.</p></div><button class="button-light" onclick="seedPurchaseItems()" id="seedButton">Créer liste essentielle</button></div>
+    <div class="form-grid">
+      <div><label id="itemNameLabel" for="itemName">Produit</label><input id="itemName" placeholder="Ex : Cybex Cloud T i-Size"></div>
+      <div><label id="itemCategoryLabel" for="itemCategory">Catégorie</label><select id="itemCategory"><option value="transport">Transport</option><option value="sleep">Sommeil</option><option value="change">Change</option><option value="feeding">Alimentation</option><option value="clothes">Vêtements</option><option value="care">Soins</option><option value="other">Autre</option></select></div>
+      <div><label id="itemEstimateLabel" for="itemEstimate">Prévu €</label><input id="itemEstimate" type="number" min="0" step="1" placeholder="0"></div>
+      <div><label id="itemPaidLabel" for="itemPaid">Payé €</label><input id="itemPaid" type="number" min="0" step="1" placeholder="0"></div>
+    </div>
+    <div class="form-grid-wide"><div><label id="itemStatusLabel" for="itemStatus">Statut</label><select id="itemStatus"><option value="planned">À acheter</option><option value="wishlist">Wishlist</option><option value="bought">Acheté</option><option value="second_hand">Seconde main</option><option value="skip">Pas nécessaire</option></select></div><div><label id="itemNoteLabel" for="itemNote">Lien / note</label><input id="itemNote" placeholder="Lien produit, taille, modèle, magasin..."></div></div>
+    <div class="actions" style="margin-top:14px;"><button class="button" onclick="addPurchaseItem()" id="addItemButton">Ajouter produit</button><button class="button-light" onclick="exportData()" id="exportButton">Export JSON</button><button class="button-light" onclick="copySummary()" id="copyButton">Copier résumé</button></div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card"><h2 id="itemsTitle">Produits suivis</h2><div class="item-list" id="itemsList"></div></div>
+    <div class="card"><h2 id="summaryTitle">Résumé budget</h2><div class="summary-box" id="summaryBox">-</div><h2 style="margin-top:18px;" id="marketplaceTitle">Marketplace récente</h2><div class="market-list" id="marketplaceList"></div></div>
+  </section>
+
+  <section class="card"><div class="section-title"><div><h2 id="safetyTitle">Sécurité à vérifier</h2><p id="safetyText">Les points qui méritent le plus d’attention avant d’acheter.</p></div></div><div class="grid" id="safetyGrid"></div></section>
 
   <section class="card"><div class="section-title"><div><h2 id="timelineTitle">Quand acheter ?</h2><p id="timelineText">Évite d’acheter trop tôt ou trop tard.</p></div></div><div class="timeline" id="timelineBox"></div></section>
 
@@ -93,62 +111,172 @@ body.theme-twin{--page:#f1f7ef;--cream:#fbfff8;--soft:#e7f3df;--brown:#3e5c3a;--
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co",SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+let checklistRows=[],purchaseRows=[],marketplaceRows=[],usingLocal=false;
+const PAGE_KEY="baby_equipment";
+const SOURCE_PAGE="baby-equipment.html";
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
-const tr={fr:{
-dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Équipement bébé",pageTitle:"Acheter moins, préparer mieux",pageText:"Une checklist premium pour préparer l’essentiel en Allemagne : sommeil sûr, transport, change, soins, vêtements, sortie clinique et achats de seconde main.",
-weekLabel:"Semaine actuelle",focusLabel:"Focus",focusValue:"Sécurité",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"Les achats les plus critiques sont ceux liés à la sécurité : sommeil, siège auto, table à langer, bain et petits objets. Pour le reste, commence simple et complète après la naissance.",safetyNote:"Seconde main : très bien pour vêtements et meubles en bon état, mais prudence pour siège auto, matelas, tire-lait, biberons et objets de sécurité si l’historique n’est pas clair.",marketButton:"Marketplace",bagButton:"Valise maternité",
-essentialTitle:"Essentiel par catégorie",essentialText:"Ce qu’il faut vraiment préparer avant la naissance.",safetyTitle:"Sécurité à vérifier",safetyText:"Les points qui méritent le plus d’attention avant d’acheter.",checkTitle:"Checklist équipement",checkText:"Coche ce qui est prêt à la maison.",resetButton:"Réinitialiser",buyTitle:"Acheter neuf ou seconde main ?",budgetNote:"Astuce budget : achète d’abord l’essentiel sécurité, puis utilise wishlist, cadeaux, marketplace et seconde main pour le reste.",timelineTitle:"Quand acheter ?",timelineText:"Évite d’acheter trop tôt ou trop tard.",questionsTitle:"Questions à poser / vérifier",notesTitle:"Note personnelle",notesText:"Note ici les modèles, tailles, prix, liens ou idées cadeaux.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Pour vérifier sécurité, sommeil, siège auto et équipement.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-essential:"Essentiel",safety:"Sécurité",optional:"Optionnel",avoid:"Prudence",
-essentialItems:[
-["🛏️","Sommeil","Lit bébé ou cododo sûr, matelas ferme, drap-housse, gigoteuse adaptée, thermomètre chambre.","safety"],
-["🚗","Transport voiture","Babyschale adaptée, base si compatible, installation testée dans ta voiture avant la naissance.","safety"],
-["🛒","Poussette / portage","Poussette stable, position adaptée nouveau-né, protection pluie/soleil, éventuellement porte-bébé.","essential"],
-["🧷","Change","Table ou matelas à langer stable, couches, eau/lingettes, crème, vêtements à portée.","essential"],
-["🛁","Bain & soins","Thermomètre, serviettes, baignoire/support stable, compresses, coupe-ongles bébé.","essential"],
-["👕","Vêtements","Bodies, pyjamas, chaussettes, bonnet sortie, tailles naissance/56/62 selon saison.","essential"],
-["🍼","Alimentation","Biberons si souhaités, tire-lait si besoin réel, coussin d’allaitement, langes.","optional"],
-["🌡️","Santé maison","Thermomètre fiable, numéros urgence, carnet, lampe douce, pharmacie bébé selon avis pro.","essential"],
-["🎁","Plus tard","Babyphone, transat, tapis, chaise haute, jouets : pas toujours indispensable avant naissance.","optional"]],
-safetyItems:[
-["🛌","Sommeil sûr","Bébé sur le dos, matelas ferme, pas de coussin, nid, couverture lourde ou peluche dans le lit.","safety"],
-["🚘","Siège auto","Vérifie norme, taille, compatibilité voiture, installation. Évite occasion sans historique clair.","safety"],
-["🧼","Matelas","Un matelas neuf ou en état impeccable est préférable : propre, ferme, adapté, sans affaissement.","safety"],
-["🧸","Petits objets","Évite cordons, colliers, petites pièces, attaches longues ou objets pouvant couvrir les voies respiratoires.","safety"],
-["🧴","Produits soins","Moins = mieux. Évite parfums agressifs; demande conseil pour médicaments ou produits médicaux.","avoid"],
-["🛁","Bain / table à langer","Ne laisse jamais bébé seul, même quelques secondes. Prépare tout avant de commencer.","safety"]],
-buy:["Plutôt neuf : siège auto si historique inconnu, matelas, tétines/biberons, produits d’hygiène ouverts.","Seconde main possible : vêtements, commode, poussette en bon état, baignoire, jouets lavables.","À vérifier : rappels produits, stabilité, freins, harnais, normes, odeur de tabac/moisissure, pièces manquantes.","À éviter : siège auto accidenté, matelas affaissé, objets cassés, dispositifs de sommeil non recommandés."],
-timeline:[["SA 18–24","Lister les gros achats : siège auto, lit, poussette, commode. Comparer sans acheter sous pression."],["SA 24–30","Commander les articles avec délai long, vérifier la place à la maison et le budget."],["SA 30–34","Installer lit, zone change, laver premiers vêtements, préparer produits simples."],["SA 34–37","Tester Babyschale dans la voiture, préparer valise maternité, vérifier trajet clinique."],["Après naissance","Acheter progressivement selon les besoins réels : babyphone, tire-lait, transat, tapis, jouets."]],
-checklist:["Lit/cododo sécurisé prêt","Matelas ferme et adapté","Gigoteuse adaptée à la saison","Babyschale installée/testée","Poussette prête","Zone change stable","Couches et linges prêts","Premiers vêtements lavés","Thermomètre bébé disponible","Numéros urgence sauvegardés","Valise maternité commencée","Pas d’objets dangereux dans le lit"],
-questions:["La Babyschale est-elle compatible avec ma voiture ?","Le siège auto a-t-il un historique clair sans accident ?","Le lit respecte-t-il une taille/norme actuelle et le matelas est-il ferme ?","Ai-je vraiment besoin de ce produit avant la naissance ?","Est-ce lavable, stable, sans pièces manquantes et sans odeur de tabac ?","Qu’est-ce que je peux mettre dans la wishlist plutôt qu’acheter maintenant ?"]},
-de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+
+const tr={fr:{dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Équipement bébé",pageTitle:"Acheter moins, préparer mieux",pageText:"Une checklist premium pour préparer l’essentiel en Allemagne : sommeil sûr, transport, change, soins, vêtements, sortie clinique et achats de seconde main.",weekLabel:"Semaine actuelle",progressLabel:"Checklist",boughtLabel:"Acheté",budgetLabel:"Payé",importantTitle:"Ultra important",importantText:"Les achats les plus critiques sont ceux liés à la sécurité : sommeil, siège auto, table à langer, bain et petits objets.",safetyNote:"Seconde main : très bien pour vêtements et meubles en bon état, mais prudence pour siège auto, matelas, tire-lait, biberons et objets de sécurité si l’historique n’est pas clair.",marketButton:"Marketplace",bagButton:"Valise maternité",budgetButton:"Budget",essentialTitle:"Essentiel par catégorie",essentialText:"Ce qu’il faut vraiment préparer avant la naissance.",safetyTitle:"Sécurité à vérifier",safetyText:"Les points qui méritent le plus d’attention avant d’acheter.",checkTitle:"Checklist équipement",checkText:"Coche ce qui est prêt à la maison.",resetButton:"Réinitialiser",buyTitle:"Acheter neuf ou seconde main ?",budgetNote:"Astuce budget : achète d’abord l’essentiel sécurité, puis utilise wishlist, cadeaux, marketplace et seconde main pour le reste.",purchaseTitle:"Liste d’achats SaaS",purchaseText:"Ajoute les produits, liens, prix estimés et statut acheté / à acheter.",seedButton:"Créer liste essentielle",itemNameLabel:"Produit",itemCategoryLabel:"Catégorie",itemEstimateLabel:"Prévu €",itemPaidLabel:"Payé €",itemStatusLabel:"Statut",itemNoteLabel:"Lien / note",addItemButton:"Ajouter produit",exportButton:"Export JSON",copyButton:"Copier résumé",itemsTitle:"Produits suivis",summaryTitle:"Résumé budget",marketplaceTitle:"Marketplace récente",timelineTitle:"Quand acheter ?",timelineText:"Évite d’acheter trop tôt ou trop tard.",questionsTitle:"Questions à poser / vérifier",notesTitle:"Note personnelle",notesText:"Note ici les modèles, tailles, prix, liens ou idées cadeaux.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Pour vérifier sécurité, sommeil, siège auto et équipement.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",fallbackNote:"Mode local actif : certaines données seront gardées sur cet appareil jusqu’au retour de Supabase.",essential:"Essentiel",safety:"Sécurité",optional:"Optionnel",avoid:"Prudence",planned:"À acheter",wishlist:"Wishlist",bought:"Acheté",second_hand:"Seconde main",skip:"Pas nécessaire",empty:"Aucun produit suivi.",marketEmpty:"Aucune annonce récente.",summaryCopied:"Résumé copié ✅",good:"OK",essentialItems:[["🛏️","Sommeil","Lit bébé ou cododo sûr, matelas ferme, drap-housse, gigoteuse adaptée, thermomètre chambre.","safety"],["🚗","Transport voiture","Babyschale adaptée, base si compatible, installation testée dans ta voiture avant la naissance.","safety"],["🛒","Poussette / portage","Poussette stable, position adaptée nouveau-né, protection pluie/soleil, éventuellement porte-bébé.","essential"],["🧷","Change","Table ou matelas à langer stable, couches, eau/lingettes, crème, vêtements à portée.","essential"],["🛁","Bain & soins","Thermomètre, serviettes, baignoire/support stable, compresses, coupe-ongles bébé.","essential"],["👕","Vêtements","Bodies, pyjamas, chaussettes, bonnet sortie, tailles naissance/56/62 selon saison.","essential"],["🍼","Alimentation","Biberons si souhaités, tire-lait si besoin réel, coussin d’allaitement, langes.","optional"],["🌡️","Santé maison","Thermomètre fiable, numéros urgence, carnet, lampe douce, pharmacie bébé selon avis pro.","essential"],["🎁","Plus tard","Babyphone, transat, tapis, chaise haute, jouets : pas toujours indispensable avant naissance.","optional"]],safetyItems:[["🛌","Sommeil sûr","Bébé sur le dos, matelas ferme, pas de coussin, nid, couverture lourde ou peluche dans le lit.","safety"],["🚘","Siège auto","Vérifie norme, taille, compatibilité voiture, installation. Évite occasion sans historique clair.","safety"],["🧼","Matelas","Un matelas neuf ou en état impeccable est préférable : propre, ferme, adapté, sans affaissement.","safety"],["🧸","Petits objets","Évite cordons, colliers, petites pièces, attaches longues ou objets pouvant couvrir les voies respiratoires.","safety"],["🧴","Produits soins","Moins = mieux. Évite parfums agressifs; demande conseil pour médicaments ou produits médicaux.","avoid"],["🛁","Bain / table à langer","Ne laisse jamais bébé seul, même quelques secondes. Prépare tout avant de commencer.","safety"]],buy:["Plutôt neuf : siège auto si historique inconnu, matelas, tétines/biberons, produits d’hygiène ouverts.","Seconde main possible : vêtements, commode, poussette en bon état, baignoire, jouets lavables.","À vérifier : rappels produits, stabilité, freins, harnais, normes, odeur de tabac/moisissure, pièces manquantes.","À éviter : siège auto accidenté, matelas affaissé, objets cassés, dispositifs de sommeil non recommandés."],timeline:[["SA 18–24","Lister les gros achats : siège auto, lit, poussette, commode. Comparer sans acheter sous pression."],["SA 24–30","Commander les articles avec délai long, vérifier la place à la maison et le budget."],["SA 30–34","Installer lit, zone change, laver premiers vêtements, préparer produits simples."],["SA 34–37","Tester Babyschale dans la voiture, préparer valise maternité, vérifier trajet clinique."],["Après naissance","Acheter progressivement selon les besoins réels : babyphone, tire-lait, transat, tapis, jouets."]],checklist:["Lit/cododo sécurisé prêt","Matelas ferme et adapté","Gigoteuse adaptée à la saison","Babyschale installée/testée","Poussette prête","Zone change stable","Couches et linges prêts","Premiers vêtements lavés","Thermomètre bébé disponible","Numéros urgence sauvegardés","Valise maternité commencée","Pas d’objets dangereux dans le lit"],seedItems:[["Babyschale / siège auto","transport",250,0,"planned"],["Poussette","transport",600,0,"planned"],["Lit bébé / cododo","sleep",180,0,"planned"],["Matelas ferme","sleep",80,0,"planned"],["Gigoteuses","sleep",60,0,"planned"],["Table ou matelas à langer","change",100,0,"planned"],["Bodies / pyjamas naissance","clothes",120,0,"planned"],["Thermomètre bébé","care",20,0,"planned"],["Biberons","feeding",40,0,"wishlist"],["Tire-lait","feeding",120,0,"wishlist"],["Babyphone","other",90,0,"wishlist"]],questions:["La Babyschale est-elle compatible avec ma voiture ?","Le siège auto a-t-il un historique clair sans accident ?","Le lit respecte-t-il une taille/norme actuelle et le matelas est-il ferme ?","Ai-je vraiment besoin de ce produit avant la naissance ?","Est-ce lavable, stable, sans pièces manquantes et sans odeur de tabac ?","Qu’est-ce que je peux mettre dans la wishlist plutôt qu’acheter maintenant ?"]},de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Baby-Erstausstattung",pageTitle:"Weniger kaufen, besser vorbereiten",weekLabel:"Aktuelle SSW",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Baby equipment",pageTitle:"Buy less, prepare better",weekLabel:"Current week",bottomBackButton:"Back"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Baby-Erstausstattung",pageTitle:"Weniger kaufen, besser vorbereiten",weekLabel:"Aktuelle SSW",bottomBackButton:"Zurück",planned:"Zu kaufen",bought:"Gekauft",wishlist:"Wishlist",second_hand:"Secondhand",skip:"Nicht nötig"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Baby equipment",pageTitle:"Buy less, prepare better",weekLabel:"Current week",bottomBackButton:"Back",planned:"To buy",bought:"Bought",wishlist:"Wishlist",second_hand:"Second-hand",skip:"Not needed"});
 Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"معدات الطفل",pageTitle:"اشتري أقل، حضّري أفضل",weekLabel:"الأسبوع الحالي",bottomBackButton:"رجوع"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+
 function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-function setLanguage(lang){currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});render();}
-function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
-function calculatePregnancy(due){if(!due)return currentProfile?.pregnancy_week||1;const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;}
+function setLanguage(lang){currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el&&typeof t()[id]==="string")el.textContent=t()[id]});renderAll()}
+function parseLocalDate(v){const p=String(v||"").split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
+function calculatePregnancy(due){if(!due)return currentProfile?.current_week||currentProfile?.pregnancy_week||1;const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w}
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
-function badge(type){if(type==="safety")return "badge badge-red";if(type==="optional")return "badge badge-warning";if(type==="avoid")return "badge badge-warning";return "badge badge-green"}
+function badge(type){if(type==="safety")return"badge badge-red";if(type==="optional"||type==="avoid")return"badge badge-warning";return"badge badge-green"}
 function typeText(type){if(type==="safety")return t().safety;if(type==="optional")return t().optional;if(type==="avoid")return t().avoid;return t().essential}
-function checkKey(){return "mama-equipment-check-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-equipment-note-"+(currentUser?currentUser.id:"guest")}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return {}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
-function renderChecklist(){const s=state();const items=t().checklist;document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;document.getElementById("progressValue").textContent=done+" / "+total;document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";}
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
-function render(){document.getElementById("weekValue").textContent=currentWeek;document.getElementById("focusValue").textContent=t().focusValue;document.getElementById("essentialGrid").innerHTML=t().essentialItems.map(x=>`<div class="equip-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");document.getElementById("safetyGrid").innerHTML=t().safetyItems.map(x=>`<div class="equip-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");document.getElementById("buyList").innerHTML=t().buy.map(x=>`<li>${x}</li>`).join("");document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";renderChecklist();}
-async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);currentProfile=(profiles&&profiles[0])?profiles[0]:null;currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";currentWeek=calculatePregnancy(currentProfile?.due_date);if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById("appShell").style.display="block";setLanguage(currentLang);}
+function statusText(s){return t()[s]||s||t().planned}
+function statusBadge(s){if(s==="bought")return"badge badge-green";if(s==="skip")return"badge badge-red";if(s==="wishlist"||s==="second_hand")return"badge badge-blue";return"badge badge-warning"}
+function euro(cents){return (Math.round((Number(cents)||0))/100).toLocaleString(currentLang==="de"?"de-DE":"fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:0})}
+function cents(v){return Math.round((Number(v)||0)*100)}
+function localKey(name){return "mama-equipment-"+name+"-"+(currentUser?currentUser.id:"guest")}
+function getLocal(name,def){try{return JSON.parse(localStorage.getItem(localKey(name)))||def}catch(e){return def}}
+function setLocal(name,val){localStorage.setItem(localKey(name),JSON.stringify(val))}
+function setFallback(on){usingLocal=on;document.getElementById("fallbackNote").classList.toggle("show",on)}
+
+function checklistTemplates(){return t().checklist.map((title,i)=>({task_key:"equipment_check_"+i,title,category:"checklist",priority:i<4?"high":"normal"}))}
+function purchaseTemplates(){return t().seedItems.map(x=>({title:x[0],category:x[1],estimated_amount_cents:cents(x[2]),actual_amount_cents:cents(x[3]),status:x[4],completed:x[4]==="bought",notes:""}))}
+async function safeQuery(promise){try{const res=await promise;if(res.error)throw res.error;setFallback(false);return res.data}catch(e){console.warn(e);setFallback(true);return null}}
+
+async function ensureChecklist(){
+ const rows=await safeQuery(supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("page_key",PAGE_KEY).eq("task_area","equipment_checklist"));
+ if(rows===null){checklistRows=getLocal("checklist",checklistTemplates().map((x,i)=>({...x,id:"local-check-"+i,completed:false})));return}
+ checklistRows=rows||[];
+ const existingKeys=new Set(checklistRows.map(r=>r.task_key));
+ const missing=checklistTemplates().filter(x=>!existingKeys.has(x.task_key));
+ if(missing.length){
+  const payload=missing.map(x=>({...x,user_id:currentUser.id,page_key:PAGE_KEY,task_area:"equipment_checklist",source_page:SOURCE_PAGE,status:"open",completed:false}));
+  await safeQuery(supabaseClient.from("user_tasks").insert(payload));
+  const reload=await safeQuery(supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("page_key",PAGE_KEY).eq("task_area","equipment_checklist"));
+  checklistRows=reload||checklistRows.concat(payload);
+ }
+}
+async function loadPurchases(){
+ const rows=await safeQuery(supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("page_key",PAGE_KEY).eq("task_area","equipment_purchase").order("created_at",{ascending:false}));
+ if(rows===null){purchaseRows=getLocal("purchases",[]);return}
+ purchaseRows=rows||[];
+}
+async function loadMarketplace(){
+ const rows=await safeQuery(supabaseClient.from("marketplace_items").select("*").in("status",["active","available","published"]).limit(4).order("created_at",{ascending:false}));
+ marketplaceRows=rows||[];
+}
+async function loadNote(){
+ const rows=await safeQuery(supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("page_key",PAGE_KEY).eq("task_area","equipment_note").eq("task_key","equipment_personal_note").limit(1));
+ if(rows===null){document.getElementById("personalNote").value=getLocal("note","");return}
+ document.getElementById("personalNote").value=rows&&rows[0]?rows[0].notes||"":"";
+}
+async function loadAll(){await ensureChecklist();await loadPurchases();await loadMarketplace();await loadNote();renderAll()}
+
+async function toggleCheck(id){
+ const row=checklistRows.find(x=>String(x.id)===String(id));if(!row)return;
+ row.completed=!row.completed;row.status=row.completed?"done":"open";row.completed_at=row.completed?new Date().toISOString():null;
+ if(usingLocal||String(id).startsWith("local-")){setLocal("checklist",checklistRows);renderChecklist();return}
+ await safeQuery(supabaseClient.from("user_tasks").update({completed:row.completed,status:row.status,completed_at:row.completed_at,updated_at:new Date().toISOString()}).eq("id",row.id).eq("user_id",currentUser.id));renderChecklist();renderStats();
+}
+async function resetChecklist(){
+ checklistRows.forEach(r=>{r.completed=false;r.status="open";r.completed_at=null});
+ if(usingLocal){setLocal("checklist",checklistRows);renderChecklist();renderStats();return}
+ await safeQuery(supabaseClient.from("user_tasks").update({completed:false,status:"open",completed_at:null,updated_at:new Date().toISOString()}).eq("user_id",currentUser.id).eq("page_key",PAGE_KEY).eq("task_area","equipment_checklist"));renderChecklist();renderStats();
+}
+async function addPurchaseItem(){
+ const title=document.getElementById("itemName").value.trim();if(!title){alert("Produit ?");return}
+ const row={user_id:currentUser.id,page_key:PAGE_KEY,task_key:"equipment_purchase_"+Date.now(),task_area:"equipment_purchase",source_page:SOURCE_PAGE,title,description:document.getElementById("itemCategory").value,category:document.getElementById("itemCategory").value,status:document.getElementById("itemStatus").value,completed:document.getElementById("itemStatus").value==="bought",estimated_amount_cents:cents(document.getElementById("itemEstimate").value),actual_amount_cents:cents(document.getElementById("itemPaid").value),priority:"normal",notes:document.getElementById("itemNote").value.trim()};
+ if(usingLocal){row.id="local-purchase-"+Date.now();purchaseRows.unshift(row);setLocal("purchases",purchaseRows);clearPurchaseForm();renderPurchases();renderStats();return}
+ const data=await safeQuery(supabaseClient.from("user_tasks").insert(row).select().limit(1));
+ if(data&&data[0])purchaseRows.unshift(data[0]);else purchaseRows.unshift(row);
+ clearPurchaseForm();renderPurchases();renderStats();renderSummary();
+}
+function clearPurchaseForm(){["itemName","itemEstimate","itemPaid","itemNote"].forEach(id=>document.getElementById(id).value="");document.getElementById("itemStatus").value="planned";document.getElementById("itemCategory").value="transport"}
+async function seedPurchaseItems(){
+ const existing=new Set(purchaseRows.map(r=>String(r.title||"").toLowerCase()));
+ const rows=purchaseTemplates().filter(r=>!existing.has(String(r.title).toLowerCase()));
+ if(!rows.length){alert("Liste déjà créée ✅");return}
+ if(usingLocal){rows.forEach((r,i)=>purchaseRows.unshift({...r,id:"local-seed-"+Date.now()+i,task_key:"equipment_seed_"+Date.now()+i}));setLocal("purchases",purchaseRows);renderPurchases();renderStats();renderSummary();return}
+ const payload=rows.map((r,i)=>({...r,user_id:currentUser.id,page_key:PAGE_KEY,task_key:"equipment_seed_"+Date.now()+"_"+i,task_area:"equipment_purchase",source_page:SOURCE_PAGE,priority:r.category==="transport"||r.category==="sleep"?"high":"normal"}));
+ await safeQuery(supabaseClient.from("user_tasks").insert(payload));await loadPurchases();renderPurchases();renderStats();renderSummary();
+}
+async function updatePurchaseStatus(id,status){
+ const row=purchaseRows.find(x=>String(x.id)===String(id));if(!row)return;row.status=status;row.completed=status==="bought";row.completed_at=row.completed?new Date().toISOString():null;
+ if(usingLocal||String(id).startsWith("local-")){setLocal("purchases",purchaseRows);renderPurchases();renderStats();renderSummary();return}
+ await safeQuery(supabaseClient.from("user_tasks").update({status,completed:row.completed,completed_at:row.completed_at,updated_at:new Date().toISOString()}).eq("id",id).eq("user_id",currentUser.id));renderPurchases();renderStats();renderSummary();
+}
+async function deletePurchase(id){
+ if(!confirm("Supprimer ?"))return;
+ purchaseRows=purchaseRows.filter(x=>String(x.id)!==String(id));
+ if(usingLocal||String(id).startsWith("local-")){setLocal("purchases",purchaseRows);renderPurchases();renderStats();renderSummary();return}
+ await safeQuery(supabaseClient.from("user_tasks").delete().eq("id",id).eq("user_id",currentUser.id));renderPurchases();renderStats();renderSummary();
+}
+async function saveNote(){
+ const text=document.getElementById("personalNote").value;
+ if(usingLocal){setLocal("note",text);showSaved();return}
+ const rows=await safeQuery(supabaseClient.from("user_tasks").select("id").eq("user_id",currentUser.id).eq("page_key",PAGE_KEY).eq("task_area","equipment_note").eq("task_key","equipment_personal_note").limit(1));
+ if(rows===null){setLocal("note",text);showSaved();return}
+ if(rows&&rows[0]) await safeQuery(supabaseClient.from("user_tasks").update({notes:text,updated_at:new Date().toISOString()}).eq("id",rows[0].id));
+ else await safeQuery(supabaseClient.from("user_tasks").insert({user_id:currentUser.id,page_key:PAGE_KEY,task_key:"equipment_personal_note",task_area:"equipment_note",source_page:SOURCE_PAGE,title:"Note équipement bébé",status:"open",completed:false,notes:text}));
+ showSaved();
+}
+function showSaved(){const n=document.getElementById("savedNote");n.textContent=t().savedNote;n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+
+function renderChecklist(){
+ const order=Object.fromEntries(checklistTemplates().map((x,i)=>[x.task_key,i]));
+ checklistRows.sort((a,b)=>(order[a.task_key]??99)-(order[b.task_key]??99));
+ document.getElementById("checklistBox").innerHTML=checklistRows.map(r=>`<label class="check-row"><input type="checkbox" ${r.completed?"checked":""} onchange="toggleCheck('${r.id}')"><span>${escapeHtml(r.title)}</span></label>`).join("");
+ const done=checklistRows.filter(r=>r.completed).length,total=checklistRows.length;document.getElementById("progressValue").textContent=done+" / "+total;document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+}
+function renderPurchases(){
+ const box=document.getElementById("itemsList");
+ if(!purchaseRows.length){box.innerHTML=`<div class="item-card">${t().empty}</div>`;return}
+ box.innerHTML=purchaseRows.map(r=>{
+  const note=escapeHtml(r.notes||"");
+  return `<div class="item-card"><div><span class="${statusBadge(r.status)}">${statusText(r.status)}</span><span class="badge">${escapeHtml(r.category||r.description||"other")}</span><h3>${escapeHtml(r.title)}</h3><div class="item-meta"><span class="badge">Prévu ${euro(r.estimated_amount_cents)}</span><span class="badge badge-green">Payé ${euro(r.actual_amount_cents)}</span></div>${note?`<p>${note}</p>`:""}</div><div class="item-actions"><select class="mini-select" onchange="updatePurchaseStatus('${r.id}',this.value)"><option value="planned" ${r.status==="planned"?"selected":""}>${t().planned}</option><option value="wishlist" ${r.status==="wishlist"?"selected":""}>${t().wishlist}</option><option value="bought" ${r.status==="bought"?"selected":""}>${t().bought}</option><option value="second_hand" ${r.status==="second_hand"?"selected":""}>${t().second_hand}</option><option value="skip" ${r.status==="skip"?"selected":""}>${t().skip}</option></select><button class="button-danger" onclick="deletePurchase('${r.id}')">×</button></div></div>`;
+ }).join("");
+}
+function renderMarketplace(){
+ const box=document.getElementById("marketplaceList");
+ if(!marketplaceRows.length){box.innerHTML=`<div class="market-card">${t().marketEmpty}</div>`;return}
+ box.innerHTML=marketplaceRows.map(x=>`<div class="market-card"><a href="marketplace.html">${escapeHtml(x.title||"Annonce")}</a><span>${escapeHtml(x.city||"")} · ${euro(x.price_cents||0)} · ${escapeHtml(x.category||"")}</span></div>`).join("");
+}
+function renderStatic(){
+ document.getElementById("weekValue").textContent=currentWeek;document.getElementById("essentialGrid").innerHTML=t().essentialItems.map(x=>`<div class="equip-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("safetyGrid").innerHTML=t().safetyItems.map(x=>`<div class="equip-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
+ document.getElementById("buyList").innerHTML=t().buy.map(x=>`<li>${x}</li>`).join("");document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
+}
+function renderStats(){
+ const done=checklistRows.filter(r=>r.completed).length,total=checklistRows.length;document.getElementById("progressValue").textContent=done+" / "+total;
+ const bought=purchaseRows.filter(r=>r.status==="bought"||r.completed).length;const paid=purchaseRows.reduce((a,r)=>a+(Number(r.actual_amount_cents)||0),0);document.getElementById("boughtValue").textContent=String(bought);document.getElementById("paidValue").textContent=euro(paid);
+}
+function buildSummary(){
+ const totalEst=purchaseRows.reduce((a,r)=>a+(Number(r.estimated_amount_cents)||0),0), totalPaid=purchaseRows.reduce((a,r)=>a+(Number(r.actual_amount_cents)||0),0);
+ const bought=purchaseRows.filter(r=>r.status==="bought"||r.completed).length, planned=purchaseRows.filter(r=>r.status==="planned").length, wishlist=purchaseRows.filter(r=>r.status==="wishlist").length;
+ return `Mama in Deutschland - Équipement bébé\nSemaine: ${currentWeek}\nChecklist: ${checklistRows.filter(r=>r.completed).length}/${checklistRows.length}\nProduits suivis: ${purchaseRows.length}\nAchetés: ${bought}\nÀ acheter: ${planned}\nWishlist: ${wishlist}\nBudget prévu: ${euro(totalEst)}\nBudget payé: ${euro(totalPaid)}\n\nPriorités restantes:\n${purchaseRows.filter(r=>r.status==="planned").slice(0,8).map(r=>"- "+r.title+" ("+euro(r.estimated_amount_cents)+")").join("\n")||"- Rien"}`;
+}
+function renderSummary(){document.getElementById("summaryBox").textContent=buildSummary()}
+function renderAll(){renderStatic();renderChecklist();renderPurchases();renderMarketplace();renderStats();renderSummary();document.getElementById("fallbackNote").textContent=t().fallbackNote}
+async function copySummary(){await navigator.clipboard.writeText(buildSummary());alert(t().summaryCopied)}
+function exportData(){const data={exported_at:new Date().toISOString(),profile:{week:currentWeek,due_date:currentProfile?.due_date||null,baby_name:currentProfile?.baby_name||null},checklist:checklistRows,purchases:purchaseRows};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mama-baby-equipment-export.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+
+async function loadApp(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
+ currentUser=data.session.user;
+ const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
+ currentProfile=(profiles&&profiles[0])?profiles[0]:null;currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";currentWeek=calculatePregnancy(currentProfile?.due_date);if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
+ document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadAll();
+}
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();
 </script>

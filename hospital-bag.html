@@ -74,6 +74,15 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
 @media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+
+input,select{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:16px;background:#fffdf9;color:var(--text);font-size:15px;outline:none;font-family:inherit}
+input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+.form-grid{display:grid;grid-template-columns:1.2fr .8fr .45fr;gap:10px;margin-top:14px}
+.item-main{flex:1;min-width:0}.item-title{font-weight:950;color:var(--brown);margin-bottom:4px}.item-meta{font-size:12px;color:var(--muted);font-weight:800}.item-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.message{display:none;margin-top:14px;padding:13px 14px;border-radius:18px;font-weight:900;line-height:1.45}
+.message.success{display:block;background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}.message.error{display:block;background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}.message.info{display:block;background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+@media(max-width:720px){.form-grid{grid-template-columns:1fr}.item-actions{justify-content:flex-start}.check-row{flex-wrap:wrap}}
+
 </style>
 </head>
 <body>
@@ -134,8 +143,39 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
   <section class="grid-2">
     <div class="card">
       <h2 id="checkTitle">Checklist valise maternité</h2>
-      <p id="checkText">Coche ce qui est prêt.</p>
-      <div id="checklistBox"></div>
+      <p id="checkText">Coche ce qui est prêt. La progression est maintenant sauvegardée dans Supabase.</p>
+      <div id="messageBox" class="message"></div>
+
+      <div class="box" style="margin-top:14px;">
+        <h3 id="addItemTitle">Ajouter / modifier un article</h3>
+        <div class="form-grid">
+          <div>
+            <label for="itemName" style="font-weight:950;color:var(--brown);font-size:13px;">Article</label>
+            <input id="itemName" placeholder="Ex. chargeur long, pyjama bébé...">
+          </div>
+          <div>
+            <label for="itemCategory" style="font-weight:950;color:var(--brown);font-size:13px;">Catégorie</label>
+            <select id="itemCategory">
+              <option value="mama">Maman</option>
+              <option value="baby">Bébé</option>
+              <option value="partner">Partenaire</option>
+              <option value="documents">Documents</option>
+              <option value="other">Autre</option>
+            </select>
+          </div>
+          <div>
+            <label for="itemQuantity" style="font-weight:950;color:var(--brown);font-size:13px;">Qté</label>
+            <input id="itemQuantity" type="number" min="1" value="1">
+          </div>
+        </div>
+        <textarea id="itemNotes" style="min-height:74px;margin-top:10px;" placeholder="Note optionnelle"></textarea>
+        <div class="actions" style="margin-top:12px;">
+          <button class="button" onclick="saveBagItem()" id="saveItemButton">Ajouter</button>
+          <button class="button-light" onclick="clearItemForm()" id="clearItemButton">Effacer</button>
+        </div>
+      </div>
+
+      <div id="checklistBox" style="margin-top:14px;"></div>
       <div class="progress"><div id="progressBar"></div></div>
       <div class="actions" style="margin-top:14px;">
         <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
@@ -211,6 +251,8 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+let bagItems=[],noteRow=null,editingItemId=null;
+const NOTE_ITEM_NAME="__personal_hospital_bag_note__";
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
@@ -218,7 +260,7 @@ fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Valise maternité",pageTitle:"Partir à la clinique sans stress",pageText:"Une valise organisée pour la maman, le bébé et le partenaire : documents, confort, vêtements, hygiène, sortie clinique et plan B en Allemagne.",
 weekLabel:"Semaine actuelle",focusLabel:"À préparer vers",focusValue:"SA 34–36",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"La valise doit être prête quelques semaines avant le terme, parce que les contractions ou la naissance peuvent commencer plus tôt.",safetyNote:"Toujours avoir séparément : Mutterpass, carte d’assurance, pièce d’identité, téléphone chargé, numéro de la clinique et Babyschale pour la sortie.",emergencyButton:"Urgence",calendarButton:"Calendrier",
 categoriesTitle:"Valise par catégorie",categoriesText:"Tout ce qu’il faut prévoir sans surcharger.",checkTitle:"Checklist valise maternité",checkText:"Coche ce qui est prêt.",resetButton:"Réinitialiser",partnerTitle:"Sac partenaire / accompagnant",partnerNote:"Le partenaire doit aussi connaître le trajet, le parking, le numéro de la salle de naissance et les documents importants.",timelineTitle:"Quand préparer ?",timelineText:"Plan simple pour ne rien faire dans la panique.",questionsTitle:"Questions à poser à la clinique",notesTitle:"Note personnelle",notesText:"Note ici les particularités de ta clinique : parking, entrée de nuit, documents, liste officielle.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens fiables pour vérifier et compléter la préparation.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-must:"Indispensable",comfort:"Confort",baby:"Bébé",partner:"Partenaire",
+must:"Indispensable",comfort:"Confort",baby:"Bébé",partner:"Partenaire",mama:"Maman",documents:"Documents",other:"Autre",ready:"Prêt",notReady:"Pas prêt",edit:"Modifier",delete:"Supprimer",addItemTitle:"Ajouter / modifier un article",saveItemButton:"Ajouter",updateItemButton:"Modifier",clearItemButton:"Effacer",savedItem:"Article sauvegardé.",deletedItem:"Article supprimé.",resetDone:"Checklist réinitialisée.",noteSaved:"Note sauvegardée.",missingItem:"Le nom de l’article est obligatoire.",error:"Erreur. Réessaie.",
 categories:[
 ["📘","Documents","Mutterpass, carte assurance, pièce d’identité/passeport, documents clinique, plan de naissance si préparé.","must"],
 ["👚","Maman naissance","Chemise longue ou vêtements confortables, chaussettes, pantoufles, élastique cheveux, lunettes si besoin.","must"],
@@ -231,21 +273,15 @@ categories:[
 ["🏠","Retour maison","Clés, vêtements retour maman, médicaments personnels autorisés, repas simple prévu à la maison.","comfort"]
 ],
 partnerList:["Téléphone chargé + chargeur","Snacks et eau","Pull ou vêtement confortable","Pièce d’identité si demandée","Numéro Kreißsaal / clinique","Adresse clinique + parking","Liste des personnes à prévenir","Appareil photo si souhaité","Connaître le sac documents"],
-timeline:[
-["SA 28–32","Créer la liste, vérifier la liste officielle de ta clinique, acheter ce qui manque."],
-["SA 32–34","Préparer les documents, laver vêtements bébé, préparer sac maman et sac bébé."],
-["SA 34–36","Valise presque prête, chargeur/powerbank, snacks, plan clinique, Babyschale testée."],
-["SA 37+","Valise près de la porte, documents toujours accessibles, téléphone chargé."],
-["Jour J","Prendre Mutterpass, carte assurance, pièce d’identité, téléphone, clés, valise et personne contact."]
-],
+timeline:[["SA 28–32","Créer la liste, vérifier la liste officielle de ta clinique, acheter ce qui manque."],["SA 32–34","Préparer les documents, laver vêtements bébé, préparer sac maman et sac bébé."],["SA 34–36","Valise presque prête, chargeur/powerbank, snacks, plan clinique, Babyschale testée."],["SA 37+","Valise près de la porte, documents toujours accessibles, téléphone chargé."],["Jour J","Prendre Mutterpass, carte assurance, pièce d’identité, téléphone, clés, valise et personne contact."]],
 checklist:["Mutterpass","Carte assurance maladie","Pièce d’identité / passeport","Documents clinique","Plan de naissance si préparé","Chargeur téléphone","Powerbank","Trousse toilette maman","Vêtements confortables maman","Chaussettes / pantoufles","Snacks / bouteille d’eau","Tenue sortie maman","Bodies bébé","Pyjamas bébé","Bonnet / chaussettes bébé","Tenue sortie bébé","Couverture bébé","Babyschale installée/testée","Numéro clinique sauvegardé","Adresse/parking clinique connus"],
 questions:["La clinique fournit-elle couches, serviettes, protections, vêtements bébé ?","Quels documents exacts dois-je apporter ?","Où entrer la nuit ou le week-end ?","Où se garer et combien de temps prévoir ?","La Babyschale doit-elle être montrée avant la sortie ?","Que faut-il prévoir pour une césarienne ou une sortie ambulatoire ?","Le partenaire peut-il rester et que doit-il apporter ?"]
 },
 de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Kliniktasche",pageTitle:"Stressfrei in die Klinik",weekLabel:"Aktuelle SSW",focusLabel:"Vorbereiten ab",focusValue:"SSW 34–36",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Hospital bag",pageTitle:"Go to the clinic without stress",weekLabel:"Current week",focusLabel:"Prepare around",focusValue:"Week 34–36",bottomBackButton:"Back"});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"حقيبة الولادة",pageTitle:"الذهاب إلى المستشفى بدون توتر",weekLabel:"الأسبوع الحالي",focusLabel:"التحضير حوالي",focusValue:"الأسبوع 34–36",bottomBackButton:"رجوع"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Kliniktasche",pageTitle:"Stressfrei in die Klinik",weekLabel:"Aktuelle SSW",focusLabel:"Vorbereiten ab",focusValue:"SSW 34–36",bottomBackButton:"Zurück",ready:"Bereit",notReady:"Nicht bereit",edit:"Bearbeiten",delete:"Löschen",saveItemButton:"Hinzufügen",updateItemButton:"Speichern",clearItemButton:"Leeren"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Hospital bag",pageTitle:"Go to the clinic without stress",weekLabel:"Current week",focusLabel:"Prepare around",focusValue:"Week 34–36",bottomBackButton:"Back",ready:"Ready",notReady:"Not ready",edit:"Edit",delete:"Delete",saveItemButton:"Add",updateItemButton:"Save",clearItemButton:"Clear"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"حقيبة الولادة",pageTitle:"الذهاب إلى المستشفى بدون توتر",weekLabel:"الأسبوع الحالي",focusLabel:"التحضير حوالي",focusValue:"الأسبوع 34–36",bottomBackButton:"رجوع",ready:"جاهز",notReady:"غير جاهز",edit:"تعديل",delete:"حذف",saveItemButton:"إضافة",updateItemButton:"حفظ",clearItemButton:"مسح"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
 Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
@@ -261,7 +297,7 @@ function setLanguage(lang){
 }
 function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
 function calculatePregnancy(due){
- if(!due)return currentProfile?.pregnancy_week||1;
+ if(!due)return currentProfile?.pregnancy_week||currentProfile?.current_week||1;
  const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);
  let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;
 }
@@ -269,20 +305,84 @@ function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")ret
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
 function badge(type){if(type==="must")return "badge badge-red";if(type==="baby")return "badge badge-green";if(type==="partner")return "badge badge-warning";return "badge"}
 function typeText(type){if(type==="must")return t().must;if(type==="baby")return t().baby;if(type==="partner")return t().partner;return t().comfort}
-function checkKey(){return "mama-hospital-bag-check-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-hospital-bag-note-"+(currentUser?currentUser.id:"guest")}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
+function bagLabel(type){return ({mama:t().mama,baby:t().baby,partner:t().partner,documents:t().documents,other:t().other})[type]||t().other}
+function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function showMessage(type,msg){const b=document.getElementById("messageBox");if(!b)return;b.className="message "+type;b.textContent=msg;setTimeout(()=>{b.className="message";b.textContent=""},2800)}
+function defaultBagItems(){
+ const types=["documents","documents","documents","documents","documents","other","other","mama","mama","mama","other","mama","baby","baby","baby","baby","baby","baby","documents","documents"];
+ return t().checklist.map((name,i)=>({user_id:currentUser.id,item_name:name,bag_type:types[i]||"other",quantity:1,packed:false,notes:null,sort_order:i}));
+}
+async function loadBagItems(){
+ const {data,error}=await supabaseClient.from("hospital_bag_items").select("*").eq("user_id",currentUser.id).order("sort_order",{ascending:true}).order("created_at",{ascending:true});
+ if(error){showMessage("error",t().error+" "+error.message);bagItems=[];renderChecklist();return;}
+ noteRow=(data||[]).find(x=>x.item_name===NOTE_ITEM_NAME)||null;
+ bagItems=(data||[]).filter(x=>x.item_name!==NOTE_ITEM_NAME);
+ if(!bagItems.length){
+   const {error:seedError}=await supabaseClient.from("hospital_bag_items").insert(defaultBagItems());
+   if(seedError){showMessage("error",t().error+" "+seedError.message);return;}
+   return loadBagItems();
+ }
+ document.getElementById("personalNote").value=noteRow?.notes||"";
+ renderChecklist();
+}
+async function toggleCheck(id,checked){
+ const {error}=await supabaseClient.from("hospital_bag_items").update({packed:checked}).eq("id",id).eq("user_id",currentUser.id);
+ if(error){showMessage("error",t().error+" "+error.message);return;}
+ const item=bagItems.find(x=>x.id===id);if(item)item.packed=checked;renderChecklist();
+}
+async function resetChecklist(){
+ const ids=bagItems.map(x=>x.id);if(!ids.length)return;
+ const {error}=await supabaseClient.from("hospital_bag_items").update({packed:false}).in("id",ids).eq("user_id",currentUser.id);
+ if(error){showMessage("error",t().error+" "+error.message);return;}
+ bagItems=bagItems.map(x=>({...x,packed:false}));renderChecklist();showMessage("success",t().resetDone);
+}
+function clearItemForm(){editingItemId=null;document.getElementById("itemName").value="";document.getElementById("itemCategory").value="mama";document.getElementById("itemQuantity").value="1";document.getElementById("itemNotes").value="";document.getElementById("saveItemButton").textContent=t().saveItemButton;}
+function editBagItem(id){const item=bagItems.find(x=>x.id===id);if(!item)return;editingItemId=id;document.getElementById("itemName").value=item.item_name||"";document.getElementById("itemCategory").value=item.bag_type||"other";document.getElementById("itemQuantity").value=item.quantity||1;document.getElementById("itemNotes").value=item.notes||"";document.getElementById("saveItemButton").textContent=t().updateItemButton;document.getElementById("itemName").focus();}
+async function saveBagItem(){
+ const item_name=document.getElementById("itemName").value.trim();
+ if(!item_name){showMessage("error",t().missingItem);return;}
+ const quantity=Math.max(1,Number(document.getElementById("itemQuantity").value)||1);
+ const payload={item_name,bag_type:document.getElementById("itemCategory").value,quantity,notes:document.getElementById("itemNotes").value.trim()||null};
+ let res;
+ if(editingItemId){res=await supabaseClient.from("hospital_bag_items").update(payload).eq("id",editingItemId).eq("user_id",currentUser.id);}
+ else{const maxSort=bagItems.reduce((m,x)=>Math.max(m,Number(x.sort_order)||0),0);res=await supabaseClient.from("hospital_bag_items").insert({user_id:currentUser.id,...payload,packed:false,sort_order:maxSort+10});}
+ if(res.error){showMessage("error",t().error+" "+res.error.message);return;}
+ clearItemForm();showMessage("success",t().savedItem);await loadBagItems();
+}
+async function deleteBagItem(id){
+ const {error}=await supabaseClient.from("hospital_bag_items").delete().eq("id",id).eq("user_id",currentUser.id);
+ if(error){showMessage("error",t().error+" "+error.message);return;}
+ if(editingItemId===id)clearItemForm();showMessage("success",t().deletedItem);await loadBagItems();
+}
+async function saveNote(){
+ const notes=document.getElementById("personalNote").value;
+ let res;
+ if(noteRow){res=await supabaseClient.from("hospital_bag_items").update({notes}).eq("id",noteRow.id).eq("user_id",currentUser.id);}
+ else{res=await supabaseClient.from("hospital_bag_items").insert({user_id:currentUser.id,item_name:NOTE_ITEM_NAME,bag_type:"other",quantity:1,packed:false,notes,sort_order:-1});}
+ if(res.error){showMessage("error",t().error+" "+res.error.message);return;}
+ const n=document.getElementById("savedNote");n.textContent=t().noteSaved;n.style.display="block";setTimeout(()=>n.style.display="none",1800);await loadBagItems();
+}
 function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ const total=bagItems.length,done=bagItems.filter(x=>x.packed).length;
  document.getElementById("progressValue").textContent=done+" / "+total;
  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+ const box=document.getElementById("checklistBox");
+ if(!bagItems.length){box.innerHTML=`<div class="soft">Chargement...</div>`;return;}
+ box.innerHTML=bagItems.map(item=>`
+  <div class="check-row">
+    <input type="checkbox" ${item.packed?"checked":""} onchange="toggleCheck('${item.id}',this.checked)">
+    <div class="item-main">
+      <div class="item-title">${escapeHtml(item.item_name)}</div>
+      <div class="item-meta"><span class="badge ${item.packed?'badge-green':''}">${item.packed?t().ready:t().notReady}</span><span class="badge">${bagLabel(item.bag_type)}</span>${item.quantity>1?`<span class="badge">× ${item.quantity}</span>`:""}</div>
+      ${item.notes?`<p>${escapeHtml(item.notes)}</p>`:""}
+    </div>
+    <div class="item-actions">
+      <button class="button-light" onclick="editBagItem('${item.id}')">${t().edit}</button>
+      <button class="button-danger" onclick="deleteBagItem('${item.id}')">${t().delete}</button>
+    </div>
+  </div>
+ `).join("");
 }
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
 function render(){
  document.getElementById("weekValue").textContent=currentWeek;
  document.getElementById("focusValue").textContent=t().focusValue;
@@ -290,7 +390,7 @@ function render(){
  document.getElementById("partnerList").innerHTML=t().partnerList.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
  document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
+ document.getElementById("saveItemButton").textContent=editingItemId?t().updateItemButton:t().saveItemButton;
  renderChecklist();
 }
 async function loadApp(){
@@ -302,7 +402,9 @@ async function loadApp(){
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  currentWeek=calculatePregnancy(currentProfile?.due_date);
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadBagItems();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

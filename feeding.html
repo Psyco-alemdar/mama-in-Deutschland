@@ -21,9 +21,11 @@ header{display:flex;justify-content:space-between;align-items:center;gap:16px;fl
 .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
 .brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button,.button-light,.button-danger,.button-blue,.button-green{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
+.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
 .lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
@@ -34,50 +36,19 @@ header{display:flex;justify-content:space-between;align-items:center;gap:16px;fl
 .hero:after{content:"";position:absolute;right:-80px;top:-80px;width:250px;height:250px;border-radius:50%;background:rgba(201,166,107,.15)}
 .hero-main,.hero-side{position:relative;z-index:1}
 .kicker{display:inline-flex;padding:8px 12px;border-radius:999px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-size:12px;font-weight:950;letter-spacing:.8px;text-transform:uppercase;margin-bottom:13px}
-h1,h2,h3{color:var(--brown);margin:0 0 12px}
-h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}
-h2{font-size:26px;letter-spacing:-.8px}
-h3{font-size:18px}
-p,li{margin:0;color:var(--muted);line-height:1.6}
-ul{padding-left:20px;margin:10px 0 0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
-.stat-label{font-size:12px;color:var(--muted);font-weight:950}
-.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
-.box,.feed-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
-.feed-card{position:relative;overflow:hidden}
-.feed-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
-.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
-.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.badge-dark{background:var(--brown);color:white}
-.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
-.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
-.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
-.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
-.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:42px;letter-spacing:-1.8px;line-height:1.04}h2{font-size:26px;letter-spacing:-.8px}h3{font-size:18px}p,li{margin:0;color:var(--muted);line-height:1.6}ul{padding-left:20px;margin:10px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-2{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}.stat-label{font-size:12px;color:var(--muted);font-weight:950}.stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
+.box,.feed-card,.source-card,.log-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}.feed-card{position:relative;overflow:hidden}.feed-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
+.icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}.badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}.badge-dark{background:var(--brown);color:white}.badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}.badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}.badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}.warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
 .section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.timeline{display:grid;gap:12px}
-.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
-.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
-.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
-.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
-.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
-.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
-.source-card a{color:var(--brown);font-weight:950;text-decoration:none}
-.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
-textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
-.counter{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}
-.counter button{border:1px solid var(--border);border-radius:18px;background:white;color:var(--brown);font-weight:950;padding:13px;cursor:pointer;font-family:inherit}
-.log-list{display:grid;gap:10px;margin-top:12px}
-.log-item{background:white;border:1px solid var(--border);border-radius:18px;padding:12px}
-.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
-.login-message{max-width:650px;margin:60px auto;text-align:center}
-@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.counter{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+.timeline{display:grid;gap:12px}.timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}.timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+.source-card a{color:var(--brown);font-weight:950;text-decoration:none}.source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
+label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0 7px}input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}textarea{min-height:130px;resize:vertical}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:14px}
+.counter{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px}.counter button{border:1px solid var(--border);border-radius:18px;background:white;color:var(--brown);font-weight:950;padding:13px;cursor:pointer;font-family:inherit}.log-list{display:grid;gap:10px;margin-top:12px}.log-item{background:white;border:1px solid var(--border);border-radius:18px;padding:12px}.log-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.log-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.log-actions button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer}.empty{padding:22px;border:1px dashed var(--border);border-radius:20px;background:var(--cream);text-align:center;color:var(--muted);font-weight:900}.footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}.login-message{max-width:650px;margin:60px auto;text-align:center}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.counter,.form-grid{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -90,13 +61,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     <div class="lang-wrap">
       <button class="button-light lang-trigger" onclick="toggleLangMenu()" id="langTrigger">🇫🇷 FR</button>
       <div class="lang-menu" id="langMenu">
-        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button>
-        <button onclick="setLanguage('fr')">🇫🇷 FR Français</button>
-        <button onclick="setLanguage('ar')">🇸🇦 AR العربية</button>
-        <button onclick="setLanguage('en')">🇬🇧 EN English</button>
-        <button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button>
-        <button onclick="setLanguage('ru')">🇷🇺 Русский</button>
-        <button onclick="setLanguage('uk')">🇺🇦 Українська</button>
+        <button onclick="setLanguage('de')">🇩🇪 DE Deutsch</button><button onclick="setLanguage('fr')">🇫🇷 FR Français</button><button onclick="setLanguage('ar')">🇸🇦 AR العربية</button><button onclick="setLanguage('en')">🇬🇧 EN English</button><button onclick="setLanguage('tr')">🇹🇷 TR Türkçe</button><button onclick="setLanguage('ru')">🇷🇺 Русский</button><button onclick="setLanguage('uk')">🇺🇦 Українська</button>
       </div>
     </div>
   </div>
@@ -107,11 +72,11 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     <div class="hero-main">
       <div class="kicker" id="pageKicker">Allaitement & biberon</div>
       <h1 id="pageTitle">Nourrir bébé avec confiance</h1>
-      <p id="pageText">Un guide bienveillant pour les premiers jours : allaitement, biberon, signes de faim/satiété, couches, poids, soutien Hebamme et situations où demander de l’aide.</p>
+      <p id="pageText">Un guide bienveillant et un suivi SaaS pour les premiers jours : allaitement, biberon, signes de faim/satiété, couches, poids, soutien Hebamme et situations où demander de l’aide.</p>
       <div class="stats">
-        <div class="stat"><div class="stat-label" id="phaseLabel">Phase</div><div class="stat-value" id="phaseValue">0–12 mois</div></div>
-        <div class="stat"><div class="stat-label" id="focusLabel">Focus</div><div class="stat-value" id="focusValue">Bébé nourri</div></div>
-        <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
+        <div class="stat"><div class="stat-label" id="feedLabel">Repas aujourd’hui</div><div class="stat-value" id="feedCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="wetLabel">Mouillées</div><div class="stat-value" id="wetCount">0</div></div>
+        <div class="stat"><div class="stat-label" id="stoolLabel">Selles</div><div class="stat-value" id="stoolCount">0</div></div>
       </div>
     </div>
     <div class="hero-side">
@@ -122,56 +87,65 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
         <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
         <a class="button-light" href="after-birth.html" id="afterBirthButton">Après naissance</a>
       </div>
+      <div class="soft" id="modeBox">Mode Supabase</div>
     </div>
-  </section>
-
-  <section class="card">
-    <div class="section-title">
-      <div>
-        <h2 id="basicsTitle">Bases à comprendre</h2>
-        <p id="basicsText">Des repères simples pour les premières semaines.</p>
-      </div>
-    </div>
-    <div class="grid" id="basicsGrid"></div>
   </section>
 
   <section class="grid-2">
     <div class="card">
-      <h2 id="trackerTitle">Mini suivi quotidien</h2>
-      <p id="trackerText">Aide locale pour noter rapidement les repas et couches. Ce n’est pas un diagnostic.</p>
+      <h2 id="quickTitle">Suivi rapide du jour</h2>
+      <p id="quickText">Ajoute rapidement un repas ou une couche. Les données sont sauvegardées dans Supabase via baby_tracking.</p>
       <div class="counter">
-        <button onclick="addLog('feed')" id="feedButton">+ Repas</button>
-        <button onclick="addLog('wet')" id="wetButton">+ Couche mouillée</button>
-        <button onclick="addLog('stool')" id="stoolButton">+ Selle</button>
-      </div>
-      <div class="stats">
-        <div class="stat"><div class="stat-label" id="feedLabel">Repas</div><div class="stat-value" id="feedCount">0</div></div>
-        <div class="stat"><div class="stat-label" id="wetLabel">Mouillées</div><div class="stat-value" id="wetCount">0</div></div>
-        <div class="stat"><div class="stat-label" id="stoolLabel">Selles</div><div class="stat-value" id="stoolCount">0</div></div>
+        <button onclick="quickAdd('feed')" id="feedButton">+ Repas</button>
+        <button onclick="quickAdd('wet')" id="wetButton">+ Couche mouillée</button>
+        <button onclick="quickAdd('stool')" id="stoolButton">+ Selle</button>
       </div>
       <div class="actions" style="margin-top:14px;">
-        <button class="button-light" onclick="clearTodayLog()" id="clearTrackerButton">Effacer aujourd’hui</button>
+        <button class="button-light" onclick="loadTracking()" id="refreshButton">Actualiser</button>
+        <button class="button-blue" onclick="exportTracking()" id="exportButton">Exporter JSON</button>
       </div>
       <div class="soft" id="trackerNote">Si tu es inquiète par le nombre de couches ou de repas, contacte Hebamme/pédiatre.</div>
     </div>
 
     <div class="card">
-      <h2 id="logTitle">Journal du jour</h2>
-      <div class="log-list" id="logList"></div>
+      <h2 id="entryTitle">Entrée détaillée</h2>
+      <p id="entryText">Pour noter une tétée, un biberon, la quantité, le poids ou une observation.</p>
+      <div class="form-grid">
+        <div class="field"><label id="dateLabel">Date</label><input id="entryDate" type="date"></div>
+        <div class="field"><label id="timeLabel">Heure</label><input id="entryTime" type="time"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label id="typeLabel">Type</label><select id="feedingType"></select></div>
+        <div class="field"><label id="amountLabel">Quantité ml</label><input id="feedingAmount" type="number" min="0" step="5" placeholder="Ex. 60"></div>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label id="weightLabel">Poids kg</label><input id="weightKg" type="number" min="0" step="0.01" placeholder="Ex. 3.45"></div>
+        <div class="field"><label id="tempLabel">Température °C</label><input id="temperatureC" type="number" min="30" max="45" step="0.1" placeholder="Ex. 37.2"></div>
+      </div>
+      <div class="field"><label id="noteLabel">Note</label><textarea id="entryNote" placeholder="Position, reflux, coliques, durée, réaction bébé, consigne Hebamme..."></textarea></div>
+      <div class="actions"><button class="button" onclick="saveDetailedEntry()" id="saveEntryButton">Sauvegarder entrée</button><button class="button-light" onclick="clearEntryForm()" id="clearEntryButton">Effacer</button></div>
     </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><div><h2 id="logTitle">Journal alimentation</h2><p id="logText">Historique récent des repas, couches et notes.</p></div></div>
+    <div class="log-list" id="logList"></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><div><h2 id="basicsTitle">Bases à comprendre</h2><p id="basicsText">Des repères simples pour les premières semaines.</p></div></div>
+    <div class="grid" id="basicsGrid"></div>
   </section>
 
   <section class="grid-2">
     <div class="card">
       <h2 id="checkTitle">Checklist alimentation</h2>
-      <p id="checkText">Coche ce que tu veux surveiller.</p>
+      <p id="checkText">Coche ce que tu veux surveiller. Les coches sont sauvegardées dans baby_tracking.</p>
       <div id="checklistBox"></div>
       <div class="progress"><div id="progressBar"></div></div>
-      <div class="actions" style="margin-top:14px;">
-        <button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button>
-      </div>
+      <div class="actions" style="margin-top:14px;"><button class="button-light" onclick="resetChecklist()" id="resetButton">Réinitialiser</button></div>
+      <div class="soft"><span id="progressLabel">Checklist</span> : <span id="progressValue">0 / 0</span></div>
     </div>
-
     <div class="card">
       <h2 id="helpTitle">Quand demander de l’aide ?</h2>
       <div class="box"><ul id="helpList"></ul></div>
@@ -179,168 +153,88 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     </div>
   </section>
 
-  <section class="card">
-    <div class="section-title">
-      <div>
-        <h2 id="timelineTitle">Timeline alimentation</h2>
-        <p id="timelineText">Les besoins changent vite au début.</p>
-      </div>
-    </div>
-    <div class="timeline" id="timelineBox"></div>
-  </section>
+  <section class="card"><div class="section-title"><div><h2 id="timelineTitle">Timeline alimentation</h2><p id="timelineText">Les besoins changent vite au début.</p></div></div><div class="timeline" id="timelineBox"></div></section>
 
   <section class="grid-2">
-    <div class="card">
-      <h2 id="questionsTitle">Questions à poser</h2>
-      <div class="box"><ul id="questionsList"></ul></div>
-    </div>
-    <div class="card">
-      <h2 id="notesTitle">Note personnelle</h2>
-      <p id="notesText">Note ici : poids bébé, difficultés, positions, quantités, consignes Hebamme/pédiatre.</p>
-      <textarea id="personalNote"></textarea>
-      <div class="actions" style="margin-top:14px;">
-        <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder</button>
-      </div>
-      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
-    </div>
+    <div class="card"><h2 id="questionsTitle">Questions à poser</h2><div class="box"><ul id="questionsList"></ul></div></div>
+    <div class="card"><h2 id="notesTitle">Note personnelle</h2><p id="notesText">Note ici : poids bébé, difficultés, positions, quantités, consignes Hebamme/pédiatre.</p><textarea id="personalNote"></textarea><div class="actions" style="margin-top:14px;"><button class="button" onclick="savePersonalNote()" id="saveNoteButton">Sauvegarder</button></div><div class="soft" id="savedNote" style="display:none;">Sauvegardé</div></div>
   </section>
 
-  <section class="card">
-    <div class="section-title">
-      <div>
-        <h2 id="sourcesTitle">Sources et liens utiles</h2>
-        <p id="sourcesText">Liens officiels et fiables pour l’alimentation bébé en Allemagne.</p>
-      </div>
-    </div>
-    <div class="grid-4">
-      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/ernaehrung/stillen/stillen/" target="_blank" rel="noopener">kindergesundheit-info Stillen</a><span>Allaitement, avantages, soutien et recommandations pour les premiers mois.</span></div>
-      <div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/ernaehrung/0-12-monate/flaschenmilch/" target="_blank" rel="noopener">Flaschenmilch</a><span>Pré, 1, biberon, alimentation au lait infantile, conseils de sécurité.</span></div>
-      <div class="source-card"><a href="https://www.familienplanung.de/schwangerschaft/nach-der-geburt/das-wochenbett/stillbeginn/" target="_blank" rel="noopener">Stillbeginn</a><span>Début de l’allaitement, colostrum, peau à peau et soutien.</span></div>
-      <div class="source-card"><a href="https://gesund.bund.de/wege-im-gesundheitswesen/schwangerschaft-und-geburt/nach-der-geburt/stillen" target="_blank" rel="noopener">gesund.bund Stillen</a><span>Contacts : Hebamme et Stillberatung pour questions ou problèmes.</span></div>
-    </div>
-  </section>
+  <section class="card"><div class="section-title"><div><h2 id="sourcesTitle">Sources et liens utiles</h2><p id="sourcesText">Liens officiels et fiables pour l’alimentation bébé en Allemagne.</p></div></div><div class="grid-4"><div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/ernaehrung/stillen/stillen/" target="_blank" rel="noopener">kindergesundheit-info Stillen</a><span>Allaitement, avantages, soutien et recommandations pour les premiers mois.</span></div><div class="source-card"><a href="https://www.kindergesundheit-info.de/themen/ernaehrung/0-12-monate/flaschenmilch/" target="_blank" rel="noopener">Flaschenmilch</a><span>Pré, 1, biberon, alimentation au lait infantile, conseils de sécurité.</span></div><div class="source-card"><a href="https://www.familienplanung.de/schwangerschaft/nach-der-geburt/das-wochenbett/stillbeginn/" target="_blank" rel="noopener">Stillbeginn</a><span>Début de l’allaitement, colostrum, peau à peau et soutien.</span></div><div class="source-card"><a href="https://gesund.bund.de/wege-im-gesundheitswesen/schwangerschaft-und-geburt/nach-der-geburt/stillen" target="_blank" rel="noopener">gesund.bund Stillen</a><span>Contacts : Hebamme et Stillberatung pour questions ou problèmes.</span></div></div></section>
 
-  <div class="footer-actions">
-    <button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button>
-    <a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a>
-  </div>
+  <div class="footer-actions"><button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button><a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a></div>
 </main>
 
-<section class="login-message card" id="loginMessage" style="display:none;">
-  <h2 id="loginTitle">Connexion nécessaire</h2>
-  <p id="loginText">Tu dois d’abord te connecter.</p>
-  <br>
-  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
-</section>
+<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a></section>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
-const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJIUzI1NiIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+let trackingRows=[],checkRows=[],dbOnline=true,noteEntryId=null;
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
-dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Allaitement & biberon",pageTitle:"Nourrir bébé avec confiance",pageText:"Un guide bienveillant pour les premiers jours : allaitement, biberon, signes de faim/satiété, couches, poids, soutien Hebamme et situations où demander de l’aide.",
-phaseLabel:"Phase",phaseValue:"0–12 mois",focusLabel:"Focus",focusValue:"Bébé nourri",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"Le plus important est que bébé boive suffisamment, prenne du poids progressivement et que la maman soit soutenue. Allaitement, tire-lait, mixte ou biberon : il faut un plan réaliste et sûr.",dangerNote:"Demande vite de l’aide si bébé boit très peu, devient très somnolent, a peu de couches mouillées, fièvre, jaunisse marquée, vomissements répétés, ou si la maman a fièvre, douleur intense au sein, rougeur ou épuisement extrême.",emergencyButton:"Urgence",afterBirthButton:"Après naissance",
-basicsTitle:"Bases à comprendre",basicsText:"Des repères simples pour les premières semaines.",trackerTitle:"Mini suivi quotidien",trackerText:"Aide locale pour noter rapidement les repas et couches. Ce n’est pas un diagnostic.",feedButton:"+ Repas",wetButton:"+ Couche mouillée",stoolButton:"+ Selle",feedLabel:"Repas",wetLabel:"Mouillées",stoolLabel:"Selles",clearTrackerButton:"Effacer aujourd’hui",trackerNote:"Si tu es inquiète par le nombre de couches ou de repas, contacte Hebamme/pédiatre.",logTitle:"Journal du jour",
-checkTitle:"Checklist alimentation",checkText:"Coche ce que tu veux surveiller.",resetButton:"Réinitialiser",helpTitle:"Quand demander de l’aide ?",helpNote:"Contacts utiles : Hebamme, Kinderarzt, Klinik, Stillberatung, 116117 si besoin hors horaires.",timelineTitle:"Timeline alimentation",timelineText:"Les besoins changent vite au début.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici : poids bébé, difficultés, positions, quantités, consignes Hebamme/pédiatre.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels et fiables pour l’alimentation bébé en Allemagne.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-breast:"Allaitement",bottle:"Biberon",baby:"Bébé",alert:"Alerte",empty:"Aucun élément aujourd’hui",
-basics:[
-["🤱","Allaitement","Le lait maternel s’adapte aux besoins du bébé. Le colostrum des premiers jours est précieux même en petite quantité.","breast"],
-["🍼","Biberon","Si tu ne peux pas ou ne veux pas allaiter, le lait infantile adapté permet aussi de nourrir bébé avec proximité et sécurité.","bottle"],
-["👶","Signes de faim","Bébé cherche, ouvre la bouche, tourne la tête, met les mains à la bouche, s’agite; pleurer est souvent un signe tardif.","baby"],
-["😌","Signes de satiété","Bébé ralentit, lâche le sein ou le biberon, ouvre les mains, paraît détendu ou s’endort calmement.","baby"],
-["🧼","Hygiène biberon","Préparer selon notice, mains propres, eau adaptée, matériel propre; ne pas improviser les dosages.","bottle"],
-["⚖️","Poids & couches","Le poids, les couches mouillées/selles et l’état général sont des indicateurs importants de bonne alimentation.","baby"],
-["🚨","Quand réagir","Bébé très somnolent, boit peu, couches rares, fièvre, vomissements répétés, jaunisse forte ou inquiétude parentale = avis médical.","alert"],
-["👩‍⚕️","Soutien","Hebamme, Kinderarzt, clinique et conseillère en lactation peuvent aider tôt, avant que la situation devienne trop difficile.","breast"],
-["💗","Maman aussi compte","Douleur intense, crevasses importantes, fièvre, rougeur du sein, épuisement ou détresse mentale : demander aide.","alert"]
-],
-timeline:[
-["Naissance","Peau à peau si possible, premières mises au sein ou premier biberon selon situation, colostrum, observation bébé."],
-["Jours 1–3","Apprendre les signes de faim, position, succion, quantités biberon selon avis, couches, poids, jaunisse."],
-["Semaine 1","Hebamme, suivi poids, nombril, couches, douleurs maman, adaptation allaitement/biberon."],
-["Semaines 2–6","Rythme encore variable; demander aide si douleur, fatigue extrême, doute sur quantité ou prise de poids."],
-["Après 4–6 mois","Introduction de la diversification selon développement et recommandations; lait reste central au début."]
-],
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Allaitement & biberon",pageTitle:"Nourrir bébé avec confiance",pageText:"Un guide bienveillant et un suivi SaaS pour les premiers jours : allaitement, biberon, signes de faim/satiété, couches, poids, soutien Hebamme et situations où demander de l’aide.",
+importantTitle:"Ultra important",importantText:"Le plus important est que bébé boive suffisamment, prenne du poids progressivement et que la maman soit soutenue. Allaitement, tire-lait, mixte ou biberon : il faut un plan réaliste et sûr.",dangerNote:"Demande vite de l’aide si bébé boit très peu, devient très somnolent, a peu de couches mouillées, fièvre, jaunisse marquée, vomissements répétés, ou si la maman a fièvre, douleur intense au sein, rougeur ou épuisement extrême.",emergencyButton:"Urgence",afterBirthButton:"Après naissance",
+feedLabel:"Repas aujourd’hui",wetLabel:"Mouillées",stoolLabel:"Selles",quickTitle:"Suivi rapide du jour",quickText:"Ajoute rapidement un repas ou une couche. Les données sont sauvegardées dans Supabase via baby_tracking.",feedButton:"+ Repas",wetButton:"+ Couche mouillée",stoolButton:"+ Selle",refreshButton:"Actualiser",exportButton:"Exporter JSON",trackerNote:"Si tu es inquiète par le nombre de couches ou de repas, contacte Hebamme/pédiatre.",
+entryTitle:"Entrée détaillée",entryText:"Pour noter une tétée, un biberon, la quantité, le poids ou une observation.",dateLabel:"Date",timeLabel:"Heure",typeLabel:"Type",amountLabel:"Quantité ml",weightLabel:"Poids kg",tempLabel:"Température °C",noteLabel:"Note",saveEntryButton:"Sauvegarder entrée",clearEntryButton:"Effacer",
+logTitle:"Journal alimentation",logText:"Historique récent des repas, couches et notes.",basicsTitle:"Bases à comprendre",basicsText:"Des repères simples pour les premières semaines.",checkTitle:"Checklist alimentation",checkText:"Coche ce que tu veux surveiller. Les coches sont sauvegardées dans baby_tracking.",resetButton:"Réinitialiser",progressLabel:"Checklist",helpTitle:"Quand demander de l’aide ?",helpNote:"Contacts utiles : Hebamme, Kinderarzt, Klinik, Stillberatung, 116117 si besoin hors horaires.",timelineTitle:"Timeline alimentation",timelineText:"Les besoins changent vite au début.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici : poids bébé, difficultés, positions, quantités, consignes Hebamme/pédiatre.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels et fiables pour l’alimentation bébé en Allemagne.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+breast:"Allaitement",bottle:"Biberon",baby:"Bébé",alert:"Alerte",empty:"Aucun élément aujourd’hui",saved:"Sauvegardé.",deleted:"Supprimé.",localMode:"Mode local",supabaseMode:"Mode Supabase",error:"Erreur Supabase : mode local utilisé.",
+feedingTypes:[["breast","Allaitement"],["bottle","Biberon"],["mixed","Mixte"],["pumped","Lait tiré"],["formula","Lait infantile"],["note","Observation seule"]],
+basics:[["🤱","Allaitement","Le lait maternel s’adapte aux besoins du bébé. Le colostrum des premiers jours est précieux même en petite quantité.","breast"],["🍼","Biberon","Si tu ne peux pas ou ne veux pas allaiter, le lait infantile adapté permet aussi de nourrir bébé avec proximité et sécurité.","bottle"],["👶","Signes de faim","Bébé cherche, ouvre la bouche, tourne la tête, met les mains à la bouche, s’agite; pleurer est souvent un signe tardif.","baby"],["😌","Signes de satiété","Bébé ralentit, lâche le sein ou le biberon, ouvre les mains, paraît détendu ou s’endort calmement.","baby"],["🧼","Hygiène biberon","Préparer selon notice, mains propres, eau adaptée, matériel propre; ne pas improviser les dosages.","bottle"],["⚖️","Poids & couches","Le poids, les couches mouillées/selles et l’état général sont des indicateurs importants de bonne alimentation.","baby"],["🚨","Quand réagir","Bébé très somnolent, boit peu, couches rares, fièvre, vomissements répétés, jaunisse forte ou inquiétude parentale = avis médical.","alert"],["👩‍⚕️","Soutien","Hebamme, Kinderarzt, clinique et conseillère en lactation peuvent aider tôt, avant que la situation devienne trop difficile.","breast"],["💗","Maman aussi compte","Douleur intense, crevasses importantes, fièvre, rougeur du sein, épuisement ou détresse mentale : demander aide.","alert"]],
+timeline:[["Naissance","Peau à peau si possible, premières mises au sein ou premier biberon selon situation, colostrum, observation bébé."],["Jours 1–3","Apprendre les signes de faim, position, succion, quantités biberon selon avis, couches, poids, jaunisse."],["Semaine 1","Hebamme, suivi poids, nombril, couches, douleurs maman, adaptation allaitement/biberon."],["Semaines 2–6","Rythme encore variable; demander aide si douleur, fatigue extrême, doute sur quantité ou prise de poids."],["Après 4–6 mois","Introduction de la diversification selon développement et recommandations; lait reste central au début."]],
 checklist:["Bébé boit régulièrement","Couches mouillées surveillées","Selles surveillées","Poids suivi selon Hebamme/pédiatre","Maman a un contact Hebamme","Position d’allaitement/biberon confortable","Biberons préparés selon notice si utilisés","Numéro pédiatre/clinique disponible","Signes d’alerte connus","Maman reçoit nourriture, eau et repos","Douleur sein/mamelon surveillée","Questions notées pour Hebamme"],
 helpList:["Bébé boit très peu ou refuse plusieurs repas.","Bébé est anormalement somnolent, difficile à réveiller ou très faible.","Peu de couches mouillées ou signes de déshydratation.","Fièvre, vomissements répétés, jaunisse marquée ou respiration inquiétante.","Douleurs intenses au sein, fièvre, rougeur, suspicion mastite.","Crevasses importantes, saignements, douleur qui empêche de nourrir.","Maman se sent dépassée, triste, anxieuse ou épuisée de façon inquiétante."],
 questions:["Mon bébé prend-il assez de poids ?","Combien de couches mouillées/selles attendre à ce stade ?","La prise du sein ou la tétine est-elle adaptée ?","Quelle quantité de lait infantile donner selon l’âge et le poids ?","Comment préparer et conserver les biberons correctement ?","Quand dois-je appeler pédiatre, Hebamme ou clinique ?","Que faire si douleurs, crevasses, engorgement ou mastite ?","Puis-je combiner allaitement et biberon, et comment ?"]
 },
 de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Stillen & Flasche",pageTitle:"Baby sicher ernähren",phaseValue:"0–12 Monate",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Breastfeeding & bottle",pageTitle:"Feed baby with confidence",phaseValue:"0–12 months",bottomBackButton:"Back"});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"الرضاعة والرضّاعة",pageTitle:"إطعام الطفل بثقة",phaseValue:"0–12 شهر",bottomBackButton:"رجوع"});
-Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
-Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
-Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Stillen & Flasche",pageTitle:"Baby sicher ernähren",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Breastfeeding & bottle",pageTitle:"Feed baby with confidence",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"الرضاعة والرضّاعة",pageTitle:"إطعام الطفل بثقة",bottomBackButton:"رجوع"});
+Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
 function t(){return tr[currentLang]||tr.fr}
+function today(){return new Date().toISOString().slice(0,10)}
+function nowTime(){return new Date().toTimeString().slice(0,5)}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
-function setLanguage(lang){
- currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
- const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
- Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
- render();
-}
+function setLanguage(lang){currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el&&typeof t()[id]==="string")el.textContent=t()[id]});renderStatic();renderTracking();renderChecklist()}
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
-function badge(type){if(type==="alert")return "badge badge-red";if(type==="bottle")return "badge badge-warning";if(type==="baby")return "badge badge-green";return "badge"}
+function badge(type){if(type==="alert")return "badge badge-red";if(type==="bottle")return "badge badge-warning";if(type==="baby")return "badge badge-green";return "badge badge-blue"}
 function typeText(type){if(type==="alert")return t().alert;if(type==="bottle")return t().bottle;if(type==="baby")return t().baby;return t().breast}
-function checkKey(){return "mama-feeding-check-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-feeding-note-"+(currentUser?currentUser.id:"guest")}
-function logKey(){return "mama-feeding-log-"+(currentUser?currentUser.id:"guest")+"-"+new Date().toISOString().slice(0,10)}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
-function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
- document.getElementById("progressValue").textContent=done+" / "+total;
- document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
-}
-function getLog(){try{return JSON.parse(localStorage.getItem(logKey()))||[]}catch(e){return[]}}
-function saveLog(l){localStorage.setItem(logKey(),JSON.stringify(l.slice(0,60)))}
-function addLog(type){const l=getLog();l.unshift({type,time:new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"})});saveLog(l);renderLog()}
-function clearTodayLog(){saveLog([]);renderLog()}
-function renderLog(){
- const l=getLog();
- document.getElementById("feedCount").textContent=l.filter(x=>x.type==="feed").length;
- document.getElementById("wetCount").textContent=l.filter(x=>x.type==="wet").length;
- document.getElementById("stoolCount").textContent=l.filter(x=>x.type==="stool").length;
- const label={feed:t().feedButton.replace("+ ",""),wet:t().wetButton.replace("+ ",""),stool:t().stoolButton.replace("+ ","")};
- document.getElementById("logList").innerHTML=l.length?l.map(x=>`<div class="log-item"><strong>${label[x.type]||x.type}</strong> · ${x.time}</div>`).join(""):`<div class="log-item">${t().empty}</div>`;
-}
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
-function render(){
- document.getElementById("phaseValue").textContent=t().phaseValue;
- document.getElementById("focusValue").textContent=t().focusValue;
- document.getElementById("basicsGrid").innerHTML=t().basics.map(x=>`<div class="feed-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
- document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
- document.getElementById("helpList").innerHTML=t().helpList.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
- renderChecklist();renderLog();
-}
-async function loadApp(){
- const {data,error}=await supabaseClient.auth.getSession();
- if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
- currentUser=data.session.user;
- const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);
- currentProfile=(profiles&&profiles[0])?profiles[0]:null;
- currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
- if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
-}
+function localKey(){return "mama-feeding-tracking-v1-"+(currentUser?currentUser.id:"guest")}
+function localCheckKey(){return "mama-feeding-check-v1-"+(currentUser?currentUser.id:"guest")}
+function getLocal(){try{return JSON.parse(localStorage.getItem(localKey()))||[]}catch(e){return[]}}
+function setLocal(arr){localStorage.setItem(localKey(),JSON.stringify(arr.slice(0,200)))}
+function getLocalChecks(){try{return JSON.parse(localStorage.getItem(localCheckKey()))||[]}catch(e){return[]}}
+function setLocalChecks(arr){localStorage.setItem(localCheckKey(),JSON.stringify(arr))}
+function showStatus(msg,ok=true){const box=document.getElementById("modeBox");box.textContent=msg;box.className=ok?"success":"warning"}
+async function insertTracking(payload){try{const {data,error}=await supabaseClient.from("baby_tracking").insert(payload).select("*").single();if(error)throw error;dbOnline=true;showStatus(t().supabaseMode,true);return data}catch(e){dbOnline=false;showStatus(t().error,false);const arr=getLocal();const local={...payload,id:"local-"+Date.now(),created_at:new Date().toISOString()};arr.unshift(local);setLocal(arr);return local}}
+async function quickAdd(type){const payload={user_id:currentUser.id,tracking_date:today(),tracking_time:nowTime(),completed:true};if(type==="feed"){payload.entry_type="feeding";payload.feeding_type="quick";payload.milestone_key="feeding_quick";payload.milestone_label=t().feedButton.replace("+ ","");payload.notes="Repas rapide"}else{payload.entry_type="diaper";payload.diapers_count=1;payload.milestone_key=type==="wet"?"diaper_wet":"diaper_stool";payload.milestone_label=type==="wet"?t().wetButton.replace("+ ",""):t().stoolButton.replace("+ ","");payload.notes=payload.milestone_label}const data=await insertTracking(payload);trackingRows.unshift(data);renderTracking()}
+async function saveDetailedEntry(){const payload={user_id:currentUser.id,tracking_date:document.getElementById("entryDate").value||today(),tracking_time:document.getElementById("entryTime").value||nowTime(),entry_type:"feeding",feeding_type:document.getElementById("feedingType").value,feeding_amount_ml:numOrNull("feedingAmount"),weight_kg:numOrNull("weightKg"),temperature_c:numOrNull("temperatureC"),notes:document.getElementById("entryNote").value.trim(),completed:true,milestone_key:"feeding_detail",milestone_label:"Entrée alimentation"};const data=await insertTracking(payload);trackingRows.unshift(data);clearEntryForm();renderTracking()}
+function numOrNull(id){const v=document.getElementById(id).value;return v===""?null:Number(v)}
+function clearEntryForm(){document.getElementById("entryDate").value=today();document.getElementById("entryTime").value=nowTime();["feedingAmount","weightKg","temperatureC","entryNote"].forEach(id=>document.getElementById(id).value="")}
+async function deleteEntry(id){trackingRows=trackingRows.filter(r=>String(r.id)!==String(id));if(String(id).startsWith("local-")){setLocal(getLocal().filter(r=>String(r.id)!==String(id)));renderTracking();return}try{await supabaseClient.from("baby_tracking").delete().eq("id",id)}catch(e){}renderTracking();showStatus(t().deleted,true)}
+async function loadTracking(){try{const fromDate=new Date();fromDate.setDate(fromDate.getDate()-14);const minDate=fromDate.toISOString().slice(0,10);const {data,error}=await supabaseClient.from("baby_tracking").select("*").eq("user_id",currentUser.id).gte("tracking_date",minDate).in("entry_type",["feeding","diaper","feeding_note","feeding_check"]).order("tracking_date",{ascending:false}).order("tracking_time",{ascending:false}).limit(200);if(error)throw error;dbOnline=true;trackingRows=(data||[]).filter(r=>r.entry_type!=="feeding_check"&&r.entry_type!=="feeding_note");checkRows=(data||[]).filter(r=>r.entry_type==="feeding_check");const note=(data||[]).filter(r=>r.entry_type==="feeding_note").sort((a,b)=>new Date(b.created_at)-new Date(a.created_at))[0];noteEntryId=note?.id||null;document.getElementById("personalNote").value=note?.notes||localStorage.getItem(localKey()+"-note")||"";showStatus(t().supabaseMode,true)}catch(e){dbOnline=false;trackingRows=getLocal().filter(r=>r.entry_type!=="feeding_check"&&r.entry_type!=="feeding_note");checkRows=getLocalChecks();document.getElementById("personalNote").value=localStorage.getItem(localKey()+"-note")||"";showStatus(t().localMode,false)}renderTracking();renderChecklist()}
+function renderTracking(){const todays=trackingRows.filter(r=>r.tracking_date===today());document.getElementById("feedCount").textContent=todays.filter(r=>r.entry_type==="feeding").length;document.getElementById("wetCount").textContent=todays.filter(r=>r.entry_type==="diaper"&&r.milestone_key==="diaper_wet").reduce((s,r)=>s+Number(r.diapers_count||1),0);document.getElementById("stoolCount").textContent=todays.filter(r=>r.entry_type==="diaper"&&r.milestone_key==="diaper_stool").reduce((s,r)=>s+Number(r.diapers_count||1),0);const box=document.getElementById("logList");if(!trackingRows.length){box.innerHTML=`<div class="empty">${t().empty}</div>`;return}box.innerHTML=trackingRows.slice(0,80).map(r=>renderLogRow(r)).join("")}
+function renderLogRow(r){const title=r.entry_type==="diaper"?(r.milestone_label||"Couche"):(r.feeding_type?feedingName(r.feeding_type):"Repas");const date=[r.tracking_date,r.tracking_time].filter(Boolean).join(" · ");let meta=[];if(r.feeding_amount_ml)meta.push(r.feeding_amount_ml+" ml");if(r.weight_kg)meta.push(r.weight_kg+" kg");if(r.temperature_c)meta.push(r.temperature_c+" °C");if(r.diapers_count)meta.push(r.diapers_count+" couche");return `<div class="log-item"><div class="log-head"><div><span class="badge badge-blue">${escapeHtml(r.entry_type)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(date)}${meta.length?" · "+escapeHtml(meta.join(" · ")):""}</p></div></div>${r.notes?`<p style="margin-top:8px;">${escapeHtml(r.notes).replaceAll("\n","<br>")}</p>`:""}<div class="log-actions"><button onclick="deleteEntry('${r.id}')">Supprimer</button></div></div>`}
+function feedingName(v){const x=t().feedingTypes.find(a=>a[0]===v);return x?x[1]:v}
+function renderChecklist(){const items=t().checklist;const map={};checkRows.forEach(r=>{map[r.milestone_key]=r});document.getElementById("checklistBox").innerHTML=items.map((x,i)=>{const key="feeding_check_"+i;const checked=!!map[key]?.completed;return `<label class="check-row"><input type="checkbox" ${checked?"checked":""} onchange="toggleCheck(${i},this.checked)"><span>${x}</span></label>`}).join("");const done=items.filter((_,i)=>map["feeding_check_"+i]?.completed).length,total=items.length;document.getElementById("progressValue").textContent=done+" / "+total;document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%"}
+async function toggleCheck(i,checked){const key="feeding_check_"+i,label=t().checklist[i];const existing=checkRows.find(r=>r.milestone_key===key);if(existing){existing.completed=checked;if(!String(existing.id).startsWith("local-")){try{await supabaseClient.from("baby_tracking").update({completed:checked,updated_at:new Date().toISOString()}).eq("id",existing.id)}catch(e){}}}else{const payload={user_id:currentUser.id,tracking_date:today(),tracking_time:nowTime(),entry_type:"feeding_check",milestone_key:key,milestone_label:label,completed:checked,notes:"Checklist alimentation"};const row=await insertTracking(payload);checkRows.push(row)}if(!dbOnline)setLocalChecks(checkRows);renderChecklist()}
+async function resetChecklist(){for(const r of checkRows){r.completed=false;if(!String(r.id).startsWith("local-")){try{await supabaseClient.from("baby_tracking").update({completed:false,updated_at:new Date().toISOString()}).eq("id",r.id)}catch(e){}}}if(!dbOnline)setLocalChecks(checkRows);renderChecklist()}
+async function savePersonalNote(){const notes=document.getElementById("personalNote").value.trim();localStorage.setItem(localKey()+"-note",notes);try{if(noteEntryId){const {error}=await supabaseClient.from("baby_tracking").update({notes,updated_at:new Date().toISOString()}).eq("id",noteEntryId);if(error)throw error}else{const {data,error}=await supabaseClient.from("baby_tracking").insert({user_id:currentUser.id,tracking_date:today(),tracking_time:nowTime(),entry_type:"feeding_note",milestone_key:"feeding_personal_note",milestone_label:"Note alimentation",notes,completed:true}).select("*").single();if(error)throw error;noteEntryId=data.id}dbOnline=true;showStatus(t().saved,true)}catch(e){dbOnline=false;showStatus(t().localMode,false)}const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+function renderStatic(){document.getElementById("feedingType").innerHTML=t().feedingTypes.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join("");document.getElementById("basicsGrid").innerHTML=t().basics.map(x=>`<div class="feed-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");document.getElementById("helpList").innerHTML=t().helpList.map(x=>`<li>${x}</li>`).join("");document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("")}
+function exportTracking(){const data={exported_at:new Date().toISOString(),user_id:currentUser?.id||null,trackingRows,checkRows,note:document.getElementById("personalNote").value};const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mama-feeding-tracking.json";a.click();URL.revokeObjectURL(url)}
+async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);currentProfile=(profiles&&profiles[0])?profiles[0]:null;currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById("entryDate").value=today();document.getElementById("entryTime").value=nowTime();document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadTracking()}
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();
 </script>

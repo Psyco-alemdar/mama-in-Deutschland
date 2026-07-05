@@ -21,9 +21,11 @@ header{display:flex;justify-content:space-between;align-items:center;gap:16px;fl
 .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
 .brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button,.button-light,.button-danger,.button-green,.button-blue{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-green{background:#eef8ef;color:var(--success);border-color:#cfe8d1}
+.button-blue{background:#edf7ff;color:var(--blue);border-color:#cfe6f7}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
 .lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
@@ -48,7 +50,7 @@ ul{padding-left:20px;margin:10px 0 0}
 .stat-label{font-size:12px;color:var(--muted);font-weight:950}
 .stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
 .box,.dev-card,.source-card,.log-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
-.dev-card{position:relative;overflow:hidden}
+.dev-card,.log-card{position:relative;overflow:hidden}
 .dev-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
 .icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
@@ -58,24 +60,32 @@ ul{padding-left:20px;margin:10px 0 0}
 .badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
 .warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#eef8ef;border:1px solid #cfe8d1;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
 .section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .timeline{display:grid;gap:12px}
 .timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
 .timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
-.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
-.check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
-.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
-.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
 .milestone-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:white;border:1px solid var(--border);border-radius:18px;padding:12px;margin-top:9px}
 .milestone-row input{width:18px;height:18px;accent-color:var(--brown)}
-textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
+.progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
+.progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
+label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0 7px}
+input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:120px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{margin-bottom:14px}
+.log-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}
+.log-meta{font-size:13px;color:var(--muted);font-weight:800}
+.log-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.log-actions button{border:1px solid var(--border);background:white;color:var(--brown);border-radius:999px;padding:8px 11px;font-weight:950;cursor:pointer}
+.empty{padding:26px;border:1px dashed var(--border);border-radius:24px;background:var(--cream);color:var(--muted);text-align:center;font-weight:900}
 .source-card a{color:var(--brown);font-weight:950;text-decoration:none}
 .source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
 .login-message{max-width:650px;margin:60px auto;text-align:center}
 @media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.milestone-row{grid-template-columns:1fr}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.form-grid{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.milestone-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -105,10 +115,10 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     <div class="hero-main">
       <div class="kicker" id="pageKicker">Développement bébé</div>
       <h1 id="pageTitle">Observer bébé sans comparer</h1>
-      <p id="pageText">Un guide pour comprendre les premiers mois : adaptation, éveil, motricité, communication, U-Untersuchungen et signes qui méritent un avis pédiatrique.</p>
+      <p id="pageText">Un guide et un journal bébé connectés : croissance, alimentation, sommeil, couches, température, notes et repères de développement.</p>
       <div class="stats">
         <div class="stat"><div class="stat-label" id="phaseLabel">Phase</div><div class="stat-value" id="phaseValue">0–12 mois</div></div>
-        <div class="stat"><div class="stat-label" id="focusLabel">Focus</div><div class="stat-value" id="focusValue">Développement</div></div>
+        <div class="stat"><div class="stat-label" id="focusLabel">Dernier poids</div><div class="stat-value" id="lastWeightValue">-</div></div>
         <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
       </div>
     </div>
@@ -120,7 +130,97 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
         <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
         <a class="button-light" href="after-birth.html" id="afterBirthButton">Après naissance</a>
       </div>
+      <div class="soft" id="modeBox">Mode : Supabase</div>
     </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h2 id="journalTitle">Journal bébé</h2>
+          <p id="journalText">Ajoute un suivi simple. Ce n’est pas un diagnostic médical, mais un historique utile pour Kinderarzt/Hebamme.</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="entryDate" id="entryDateLabel">Date</label>
+          <input id="entryDate" type="date">
+        </div>
+        <div class="field">
+          <label for="entryTime" id="entryTimeLabel">Heure</label>
+          <input id="entryTime" type="time">
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="entryType" id="entryTypeLabel">Type</label>
+          <select id="entryType" onchange="updateJournalHints()"></select>
+        </div>
+        <div class="field">
+          <label for="feedingType" id="feedingTypeLabel">Alimentation</label>
+          <select id="feedingType">
+            <option value="">-</option>
+            <option value="breast">Allaitement</option>
+            <option value="bottle">Biberon</option>
+            <option value="mixed">Mixte</option>
+            <option value="solid">Diversification</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field"><label for="weightKg" id="weightLabel">Poids kg</label><input id="weightKg" type="number" min="0" step="0.01" placeholder="Ex. 4.25"></div>
+        <div class="field"><label for="heightCm" id="heightLabel">Taille cm</label><input id="heightCm" type="number" min="0" step="0.1" placeholder="Ex. 55"></div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field"><label for="feedingMl" id="feedingMlLabel">Quantité ml</label><input id="feedingMl" type="number" min="0" step="1" placeholder="Ex. 90"></div>
+        <div class="field"><label for="sleepMin" id="sleepLabel">Sommeil minutes</label><input id="sleepMin" type="number" min="0" step="1" placeholder="Ex. 120"></div>
+      </div>
+
+      <div class="form-grid">
+        <div class="field"><label for="diapersCount" id="diapersLabel">Couches</label><input id="diapersCount" type="number" min="0" step="1" placeholder="Ex. 6"></div>
+        <div class="field"><label for="temperatureC" id="temperatureLabel">Température °C</label><input id="temperatureC" type="number" min="30" max="45" step="0.1" placeholder="Ex. 37.2"></div>
+      </div>
+
+      <div class="field">
+        <label for="entryNotes" id="entryNotesLabel">Note</label>
+        <textarea id="entryNotes" placeholder="Observation, question pour Kinderarzt, comportement, évolution, contexte..."></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="button" onclick="addTrackingEntry()" id="addEntryButton">Ajouter au journal</button>
+        <button class="button-light" onclick="clearJournalForm()" id="clearButton">Effacer</button>
+      </div>
+      <div class="soft" id="journalStatus" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+      <h2 id="milestonesTitle">Mini journal de repères</h2>
+      <p id="milestonesText">Coche seulement ce que tu veux retenir. La sauvegarde passe par Supabase si disponible.</p>
+      <div id="milestonesBox"></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="resetMilestones()" id="resetMilestonesButton">Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="historyTitle">Historique bébé</h2>
+        <p id="historyText">Dernières entrées du journal, triées par date.</p>
+      </div>
+      <div class="actions">
+        <button class="button-light" onclick="loadTracking()" id="refreshButton">Actualiser</button>
+        <button class="button-blue" onclick="exportTracking()" id="exportButton">Exporter JSON</button>
+      </div>
+    </div>
+    <div id="trackingList"></div>
   </section>
 
   <section class="card">
@@ -145,43 +245,21 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
 
   <section class="grid-2">
     <div class="card">
-      <h2 id="milestonesTitle">Mini journal de repères</h2>
-      <p id="milestonesText">Coche seulement ce que tu veux retenir. Ce n’est pas une liste d’examen.</p>
-      <div id="milestonesBox"></div>
-      <div class="progress"><div id="progressBar"></div></div>
-      <div class="actions" style="margin-top:14px;">
-        <button class="button-light" onclick="resetMilestones()" id="resetMilestonesButton">Réinitialiser</button>
-      </div>
-    </div>
-
-    <div class="card">
       <h2 id="appointmentsTitle">U-Untersuchungen importantes</h2>
       <div class="box"><ul id="appointmentsList"></ul></div>
       <div class="soft" id="appointmentNote">Garde toujours le gelbes Kinderuntersuchungsheft et note tes questions avant chaque U.</div>
     </div>
-  </section>
-
-  <section class="grid-2">
     <div class="card">
       <h2 id="supportTitle">Aider bébé à se développer</h2>
       <div class="box"><ul id="supportList"></ul></div>
       <div class="soft" id="supportNote">Le meilleur “programme” est souvent simple : sécurité, voix, contact, jeu court, repos et répétition.</div>
     </div>
-    <div class="card">
-      <h2 id="questionsTitle">Questions à poser</h2>
-      <div class="box"><ul id="questionsList"></ul></div>
-    </div>
   </section>
 
   <section class="grid-2">
     <div class="card">
-      <h2 id="notesTitle">Note personnelle</h2>
-      <p id="notesText">Note ici observations, questions, dates U2/U3/U4, poids, sommeil, alimentation, motricité, inquiétudes.</p>
-      <textarea id="personalNote"></textarea>
-      <div class="actions" style="margin-top:14px;">
-        <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder la note</button>
-      </div>
-      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
+      <h2 id="questionsTitle">Questions à poser</h2>
+      <div class="box"><ul id="questionsList"></ul></div>
     </div>
     <div class="card">
       <h2 id="redFlagsTitle">Quand ne pas attendre ?</h2>
@@ -222,18 +300,22 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
-const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
+const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJIUzI1NiIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
+let trackingRows=[],dbOnline=true;
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
-dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Développement bébé",pageTitle:"Observer bébé sans comparer",pageText:"Un guide pour comprendre les premiers mois : adaptation, éveil, motricité, communication, U-Untersuchungen et signes qui méritent un avis pédiatrique.",
-phaseLabel:"Phase",phaseValue:"0–12 mois",focusLabel:"Focus",focusValue:"Développement",progressLabel:"Checklist",importantTitle:"Important",importantText:"Chaque bébé évolue à son rythme. Les repères servent à observer et poser les bonnes questions, pas à juger le bébé ou les parents.",dangerNote:"Demande un avis médical si bébé est très somnolent, boit peu, a fièvre, respiration inquiétante, perte de compétences, asymétrie importante, manque de contact inhabituel ou si ton instinct dit que quelque chose ne va pas.",emergencyButton:"Urgence",afterBirthButton:"Après naissance",
-areasTitle:"Domaines de développement",areasText:"Ce qu’on observe dans les premiers mois.",timelineTitle:"Timeline 0–12 mois",timelineText:"Repères larges. Le pédiatre évalue le développement global pendant les U-Untersuchungen.",milestonesTitle:"Mini journal de repères",milestonesText:"Coche seulement ce que tu veux retenir. Ce n’est pas une liste d’examen.",resetMilestonesButton:"Réinitialiser",appointmentsTitle:"U-Untersuchungen importantes",appointmentNote:"Garde toujours le gelbes Kinderuntersuchungsheft et note tes questions avant chaque U.",supportTitle:"Aider bébé à se développer",supportNote:"Le meilleur “programme” est souvent simple : sécurité, voix, contact, jeu court, repos et répétition.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici observations, questions, dates U2/U3/U4, poids, sommeil, alimentation, motricité, inquiétudes.",saveNoteButton:"Sauvegarder la note",savedNote:"Sauvegardé",redFlagsTitle:"Quand ne pas attendre ?",redFlagsNote:"En cas de danger vital ou d’état qui se dégrade rapidement : 112.",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels pour développement, U-Untersuchungen et soutien.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-normal:"Repère",support:"Soutien",medical:"Médical",alert:"Alerte",
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Développement bébé",pageTitle:"Observer bébé sans comparer",pageText:"Un guide et un journal bébé connectés : croissance, alimentation, sommeil, couches, température, notes et repères de développement.",
+phaseLabel:"Phase",phaseValue:"0–12 mois",focusLabel:"Dernier poids",progressLabel:"Checklist",importantTitle:"Important",importantText:"Chaque bébé évolue à son rythme. Les repères servent à observer et poser les bonnes questions, pas à juger le bébé ou les parents.",dangerNote:"Demande un avis médical si bébé est très somnolent, boit peu, a fièvre, respiration inquiétante, perte de compétences, asymétrie importante, manque de contact inhabituel ou si ton instinct dit que quelque chose ne va pas.",emergencyButton:"Urgence",afterBirthButton:"Après naissance",
+journalTitle:"Journal bébé",journalText:"Ajoute un suivi simple. Ce n’est pas un diagnostic médical, mais un historique utile pour Kinderarzt/Hebamme.",entryDateLabel:"Date",entryTimeLabel:"Heure",entryTypeLabel:"Type",feedingTypeLabel:"Alimentation",weightLabel:"Poids kg",heightLabel:"Taille cm",feedingMlLabel:"Quantité ml",sleepLabel:"Sommeil minutes",diapersLabel:"Couches",temperatureLabel:"Température °C",entryNotesLabel:"Note",addEntryButton:"Ajouter au journal",clearButton:"Effacer",
+historyTitle:"Historique bébé",historyText:"Dernières entrées du journal, triées par date.",refreshButton:"Actualiser",exportButton:"Exporter JSON",
+areasTitle:"Domaines de développement",areasText:"Ce qu’on observe dans les premiers mois.",timelineTitle:"Timeline 0–12 mois",timelineText:"Repères larges. Le pédiatre évalue le développement global pendant les U-Untersuchungen.",milestonesTitle:"Mini journal de repères",milestonesText:"Coche seulement ce que tu veux retenir. La sauvegarde passe par Supabase si disponible.",resetMilestonesButton:"Réinitialiser",appointmentsTitle:"U-Untersuchungen importantes",appointmentNote:"Garde toujours le gelbes Kinderuntersuchungsheft et note tes questions avant chaque U.",supportTitle:"Aider bébé à se développer",supportNote:"Le meilleur “programme” est souvent simple : sécurité, voix, contact, jeu court, repos et répétition.",questionsTitle:"Questions à poser",redFlagsTitle:"Quand ne pas attendre ?",redFlagsNote:"En cas de danger vital ou d’état qui se dégrade rapidement : 112.",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels pour développement, U-Untersuchungen et soutien.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+normal:"Repère",support:"Soutien",medical:"Médical",alert:"Alerte",saved:"Sauvegardé.",local:"Mode local.",deleted:"Supprimé.",empty:"Aucune entrée pour le moment.",
+types:[["growth","Croissance"],["feeding","Alimentation"],["sleep","Sommeil"],["diaper","Couches"],["temperature","Température"],["milestone","Repère"],["note","Note"]],
 areas:[
 ["🌱","Adaptation","Respiration, température, digestion, rythme sommeil/éveil et faim/satiété se stabilisent progressivement.","normal"],
 ["👀","Éveil & regard","Bébé découvre les visages, les voix, les lumières et a besoin de pauses quand il est surstimulé.","normal"],
@@ -264,49 +346,185 @@ de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Babyentwicklung",pageTitle:"Baby beobachten, nicht vergleichen",phaseValue:"0–12 Monate",bottomBackButton:"Zurück"});
 Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Baby development",pageTitle:"Observe baby without comparing",phaseValue:"0–12 months",bottomBackButton:"Back"});
 Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"تطور الطفل",pageTitle:"راقبي طفلك دون مقارنة",phaseValue:"0–12 شهر",bottomBackButton:"رجوع"});
-Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
-Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
-Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
 
 function t(){return tr[currentLang]||tr.fr}
+function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function numOrNull(id){const v=document.getElementById(id).value;return v===""?null:Number(v)}
 function toggleLangMenu(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))document.getElementById("langMenu").classList.remove("open")});
 function setLanguage(lang){
  currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
  const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
- Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
- render();
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el && typeof t()[id]==="string")el.textContent=t()[id]});
+ renderStatic();renderMilestones();renderTracking();
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
 function badge(type){if(type==="alert")return "badge badge-red";if(type==="medical")return "badge badge-warning";if(type==="support")return "badge badge-blue";return "badge badge-green"}
 function typeText(type){if(type==="alert")return t().alert;if(type==="medical")return t().medical;if(type==="support")return t().support;return t().normal}
-function milestoneKey(){return "mama-baby-development-milestones-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-baby-development-note-"+(currentUser?currentUser.id:"guest")}
-function state(){try{return JSON.parse(localStorage.getItem(milestoneKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(milestoneKey(),JSON.stringify(s))}
-function toggleMilestone(i){const s=state();s[i]=!s[i];saveState(s);renderMilestones()}
-function resetMilestones(){saveState({});renderMilestones()}
-function renderMilestones(){
- const s=state();const items=t().milestones;
- document.getElementById("milestonesBox").innerHTML=items.map((x,i)=>`<label class="milestone-row"><span>${x}</span><input type="checkbox" ${s[i]?"checked":""} onchange="toggleMilestone(${i})"></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
- document.getElementById("progressValue").textContent=done+" / "+total;
- document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
-}
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
-function render(){
+function typeName(v){const x=t().types.find(a=>a[0]===v);return x?x[1]:v}
+function localTrackingKey(){return "mama-baby-tracking-"+(currentUser?currentUser.id:"guest")}
+function getLocalTracking(){try{return JSON.parse(localStorage.getItem(localTrackingKey()))||[]}catch(e){return[]}}
+function setLocalTracking(v){localStorage.setItem(localTrackingKey(),JSON.stringify(v.slice(0,300)))}
+function showStatus(txt,ok=true){const el=document.getElementById("journalStatus");el.textContent=txt;el.className=ok?"success":"warning";el.style.display="block";setTimeout(()=>el.style.display="none",2500)}
+function todayDate(){return new Date().toISOString().slice(0,10)}
+function nowTime(){const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
+function renderStatic(){
  document.getElementById("phaseValue").textContent=t().phaseValue;
- document.getElementById("focusValue").textContent=t().focusValue;
+ document.getElementById("modeBox").textContent=dbOnline?"Mode : Supabase":"Mode : local";
+ document.getElementById("entryType").innerHTML=t().types.map(x=>`<option value="${x[0]}">${x[1]}</option>`).join("");
  document.getElementById("areasGrid").innerHTML=t().areas.map(x=>`<div class="dev-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
  document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
  document.getElementById("appointmentsList").innerHTML=t().appointments.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("supportList").innerHTML=t().supportList.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("redFlagsList").innerHTML=t().redFlagsList.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
- renderMilestones();
 }
+function clearJournalForm(){
+ ["weightKg","heightCm","feedingMl","sleepMin","diapersCount","temperatureC","entryNotes"].forEach(id=>document.getElementById(id).value="");
+ document.getElementById("feedingType").value="";
+ document.getElementById("entryDate").value=todayDate();
+ document.getElementById("entryTime").value=nowTime();
+}
+function trackingPayload(extra={}){
+ return {
+  user_id: currentUser.id,
+  tracking_date: document.getElementById("entryDate").value||todayDate(),
+  tracking_time: document.getElementById("entryTime").value||nowTime(),
+  entry_type: document.getElementById("entryType").value,
+  weight_kg: numOrNull("weightKg"),
+  height_cm: numOrNull("heightCm"),
+  feeding_type: document.getElementById("feedingType").value||null,
+  feeding_amount_ml: numOrNull("feedingMl"),
+  sleep_minutes: numOrNull("sleepMin"),
+  diapers_count: numOrNull("diapersCount"),
+  temperature_c: numOrNull("temperatureC"),
+  notes: document.getElementById("entryNotes").value.trim(),
+  completed: false,
+  ...extra
+ };
+}
+async function addTrackingEntry(){
+ const p=trackingPayload();
+ if(!p.notes && !p.weight_kg && !p.height_cm && !p.feeding_amount_ml && !p.sleep_minutes && !p.diapers_count && !p.temperature_c && !p.feeding_type){
+  showStatus("Ajoute au moins une information.",false);return;
+ }
+ try{
+  const {data,error}=await supabaseClient.from("baby_tracking").insert(p).select("*").single();
+  if(error)throw error;
+  dbOnline=true;trackingRows.unshift(data);showStatus(t().saved,true);clearJournalForm();renderStatic();renderTracking();
+ }catch(e){
+  dbOnline=false;
+  const local=getLocalTracking();local.unshift({...p,id:"local-"+Date.now(),created_at:new Date().toISOString()});setLocalTracking(local);
+  trackingRows=local;showStatus(t().local,false);clearJournalForm();renderStatic();renderTracking();
+ }
+}
+async function loadTracking(){
+ try{
+  const {data,error}=await supabaseClient.from("baby_tracking").select("*").eq("user_id",currentUser.id).order("tracking_date",{ascending:false}).order("tracking_time",{ascending:false}).order("created_at",{ascending:false}).limit(120);
+  if(error)throw error;
+  dbOnline=true;trackingRows=data||[];
+ }catch(e){
+  dbOnline=false;trackingRows=getLocalTracking();
+ }
+ renderStatic();renderMilestones();renderTracking();
+}
+async function deleteTracking(id){
+ if(String(id).startsWith("local-")||!dbOnline){
+  trackingRows=trackingRows.filter(x=>String(x.id)!==String(id));setLocalTracking(trackingRows);renderTracking();return;
+ }
+ try{await supabaseClient.from("baby_tracking").delete().eq("id",id).eq("user_id",currentUser.id)}catch(e){}
+ trackingRows=trackingRows.filter(x=>String(x.id)!==String(id));renderTracking();
+}
+function lastWeight(){
+ return trackingRows.filter(x=>x.weight_kg!==null && x.weight_kg!==undefined).sort((a,b)=>String(b.tracking_date||"").localeCompare(String(a.tracking_date||"")))[0];
+}
+function renderTracking(){
+ const list=document.getElementById("trackingList");
+ const last=lastWeight();
+ document.getElementById("lastWeightValue").textContent=last?Number(last.weight_kg).toLocaleString(undefined,{maximumFractionDigits:2})+" kg":"-";
+ const rows=trackingRows.filter(x=>x.entry_type!=="milestone").slice(0,80);
+ if(!rows.length){list.innerHTML=`<div class="empty">${t().empty}</div>`;return}
+ list.innerHTML=rows.map(r=>{
+   const parts=[];
+   if(r.weight_kg!==null&&r.weight_kg!==undefined)parts.push("Poids "+r.weight_kg+" kg");
+   if(r.height_cm!==null&&r.height_cm!==undefined)parts.push("Taille "+r.height_cm+" cm");
+   if(r.feeding_type)parts.push("Alimentation "+r.feeding_type);
+   if(r.feeding_amount_ml!==null&&r.feeding_amount_ml!==undefined)parts.push(r.feeding_amount_ml+" ml");
+   if(r.sleep_minutes!==null&&r.sleep_minutes!==undefined)parts.push("Sommeil "+r.sleep_minutes+" min");
+   if(r.diapers_count!==null&&r.diapers_count!==undefined)parts.push("Couches "+r.diapers_count);
+   if(r.temperature_c!==null&&r.temperature_c!==undefined)parts.push("Température "+r.temperature_c+" °C");
+   return `<article class="log-card">
+    <div class="log-head">
+      <div>
+        <span class="badge badge-blue">${escapeHtml(typeName(r.entry_type||"note"))}</span>
+        <h3>${escapeHtml((r.notes||"Entrée bébé").slice(0,80))}</h3>
+        <div class="log-meta">${escapeHtml(r.tracking_date||"")} · ${escapeHtml((r.tracking_time||"").slice(0,5))}</div>
+      </div>
+    </div>
+    ${parts.length?`<p><strong>${escapeHtml(parts.join(" · "))}</strong></p>`:""}
+    ${r.notes?`<p style="margin-top:8px;">${escapeHtml(r.notes).replaceAll("\n","<br>")}</p>`:""}
+    <div class="log-actions"><button onclick="deleteTracking('${r.id}')">Supprimer</button></div>
+   </article>`;
+ }).join("");
+}
+function milestoneRows(){return trackingRows.filter(r=>r.entry_type==="milestone")}
+function milestoneState(){
+ const out={}; milestoneRows().forEach(r=>{if(r.milestone_key)out[r.milestone_key]=r}); return out;
+}
+async function toggleMilestone(i){
+ const key="milestone_"+i;
+ const label=t().milestones[i];
+ const existing=milestoneState()[key];
+ const completed=!existing?.completed;
+ if(existing){
+  existing.completed=completed;
+  if(!String(existing.id).startsWith("local-")&&dbOnline){
+    try{await supabaseClient.from("baby_tracking").update({completed, milestone_label:label}).eq("id",existing.id).eq("user_id",currentUser.id)}catch(e){}
+  }else setLocalTracking(trackingRows);
+ }else{
+  const row={user_id:currentUser.id,tracking_date:todayDate(),tracking_time:nowTime(),entry_type:"milestone",milestone_key:key,milestone_label:label,completed,notes:label,created_at:new Date().toISOString()};
+  try{
+    const {data,error}=await supabaseClient.from("baby_tracking").insert(row).select("*").single();
+    if(error)throw error;
+    trackingRows.unshift(data);dbOnline=true;
+  }catch(e){
+    row.id="local-"+Date.now()+"-"+i;trackingRows.unshift(row);dbOnline=false;setLocalTracking(trackingRows);
+  }
+ }
+ renderStatic();renderMilestones();renderTracking();
+}
+async function resetMilestones(){
+ const ms=milestoneRows();
+ trackingRows=trackingRows.filter(r=>r.entry_type!=="milestone");
+ setLocalTracking(trackingRows);
+ if(dbOnline){
+  for(const r of ms){
+    if(!String(r.id).startsWith("local-")){
+      try{await supabaseClient.from("baby_tracking").delete().eq("id",r.id).eq("user_id",currentUser.id)}catch(e){}
+    }
+  }
+ }
+ renderMilestones();renderTracking();
+}
+function renderMilestones(){
+ const s=milestoneState();const items=t().milestones;
+ document.getElementById("milestonesBox").innerHTML=items.map((x,i)=>{
+   const r=s["milestone_"+i]; const checked=!!r?.completed;
+   return `<label class="milestone-row"><span>${escapeHtml(x)}</span><input type="checkbox" ${checked?"checked":""} onchange="toggleMilestone(${i})"></label>`;
+ }).join("");
+ const done=items.filter((_,i)=>!!s["milestone_"+i]?.completed).length,total=items.length;
+ document.getElementById("progressValue").textContent=done+" / "+total;
+ document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
+}
+function exportTracking(){
+ const data={exported_at:new Date().toISOString(),user_id:currentUser?.id||null,entries:trackingRows};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download="mama-baby-tracking.json";a.click();
+ URL.revokeObjectURL(url);
+}
+function updateJournalHints(){}
 async function loadApp(){
  const {data,error}=await supabaseClient.auth.getSession();
  if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}
@@ -315,7 +533,11 @@ async function loadApp(){
  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("entryDate").value=todayDate();
+ document.getElementById("entryTime").value=nowTime();
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadTracking();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

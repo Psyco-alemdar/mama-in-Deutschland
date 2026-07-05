@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mama in Deutschland - Nutrition</title>
+<title>Mama in Deutschland - Nutrition SaaS</title>
 <style>
 :root{
   --page:#f8f3ec;--card:#fff;--cream:#fffaf4;--soft:#f3eadf;--brown:#4a3428;
@@ -21,9 +21,10 @@ header{display:flex;justify-content:space-between;align-items:center;gap:16px;fl
 .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
 .brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button,.button-light,.button-danger,.button-success{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
 .lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
@@ -47,17 +48,18 @@ ul{padding-left:20px;margin:10px 0 0}
 .stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
 .stat-label{font-size:12px;color:var(--muted);font-weight:950}
 .stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
-.box,.food-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.box,.food-card,.source-card,.log-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
 .food-card{position:relative;overflow:hidden}
 .food-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
 .icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.badge-dark{background:var(--brown);color:white}
 .badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
 .badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
 .badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
+.badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
 .warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
+.success{background:#edf7ee;border:1px solid #cfe8d2;color:var(--success);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
 .section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .timeline{display:grid;gap:12px}
 .timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
@@ -68,7 +70,14 @@ ul{padding-left:20px;margin:10px 0 0}
 .progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
 .source-card a{color:var(--brown);font-weight:950;text-decoration:none}
 .source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
-textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
+input,select,textarea{width:100%;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155,115,87,.12)}
+label{display:block;color:var(--brown);font-weight:950;font-size:13px;margin:12px 0 7px}
+textarea{min-height:112px;resize:vertical}
+.log-list{display:grid;gap:10px;margin-top:12px}
+.log-item{background:white;border:1px solid var(--border);border-radius:18px;padding:13px}
+.log-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.small{font-size:12px;color:var(--muted);font-weight:850}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
 .login-message{max-width:650px;margin:60px auto;text-align:center}
 @media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
@@ -103,10 +112,10 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
     <div class="hero-main">
       <div class="kicker" id="pageKicker">Nutrition grossesse</div>
       <h1 id="pageTitle">Manger bien, manger sûr</h1>
-      <p id="pageText">Un guide pratique pour les femmes enceintes en Allemagne : équilibre, aliments à éviter, hygiène, idées simples et questions à poser au médecin ou à la sage-femme.</p>
+      <p id="pageText">Un guide pratique pour les femmes enceintes en Allemagne : équilibre, aliments à éviter, hygiène, idées simples et journal personnel.</p>
       <div class="stats">
         <div class="stat"><div class="stat-label" id="weekLabel">Semaine actuelle</div><div class="stat-value" id="weekValue">-</div></div>
-        <div class="stat"><div class="stat-label" id="focusLabel">Focus</div><div class="stat-value" id="focusValue">Sécurité</div></div>
+        <div class="stat"><div class="stat-label" id="hydrationLabel">Hydratation aujourd’hui</div><div class="stat-value" id="hydrationValue">0</div></div>
         <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
       </div>
     </div>
@@ -114,6 +123,11 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
       <h2 id="importantTitle">Important</h2>
       <p id="importantText">La grossesse ne demande pas de régime parfait. L’objectif est une alimentation équilibrée et une réduction des risques infectieux.</p>
       <div class="warning" id="medicalNote">Si diabète gestationnel, vomissements importants, anémie, maladie chronique, régime végétarien/végétalien ou perte/prise de poids inhabituelle : demande un conseil médical personnalisé.</div>
+      <div class="actions" style="margin-top:14px;">
+        <a class="button-light" href="diagnostics.html" id="diagnosticsButton">Tests & diagnostic</a>
+        <a class="button-light" href="calendar.html" id="calendarButton">Calendrier</a>
+      </div>
+      <div class="soft" id="syncStatus">Connexion Supabase...</div>
     </div>
   </section>
 
@@ -139,6 +153,69 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
 
   <section class="grid-2">
     <div class="card">
+      <h2 id="journalTitle">Journal nutrition</h2>
+      <p id="journalText">Note rapidement repas, eau et symptômes pour mieux préparer les questions médicales.</p>
+
+      <label id="mealTypeLabel" for="mealType">Type de repas</label>
+      <select id="mealType">
+        <option value="breakfast">Petit-déjeuner</option>
+        <option value="lunch">Déjeuner</option>
+        <option value="dinner">Dîner</option>
+        <option value="snack">Snack</option>
+        <option value="hydration">Hydratation seule</option>
+        <option value="symptoms">Symptômes / remarque</option>
+      </select>
+
+      <label id="foodLabel" for="foodText">Repas / aliment</label>
+      <input id="foodText" type="text" placeholder="Ex: riz, légumes, poulet bien cuit...">
+
+      <div class="grid-2" style="margin-top:0;">
+        <div>
+          <label id="waterLabel" for="hydrationGlasses">Verres d’eau</label>
+          <input id="hydrationGlasses" type="number" min="0" max="20" value="1">
+        </div>
+        <div>
+          <label id="nauseaLabel" for="nauseaLevel">Nausées 0–10</label>
+          <input id="nauseaLevel" type="number" min="0" max="10" value="0">
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:0;">
+        <div>
+          <label id="refluxLabel" for="refluxLevel">Reflux 0–10</label>
+          <input id="refluxLevel" type="number" min="0" max="10" value="0">
+        </div>
+        <div>
+          <label id="constipationLabel" for="constipationLevel">Constipation 0–10</label>
+          <input id="constipationLevel" type="number" min="0" max="10" value="0">
+        </div>
+      </div>
+
+      <label id="symptomsLabel" for="symptomsText">Symptômes / notes</label>
+      <textarea id="symptomsText" placeholder="Nausées, reflux, envie, aliment déclencheur, restaurant..."></textarea>
+
+      <div class="actions" style="margin-top:14px;">
+        <button class="button" onclick="saveNutritionLog()" id="saveLogButton">Sauvegarder journal</button>
+        <button class="button-light" onclick="resetLogForm()" id="resetLogButton">Vider formulaire</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <div>
+          <h2 id="logTitle">Historique récent</h2>
+          <p id="logText">Les entrées sont synchronisées avec Supabase.</p>
+        </div>
+        <div class="actions">
+          <button class="button-light" onclick="exportLogs()" id="exportButton">Export JSON</button>
+        </div>
+      </div>
+      <div class="log-list" id="logList"></div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
       <h2 id="checkTitle">Checklist nutrition</h2>
       <p id="checkText">Coche ce que tu veux appliquer cette semaine.</p>
       <div id="checklistBox"></div>
@@ -150,10 +227,11 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
 
     <div class="card">
       <h2 id="mealTitle">Assiette simple</h2>
-      <div class="box">
-        <ul id="mealList"></ul>
-      </div>
+      <div class="box"><ul id="mealList"></ul></div>
       <div class="soft" id="halalNote">Halal : choisis viande halal bien cuite, évite alcool et vérifie les ingrédients si plats préparés.</div>
+      <div class="actions" style="margin-top:14px;">
+        <button class="button-light" onclick="createNutritionAppointment()" id="appointmentButton">Créer RDV conseil nutrition</button>
+      </div>
     </div>
   </section>
 
@@ -170,9 +248,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
   <section class="grid-2">
     <div class="card">
       <h2 id="questionsTitle">Questions à poser</h2>
-      <div class="box">
-        <ul id="questionsList"></ul>
-      </div>
+      <div class="box"><ul id="questionsList"></ul></div>
     </div>
     <div class="card">
       <h2 id="notesTitle">Note personnelle</h2>
@@ -221,15 +297,19 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",currentWeek=1;
+let tasks=[],logs=[],usingLocal=false;
+
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
-dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Nutrition grossesse",pageTitle:"Manger bien, manger sûr",pageText:"Un guide pratique pour les femmes enceintes en Allemagne : équilibre, aliments à éviter, hygiène, idées simples et questions à poser au médecin ou à la sage-femme.",
-weekLabel:"Semaine actuelle",focusLabel:"Focus",focusValue:"Sécurité",progressLabel:"Checklist",importantTitle:"Important",importantText:"La grossesse ne demande pas de régime parfait. L’objectif est une alimentation équilibrée et une réduction des risques infectieux.",medicalNote:"Si diabète gestationnel, vomissements importants, anémie, maladie chronique, régime végétarien/végétalien ou perte/prise de poids inhabituelle : demande un conseil médical personnalisé.",
+dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Nutrition grossesse",pageTitle:"Manger bien, manger sûr",pageText:"Un guide pratique pour les femmes enceintes en Allemagne : équilibre, aliments à éviter, hygiène, idées simples et journal personnel.",
+weekLabel:"Semaine actuelle",hydrationLabel:"Hydratation aujourd’hui",progressLabel:"Checklist",importantTitle:"Important",importantText:"La grossesse ne demande pas de régime parfait. L’objectif est une alimentation équilibrée et une réduction des risques infectieux.",medicalNote:"Si diabète gestationnel, vomissements importants, anémie, maladie chronique, régime végétarien/végétalien ou perte/prise de poids inhabituelle : demande un conseil médical personnalisé.",diagnosticsButton:"Tests & diagnostic",calendarButton:"Calendrier",
 safeTitle:"À privilégier",safeText:"Base simple pour construire les repas sans compliquer la vie.",avoidTitle:"À éviter ou sécuriser",avoidText:"Ces points servent surtout à réduire le risque de listériose, toxoplasmose, salmonelles ou infections alimentaires.",
-checkTitle:"Checklist nutrition",checkText:"Coche ce que tu veux appliquer cette semaine.",resetButton:"Réinitialiser",mealTitle:"Assiette simple",halalNote:"Halal : choisis viande halal bien cuite, évite alcool et vérifie les ingrédients si plats préparés.",timelineTitle:"Par trimestre",timelineText:"Les besoins et difficultés peuvent changer pendant la grossesse.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note aliments déclencheurs de nausées, envies, repas qui passent bien.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources officielles utiles",sourcesText:"Liens fiables pour vérifier les recommandations en Allemagne.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-good:"À privilégier",caution:"Prudence",avoid:"Éviter",
+journalTitle:"Journal nutrition",journalText:"Note rapidement repas, eau et symptômes pour mieux préparer les questions médicales.",mealTypeLabel:"Type de repas",foodLabel:"Repas / aliment",waterLabel:"Verres d’eau",nauseaLabel:"Nausées 0–10",refluxLabel:"Reflux 0–10",constipationLabel:"Constipation 0–10",symptomsLabel:"Symptômes / notes",saveLogButton:"Sauvegarder journal",resetLogButton:"Vider formulaire",
+logTitle:"Historique récent",logText:"Les entrées sont synchronisées avec Supabase.",exportButton:"Export JSON",checkTitle:"Checklist nutrition",checkText:"Coche ce que tu veux appliquer cette semaine.",resetButton:"Réinitialiser",mealTitle:"Assiette simple",halalNote:"Halal : choisis viande halal bien cuite, évite alcool et vérifie les ingrédients si plats préparés.",appointmentButton:"Créer RDV conseil nutrition",
+timelineTitle:"Par trimestre",timelineText:"Les besoins et difficultés peuvent changer pendant la grossesse.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note aliments déclencheurs de nausées, envies, repas qui passent bien.",saveNoteButton:"Sauvegarder",savedNote:"Sauvegardé",sourcesTitle:"Sources officielles utiles",sourcesText:"Liens fiables pour vérifier les recommandations en Allemagne.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+good:"À privilégier",caution:"Prudence",avoid:"Éviter",none:"Aucune entrée.",saved:"Sauvegardé ✅",local:"Mode local actif",synced:"Synchronisé Supabase",error:"Erreur Supabase — mode local",
 safe:[
 ["🥦","Légumes & fruits bien lavés","À chaque repas si possible : fibres, vitamines, satiété. Lave soigneusement, surtout crus.","good"],
 ["🍚","Féculents complets","Riz, pâtes complètes, pommes de terre, avoine, pain complet : énergie stable et fibres.","good"],
@@ -238,7 +318,7 @@ safe:[
 ["💧","Hydratation","Eau régulièrement, surtout si constipation, chaleur, vomissements ou allaitement à venir.","good"],
 ["🧂","Iode / folate / fer","Acide folique et iode sont souvent à discuter; fer selon bilan sanguin.","caution"]
 ],
-avoid:[
+avoidList:[
 ["🥩","Viande crue ou pas assez cuite","Évite steak saignant, tartare, viande hachée crue, charcuterie crue type salami/roher Schinken.","avoid"],
 ["🍣","Poisson cru, fumé ou mariné","Évite sushi cru, saumon fumé, poisson mariné. Mange poisson bien cuit.","avoid"],
 ["🥚","Œufs crus ou pas assez cuits","Évite mayonnaise maison, tiramisu aux œufs crus, pâte à gâteau crue; cuis bien les œufs.","avoid"],
@@ -260,9 +340,9 @@ questions:["Dois-je prendre acide folique, iode, fer ou vitamine D ?","Mon alime
 },
 de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Ernährung Schwangerschaft",pageTitle:"Gut und sicher essen",weekLabel:"Aktuelle SSW",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Pregnancy nutrition",pageTitle:"Eat well, eat safely",weekLabel:"Current week",bottomBackButton:"Back"});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"تغذية الحمل",pageTitle:"أكل صحي وآمن",weekLabel:"الأسبوع الحالي",bottomBackButton:"رجوع"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Ernährung Schwangerschaft",pageTitle:"Gut und sicher essen",weekLabel:"Aktuelle SSW",hydrationLabel:"Wasser heute",bottomBackButton:"Zurück"});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Pregnancy nutrition",pageTitle:"Eat well, eat safely",weekLabel:"Current week",hydrationLabel:"Water today",bottomBackButton:"Back"});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"تغذية الحمل",pageTitle:"أكل صحي وآمن",weekLabel:"الأسبوع الحالي",hydrationLabel:"الماء اليوم",bottomBackButton:"رجوع"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
 Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
@@ -274,42 +354,183 @@ function setLanguage(lang){
  currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
  const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
  Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
- render();
+ renderStatic();renderChecklist();renderLogs();
 }
-function parseLocalDate(v){const p=v.split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
+function parseLocalDate(v){const p=String(v||"").split("-").map(Number);return new Date(p[0],p[1]-1,p[2])}
 function calculatePregnancy(due){
- if(!due)return currentProfile?.pregnancy_week||1;
+ if(!due)return currentProfile?.current_week||currentProfile?.pregnancy_week||1;
  const today=new Date();today.setHours(0,0,0,0);const dueDate=parseLocalDate(due);const start=new Date(dueDate);start.setDate(start.getDate()-280);
  let w=Math.floor((today-start)/(1000*60*60*24*7))+1;if(w<1)w=1;if(w>60)w=60;return w;
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
-function badge(type){if(type==="avoid")return "badge badge-red";if(type==="caution")return "badge badge-warning";return "badge badge-green"}
+function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function todayISO(){return new Date().toISOString().slice(0,10)}
+function badge(type){if(type==="avoid")return "badge badge-red";if(type==="caution")return "badge badge-warning";if(type==="blue")return "badge badge-blue";return "badge badge-green"}
 function typeText(type){if(type==="avoid")return t().avoid;if(type==="caution")return t().caution;return t().good}
-function checkKey(){return "mama-nutrition-check-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-nutrition-note-"+(currentUser?currentUser.id:"guest")}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
+function localKey(k){return "mama-nutrition-"+k+"-"+(currentUser?currentUser.id:"guest")}
+function setSync(text,cls){const el=document.getElementById("syncStatus");el.textContent=text;el.className=cls||"soft"}
+function localTasks(){try{return JSON.parse(localStorage.getItem(localKey("tasks")))||[]}catch(e){return[]}}
+function saveLocalTasks(v){localStorage.setItem(localKey("tasks"),JSON.stringify(v))}
+function localLogs(){try{return JSON.parse(localStorage.getItem(localKey("logs")))||[]}catch(e){return[]}}
+function saveLocalLogs(v){localStorage.setItem(localKey("logs"),JSON.stringify(v.slice(0,30)))}
+
+const CHECK_KEYS=["wash","cook","raw","salad","water","protein","snack","supplements","restaurant","triggers"];
+
+function taskTitle(i){return t().checklist[i]||("Task "+i)}
+function getTask(key){return tasks.find(x=>x.task_key===key)}
+async function ensureTasks(){
+ const wanted=CHECK_KEYS.map((key,i)=>({
+  user_id:currentUser.id,page_key:"nutrition",task_key:"nutrition_"+key,task_area:"nutrition_checklist",source_page:"nutrition.html",
+  title:taskTitle(i),category:"nutrition",priority:i<4?"high":"normal",status:"open",completed:false
+ }));
+ if(usingLocal){tasks=localTasks();if(!tasks.length){tasks=wanted.map((x,i)=>({...x,id:"local-"+i}));saveLocalTasks(tasks)}return}
+ const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page","nutrition.html").eq("task_area","nutrition_checklist");
+ if(error){usingLocal=true;tasks=localTasks();if(!tasks.length){tasks=wanted.map((x,i)=>({...x,id:"local-"+i}));saveLocalTasks(tasks)}return}
+ tasks=data||[];
+ const existing=new Set(tasks.map(x=>x.task_key));
+ const missing=wanted.filter(x=>!existing.has(x.task_key));
+ if(missing.length){
+  const {data:inserted,error:insErr}=await supabaseClient.from("user_tasks").insert(missing).select();
+  if(!insErr&&inserted)tasks=tasks.concat(inserted);
+ }
+}
+async function toggleCheck(i){
+ const key="nutrition_"+CHECK_KEYS[i];const row=getTask(key);if(!row)return;
+ row.completed=!row.completed;row.status=row.completed?"done":"open";row.completed_at=row.completed?new Date().toISOString():null;
+ if(usingLocal){saveLocalTasks(tasks);renderChecklist();return}
+ const {error}=await supabaseClient.from("user_tasks").update({completed:row.completed,status:row.status,completed_at:row.completed_at,updated_at:new Date().toISOString()}).eq("id",row.id);
+ if(error){usingLocal=true;saveLocalTasks(tasks);setSync(t().error,"warning")}
+ renderChecklist();
+}
+async function resetChecklist(){
+ tasks.forEach(x=>{if(x.task_area==="nutrition_checklist"){x.completed=false;x.status="open";x.completed_at=null}});
+ if(usingLocal){saveLocalTasks(tasks);renderChecklist();return}
+ await supabaseClient.from("user_tasks").update({completed:false,status:"open",completed_at:null,updated_at:new Date().toISOString()}).eq("user_id",currentUser.id).eq("source_page","nutrition.html").eq("task_area","nutrition_checklist");
+ renderChecklist();
+}
 function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ const items=t().checklist;
+ document.getElementById("checklistBox").innerHTML=items.map((x,i)=>{
+  const row=getTask("nutrition_"+CHECK_KEYS[i]);const checked=row&&row.completed;
+  return `<label class="check-row"><input type="checkbox" ${checked?"checked":""} onchange="toggleCheck(${i})"><span>${escapeHtml(x)}</span></label>`;
+ }).join("");
+ const done=CHECK_KEYS.filter(k=>{const r=getTask("nutrition_"+k);return r&&r.completed}).length,total=items.length;
  document.getElementById("progressValue").textContent=done+" / "+total;
  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
-function render(){
+function noteTask(){return tasks.find(x=>x.task_key==="nutrition_personal_note")}
+async function saveNote(){
+ const text=document.getElementById("personalNote").value.trim();
+ const existing=noteTask();
+ if(usingLocal){
+  if(existing){existing.notes=text}else{tasks.push({id:"local-note",task_key:"nutrition_personal_note",task_area:"nutrition_note",source_page:"nutrition.html",title:"Note nutrition",notes:text,completed:false,status:"open"})}
+  saveLocalTasks(tasks);showSaved();return;
+ }
+ const payload={user_id:currentUser.id,page_key:"nutrition",task_key:"nutrition_personal_note",task_area:"nutrition_note",source_page:"nutrition.html",title:"Note nutrition",notes:text,category:"nutrition",priority:"normal",status:"open",completed:false,updated_at:new Date().toISOString()};
+ let res;
+ if(existing){res=await supabaseClient.from("user_tasks").update(payload).eq("id",existing.id).select().limit(1)}
+ else{res=await supabaseClient.from("user_tasks").insert(payload).select().limit(1)}
+ if(res.error){usingLocal=true;setSync(t().error,"warning");saveNote();return}
+ if(res.data&&res.data[0]){if(existing)Object.assign(existing,res.data[0]);else tasks.push(res.data[0])}
+ showSaved();
+}
+function showSaved(){const n=document.getElementById("savedNote");n.textContent=t().savedNote;n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+function noteText(){const n=noteTask();return n?.notes||""}
+
+async function loadLogs(){
+ if(usingLocal){logs=localLogs();return}
+ const {data,error}=await supabaseClient.from("nutrition_logs").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(30);
+ if(error){usingLocal=true;logs=localLogs();setSync(t().error,"warning");return}
+ logs=data||[];
+}
+function collectLogPayload(){
+ return {
+  user_id:currentUser.id,
+  profile_id:currentProfile?.id||null,
+  tracking_date:todayISO(),
+  meal_type:document.getElementById("mealType").value,
+  food_text:document.getElementById("foodText").value.trim(),
+  hydration_glasses:Number(document.getElementById("hydrationGlasses").value||0),
+  nausea_level:Number(document.getElementById("nauseaLevel").value||0),
+  reflux_level:Number(document.getElementById("refluxLevel").value||0),
+  constipation_level:Number(document.getElementById("constipationLevel").value||0),
+  symptoms:document.getElementById("symptomsText").value.trim(),
+  notes:"",
+  updated_at:new Date().toISOString()
+ };
+}
+async function saveNutritionLog(){
+ const payload=collectLogPayload();
+ if(usingLocal){
+  logs.unshift({...payload,id:"local-"+Date.now(),created_at:new Date().toISOString()});
+  saveLocalLogs(logs);resetLogForm();renderLogs();return;
+ }
+ const {data,error}=await supabaseClient.from("nutrition_logs").insert(payload).select().limit(1);
+ if(error){usingLocal=true;setSync(t().error,"warning");saveNutritionLog();return}
+ if(data&&data[0])logs.unshift(data[0]);
+ resetLogForm();renderLogs();
+}
+function resetLogForm(){
+ document.getElementById("mealType").value="breakfast";
+ document.getElementById("foodText").value="";
+ document.getElementById("hydrationGlasses").value="1";
+ document.getElementById("nauseaLevel").value="0";
+ document.getElementById("refluxLevel").value="0";
+ document.getElementById("constipationLevel").value="0";
+ document.getElementById("symptomsText").value="";
+}
+async function deleteLog(id){
+ logs=logs.filter(x=>x.id!==id);
+ if(usingLocal||String(id).startsWith("local-")){saveLocalLogs(logs);renderLogs();return}
+ await supabaseClient.from("nutrition_logs").delete().eq("id",id).eq("user_id",currentUser.id);
+ renderLogs();
+}
+function mealLabel(v){
+ const m={breakfast:"Petit-déjeuner",lunch:"Déjeuner",dinner:"Dîner",snack:"Snack",hydration:"Hydratation",symptoms:"Symptômes"};
+ return m[v]||v||"-";
+}
+function renderLogs(){
+ const today=todayISO();
+ const water=logs.filter(x=>x.tracking_date===today).reduce((a,x)=>a+Number(x.hydration_glasses||0),0);
+ document.getElementById("hydrationValue").textContent=water;
+ if(!logs.length){document.getElementById("logList").innerHTML=`<div class="log-item">${t().none}</div>`;return}
+ document.getElementById("logList").innerHTML=logs.slice(0,12).map(x=>{
+  const date=new Date(x.created_at||Date.now()).toLocaleString([], {day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const warn=(Number(x.nausea_level||0)>=7||Number(x.reflux_level||0)>=7||Number(x.constipation_level||0)>=7);
+  return `<div class="log-item">
+    <div class="log-head">
+      <div><span class="${warn?"badge badge-warning":"badge badge-blue"}">${escapeHtml(mealLabel(x.meal_type))}</span><strong>${escapeHtml(date)}</strong></div>
+      <button class="button-light" onclick="deleteLog('${x.id}')">×</button>
+    </div>
+    <p>${escapeHtml(x.food_text||x.symptoms||"-")}</p>
+    <div class="small">💧 ${Number(x.hydration_glasses||0)} · nausées ${Number(x.nausea_level||0)}/10 · reflux ${Number(x.reflux_level||0)}/10 · constipation ${Number(x.constipation_level||0)}/10</div>
+    ${x.symptoms?`<div class="soft">${escapeHtml(x.symptoms)}</div>`:""}
+  </div>`;
+ }).join("");
+}
+function exportLogs(){
+ const blob=new Blob([JSON.stringify({page:"nutrition",exported_at:new Date().toISOString(),logs,tasks},null,2)],{type:"application/json;charset=utf-8"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="nutrition-mama-in-deutschland.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+async function createNutritionAppointment(){
+ const title="Conseil nutrition grossesse";
+ if(usingLocal){alert("Rendez-vous à ajouter dans calendar.html : "+title);return}
+ const due=currentProfile?.due_date||null;
+ const base=new Date();base.setDate(base.getDate()+7);
+ const payload={user_id:currentUser.id,title,appointment_type:"nutrition",appointment_date:base.toISOString().slice(0,10),appointment_time:"10:00",location:"Frauenarzt / Hebamme",doctor_name:"",notes:"Questions nutrition : nausées, reflux, constipation, diabète gestationnel, compléments, halal.",priority:"normal",status:"scheduled",completed:false};
+ const {error}=await supabaseClient.from("appointments").insert(payload);
+ if(error){alert(error.message);return}
+ alert("RDV nutrition créé dans calendar.html");
+}
+function renderStatic(){
  document.getElementById("weekValue").textContent=currentWeek;
- document.getElementById("focusValue").textContent=t().focusValue;
- document.getElementById("safeGrid").innerHTML=t().safe.map(x=>`<div class="food-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
- document.getElementById("avoidGrid").innerHTML=t().avoid.map(x=>`<div class="food-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
- document.getElementById("mealList").innerHTML=t().meal.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
- document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
- renderChecklist();
+ document.getElementById("safeGrid").innerHTML=t().safe.map(x=>`<div class="food-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${escapeHtml(x[1])}</h3><p>${escapeHtml(x[2])}</p></div>`).join("");
+ document.getElementById("avoidGrid").innerHTML=t().avoidList.map(x=>`<div class="food-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${escapeHtml(x[1])}</h3><p>${escapeHtml(x[2])}</p></div>`).join("");
+ document.getElementById("mealList").innerHTML=t().meal.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
+ document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${escapeHtml(x[0])}</div><div><p>${escapeHtml(x[1])}</p></div></div>`).join("");
+ document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
+ document.getElementById("personalNote").value=noteText();
 }
 async function loadApp(){
  const {data,error}=await supabaseClient.auth.getSession();
@@ -320,7 +541,15 @@ async function loadApp(){
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  currentWeek=calculatePregnancy(currentProfile?.due_date);
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("appShell").style.display="block";
+ try{
+  await ensureTasks();
+  await loadLogs();
+  setSync(usingLocal?t().local:t().synced,usingLocal?"warning":"success");
+ }catch(e){
+  usingLocal=true;tasks=localTasks();logs=localLogs();setSync(t().error,"warning");
+ }
+ setLanguage(currentLang);
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

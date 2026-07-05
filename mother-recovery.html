@@ -21,9 +21,10 @@ header{display:flex;justify-content:space-between;align-items:center;gap:16px;fl
 .brand{display:flex;align-items:center;gap:12px;color:var(--brown);font-size:24px;font-weight:950;text-decoration:none;letter-spacing:-.6px}
 .brand-icon{width:48px;height:48px;border-radius:18px;background:linear-gradient(135deg,var(--brown),var(--light));color:white;display:flex;align-items:center;justify-content:center;font-weight:950;box-shadow:0 14px 28px var(--shadow)}
 .top-actions,.actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.button,.button-light,.button-danger{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.button,.button-light,.button-danger,.button-success{border:1px solid var(--border);background:white;color:var(--brown);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:950;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;justify-content:center;gap:7px}
 .button{background:var(--brown);color:white;border-color:var(--brown)}
 .button-danger{background:#fff0ec;color:var(--danger);border-color:#f1c9bf}
+.button-success{background:var(--success);color:white;border-color:var(--success)}
 .lang-wrap{position:relative}.lang-trigger{min-width:84px}
 .lang-menu{position:absolute;right:0;top:48px;width:194px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:0 24px 70px var(--shadow);padding:8px;display:none;z-index:20}
 .lang-menu.open{display:block}
@@ -47,39 +48,45 @@ ul{padding-left:20px;margin:10px 0 0}
 .stat{background:white;border:1px solid var(--border);border-radius:22px;padding:15px}
 .stat-label{font-size:12px;color:var(--muted);font-weight:950}
 .stat-value{font-size:24px;color:var(--brown);font-weight:950;margin-top:6px}
-.box,.recovery-card,.source-card{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
+.box,.recovery-card,.source-card,.form-box{background:linear-gradient(180deg,var(--cream),white);border:1px solid var(--border);border-radius:24px;padding:18px}
 .recovery-card{position:relative;overflow:hidden}
 .recovery-card:after{content:"";position:absolute;right:-36px;top:-36px;width:110px;height:110px;border-radius:50%;background:rgba(155,115,87,.08)}
 .icon{width:48px;height:48px;border-radius:17px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
 .badge{display:inline-flex;width:fit-content;padding:7px 10px;border-radius:999px;background:var(--soft);color:var(--brown);font-size:12px;font-weight:950;margin:0 5px 8px 0}
-.badge-dark{background:var(--brown);color:white}
 .badge-green{background:#eef8ef;color:var(--success);border:1px solid #cfe8d1}
 .badge-warning{background:#fff6df;color:var(--warning);border:1px solid #efd49b}
 .badge-red{background:#fff0ec;color:var(--danger);border:1px solid #f1c9bf}
 .badge-blue{background:#edf7ff;color:var(--blue);border:1px solid #cfe6f7}
+.badge-dark{background:var(--brown);color:white}
 .soft{padding:14px 16px;border-radius:18px;background:var(--soft);border:1px solid var(--border);color:var(--brown);font-weight:900;margin-top:14px}
 .warning{background:#fff0ec;border:1px solid #f1c9bf;color:var(--danger);font-weight:950;padding:14px;border-radius:18px;margin-top:14px}
 .section-title{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .timeline{display:grid;gap:12px}
 .timeline-item{display:grid;grid-template-columns:135px 1fr;gap:14px;align-items:start;background:white;border:1px solid var(--border);border-radius:24px;padding:16px}
 .timeline-step{font-weight:950;color:var(--brown);background:var(--soft);border-radius:16px;padding:12px;text-align:center;border:1px solid var(--border)}
-.check-row{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
+.check-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--border);border-radius:18px;background:white;margin-top:9px}
 .check-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--brown)}
 .progress{height:12px;border-radius:999px;background:var(--soft);overflow:hidden;margin-top:12px}
 .progress div{height:100%;background:linear-gradient(90deg,var(--brown),var(--light));width:0%}
 .mood-row{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
 .mood-row button{border:1px solid var(--border);background:white;border-radius:20px;padding:14px 10px;font-size:24px;cursor:pointer}
 .mood-row button.active{background:var(--soft);border-color:var(--brown);box-shadow:0 0 0 3px rgba(74,52,40,.08)}
-textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px;resize:vertical}
+label{font-size:13px;font-weight:950;color:var(--brown);display:block;margin:10px 0 6px}
+input,select,textarea{width:100%;padding:12px 13px;border-radius:16px;border:1px solid var(--border);background:#fffdf9;color:var(--text);font-family:inherit;font-size:15px}
+textarea{min-height:120px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .log-list{display:grid;gap:10px;margin-top:12px}
 .log-item{background:white;border:1px solid var(--border);border-radius:18px;padding:12px}
+.log-item strong{color:var(--brown)}
 .source-card a{color:var(--brown);font-weight:950;text-decoration:none}
 .source-card span{display:block;color:var(--muted);font-size:13px;line-height:1.45;margin-top:6px}
 .footer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
 .login-message{max-width:650px;margin:60px auto;text-align:center}
-@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}
+.notice{display:none;margin-top:12px}.notice.show{display:block}
+.small-muted{color:var(--muted);font-size:13px;line-height:1.5}
+@media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4,.form-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}
-@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.mood-row{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
+@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats,.mood-row,.form-grid{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.check-row{grid-template-columns:auto 1fr}}
 </style>
 </head>
 <body>
@@ -112,7 +119,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
       <p id="pageText">Une page pour le Wochenbett : saignements, douleurs, périnée, césarienne, plancher pelvien, fatigue, moral, rendez-vous post-partum et reprise progressive.</p>
       <div class="stats">
         <div class="stat"><div class="stat-label" id="phaseLabel">Phase</div><div class="stat-value" id="phaseValue">6–8 sem.</div></div>
-        <div class="stat"><div class="stat-label" id="focusLabel">Focus</div><div class="stat-value" id="focusValue">Repos</div></div>
+        <div class="stat"><div class="stat-label" id="moodStatLabel">Dernier suivi</div><div class="stat-value" id="moodStatValue">-</div></div>
         <div class="stat"><div class="stat-label" id="progressLabel">Checklist</div><div class="stat-value" id="progressValue">0 / 0</div></div>
       </div>
     </div>
@@ -123,7 +130,23 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
       <div class="actions" style="margin-top:14px;">
         <a class="button-danger" href="emergency.html" id="emergencyButton">Urgence</a>
         <a class="button-light" href="emotions.html" id="emotionsButton">Émotions</a>
+        <button class="button-light" onclick="exportRecovery()" id="exportButton">Export JSON</button>
       </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <div>
+        <h2 id="dashboardTitle">Tableau de bord maman</h2>
+        <p id="dashboardText">Vue rapide de la récupération, des rendez-vous et du suivi récent.</p>
+      </div>
+      <button class="button-light" onclick="loadCloudData()" id="refreshButton">Actualiser</button>
+    </div>
+    <div class="grid">
+      <div class="box"><span class="badge badge-blue" id="nextApptBadge">Rendez-vous</span><h3 id="nextApptTitle">Prochain contrôle</h3><p id="nextApptValue">-</p></div>
+      <div class="box"><span class="badge badge-warning" id="recentMoodBadge">Suivi</span><h3 id="recentMoodTitle">Dernier journal</h3><p id="recentMoodValue">-</p></div>
+      <div class="box"><span class="badge badge-green" id="cloudBadge">SaaS</span><h3 id="cloudTitle">Synchronisation</h3><p id="cloudValue">Supabase prêt</p></div>
     </div>
   </section>
 
@@ -140,19 +163,26 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
   <section class="grid-2">
     <div class="card">
       <h2 id="moodTitle">Mini suivi du jour</h2>
-      <p id="moodText">Note rapidement ton niveau d’énergie/douleur. Sauvegarde locale sur ton appareil.</p>
+      <p id="moodText">Note rapidement ton niveau d’énergie, douleur, saignement et moral. Sauvegarde Supabase avec fallback local.</p>
       <div class="mood-row" id="moodButtons">
-        <button onclick="chooseMood(1)">🟥</button>
-        <button onclick="chooseMood(2)">🟧</button>
-        <button onclick="chooseMood(3)">🟨</button>
-        <button onclick="chooseMood(4)">🟩</button>
-        <button onclick="chooseMood(5)">🌤️</button>
+        <button onclick="chooseMood(1)" title="Très difficile">🟥</button>
+        <button onclick="chooseMood(2)" title="Difficile">🟧</button>
+        <button onclick="chooseMood(3)" title="Moyen">🟨</button>
+        <button onclick="chooseMood(4)" title="Stable">🟩</button>
+        <button onclick="chooseMood(5)" title="Bon">🌤️</button>
       </div>
-      <textarea id="moodNote" placeholder="Douleur, saignements, fatigue, moral, questions..."></textarea>
+      <div class="form-grid">
+        <div><label id="painLabel">Douleur 0–10</label><input id="painInput" type="number" min="0" max="10" placeholder="0"></div>
+        <div><label id="bleedingLabel">Saignement</label><select id="bleedingInput"><option value="normal">Normal</option><option value="watch">À surveiller</option><option value="heavy">Très important</option></select></div>
+        <div><label id="tempLabel">Température °C</label><input id="temperatureInput" type="number" step="0.1" placeholder="36.8"></div>
+      </div>
+      <label id="symptomsLabel">Symptômes / note</label>
+      <textarea id="moodNote" placeholder="Douleur, saignements, fatigue, moral, cicatrice, périnée, questions..."></textarea>
       <div class="actions" style="margin-top:14px;">
         <button class="button" onclick="saveMood()" id="saveMoodButton">Sauvegarder</button>
-        <button class="button-light" onclick="clearMoodLog()" id="clearMoodButton">Effacer journal</button>
+        <button class="button-light" onclick="clearMoodLog()" id="clearMoodButton">Effacer journal local</button>
       </div>
+      <div class="soft notice" id="moodStatus">Sauvegardé</div>
     </div>
 
     <div class="card">
@@ -164,7 +194,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
   <section class="grid-2">
     <div class="card">
       <h2 id="checkTitle">Checklist récupération</h2>
-      <p id="checkText">Coche ce qui est organisé ou surveillé.</p>
+      <p id="checkText">Coche ce qui est organisé ou surveillé. Synchronisé dans user_tasks.</p>
       <div id="checklistBox"></div>
       <div class="progress"><div id="progressBar"></div></div>
       <div class="actions" style="margin-top:14px;">
@@ -176,6 +206,29 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
       <h2 id="supportTitle">Aide concrète</h2>
       <div class="box"><ul id="supportList"></ul></div>
       <div class="soft" id="supportNote">La récupération est plus rapide quand la maman n’a pas à tout porter seule : repas, ménage, courses, bébé, documents et sommeil doivent être partagés.</div>
+    </div>
+  </section>
+
+  <section class="grid-2">
+    <div class="card">
+      <h2 id="appointmentTitle">Ajouter un rendez-vous maman</h2>
+      <p id="appointmentText">Frauenarzt, Hebamme, contrôle cicatrice, Rückbildung ou autre rendez-vous post-partum.</p>
+      <div class="form-box">
+        <label id="apptTitleLabel">Titre</label><input id="apptTitleInput" placeholder="Contrôle post-partum Frauenarzt">
+        <div class="form-grid">
+          <div><label id="apptTypeLabel">Type</label><select id="apptTypeInput"><option value="frauenarzt">Frauenarzt</option><option value="hebamme">Hebamme</option><option value="course">Rückbildung / cours</option><option value="other">Autre</option></select></div>
+          <div><label id="apptDateLabel">Date</label><input id="apptDateInput" type="date"></div>
+          <div><label id="apptTimeLabel">Heure</label><input id="apptTimeInput" type="time"></div>
+        </div>
+        <label id="apptLocationLabel">Lieu / médecin</label><input id="apptLocationInput" placeholder="Praxis, Klinik, Hebamme">
+        <label id="apptNotesLabel">Notes</label><textarea id="apptNotesInput" placeholder="Questions : saignements, cicatrice, périnée, contraception, Rückbildung..."></textarea>
+        <div class="actions" style="margin-top:14px;"><button class="button" onclick="addAppointment()" id="addApptButton">Ajouter</button></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="appointmentListTitle">Rendez-vous maman</h2>
+      <div class="log-list" id="appointmentList"></div>
     </div>
   </section>
 
@@ -201,7 +254,7 @@ textarea{width:100%;min-height:130px;padding:14px;border-radius:18px;border:1px 
       <div class="actions" style="margin-top:14px;">
         <button class="button" onclick="saveNote()" id="saveNoteButton">Sauvegarder la note</button>
       </div>
-      <div class="soft" id="savedNote" style="display:none;">Sauvegardé</div>
+      <div class="soft notice" id="savedNote">Sauvegardé</div>
     </div>
   </section>
 
@@ -241,15 +294,21 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr",selectedMood=0;
+let cloudReady=true, checklistTasks=[], moodEntries=[], appointments=[], noteTask=null;
+const PAGE="mother-recovery";
+const META_PREFIX="<!--mama-recovery:";
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Récupération maman",pageTitle:"Le corps de la maman a besoin de temps",pageText:"Une page pour le Wochenbett : saignements, douleurs, périnée, césarienne, plancher pelvien, fatigue, moral, rendez-vous post-partum et reprise progressive.",
-phaseLabel:"Phase",phaseValue:"6–8 sem.",focusLabel:"Focus",focusValue:"Repos",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"Le Wochenbett n’est pas une période “normale” : le corps récupère de la grossesse et de la naissance. Repos, soutien et limitation des obligations sont une vraie partie du soin.",dangerNote:"Demande rapidement une aide médicale si saignement très important, fièvre, douleur forte ou qui augmente, mauvaise odeur des pertes, jambe douloureuse/gonflée, essoufflement, douleur thoracique, malaise, idées noires ou peur de faire du mal à toi ou au bébé.",emergencyButton:"Urgence",emotionsButton:"Émotions",
-recoveryTitle:"Zones de récupération",recoveryText:"Les points à surveiller et à respecter après la naissance.",moodTitle:"Mini suivi du jour",moodText:"Note rapidement ton niveau d’énergie/douleur. Sauvegarde locale sur ton appareil.",saveMoodButton:"Sauvegarder",clearMoodButton:"Effacer journal",logTitle:"Journal récent",
-checkTitle:"Checklist récupération",checkText:"Coche ce qui est organisé ou surveillé.",resetButton:"Réinitialiser",supportTitle:"Aide concrète",supportNote:"La récupération est plus rapide quand la maman n’a pas à tout porter seule : repas, ménage, courses, bébé, documents et sommeil doivent être partagés.",timelineTitle:"Timeline récupération",timelineText:"Repères généraux, à adapter selon accouchement, césarienne, déchirure ou complications.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici les consignes de la clinique, Hebamme ou Frauenarzt : cicatrice, périnée, médicaments, sport, Rückbildung.",saveNoteButton:"Sauvegarder la note",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels pour vérifier les informations et préparer les rendez-vous.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-normal:"Normal",watch:"Surveiller",urgent:"Alerte",support:"Soutien",empty:"Aucune note.",
+phaseLabel:"Phase",phaseValue:"6–8 sem.",moodStatLabel:"Dernier suivi",progressLabel:"Checklist",importantTitle:"Ultra important",importantText:"Le Wochenbett n’est pas une période “normale” : le corps récupère de la grossesse et de la naissance. Repos, soutien et limitation des obligations sont une vraie partie du soin.",dangerNote:"Demande rapidement une aide médicale si saignement très important, fièvre, douleur forte ou qui augmente, mauvaise odeur des pertes, jambe douloureuse/gonflée, essoufflement, douleur thoracique, malaise, idées noires ou peur de faire du mal à toi ou au bébé.",emergencyButton:"Urgence",emotionsButton:"Émotions",exportButton:"Export JSON",
+dashboardTitle:"Tableau de bord maman",dashboardText:"Vue rapide de la récupération, des rendez-vous et du suivi récent.",refreshButton:"Actualiser",nextApptBadge:"Rendez-vous",nextApptTitle:"Prochain contrôle",recentMoodBadge:"Suivi",recentMoodTitle:"Dernier journal",cloudBadge:"SaaS",cloudTitle:"Synchronisation",cloudOk:"Supabase actif",cloudLocal:"Mode local",
+recoveryTitle:"Zones de récupération",recoveryText:"Les points à surveiller et à respecter après la naissance.",moodTitle:"Mini suivi du jour",moodText:"Note rapidement ton niveau d’énergie, douleur, saignement et moral. Sauvegarde Supabase avec fallback local.",painLabel:"Douleur 0–10",bleedingLabel:"Saignement",tempLabel:"Température °C",symptomsLabel:"Symptômes / note",saveMoodButton:"Sauvegarder",clearMoodButton:"Effacer journal local",logTitle:"Journal récent",
+checkTitle:"Checklist récupération",checkText:"Coche ce qui est organisé ou surveillé. Synchronisé dans user_tasks.",resetButton:"Réinitialiser",supportTitle:"Aide concrète",supportNote:"La récupération est plus rapide quand la maman n’a pas à tout porter seule : repas, ménage, courses, bébé, documents et sommeil doivent être partagés.",
+appointmentTitle:"Ajouter un rendez-vous maman",appointmentText:"Frauenarzt, Hebamme, contrôle cicatrice, Rückbildung ou autre rendez-vous post-partum.",apptTitleLabel:"Titre",apptTypeLabel:"Type",apptDateLabel:"Date",apptTimeLabel:"Heure",apptLocationLabel:"Lieu / médecin",apptNotesLabel:"Notes",addApptButton:"Ajouter",appointmentListTitle:"Rendez-vous maman",
+timelineTitle:"Timeline récupération",timelineText:"Repères généraux, à adapter selon accouchement, césarienne, déchirure ou complications.",questionsTitle:"Questions à poser",notesTitle:"Note personnelle",notesText:"Note ici les consignes de la clinique, Hebamme ou Frauenarzt : cicatrice, périnée, médicaments, sport, Rückbildung.",saveNoteButton:"Sauvegarder la note",savedNote:"Sauvegardé",sourcesTitle:"Sources et liens utiles",sourcesText:"Liens officiels pour vérifier les informations et préparer les rendez-vous.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+normal:"Normal",watch:"Surveiller",urgent:"Alerte",support:"Soutien",empty:"Aucune note.",done:"Fait",open:"À faire",delete:"Supprimer",noAppointment:"Aucun rendez-vous maman enregistré.",veryHard:"Très difficile",hard:"Difficile",medium:"Moyen",stable:"Stable",good:"Bon",moodSaved:"Suivi sauvegardé",noteSaved:"Note sauvegardée",apptSaved:"Rendez-vous ajouté",
 recovery:[
 ["🩸","Wochenfluss / saignements","Les pertes changent avec le temps. Saignement très abondant, mauvaise odeur, fièvre ou douleur importante = avis médical.","watch"],
 ["🧵","Périnée / déchirure","Douleur, tiraillement et sensibilité peuvent arriver. Douleur qui augmente, rougeur, pus ou fièvre = contrôle.","watch"],
@@ -261,21 +320,15 @@ recovery:[
 ["🧠","Moral","Pleurs et émotions peuvent arriver. Si tristesse/anxiété durent, s’aggravent ou font peur, demander aide rapidement.","watch"],
 ["📅","Rendez-vous post-partum","Prévoir un contrôle Frauenarzt, surtout si césarienne, déchirure, douleurs, fièvre, saignements ou inquiétudes.","support"]
 ],
-timeline:[
-["Jours 1–3","Repos, surveillance saignements/douleur, alimentation, aide pour se lever, conseils clinique/Hebamme."],
-["Semaine 1","Limiter visites, contrôler cicatrice/périnée, boire/manger, accepter aide, noter questions."],
-["Semaines 2–3","Récupération progressive, pas de reprise brutale, surveiller moral, douleurs, saignements et sommeil."],
-["Semaines 4–6","Organiser contrôle post-partum, discuter contraception, plancher pelvien, sport, cicatrice, allaitement."],
-["Semaines 6–8","Rückbildung adaptée, reprise progressive selon avis, continuer soutien si fatigue ou moral difficile."],
-["À tout moment","Fièvre, douleur forte, saignement très important, jambe douloureuse/gonflée, essoufflement ou idées noires = aide médicale."]
-],
+timeline:[["Jours 1–3","Repos, surveillance saignements/douleur, alimentation, aide pour se lever, conseils clinique/Hebamme."],["Semaine 1","Limiter visites, contrôler cicatrice/périnée, boire/manger, accepter aide, noter questions."],["Semaines 2–3","Récupération progressive, pas de reprise brutale, surveiller moral, douleurs, saignements et sommeil."],["Semaines 4–6","Organiser contrôle post-partum, discuter contraception, plancher pelvien, sport, cicatrice, allaitement."],["Semaines 6–8","Rückbildung adaptée, reprise progressive selon avis, continuer soutien si fatigue ou moral difficile."],["À tout moment","Fièvre, douleur forte, saignement très important, jambe douloureuse/gonflée, essoufflement ou idées noires = aide médicale."]],
 checklist:["Je mange au moins des repas simples","Je bois régulièrement","Je limite les visites épuisantes","Une personne aide pour courses/repas/ménage","Je surveille saignements et odeur des pertes","Je surveille fièvre/douleur/cicatrice/périnée","Je connais les signes d’urgence thrombose/embolie","J’ai un contact Hebamme","J’ai prévu contrôle Frauenarzt","J’ai demandé quand commencer Rückbildung","Je ne porte pas lourd si césarienne/consigne médicale","Je parle si le moral devient inquiétant"],
 supportList:["Repas prêts ou livrés","Courses faites par quelqu’un d’autre","Ménage au minimum ou aide extérieure","Relais bébé pour dormir 1–2 blocs","Gestion des messages et visites","Accompagnement aux rendez-vous","Aide documents : Standesamt, Kindergeld, Elterngeld","Rappel doux : boire, manger, prendre médicaments si prescrits"],
 questions:["Mes saignements sont-ils normaux à ce stade ?","Quand dois-je consulter pour douleur, fièvre ou odeur inhabituelle ?","Comment soigner périnée ou cicatrice de césarienne ?","Quand puis-je porter, marcher, conduire ou reprendre sport ?","Quand commencer Rückbildung et est-ce couvert par ma Krankenkasse ?","Quand faire le contrôle post-partum Frauenarzt ?","Quels signes de dépression/anxiété post-partum doivent faire demander de l’aide ?"]
 },
-de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
+de:{},en:{},ar:{},tr:{},ru:{},uk:{}}
+;
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Erholung der Mutter",pageTitle:"Der Körper der Mutter braucht Zeit",phaseValue:"6–8 Wo.",bottomBackButton:"Zurück"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Erholung der Mutter",pageTitle:"Der Körper der Mutter braucht Zeit",phaseValue:"6–8 Wo.",bottomBackButton:"Zurück",bottomDashboardButton:"Dashboard"});
 Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Mother recovery",pageTitle:"The mother’s body needs time",phaseValue:"6–8 wks",bottomBackButton:"Back"});
 Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"تعافي الأم",pageTitle:"جسم الأم يحتاج إلى وقت",phaseValue:"6–8 أسابيع",bottomBackButton:"رجوع"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
@@ -288,60 +341,164 @@ document.addEventListener("click",e=>{if(!e.target.closest(".lang-wrap"))documen
 function setLanguage(lang){
  currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
  const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
- Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
+ Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el&&typeof t()[id]==="string")el.textContent=t()[id]});
  render();
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
 function badge(type){if(type==="urgent")return "badge badge-red";if(type==="watch")return "badge badge-warning";if(type==="support")return "badge badge-blue";return "badge badge-green"}
 function typeText(type){if(type==="urgent")return t().urgent;if(type==="watch")return t().watch;if(type==="support")return t().support;return t().normal}
-function checkKey(){return "mama-mother-recovery-check-"+(currentUser?currentUser.id:"guest")}
-function noteKey(){return "mama-mother-recovery-note-"+(currentUser?currentUser.id:"guest")}
-function moodKey(){return "mama-mother-recovery-mood-"+(currentUser?currentUser.id:"guest")}
-function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
-function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
-function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist()}
-function resetChecklist(){saveState({});renderChecklist()}
+function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function todayISO(){return new Date().toISOString().slice(0,10)}
+function localKey(name){return "mama-"+PAGE+"-"+name+"-"+(currentUser?currentUser.id:"guest")}
+function getLocal(name, fallback){try{return JSON.parse(localStorage.getItem(localKey(name)))??fallback}catch(e){return fallback}}
+function setLocal(name,val){localStorage.setItem(localKey(name),JSON.stringify(val))}
+function showNotice(id,text){const el=document.getElementById(id);el.textContent=text;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2200)}
+function encodeMeta(obj){return META_PREFIX+btoa(unescape(encodeURIComponent(JSON.stringify(obj))))+"-->\n"}
+function decodeMeta(text){try{const s=String(text||"");const start=s.indexOf(META_PREFIX);if(start<0)return{};const a=start+META_PREFIX.length;const b=s.indexOf("-->",a);return JSON.parse(decodeURIComponent(escape(atob(s.slice(a,b)))))}catch(e){return{}}}
+function stripMeta(text){return String(text||"").replace(/<!--mama-recovery:[\s\S]*?-->\n?/g,"").trim()}
+
+async function ensureChecklistTasks(){
+ if(!cloudReady){checklistTasks=getLocal("checklist",[]);return}
+ const {data,error}=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page",PAGE).eq("category","checklist").order("created_at",{ascending:true});
+ if(error)throw error;
+ checklistTasks=data||[];
+ const existing=new Set(checklistTasks.map(x=>x.task_key));
+ const missing=t().checklist.map((title,i)=>({title,i,key:"recovery_check_"+i})).filter(x=>!existing.has(x.key));
+ if(missing.length){
+   const rows=missing.map(x=>({user_id:currentUser.id,page_key:PAGE,source_page:PAGE,task_area:"mother_recovery",category:"checklist",task_key:x.key,title:x.title,description:"Checklist récupération maman",priority:"normal",status:"open",completed:false,notes:""}));
+   const res=await supabaseClient.from("user_tasks").insert(rows).select("*");
+   if(res.error)throw res.error;
+   checklistTasks=[...checklistTasks,...(res.data||[])].sort((a,b)=>String(a.task_key).localeCompare(String(b.task_key),undefined,{numeric:true}));
+ }
+}
+async function toggleCheckTask(id,idx){
+ if(!cloudReady){const s=getLocal("checkState",{});s[idx]=!s[idx];setLocal("checkState",s);renderChecklist();return}
+ const task=checklistTasks.find(x=>x.id===id);if(!task)return;
+ const done=!task.completed;
+ const {error}=await supabaseClient.from("user_tasks").update({completed:done,status:done?"done":"open",completed_at:done?new Date().toISOString():null}).eq("id",id).eq("user_id",currentUser.id);
+ if(error){cloudReady=false;renderCloud();return}
+ task.completed=done;task.status=done?"done":"open";task.completed_at=done?new Date().toISOString():null;renderChecklist();
+}
+async function resetChecklist(){
+ if(!cloudReady){setLocal("checkState",{});renderChecklist();return}
+ const ids=checklistTasks.map(x=>x.id);
+ if(ids.length){await supabaseClient.from("user_tasks").update({completed:false,status:"open",completed_at:null}).in("id",ids).eq("user_id",currentUser.id)}
+ checklistTasks.forEach(x=>{x.completed=false;x.status="open";x.completed_at=null});renderChecklist();
+}
 function renderChecklist(){
- const s=state();const items=t().checklist;
- document.getElementById("checklistBox").innerHTML=items.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
- const done=Object.keys(s).filter(k=>s[k]).length,total=items.length;
+ const items=t().checklist;
+ let done=0,total=items.length;
+ if(cloudReady&&checklistTasks.length){
+   document.getElementById("checklistBox").innerHTML=items.map((title,i)=>{
+     const task=checklistTasks.find(x=>x.task_key==="recovery_check_"+i)||{};
+     const checked=!!task.completed;if(checked)done++;
+     return `<label class="check-row"><input type="checkbox" ${checked?"checked":""} onchange="toggleCheckTask('${task.id||""}',${i})"><span>${escapeHtml(title)}</span><span class="badge ${checked?"badge-green":""}">${checked?t().done:t().open}</span></label>`;
+   }).join("");
+ }else{
+   const s=getLocal("checkState",{});
+   document.getElementById("checklistBox").innerHTML=items.map((title,i)=>{const checked=!!s[i];if(checked)done++;return `<label class="check-row"><input type="checkbox" ${checked?"checked":""} onchange="toggleCheckTask('',${i})"><span>${escapeHtml(title)}</span><span class="badge ${checked?"badge-green":""}">${checked?t().done:t().open}</span></label>`}).join("");
+ }
  document.getElementById("progressValue").textContent=done+" / "+total;
  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
-function getMoodLog(){try{return JSON.parse(localStorage.getItem(moodKey()))||[]}catch(e){return[]}}
-function saveMoodLog(l){localStorage.setItem(moodKey(),JSON.stringify(l.slice(0,14)))}
-function chooseMood(n){
- selectedMood=n;
- document.querySelectorAll("#moodButtons button").forEach((b,i)=>b.classList.toggle("active",i+1===n));
-}
-function saveMood(){
+
+function chooseMood(n){selectedMood=n;document.querySelectorAll("#moodButtons button").forEach((b,i)=>b.classList.toggle("active",i+1===n))}
+function moodLabel(n){return ["",t().veryHard,t().hard,t().medium,t().stable,t().good][Number(n)]||t().medium}
+async function saveMood(){
  if(!selectedMood)selectedMood=3;
- const labels=["","très difficile","difficile","moyen","stable","bon"];
- const l=getMoodLog();
- l.unshift({mood:selectedMood,label:labels[selectedMood],note:document.getElementById("moodNote").value.trim(),date:new Date().toLocaleString()});
- saveMoodLog(l);
- document.getElementById("moodNote").value="";
- selectedMood=0;
- document.querySelectorAll("#moodButtons button").forEach(b=>b.classList.remove("active"));
- renderMoodLog();
+ const meta={mood:selectedMood,mood_label:moodLabel(selectedMood),pain:Number(document.getElementById("painInput").value||0),bleeding:document.getElementById("bleedingInput").value,source_page:PAGE,created_local:new Date().toLocaleString()};
+ const note=document.getElementById("moodNote").value.trim();
+ const temperature=document.getElementById("temperatureInput").value?Number(document.getElementById("temperatureInput").value):null;
+ const row={tracking_date:todayISO(),tracking_time:new Date().toTimeString().slice(0,5),entry_type:"mother_recovery",temperature_c:temperature,milestone_key:"mother_mood",milestone_label:meta.mood_label,notes:encodeMeta(meta)+note,completed:false};
+ if(cloudReady){
+   const res=await supabaseClient.from("baby_tracking").insert({...row,user_id:currentUser.id}).select("*").single();
+   if(res.error){cloudReady=false;saveMoodLocal(row)}else{moodEntries.unshift(res.data)}
+ }else saveMoodLocal(row);
+ document.getElementById("moodNote").value="";document.getElementById("painInput").value="";document.getElementById("temperatureInput").value="";selectedMood=0;document.querySelectorAll("#moodButtons button").forEach(b=>b.classList.remove("active"));
+ renderMoodLog();renderDashboard();renderCloud();showNotice("moodStatus",t().moodSaved);
 }
-function clearMoodLog(){saveMoodLog([]);renderMoodLog()}
-function escapeHtml(v){return String(v||"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function saveMoodLocal(row){const l=getLocal("mood",[]);l.unshift({...row,id:"local-"+Date.now(),created_at:new Date().toISOString()});setLocal("mood",l.slice(0,30));moodEntries=l.slice(0,30)}
+async function clearMoodLog(){setLocal("mood",[]);if(!cloudReady)moodEntries=[];renderMoodLog();renderDashboard()}
+async function deleteMood(id){
+ if(String(id).startsWith("local-")){const l=getLocal("mood",[]).filter(x=>x.id!==id);setLocal("mood",l);moodEntries=l;renderMoodLog();renderDashboard();return}
+ if(cloudReady)await supabaseClient.from("baby_tracking").delete().eq("id",id).eq("user_id",currentUser.id);
+ moodEntries=moodEntries.filter(x=>x.id!==id);renderMoodLog();renderDashboard();
+}
 function renderMoodLog(){
- const l=getMoodLog();
- document.getElementById("moodLog").innerHTML=l.length?l.map(x=>`<div class="log-item"><strong>${x.date} · ${x.label}</strong><br>${escapeHtml(x.note||"")}</div>`).join(""):`<div class="log-item">${t().empty}</div>`;
+ const list=moodEntries.length?moodEntries:getLocal("mood",[]);
+ document.getElementById("moodLog").innerHTML=list.length?list.slice(0,14).map(x=>{
+   const m=decodeMeta(x.notes);const note=stripMeta(x.notes);const date=x.tracking_date||String(x.created_at||"").slice(0,10);const time=x.tracking_time||String(x.created_at||"").slice(11,16);
+   return `<div class="log-item"><strong>${escapeHtml(date)} ${escapeHtml(time||"")} · ${escapeHtml(m.mood_label||x.milestone_label||"")}</strong><br><span class="small-muted">Douleur: ${escapeHtml(m.pain??"-")} · Saignement: ${escapeHtml(m.bleeding||"-")} · Température: ${escapeHtml(x.temperature_c??"-")}</span><p>${escapeHtml(note||t().empty)}</p><div class="actions" style="margin-top:8px"><button class="button-light" onclick="deleteMood('${x.id}')">${t().delete}</button></div></div>`;
+ }).join(""):`<div class="log-item">${t().empty}</div>`;
 }
-function saveNote(){localStorage.setItem(noteKey(),document.getElementById("personalNote").value);const n=document.getElementById("savedNote");n.style.display="block";setTimeout(()=>n.style.display="none",1800)}
+
+async function addAppointment(){
+ const title=document.getElementById("apptTitleInput").value.trim()||"Contrôle post-partum";
+ const date=document.getElementById("apptDateInput").value;
+ if(!date){alert("Date nécessaire");return}
+ const row={user_id:currentUser.id,title,appointment_type:document.getElementById("apptTypeInput").value,appointment_date:date,appointment_time:document.getElementById("apptTimeInput").value||null,location:document.getElementById("apptLocationInput").value.trim(),doctor_name:"",notes:"mama:mother-recovery\n"+document.getElementById("apptNotesInput").value.trim(),priority:"normal",completed:false,status:"scheduled"};
+ if(cloudReady){const res=await supabaseClient.from("appointments").insert(row).select("*").single();if(res.error){cloudReady=false;saveAppointmentLocal(row)}else appointments.unshift(res.data)}else saveAppointmentLocal(row);
+ ["apptTitleInput","apptDateInput","apptTimeInput","apptLocationInput","apptNotesInput"].forEach(id=>document.getElementById(id).value="");
+ renderAppointments();renderDashboard();renderCloud();alert(t().apptSaved);
+}
+function saveAppointmentLocal(row){const l=getLocal("appointments",[]);l.unshift({...row,id:"local-apt-"+Date.now()});setLocal("appointments",l);appointments=l}
+async function deleteAppointment(id){
+ if(String(id).startsWith("local-apt-")){const l=getLocal("appointments",[]).filter(x=>x.id!==id);setLocal("appointments",l);appointments=l;renderAppointments();renderDashboard();return}
+ if(cloudReady)await supabaseClient.from("appointments").delete().eq("id",id).eq("user_id",currentUser.id);
+ appointments=appointments.filter(x=>x.id!==id);renderAppointments();renderDashboard();
+}
+function renderAppointments(){
+ const list=appointments.length?appointments:getLocal("appointments",[]);
+ const sorted=[...list].sort((a,b)=>String(a.appointment_date||"").localeCompare(String(b.appointment_date||"")));
+ document.getElementById("appointmentList").innerHTML=sorted.length?sorted.map(a=>`<div class="log-item"><strong>${escapeHtml(a.appointment_date||"")} ${escapeHtml(a.appointment_time||"")} · ${escapeHtml(a.title||"")}</strong><br><span class="small-muted">${escapeHtml(a.appointment_type||"")} · ${escapeHtml(a.location||"")}</span><p>${escapeHtml(String(a.notes||"").replace("mama:mother-recovery","").trim())}</p><div class="actions" style="margin-top:8px"><button class="button-light" onclick="deleteAppointment('${a.id}')">${t().delete}</button></div></div>`).join(""):`<div class="log-item">${t().noAppointment}</div>`;
+}
+
+async function saveNote(){
+ const val=document.getElementById("personalNote").value;
+ setLocal("note",val);
+ if(cloudReady){
+   const payload={user_id:currentUser.id,page_key:PAGE,source_page:PAGE,task_area:"mother_recovery",category:"note",task_key:"mother_recovery_note",title:"Note personnelle récupération maman",description:"Note personnelle",priority:"normal",status:"open",completed:false,notes:val};
+   if(noteTask?.id){const res=await supabaseClient.from("user_tasks").update({notes:val,updated_at:new Date().toISOString()}).eq("id",noteTask.id).eq("user_id",currentUser.id).select("*").single();if(!res.error)noteTask=res.data;else cloudReady=false}
+   else{const res=await supabaseClient.from("user_tasks").insert(payload).select("*").single();if(!res.error)noteTask=res.data;else cloudReady=false}
+ }
+ renderCloud();showNotice("savedNote",t().noteSaved);
+}
+
+async function loadCloudData(){
+ cloudReady=true;
+ try{
+   await ensureChecklistTasks();
+   const m=await supabaseClient.from("baby_tracking").select("*").eq("user_id",currentUser.id).eq("entry_type","mother_recovery").order("created_at",{ascending:false}).limit(30);
+   if(m.error)throw m.error;moodEntries=m.data||[];
+   const a=await supabaseClient.from("appointments").select("*").eq("user_id",currentUser.id).ilike("notes","%mama:mother-recovery%").order("appointment_date",{ascending:true}).limit(50);
+   if(a.error)throw a.error;appointments=a.data||[];
+   const n=await supabaseClient.from("user_tasks").select("*").eq("user_id",currentUser.id).eq("source_page",PAGE).eq("category","note").eq("task_key","mother_recovery_note").limit(1);
+   if(n.error)throw n.error;noteTask=(n.data&&n.data[0])||null;
+ }catch(e){cloudReady=false;checklistTasks=[];moodEntries=getLocal("mood",[]);appointments=getLocal("appointments",[])}
+ render();
+}
+function renderCloud(){document.getElementById("cloudValue").textContent=cloudReady?t().cloudOk:t().cloudLocal}
+function renderDashboard(){
+ const list=appointments.length?appointments:getLocal("appointments",[]);
+ const future=[...list].filter(a=>!a.appointment_date||a.appointment_date>=todayISO()).sort((a,b)=>String(a.appointment_date||"").localeCompare(String(b.appointment_date||"")));
+ const next=future[0];document.getElementById("nextApptValue").textContent=next?`${next.appointment_date||""} ${next.appointment_time||""} · ${next.title||""}`:"-";
+ const moods=moodEntries.length?moodEntries:getLocal("mood",[]);const last=moods[0];
+ if(last){const meta=decodeMeta(last.notes);document.getElementById("recentMoodValue").textContent=`${last.tracking_date||String(last.created_at||"").slice(0,10)} · ${meta.mood_label||last.milestone_label||""}`;document.getElementById("moodStatValue").textContent=meta.mood_label||last.milestone_label||"-"}else{document.getElementById("recentMoodValue").textContent="-";document.getElementById("moodStatValue").textContent="-"}
+}
+function exportRecovery(){
+ const payload={page:PAGE,exported_at:new Date().toISOString(),checklist:cloudReady?checklistTasks:getLocal("checkState",{}),mood:moodEntries.length?moodEntries:getLocal("mood",[]),appointments:appointments.length?appointments:getLocal("appointments",[]),note:document.getElementById("personalNote").value};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mother-recovery-export.json";a.click();URL.revokeObjectURL(url);
+}
 function render(){
  document.getElementById("phaseValue").textContent=t().phaseValue;
- document.getElementById("focusValue").textContent=t().focusValue;
  document.getElementById("recoveryGrid").innerHTML=t().recovery.map(x=>`<div class="recovery-card"><div class="icon">${x[0]}</div><span class="${badge(x[3])}">${typeText(x[3])}</span><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
  document.getElementById("timelineBox").innerHTML=t().timeline.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");
  document.getElementById("supportList").innerHTML=t().supportList.map(x=>`<li>${x}</li>`).join("");
  document.getElementById("questionsList").innerHTML=t().questions.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("personalNote").value=localStorage.getItem(noteKey())||"";
- renderChecklist();renderMoodLog();
+ document.getElementById("personalNote").value=(noteTask&&noteTask.notes)||getLocal("note","");
+ renderChecklist();renderMoodLog();renderAppointments();renderDashboard();renderCloud();
 }
 async function loadApp(){
  const {data,error}=await supabaseClient.auth.getSession();
@@ -351,7 +508,9 @@ async function loadApp(){
  currentProfile=(profiles&&profiles[0])?profiles[0]:null;
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadCloudData();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

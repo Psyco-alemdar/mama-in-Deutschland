@@ -161,6 +161,7 @@ textarea{min-height:130px;resize:vertical}
       <div class="actions" style="margin-top:14px;">
         <button class="button" onclick="createItem()" id="publishButton">Publier</button>
         <button class="button-light" onclick="clearForm()" id="clearButton">Effacer</button>
+        <button class="button-danger" onclick="cancelEdit()" id="cancelEditButton" style="display:none;">Annuler modification</button>
       </div>
       <div class="soft" id="itemStatus" style="display:none;"></div>
     </div>
@@ -212,8 +213,8 @@ textarea{min-height:130px;resize:vertical}
     <div class="grid-4">
       <div class="source-card"><a href="community-rules.html">Règles communauté</a><span>Respect, confidentialité, santé, marketplace et modération.</span></div>
       <div class="source-card"><a href="baby-equipment.html">Équipement bébé</a><span>Sommeil sûr, siège auto, lit, matelas, poussette et achats utiles.</span></div>
-      <div class="source-card"><a href="near-me.html">Près de moi</a><span>Pharmacie, Kinderarzt, Hebamme, Beratungsstelle et services locaux.</span></div>
-      <div class="source-card"><a href="share-experience.html">Share experience</a><span>Partager des retours sur produits, cliniques, Hebamme et organisation.</span></div>
+      <div class="source-card"><a href="near.html">Près de moi</a><span>Pharmacie, Kinderarzt, Hebamme, Beratungsstelle et services locaux.</span></div>
+      <div class="source-card"><a href="experience.html">Share experience</a><span>Partager des retours sur produits, cliniques, Hebamme et organisation.</span></div>
     </div>
   </section>
 
@@ -238,22 +239,22 @@ const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
-let items=[],activeFilter="all",dbOnline=true;
+let items=[],activeFilter="all",dbOnline=true,editingItemId=null;
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 
 const tr={
 fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Marketplace",pageTitle:"Donner, vendre ou trouver du matériel bébé",pageText:"Une marketplace bienveillante entre mamans : poussette, lit, vêtements, siège auto, jouets, tire-lait, accessoires. Chaque annonce doit être honnête, claire et sûre.",
 itemsLabel:"Annonces",freeLabel:"Gratuit",modeLabel:"Mode",importantTitle:"Sécurité avant tout",importantText:"Pour les objets de sécurité, ne te fie pas seulement à une annonce : vérifie norme, état, historique, hygiène, pièces manquantes et compatibilité.",dangerNote:"Siège auto accidenté ou historique inconnu, matelas affaissé, lit cassé, tire-lait/biberons mal nettoyables, objet instable ou rappel produit : ne pas acheter.",rulesButton:"Règles",equipmentButton:"Équipement",
-newItemTitle:"Nouvelle annonce",newItemText:"Décris clairement l’objet. La photo peut être un lien image public pour le moment.",publishButton:"Publier",clearButton:"Effacer",safetyTitle:"Checklist sécurité annonce",safetyText:"À vérifier surtout pour les objets bébé sensibles.",resetButton:"Réinitialiser",feedTitle:"Annonces marketplace",feedText:"Filtre par catégorie. Contacte la maman directement et reste prudente pour le paiement et la remise.",refreshButton:"Actualiser",buyerTitle:"Conseils acheteuse",sellerTitle:"Conseils vendeuse / donneuse",sellerNote:"Une annonce honnête évite les conflits et protège les bébés.",linksTitle:"Liens utiles",linksText:"Pour acheter et vendre avec plus de prudence.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-online:"Online",local:"Local",all:"Tout",free:"Gratuit",sale:"Vente",donation:"Don",exchange:"Échange",contact:"Contact",reserve:"Réserver",sold:"Vendu",report:"Signaler",comment:"Question",send:"Envoyer",noItems:"Aucune annonce pour le moment.",posted:"Annonce publiée.",localSaved:"Base non disponible : annonce sauvegardée localement sur cet appareil.",error:"Erreur. Vérifie la table Supabase ou réessaie.",placeholderComment:"Poser une question bienveillante...",
-categories:[["all","Tout"],["stroller","Poussette"],["carseat","Siège auto"],["bed","Lit / sommeil"],["clothes","Vêtements"],["feeding","Allaitement / biberon"],["toys","Jouets"],["bath","Bain / soin"],["furniture","Meubles"],["other","Autre"]],
-conditions:[["new","Neuf"],["very_good","Très bon état"],["good","Bon état"],["used","Utilisé"],["needs_check","À vérifier"]],
+newItemTitle:"Nouvelle annonce",editItemTitle:"Modifier l’annonce",newItemText:"Décris clairement l’objet. La photo peut être un lien image public pour le moment.",publishButton:"Publier",updateButton:"Sauvegarder modifications",clearButton:"Effacer",cancelEditButton:"Annuler modification",safetyTitle:"Checklist sécurité annonce",safetyText:"À vérifier surtout pour les objets bébé sensibles.",resetButton:"Réinitialiser",feedTitle:"Annonces marketplace",feedText:"Filtre par catégorie. Contacte la maman directement et reste prudente pour le paiement et la remise.",refreshButton:"Actualiser",buyerTitle:"Conseils acheteuse",sellerTitle:"Conseils vendeuse / donneuse",sellerNote:"Une annonce honnête évite les conflits et protège les bébés.",linksTitle:"Liens utiles",linksText:"Pour acheter et vendre avec plus de prudence.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+online:"Online",local:"Local",all:"Tout",free:"Gratuit",sale:"Vente",donation:"Don libre",exchange:"Échange",contact:"Contact",reserve:"Réserver",sold:"Vendu",reactivate:"Réactiver",edit:"Modifier",delete:"Supprimer",report:"Signaler",noItems:"Aucune annonce pour le moment.",posted:"Annonce publiée.",updated:"Annonce modifiée.",deleted:"Annonce supprimée.",reported:"Merci. L’annonce a été signalée.",localSaved:"Base non disponible : annonce sauvegardée localement sur cet appareil.",error:"Erreur. Vérifie la table Supabase ou réessaie.",missing:"Titre, description et ville obligatoires.",
+categories:[["all","Tout"],["stroller","Poussette"],["car_seat","Siège auto"],["furniture","Lit / meubles"],["clothes","Vêtements"],["feeding","Allaitement / biberon"],["toys","Jouets"],["pregnancy","Grossesse"],["other","Autre"]],
+conditions:[["new","Neuf"],["like_new","Comme neuf"],["used_good","Bon état"],["used_fair","Utilisé"],["for_free","À donner"]],
 priceTypes:[["sale","Vente"],["free","Gratuit"],["donation","Don libre"],["exchange","Échange"]],
 checklist:["État réel décrit honnêtement","Défauts et pièces manquantes mentionnés","Prix ou gratuit clairement indiqué","Photo actuelle ajoutée si possible","Lieu de remise sécurisé prévu","Pas de médicament ou produit ouvert dangereux","Pour siège auto : historique accident clair","Pour lit/matelas : stabilité et hygiène vérifiées","Pour tire-lait/biberons : nettoyage possible et accessoires clairs","Contact partagé avec prudence"],
 buyerList:["Demande toujours l’état réel, défauts, année d’achat et photos actuelles.","Pour siège auto : demande norme, modèle exact, historique sans accident, notice et compatibilité voiture.","Évite paiement anticipé à une personne inconnue.","Privilégie remise en main propre dans un lieu sûr.","Vérifie stabilité, odeur, moisissure, pièces manquantes, freins et harnais.","Pour les objets liés au sommeil, au transport et à l’alimentation : prudence maximale."],
 sellerList:["Décris les défauts au lieu de les cacher.","Mets un prix clair ou indique gratuit/don.","Ajoute modèle, marque, âge, dimensions et accessoires inclus.","Retire ou marque vendu dès que l’objet n’est plus disponible.","Ne vends pas un produit que tu n’utiliserais pas toi-même pour un bébé.","Ne partage pas ton adresse exacte publiquement."],
-safetyTags:{stroller:"Vérifier freins/roues",carseat:"Historique accident obligatoire",bed:"Stabilité + matelas",clothes:"Lavage conseillé",feeding:"Hygiène stricte",toys:"Petites pièces",bath:"Stabilité",furniture:"Fixation murale",other:"Vérifier"}
+safetyTags:{stroller:"Vérifier freins/roues",car_seat:"Historique accident obligatoire",furniture:"Stabilité + fixation",clothes:"Lavage conseillé",feeding:"Hygiène stricte",toys:"Petites pièces",pregnancy:"Vérifier taille/état",other:"Vérifier"}
 },
 de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
@@ -272,16 +273,15 @@ function setLanguage(lang){
  currentLang=lang;localStorage.setItem("mama_lang",lang);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";
  const inf=langInfo[lang]||langInfo.fr;document.getElementById("langTrigger").textContent=inf[0]+" "+inf[1];document.getElementById("langMenu").classList.remove("open");
  Object.keys(t()).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=t()[id]});
- renderStatic();renderItems();
+ renderStatic();renderItems();updateFormMode();
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
-function localItemsKey(){return "mama-marketplace-items"}
-function localCommentsKey(){return "mama-marketplace-comments"}
+
+function localItemsKey(){return "mama-marketplace-items-v2"}
 function getLocalItems(){try{return JSON.parse(localStorage.getItem(localItemsKey()))||[]}catch(e){return[]}}
 function setLocalItems(v){localStorage.setItem(localItemsKey(),JSON.stringify(v.slice(0,100)))}
-function getLocalComments(){try{return JSON.parse(localStorage.getItem(localCommentsKey()))||{}}catch(e){return{}}}
-function setLocalComments(v){localStorage.setItem(localCommentsKey(),JSON.stringify(v))}
+
 function checkKey(){return "mama-marketplace-check-"+(currentUser?currentUser.id:"guest")}
 function state(){try{return JSON.parse(localStorage.getItem(checkKey()))||{}}catch(e){return{}}}
 function saveState(s){localStorage.setItem(checkKey(),JSON.stringify(s))}
@@ -289,130 +289,194 @@ function toggleCheck(i){const s=state();s[i]=!s[i];saveState(s);renderChecklist(
 function resetChecklist(){saveState({});renderChecklist()}
 function renderChecklist(){
  const s=state();const checks=t().checklist;
- document.getElementById("checklistBox").innerHTML=checks.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${x}</span></label>`).join("");
+ document.getElementById("checklistBox").innerHTML=checks.map((x,i)=>`<label class="check-row"><input type="checkbox" ${s[i]?"checked":""} onchange="toggleCheck(${i})"><span>${escapeHtml(x)}</span></label>`).join("");
  const done=Object.keys(s).filter(k=>s[k]).length,total=checks.length;
  document.getElementById("progressBar").style.width=total?Math.round(done/total*100)+"%":"0%";
 }
+
 function categoryName(v){const c=t().categories.find(x=>x[0]===v);return c?c[1]:v}
 function conditionName(v){const c=t().conditions.find(x=>x[0]===v);return c?c[1]:v}
 function priceTypeName(v){const c=t().priceTypes.find(x=>x[0]===v);return c?c[1]:v}
+function normalizePriceType(item){
+ if(item.price_type)return item.price_type;
+ if(item.item_condition==="for_free")return "free";
+ if(item.price_cents===0)return "free";
+ return "sale";
+}
 function renderStatic(){
  document.getElementById("modeValue").textContent=dbOnline?t().online:t().local;
- document.getElementById("filterRow").innerHTML=t().categories.map(c=>`<button class="${activeFilter===c[0]?"active":""}" onclick="setFilter('${c[0]}')">${c[1]}</button>`).join("");
- document.getElementById("itemCategory").innerHTML=t().categories.filter(c=>c[0]!=="all").map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
- document.getElementById("itemCondition").innerHTML=t().conditions.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
- document.getElementById("priceType").innerHTML=t().priceTypes.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
- document.getElementById("buyerList").innerHTML=t().buyerList.map(x=>`<li>${x}</li>`).join("");
- document.getElementById("sellerList").innerHTML=t().sellerList.map(x=>`<li>${x}</li>`).join("");
+ document.getElementById("filterRow").innerHTML=t().categories.map(c=>`<button class="${activeFilter===c[0]?"active":""}" onclick="setFilter('${c[0]}')">${escapeHtml(c[1])}</button>`).join("");
+ document.getElementById("itemCategory").innerHTML=t().categories.filter(c=>c[0]!=="all").map(c=>`<option value="${c[0]}">${escapeHtml(c[1])}</option>`).join("");
+ document.getElementById("itemCondition").innerHTML=t().conditions.map(c=>`<option value="${c[0]}">${escapeHtml(c[1])}</option>`).join("");
+ document.getElementById("priceType").innerHTML=t().priceTypes.map(c=>`<option value="${c[0]}">${escapeHtml(c[1])}</option>`).join("");
+ document.getElementById("buyerList").innerHTML=t().buyerList.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
+ document.getElementById("sellerList").innerHTML=t().sellerList.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
  renderChecklist();
 }
 function setFilter(f){activeFilter=f;renderStatic();renderItems()}
-function clearForm(){["itemTitle","itemDescription","itemPrice","itemLocation","photoUrl","contactInfo"].forEach(id=>document.getElementById(id).value="")}
-function showStatus(txt){const el=document.getElementById("itemStatus");el.textContent=txt;el.style.display="block";setTimeout(()=>el.style.display="none",3500)}
+
+function clearForm(){
+ editingItemId=null;
+ ["itemTitle","itemDescription","itemPrice","itemLocation","photoUrl","contactInfo"].forEach(id=>document.getElementById(id).value="");
+ document.getElementById("itemCategory").value="stroller";
+ document.getElementById("itemCondition").value="used_good";
+ document.getElementById("priceType").value="sale";
+ updateFormMode();
+}
+function cancelEdit(){clearForm()}
+function updateFormMode(){
+ const title=document.getElementById("newItemTitle");
+ const btn=document.getElementById("publishButton");
+ const cancel=document.getElementById("cancelEditButton");
+ if(title)title.textContent=editingItemId?t().editItemTitle:t().newItemTitle;
+ if(btn)btn.textContent=editingItemId?t().updateButton:t().publishButton;
+ if(cancel)cancel.style.display=editingItemId?"inline-flex":"none";
+}
+function showStatus(txt){
+ const el=document.getElementById("itemStatus");
+ el.textContent=txt;el.style.display="block";
+ setTimeout(()=>el.style.display="none",3500);
+}
+
 function payload(){
  const pt=document.getElementById("priceType").value;
  const rawPrice=document.getElementById("itemPrice").value;
+ const condition=document.getElementById("itemCondition").value;
+ let price_cents=null;
+ if(pt==="free"){price_cents=0}
+ else if(rawPrice!==""){price_cents=Math.round(Number(rawPrice)*100)}
  return {
-  user_id: currentUser.id,
+  seller_id: currentUser.id,
   seller_name: document.getElementById("sellerName").value.trim() || (currentProfile?.mother_name || "Mama"),
   category: document.getElementById("itemCategory").value,
-  condition: document.getElementById("itemCondition").value,
+  item_condition: pt==="free" ? "for_free" : condition,
   price_type: pt,
-  price: pt==="free" ? 0 : (rawPrice ? Number(rawPrice) : null),
-  location: document.getElementById("itemLocation").value.trim(),
+  price_cents,
+  currency:"EUR",
+  city: document.getElementById("itemLocation").value.trim(),
   title: document.getElementById("itemTitle").value.trim(),
   description: document.getElementById("itemDescription").value.trim(),
-  photo_url: document.getElementById("photoUrl").value.trim(),
-  contact_info: document.getElementById("contactInfo").value.trim(),
+  image_url: document.getElementById("photoUrl").value.trim() || null,
+  contact_method: document.getElementById("contactInfo").value.trim() || null,
   language: currentLang,
   status: "active"
  }
 }
 async function createItem(){
  const p=payload();
- if(!p.title || !p.description || !p.location){showStatus("Titre, description et lieu obligatoires.");return}
+ if(!p.title || !p.description || !p.city){showStatus(t().missing);return}
  try{
-  const {data,error}=await supabaseClient.from("marketplace_items").insert(p).select("*").single();
-  if(error)throw error;
-  items.unshift({...data,comments:[]});dbOnline=true;showStatus(t().posted);clearForm();renderStatic();renderItems();
+  let res;
+  if(editingItemId){
+    res=await supabaseClient.from("marketplace_items").update(p).eq("id",editingItemId).eq("seller_id",currentUser.id).select("*").single();
+  }else{
+    res=await supabaseClient.from("marketplace_items").insert(p).select("*").single();
+  }
+  if(res.error)throw res.error;
+  dbOnline=true;
+  showStatus(editingItemId?t().updated:t().posted);
+  clearForm();
+  await loadItems();
  }catch(e){
   dbOnline=false;
+  if(editingItemId){showStatus(t().error+" "+(e.message||""));return}
   const li=getLocalItems();
-  li.unshift({...p,id:"local-"+Date.now(),created_at:new Date().toISOString(),comments:[]});
+  li.unshift({...p,id:"local-"+Date.now(),created_at:new Date().toISOString()});
   setLocalItems(li);showStatus(t().localSaved);clearForm();await loadItems();
  }
 }
+function editItem(id){
+ const item=items.find(x=>String(x.id)===String(id));
+ if(!item || item.seller_id!==currentUser.id)return;
+ editingItemId=id;
+ document.getElementById("sellerName").value=item.seller_name||currentProfile?.mother_name||"";
+ document.getElementById("itemCategory").value=item.category||"other";
+ document.getElementById("itemCondition").value=item.item_condition==="for_free"?"used_good":(item.item_condition||"used_good");
+ document.getElementById("priceType").value=normalizePriceType(item);
+ document.getElementById("itemPrice").value=item.price_cents!=null && item.price_cents>0 ? (item.price_cents/100) : "";
+ document.getElementById("itemLocation").value=item.city||"";
+ document.getElementById("itemTitle").value=item.title||"";
+ document.getElementById("itemDescription").value=item.description||"";
+ document.getElementById("photoUrl").value=item.image_url||"";
+ document.getElementById("contactInfo").value=item.contact_method||"";
+ updateFormMode();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
 async function loadItems(){
  try{
-  const {data,error}=await supabaseClient.from("marketplace_items").select("*").in("status",["active","reserved"]).order("created_at",{ascending:false}).limit(80);
+  const {data,error}=await supabaseClient
+    .from("marketplace_items")
+    .select("*")
+    .in("status",["active","reserved","sold"])
+    .order("created_at",{ascending:false})
+    .limit(80);
   if(error)throw error;
   items=data||[];
-  for(const item of items){
-    try{
-      const {data:comments}=await supabaseClient.from("marketplace_comments").select("*").eq("item_id",item.id).order("created_at",{ascending:true}).limit(20);
-      item.comments=comments||[];
-    }catch(err){item.comments=[]}
-  }
   dbOnline=true;
  }catch(e){
   dbOnline=false;
-  const comments=getLocalComments();
-  items=getLocalItems().map(p=>({...p,comments:comments[p.id]||[]}));
+  items=getLocalItems();
  }
  renderStatic();renderItems();
 }
 async function setStatus(id,status){
  const item=items.find(x=>String(x.id)===String(id));if(!item)return;
+ if(item.seller_id!==currentUser.id && !String(id).startsWith("local-"))return;
  item.status=status;renderItems();
  if(String(id).startsWith("local-")||!dbOnline){setLocalItems(items);return}
- try{await supabaseClient.from("marketplace_items").update({status}).eq("id",id)}catch(e){}
+ try{await supabaseClient.from("marketplace_items").update({status}).eq("id",id).eq("seller_id",currentUser.id)}catch(e){}
 }
-async function reportItem(id){await setStatus(id,"reported");alert("Merci. L’annonce a été signalée.");}
-async function addComment(id){
- const input=document.getElementById("comment-"+id);
- const content=(input?.value||"").trim();
- if(!content)return;
- const p={item_id:id,user_id:currentUser.id,author_name:currentProfile?.mother_name||"Mama",content,status:"published",created_at:new Date().toISOString()};
- if(String(id).startsWith("local-")||!dbOnline){
-  const all=getLocalComments();all[id]=all[id]||[];all[id].push({...p,id:"c-"+Date.now()});setLocalComments(all);input.value="";await loadItems();return;
- }
+async function deleteItem(id){
+ await setStatus(id,"deleted");
+ if(editingItemId===id)clearForm();
+ showStatus(t().deleted);
+ await loadItems();
+}
+async function reportItem(id){
+ if(String(id).startsWith("local-")){alert(t().reported);return}
  try{
-  const {data,error}=await supabaseClient.from("marketplace_comments").insert(p).select("*").single();
-  if(error)throw error;
-  const item=items.find(x=>String(x.id)===String(id));if(item){item.comments=item.comments||[];item.comments.push(data)}
-  input.value="";renderItems();
- }catch(e){
-  const all=getLocalComments();all[id]=all[id]||[];all[id].push({...p,id:"c-"+Date.now()});setLocalComments(all);input.value="";await loadItems();
- }
+  await supabaseClient.from("admin_reports").insert({
+    reporter_id: currentUser.id,
+    target_type: "marketplace_item",
+    target_id: id,
+    reason: "Marketplace item reported",
+    details: "Reported from marketplace.html",
+    status: "open"
+  });
+ }catch(e){}
+ alert(t().reported);
 }
 function priceLabel(i){
- if(i.price_type==="free")return t().free;
- if(i.price_type==="donation")return t().donation;
- if(i.price_type==="exchange")return t().exchange;
- if(i.price!==null && i.price!==undefined && i.price!=="")return Number(i.price).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2})+" €";
+ const pt=normalizePriceType(i);
+ if(pt==="free" || i.item_condition==="for_free")return t().free;
+ if(pt==="donation")return t().donation;
+ if(pt==="exchange")return t().exchange;
+ if(i.price_cents!==null && i.price_cents!==undefined && i.price_cents!=="")return (Number(i.price_cents)/100).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2})+" €";
  return "-";
 }
 function renderItems(){
- const visible=items.filter(i=>(i.status||"active")==="active"||i.status==="reserved").filter(i=>activeFilter==="all"||i.category===activeFilter);
+ const visible=items
+  .filter(i=>["active","reserved","sold"].includes(i.status||"active"))
+  .filter(i=>activeFilter==="all"||i.category===activeFilter);
  document.getElementById("itemsCount").textContent=visible.length;
- document.getElementById("freeCount").textContent=items.filter(i=>i.price_type==="free" && (i.status||"active")==="active").length;
+ document.getElementById("freeCount").textContent=items.filter(i=>normalizePriceType(i)==="free" && (i.status||"active")==="active").length;
  const list=document.getElementById("itemsList");
  if(!visible.length){list.innerHTML=`<div class="empty">${t().noItems}</div>`;return}
  list.innerHTML=visible.map(i=>{
-  const comments=(i.comments||[]).filter(c=>(c.status||"published")==="published");
   const date=i.created_at?new Date(i.created_at).toLocaleDateString():"";
-  const img=i.photo_url?`<img src="${escapeHtml(i.photo_url)}" alt="">`:`${categoryEmoji(i.category)}`;
-  const owner=i.user_id===currentUser.id;
-  const contact=i.contact_info?`<a href="${contactHref(i.contact_info)}">${t().contact}</a>`:"";
+  const img=i.image_url?`<img src="${escapeHtml(i.image_url)}" alt="">`:`${categoryEmoji(i.category)}`;
+  const owner=i.seller_id===currentUser.id || String(i.id).startsWith("local-");
+  const contact=i.contact_method?`<a href="${contactHref(i.contact_method)}">${t().contact}</a>`:"";
+  const statusBadge=i.status==="reserved"?`<span class="badge badge-warning">Réservé</span>`:i.status==="sold"?`<span class="badge badge-red">${t().sold}</span>`:"";
   return `<article class="item-card">
     <div class="item-head">
       <div>
         <span class="badge badge-blue">${escapeHtml(categoryName(i.category))}</span>
-        <span class="badge badge-green">${escapeHtml(conditionName(i.condition))}</span>
+        <span class="badge badge-green">${escapeHtml(conditionName(i.item_condition))}</span>
         <span class="badge badge-warning">${escapeHtml(t().safetyTags[i.category]||"")}</span>
-        ${i.status==="reserved"?`<span class="badge badge-red">Reservé</span>`:""}
+        ${statusBadge}
         <h3>${escapeHtml(i.title)}</h3>
-        <div class="item-meta">${escapeHtml(i.seller_name||"Mama")} · ${escapeHtml(i.location||"")} · ${escapeHtml(date)}</div>
+        <div class="item-meta">${escapeHtml(i.seller_name||"Mama")} · ${escapeHtml(i.city||"")} · ${escapeHtml(date)}</div>
       </div>
       <div class="price">${escapeHtml(priceLabel(i))}</div>
     </div>
@@ -420,27 +484,24 @@ function renderItems(){
     <p>${escapeHtml(i.description).replaceAll("\n","<br>")}</p>
     <div class="item-actions">
       ${contact}
-      ${owner?`<button onclick="setStatus('${i.id}','reserved')">${t().reserve}</button><button onclick="setStatus('${i.id}','sold')">${t().sold}</button>`:""}
-      <button onclick="reportItem('${i.id}')">⚑ ${t().report}</button>
-    </div>
-    <div class="comment-box">
-      ${comments.map(c=>`<div class="comment"><small>${escapeHtml(c.author_name||"Mama")} · ${c.created_at?new Date(c.created_at).toLocaleDateString():""}</small><br>${escapeHtml(c.content)}</div>`).join("")}
-      <div class="form-grid" style="margin-top:10px;">
-        <input id="comment-${i.id}" placeholder="${t().placeholderComment}">
-        <button class="button-light" onclick="addComment('${i.id}')">${t().send}</button>
-      </div>
+      ${owner?`<button onclick="editItem('${i.id}')">${t().edit}</button>`:""}
+      ${owner && i.status!=="reserved"?`<button onclick="setStatus('${i.id}','reserved')">${t().reserve}</button>`:""}
+      ${owner && i.status!=="active"?`<button onclick="setStatus('${i.id}','active')">${t().reactivate}</button>`:""}
+      ${owner && i.status!=="sold"?`<button onclick="setStatus('${i.id}','sold')">${t().sold}</button>`:""}
+      ${owner?`<button onclick="deleteItem('${i.id}')">${t().delete}</button>`:`<button onclick="reportItem('${i.id}')">⚑ ${t().report}</button>`}
     </div>
   </article>`
  }).join("");
 }
 function categoryEmoji(c){
- const map={stroller:"🛒",carseat:"🚗",bed:"🛏️",clothes:"👕",feeding:"🍼",toys:"🧸",bath:"🛁",furniture:"🪑",other:"🎁"};
+ const map={stroller:"🛒",car_seat:"🚗",furniture:"🛏️",clothes:"👕",feeding:"🍼",toys:"🧸",pregnancy:"🤰",other:"🎁"};
  return map[c]||"🎁";
 }
 function contactHref(v){
  const s=String(v||"").trim();
  if(s.includes("@"))return "mailto:"+encodeURIComponent(s);
  if(s.match(/^[+0-9 ()-]{6,}$/))return "tel:"+s.replaceAll(" ","");
+ if(s.startsWith("http://")||s.startsWith("https://"))return s;
  return "#";
 }
 async function loadApp(){
@@ -452,7 +513,9 @@ async function loadApp(){
  currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";
  if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));
  document.getElementById("sellerName").value=currentProfile?.mother_name||"";
- document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadItems();
+ document.getElementById("appShell").style.display="block";
+ setLanguage(currentLang);
+ await loadItems();
 }
 async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
 loadApp();

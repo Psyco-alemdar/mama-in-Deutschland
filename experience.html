@@ -182,7 +182,7 @@ textarea{min-height:130px;resize:vertical}
     </div>
     <div class="grid-4">
       <div class="source-card"><a href="community-rules.html">Règles communauté</a><span>Respect, confidentialité, marketplace, santé, modération.</span></div>
-      <div class="source-card"><a href="near-me.html">Près de moi</a><span>Trouver Hebamme, Kinderarzt, Beratung, clinique et services locaux.</span></div>
+      <div class="source-card"><a href="near.html">Près de moi</a><span>Trouver Hebamme, Kinderarzt, Beratung, clinique et services locaux.</span></div>
       <div class="source-card"><a href="marketplace.html">Marketplace</a><span>Donner, vendre ou chercher du matériel bébé avec prudence sécurité.</span></div>
       <div class="source-card"><a href="emergency.html">Urgence</a><span>Ne pas attendre une réponse communautaire en cas de danger.</span></div>
     </div>
@@ -211,29 +211,24 @@ const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY
 let currentUser=null,currentProfile=null,currentLang=localStorage.getItem("mama_lang")||"fr";
 let posts=[],activeFilter="all",dbOnline=true;
 const langInfo={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
+const postLangs={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"]};
 
 const tr={
 fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Share your experience",pageTitle:"Partager pour aider une autre maman",pageText:"Raconte ton vécu en Allemagne : grossesse, clinique, Hebamme, documents, accouchement, allaitement, bébé, émotions ou organisation. Les autres mamans peuvent lire, réagir et commenter dans leur langue.",
 postsLabel:"Expériences",languageLabel:"Langue",modeLabel:"Mode",importantTitle:"Avant de publier",importantText:"Ton expérience peut aider énormément. Mais ne publie pas de données personnelles, documents, noms complets, adresses ou conseils médicaux dangereux.",dangerNote:"Urgence médicale ou psychologique : ne poste pas pour attendre une réponse. Utilise la page urgence, 112, 116117, la clinique ou le Kinderarzt.",emergencyButton:"Urgence",rulesButton:"Règles",
-newPostTitle:"Nouvelle expérience",newPostText:"Choisis une catégorie et écris ton message. Il sera visible aux autres utilisatrices si la base Supabase est configurée.",publishButton:"Publier",clearButton:"Effacer",tipsTitle:"Comment écrire une bonne expérience ?",tipNote:"Phrase utile : “Dans mon cas...” ou “Ce qui m’a aidée...” au lieu de “tu dois absolument...”.",feedTitle:"Expériences de la communauté",feedText:"Filtre par catégorie ou langue. Les commentaires restent bienveillants et modérés.",refreshButton:"Actualiser",linksTitle:"Liens utiles",linksText:"Pour écrire en sécurité ou trouver une aide réelle.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-online:"Online",local:"Local",all:"Tout",comment:"Commenter",send:"Envoyer",like:"Utile",report:"Signaler",noPosts:"Aucune expérience pour le moment. Sois la première à partager.",posted:"Expérience publiée.",localSaved:"Base non disponible : expérience sauvegardée localement sur cet appareil.",error:"Erreur. Vérifie la table Supabase ou réessaie.",
-categories:[["all","Tout"],["pregnancy","Grossesse"],["clinic","Clinique"],["birth","Accouchement"],["hebamme","Hebamme"],["documents","Documents"],["baby","Bébé"],["feeding","Allaitement/Biberon"],["emotions","Émotions"],["tips","Conseils pratiques"]],
+newPostTitle:"Nouvelle expérience",newPostText:"Choisis une catégorie et écris ton message. Il sera visible aux autres utilisatrices.",publishButton:"Publier",clearButton:"Effacer",tipsTitle:"Comment écrire une bonne expérience ?",tipNote:"Phrase utile : “Dans mon cas...” ou “Ce qui m’a aidée...” au lieu de “tu dois absolument...”.",feedTitle:"Expériences de la communauté",feedText:"Filtre par catégorie ou langue. Les commentaires restent bienveillants et modérés.",refreshButton:"Actualiser",linksTitle:"Liens utiles",linksText:"Pour écrire en sécurité ou trouver une aide réelle.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
+online:"Online",local:"Local",all:"Tout",comment:"Commenter",send:"Envoyer",like:"Utile",report:"Signaler",noPosts:"Aucune expérience pour le moment. Sois la première à partager.",posted:"Expérience publiée.",commentPosted:"Commentaire publié.",reported:"Merci. Le contenu a été signalé à la modération.",localSaved:"Base non disponible : contenu sauvegardé localement sur cet appareil.",error:"Erreur. Réessaie.",missing:"Titre et texte obligatoires.",anonymous:"Anonyme",mama:"Mama",
+categories:[["all","Tout"],["pregnancy","Grossesse"],["birth","Accouchement"],["baby","Bébé"],["bureaucracy","Documents / bureaucratie"],["experience","Expérience clinique / Hebamme"],["question","Question"],["general","Général"]],
 phases:[["pregnancy","Grossesse"],["birth","Naissance"],["postpartum","Post-partum"],["baby0_3","Bébé 0–3 mois"],["baby3_12","Bébé 3–12 mois"],["general","Général"]],
-tips:[
-["🧭","Contexte clair","Ville/région, semaine ou âge bébé, type de clinique/service, ce qui s’est passé."],
-["💗","Ton bienveillant","Partager sans culpabiliser les autres mamans : chaque situation est différente."],
-["🔒","Vie privée","Pas de documents, nom complet, adresse, numéro, photo identifiable ou données médicales d’autrui."],
-["🩺","Pas de prescription","Orienter vers médecin, Hebamme ou 116117 au lieu de donner un ordre médical."]
-],
-scriptComment:"Merci pour ton partage 💗",
-placeholderComment:"Écrire un commentaire bienveillant..."
+tips:[["🧭","Contexte clair","Ville/région, semaine ou âge bébé, type de clinique/service, ce qui s’est passé."],["💗","Ton bienveillant","Partager sans culpabiliser les autres mamans : chaque situation est différente."],["🔒","Vie privée","Pas de documents, nom complet, adresse, numéro, photo identifiable ou données médicales d’autrui."],["🩺","Pas de prescription","Orienter vers médecin, Hebamme ou 116117 au lieu de donner un ordre médical."]],
+scriptComment:"Merci pour ton partage 💗",placeholderComment:"Écrire un commentaire bienveillant..."
 },
 de:{},en:{},ar:{},tr:{},ru:{},uk:{}};
 ["de","en","ar","tr","ru","uk"].forEach(l=>tr[l]={...tr.fr});
-Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Erfahrung teilen",pageTitle:"Teilen, um einer anderen Mama zu helfen",bottomBackButton:"Zurück"});
-Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Share your experience",pageTitle:"Share to help another mother",bottomBackButton:"Back"});
-Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"شاركي تجربتك",pageTitle:"شاركي لتساعدي أمًا أخرى",bottomBackButton:"رجوع"});
+Object.assign(tr.de,{logoutButton:"Ausloggen",pageKicker:"Erfahrung teilen",pageTitle:"Teilen, um einer anderen Mama zu helfen",bottomBackButton:"Zurück",online:"Online",local:"Lokal",send:"Senden",report:"Melden",like:"Hilfreich",posted:"Beitrag veröffentlicht.",commentPosted:"Kommentar veröffentlicht.",reported:"Danke. Der Inhalt wurde gemeldet."});
+Object.assign(tr.en,{logoutButton:"Log out",pageKicker:"Share your experience",pageTitle:"Share to help another mother",bottomBackButton:"Back",online:"Online",local:"Local",send:"Send",report:"Report",like:"Helpful",posted:"Experience published.",commentPosted:"Comment published.",reported:"Thank you. The content has been reported."});
+Object.assign(tr.ar,{logoutButton:"خروج",pageKicker:"شاركي تجربتك",pageTitle:"شاركي لتساعدي أمًا أخرى",bottomBackButton:"رجوع",online:"متصل",local:"محلي",send:"إرسال",report:"تبليغ",like:"مفيد",posted:"تم نشر التجربة.",commentPosted:"تم نشر التعليق.",reported:"شكراً. تم إرسال البلاغ إلى الإدارة.",anonymous:"مجهول",mama:"أم"});
 Object.assign(tr.tr,{logoutButton:"Çıkış",bottomBackButton:"Geri"});
 Object.assign(tr.ru,{logoutButton:"Выйти",bottomBackButton:"Назад"});
 Object.assign(tr.uk,{logoutButton:"Вийти",bottomBackButton:"Назад"});
@@ -250,12 +245,34 @@ function setLanguage(lang){
 }
 function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")return"boy";if(gender==="girl"||gender==="twin_girls")return"girl";if(type==="twins"||gender==="twin_mixed")return"twin";return"neutral"}
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin")}
-function localPostsKey(){return "mama-share-experience-posts"}
-function localCommentsKey(){return "mama-share-experience-comments"}
+
+function encodeMeta(meta){try{return btoa(unescape(encodeURIComponent(JSON.stringify(meta))))}catch(e){return""}}
+function decodeMeta(raw){try{return JSON.parse(decodeURIComponent(escape(atob(raw))))}catch(e){return{}}}
+function buildBody(text,meta){return `<!--mama-meta:${encodeMeta(meta)}-->\n${text}`}
+function parseBody(body){
+ const raw=String(body||"");
+ const m=raw.match(/^<!--mama-meta:([^>]+)-->/);
+ if(!m)return {meta:{},text:raw};
+ return {meta:decodeMeta(m[1]),text:raw.replace(/^<!--mama-meta:[^>]+-->\s*/,"")};
+}
+function publicName(p){
+ const parsed=parseBody(p.body);
+ if(p.is_anonymous)return t().anonymous;
+ return parsed.meta.author_name || t().mama;
+}
+function commentName(c){
+ const parsed=parseBody(c.body);
+ if(c.is_anonymous)return t().anonymous;
+ return parsed.meta.author_name || t().mama;
+}
+
+function localPostsKey(){return "mama-community-posts-v1"}
+function localCommentsKey(){return "mama-community-comments-v1"}
 function getLocalPosts(){try{return JSON.parse(localStorage.getItem(localPostsKey()))||[]}catch(e){return[]}}
 function setLocalPosts(v){localStorage.setItem(localPostsKey(),JSON.stringify(v.slice(0,100)))}
 function getLocalComments(){try{return JSON.parse(localStorage.getItem(localCommentsKey()))||{}}catch(e){return{}}}
 function setLocalComments(v){localStorage.setItem(localCommentsKey(),JSON.stringify(v))}
+
 function renderStatic(){
  document.getElementById("languageValue").textContent=(langInfo[currentLang]||langInfo.fr)[1];
  document.getElementById("modeValue").textContent=dbOnline?t().online:t().local;
@@ -263,119 +280,116 @@ function renderStatic(){
  document.getElementById("filterRow").innerHTML=t().categories.map(c=>`<button class="${activeFilter===c[0]?"active":""}" onclick="setFilter('${c[0]}')">${c[1]}</button>`).join("");
  document.getElementById("postCategory").innerHTML=t().categories.filter(c=>c[0]!=="all").map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
  document.getElementById("postPhase").innerHTML=t().phases.map(c=>`<option value="${c[0]}">${c[1]}</option>`).join("");
- document.getElementById("postLang").innerHTML=Object.keys(langInfo).map(k=>`<option value="${k}" ${k===currentLang?"selected":""}>${langInfo[k][0]} ${langInfo[k][1]}</option>`).join("");
+ const safeLang=postLangs[currentLang]?currentLang:"fr";
+ document.getElementById("postLang").innerHTML=Object.keys(postLangs).map(k=>`<option value="${k}" ${k===safeLang?"selected":""}>${postLangs[k][0]} ${postLangs[k][1]}</option>`).join("");
 }
 function setFilter(f){activeFilter=f;renderStatic();renderPosts()}
 function clearForm(){["postTitle","postContent"].forEach(id=>document.getElementById(id).value="")}
 function showStatus(txt){const el=document.getElementById("postStatus");el.textContent=txt;el.style.display="block";setTimeout(()=>el.style.display="none",3500)}
 function postPayload(){
+ const author=document.getElementById("authorName").value.trim() || currentProfile?.mother_name || "Mama";
+ const phase=document.getElementById("postPhase").value;
+ const content=document.getElementById("postContent").value.trim();
  return {
   user_id: currentUser.id,
-  author_name: document.getElementById("authorName").value.trim() || (currentProfile?.mother_name || "Mama"),
   category: document.getElementById("postCategory").value,
-  phase: document.getElementById("postPhase").value,
   language: document.getElementById("postLang").value,
   title: document.getElementById("postTitle").value.trim(),
-  content: document.getElementById("postContent").value.trim(),
-  status: "published"
+  body: buildBody(content,{author_name:author,phase}),
+  is_anonymous:false,
+  status:"published"
  }
 }
 async function createPost(){
  const payload=postPayload();
- if(!payload.title || !payload.content){showStatus("Titre et texte obligatoires.");return}
- try{
-  const {data,error}=await supabaseClient.from("community_posts").insert(payload).select("*").single();
-  if(error)throw error;
-  posts.unshift({...data, comments:[]});
-  dbOnline=true;showStatus(t().posted);clearForm();renderStatic();renderPosts();
- }catch(e){
+ if(!payload.title || !parseBody(payload.body).text.trim()){showStatus(t().missing);return}
+ const {data,error}=await supabaseClient.from("community_posts").insert(payload).select("*").single();
+ if(error){
   dbOnline=false;
   const lp=getLocalPosts();
-  lp.unshift({...payload,id:"local-"+Date.now(),created_at:new Date().toISOString(),likes_count:0,comments:[]});
-  setLocalPosts(lp);
-  showStatus(t().localSaved);clearForm();await loadPosts();
+  lp.unshift({...payload,id:"local-"+Date.now(),created_at:new Date().toISOString(),likes_count:0,report_count:0,comments:[]});
+  setLocalPosts(lp);showStatus(t().localSaved);clearForm();await loadPosts();return;
  }
+ dbOnline=true;posts.unshift({...data,comments:[]});showStatus(t().posted);clearForm();renderStatic();renderPosts();
 }
 async function loadPosts(){
- try{
-  const {data,error}=await supabaseClient.from("community_posts").select("*").eq("status","published").order("created_at",{ascending:false}).limit(50);
-  if(error)throw error;
-  posts=data||[];
-  for(const p of posts){
-    try{
-      const {data:comments}=await supabaseClient.from("community_comments").select("*").eq("post_id",p.id).order("created_at",{ascending:true}).limit(20);
-      p.comments=comments||[];
-    }catch(err){p.comments=[]}
-  }
-  dbOnline=true;
- }catch(e){
-  dbOnline=false;
-  const comments=getLocalComments();
-  posts=getLocalPosts().map(p=>({...p,comments:comments[p.id]||[]}));
+ const {data,error}=await supabaseClient.from("community_posts").select("*").eq("status","published").order("created_at",{ascending:false}).limit(50);
+ if(error){
+  dbOnline=false;const comments=getLocalComments();posts=getLocalPosts().map(p=>({...p,comments:comments[p.id]||[]}));renderStatic();renderPosts();return;
  }
- renderStatic();renderPosts();
+ posts=data||[];
+ for(const p of posts){
+   const {data:comments}=await supabaseClient.from("community_comments").select("*").eq("post_id",p.id).eq("status","published").order("created_at",{ascending:true}).limit(20);
+   p.comments=comments||[];
+ }
+ dbOnline=true;renderStatic();renderPosts();
 }
 async function likePost(id){
  const p=posts.find(x=>String(x.id)===String(id));if(!p)return;
- p.likes_count=(p.likes_count||0)+1;renderPosts();
- if(!String(id).startsWith("local-")){
-  try{await supabaseClient.from("community_posts").update({likes_count:p.likes_count}).eq("id",id)}catch(e){}
- }else{setLocalPosts(posts)}
+ const next=(p.likes_count||0)+1;p.likes_count=next;renderPosts();
+ if(String(id).startsWith("local-")){setLocalPosts(posts);return}
+ const rpc=await supabaseClient.rpc("increment_community_post_like",{post_uuid:id});
+ if(rpc.error){
+   await supabaseClient.from("community_posts").update({likes_count:next}).eq("id",id).eq("user_id",currentUser.id);
+ }
 }
 async function reportPost(id){
  const p=posts.find(x=>String(x.id)===String(id));if(!p)return;
- p.status="reported";renderPosts();
- if(!String(id).startsWith("local-")){
-  try{await supabaseClient.from("community_posts").update({status:"reported"}).eq("id",id)}catch(e){}
- }
- alert("Merci. Le contenu a été signalé.");
+ if(String(id).startsWith("local-")){showStatus(t().reported);return}
+ const {error}=await supabaseClient.from("admin_reports").insert({
+   reporter_id: currentUser.id,
+   target_type:"community_post",
+   target_id:id,
+   reason:"community_report",
+   details:"Post signaled from experience.html",
+   status:"open"
+ });
+ if(error){showStatus(t().error+" "+error.message);return}
+ showStatus(t().reported);
 }
 async function addComment(id){
  const input=document.getElementById("comment-"+id);
- const content=(input?.value||"").trim();
- if(!content)return;
- const payload={post_id:id,user_id:currentUser.id,author_name:currentProfile?.mother_name||"Mama",content,language:currentLang,status:"published"};
+ const content=(input?.value||"").trim();if(!content)return;
+ const author=currentProfile?.mother_name||"Mama";
+ const payload={post_id:id,user_id:currentUser.id,body:buildBody(content,{author_name:author}),is_anonymous:false,status:"published"};
  if(String(id).startsWith("local-")||!dbOnline){
   const all=getLocalComments();all[id]=all[id]||[];all[id].push({...payload,id:"c-"+Date.now(),created_at:new Date().toISOString()});setLocalComments(all);input.value="";await loadPosts();return;
  }
- try{
-  const {data,error}=await supabaseClient.from("community_comments").insert(payload).select("*").single();
-  if(error)throw error;
-  const p=posts.find(x=>String(x.id)===String(id));if(p){p.comments=p.comments||[];p.comments.push(data)}
-  input.value="";renderPosts();
- }catch(e){
-  const all=getLocalComments();all[id]=all[id]||[];all[id].push({...payload,id:"c-"+Date.now(),created_at:new Date().toISOString()});setLocalComments(all);input.value="";await loadPosts();
- }
+ const {data,error}=await supabaseClient.from("community_comments").insert(payload).select("*").single();
+ if(error){showStatus(t().error+" "+error.message);return}
+ const p=posts.find(x=>String(x.id)===String(id));if(p){p.comments=p.comments||[];p.comments.push(data)}
+ input.value="";showStatus(t().commentPosted);renderPosts();
 }
-function categoryName(v){const c=t().categories.find(x=>x[0]===v);return c?c[1]:v}
-function phaseName(v){const c=t().phases.find(x=>x[0]===v);return c?c[1]:v}
+function categoryName(v){const c=t().categories.find(x=>x[0]===v);return c?c[1]:v||t().all}
+function phaseName(v){const c=t().phases.find(x=>x[0]===v);return c?c[1]:v||""}
+function formatDate(v){if(!v)return"";const loc=currentLang==="ar"?"ar-EG-u-ca-gregory-nu-latn":currentLang==="de"?"de-DE":currentLang==="en"?"en-GB":"fr-FR";return new Date(v).toLocaleDateString(loc,{day:"2-digit",month:"short",year:"numeric"})}
 function renderPosts(){
  const list=document.getElementById("postsList");
  const visible=posts.filter(p=>(p.status||"published")==="published").filter(p=>activeFilter==="all"||p.category===activeFilter);
  document.getElementById("postsCount").textContent=visible.length;
  if(!visible.length){list.innerHTML=`<div class="empty">${t().noPosts}</div>`;return}
  list.innerHTML=visible.map(p=>{
-  const comments=(p.comments||[]).filter(c=>(c.status||"published")==="published");
-  const date=p.created_at?new Date(p.created_at).toLocaleDateString():"";
+  const parsed=parseBody(p.body);const comments=(p.comments||[]).filter(c=>(c.status||"published")==="published");
+  const phase=parsed.meta.phase?phaseName(parsed.meta.phase):"";
   return `<article class="post-card">
     <div class="post-head">
       <div>
         <span class="badge badge-blue">${escapeHtml(categoryName(p.category))}</span>
-        <span class="badge">${escapeHtml(phaseName(p.phase))}</span>
-        <span class="badge">${escapeHtml((langInfo[p.language]||["",""])[1]||p.language||"")}</span>
+        ${phase?`<span class="badge">${escapeHtml(phase)}</span>`:""}
+        <span class="badge">${escapeHtml((langInfo[p.language]||postLangs[p.language]||["",p.language||""])[1]||p.language||"")}</span>
         <h3>${escapeHtml(p.title)}</h3>
-        <div class="post-meta">${escapeHtml(p.author_name||"Mama")} · ${escapeHtml(date)}</div>
+        <div class="post-meta">${escapeHtml(publicName(p))} · ${escapeHtml(formatDate(p.created_at))}</div>
       </div>
     </div>
-    <p>${escapeHtml(p.content).replaceAll("\n","<br>")}</p>
+    <p>${escapeHtml(parsed.text).replaceAll("\n","<br>")}</p>
     <div class="post-actions">
       <button onclick="likePost('${p.id}')">💗 ${t().like} · ${p.likes_count||0}</button>
       <button onclick="reportPost('${p.id}')">⚑ ${t().report}</button>
     </div>
     <div class="comment-box">
-      ${comments.map(c=>`<div class="comment"><small>${escapeHtml(c.author_name||"Mama")} · ${c.created_at?new Date(c.created_at).toLocaleDateString():""}</small><br>${escapeHtml(c.content)}</div>`).join("")}
+      ${comments.map(c=>{const pc=parseBody(c.body);return `<div class="comment"><small>${escapeHtml(commentName(c))} · ${escapeHtml(formatDate(c.created_at))}</small><br>${escapeHtml(pc.text)}</div>`}).join("")}
       <div class="form-grid" style="margin-top:10px;">
-        <input id="comment-${p.id}" placeholder="${t().placeholderComment}">
+        <input id="comment-${p.id}" placeholder="${escapeHtml(t().placeholderComment)}">
         <button class="button-light" onclick="addComment('${p.id}')">${t().send}</button>
       </div>
     </div>

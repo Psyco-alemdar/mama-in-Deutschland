@@ -124,7 +124,7 @@ textarea{min-height:160px;resize:vertical}
   <section class="grid-2">
     <div class="card">
       <h2 id="formTitle">Formulaire de contact</h2>
-      <p id="formText">Le message est envoyé vers Supabase si la table contact_messages existe. Sinon il est sauvegardé localement et tu peux le copier.</p>
+      <p id="formText">Le message est envoyé vers Supabase dans contact_messages. Si Supabase répond mal, une copie locale reste disponible.</p>
 
       <div class="form-grid">
         <div class="field">
@@ -198,7 +198,7 @@ textarea{min-height:160px;resize:vertical}
     <div class="grid-4">
       <div class="source-card"><a href="help.html">Aide</a><span>404, cache GitHub, Supabase, profil, updated_at, diagnostic.</span></div>
       <div class="source-card"><a href="community-rules.html">Règles communauté</a><span>Avant de publier un commentaire, une expérience ou une annonce.</span></div>
-      <div class="source-card"><a href="near-me.html">Près de moi</a><span>Trouver Hebamme, Kinderarzt, clinique, Beratung et services locaux.</span></div>
+      <div class="source-card"><a href="near.html">Près de moi</a><span>Trouver Hebamme, Kinderarzt, clinique, Beratung et services locaux.</span></div>
       <div class="source-card"><a href="about.html">À propos</a><span>Comprendre la mission, les limites et la vision de la plateforme.</span></div>
     </div>
   </section>
@@ -230,9 +230,9 @@ const tr={
 fr:{
 dashboardButton:"Dashboard",logoutButton:"Déconnexion",pageKicker:"Contact",pageTitle:"Écrire à Mama in Deutschland",pageText:"Une question, une idée, un bug, une suggestion de contenu, une demande de partenariat ou un retour d’expérience sur la plateforme : écris ici.",
 statusLabel:"Statut",statusReady:"Prêt",accountLabel:"Compte",modeLabel:"Mode",online:"Online",local:"Local",importantTitle:"Important",importantText:"Le formulaire de contact ne remplace pas les urgences médicales, les conseils juridiques, les institutions officielles ou une consultation personnalisée.",urgentNote:"Pour une urgence : 112. Pour un problème médical urgent mais non vital : 116117. Pour grossesse/bébé : Frauenarzt, Hebamme, Kinderarzt ou clinique.",emergencyButton:"Urgence",helpButton:"Aide",
-formTitle:"Formulaire de contact",formText:"Le message est envoyé vers Supabase si la table contact_messages existe. Sinon il est sauvegardé localement et tu peux le copier.",nameLabel:"Nom / pseudo",emailLabel:"E-mail",categoryLabel:"Catégorie",priorityLabel:"Priorité",subjectLabel:"Sujet",messageLabel:"Message",sendButton:"Envoyer",copyButton:"Copier",bugButton:"Modèle bug",
+formTitle:"Formulaire de contact",formText:"Le message est envoyé vers Supabase dans contact_messages. Si Supabase répond mal, une copie locale reste disponible.",nameLabel:"Nom / pseudo",emailLabel:"E-mail",categoryLabel:"Catégorie",priorityLabel:"Priorité",subjectLabel:"Sujet",messageLabel:"Message",sendButton:"Envoyer",copyButton:"Copier",bugButton:"Modèle bug",
 quickTitle:"À qui s’adresser ?",quickNote:"Pour un problème technique de plateforme, le formulaire est adapté. Pour santé, documents officiels ou urgence, contacte les services correspondants.",faqTitle:"FAQ contact",localTitle:"Messages sauvegardés localement",localText:"Si Supabase n’est pas configuré pour les messages, tu peux garder une copie locale.",clearLocalButton:"Effacer local",linksTitle:"Liens utiles avant d’écrire",linksText:"Ces pages répondent souvent plus vite qu’un message.",bottomBackButton:"Retour",bottomDashboardButton:"Dashboard",loginTitle:"Connexion nécessaire",loginText:"Tu dois d’abord te connecter.",loginBackButton:"Retour à l’accueil",
-sent:"Message envoyé.",savedLocal:"Table contact_messages indisponible : message sauvegardé localement.",copied:"Message copié.",missing:"Merci de remplir sujet et message.",empty:"Aucun message local.",
+sent:"Message envoyé.",savedLocal:"Supabase indisponible : message sauvegardé localement.",copied:"Message copié.",missing:"Merci de remplir sujet et message.",empty:"Aucun message local.",
 categories:[["bug","Bug technique"],["idea","Idée / amélioration"],["content","Suggestion contenu"],["community","Communauté"],["marketplace","Marketplace"],["partnership","Partenariat"],["other","Autre"]],
 priorities:[["normal","Normal"],["important","Important"],["urgent","Urgent mais pas médical"]],
 quick:[
@@ -243,7 +243,7 @@ quick:[
 ],
 faq:[
 ["Puis-je demander un conseil médical ici ?","Non. Tu peux signaler qu’une page manque d’information, mais pour ta situation personnelle il faut contacter un professionnel."],
-["Pourquoi mon message peut être sauvegardé localement ?","Parce que la table Supabase contact_messages n’est peut-être pas encore créée. Le message reste alors dans ton navigateur."],
+["Pourquoi mon message peut être sauvegardé localement ?","Parce que Supabase peut être temporairement indisponible ou bloqué. Le message reste alors dans ton navigateur."],
 ["Quoi écrire pour un bug ?","Page concernée, URL, message d’erreur exact, ce que tu as cliqué, navigateur et capture d’écran si possible."],
 ["Puis-je demander une nouvelle fonctionnalité ?","Oui. Donne le besoin concret, la page concernée et comment tu voudrais que l’utilisateur l’utilise."]
 ]
@@ -304,9 +304,45 @@ function showStatus(msg,ok=true){
 async function sendContact(){
  const p=payload();
  if(!p.subject || !p.message){showStatus(t().missing,false);return}
+
+ const fullPayload={
+  user_id:p.user_id,
+  name:p.name,
+  email:p.email,
+  category:p.category,
+  priority:p.priority,
+  subject:p.subject,
+  message:p.message,
+  page_url:p.page_url,
+  user_agent:p.user_agent,
+  language:p.language,
+  status:"new"
+ };
+
+ const fallbackPayload={
+  user_id:p.user_id,
+  name:p.name,
+  email:p.email,
+  subject:p.subject,
+  message:`Catégorie: ${p.category}
+Priorité: ${p.priority}
+Langue: ${p.language}
+Page: ${p.page_url}
+User-Agent: ${p.user_agent}
+
+${p.message}`,
+  status:"new"
+ };
+
  try{
-  const {error}=await supabaseClient.from("contact_messages").insert(p);
-  if(error)throw error;
+  let {error}=await supabaseClient.from("contact_messages").insert(fullPayload);
+
+  // Sécurité: si les colonnes optionnelles n'ont pas encore été ajoutées, on réessaie avec les colonnes de base.
+  if(error){
+    const retry=await supabaseClient.from("contact_messages").insert(fallbackPayload);
+    if(retry.error)throw retry.error;
+  }
+
   document.getElementById("modeValue").textContent=t().online;
   showStatus(t().sent,true);
   clearForm();

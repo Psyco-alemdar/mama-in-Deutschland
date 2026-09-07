@@ -99,6 +99,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--light);box-shadow:0 0
 @media(max-width:800px){.grid-3,.stats{grid-template-columns:1fr}}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero,.panel{padding:20px}.official{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
+<link rel="stylesheet" href="assets/premium.css">
 </head>
 <body>
 <div class="wrap">
@@ -386,11 +387,13 @@ function editEvent(id){
 }
 async function updateStatus(id,status){
  const completed=status==="done";
- await supabaseClient.from("appointments").update({completed}).eq("id",id).eq("user_id",currentUser.id);
+ const {error}=await supabaseClient.from("appointments").update({completed}).eq("id",id).eq("user_id",currentUser.id);
+ if(error){showMessage("error",t().error);return;}
  await loadEvents()
 }
 async function deleteEvent(id){
- await supabaseClient.from("appointments").delete().eq("id",id).eq("user_id",currentUser.id);
+ const {error}=await supabaseClient.from("appointments").delete().eq("id",id).eq("user_id",currentUser.id);
+ if(error){showMessage("error",t().error);return;}
  if(editingEventId===id)clearForm();
  await loadEvents()
 }

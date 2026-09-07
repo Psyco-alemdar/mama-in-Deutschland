@@ -127,8 +127,9 @@ input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155
 @media(max-width:980px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr 1fr}h1{font-size:48px}}
 @media(max-width:620px){.wrap{padding:18px 12px}.left,.form{padding:22px}.account-head{padding:22px 22px 0}h1{font-size:38px}.features,.row,.trust{grid-template-columns:1fr}.langs{justify-content:flex-start}.button-link{width:100%;justify-content:center}}
 </style>
+<link rel="stylesheet" href="assets/premium.css">
 </head>
-<body>
+<body class="mama-auth">
 <div class="wrap">
 <header>
   <a class="brand" href="index.html">
@@ -150,7 +151,7 @@ input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155
   <section class="panel left">
     <div class="kicker" id="kickerText">Plateforme grossesse Allemagne</div>
     <h1 id="mainTitle">Tout comprendre, tout préparer.</h1>
-    <p class="hero-text" id="mainText">Un espace premium pour accompagner les femmes enceintes en Allemagne, surtout quand elles découvrent le système allemand, les examens, les rendez-vous et la bureaucratie.</p>
+    <p class="hero-text" id="mainText">Ta grossesse en Allemagne, avec plus de clarté et de sérénité. Retrouve ton suivi, tes rendez-vous et tes démarches dans un même espace.</p>
 
     <div class="features">
       <div class="feature">
@@ -184,7 +185,7 @@ input:focus,select:focus{border-color:var(--light);box-shadow:0 0 0 4px rgba(155
 
     <div class="trust">
       <div class="trust-item"><div class="trust-number">7</div><div class="trust-label" id="trust1">langues</div></div>
-      <div class="trust-item"><div class="trust-number">32</div><div class="trust-label" id="trust2">pages utiles</div></div>
+      <div class="trust-item"><div class="trust-number">40</div><div class="trust-label" id="trust2">pages utiles</div></div>
       <div class="trust-item"><div class="trust-number">1</div><div class="trust-label" id="trust3">dashboard central</div></div>
     </div>
   </section>
@@ -310,7 +311,7 @@ let currentMode="login";
 
 const translations={
 fr:{
-kickerText:"Plateforme grossesse Allemagne",mainTitle:"Tout comprendre, tout préparer.",mainText:"Un espace premium pour accompagner les femmes enceintes en Allemagne, surtout quand elles découvrent le système allemand, les examens, les rendez-vous et la bureaucratie.",
+kickerText:"Plateforme grossesse Allemagne",mainTitle:"Tout comprendre, tout préparer.",mainText:"Ta grossesse en Allemagne, avec plus de clarté et de sérénité. Retrouve ton suivi, tes rendez-vous et tes démarches dans un même espace.",
 feature1Title:"Parcours clair",feature1Text:"Rendez-vous, examens, diagnostics et étapes importantes semaine par semaine.",feature2Title:"Bureaucratie simplifiée",feature2Text:"Elterngeld, Kindergeld, Mutterschutz, Elternzeit et documents à préparer.",feature3Title:"Multilingue",feature3Text:"Français, allemand, arabe, anglais, turc, russe et ukrainien.",feature4Title:"Communauté",feature4Text:"Expériences, marketplace bébé, conseils et organisation personnelle.",
 badge1:"Grossesse",badge2:"Maman",badge3:"Bébé",badge4:"Allemagne",trust1:"langues",trust2:"pages utiles",trust3:"dashboard central",
 accountTitle:"Mon compte",accountText:"Connecte-toi pour accéder directement à ton dashboard personnalisé.",loginTab:"Connexion",signupTab:"Créer un compte",loginEmailLabel:"Email",loginPasswordLabel:"Mot de passe",forgotLink:"Mot de passe oublié ?",loginButton:"Entrer",newAccountText:"Pas encore de compte ?",createAccountButton:"Créer un compte",

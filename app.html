@@ -69,115 +69,168 @@ input{width:100%;padding:15px 16px;border-radius:19px;border:1px solid var(--bor
 @media(max-width:850px){.pages{grid-template-columns:1fr}.search{grid-template-columns:1fr}.fruit{grid-template-columns:1fr}}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:33px}.card,.hero,.cat{padding:20px}.stats,.quick{grid-template-columns:1fr}.top{width:100%;justify-content:flex-start}}
 </style>
+<link rel="stylesheet" href="assets/premium.css">
 </head>
-<body>
+<body class="mama-dashboard">
+<a class="skip-link" href="#main">Aller au contenu</a>
+<aside class="sidebar" aria-label="Navigation principale">
+<a class="brand" href="app.html"><span class="brand-mark">m</span><span class="brand-name">mama<small>in Deutschland</small></span></a>
+<p class="side-label">Mon espace</p><nav class="side-nav"><a href="app.html" class="current" aria-current="page"><span class="nav-num">01</span>Mon quotidien</a><a href="calendar.html"><span class="nav-num">02</span>Mon calendrier</a><a href="documents.html"><span class="nav-num">03</span>Mes démarches</a><a href="hospital-bag.html"><span class="nav-num">04</span>Ma valise maternité</a></nav>
+<p class="side-label">M’accompagner</p><nav class="side-nav"><a href="#grossesse" onclick="showCategory('grossesse')"><span class="nav-num">♡</span>Ma grossesse</a><a href="#bebe" onclick="showCategory('bebe')"><span class="nav-num">◇</span>Mon bébé</a><a href="#maman" onclick="showCategory('maman')"><span class="nav-num">✧</span>Prendre soin de moi</a><a href="experience.html"><span class="nav-num">◎</span>La communauté</a></nav>
+<div class="side-bottom"><p class="support-note">Un peu plus sereine,<br>chaque jour.</p><nav class="side-nav"><a href="profile.html">Mon profil</a><a href="help.html">Besoin d’aide ?</a><a href="emergency.html">Urgences & contacts</a></nav></div></aside>
 <div class="wrap">
-<header>
-  <a class="logo" href="app.html"><div class="logo-icon">M</div><span>Mama in Deutschland</span></a>
-  <div class="top">
-    <a class="btn" href="profile.html">Profil</a><a class="btn" href="settings.html">Settings</a><a class="btn blue" href="notifications.html">Notification</a>
-    <button class="btn red" onclick="signOut()">Déconnexion</button>
-    <div class="lang"><button class="btn" onclick="toggleLang()" id="langBtn">🇫🇷 FR</button>
-      <div class="menu" id="langMenu">
-        <button onclick="setLang('de')">🇩🇪 DE Deutsch</button><button onclick="setLang('fr')">🇫🇷 FR Français</button><button onclick="setLang('ar')">🇸🇦 AR العربية</button><button onclick="setLang('en')">🇬🇧 EN English</button><button onclick="setLang('tr')">🇹🇷 TR Türkçe</button><button onclick="setLang('ru')">🇷🇺 RU Русский</button><button onclick="setLang('uk')">🇺🇦 UK Українська</button>
-      </div>
-    </div>
-  </div>
-</header>
+<header><div class="header-crumb">Mon espace <span aria-hidden="true"> / </span> <b>Mon quotidien</b></div><a class="brand mobile-brand" href="app.html"><span class="brand-mark">m</span><span class="brand-name">mama<small>in Deutschland</small></span></a><div class="top"><a class="btn header-extra" href="notifications.html">Mes rappels</a><a class="btn header-extra" href="settings.html">Préférences</a><button class="btn header-extra" onclick="signOut()">Déconnexion</button><div class="lang"><button class="btn" onclick="toggleLang()" id="langBtn" aria-label="Choisir la langue">🇫🇷 FR</button><div class="menu" id="langMenu"><button onclick="setLang('de')">🇩🇪 Deutsch</button><button onclick="setLang('fr')">🇫🇷 Français</button><button onclick="setLang('ar')">🇸🇦 العربية</button><button onclick="setLang('en')">🇬🇧 English</button><button onclick="setLang('tr')">🇹🇷 Türkçe</button><button onclick="setLang('ru')">🇷🇺 Русский</button><button onclick="setLang('uk')">🇺🇦 Українська</button></div></div><a class="btn" href="profile.html" aria-label="Mon profil">Profil</a></div></header>
 
-<section class="card hidden" id="loginMsg"><h2>Connexion nécessaire</h2><p>Tu n’es pas connecté ou Supabase n’a pas répondu. Le Dashboard reste visible pour éviter la page blanche.</p><br><a class="btn main" href="index.html">Retour à l’accueil</a></section>
+<section class="card hidden" id="loginMsg"><h2>Connexion nécessaire</h2><p>Connecte-toi pour retrouver ton suivi personnel. Si la connexion prend du temps, tu peux réessayer.</p><br><a class="btn main" href="index.html">Me connecter</a> <button class="btn" onclick="load()">Réessayer</button></section>
 
-<main>
+<section class="card hidden" id="dataStatus" role="status"><p id="dataMessage"></p><button class="btn" onclick="load()">Réessayer</button></section>
+<main id="main">
 <section class="hero">
-  <div>
-    <div class="kicker">Dashboard final liens exacts GitHub</div>
+  <div class="welcome">
+    <div class="kicker">CHAQUE ÉTAPE, À TES CÔTÉS</div>
     <h1 id="greet">Bonjour Mama</h1>
-    <p>Chaque carte ouvre directement la bonne page existante dans ton GitHub. Les liens 404 ont été corrigés.</p>
-    <div class="search"><input id="search" oninput="render()" placeholder="Chercher : diagnostics, feeding, mother recovery, hospital bag..."><button class="btn main" onclick="render()">Chercher</button></div>
-    <div class="stats"><div class="stat"><small>Semaine</small><strong id="week">SA -</strong></div><div class="stat"><small>Jours restants</small><strong id="days">-</strong></div><div class="stat"><small>Bébé</small><strong id="baby">Bébé</strong></div><div class="stat"><small>Prochain</small><strong id="nextMini">-</strong></div></div>
+    <p>Un espace pour toi et ton bébé. Les bonnes informations, au bon moment.</p>
+
+    <div class="stats"><div class="stat"><small>Semaine</small><strong id="week">SA -</strong></div><div class="stat"><small>Jours restants</small><strong id="days">-</strong></div><div class="stat"><small>Bébé</small><strong id="baby">Bébé</strong></div><div class="stat stat-next"><small>Prochain</small><strong id="nextMini">-</strong></div></div>
   </div>
-  <div>
-    <h2>Prochain rendez-vous / terme important</h2>
-    <p>Cette case reste toujours remplie avec le prochain rendez-vous utilisateur ou une étape standard.</p>
+  <div class="agenda">
+    <span class="eyebrow">À noter dans ton agenda</span><h2>Ta prochaine étape</h2>
+    <p>Ton prochain rendez-vous ou une étape de préparation à prévoir.</p>
     <div class="next" id="nextBox"><div class="date"><b>✓</b><small>OK</small></div><div><h3>Complète ton profil</h3><p>Ajoute le terme prévu pour calculer les étapes.</p></div></div>
-    <div class="actions" style="margin-top:14px"><a class="btn main" href="calendar.html">Calendrier</a><a class="btn blue" href="notifications.html">Rappels</a><a class="btn red" href="emergency.html">Emergency</a></div>
+    <div class="actions" style="margin-top:14px"><a class="btn main" href="calendar.html">Calendrier</a><a class="btn blue" href="notifications.html">Rappels</a><a class="btn red" href="emergency.html">Urgences</a></div>
   </div>
 </section>
-
+<div class="section-heading"><div><h2>Tout simplement, l’essentiel.</h2><p>Moins de choses à chercher. Plus de temps pour toi.</p></div><a href="#directory">Tout explorer</a></div>
+<section class="essentials" aria-label="Mes outils essentiels">
+<a class="essential" href="calendar.html"><span class="essential-icon">▦</span><span class="arrow" aria-hidden="true">↗</span><b>Mon calendrier</b><p>Rendez-vous & dates clés</p></a>
+<a class="essential" href="documents.html"><span class="essential-icon">≡</span><span class="arrow" aria-hidden="true">↗</span><b>Mes démarches</b><p>Chaque document, pas à pas</p></a>
+<a class="essential" href="hospital-bag.html"><span class="essential-icon">✓</span><span class="arrow" aria-hidden="true">↗</span><b>Ma valise</b><p>Prête pour le grand jour</p></a>
+<a class="essential" href="birth-plan.html"><span class="essential-icon">♡</span><span class="arrow" aria-hidden="true">↗</span><b>Mon projet de naissance</b><p>Mes souhaits, à mon rythme</p></a>
+</section>
 <nav class="quick"><a href="#grossesse">🤰 Grossesse</a><a href="#bebe">👶 Bébé</a><a href="#maman">👩 Maman</a><a href="#allemagne">📄 Allemagne</a><a href="#communaute">💬 Communauté</a><a href="#support">⚙️ Compte</a></nav>
 
 <section class="grid2">
-  <div class="card"><h2>Bébé maintenant</h2><p>Poids estimé, fruit/légume et développement.</p><br><div class="fruit"><div class="fruitpic" id="fruitEmoji">🍓</div><div><span class="badge">Fruit / légume</span><h3 id="fruitTitle">Complète ton profil</h3><p id="fruitText">Ajoute le terme prévu ou la semaine actuelle dans Profil.</p><br><div class="actions"><a class="btn" href="baby-development.html">Baby development</a><a class="btn" href="feeding.html">Feeding</a><a class="btn" href="sleep.html">Sleep</a></div></div></div></div>
-  <div class="card"><h2>Priorités visibles</h2><p>Ce qui doit rester devant les yeux.</p><br><div class="grid2" id="prio"></div></div>
+  <div class="card baby-card"><span class="eyebrow">Une nouvelle semaine ensemble</span><h2>Bébé, aujourd’hui.</h2><p>Les petits repères de cette grande aventure.</p><br><div class="fruit"><div class="fruitpic" id="fruitEmoji">🍓</div><div><span class="badge">Fruit / légume</span><h3 id="fruitTitle">Complète ton profil</h3><p id="fruitText">Ajoute le terme prévu ou la semaine actuelle dans Profil.</p><br><div class="actions"><a class="btn" href="baby-development.html">Développement</a><a class="btn" href="feeding.html">Alimentation</a><a class="btn" href="sleep.html">Sommeil</a></div></div></div></div>
+  <div class="card"><span class="eyebrow">À ton rythme</span><h2>Pour les prochains jours</h2><p>Quelques repères utiles pour avancer sereinement.</p><br><div class="grid2" id="prio"></div></div>
 </section>
 
-<section class="card"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><h2>Navigation complète</h2><p>Catégories et sous-catégories avec uniquement les fichiers existants dans ton GitHub.</p></div><a class="btn" href="sitemap.html">Sitemap</a></div><br><div class="tabs" id="tabs"></div></section>
+<section class="card directory" id="directory"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><div><h2>Un accompagnement, de A à Z.</h2><p>Retrouve les outils et les informations dont tu as besoin.</p></div><a class="btn" href="sitemap.html">Vue d’ensemble</a></div>    <div class="search"><input id="search" oninput="render()" aria-label="Rechercher un outil" placeholder="Une question, une démarche, un outil…"><button class="btn main" onclick="render()">Chercher</button></div><div class="tabs" id="tabs"></div></section>
 <div id="cats"></div><div class="empty hidden" id="empty">Aucune page trouvée.</div>
-<div class="foot"><a class="btn" href="help.html">Help</a><a class="btn main" href="sitemap.html">Toutes les pages</a></div>
-</main></div>
+<div class="foot"><span>Mama in Deutschland · À tes côtés, en Allemagne.</span><a class="btn" href="help.html">Aide & contact</a><a class="btn main" href="sitemap.html">Toutes les pages</a></div>
+</main></div><nav class="mobile-bar" aria-label="Navigation mobile"><a href="app.html"><span>⌂</span>Accueil</a><a href="calendar.html"><span>▦</span>Agenda</a><a href="documents.html"><span>≡</span>Démarches</a><a href="#directory"><span>◇</span>Explorer</a><a href="profile.html"><span>○</span>Profil</a></nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co", SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 let supabaseClient=null;try{supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY)}catch(e){}
-const ADMIN=["d4743994-af4c-4623-b6da-e8e9a7645a8e"];
-let user=null, profile=null, lang=localStorage.getItem("mama_lang")||"fr", active="all";
+function stored(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function remember(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+let user=null, profile=null, accountProfile=null, appointments=[], isAdmin=false, lang=stored("mama_lang")||"fr", active="all";
+let generation=0, loading=false, states={profile:"idle",pregnancy:"idle",appointments:"idle"};
 const langs={fr:["🇫🇷","FR"],de:["🇩🇪","DE"],ar:["🇸🇦","AR"],en:["🇬🇧","EN"],tr:["🇹🇷","TR"],ru:["🇷🇺","RU"],uk:["🇺🇦","UK"]};
 const cats=[["all","Tout"],["grossesse","Grossesse"],["bebe","Bébé"],["maman","Maman"],["allemagne","Allemagne"],["communaute","Communauté"],["support","Compte & support"]];
 
 const groups=[
 {id:"grossesse",ico:"🤰",title:"Grossesse",desc:"Suivi, diagnostics, contractions, naissance et préparation.",subs:[
-["Suivi médical",["🗓️|Calendrier|calendar.html|Rendez-vous et étapes importantes.","🏥|Applications|applications.html|Applications, demandes et suivi.","🧪|NIPT & diagnostics|diagnostics.html|Clarté nucale, NIPT, échographies.","🩺|Medical|medical.html|Repères médicaux simples."]],
-["Naissance",["〰️|Contractions|contractions.html|Contractions, rythme, quand appeler.","📝|Birth plan|birth-plan.html|Préférences accouchement.","🧳|Hospital bag|hospital-bag.html|Valise maternité complète.","🚑|Emergency|emergency.html|112, 116117, signaux d’alerte."]],
-["Vie quotidienne",["👣|Movements|movements.html|Mouvements fœtaux et observation.","🍽️|Nutrition|nutrition.html|Alimentation et compléments.","🎓|Courses|courses.html|Cours préparation naissance."]]
+["Suivi médical",["🗓️|Calendrier|calendar.html|Rendez-vous et étapes importantes.","🏥|Demandes & formulaires|applications.html|Applications, demandes et suivi.","🧪|Examens & dépistages|diagnostics.html|Clarté nucale, NIPT, échographies.","🩺|Suivi médical|medical.html|Repères médicaux simples."]],
+["Naissance",["〰️|Contractions|contractions.html|Contractions, rythme, quand appeler.","📝|Projet de naissance|birth-plan.html|Préférences accouchement.","🧳|Valise maternité|hospital-bag.html|Valise maternité complète.","🚑|Urgences|emergency.html|112, 116117, signaux d’alerte."]],
+["Vie quotidienne",["👣|Mouvements de bébé|movements.html|Mouvements fœtaux et observation.","🍽️|Nutrition|nutrition.html|Alimentation et compléments.","🎓|Cours & préparation|courses.html|Cours préparation naissance."]]
 ]},
 {id:"bebe",ico:"👶",title:"Bébé",desc:"Développement, équipement, sommeil, alimentation, prénom et vaccins.",subs:[
-["Développement & santé",["🌱|Baby development|baby-development.html|0–12 mois, U-Untersuchungen.","💉|Vaccinations|vaccinations.html|Vaccins bébé en Allemagne.","🍼|After birth|after-birth.html|Premiers jours, U2/U3.","🚼|Baby|baby.html|Vue globale bébé."]],
-["Sommeil & alimentation",["🤱|Feeding|feeding.html|Allaitement, biberon, tire-lait.","🌙|Sleep|sleep.html|Sommeil sûr et rythme.","🧸|Baby equipment|baby-equipment.html|Lit, poussette, siège auto.","💡|Baby names|baby-names.html|Prénom bébé et documents."]]
+["Développement & santé",["🌱|Développement de bébé|baby-development.html|0–12 mois, U-Untersuchungen.","💉|Vaccinations|vaccinations.html|Vaccins bébé en Allemagne.","🍼|Après la naissance|after-birth.html|Premiers jours, U2/U3.","🚼|Mon bébé|baby.html|Vue globale bébé."]],
+["Sommeil & alimentation",["🤱|Alimentation|feeding.html|Allaitement, biberon, tire-lait.","🌙|Sommeil|sleep.html|Sommeil sûr et rythme.","🧸|Équipement bébé|baby-equipment.html|Lit, poussette, siège auto.","💡|Prénoms|baby-names.html|Prénom bébé et documents."]]
 ]},
 {id:"maman",ico:"👩",title:"Maman",desc:"Santé, récupération, émotions, partenaire et budget.",subs:[
-["Santé maman",["🧘|Mother recovery|mother-recovery.html|Wochenbett, périnée, césarienne.","💗|Emotions|emotions.html|Stress, moral, baby blues.","🤝|Partner|partner.html|Rôle et soutien du partenaire."]],
+["Santé maman",["🧘|Récupération|mother-recovery.html|Wochenbett, périnée, césarienne.","💗|Émotions & bien-être|emotions.html|Stress, moral, baby blues.","🤝|Mon partenaire|partner.html|Rôle et soutien du partenaire."]],
 ["Organisation",["💰|Budget|budget.html|Dépenses bébé et priorités."]]
 ]},
 {id:"allemagne",ico:"📄",title:"Allemagne & bureaucratie",desc:"Documents officiels et démarches.",subs:[
-["Documents",["📄|Documents|documents.html|Standesamt, Kindergeld, Elterngeld.","🏛️|Bureaucracy|bureaucracy.html|Vue globale des démarches."]],
-["Services",["📍|Near|near.html|Hebamme, Kinderarzt, clinique.","🚑|Emergency|emergency.html|Urgences et numéros."]]
+["Documents",["📄|Mes démarches|documents.html|Standesamt, Kindergeld, Elterngeld.","🏛️|Comprendre les démarches|bureaucracy.html|Vue globale des démarches."]],
+["Services",["📍|Autour de moi|near.html|Hebamme, Kinderarzt, clinique.","🚑|Urgences|emergency.html|Urgences et numéros."]]
 ]},
 {id:"communaute",ico:"💬",title:"Communauté",desc:"Expériences, règles, marketplace et contact.",subs:[
-["Partager & échanger",["💬|Experience|experience.html|Partager et lire des expériences.","📜|Community rules|community-rules.html|Règles et modération.","🧺|Marketplace|marketplace.html|Donner, vendre, chercher bébé.","✉️|Contact|contact.html|Bug, idée, partenariat."]]
+["Partager & échanger",["💬|Paroles de mamans|experience.html|Partager et lire des expériences.","📜|Règles de la communauté|community-rules.html|Règles et modération.","🧺|Entre parents|marketplace.html|Donner, vendre, chercher bébé.","✉️|Contact|contact.html|Bug, idée, partenariat."]]
 ]},
 {id:"support",ico:"⚙️",title:"Compte & support",desc:"Profil, paramètres, notifications, aide et admin.",subs:[
-["Compte",["👤|Profile|profile.html|Prénom, terme, semaine, thème.","⚙️|Settings|settings.html|Modules et priorités.","🔔|Notifications|notifications.html|Rappels et export .ics.","🔐|Reset password|reset-password.html|Réinitialiser le mot de passe.","🧭|Sitemap|sitemap.html|Toutes les pages."]],
-["Support",["❓|Help|help.html|404, cache, Supabase, bugs.","ℹ️|About|about.html|Mission et limites.","🏠|Accueil|index.html|Connexion et compte."]],
-["Admin",["🛡️|Admin moderation|admin-moderation.html|Modération communauté."],true]
+["Compte",["👤|Mon profil|profile.html|Prénom, terme, semaine, thème.","⚙️|Préférences|settings.html|Modules et priorités.","🔔|Mes rappels|notifications.html|Rappels et export .ics.","🔐|Mot de passe|reset-password.html|Réinitialiser le mot de passe.","🧭|Plan du site|sitemap.html|Toutes les pages."]],
+["Support",["❓|Aide|help.html|404, cache, Supabase, bugs.","ℹ️|À propos|about.html|Mission et limites.","🏠|Accueil|index.html|Connexion et compte."]],
+["Admin",["🛡️|Modération|admin-moderation.html|Modération communauté."],true]
 ]}
 ];
 
 function p(s){let a=s.split("|");return{ico:a[0],t:a[1],f:a[2],d:a[3]||""}}
 function esc(x){return String(x??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function showCategory(id){active=id;render();document.getElementById(id)?.scrollIntoView({behavior:"smooth",block:"start"})}
 function toggleLang(){document.getElementById("langMenu").classList.toggle("open")}
 document.addEventListener("click",e=>{if(!e.target.closest(".lang"))document.getElementById("langMenu").classList.remove("open")});
-function setLang(l){lang=l;localStorage.setItem("mama_lang",l);document.documentElement.lang=l;document.body.dir=l==="ar"?"rtl":"ltr";let x=langs[l]||langs.fr;document.getElementById("langBtn").textContent=x[0]+" "+x[1];render()}
+function setLang(l){lang=langs[l]?l:"fr";remember("mama_lang",l);document.documentElement.lang=lang;document.body.dir=lang==="ar"?"rtl":"ltr";document.documentElement.dir=document.body.dir;let x=langs[l]||langs.fr;document.getElementById("langBtn").textContent=x[0]+" "+x[1];render()}
 function theme(t,g){if(g==="boy"||g==="twin_boys")return"boy";if(g==="girl"||g==="twin_girls")return"girl";if(t==="twins"||g==="twin_mixed")return"twin";return"neutral"}
 function apply(th){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(th==="boy")document.body.classList.add("theme-boy");if(th==="girl")document.body.classList.add("theme-girl");if(th==="twin")document.body.classList.add("theme-twin")}
-function readJSON(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
-function localProfile(){let keys=[];if(user)keys.push("mama-profile-local-"+user.id);keys.push("mama-profile-local-guest","pregnancy_profile","mama_profile","profile");for(let k of keys){let x=readJSON(k);if(x)return x}return{}}
-function pickName(obj){if(!obj)return"";let keys=["mother_name","mama_name","mom_name","motherName","maman","maman_name","prenom_maman","first_name","name","full_name","display_name","username"];for(let k of keys){if(obj[k]&&String(obj[k]).trim())return String(obj[k]).trim()}return""}
-function momName(){let l=localProfile();return pickName(profile)||pickName(l)||pickName(user?.user_metadata)||((user?.email||"").split("@")[0])||"Mama"}
-function calc(){let l=localProfile(),due=profile?.due_date||l.due_date;if(due){let today=new Date();today.setHours(0,0,0,0);let d=new Date(due+"T00:00");let start=new Date(d);start.setDate(start.getDate()-280);let days=Math.floor((today-start)/86400000),week=Math.floor(days/7)+1,left=Math.ceil((d-today)/86400000);return{week:Math.max(1,Math.min(42,week)),left,due:d}}let week=Number(profile?.pregnancy_week||l.pregnancy_week||1);return{week:Math.max(1,Math.min(42,week)),left:"-",due:null}}
+function readJSON(k){try{return JSON.parse(stored(k))}catch(e){return null}}
+function localProfile(){return user?(readJSON("mama-profile-local-"+user.id)||{}):{}}
+function pickName(obj){if(!obj)return"";for(let k of ["mother_name","full_name","first_name","name"]){if(typeof obj[k]==="string"&&obj[k].trim())return obj[k].trim()}return""}
+function momName(){return pickName(accountProfile)||pickName(profile)||(states.profile==="error"&&states.pregnancy==="error"?pickName(localProfile()):"")||pickName(user?.user_metadata)}
+function dayNumber(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value||""))return null;let d=new Date(value+"T00:00:00Z");return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===value?Math.floor(d.getTime()/86400000):null}
+function todayKey(now=new Date()){let p=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Berlin",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(now);let get=k=>p.find(x=>x.type===k).value;return get("year")+"-"+get("month")+"-"+get("day")}
+function currentPregnancy(){return profile||(states.pregnancy==="error"?localProfile():{})}
+function calc(now=new Date()){let p=currentPregnancy(),today=dayNumber(todayKey(now)),dueDay=dayNumber(p.due_date);if(dueDay!==null){let days=today-(dueDay-280);return{week:days>=0&&days<=315?Math.floor(days/7):null,left:dueDay-today,due:new Date(dueDay*86400000),dueDay,born:p.baby_is_born===true}}let w=Number(p.current_week??p.pregnancy_week);return{week:Number.isInteger(w)&&w>=1&&w<=45?w:null,left:"—",due:null,dueDay:null,born:p.baby_is_born===true}}
 const fruits=[[4,"🌱","graine","≈1 mm"],[8,"🫐","myrtille","≈1 g"],[12,"🍋","citron vert","≈14 g"],[16,"🥑","avocat","≈100 g"],[20,"🍌","banane","≈300 g"],[24,"🌽","maïs","≈600 g"],[28,"🍆","aubergine","≈1000 g"],[32,"🍍","ananas","≈1700 g"],[36,"🥬","chou","≈2600 g"],[40,"🍉","pastèque","≈3400 g"]];
 function fruit(w){let f=fruits[0];for(let x of fruits){if(w>=x[0])f=x}return f}
-function next(){let c=calc();if(c.due){let steps=[["Documents naissance",70,"documents.html"],["Préparer valise maternité",56,"hospital-bag.html"],["Diagnostic / contrôle",42,"diagnostics.html"],["Terme prévu",0,"calendar.html"]],now=new Date();now.setHours(0,0,0,0);for(let s of steps){let d=new Date(c.due);d.setDate(d.getDate()-s[1]);if(d>=now)return{t:s[0],d,f:s[2]}}}return{t:"Compléter profil grossesse",d:new Date(),f:"profile.html"}}
-function renderHero(){let l=localProfile(),c=calc(),fr=fruit(c.week),h=new Date().getHours(),g=h<12?"Bonjour":h<18?"Bon après-midi":"Bonsoir";document.getElementById("greet").textContent=g+" "+momName();document.getElementById("week").textContent="SA "+c.week;document.getElementById("days").textContent=c.left;document.getElementById("baby").textContent=profile?.baby_name||l.baby_name||"Bébé";document.getElementById("fruitEmoji").textContent=fr[1];document.getElementById("fruitTitle").textContent=`SA ${c.week} · ${fr[2]} · ${fr[3]}`;document.getElementById("fruitText").textContent="Ouvre Baby development pour voir les repères, les étapes et les questions importantes.";let n=next(),m=n.d.toLocaleString("fr-FR",{month:"short"});document.getElementById("nextMini").textContent=n.d.toLocaleDateString();document.getElementById("nextBox").innerHTML=`<div class="date"><b>${n.d.getDate()}</b><small>${m}</small></div><div><h3>${esc(n.t)}</h3><p>${n.d.toLocaleDateString()} · toujours visible</p><br><a class="btn" href="${n.f}">Voir</a></div>`}
+function next(now=new Date()){
+ let c=calc(now),today=dayNumber(todayKey(now)),events=[];
+ if(user)for(let a of appointments){let day=dayNumber(a.appointment_date);if(day===null||day<today||a.completed===true||["cancelled","canceled","done","completed","deleted"].includes(a.status))continue;events.push({t:a.title||"Rendez-vous",day,time:a.appointment_time?.slice(0,5)||"",f:"calendar.html",kind:"appointment"})}
+ if(c.dueDay!==null&&!c.born){for(let [t,offset,f] of [["Documents naissance",70,"documents.html"],["Préparer valise maternité",56,"hospital-bag.html"],["Diagnostic / contrôle",42,"diagnostics.html"],["Terme prévu",0,"calendar.html"]]){let day=c.dueDay-offset;if(day>=today)events.push({t,day,time:"",f,kind:"standard"})}}
+ events.sort((a,b)=>a.day-b.day||(a.kind===b.kind?0:a.kind==="appointment"?-1:1)||(a.time||"99:99").localeCompare(b.time||"99:99"));return events[0]||null;
+}
+function dateText(day,options){return new Date(day*86400000).toLocaleDateString(langs[lang]?lang:"fr",{timeZone:"UTC",...options})}
+function renderHero(){
+ let p=currentPregnancy(),c=calc(),fr=fruit(c.week),name=momName();
+ document.getElementById("greet").textContent="Bonjour"+(name?" "+name:"");
+ document.getElementById("week").textContent=c.born?"Après naissance":c.week===null?"—":"SA "+c.week;
+ document.getElementById("days").textContent=c.born?"—":c.left;
+ document.getElementById("baby").textContent=p.baby_name||"Bébé";
+ let known=c.week!==null&&!c.born;
+ document.getElementById("fruitEmoji").textContent=known?fr[1]:"🌱";
+ document.getElementById("fruitTitle").textContent=c.born?"Les premiers mois de bébé":known?`SA ${c.week} · ${fr[2]} · ${fr[3]}`:"Complète ton profil";
+ document.getElementById("fruitText").textContent=c.born?"Retrouve les repères du bébé après la naissance.":known?"Repères approximatifs : chaque bébé se développe à son rythme.":"Ajoute le terme prévu ou la semaine actuelle dans Profil.";
+ let n=next(),box=document.getElementById("nextBox");
+ box.setAttribute("aria-busy",String(states.appointments==="loading"));
+ document.getElementById("nextMini").textContent=n?dateText(n.day,{day:"numeric",month:"short"}):"—";
+ if(n){let description=(n.kind==="appointment"?"Rendez-vous personnel":"Étape à prévoir")+" · "+dateText(n.day)+(n.time?" · "+n.time+" (heure allemande)":"");box.innerHTML=`<a href="${n.f}" style="display:contents;color:inherit;text-decoration:none"><div class="date"><b>${new Date(n.day*86400000).getUTCDate()}</b><small>${esc(dateText(n.day,{month:"short"}))}</small></div><div><h3>${esc(n.t)}</h3><p>${esc(description)}</p></div></a>`}
+ else{let pending=states.appointments==="loading",hasProfile=c.dueDay!==null||c.born;box.innerHTML=`<div class="date"><b>—</b></div><div><h3>${pending?"Chargement des rendez-vous…":hasProfile?"Aucun événement à venir":"Personnalise ton suivi"}</h3><p>${pending?"Ton agenda est en cours de lecture.":hasProfile?"Ajoute ton prochain rendez-vous au calendrier.":"Renseigne ton terme dans le profil."}</p><a class="btn" href="${hasProfile?"calendar.html":"profile.html"}">${hasProfile?"Calendrier":"Mon profil"}</a></div>`}
+ let errors=[];if(states.profile==="error")errors.push("Le profil de compte n’a pas pu être chargé.");if(states.pregnancy==="error")errors.push("Le suivi de grossesse n’a pas pu être actualisé. Les informations locales éventuelles restent à vérifier.");if(states.appointments==="error")errors.push("Les rendez-vous n’ont pas pu être vérifiés : une étape affichée peut ne pas être la prochaine.");
+ document.getElementById("dataMessage").textContent=errors.join(" ");document.getElementById("dataStatus").classList.toggle("hidden",errors.length===0);
+}
 function itemCard(it){return`<a class="page" href="${it.f}"><div class="ico">${it.ico}</div><div class="pt">${esc(it.t)}</div><p>${esc(it.d)}</p><div class="file">${esc(it.f)}</div></a>`}
 function mini(it){return`<a class="mini" href="${it.f}"><div class="ico">${it.ico}</div><div><h3>${esc(it.t)}</h3><p>${esc(it.d)}</p></div></a>`}
-function all(){let adm=user&&ADMIN.includes(user.id),arr=[];groups.forEach(g=>g.subs.forEach(s=>{if(s[2]&&!adm)return;s[1].map(p).forEach(it=>arr.push({...it,cat:g.id}))}));return arr}
-function renderPriority(){let names=["diagnostics.html","documents.html","emergency.html","baby-development.html","feeding.html","mother-recovery.html"];document.getElementById("prio").innerHTML=all().filter(x=>names.includes(x.f)).map(mini).join("")}
+function all(){let adm=user&&isAdmin,arr=[];groups.forEach(g=>g.subs.forEach(s=>{if(s[2]&&!adm)return;s[1].map(p).forEach(it=>arr.push({...it,cat:g.id}))}));return arr}
+function renderPriority(){let c=calc();let names=c.born?["mother-recovery.html","feeding.html","baby-development.html"]:c.week===null?["profile.html","calendar.html","documents.html"]:c.week>=32?["hospital-bag.html","birth-plan.html","documents.html"]:["diagnostics.html","nutrition.html","calendar.html"];document.getElementById("prio").innerHTML=all().filter(x=>names.includes(x.f)).map(mini).join("")}
 function renderTabs(){document.getElementById("tabs").innerHTML=cats.map(c=>`<button class="${active===c[0]?"active":""}" onclick="active='${c[0]}';renderTabs();renderNav()">${c[1]}</button>`).join("")}
-function renderNav(){let q=(document.getElementById("search").value||"").toLowerCase().trim(),adm=user&&ADMIN.includes(user.id),shown=0;document.getElementById("cats").innerHTML=groups.filter(g=>active==="all"||active===g.id).map(g=>{let body="";g.subs.forEach(s=>{if(s[2]&&!adm)return;let items=s[1].map(p).filter(it=>!q||(it.t+" "+it.f+" "+it.d+" "+g.title+" "+s[0]).toLowerCase().includes(q));if(!items.length)return;shown+=items.length;body+=`<div class="sub"><div class="sub-title">${s[0]}</div><div class="pages">${items.map(itemCard).join("")}</div></div>`});return body?`<section class="cat" id="${g.id}"><div><span class="badge">${g.ico} ${g.title}</span><h2>${g.title}</h2><p>${g.desc}</p></div>${body}</section>`:""}).join("");document.getElementById("empty").classList.toggle("hidden",shown!==0)}
+function renderNav(){let q=(document.getElementById("search").value||"").toLowerCase().trim(),adm=user&&isAdmin,shown=0;document.getElementById("cats").innerHTML=groups.filter(g=>active==="all"||active===g.id).map(g=>{let body="";g.subs.forEach(s=>{if(s[2]&&!adm)return;let items=s[1].map(p).filter(it=>!q||(it.t+" "+it.f+" "+it.d+" "+g.title+" "+s[0]).toLowerCase().includes(q));if(!items.length)return;shown+=items.length;body+=`<div class="sub"><div class="sub-title">${s[0]}</div><div class="pages">${items.map(itemCard).join("")}</div></div>`});return body?`<section class="cat" id="${g.id}"><div><span class="badge">${g.ico} ${g.title}</span><h2>${g.title}</h2><p>${g.desc}</p></div>${body}</section>`:""}).join("");document.getElementById("empty").classList.toggle("hidden",shown!==0)}
 function render(){renderHero();renderPriority();renderTabs();renderNav()}
-async function load(){try{if(!supabaseClient)throw 0;let s=await supabaseClient.auth.getSession();if(s.error||!s.data.session){document.getElementById("loginMsg").classList.remove("hidden");render();return}user=s.data.session.user;let r=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",user.id).limit(1);if(!r.error&&r.data&&r.data[0])profile=r.data[0];lang=localStorage.getItem("mama_lang")||(profile&&profile.language)||"fr";if(profile)apply(profile.theme_mode||theme(profile.pregnancy_type,profile.baby_gender));setLang(lang)}catch(e){document.getElementById("loginMsg").classList.remove("hidden");render()}}
-async function signOut(){try{if(supabaseClient)await supabaseClient.auth.signOut()}catch(e){}location.href="index.html"}
+async function bounded(work){let timer;try{return await Promise.race([Promise.resolve().then(work),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error("timeout")),12000)})])}finally{clearTimeout(timer)}}
+function clearPersonal(){user=null;profile=null;accountProfile=null;appointments=[];isAdmin=false;states={profile:"idle",pregnancy:"idle",appointments:"idle"};apply("neutral")}
+async function load(){
+ const run=++generation;loading=true;clearPersonal();states={profile:"loading",pregnancy:"loading",appointments:"loading"};render();
+ try{
+  if(!supabaseClient)throw new Error("unavailable");
+  const session=await bounded(()=>supabaseClient.auth.getSession());if(run!==generation)return;if(session.error)throw session.error;
+  if(!session.data.session){clearPersonal();document.getElementById("loginMsg").classList.remove("hidden");render();return}
+  user=session.data.session.user;document.getElementById("loginMsg").classList.add("hidden");
+  const id=user.id;
+  async function fetchPart(key,request,accept){try{const r=await bounded(request);if(run!==generation)return;if(r.error)throw r.error;accept(r.data);states[key]="ready"}catch(e){if(run!==generation)return;states[key]="error"}if(run===generation)render()}
+  await Promise.allSettled([
+   fetchPart("profile",()=>supabaseClient.from("profiles").select("id,mother_name,full_name,preferred_language").eq("id",id).maybeSingle(),data=>{accountProfile=data;lang=stored("mama_lang")||data?.preferred_language||lang;setLang(lang)}),
+   fetchPart("pregnancy",()=>supabaseClient.from("pregnancy_profiles").select("id,mother_name,full_name,due_date,current_week,pregnancy_week,baby_name,baby_is_born,baby_birth_date,theme_mode,pregnancy_type,baby_gender,language").eq("user_id",id).order("created_at",{ascending:false,nullsFirst:false}).order("id",{ascending:false}).limit(1),data=>{profile=data?.[0]||null;if(profile)apply(profile.theme_mode==="auto"?theme(profile.pregnancy_type,profile.baby_gender):(profile.theme_mode||theme(profile.pregnancy_type,profile.baby_gender)))}),
+   fetchPart("appointments",()=>supabaseClient.from("appointments").select("id,title,appointment_date,appointment_time,completed,status").eq("user_id",id).gte("appointment_date",todayKey()).or("completed.is.null,completed.eq.false").or("status.is.null,status.not.in.(cancelled,canceled,done,completed,deleted)").order("appointment_date",{ascending:true}).order("appointment_time",{ascending:true,nullsFirst:false}).order("id",{ascending:true}).limit(1),data=>{appointments=data||[]}),
+   bounded(()=>supabaseClient.rpc("is_admin")).then(r=>{if(run===generation){isAdmin=!r.error&&r.data===true;render()}},()=>{})
+  ]);
+ }catch(e){if(run!==generation)return;clearPersonal();document.getElementById("loginMsg").classList.remove("hidden");render()}
+ finally{if(run===generation)loading=false}
+}
+async function signOut(){++generation;clearPersonal();render();try{await bounded(()=>supabaseClient?.auth.signOut())}catch(e){}location.href="index.html"}
+if(supabaseClient?.auth.onAuthStateChange)supabaseClient.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_OUT"){++generation;loading=false;clearPersonal();render();document.getElementById("loginMsg").classList.remove("hidden")}else if(event==="SIGNED_IN"&&session?.user.id!==user?.id){setTimeout(()=>load(),0)}});
+document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&!loading)load()});
 render();load();
 </script>
 </body>

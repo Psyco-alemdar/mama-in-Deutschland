@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>Kurs · Anästhesie Facharzt Trainer</title>
+<meta name="description" content="Vollständige Lerneinheit im 0-bis-100-Lernpfad für die Facharztprüfung Anästhesiologie.">
+<link rel="stylesheet" href="kurs.css">
+</head>
+<body>
+<div class="layout">
+<aside class="side">
+  <div class="brand"><div class="logo">A+</div><div><strong>ANÄSTHESIE<br>FACHARZT TRAINER</strong><small>Vollkurs</small></div></div>
+  <a class="back" href="lernplan.html">← 0→100 Lernpfad</a>
+  <div class="sidecap">In dieser Lektion</div>
+  <nav id="toc" class="toc"></nav>
+  <div class="sideprogress"><div class="small" style="color:#94a3b8">Lektionsfortschritt</div><strong id="readPct">0%</strong><div class="bar"><span id="readBar" style="width:0"></span></div><div class="small" style="color:#94a3b8;margin-top:7px">Abschnitte gelesen / Quiz bearbeitet</div></div>
+</aside>
+<main class="main">
+  <section class="courseHero">
+    <div class="eyebrow" id="coursePhase">0→100 KURS</div>
+    <h1 id="courseTitle">Kurs wird geladen …</h1>
+    <p id="courseIntro"></p>
+    <div class="tags" id="courseTags"></div>
+  </section>
+  <div class="courseNav"><button class="btn ghost" id="prevBtn" onclick="navigateCourse(-1)">← Vorherige Einheit</button><div class="small muted" id="courseStatus"></div><button class="btn ghost" id="nextBtn" onclick="navigateCourse(1)">Nächste Einheit →</button></div>
+  <div id="courseContent" class="content"></div>
+  <section id="quizSection" class="section" style="display:none"><div class="eyebrow">SELBSTTEST</div><h2>Wissen aktiv abrufen</h2><p class="lead">Beantworte die Fragen ohne nach oben zu scrollen. Eine Lerneinheit gilt nicht allein durch Lesen als abgeschlossen.</p><div id="quiz" class="quiz"></div></section>
+  <div id="finish" class="finish" style="display:none"><div><strong>Lektion abgeschlossen?</strong><p id="finishText">Markiere sie erst, wenn du die Kernpunkte frei erklären kannst.</p></div><button class="btn green" id="completeBtn" onclick="completeLesson()">✓ Lektion abschließen</button></div>
+</main>
+</div>
+<nav class="mobile"><a href="lernplan.html"><span>🗺️</span>Lernpfad</a><button onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>↑</span>Oben</button><button onclick="navigateCourse(1)"><span>→</span>Weiter</button></nav>
+<script src="kurs.js"></script>
+</body>
+</html>

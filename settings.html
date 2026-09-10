@@ -19,6 +19,8 @@ label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0
 @media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:700px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats,.form-grid{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}.toggle-row{grid-template-columns:1fr}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <div class="wrap">
@@ -90,10 +92,10 @@ label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0
   <div class="footer-actions"><button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button><a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a></div>
 </main>
 
-<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a></section>
+<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="account.html" id="loginBackButton">Retour à l’accueil</a></section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
 let currentUser=null,currentProfile=null,currentProfileRow=null,currentSubscription=null,currentLang=localStorage.getItem("mama_lang")||"fr";
@@ -119,7 +121,7 @@ try{const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select
 try{const {data:sub}=await supabaseClient.from("subscriptions").select("*").eq("user_id",currentUser.id).maybeSingle();currentSubscription=sub||{plan:"free",status:"inactive"}}catch(e){currentSubscription={plan:"free",status:"inactive"}}
 setSettings(local);currentLang=localStorage.getItem("mama_lang")||local.language||"fr";renderAll()}
 async function requestAccountDeletion(){if(!confirm("Envoyer une demande de suppression de compte au support ?"))return;const s=collectForm();const msg=`Demande de suppression de compte\n\nUser ID: ${currentUser.id}\nE-mail: ${currentUser.email||""}\nPseudo: ${s.displayName||""}\nVille: ${s.defaultCity||""}\n\nMerci de traiter cette demande manuellement et de confirmer les étapes.`;const fullPayload={user_id:currentUser.id,name:s.displayName||currentProfile?.mother_name||currentProfileRow?.full_name||"Mama",email:currentUser.email||"",category:"account_deletion",priority:"urgent",subject:"Demande suppression compte",message:msg,page_url:location.href,user_agent:navigator.userAgent,language:currentLang,status:"new"};try{let {error}=await supabaseClient.from("contact_messages").insert(fullPayload);if(error){const fallback={user_id:currentUser.id,name:fullPayload.name,email:fullPayload.email,subject:fullPayload.subject,message:fullPayload.message,status:"new"};const r=await supabaseClient.from("contact_messages").insert(fallback);if(r.error)throw r.error}showStatus("Demande envoyée au support.",true)}catch(e){showStatus("Impossible d’envoyer la demande : "+(e.message||e),false)}}
-async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;document.getElementById("accountValue").textContent=currentUser.email?currentUser.email.split("@")[0]:"Compte";document.getElementById("appShell").style.display="block";await loadSettings();setLanguage(currentLang)}async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}loadApp();
+async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;document.getElementById("accountValue").textContent=currentUser.email?currentUser.email.split("@")[0]:"Compte";document.getElementById("appShell").style.display="block";await loadSettings();setLanguage(currentLang)}async function signOut(){await supabaseClient.auth.signOut();window.location.href="account.html"}loadApp();
 </script>
 </body>
 </html>

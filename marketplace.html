@@ -91,6 +91,8 @@ textarea{min-height:130px;resize:vertical}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <div class="wrap">
@@ -229,11 +231,11 @@ textarea{min-height:130px;resize:vertical}
   <h2 id="loginTitle">Connexion nécessaire</h2>
   <p id="loginText">Tu dois d’abord te connecter.</p>
   <br>
-  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+  <a class="button" href="account.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
@@ -347,6 +349,7 @@ function payload(){
  if(pt==="free"){price_cents=0}
  else if(rawPrice!==""){price_cents=Math.round(Number(rawPrice)*100)}
  return {
+  user_id: currentUser.id,
   seller_id: currentUser.id,
   seller_name: document.getElementById("sellerName").value.trim() || (currentProfile?.mother_name || "Mama"),
   category: document.getElementById("itemCategory").value,
@@ -421,32 +424,20 @@ async function loadItems(){
  renderStatic();renderItems();
 }
 async function setStatus(id,status){
- const item=items.find(x=>String(x.id)===String(id));if(!item)return;
- if(item.seller_id!==currentUser.id && !String(id).startsWith("local-"))return;
- item.status=status;renderItems();
- if(String(id).startsWith("local-")||!dbOnline){setLocalItems(items);return}
- try{await supabaseClient.from("marketplace_items").update({status}).eq("id",id).eq("seller_id",currentUser.id)}catch(e){}
+ const item=items.find(x=>String(x.id)===String(id));if(!item)return false;
+ if(item.seller_id!==currentUser.id && !String(id).startsWith("local-"))return false;
+ if(String(id).startsWith("local-")){item.status=status;setLocalItems(items);renderItems();return true;}
+ try{const {error}=await supabaseClient.from("marketplace_items").update({status}).eq("id",id).eq("seller_id",currentUser.id);if(error)throw error;item.status=status;renderItems();return true;}catch(e){showStatus(t().error+" "+(e.message||""));return false;}
 }
 async function deleteItem(id){
- await setStatus(id,"deleted");
- if(editingItemId===id)clearForm();
- showStatus(t().deleted);
- await loadItems();
+ if(!await setStatus(id,"deleted"))return;
+ if(editingItemId===id)clearForm();showStatus(t().deleted);await loadItems();
 }
 async function reportItem(id){
- if(String(id).startsWith("local-")){alert(t().reported);return}
- try{
-  await supabaseClient.from("admin_reports").insert({
-    reporter_id: currentUser.id,
-    target_type: "marketplace_item",
-    target_id: id,
-    reason: "Marketplace item reported",
-    details: "Reported from marketplace.html",
-    status: "open"
-  });
- }catch(e){}
- alert(t().reported);
+ if(String(id).startsWith("local-")){showStatus("Cette annonce est locale : aucun signalement n’a été envoyé.");return;}
+ try{const {error}=await supabaseClient.from("admin_reports").insert({reporter_id:currentUser.id,target_type:"marketplace_item",target_id:id,reason:"Marketplace item reported",details:"Reported from marketplace",status:"open"});if(error)throw error;showStatus(t().reported);}catch(e){showStatus(t().error+" "+(e.message||""));}
 }
+
 function priceLabel(i){
  const pt=normalizePriceType(i);
  if(pt==="free" || i.item_condition==="for_free")return t().free;
@@ -467,7 +458,7 @@ function renderItems(){
   const date=i.created_at?new Date(i.created_at).toLocaleDateString():"";
   const img=i.image_url?`<img src="${escapeHtml(i.image_url)}" alt="">`:`${categoryEmoji(i.category)}`;
   const owner=i.seller_id===currentUser.id || String(i.id).startsWith("local-");
-  const contact=i.contact_method?`<a href="${contactHref(i.contact_method)}">${t().contact}</a>`:"";
+  const contact=i.contact_method?`<a href="${escapeHtml(contactHref(i.contact_method))}">${t().contact}</a>`:"";
   const statusBadge=i.status==="reserved"?`<span class="badge badge-warning">Réservé</span>`:i.status==="sold"?`<span class="badge badge-red">${t().sold}</span>`:"";
   return `<article class="item-card">
     <div class="item-head">
@@ -518,7 +509,7 @@ async function loadApp(){
  setLanguage(currentLang);
  await loadItems();
 }
-async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="account.html"}
 loadApp();
 </script>
 </body>

@@ -20,6 +20,8 @@ h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:42px;letter-spacing:-1.
 @media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.timeline-item{grid-template-columns:1fr}}@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <div class="wrap">
@@ -107,10 +109,10 @@ h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:42px;letter-spacing:-1.
   <div class="footer-actions"><button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button><a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a></div>
 </main>
 
-<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a></section>
+<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="account.html" id="loginBackButton">Retour à l’accueil</a></section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
@@ -172,7 +174,7 @@ async function copySummary(){const txt=buildSummary();try{await navigator.clipbo
 function exportJSON(){const blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),week:currentWeek,logs:movementLogs},null,2)],{type:"application/json;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="mama-mouvements-bebe.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
 async function loadAll(){await loadLogs();await ensureTasks();await loadNote();renderAll()}
 async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);currentProfile=(profiles&&profiles[0])?profiles[0]:null;currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";currentWeek=calculatePregnancy(currentProfile?.due_date);if(currentProfile)applyTheme(currentProfile.theme_mode||determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadAll()}
-async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="account.html"}
 loadApp();
 </script>
 </body>

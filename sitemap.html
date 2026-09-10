@@ -29,6 +29,8 @@ h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:46px;line-height:1.03;l
 @media(max-width:1250px){.pages{grid-template-columns:repeat(3,1fr)}.quick{grid-template-columns:repeat(3,1fr)}}@media(max-width:1100px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:850px){.pages{grid-template-columns:1fr}.search{grid-template-columns:1fr}}@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:33px}.card,.hero,.cat{padding:20px}.stats,.quick{grid-template-columns:1fr}.top{width:100%;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <div class="wrap">
@@ -45,7 +47,7 @@ h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:46px;line-height:1.03;l
   </div>
 </header>
 
-<section class="card hidden" id="loginMsg"><h2>Connexion nécessaire</h2><p>Tu n’es pas connecté ou Supabase n’a pas répondu. Le sitemap reste visible pour éviter une page blanche.</p><br><a class="btn main" href="index.html">Retour à l’accueil</a></section>
+<section class="card hidden" id="loginMsg"><h2>Connexion nécessaire</h2><p>Tu n’es pas connecté ou Supabase n’a pas répondu. Le sitemap reste visible pour éviter une page blanche.</p><br><a class="btn main" href="account.html">Retour à l’accueil</a></section>
 
 <main>
 <section class="hero">
@@ -73,7 +75,7 @@ h1,h2,h3{color:var(--brown);margin:0 0 12px}h1{font-size:46px;line-height:1.03;l
 <div class="foot"><a class="btn" href="help.html">Help</a><a class="btn main" href="app.html">Dashboard</a></div>
 </main></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co", SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 let supabaseClient=null;try{supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY)}catch(e){}
@@ -120,7 +122,7 @@ function renderTabs(){document.getElementById("tabs").innerHTML=cats.map(c=>`<bu
 function renderNav(){let q=(document.getElementById("search").value||"").toLowerCase().trim(),adm=user&&ADMIN.includes(user.id),shown=0;document.getElementById("cats").innerHTML=groups.filter(g=>active==="all"||active===g.id).map(g=>{let body="";g.subs.forEach(s=>{if(s[2]&&!adm)return;let items=s[1].map(p).filter(it=>!q||(it.t+" "+it.f+" "+it.d+" "+g.title+" "+s[0]).toLowerCase().includes(q));if(!items.length)return;shown+=items.length;body+=`<div class="sub"><div class="sub-title">${s[0]}</div><div class="pages">${items.map(itemCard).join("")}</div></div>`});return body?`<section class="cat" id="${g.id}"><div><span class="badge">${g.ico} ${g.title}</span><h2>${g.title}</h2><p>${g.desc}</p></div>${body}</section>`:""}).join("");document.getElementById("count").textContent=shown;document.getElementById("empty").classList.toggle("hidden",shown!==0)}
 function render(){renderTabs();renderNav()}
 async function load(){try{if(!supabaseClient)throw 0;let s=await supabaseClient.auth.getSession();if(s.error||!s.data.session){document.getElementById("loginMsg").classList.remove("hidden");render();return}user=s.data.session.user;let r=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",user.id).limit(1);if(!r.error&&r.data&&r.data[0])profile=r.data[0];lang=localStorage.getItem("mama_lang")||(profile&&profile.language)||"fr";if(profile)apply(profile.theme_mode||theme(profile.pregnancy_type,profile.baby_gender));setLang(lang)}catch(e){document.getElementById("loginMsg").classList.remove("hidden");render()}}
-async function signOut(){try{if(supabaseClient)await supabaseClient.auth.signOut()}catch(e){}location.href="index.html"}
+async function signOut(){try{if(supabaseClient)await supabaseClient.auth.signOut()}catch(e){}location.href="account.html"}
 render();load();
 </script>
 </body>

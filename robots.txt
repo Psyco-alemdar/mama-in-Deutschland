@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://psyco-alemdar.github.io/mama-in-Deutschland/sitemap.xml

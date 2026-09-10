@@ -1,0 +1,1 @@
+Homepage image: original AI-generated editorial image, created for Mama in Deutschland on 2026-09-10. Illustrative scene; not a customer testimonial or a photograph of a known user. WebP generated from the original PNG for web delivery. No remote image request on public pages.

@@ -32,6 +32,8 @@
     @media(max-width:800px){.grid{grid-template-columns:1fr}h1{font-size:28px}.wrap{padding:18px 12px}}
   </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
   <div class="wrap">
@@ -74,11 +76,11 @@
     <section class="card" id="loginMessage" style="display:none;text-align:center;max-width:650px;margin:60px auto;">
       <h2 id="loginTitle">Bitte einloggen</h2>
       <p id="loginText">Du musst dich zuerst anmelden.</p>
-      <br><a class="back" href="index.html" id="loginBack">Zur Startseite</a>
+      <br><a class="back" href="account.html" id="loginBack">Zur Startseite</a>
     </section>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
   <script>
     const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";

@@ -84,6 +84,8 @@ textarea{min-height:130px;resize:vertical}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid,.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <div class="wrap">
@@ -199,11 +201,11 @@ textarea{min-height:130px;resize:vertical}
   <h2 id="loginTitle">Connexion nécessaire</h2>
   <p id="loginText">Tu dois d’abord te connecter.</p>
   <br>
-  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+  <a class="button" href="account.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
@@ -408,7 +410,7 @@ async function loadApp(){
  document.getElementById("authorName").value=currentProfile?.mother_name||"";
  document.getElementById("appShell").style.display="block";setLanguage(currentLang);await loadPosts();
 }
-async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="account.html"}
 loadApp();
 </script>
 </body>

@@ -25,6 +25,8 @@ label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0
 @media(max-width:1120px){.hero,.grid-2{grid-template-columns:1fr}.grid-4{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.grid,.form-grid{grid-template-columns:1fr}}@media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats,.color-options{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <div class="wrap">
@@ -88,10 +90,10 @@ label{display:block;font-weight:950;color:var(--brown);font-size:13px;margin:0 0
   <section class="card"><div class="section-title"><div><h2 id="linksTitle">Accès rapide</h2><p id="linksText">Après modification, reviens au dashboard pour vérifier le résultat.</p></div></div><div class="grid-4"><div class="source-card"><a href="app.html">Dashboard</a><span>Voir si le thème, le prénom et la semaine sont bien appliqués.</span></div><div class="source-card"><a href="calendar.html">Calendrier</a><span>Contrôler les rendez-vous et le prochain terme important.</span></div><div class="source-card"><a href="near.html">Près de moi</a><span>Lien corrigé vers near.html.</span></div><div class="source-card"><a href="emergency.html">Urgence</a><span>Garder les numéros importants accessibles.</span></div></div></section>
   <div class="footer-actions"><button class="button-light" onclick="history.back()" id="bottomBackButton">Retour</button><a class="button" href="app.html" id="bottomDashboardButton">Dashboard</a></div>
 </main>
-<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a></section>
+<section class="login-message card" id="loginMessage" style="display:none;"><h2 id="loginTitle">Connexion nécessaire</h2><p id="loginText">Tu dois d’abord te connecter.</p><br><a class="button" href="account.html" id="loginBackButton">Retour à l’accueil</a></section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
@@ -131,10 +133,10 @@ async function saveProfile(){
 }
 async function reloadProfile(){await loadProfile();showSave(t().profileStatus,true)}
 async function loadProfile(){let bp=null;try{const{data}=await supabaseClient.from("profiles").select("*").eq("id",currentUser.id).maybeSingle();bp=data}catch(e){}currentBaseProfile=bp;try{const{data:profiles,error}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);if(error)throw error;currentProfile=(profiles&&profiles[0])?profiles[0]:null;fillForm(currentProfile||getLocalProfile(),bp||{})}catch(e){fillForm(getLocalProfile(),bp||{})}}
-async function sendPasswordReset(){if(!currentUser?.email)return;const{error}=await supabaseClient.auth.resetPasswordForEmail(currentUser.email,{redirectTo:window.location.origin+window.location.pathname.replace("profile.html","index.html")});if(error)showSave(error.message,false);else showSave(t().resetSent,true)}
+async function sendPasswordReset(){if(!currentUser?.email)return;const{error}=await supabaseClient.auth.resetPasswordForEmail(currentUser.email,{redirectTo:new URL("reset-password.html",window.location.href).href});if(error)showSave(error.message,false);else showSave(t().resetSent,true)}
 function renderDataList(){document.getElementById("dataList").innerHTML=t().dataList.map(x=>`<li>${escapeHtml(x)}</li>`).join("")}
 async function loadApp(){const{data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;document.getElementById("emailValue").textContent=currentUser.email?currentUser.email.split("@")[0]:"Compte";document.getElementById("appShell").style.display="block";await loadProfile();renderDataList();refreshPreview()}
-async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}loadApp();
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="account.html"}loadApp();
 </script>
 </body>
 </html>

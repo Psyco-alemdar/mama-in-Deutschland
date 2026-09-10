@@ -22,6 +22,8 @@
     @media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}h1{font-size:28px}}
   </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
   <div class="wrap">
@@ -105,11 +107,11 @@
     <section class="message card" id="loginMessage" style="display:none;">
       <h2 id="loginTitle">Bitte einloggen</h2>
       <p id="loginText">Du musst dich zuerst anmelden.</p><br />
-      <a class="button-light" href="index.html" id="homeLink">Zur Startseite</a>
+      <a class="button-light" href="account.html" id="homeLink">Zur Startseite</a>
     </section>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
   <script>
     const SUPABASE_URL = "https://jzhaihiojpcelndexwxv.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
@@ -190,7 +192,7 @@
       document.getElementById("emotionText").textContent=getLocalized(row,"emotional_note")||t().fallbackEmotion;
     }
 
-    async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+    async function signOut(){await supabaseClient.auth.signOut();window.location.href="account.html"}
     loadPage();
   </script>
 </body>

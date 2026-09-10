@@ -61,6 +61,8 @@ ul{padding-left:20px;margin:10px 0 0}
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:32px}.card,.hero{padding:20px}.grid-4,.stats{grid-template-columns:1fr}.top-actions{width:100%;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 <div class="wrap">
@@ -152,11 +154,11 @@ ul{padding-left:20px;margin:10px 0 0}
 <section class="login-message card" id="loginMessage" style="display:none;">
   <h2 id="loginTitle">Connexion nécessaire</h2>
   <p id="loginText">Tu dois d’abord te connecter.</p><br>
-  <a class="button" href="index.html" id="loginBackButton">Retour à l’accueil</a>
+  <a class="button" href="account.html" id="loginBackButton">Retour à l’accueil</a>
 </section>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co";
 const SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
@@ -188,7 +190,7 @@ function determineTheme(type,gender){if(gender==="boy"||gender==="twin_boys")ret
 function applyTheme(theme){document.body.classList.remove("theme-boy","theme-girl","theme-twin");if(theme==="boy")document.body.classList.add("theme-boy");if(theme==="girl")document.body.classList.add("theme-girl");if(theme==="twin")document.body.classList.add("theme-twin");}
 function render(){document.getElementById("missionValue").textContent=t().missionValue;document.getElementById("scopeValue").textContent=t().scopeValue;document.getElementById("whyGrid").innerHTML=t().why.map(x=>`<div class="about-card"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");document.getElementById("doesList").innerHTML=t().doesList.map(x=>`<li>${x}</li>`).join("");document.getElementById("doesNotList").innerHTML=t().doesNotList.map(x=>`<li>${x}</li>`).join("");document.getElementById("valuesGrid").innerHTML=t().values.map(x=>`<div class="about-card"><div class="icon">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");document.getElementById("journeyBox").innerHTML=t().journey.map(x=>`<div class="timeline-item"><div class="timeline-step">${x[0]}</div><div><p>${x[1]}</p></div></div>`).join("");document.getElementById("privacyList").innerHTML=t().privacyList.map(x=>`<li>${x}</li>`).join("");document.getElementById("futureList").innerHTML=t().futureList.map(x=>`<li>${x}</li>`).join("");}
 async function loadApp(){const {data,error}=await supabaseClient.auth.getSession();if(error||!data.session){document.getElementById("loginMessage").style.display="block";return}currentUser=data.session.user;const {data:profiles}=await supabaseClient.from("pregnancy_profiles").select("*").eq("user_id",currentUser.id).order("created_at",{ascending:false}).limit(1);currentProfile=(profiles&&profiles[0])?profiles[0]:null;currentLang=localStorage.getItem("mama_lang")||(currentProfile&&currentProfile.language)||"fr";if(currentProfile)applyTheme(determineTheme(currentProfile.pregnancy_type,currentProfile.baby_gender));document.getElementById("appShell").style.display="block";setLanguage(currentLang);}
-async function signOut(){await supabaseClient.auth.signOut();window.location.href="index.html"}
+async function signOut(){await supabaseClient.auth.signOut();window.location.href="account.html"}
 loadApp();
 </script>
 </body>

@@ -70,6 +70,8 @@ input{width:100%;padding:15px 16px;border-radius:19px;border:1px solid var(--bor
 @media(max-width:620px){.wrap{padding:18px 12px}h1{font-size:33px}.card,.hero,.cat{padding:20px}.stats,.quick{grid-template-columns:1fr}.top{width:100%;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="assets/premium.css">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body class="mama-dashboard">
 <a class="skip-link" href="#main">Aller au contenu</a>
@@ -77,11 +79,11 @@ input{width:100%;padding:15px 16px;border-radius:19px;border:1px solid var(--bor
 <a class="brand" href="app.html"><span class="brand-mark">m</span><span class="brand-name">mama<small>in Deutschland</small></span></a>
 <p class="side-label">Mon espace</p><nav class="side-nav"><a href="app.html" class="current" aria-current="page"><span class="nav-num">01</span>Mon quotidien</a><a href="calendar.html"><span class="nav-num">02</span>Mon calendrier</a><a href="documents.html"><span class="nav-num">03</span>Mes démarches</a><a href="hospital-bag.html"><span class="nav-num">04</span>Ma valise maternité</a></nav>
 <p class="side-label">M’accompagner</p><nav class="side-nav"><a href="#grossesse" onclick="showCategory('grossesse')"><span class="nav-num">♡</span>Ma grossesse</a><a href="#bebe" onclick="showCategory('bebe')"><span class="nav-num">◇</span>Mon bébé</a><a href="#maman" onclick="showCategory('maman')"><span class="nav-num">✧</span>Prendre soin de moi</a><a href="experience.html"><span class="nav-num">◎</span>La communauté</a></nav>
-<div class="side-bottom"><p class="support-note">Un peu plus sereine,<br>chaque jour.</p><nav class="side-nav"><a href="profile.html">Mon profil</a><a href="help.html">Besoin d’aide ?</a><a href="emergency.html">Urgences & contacts</a></nav></div></aside>
+<div class="side-bottom"><p class="support-note">Un peu plus sereine,<br>chaque jour.</p><nav class="side-nav"><a href="profile.html">Mon profil</a><a href="faq.html">Besoin d’aide ?</a><a href="pricing.html">Notre offre</a><a href="index.html">Accueil public</a><a href="emergency.html">Urgences & contacts</a></nav></div></aside>
 <div class="wrap">
 <header><div class="header-crumb">Mon espace <span aria-hidden="true"> / </span> <b>Mon quotidien</b></div><a class="brand mobile-brand" href="app.html"><span class="brand-mark">m</span><span class="brand-name">mama<small>in Deutschland</small></span></a><div class="top"><a class="btn header-extra" href="notifications.html">Mes rappels</a><a class="btn header-extra" href="settings.html">Préférences</a><button class="btn header-extra" onclick="signOut()">Déconnexion</button><div class="lang"><button class="btn" onclick="toggleLang()" id="langBtn" aria-label="Choisir la langue">🇫🇷 FR</button><div class="menu" id="langMenu"><button onclick="setLang('de')">🇩🇪 Deutsch</button><button onclick="setLang('fr')">🇫🇷 Français</button><button onclick="setLang('ar')">🇸🇦 العربية</button><button onclick="setLang('en')">🇬🇧 English</button><button onclick="setLang('tr')">🇹🇷 Türkçe</button><button onclick="setLang('ru')">🇷🇺 Русский</button><button onclick="setLang('uk')">🇺🇦 Українська</button></div></div><a class="btn" href="profile.html" aria-label="Mon profil">Profil</a></div></header>
 
-<section class="card hidden" id="loginMsg"><h2>Connexion nécessaire</h2><p>Connecte-toi pour retrouver ton suivi personnel. Si la connexion prend du temps, tu peux réessayer.</p><br><a class="btn main" href="index.html">Me connecter</a> <button class="btn" onclick="load()">Réessayer</button></section>
+<section class="card hidden" id="loginMsg"><h2>Connexion nécessaire</h2><p>Connecte-toi pour retrouver ton suivi personnel. Si la connexion prend du temps, tu peux réessayer.</p><br><a class="btn main" href="account.html">Me connecter</a> <button class="btn" onclick="load()">Réessayer</button></section>
 
 <section class="card hidden" id="dataStatus" role="status"><p id="dataMessage"></p><button class="btn" onclick="load()">Réessayer</button></section>
 <main id="main">
@@ -119,7 +121,7 @@ input{width:100%;padding:15px 16px;border-radius:19px;border:1px solid var(--bor
 <div class="foot"><span>Mama in Deutschland · À tes côtés, en Allemagne.</span><a class="btn" href="help.html">Aide & contact</a><a class="btn main" href="sitemap.html">Toutes les pages</a></div>
 </main></div><nav class="mobile-bar" aria-label="Navigation mobile"><a href="app.html"><span>⌂</span>Accueil</a><a href="calendar.html"><span>▦</span>Agenda</a><a href="documents.html"><span>≡</span>Démarches</a><a href="#directory"><span>◇</span>Explorer</a><a href="profile.html"><span>○</span>Profil</a></nav>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0"></script>
 <script>
 const SUPABASE_URL="https://jzhaihiojpcelndexwxv.supabase.co", SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6aGFpaGlvanBjZWxuZGV4d3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxMTcxNjIsImV4cCI6MjA5NzY5MzE2Mn0.kIF2XmcIcf0UCmhVrmX3Zcc9U5_VnoDGHgaSk-iZrjQ";
 let supabaseClient=null;try{supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY)}catch(e){}
@@ -152,8 +154,8 @@ const groups=[
 ["Partager & échanger",["💬|Paroles de mamans|experience.html|Partager et lire des expériences.","📜|Règles de la communauté|community-rules.html|Règles et modération.","🧺|Entre parents|marketplace.html|Donner, vendre, chercher bébé.","✉️|Contact|contact.html|Bug, idée, partenariat."]]
 ]},
 {id:"support",ico:"⚙️",title:"Compte & support",desc:"Profil, paramètres, notifications, aide et admin.",subs:[
-["Compte",["👤|Mon profil|profile.html|Prénom, terme, semaine, thème.","⚙️|Préférences|settings.html|Modules et priorités.","🔔|Mes rappels|notifications.html|Rappels et export .ics.","🔐|Mot de passe|reset-password.html|Réinitialiser le mot de passe.","🧭|Plan du site|sitemap.html|Toutes les pages."]],
-["Support",["❓|Aide|help.html|404, cache, Supabase, bugs.","ℹ️|À propos|about.html|Mission et limites.","🏠|Accueil|index.html|Connexion et compte."]],
+["Compte",["👤|Mon profil|profile.html|Prénom, terme, semaine, thème.","⚙️|Préférences|settings.html|Modules et priorités.","🔔|Mes rappels|notifications.html|Rappels et export .ics.","🔐|Mot de passe|account.html?mode=forgot|Réinitialiser le mot de passe.","🧭|Plan du site|sitemap.html|Toutes les pages."]],
+["Support",["❓|Aide|faq.html|Réponses aux questions fréquentes.","ℹ️|À propos|about.html|Mission et limites.","🏠|Accueil|index.html|Présentation et découverte."]],
 ["Admin",["🛡️|Modération|admin-moderation.html|Modération communauté."],true]
 ]}
 ];
@@ -185,7 +187,7 @@ function next(now=new Date()){
 function dateText(day,options){return new Date(day*86400000).toLocaleDateString(langs[lang]?lang:"fr",{timeZone:"UTC",...options})}
 function renderHero(){
  let p=currentPregnancy(),c=calc(),fr=fruit(c.week),name=momName();
- document.getElementById("greet").textContent="Bonjour"+(name?" "+name:"");
+ let hour=Number(new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/Berlin",hour:"numeric",hourCycle:"h23"}).format(new Date()));document.getElementById("greet").textContent=(hour>=18?"Bonsoir":"Bonjour")+(name?" "+name:"");
  document.getElementById("week").textContent=c.born?"Après naissance":c.week===null?"—":"SA "+c.week;
  document.getElementById("days").textContent=c.born?"—":c.left;
  document.getElementById("baby").textContent=p.baby_name||"Bébé";
@@ -207,7 +209,7 @@ function all(){let adm=user&&isAdmin,arr=[];groups.forEach(g=>g.subs.forEach(s=>
 function renderPriority(){let c=calc();let names=c.born?["mother-recovery.html","feeding.html","baby-development.html"]:c.week===null?["profile.html","calendar.html","documents.html"]:c.week>=32?["hospital-bag.html","birth-plan.html","documents.html"]:["diagnostics.html","nutrition.html","calendar.html"];document.getElementById("prio").innerHTML=all().filter(x=>names.includes(x.f)).map(mini).join("")}
 function renderTabs(){document.getElementById("tabs").innerHTML=cats.map(c=>`<button class="${active===c[0]?"active":""}" onclick="active='${c[0]}';renderTabs();renderNav()">${c[1]}</button>`).join("")}
 function renderNav(){let q=(document.getElementById("search").value||"").toLowerCase().trim(),adm=user&&isAdmin,shown=0;document.getElementById("cats").innerHTML=groups.filter(g=>active==="all"||active===g.id).map(g=>{let body="";g.subs.forEach(s=>{if(s[2]&&!adm)return;let items=s[1].map(p).filter(it=>!q||(it.t+" "+it.f+" "+it.d+" "+g.title+" "+s[0]).toLowerCase().includes(q));if(!items.length)return;shown+=items.length;body+=`<div class="sub"><div class="sub-title">${s[0]}</div><div class="pages">${items.map(itemCard).join("")}</div></div>`});return body?`<section class="cat" id="${g.id}"><div><span class="badge">${g.ico} ${g.title}</span><h2>${g.title}</h2><p>${g.desc}</p></div>${body}</section>`:""}).join("");document.getElementById("empty").classList.toggle("hidden",shown!==0)}
-function render(){renderHero();renderPriority();renderTabs();renderNav()}
+function render(){renderHero();renderPriority();renderTabs();renderNav();let c=calc();let bar=document.querySelector(".progress-track span");if(bar)bar.style.width=(c.born?100:c.week===null?0:Math.min(100,Math.max(0,c.week/40*100)))+"%";}
 async function bounded(work){let timer;try{return await Promise.race([Promise.resolve().then(work),new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error("timeout")),12000)})])}finally{clearTimeout(timer)}}
 function clearPersonal(){user=null;profile=null;accountProfile=null;appointments=[];isAdmin=false;states={profile:"idle",pregnancy:"idle",appointments:"idle"};apply("neutral")}
 async function load(){
@@ -228,7 +230,7 @@ async function load(){
  }catch(e){if(run!==generation)return;clearPersonal();document.getElementById("loginMsg").classList.remove("hidden");render()}
  finally{if(run===generation)loading=false}
 }
-async function signOut(){++generation;clearPersonal();render();try{await bounded(()=>supabaseClient?.auth.signOut())}catch(e){}location.href="index.html"}
+async function signOut(){++generation;clearPersonal();render();try{await bounded(()=>supabaseClient?.auth.signOut())}catch(e){}location.href="account.html"}
 if(supabaseClient?.auth.onAuthStateChange)supabaseClient.auth.onAuthStateChange((event,session)=>{if(event==="SIGNED_OUT"){++generation;loading=false;clearPersonal();render();document.getElementById("loginMsg").classList.remove("hidden")}else if(event==="SIGNED_IN"&&session?.user.id!==user?.id){setTimeout(()=>load(),0)}});
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&!loading)load()});
 render();load();

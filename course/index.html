@@ -1,11 +1,354 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>AI Mastery 2026 — Espace cours</title><style>
-body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f4f1eb;color:#171717}a{text-decoration:none;color:inherit}.wrap{width:min(1100px,92vw);margin:auto}.top{background:#17191f;color:#fff;padding:26px 0}.brand{font-family:Georgia,serif;font-size:30px}.brand small{display:block;font:11px Inter,sans-serif;color:#aaa;letter-spacing:2px;text-transform:uppercase}.hero{padding:54px 0 34px}.hero h1{font-family:Georgia,serif;font-size:54px;line-height:1;margin:0 0 14px}.hero p{color:#6d6a65;font-size:18px;max-width:760px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding-bottom:60px}.card{background:#fff;border:1px solid #d9d4ca;padding:24px;min-height:220px}.num{font-size:11px;color:#5d47d8;font-weight:900;letter-spacing:1.4px}.card h2{font-family:Georgia,serif;font-size:28px;margin:14px 0 8px}.card p{color:#6d6a65}.meta{font-size:12px;color:#777;margin:16px 0}.btn{display:inline-block;padding:11px 15px;background:#17191f;color:#fff;font-weight:800}.back{display:inline-block;margin-top:18px;color:#bbb;font-size:13px}@media(max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:42px}}</style></head><body><div class="top"><div class="wrap"><div class="brand">AI Mastery 2026<small>Espace de formation</small></div><a class="back" href="../index.html">← Retour à la page de vente</a></div></div><main class="wrap"><section class="hero"><h1>Le vrai cours.</h1><p>8 modules, 32 leçons, avec explications, modèles de prompts, exercices et applications concrètes. Tu peux ouvrir chaque module et lire le contenu complet avant de vendre.</p></section><section class="grid">
-<a class="card" href="module-01.html"><div class="num">MODULE 01</div><h2>Fondamentaux de l’IA</h2><p>Comprendre les modèles, leurs limites, les hallucinations et les bonnes pratiques.</p><div class="meta">4 leçons • 2 exercices • 1 checklist</div><span class="btn">Ouvrir le module</span></a>
-<a class="card" href="module-02.html"><div class="num">MODULE 02</div><h2>Prompt Engineering essentiel</h2><p>Construire des prompts clairs, précis et reproductibles.</p><div class="meta">4 leçons • 5 templates • 2 exercices</div><span class="btn">Ouvrir le module</span></a>
-<a class="card" href="module-03.html"><div class="num">MODULE 03</div><h2>Prompts avancés</h2><p>Décomposition, critique, itération, chaines de travail et bibliothèques.</p><div class="meta">4 leçons • 6 prompts avancés • 2 exercices</div><span class="btn">Ouvrir le module</span></a>
-<a class="card" href="module-04.html"><div class="num">MODULE 04</div><h2>IA pour la productivité</h2><p>Emails, réunions, recherche, synthèses et organisation.</p><div class="meta">4 leçons • 8 cas pratiques</div><span class="btn">Ouvrir le module</span></a>
-<a class="card" href="module-05.html"><div class="num">MODULE 05</div><h2>Création de contenu</h2><p>Angles, scripts, storytelling, réutilisation et cohérence de marque.</p><div class="meta">4 leçons • 5 templates • 2 exercices</div><span class="btn">Ouvrir le module</span></a>
-<a class="card" href="module-06.html"><div class="num">MODULE 06</div><h2>Automatisation</h2><p>Identifier, structurer et sécuriser les tâches à automatiser.</p><div class="meta">4 leçons • 3 workflows • 1 matrice</div><span class="btn">Ouvrir le module</span></a>
-<a class="card" href="module-07.html"><div class="num">MODULE 07</div><h2>Agents IA</h2><p>Objectifs, outils, mémoire, validation et limites.</p><div class="meta">4 leçons • 3 architectures • 2 exercices</div><span class="btn">Ouvrir le module</span></a>
-<a class="card" href="module-08.html"><div class="num">MODULE 08</div><h2>Projet final</h2><p>Construire et évaluer un système IA complet pour un cas réel.</p><div class="meta">4 leçons • projet guidé • grille d’évaluation</div><span class="btn">Ouvrir le module</span></a>
-</section></main></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>AI Mastery 2026 — Cours complet</title>
+<style>
+:root{--bg:#f7f4ee;--paper:#fff;--ink:#171717;--muted:#68645e;--line:#ded8ce;--dark:#15171b;--violet:#5e47d9;--sand:#c5a46a;--soft:#efe9df}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.72}a{color:inherit;text-decoration:none}
+.layout{display:grid;grid-template-columns:300px 1fr;min-height:100vh}.side{position:sticky;top:0;height:100vh;overflow:auto;background:var(--dark);color:#fff;padding:30px 22px}.brand{font:700 29px/1 Georgia,serif}.brand small{display:block;font:10px/1.4 Inter,sans-serif;color:#aaa;letter-spacing:2px;text-transform:uppercase;margin-top:7px}.side h3{font-size:10px;letter-spacing:1.6px;color:#7f8188;text-transform:uppercase;margin:32px 0 8px}.side a{display:block;padding:9px 0;color:#d2d2d5;font-size:13px;border-bottom:1px solid rgba(255,255,255,.06)}.side .back{margin-top:18px;border:1px solid #555;padding:10px 12px;text-align:center}
+.main{padding:58px 6vw 100px}.hero{max-width:980px;margin-bottom:50px}.eyebrow{color:var(--violet);font-size:11px;text-transform:uppercase;letter-spacing:2px;font-weight:900}.hero h1{font:700 clamp(48px,7vw,82px)/.98 Georgia,serif;letter-spacing:-.045em;margin:12px 0 18px}.hero p{font-size:19px;color:var(--muted);max-width:75ch}.promise{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.promise div{background:var(--paper);border:1px solid var(--line);padding:16px}.promise b{display:block;font-size:18px}.promise span{font-size:12px;color:var(--muted)}
+.module{max-width:980px;margin:0 0 90px}.module-head{border-top:1px solid var(--line);padding-top:26px;margin-bottom:26px}.module-head .num{font-size:11px;color:var(--violet);font-weight:900;letter-spacing:1.5px}.module-head h2{font:700 clamp(38px,5vw,58px)/1.02 Georgia,serif;margin:8px 0 12px}.module-head p{font-size:18px;color:var(--muted);max-width:70ch}.lesson{background:var(--paper);border:1px solid var(--line);padding:30px;margin:16px 0}.lesson .label{font-size:10px;color:var(--violet);font-weight:900;letter-spacing:1.5px;text-transform:uppercase}.lesson h3{font:700 30px/1.15 Georgia,serif;margin:8px 0 14px}.lesson h4{font-size:15px;margin:22px 0 8px}.lesson p,.lesson li{color:#504c46}.lesson ul,.lesson ol{padding-left:22px}.callout{margin:20px 0;padding:18px 20px;background:var(--soft);border-left:4px solid var(--sand)}.callout b{display:block;margin-bottom:5px}.prompt{margin:20px 0;background:#181a20;color:#f4f4f4;padding:20px}.prompt .pt{font-size:10px;color:#c8bcff;letter-spacing:1.3px;text-transform:uppercase;font-weight:900;margin-bottom:8px}.prompt pre{white-space:pre-wrap;margin:0;font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace}.case{margin:20px 0;border:1px solid var(--line);padding:18px}.case b{display:block;margin-bottom:6px}.exercise{margin-top:20px;padding:18px;background:#faf7f1;border:1px dashed #bdb4a7}.exercise b{color:#40359a}.summary{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.summary b{display:block;margin-bottom:7px}.navbottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{display:inline-block;background:#17191f;color:#fff;padding:12px 15px;font-weight:800}.footer{max-width:980px;border-top:1px solid var(--line);padding-top:26px;color:#777;font-size:12px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{position:relative;height:auto}.main{padding:38px 5vw 70px}.promise{grid-template-columns:1fr}.side nav{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="side">
+<div class="brand">AI Mastery 2026<small>Professional Course</small></div>
+<h3>Sommaire</h3>
+<nav>
+<a href="#m1">01 — Comprendre l’IA</a>
+<a href="#m2">02 — Prompt Engineering</a>
+<a href="#m3">03 — Prompts avancés</a>
+<a href="#m4">04 — Productivité</a>
+<a href="#m5">05 — Création de contenu</a>
+<a href="#m6">06 — Automatisation</a>
+<a href="#m7">07 — Agents IA</a>
+<a href="#m8">08 — Projet final</a>
+</nav>
+<a class="back" href="../ai-mastery-2026/index.html">← Page de vente</a>
+</aside>
+
+<main class="main">
+<section class="hero">
+<div class="eyebrow">Formation complète • édition 2026</div>
+<h1>Maîtriser l’IA, vraiment.</h1>
+<p>Ce cours n’est pas une liste de “prompts miracles”. Il t’apprend à comprendre les modèles, formuler de bonnes instructions, vérifier les résultats, construire des workflows fiables et créer des systèmes réutilisables. Chaque module combine théorie courte, exemples, modèles prêts à l’emploi et exercices.</p>
+<div class="promise">
+<div><b>8 modules</b><span>Une progression cohérente du débutant au niveau opérationnel.</span></div>
+<div><b>32 leçons</b><span>Des leçons développées, pas seulement des titres.</span></div>
+<div><b>Cas pratiques</b><span>Emails, recherche, contenu, décisions, automatisation et agents.</span></div>
+</div>
+</section>
+
+<section class="module" id="m1">
+<div class="module-head"><div class="num">MODULE 01</div><h2>Comprendre l’IA avant de l’utiliser</h2><p>Le but de ce module est de construire de bons réflexes. Une personne qui comprend les limites d’un modèle obtiendra souvent de meilleurs résultats qu’une personne qui connaît cent astuces de prompting.</p></div>
+
+<article class="lesson"><div class="label">Leçon 1.1</div><h3>Ce qu’un modèle génératif fait réellement</h3>
+<p>Un modèle de langage ne fonctionne pas comme une encyclopédie qui “cherche la bonne page”. Il reçoit un contexte, calcule les suites de mots les plus plausibles et construit une réponse. Cela lui permet d’écrire, résumer, comparer, reformuler ou structurer avec une grande souplesse.</p>
+<p>Cette force a une conséquence importante : une réponse peut être très bien écrite sans être vraie. La fluidité ne doit jamais être confondue avec la fiabilité.</p>
+<h4>Les quatre usages principaux</h4>
+<ul><li><b>Générer :</b> idées, brouillons, scripts, plans, formulations.</li><li><b>Transformer :</b> résumer, traduire, simplifier, restructurer.</li><li><b>Analyser :</b> comparer, classer, détecter des motifs dans des données fournies.</li><li><b>Assister une décision :</b> organiser les critères, options, risques et compromis.</li></ul>
+<div class="callout"><b>Principe essentiel</b>Plus une tâche dépend d’informations exactes et actuelles, plus tu dois ajouter une étape de vérification.</div>
+<div class="exercise"><b>Exercice :</b> demande à l’IA d’expliquer un sujet que tu maîtrises déjà. Repère trois passages : un exact, un simplifié, un potentiellement discutable.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 1.2</div><h3>Pourquoi le contexte change tout</h3>
+<p>Une demande comme “écris-moi un bon email” contient trop peu d’informations. À qui écrit-on ? Pourquoi ? Quel ton ? Quelle relation existe déjà ? Quelle action attend-on ? Sans contexte, le modèle doit deviner.</p>
+<p>Le contexte ne signifie pas écrire un roman. Il signifie donner les informations qui influencent réellement la réponse.</p>
+<div class="prompt"><div class="pt">Template contexte minimal</div><pre>Je dois écrire à [DESTINATAIRE].
+Contexte : [SITUATION].
+Objectif : [RÉSULTAT ATTENDU].
+Ton : [FORMEL / DIRECT / AMICAL].
+Points obligatoires : [LISTE].
+Longueur : [COURTE / MAX X MOTS].</pre></div>
+<div class="case"><b>Avant</b>“Écris un email pour demander un rendez-vous.”<br><br><b>Après</b>“Je suis candidat à un poste médical. J’ai déjà eu un premier échange positif avec la cheffe de service. Je veux demander un rendez-vous de 20 minutes sans paraître insistant. Ton cordial et professionnel. Maximum 120 mots.”</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 1.3</div><h3>Hallucinations : savoir quand se méfier</h3>
+<p>Les hallucinations apparaissent lorsque le modèle produit une information plausible mais incorrecte. Elles sont particulièrement importantes pour les dates, chiffres, lois, citations, noms de produits, références scientifiques ou événements récents.</p>
+<h4>Réflexe en trois niveaux</h4>
+<ol><li><b>Créatif :</b> pas besoin de vérifier chaque détail.</li><li><b>Professionnel :</b> vérifier les points importants.</li><li><b>Critique :</b> exiger des sources fiables et contrôler soi-même.</li></ol>
+<div class="prompt"><div class="pt">Prompt de vérification</div><pre>Sépare ta réponse en trois parties :
+1. faits établis ;
+2. éléments incertains ou dépendant d'une source ;
+3. recommandations.
+N'invente aucune donnée manquante.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 1.4</div><h3>La checklist qualité</h3>
+<p>Avant de réutiliser une réponse dans un contexte professionnel, vérifie cinq choses : exactitude, pertinence, exhaustivité, ton et format.</p>
+<div class="callout"><b>Checklist</b>Est-ce vrai ? Est-ce utile ? Est-ce complet ? Est-ce adapté au destinataire ? Est-ce directement utilisable ?</div>
+<div class="summary"><b>À la fin de ce module</b>Tu dois être capable de distinguer une tâche créative d’une tâche factuelle, d’ajouter le bon niveau de contexte et de mettre en place une vérification.</div>
+</article>
+</section>
+
+<section class="module" id="m2">
+<div class="module-head"><div class="num">MODULE 02</div><h2>Prompt Engineering essentiel</h2><p>Un bon prompt n’est pas “intelligent”. Il est clair. L’objectif est de réduire l’ambiguïté et d’augmenter le contrôle sur la sortie.</p></div>
+
+<article class="lesson"><div class="label">Leçon 2.1</div><h3>La structure en six blocs</h3>
+<p>Dans la majorité des cas professionnels, tu peux construire une excellente instruction avec six éléments : objectif, contexte, données, contraintes, format et critères de qualité.</p>
+<div class="prompt"><div class="pt">Framework principal</div><pre>OBJECTIF
+Ce que je veux obtenir.
+
+CONTEXTE
+Pourquoi je le veux et pour qui.
+
+DONNÉES
+Informations que tu dois utiliser.
+
+CONTRAINTES
+Limites, ton, longueur, éléments interdits.
+
+FORMAT
+La structure exacte de la réponse.
+
+CRITÈRES DE QUALITÉ
+Ce qui rendra le résultat réellement bon.</pre></div>
+<div class="exercise"><b>Exercice :</b> prends une demande que tu fais souvent et réécris-la avec les six blocs. Compare les deux sorties.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 2.2</div><h3>Le rôle : utile seulement s’il change la perspective</h3>
+<p>“Tu es un expert mondial” est rarement suffisant. Un rôle est utile lorsqu’il impose une perspective ou des critères spécifiques : recruteur, juriste, chef de projet, analyste financier, professeur.</p>
+<div class="case"><b>Mauvais :</b> “Tu es le meilleur expert marketing.”<br><br><b>Meilleur :</b> “Analyse cette page comme un responsable acquisition B2C. Concentre-toi sur la proposition de valeur, la friction, les preuves et l’appel à l’action.”</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 2.3</div><h3>Les contraintes qui améliorent réellement le résultat</h3>
+<p>Les contraintes empêchent le modèle de produire une réponse trop large. Les plus utiles sont la longueur, le niveau de langage, les éléments obligatoires, le nombre d’options et les exclusions.</p>
+<div class="prompt"><div class="pt">Exemple</div><pre>Réponds en français simple.
+Maximum 180 mots.
+Donne exactement 3 recommandations.
+Chaque recommandation doit contenir :
+- l'action ;
+- la raison ;
+- le premier pas concret.
+Pas de jargon.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 2.4</div><h3>Imposer un format exploitable</h3>
+<p>Une réponse utile doit souvent pouvoir être copiée directement dans un document, un email, un tableau ou un outil. Demander le format dès le départ évite une étape supplémentaire.</p>
+<div class="prompt"><div class="pt">Tableau décisionnel</div><pre>Présente la réponse dans un tableau à 5 colonnes :
+Option | Avantages | Inconvénients | Coût/effort | Recommandation pratique</pre></div>
+<div class="summary"><b>À la fin de ce module</b>Tu dois pouvoir transformer une intention vague en instruction structurée, contrôlable et reproductible.</div>
+</article>
+</section>
+
+<section class="module" id="m3">
+<div class="module-head"><div class="num">MODULE 03</div><h2>Prompts avancés et systèmes de travail</h2><p>Les meilleurs résultats apparaissent souvent lorsque l’on arrête de chercher “le prompt parfait” et que l’on construit une séquence de travail.</p></div>
+
+<article class="lesson"><div class="label">Leçon 3.1</div><h3>Décomposer les tâches complexes</h3>
+<p>Une tâche difficile contient plusieurs sous-problèmes. Demander tout en une fois oblige le modèle à faire trop de choix simultanément. Une approche plus robuste consiste à séparer compréhension, options, comparaison et résultat final.</p>
+<div class="prompt"><div class="pt">Workflow de décomposition</div><pre>Étape 1 : reformule le problème en une phrase.
+Étape 2 : liste les informations manquantes.
+Étape 3 : propose 3 approches.
+Étape 4 : compare-les selon impact, effort et risque.
+Étape 5 : recommande un plan d'action détaillé.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 3.2</div><h3>Créer puis critiquer</h3>
+<p>Le modèle peut améliorer son propre travail lorsqu’on lui donne des critères explicites. La clé est de séparer production et critique.</p>
+<div class="prompt"><div class="pt">Boucle de qualité</div><pre>1. Produis une première version.
+2. Évalue-la sur 10 selon : exactitude, clarté, structure, utilité et ton.
+3. Identifie les 3 faiblesses principales.
+4. Réécris entièrement en corrigeant ces faiblesses.</pre></div>
+<div class="case"><b>Quand l’utiliser :</b> textes importants, propositions commerciales, présentations, plans stratégiques, contenus à fort enjeu.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 3.3</div><h3>Few-shot prompting : montrer au lieu d’expliquer</h3>
+<p>Lorsque tu veux un style ou une structure constante, fournir un exemple est souvent plus efficace qu’une longue explication.</p>
+<p>Exemple : tu veux que chaque résumé commence par une phrase décisionnelle, puis trois puces. Donne deux exemples corrects, puis demande de reproduire exactement le format.</p>
+<div class="exercise"><b>Exercice :</b> crée deux exemples entrée/sortie pour une tâche fréquente dans ton travail. Demande ensuite une troisième sortie avec le même format.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 3.4</div><h3>Construire ta bibliothèque personnelle</h3>
+<p>Un bon prompt utilisé dix fois vaut plus que dix prompts improvisés. Crée une bibliothèque organisée par résultats : écrire, analyser, comparer, résumer, décider, créer, automatiser.</p>
+<div class="callout"><b>Astuce</b>Ajoute à chaque prompt : objectif, quand l’utiliser, données nécessaires, exemple de sortie et erreurs fréquentes.</div>
+</article>
+</section>
+
+<section class="module" id="m4">
+<div class="module-head"><div class="num">MODULE 04</div><h2>IA pour la productivité professionnelle</h2><p>Ce module transforme l’IA en assistant opérationnel pour les tâches quotidiennes de connaissance.</p></div>
+
+<article class="lesson"><div class="label">Leçon 4.1</div><h3>Emails professionnels en quelques minutes</h3>
+<p>Ne demande pas “écris-moi un email”. Donne les faits, le destinataire, le résultat recherché et le ton. Le modèle devient alors un éditeur, pas un inventeur.</p>
+<div class="prompt"><div class="pt">Email professionnel</div><pre>Transforme les notes suivantes en email.
+Destinataire : [X]
+Relation : [X]
+Objectif : [X]
+Ton : naturel, professionnel, direct.
+Contraintes : maximum 140 mots, aucune information inventée.
+Termine par une demande claire.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 4.2</div><h3>Réunions : extraire les décisions, pas seulement résumer</h3>
+<p>Un compte rendu utile ne raconte pas la réunion. Il dit ce qui a été décidé et ce qui doit se passer ensuite.</p>
+<div class="prompt"><div class="pt">Compte rendu opérationnel</div><pre>À partir de ces notes, produis :
+1. décisions prises ;
+2. actions à faire ;
+3. responsable de chaque action ;
+4. échéance si elle est mentionnée ;
+5. questions encore ouvertes.
+N'invente aucune donnée manquante.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 4.3</div><h3>Recherche : définir les critères avant les options</h3>
+<p>L’erreur classique est de demander “quel est le meilleur X ?”. Commence plutôt par définir ce qui compte réellement : budget, qualité, risque, disponibilité, compatibilité, délai.</p>
+<div class="case"><b>Exemple</b>Avant de comparer trois outils SaaS, définis cinq critères pondérés. Ensuite seulement, recherche les produits et remplis la grille.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 4.4</div><h3>Résumer pour agir</h3>
+<p>Un résumé professionnel doit faire ressortir l’essentiel, les conséquences et les actions. Demande une synthèse orientée décision plutôt qu’un simple raccourci du texte.</p>
+<div class="prompt"><div class="pt">Synthèse décisionnelle</div><pre>Résume ce document en quatre sections :
+- faits clés ;
+- implications ;
+- risques ;
+- prochaines actions.
+Maximum 10 puces au total.</pre></div>
+</article>
+</section>
+
+<section class="module" id="m5">
+<div class="module-head"><div class="num">MODULE 05</div><h2>Création de contenu avec une vraie direction éditoriale</h2><p>L’IA peut produire beaucoup de contenu médiocre très vite. Le rôle de ce module est d’apprendre à produire moins, mais mieux.</p></div>
+
+<article class="lesson"><div class="label">Leçon 5.1</div><h3>Un sujet n’est pas un angle</h3>
+<p>“Intelligence artificielle” est un sujet. “Comment un médecin peut réduire de 30 minutes la rédaction administrative quotidienne avec trois workflows simples” est un angle.</p>
+<div class="prompt"><div class="pt">Trouver des angles</div><pre>Thème : [X]
+Audience : [X]
+Problème principal : [X]
+Propose 10 angles éditoriaux distincts.
+Chaque angle doit avoir :
+- une promesse précise ;
+- un niveau de curiosité ;
+- un bénéfice concret.
+Évite les titres génériques.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 5.2</div><h3>Construire un script qui retient l’attention</h3>
+<p>Une structure simple : accroche → problème → tension → valeur → preuve → action. Le but n’est pas de manipuler, mais de donner une raison claire de continuer.</p>
+<div class="prompt"><div class="pt">Script court</div><pre>Écris un script vidéo de 60 secondes.
+Structure :
+1. accroche en 1 phrase ;
+2. problème concret ;
+3. trois idées utiles ;
+4. conclusion mémorable ;
+5. appel à l'action discret.
+Ton : naturel, phrases courtes, aucune exagération.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 5.3</div><h3>Créer une voix de marque</h3>
+<p>Définis cinq dimensions : formalité, longueur des phrases, vocabulaire, niveau d’émotion, expressions à éviter. Ces règles deviennent ton guide de style.</p>
+<div class="exercise"><b>Exercice :</b> choisis trois textes que tu trouves excellents. Demande à l’IA d’identifier leurs caractéristiques communes, puis transforme-les en guide de style.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 5.4</div><h3>Recycler intelligemment</h3>
+<p>Un contenu source de qualité peut devenir plusieurs formats, mais chaque canal doit être réécrit selon son usage. Un post LinkedIn n’est pas un email, et une vidéo n’est pas un article raccourci.</p>
+<div class="prompt"><div class="pt">Repurposing</div><pre>À partir de ce contenu source, crée :
+- un post LinkedIn ;
+- un email ;
+- un script vidéo de 45 secondes ;
+- une FAQ de 5 questions.
+Adapte l'angle et le ton à chaque canal au lieu de simplement raccourcir.</pre></div>
+</article>
+</section>
+
+<section class="module" id="m6">
+<div class="module-head"><div class="num">MODULE 06</div><h2>Automatiser sans créer une usine à gaz</h2><p>Une bonne automatisation enlève une tâche répétitive. Une mauvaise automatisation crée un système fragile qu’il faut surveiller en permanence.</p></div>
+
+<article class="lesson"><div class="label">Leçon 6.1</div><h3>Choisir les bonnes tâches à automatiser</h3>
+<p>Une bonne candidate est fréquente, répétitive, standardisée et facile à vérifier. Une mauvaise candidate dépend fortement du jugement humain ou change constamment.</p>
+<div class="callout"><b>Matrice simple</b>Fréquence élevée + règles stables + erreur peu coûteuse = excellente candidate.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 6.2</div><h3>Le workflow en quatre blocs</h3>
+<p>Décris toujours une automatisation comme : entrée → traitement → contrôle → sortie. Cette structure évite les systèmes opaques.</p>
+<div class="prompt"><div class="pt">Designer de workflow</div><pre>Conçois un workflow pour [TÂCHE].
+Pour chaque étape, indique :
+- entrée ;
+- transformation ;
+- contrôle ;
+- sortie ;
+- erreur possible ;
+- validation humaine nécessaire.</pre></div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 6.3</div><h3>Human in the loop</h3>
+<p>L’objectif de l’automatisation n’est pas toujours de supprimer l’humain. Souvent, le meilleur système automatise 80 % du travail répétitif et concentre l’humain sur la validation finale.</p>
+<div class="case"><b>Exemple</b>Une IA prépare un brouillon de réponse client, mais aucune réponse n’est envoyée avant validation humaine.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 6.4</div><h3>Mesurer si l’automatisation vaut vraiment la peine</h3>
+<p>Mesure quatre choses : temps gagné, taux d’erreur, temps de correction et satisfaction de l’utilisateur. Si le système gagne cinq minutes mais demande dix minutes de contrôle, il n’a pas créé de valeur.</p>
+<div class="exercise"><b>Exercice :</b> teste ton workflow sur cinq cas réels et calcule le temps total avant/après.</div>
+</article>
+</section>
+
+<section class="module" id="m7">
+<div class="module-head"><div class="num">MODULE 07</div><h2>Agents IA : comprendre avant de complexifier</h2><p>Les agents sont utiles lorsqu’une tâche nécessite plusieurs étapes et outils. Ils ne sont pas nécessaires pour tout.</p></div>
+
+<article class="lesson"><div class="label">Leçon 7.1</div><h3>Qu’est-ce qu’un agent ?</h3>
+<p>Un agent reçoit un objectif, peut utiliser des outils, conserve éventuellement un état et choisit les prochaines actions jusqu’à atteindre un critère d’arrêt.</p>
+<p>La différence avec un simple prompt est donc la capacité à enchaîner plusieurs actions au lieu de produire une seule réponse.</p>
+</article>
+
+<article class="lesson"><div class="label">Leçon 7.2</div><h3>Architecture minimale</h3>
+<div class="prompt"><div class="pt">Spécification d’agent</div><pre>Objectif : [X]
+Outils autorisés : [X]
+Données accessibles : [X]
+Actions interdites : [X]
+Critères de succès : [X]
+Critères d'arrêt : [X]
+Validation humaine obligatoire avant : [X]</pre></div>
+<p>Cette fiche force à réfléchir aux limites avant de construire.</p>
+</article>
+
+<article class="lesson"><div class="label">Leçon 7.3</div><h3>Quand ne pas utiliser un agent</h3>
+<p>Si le processus est linéaire, prévisible et composé de trois étapes fixes, un workflow classique est souvent plus fiable, plus rapide et moins coûteux.</p>
+<div class="callout"><b>Règle pratique</b>N’utilise un agent que si le système doit réellement choisir entre plusieurs chemins selon ce qu’il observe.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 7.4</div><h3>Permissions et garde-fous</h3>
+<p>Chaque agent devrait avoir le minimum de permissions nécessaires. Les actions sensibles — paiement, suppression, publication, envoi externe — doivent avoir une validation adaptée.</p>
+<div class="exercise"><b>Exercice :</b> conçois un agent pour une tâche réelle et définis au moins trois actions qui nécessitent confirmation humaine.</div>
+</article>
+</section>
+
+<section class="module" id="m8">
+<div class="module-head"><div class="num">MODULE 08</div><h2>Projet final : construire ton propre système IA</h2><p>Le cours se termine par un système concret. L’objectif n’est pas de montrer ce que tu sais, mais de créer quelque chose que tu peux réellement utiliser.</p></div>
+
+<article class="lesson"><div class="label">Leçon 8.1</div><h3>Choisir un problème suffisamment étroit</h3>
+<p>Évite “automatiser mon business”. Choisis plutôt “transformer les notes brutes d’un rendez-vous en compte rendu structuré” ou “préparer chaque semaine un brouillon de newsletter à partir de trois sources”.</p>
+</article>
+
+<article class="lesson"><div class="label">Leçon 8.2</div><h3>Écrire la fiche système</h3>
+<div class="prompt"><div class="pt">Fiche projet</div><pre>Problème :
+Utilisateur :
+Fréquence :
+Entrées :
+Étapes :
+Prompts :
+Outils :
+Validation :
+Sortie :
+Risques :
+Métriques de succès :</pre></div>
+<p>Cette fiche suffit souvent à clarifier 80 % du projet avant même de construire.</p>
+</article>
+
+<article class="lesson"><div class="label">Leçon 8.3</div><h3>Tester sur des cas réels</h3>
+<p>Ne teste pas uniquement avec un exemple idéal. Utilise des cas simples, normaux et difficiles. Note les erreurs et corrige le système à partir de données réelles.</p>
+<div class="case"><b>Test minimum</b>5 cas normaux + 2 cas difficiles + 1 cas incomplet.</div>
+</article>
+
+<article class="lesson"><div class="label">Leçon 8.4</div><h3>Évaluer la valeur produite</h3>
+<p>Donne une note sur 10 à cinq dimensions : utilité, précision, gain de temps, facilité d’utilisation et sécurité. La note globale compte moins que le point faible principal.</p>
+<div class="exercise"><b>Projet final :</b> livre une page contenant le problème, le workflow, les prompts, les limites, les résultats avant/après et les prochaines améliorations.</div>
+<div class="summary"><b>Tu as terminé lorsque</b>ton système est suffisamment simple pour être utilisé régulièrement et suffisamment fiable pour produire de la valeur mesurable.</div>
+</article>
+</section>
+
+<div class="footer">AI Mastery 2026 — version complète de travail. Le contenu doit encore être relu, testé et complété par des ressources téléchargeables avant commercialisation définitive.</div>
+</main>
+</div>
+</body></html>

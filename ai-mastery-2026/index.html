@@ -1,107 +1,51 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Mastery 2026 — Prompt Engineering & Productivité</title>
-<meta name="description" content="Formation pratique 2026 pour maîtriser ChatGPT, le prompt engineering, l'automatisation et la productivité avec l'IA.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Mastery 2026 — Maîtrisez l’IA avec méthode</title>
+<meta name="description" content="Formation premium en IA, prompt engineering, automatisation et productivité. Un parcours clair, professionnel et pratique.">
+<meta name="theme-color" content="#09111f">
 <style>
-:root{--bg:#07111f;--card:#0d1b2e;--ink:#f7fbff;--muted:#a9b8cc;--accent:#7c5cff;--accent2:#16d3a8;--line:rgba(255,255,255,.11);--gold:#ffd166}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 20% 0%,#182b50 0,#07111f 35%),#07111f;color:var(--ink);line-height:1.6}
-a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92vw);margin:auto}.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}.brand{font-weight:900;letter-spacing:.3px;font-size:21px}.brand b{color:var(--accent2)}.nav a.btn{padding:10px 16px;border:1px solid var(--line);border-radius:12px}
-.hero{padding:72px 0 46px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center}.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border:1px solid rgba(124,92,255,.45);background:rgba(124,92,255,.12);border-radius:999px;color:#d9d2ff;font-size:13px;font-weight:800}.hero h1{font-size:clamp(42px,6vw,72px);line-height:1.02;margin:18px 0}.grad{background:linear-gradient(90deg,#fff,#bdaeff 46%,#55e6c6);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:20px;color:var(--muted);max-width:720px}.cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:28px}.buy{display:inline-flex;align-items:center;justify-content:center;padding:16px 24px;border:0;border-radius:14px;background:linear-gradient(135deg,var(--accent),#5c3dff);font-weight:900;box-shadow:0 14px 40px rgba(124,92,255,.25);cursor:pointer}.price{font-size:28px;font-weight:900}.old{font-size:15px;color:#8192aa;text-decoration:line-through;margin-left:7px}
-.hero-card{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:0 35px 80px rgba(0,0,0,.35)}.screen{aspect-ratio:16/10;border-radius:18px;background:linear-gradient(145deg,#101f38,#152d53);display:grid;place-items:center;border:1px solid var(--line);position:relative;overflow:hidden}.screen:before{content:"AI";font-size:120px;font-weight:1000;letter-spacing:-10px;color:rgba(255,255,255,.06);position:absolute}.play{width:74px;height:74px;border-radius:50%;background:#fff;color:#10182a;display:grid;place-items:center;font-size:26px;padding-left:5px;z-index:1}.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.mini div{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;font-size:12px;color:#bdc9d9}.mini b{display:block;font-size:18px;color:#fff}
-.strip{margin:28px 0 58px;border:1px solid var(--line);border-radius:18px;padding:17px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:rgba(255,255,255,.03);text-align:center}.strip b{display:block;font-size:22px}.strip span{color:var(--muted);font-size:13px}
-section{padding:72px 0}.eyebrow{color:var(--accent2);font-weight:900;text-transform:uppercase;letter-spacing:1.5px;font-size:12px}h2{font-size:clamp(30px,4vw,48px);line-height:1.1;margin:10px 0 16px}.sub{color:var(--muted);max-width:760px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}.card{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:18px;padding:22px}.card h3{margin:5px 0 8px}.card p{color:var(--muted);margin:0}.icon{font-size:24px}
-.curriculum{display:grid;gap:12px;margin-top:30px}.module{display:grid;grid-template-columns:70px 1fr auto;gap:18px;align-items:center;padding:18px 20px;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:16px}.num{font-weight:900;color:#bdaeff}.module b{display:block}.module span{color:var(--muted);font-size:14px}.pill{font-size:12px;padding:5px 9px;border-radius:999px;background:rgba(22,211,168,.11);color:#77efd3;border:1px solid rgba(22,211,168,.25)}
-.value{display:grid;grid-template-columns:1fr .9fr;gap:34px;align-items:start}.check{display:flex;gap:12px;margin:13px 0;color:#dbe7f7}.check i{font-style:normal;color:var(--accent2);font-weight:900}.offer{position:sticky;top:20px;border-radius:24px;padding:28px;background:linear-gradient(180deg,#142440,#0c1829);border:1px solid rgba(124,92,255,.35);box-shadow:0 24px 70px rgba(0,0,0,.28)}.offer .price{font-size:46px}.offer ul{padding-left:20px;color:#c8d4e3}.paypal{width:100%;padding:16px;border:0;border-radius:13px;background:#ffc439;color:#111;font-weight:900;font-size:16px;cursor:pointer}.paypal small{display:block;font-weight:700;font-size:11px}.note{font-size:12px;color:#8394aa;text-align:center;margin-top:10px}
-.faq{display:grid;gap:10px;margin-top:28px}.faq details{border:1px solid var(--line);background:rgba(255,255,255,.03);padding:18px 20px;border-radius:14px}.faq summary{cursor:pointer;font-weight:800}.faq p{color:var(--muted)}
-footer{border-top:1px solid var(--line);padding:30px 0 45px;color:#8192aa;font-size:13px}.legal{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-@media(max-width:850px){.hero,.value{grid-template-columns:1fr}.hero{padding-top:38px}.strip{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.module{grid-template-columns:50px 1fr}.module .pill{grid-column:2}.offer{position:static}.nav .hide{display:none}}
+:root{--bg:#07101e;--ink:#f8fbff;--muted:#aebed3;--line:rgba(255,255,255,.1);--violet:#8c6cff;--mint:#2dd4bf;--gold:#f3c978;--card:rgba(255,255,255,.06)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 12% 0%,rgba(140,108,255,.26),transparent 30%),radial-gradient(circle at 88% 12%,rgba(45,212,191,.14),transparent 24%),linear-gradient(#09111f,#07101e 58%,#091427);line-height:1.6}
+a{color:inherit;text-decoration:none}.wrap{width:min(1180px,92vw);margin:auto}.top{position:sticky;top:0;z-index:50;background:rgba(7,16,30,.74);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}.topin{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--violet),var(--mint));display:grid;place-items:center;box-shadow:0 12px 32px rgba(140,108,255,.32)}.brand small{display:block;color:#94a6bd;text-transform:uppercase;letter-spacing:1px;font-size:10px}.nav{display:flex;gap:16px;align-items:center}.nav a{color:#c8d4e3;font-size:14px;font-weight:750}.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 20px;border-radius:999px;font-weight:850;border:1px solid var(--line);background:rgba(255,255,255,.05);transition:.2s}.btn:hover{transform:translateY(-1px)}.btn.primary{border:none;background:linear-gradient(135deg,#8265ff,#5f75ff 55%,#24c9ad);box-shadow:0 16px 40px rgba(104,104,255,.26)}
+.hero{padding:76px 0 30px;display:grid;grid-template-columns:1.06fr .94fr;gap:42px;align-items:center}.tag{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;border:1px solid rgba(243,201,120,.24);background:rgba(243,201,120,.07);color:#ffe2a9;font-size:12px;font-weight:900;letter-spacing:.8px;text-transform:uppercase}h1{font-size:clamp(46px,6vw,78px);line-height:1.01;letter-spacing:-.05em;margin:18px 0}.grad{background:linear-gradient(90deg,#fff,#cbbdff 45%,#8ff2df);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{font-size:19px;color:var(--muted);max-width:66ch}.actions{display:flex;gap:13px;flex-wrap:wrap;margin:28px 0 18px}.trustline{display:flex;gap:16px;flex-wrap:wrap;color:#cfd9e7;font-size:13px;font-weight:750}
+.preview{background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:30px;padding:22px;box-shadow:0 36px 90px rgba(0,0,0,.38)}.screen{min-height:455px;border-radius:23px;padding:24px;background:linear-gradient(145deg,#13233e,#0d192c);border:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}.screen:after{content:"";position:absolute;width:260px;height:260px;right:-90px;bottom:-110px;border-radius:50%;background:radial-gradient(circle,rgba(45,212,191,.28),transparent 62%)}.kicker{color:#8ff2df;font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase}.screen h3{font-size:30px;line-height:1.1;margin:9px 0 10px}.screen p{color:#aebed3;max-width:42ch}.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;position:relative;z-index:1}.mini{padding:16px;border-radius:17px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.055)}.mini b{display:block;font-size:20px}.mini span{color:#9fb0c5;font-size:12px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0 48px}.metric{padding:18px;text-align:center;border:1px solid var(--line);border-radius:17px;background:rgba(255,255,255,.04)}.metric b{display:block;font-size:25px}.metric span{font-size:12px;color:#95a7be}
+section{padding:70px 0}.head{display:flex;justify-content:space-between;gap:28px;align-items:end;flex-wrap:wrap;margin-bottom:28px}.head h2{font-size:clamp(32px,4vw,50px);line-height:1.07;letter-spacing:-.035em;margin:0}.head p{color:var(--muted);max-width:64ch;margin:0}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.box{padding:23px;border-radius:21px;background:var(--card);border:1px solid var(--line)}.box .icon{font-size:25px}.box h3{margin:10px 0 8px}.box p{margin:0;color:var(--muted)}
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.module{display:grid;grid-template-columns:58px 1fr;gap:16px;padding:20px;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:19px}.n{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(140,108,255,.18),rgba(45,212,191,.15));font-weight:900}.module h3{margin:0 0 5px}.module p{margin:0;color:var(--muted);font-size:14px}.chip{display:inline-block;margin-top:10px;padding:5px 9px;border-radius:999px;border:1px solid rgba(45,212,191,.2);color:#86eedc;background:rgba(45,212,191,.08);font-size:11px;font-weight:850}
+.split{display:grid;grid-template-columns:1fr .9fr;gap:28px}.list{display:grid;gap:12px}.check{display:flex;gap:11px}.check i{font-style:normal;color:var(--mint);font-weight:900}.check span{color:#dce7f5}.pricebox{padding:28px;border-radius:26px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border:1px solid rgba(140,108,255,.3);box-shadow:0 28px 75px rgba(0,0,0,.28);position:sticky;top:94px}.pricebox .small{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase}.price{font-size:55px;line-height:1;font-weight:950;margin:12px 0}.old{font-size:16px;color:#8494aa;text-decoration:line-through;margin-left:8px}.pricebox p{color:var(--muted)}.pricebox ul{padding-left:19px;color:#dde7f4}.pay{width:100%;padding:16px;border:0;border-radius:15px;background:#ffc439;color:#111827;font-weight:900;font-size:16px;cursor:pointer}.paynote{text-align:center;color:#8999af;font-size:11px;margin-top:9px}.bonus{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.quote{padding:22px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.045)}.quote p{margin:0 0 13px;color:#ebf1f9}.quote span{color:#95a7bd;font-size:12px}.faq{display:grid;gap:11px}.faq details{padding:18px 20px;border-radius:17px;background:rgba(255,255,255,.04);border:1px solid var(--line)}.faq summary{font-weight:850;cursor:pointer}.faq p{color:var(--muted)}.closing{padding:34px;border-radius:26px;background:linear-gradient(135deg,rgba(140,108,255,.15),rgba(45,212,191,.08));border:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.closing h2{margin:0;font-size:34px}.closing p{margin:5px 0 0;color:var(--muted)}footer{padding:40px 0;color:#8495ac;font-size:12px}.foot{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:980px){.hero,.split{grid-template-columns:1fr}.pricebox{position:static}.grid3,.modules,.bonus{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}}@media(max-width:680px){.nav a:not(.btn){display:none}.hero{padding-top:42px}.grid3,.modules,.bonus,.metrics{grid-template-columns:1fr}.module{grid-template-columns:1fr}.cards{grid-template-columns:1fr}h1{font-size:43px}}
 </style>
 </head>
 <body>
+<header class="top"><div class="wrap topin"><a class="brand" href="#top"><div class="logo">AI</div><div>AI Mastery 2026<small>Formation premium</small></div></a><nav class="nav"><a href="#programme">Programme</a><a href="#contenu">Contenu</a><a href="#tarif">Tarif</a><a class="btn" href="lamine-review-2026.html">Accès Lamine</a><a class="btn primary" href="#acheter">Acheter</a></nav></div></header>
+<main id="top">
 <div class="wrap">
-<nav class="nav"><div class="brand">AI <b>Mastery</b> 2026</div><a class="btn hide" href="#programme">Voir le programme</a></nav>
-<header class="hero">
-<div>
-<span class="badge">⚡ Formation IA 2026 • Niveau débutant à avancé</span>
-<h1>Maîtrisez l’IA et le <span class="grad">Prompt Engineering</span></h1>
-<p class="lead">Une formation pratique pour utiliser ChatGPT et les outils d’IA au travail, créer de meilleurs prompts, automatiser des tâches et produire plus vite sans compétences techniques avancées.</p>
-<div class="cta"><a class="buy" href="#acheter">Accéder à la formation</a><div class="price">49 € <span class="old">99 €</span></div></div>
+<section class="hero">
+<div><span class="tag">Formation IA • Prompt Engineering • Automatisation</span><h1>Maîtrisez l’IA avec une <span class="grad">méthode professionnelle</span></h1><p class="lead">Une formation claire et premium pour apprendre à mieux utiliser ChatGPT et les outils d’IA, structurer vos prompts, automatiser des tâches et produire plus vite — sans jargon inutile.</p><div class="actions"><a class="btn primary" href="#acheter">Accéder à la formation</a><a class="btn" href="#programme">Voir le programme</a></div><div class="trustline"><span>✓ Accès à vie</span><span>✓ 8 modules</span><span>✓ 30+ templates</span><span>✓ Paiement PayPal</span></div></div>
+<div class="preview"><div class="screen"><div><div class="kicker">Votre espace d’apprentissage</div><h3>AI Mastery 2026</h3><p>Un parcours structuré pour comprendre, pratiquer puis intégrer l’IA dans votre travail et vos projets.</p></div><div class="cards"><div class="mini"><b>8 modules</b><span>progression cohérente</span></div><div class="mini"><b>40+ leçons</b><span>courtes & pratiques</span></div><div class="mini"><b>30+ prompts</b><span>prêts à adapter</span></div><div class="mini"><b>100% pratique</b><span>cas d’usage concrets</span></div></div></div></div>
+</section>
+<div class="metrics"><div class="metric"><b>8</b><span>modules structurés</span></div><div class="metric"><b>40+</b><span>leçons pratiques</span></div><div class="metric"><b>30+</b><span>prompts & modèles</span></div><div class="metric"><b>49 €</b><span>prix de lancement</span></div></div>
 </div>
-<div class="hero-card">
-<div class="screen"><div class="play">▶</div></div>
-<div class="mini"><div><b>8</b>modules</div><div><b>40+</b>leçons</div><div><b>30+</b>templates</div></div>
-</div>
-</header>
-<div class="strip"><div><b>100%</b><span>en ligne</span></div><div><b>À vie</b><span>accès au contenu</span></div><div><b>FR</b><span>formation en français</span></div><div><b>PayPal</b><span>paiement sécurisé</span></div></div>
-</div>
-
-<section id="programme"><div class="wrap">
-<div class="eyebrow">Ce que vous allez apprendre</div>
-<h2>Des compétences directement utilisables</h2>
-<p class="sub">Le contenu est conçu autour des usages les plus demandés actuellement : productivité, prompt engineering, création de contenu, recherche, automatisation et agents IA.</p>
-<div class="grid">
-<div class="card"><div class="icon">🧠</div><h3>Prompts professionnels</h3><p>Structurer vos instructions, améliorer la précision et obtenir des réponses cohérentes.</p></div>
-<div class="card"><div class="icon">⚙️</div><h3>Automatiser le travail</h3><p>Transformer les tâches répétitives en workflows simples et rapides.</p></div>
-<div class="card"><div class="icon">📈</div><h3>Productivité augmentée</h3><p>Emails, résumés, recherche, analyse, présentations et organisation quotidienne.</p></div>
-<div class="card"><div class="icon">✍️</div><h3>Création de contenu</h3><p>Scripts, articles, campagnes, posts et idées créatives avec une méthode reproductible.</p></div>
-<div class="card"><div class="icon">🤖</div><h3>Agents IA</h3><p>Comprendre les agents et construire des chaînes d’actions assistées par IA.</p></div>
-<div class="card"><div class="icon">🛡️</div><h3>Bonnes pratiques</h3><p>Vérification des réponses, confidentialité, limites et usage responsable.</p></div>
-</div>
-</div></section>
-
-<section style="background:rgba(255,255,255,.018)"><div class="wrap">
-<div class="eyebrow">Programme complet</div><h2>8 modules, de zéro à autonome</h2>
-<div class="curriculum">
-<div class="module"><div class="num">01</div><div><b>Fondamentaux de l’IA générative</b><span>Comprendre les modèles, leurs forces et leurs limites.</span></div><div class="pill">Débutant</div></div>
-<div class="module"><div class="num">02</div><div><b>Prompt Engineering essentiel</b><span>Contexte, rôle, contraintes, format et exemples.</span></div><div class="pill">Pratique</div></div>
-<div class="module"><div class="num">03</div><div><b>Prompts avancés & bibliothèques</b><span>Templates réutilisables, itérations et contrôle qualité.</span></div><div class="pill">Avancé</div></div>
-<div class="module"><div class="num">04</div><div><b>IA pour le travail</b><span>Emails, réunions, documents, recherche et analyse.</span></div><div class="pill">Business</div></div>
-<div class="module"><div class="num">05</div><div><b>Création de contenu</b><span>Articles, réseaux sociaux, vidéos, offres et storytelling.</span></div><div class="pill">Créatif</div></div>
-<div class="module"><div class="num">06</div><div><b>Automatisation & workflows</b><span>Créer des processus simples qui font gagner du temps.</span></div><div class="pill">Productivité</div></div>
-<div class="module"><div class="num">07</div><div><b>Agents IA & cas d’usage</b><span>Décomposer des objectifs en actions et outils.</span></div><div class="pill">2026</div></div>
-<div class="module"><div class="num">08</div><div><b>Projet final</b><span>Construire votre propre système IA utilisable au quotidien.</span></div><div class="pill">Projet</div></div>
-</div>
-</div></section>
-
-<section id="acheter"><div class="wrap value">
-<div>
-<div class="eyebrow">Votre accès</div><h2>Une formation compacte, utile et actionnable</h2>
-<p class="sub">Vous avancez à votre rythme et utilisez directement les modèles de prompts fournis pour vos propres besoins.</p>
-<div class="check"><i>✓</i><span>8 modules structurés</span></div>
-<div class="check"><i>✓</i><span>Plus de 40 leçons courtes et pratiques</span></div>
-<div class="check"><i>✓</i><span>30+ modèles de prompts prêts à adapter</span></div>
-<div class="check"><i>✓</i><span>Cas pratiques travail, business et contenu</span></div>
-<div class="check"><i>✓</i><span>Mises à jour du contenu 2026</span></div>
-<div class="check"><i>✓</i><span>Accès à vie au contenu acheté</span></div>
-</div>
-<div class="offer">
-<div class="eyebrow">Offre de lancement</div>
-<div class="price">49 € <span class="old">99 €</span></div>
-<p>Prix unique. Pas d’abonnement.</p>
-<ul><li>Formation complète</li><li>Templates inclus</li><li>Paiement uniquement via PayPal</li></ul>
-<button class="paypal" id="paypalBtn">Payer avec PayPal<small>Le compte PayPal vendeur sera connecté avant mise en vente</small></button>
-<div class="note">Paiement PayPal. Aucun débit tant que le compte vendeur n’est pas configuré.</div>
-</div>
-</div></section>
-
-<section><div class="wrap">
-<div class="eyebrow">FAQ</div><h2>Questions fréquentes</h2>
-<div class="faq">
-<details><summary>À qui s’adresse cette formation ?</summary><p>Aux débutants comme aux utilisateurs réguliers qui veulent obtenir des résultats plus professionnels avec l’IA.</p></details>
-<details><summary>Faut-il savoir programmer ?</summary><p>Non. Les modules principaux sont accessibles sans code.</p></details>
-<details><summary>Combien de temps faut-il prévoir ?</summary><p>Le parcours est conçu pour être suivi progressivement, module par module, selon votre rythme.</p></details>
-<details><summary>Comment se passe le paiement ?</summary><p>Le paiement sera effectué exclusivement via PayPal une fois le compte vendeur connecté.</p></details>
-</div>
-</div></section>
-
-<footer><div class="wrap legal"><span>© 2026 AI Mastery. Tous droits réservés.</span><span>Formation indépendante. Non affiliée à Udemy, OpenAI ou à une autre plateforme.</span></div></footer>
-
-<script>
-document.getElementById('paypalBtn').addEventListener('click',function(){
-  alert("Le paiement PayPal sera activé dès que le compte vendeur sera connecté.");
-});
-</script>
+<section id="contenu"><div class="wrap"><div class="head"><h2>Une formation pensée pour être utile, pas seulement impressionnante.</h2><p>Le visiteur comprend immédiatement la valeur : ce qu’il va apprendre, comment il va progresser et ce qu’il pourra appliquer concrètement.</p></div><div class="grid3"><article class="box"><div class="icon">🧠</div><h3>Comprendre l’IA</h3><p>Les bases utiles pour utiliser les outils actuels avec méthode et discernement.</p></article><article class="box"><div class="icon">⚡</div><h3>Travailler plus vite</h3><p>Emails, recherche, synthèses, contenu, préparation et organisation assistée par IA.</p></article><article class="box"><div class="icon">⚙️</div><h3>Automatiser intelligemment</h3><p>Transformer les tâches répétitives en workflows simples et reproductibles.</p></article></div></div></section>
+<section id="programme"><div class="wrap"><div class="head"><h2>Le programme complet</h2><p>Un parcours du niveau débutant vers des usages avancés, avec une logique claire et progressive.</p></div><div class="modules">
+<article class="module"><div class="n">01</div><div><h3>Fondamentaux de l’IA générative</h3><p>Modèles, fonctionnement, limites, cas d’usage et bonnes pratiques.</p><span class="chip">Fondamentaux</span></div></article>
+<article class="module"><div class="n">02</div><div><h3>Prompt Engineering essentiel</h3><p>Contexte, objectif, contraintes, format de sortie et itération.</p><span class="chip">Essentiel</span></div></article>
+<article class="module"><div class="n">03</div><div><h3>Prompts avancés</h3><p>Frameworks, multi-étapes, contrôle qualité et bibliothèques de prompts.</p><span class="chip">Avancé</span></div></article>
+<article class="module"><div class="n">04</div><div><h3>IA pour la productivité</h3><p>Emails, réunions, résumés, documents, recherche et organisation.</p><span class="chip">Travail</span></div></article>
+<article class="module"><div class="n">05</div><div><h3>Création de contenu</h3><p>Scripts, posts, articles, storytelling, offres et pages de vente.</p><span class="chip">Création</span></div></article>
+<article class="module"><div class="n">06</div><div><h3>Automatisation des tâches</h3><p>Identifier les tâches répétitives et créer des workflows légers.</p><span class="chip">Automatisation</span></div></article>
+<article class="module"><div class="n">07</div><div><h3>Agents IA</h3><p>Décomposer un objectif, orchestrer plusieurs étapes et utiliser des assistants plus autonomes.</p><span class="chip">2026</span></div></article>
+<article class="module"><div class="n">08</div><div><h3>Projet final</h3><p>Construire votre propre système IA applicable à votre métier ou projet.</p><span class="chip">Projet</span></div></article>
+</div></div></section>
+<section><div class="wrap split"><div><div class="head"><h2>Ce que vous recevez</h2></div><div class="list"><div class="check"><i>✓</i><span>Accès à vie à la formation achetée</span></div><div class="check"><i>✓</i><span>Plus de 40 leçons structurées</span></div><div class="check"><i>✓</i><span>30+ templates de prompts</span></div><div class="check"><i>✓</i><span>Cas pratiques business, contenu et productivité</span></div><div class="check"><i>✓</i><span>Bonus : bibliothèque de prompts et checklist d’optimisation</span></div></div></div>
+<aside class="pricebox" id="acheter"><div class="small">Offre de lancement</div><div class="price">49 € <span class="old">99 €</span></div><p id="tarif">Paiement unique. Aucun abonnement mensuel.</p><ul><li>Formation complète</li><li>Accès à vie</li><li>Templates inclus</li><li>Paiement uniquement via PayPal</li></ul><button class="pay" id="paypalBtn">Payer avec PayPal</button><div class="paynote">Le bouton sera activé dès que votre PayPal vendeur sera intégré.</div></aside></div></section>
+<section><div class="wrap"><div class="head"><h2>Bonus inclus</h2><p>Des compléments simples qui augmentent la valeur pratique de la formation.</p></div><div class="bonus"><article class="box"><h3>Bibliothèque de prompts</h3><p>Des modèles pour travailler, écrire, analyser, vendre et organiser.</p></article><article class="box"><h3>Checklist qualité</h3><p>Une méthode simple pour améliorer la précision de vos résultats.</p></article><article class="box"><h3>Guide productivité</h3><p>Des idées pour gagner du temps chaque semaine avec l’IA.</p></article></div></div></section>
+<section><div class="wrap"><div class="head"><h2>Ce que les apprenants recherchent</h2><p>Une présentation orientée résultat, crédible et professionnelle, sans promesses excessives.</p></div><div class="grid3"><article class="quote"><p>“Enfin un parcours qui explique l’IA de façon structurée et directement exploitable.”</p><b>Nadia B.</b><span>Exemple de témoignage — à remplacer par un avis réel</span></article><article class="quote"><p>“La partie prompts avancés donne une vraie méthode au lieu d’une simple liste d’astuces.”</p><b>Karim S.</b><span>Exemple de témoignage — à remplacer par un avis réel</span></article><article class="quote"><p>“La formation est claire, sérieuse et facile à suivre.”</p><b>Salma R.</b><span>Exemple de témoignage — à remplacer par un avis réel</span></article></div></div></section>
+<section id="faq"><div class="wrap"><div class="head"><h2>Questions fréquentes</h2></div><div class="faq"><details><summary>Est-ce adapté aux débutants ?</summary><p>Oui. Le parcours commence par les fondamentaux puis progresse vers des usages plus avancés.</p></details><details><summary>Faut-il savoir programmer ?</summary><p>Non. Les modules principaux sont accessibles sans connaissances techniques avancées.</p></details><details><summary>Comment fonctionne le paiement ?</summary><p>Le paiement est prévu exclusivement via PayPal.</p></details><details><summary>Quand obtient-on l’accès ?</summary><p>Le système de livraison définitif sera relié au paiement lors de l’intégration de votre PayPal.</p></details></div></div></section>
+<section><div class="wrap"><div class="closing"><div><h2>Prêt à transformer votre façon de travailler ?</h2><p>Commencez avec une méthode claire et des outils directement utilisables.</p></div><a class="btn primary" href="#acheter">Accéder à AI Mastery 2026</a></div></div></section>
+</main>
+<footer><div class="wrap foot"><span>© 2026 AI Mastery 2026</span><span>Formation indépendante • Paiement PayPal</span></div></footer>
+<script>document.getElementById('paypalBtn').addEventListener('click',()=>alert('Le paiement PayPal sera activé dès que le compte vendeur sera intégré.'));</script>
 </body></html>
